@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<ButtonGroup name="NoteButtons" id="13">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Note buttons</v8:content>
+					</v8:item>
+				</Title>
+				<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+				<ExtendedTooltip name="NoteButtonsExtendedTooltip" id="35"/>
+				<ChildItems>
+					<Button name="OK" id="16">
+						<Type>CommandBarButton</Type>
+						<DefaultButton>true</DefaultButton>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Command.EnableEdit</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>OK</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="OKExtendedTooltip" id="36"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<ButtonGroup name="WarningButtons" id="8">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Warning buttons</v8:content>
+					</v8:item>
+				</Title>
+				<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+				<ExtendedTooltip name="WarningButtonsExtendedTooltip" id="43"/>
+				<ChildItems>
+					<Button name="EnableEdit" id="9">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Command.EnableEdit</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Allow editing</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="EnableEditExtendedTooltip" id="44"/>
+					</Button>
+					<Button name="Cancel" id="11">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.StandardCommand.Cancel</CommandName>
+						<ExtendedTooltip name="CancelExtendedTooltip" id="45"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="UserDialogs" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User dialog boxes</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="UserDialogsExtendedTooltip" id="28"/>
+			<ChildItems>
+				<Page name="ObjectNotUsed" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object not used</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ObjectNotUsedExtendedTooltip" id="29"/>
+					<ChildItems>
+						<Pages name="NotesText" id="12">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Notes</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="NotesTextExtendedTooltip" id="30"/>
+							<ChildItems>
+								<Page name="AdditionalAttributeNote" id="22">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Note to additional attribute</v8:content>
+										</v8:item>
+									</Title>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AdditionalAttributeNoteExtendedTooltip" id="31"/>
+									<ChildItems>
+										<LabelDecoration name="AdditionalAttributeNoteText" id="23">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<VerticalStretch>true</VerticalStretch>
+											<SkipOnInput>false</SkipOnInput>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The additional attribute is not used in the application.
+
+You can edit its name and value type.</v8:content>
+												</v8:item>
+											</Title>
+											<VerticalAlign>Top</VerticalAlign>
+											<ContextMenu name="AdditionalAttributeNoteTextContextMenu" id="24"/>
+											<ExtendedTooltip name="AdditionalAttributeNoteTextExtendedTooltip" id="32"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="AdditionalInfoNote" id="25">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Note to additional information record</v8:content>
+										</v8:item>
+									</Title>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AdditionalInfoNoteExtendedTooltip" id="33"/>
+									<ChildItems>
+										<LabelDecoration name="AdditionalInfoNoteText" id="26">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<VerticalStretch>true</VerticalStretch>
+											<SkipOnInput>false</SkipOnInput>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The additional information record is not used in the application.
+
+You can edit its name and value type.</v8:content>
+												</v8:item>
+											</Title>
+											<VerticalAlign>Top</VerticalAlign>
+											<ContextMenu name="AdditionalInfoNoteTextContextMenu" id="27"/>
+											<ExtendedTooltip name="AdditionalInfoNoteTextExtendedTooltip" id="34"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+					</ChildItems>
+				</Page>
+				<Page name="ObjectUsed" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object is used</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ObjectUsedExtendedTooltip" id="37"/>
+					<ChildItems>
+						<Pages name="Warnings" id="17">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Warnings</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="WarningsExtendedTooltip" id="38"/>
+							<ChildItems>
+								<Page name="AdditionalAttributeWarning" id="18">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional attribute warning</v8:content>
+										</v8:item>
+									</Title>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AdditionalAttributeWarningExtendedTooltip" id="39"/>
+									<ChildItems>
+										<LabelDecoration name="AdditionalAttributeWarningText" id="6">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<VerticalStretch>true</VerticalStretch>
+											<SkipOnInput>false</SkipOnInput>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Warning. Additional attribute is used in the application.
+
+If you edit its value type, some of the current values might be lost.</v8:content>
+												</v8:item>
+											</Title>
+											<VerticalAlign>Top</VerticalAlign>
+											<ContextMenu name="AdditionalAttributeWarningTextContextMenu" id="7"/>
+											<ExtendedTooltip name="AdditionalAttributeWarningTextExtendedTooltip" id="40"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="AdditionalInfoWarning" id="19">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional information record warning</v8:content>
+										</v8:item>
+									</Title>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AdditionalInfoWarningExtendedTooltip" id="41"/>
+									<ChildItems>
+										<LabelDecoration name="AdditionalInfoWarningText" id="20">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<VerticalStretch>true</VerticalStretch>
+											<SkipOnInput>false</SkipOnInput>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Warning. Additional information record is used in the application.
+
+If you edit its value type, some of the current values might be lost.</v8:content>
+												</v8:item>
+											</Title>
+											<VerticalAlign>Top</VerticalAlign>
+											<ContextMenu name="AdditionalInfoWarningTextContextMenu" id="21"/>
+											<ExtendedTooltip name="AdditionalInfoWarningTextExtendedTooltip" id="42"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes/>
+	<Commands>
+		<Command name="EnableEdit" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEdit</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Ref">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="IsAdditionalAttribute">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

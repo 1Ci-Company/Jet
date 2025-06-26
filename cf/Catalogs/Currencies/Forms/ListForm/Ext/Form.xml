@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">CommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="66">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="67"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="64">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="65"/>
+			<ChildItems>
+				<Popup name="Create" id="77">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Create</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CreateExtendedTooltip" id="78"/>
+					<ChildItems>
+						<Button name="FormPickFromClassifier" id="44">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PickFromClassifier</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>From classifier…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FormPickFromClassifierExtendedTooltip" id="51"/>
+						</Button>
+						<Button name="CreateCurrency" id="85">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Create</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>New currency</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CreateCurrencyExtendedTooltip" id="86"/>
+						</Button>
+					</ChildItems>
+				</Popup>
+				<ButtonGroup name="FormCommands" id="79">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Form commands</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="FormCommandsExtendedTooltip" id="80"/>
+				</ButtonGroup>
+				<ButtonGroup name="ExchangeRatesImportGroup" id="87">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Import exchange rates</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ExchangeRatesImportGroupExtendedTooltip" id="88"/>
+					<ChildItems>
+						<Button name="FormImportCurrenciesRates" id="43">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ImportCurrenciesRates</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Import exchange rates…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FormImportCurrenciesRatesExtendedTooltip" id="50"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="Help" id="81">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="HelpExtendedTooltip" id="82"/>
+				</Button>
+				<SearchStringAddition name="SearchString" id="89">
+					<AdditionSource>
+						<Item>Currencies</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="SearchStringContextMenu" id="90"/>
+					<ExtendedTooltip name="SearchStringExtendedTooltip" id="91"/>
+				</SearchStringAddition>
+				<SearchControlAddition name="SearchControl" id="92">
+					<AdditionSource>
+						<Item>Currencies</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="SearchControlContextMenu" id="93"/>
+					<ExtendedTooltip name="SearchControlExtendedTooltip" id="94"/>
+				</SearchControlAddition>
+			</ChildItems>
+		</CommandBar>
+		<Table name="Currencies" id="25">
+			<CommandBarLocation>None</CommandBarLocation>
+			<SkipOnInput>false</SkipOnInput>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Currencies</v8:content>
+				</v8:item>
+			</Title>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="CurrenciesContextMenu" id="26"/>
+			<AutoCommandBar name="CurrenciesCommandBar" id="27"/>
+			<ExtendedTooltip name="CurrenciesExtendedTooltip" id="52"/>
+			<SearchStringAddition name="CurrenciesSearchString" id="68">
+				<AdditionSource>
+					<Item>Currencies</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="CurrenciesSearchStringContextMenu" id="69"/>
+				<ExtendedTooltip name="CurrenciesSearchStringExtendedTooltip" id="70"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="CurrenciesViewStatus" id="71">
+				<AdditionSource>
+					<Item>Currencies</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="CurrenciesViewStatusContextMenu" id="72"/>
+				<ExtendedTooltip name="CurrenciesViewStatusExtendedTooltip" id="73"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="CurrenciesSearchControl" id="74">
+				<AdditionSource>
+					<Item>Currencies</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="CurrenciesSearchControlContextMenu" id="75"/>
+				<ExtendedTooltip name="CurrenciesSearchControlExtendedTooltip" id="76"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="OnGetDataAtServer">CurrenciesOnGetDataAtServer</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="DescriptionFull" id="40" DisplayImportance="VeryHigh">
+					<DataPath>List.DescriptionFull</DataPath>
+					<Width>20</Width>
+					<Wrap>false</Wrap>
+					<ContextMenu name="DescriptionFullContextMenu" id="41"/>
+					<ExtendedTooltip name="DescriptionFullExtendedTooltip" id="55"/>
+				</InputField>
+				<InputField name="Code" id="28">
+					<DataPath>List.Code</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Numeric code</v8:content>
+						</v8:item>
+					</Title>
+					<Width>9</Width>
+					<Wrap>false</Wrap>
+					<ContextMenu name="CodeContextMenu" id="29"/>
+					<ExtendedTooltip name="CodeExtendedTooltip" id="53"/>
+				</InputField>
+				<InputField name="Description" id="32">
+					<DataPath>List.Description</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Alphabetic code</v8:content>
+						</v8:item>
+					</Title>
+					<Width>9</Width>
+					<Wrap>false</Wrap>
+					<ContextMenu name="DescriptionContextMenu" id="33"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="54"/>
+				</InputField>
+				<LabelField name="Rate" id="38" DisplayImportance="VeryHigh">
+					<DataPath>List.Rate</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Rate</v8:content>
+						</v8:item>
+					</Title>
+					<Width>7</Width>
+					<ContextMenu name="RateContextMenu" id="39"/>
+					<ExtendedTooltip name="RateExtendedTooltip" id="56"/>
+				</LabelField>
+				<LabelField name="Repetition" id="36">
+					<DataPath>List.Repetition</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Multiplier</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Multipliers equal to 1 are not displayed.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Width>7</Width>
+					<ContextMenu name="RepetitionContextMenu" id="37"/>
+					<ExtendedTooltip name="RepetitionExtendedTooltip" id="59"/>
+				</LabelField>
+				<LabelField name="Ref" id="61">
+					<DataPath>List.Ref</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<Width>3</Width>
+					<ContextMenu name="RefContextMenu" id="62"/>
+					<ExtendedTooltip name="RefExtendedTooltip" id="63"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.Description</Field>
+				<Field>List.Rate</Field>
+				<Field>List.Ref</Field>
+				<Field>List.Repetition</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	Currencies.DeletionMark AS DeletionMark,
+	Currencies.Code AS Code,
+	Currencies.Description AS Description,
+	Currencies.DescriptionFull AS DescriptionFull,
+	CAST(NULL AS NUMBER(10, 2)) AS Rate,
+	CAST(NULL AS STRING(50)) AS Repetition,
+	Currencies.Ref AS Ref
+FROM
+	Catalog.Currencies AS Currencies</QueryText>
+				<MainTable>Catalog.Currencies</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>DescriptionFull</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="PickFromClassifier" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>From classifier…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pick currencies from the currency classifier</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>PickFromClassifier</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ImportCurrenciesRates" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import exchange rates…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import exchange rates from the 1C website.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ImportCurrenciesRates</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.StandardSubsystemsLocalMode</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

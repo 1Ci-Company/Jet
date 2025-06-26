@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<AutoURL>false</AutoURL>
+	<Group>Horizontal</Group>
+	<Customizable>false</Customizable>
+	<CommandBarLocation>None</CommandBarLocation>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<ChildItems>
+		<UsualGroup name="CommandGroup" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Commands</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>true</HorizontalStretch>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CommandGroupExtendedTooltip" id="9"/>
+			<ChildItems>
+				<LabelDecoration name="IndentDecoration" id="24">
+					<Width>4</Width>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="IndentDecorationContextMenu" id="25"/>
+					<ExtendedTooltip name="IndentDecorationExtendedTooltip" id="26"/>
+				</LabelDecoration>
+				<UsualGroup name="Commands" id="22">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Commands</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CommandsExtendedTooltip" id="23"/>
+					<ChildItems>
+						<LabelDecoration name="Title" id="19">
+							<Font ref="style:NormalTextFont" height="12" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Select font</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="TitleContextMenu" id="20"/>
+							<ExtendedTooltip name="TitleExtendedTooltip" id="21"/>
+						</LabelDecoration>
+						<Button name="FormArial" id="4">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.Arial</CommandName>
+							<Font ref="style:NormalTextFont" kind="StyleItem"/>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Arial</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FormArialExtendedTooltip" id="5"/>
+						</Button>
+						<Button name="TimesNewRoman" id="10">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.TimesNewRoman</CommandName>
+							<Font ref="style:NormalTextFont" faceName="Times New Roman" height="11" kind="StyleItem"/>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Times New Roman</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="TimesNewRomanExtendedTooltip" id="11"/>
+						</Button>
+						<Button name="FormVerdana" id="6">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.Verdana</CommandName>
+							<Font ref="style:NormalTextFont" faceName="Verdana" height="11" kind="StyleItem"/>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Verdana</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FormVerdanaExtendedTooltip" id="7"/>
+						</Button>
+						<LabelDecoration name="Decoration1" id="16">
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="Decoration1ContextMenu" id="17"/>
+							<ExtendedTooltip name="Decoration1ExtendedTooltip" id="18"/>
+						</LabelDecoration>
+						<Button name="DefaultFont" id="12">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.DefaultFont</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Auto</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="DefaultFontExtendedTooltip" id="13"/>
+						</Button>
+						<LabelDecoration name="OtherFonts" id="30">
+							<HorizontalStretch>true</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Other fonts</v8:content>
+								</v8:item>
+							</Title>
+							<Hyperlink>true</Hyperlink>
+							<HorizontalAlign>Center</HorizontalAlign>
+							<ContextMenu name="OtherFontsContextMenu" id="31"/>
+							<ExtendedTooltip name="OtherFontsExtendedTooltip" id="32"/>
+							<Events>
+								<Event name="Click">Other</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<LabelDecoration name="IndentDecoration1" id="27">
+					<Width>2</Width>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="IndentDecoration1ContextMenu" id="28"/>
+					<ExtendedTooltip name="IndentDecoration1ExtendedTooltip" id="29"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes/>
+	<Commands>
+		<Command name="Arial" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Arial</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Arial</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Font_Arial</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Verdana" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Verdana</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calibri</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Font_Verdana</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="TimesNewRoman" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Times New Roman</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Times new roman</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Font_TimesNewRoman</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DefaultFont" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Auto</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Default font</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DefaultFont</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Other" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Other fonts...</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Other</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Other</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

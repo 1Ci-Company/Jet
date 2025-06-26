@@ -1,0 +1,920 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Customizable>false</Customizable>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="1580">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="1600"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="1581">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Online services and support. Classifier import.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Top</VerticalAlign>
+					<ContextMenu name="SectionDetailsContextMenu" id="1582"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="1601"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="1583">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="1603"/>
+					<ChildItems>
+						<Button name="Help" id="1584">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="1604"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ClassifiersGroup" id="1637">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Classifiers and exchange rates</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="ClassifiersGroupExtendedTooltip" id="1638"/>
+			<ChildItems>
+				<UsualGroup name="AddressClassifierSettings" id="1874">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Address classifier settings</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AddressClassifierSettingsExtendedTooltip" id="1875"/>
+					<ChildItems>
+						<UsualGroup name="ImportAndClearAddressClassifier" id="1941">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group1</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>It is recommended that you import the address classifier and keep it up-to-date to save traffic on filling and verifying addresses. The classifier takes up to 2 GB on the hard drive.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ImportAndClearAddressClassifierExtendedTooltip" id="1942"/>
+							<ChildItems>
+								<Button name="AddressClassifierLoading" id="1876">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.AddressClassifierLoading</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Import address classifier</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="AddressClassifierLoadingExtendedTooltip" id="1877">
+										<AutoMaxWidth>false</AutoMaxWidth>
+									</ExtendedTooltip>
+								</Button>
+								<Button name="ClearAddressInfoRecords" id="1878">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ClearAddressInfoRecords</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Clear</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ClearAddressInfoRecordsExtendedTooltip" id="1879">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Clear address classifier.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<CheckBoxField name="UseAddressesWebService" id="1943">
+							<DataPath>UseAddressesWebService</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Autocomplete and verify non-imported addresses over the Internet</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UseAddressesWebServiceContextMenu" id="1944"/>
+							<ExtendedTooltip name="UseAddressesWebServiceExtendedTooltip" id="1945"/>
+							<Events>
+								<Event name="OnChange">UseAddressesWebServiceOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ImportCurrenciesRatesDataProcessorGroup" id="1643">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Import exchange rates</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ImportCurrenciesRatesDataProcessorGroupExtendedTooltip" id="1644"/>
+					<ChildItems>
+						<Button name="CurrenciesRatesImport" id="1645">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.CurrenciesRatesImport</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Import exchange rates</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="CurrenciesRatesImportExtendedTooltip" id="1646">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Import exchange rates of the selected currencies for the specified period from 1C:ITS Portal.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ConversationsGroup" id="1818">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Conversations</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="ConversationsGroupExtendedTooltip" id="1819"/>
+			<ChildItems>
+				<UsualGroup name="EnableConversationsGroup" id="1820">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Enable conversations</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="EnableConversationsGroupExtendedTooltip" id="1821"/>
+					<ChildItems>
+						<LabelDecoration name="ConversationsEnabledState" id="1822">
+							<Visible>false</Visible>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt;Conversations enabled/disabled state&gt;</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ConversationsEnabledStateContextMenu" id="1823"/>
+							<ExtendedTooltip name="ConversationsEnabledStateExtendedTooltip" id="1824"/>
+						</LabelDecoration>
+						<Button name="EnableDisableConversations" id="1825">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.EnableDisableConversations</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Enable</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="EnableDisableConversationsExtendedTooltip" id="1826"/>
+						</Button>
+						<LabelDecoration name="EnableConversationsNote" id="1829">
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Users' communication in real time</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="EnableConversationsNoteContextMenu" id="1830"/>
+							<ExtendedTooltip name="EnableConversationsNoteExtendedTooltip" id="1831"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<Button name="ConversationsConfigureIntegrationWithExternalSystems" id="1939">
+					<Type>Hyperlink</Type>
+					<Height>2</Height>
+					<CommandName>Form.Command.ConversationsConfigureIntegrationWithExternalSystems</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Messages from other applications</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<ExtendedTooltip name="ConversationsConfigureIntegrationWithExternalSystemsExtendedTooltip" id="1940">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Receive and send messages to texting apps, for example, Telegram or VK.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="DeclensionsGroup" id="1705">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Object presentation declensions</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="DeclensionsGroupExtendedTooltip" id="1706"/>
+			<ChildItems>
+				<UsualGroup name="DeclensionPermissionGroup" id="1707">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allow declension</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DeclensionPermissionGroupExtendedTooltip" id="1708"/>
+					<ChildItems>
+						<CheckBoxField name="UseMorpherDeclinationService" id="1709">
+							<DataPath>UseMorpherDeclinationService</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Decline with Morpher service</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UseMorpherDeclinationServiceContextMenu" id="1710"/>
+							<ExtendedTooltip name="UseMorpherDeclinationServiceExtendedTooltip" id="1711">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Allow usage of Morpher declension service to get an alternative object presentation declension in grammar cases (Internet connection is required).
+If the external service is not used, presentation declension is carried out using the built-in application functionality.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">UseMorpherDeclinationServiceOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="InflectionSettingsGroup" id="1712">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Configure declension</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="InflectionSettingsGroupExtendedTooltip" id="1713"/>
+					<ChildItems>
+						<Button name="MorpherServiceAccessSetting" id="1714">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.MorpherServiceAccessSetting</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure access to Morpher service</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="MorpherServiceAccessSettingExtendedTooltip" id="1715">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Enter declension server authorization parameters.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="MonitoringCenterGroup" id="1663">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Monitoring center</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Performance monitor group</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="MonitoringCenterGroupExtendedTooltip" id="1664"/>
+			<ChildItems>
+				<UsualGroup name="AllowSendingDataGroup" id="1665">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allow sending data</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AllowSendingDataGroupExtendedTooltip" id="1666"/>
+					<ChildItems>
+						<LabelDecoration name="DecorationNote" id="1667">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Reports on application usage help us to determine what should be improved first.
+The collected data does not contain any personal information; it only contains statistics. Collecting and sending data will not slow down the application.
+</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="DecorationNoteContextMenu" id="1668"/>
+							<ExtendedTooltip name="DecorationNoteExtendedTooltip" id="1669"/>
+						</LabelDecoration>
+						<UsualGroup name="RadioButtonsGroup" id="1670">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Radio button</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="RadioButtonsGroupExtendedTooltip" id="1671"/>
+							<ChildItems>
+								<LabelDecoration name="RadioButtonsDecoration" id="1672">
+									<Width>1</Width>
+									<ContextMenu name="RadioButtonsDecorationContextMenu" id="1673"/>
+									<ExtendedTooltip name="RadioButtonsDecorationExtendedTooltip" id="1674"/>
+								</LabelDecoration>
+								<RadioButtonField name="MonitoringCenterAllowSendingData" id="1675">
+									<DataPath>MonitoringCenterAllowSendingData</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Monitoring center: allow sending data</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<RadioButtonType>RadioButtons</RadioButtonType>
+									<ColumnsCount>1</ColumnsCount>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Allow automatic sending of application usage data to 1C Company</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:decimal">0</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="MonitoringCenterAllowSendingDataContextMenu" id="1676"/>
+									<ExtendedTooltip name="MonitoringCenterAllowSendingDataExtendedTooltip" id="1677"/>
+									<Events>
+										<Event name="OnChange">AllowDataSendingOnChange</Event>
+									</Events>
+								</RadioButtonField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ErrorsReportsSendingSettingsGroup" id="1842">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Settings of error report sending</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ErrorsReportsSendingSettingsGroupExtendedTooltip" id="1843"/>
+							<ChildItems>
+								<LabelDecoration name="ErrorsReportsDecoration" id="1844">
+									<Width>3</Width>
+									<ContextMenu name="ErrorsReportsDecorationContextMenu" id="1845"/>
+									<ExtendedTooltip name="ErrorsReportsDecorationExtendedTooltip" id="1846"/>
+								</LabelDecoration>
+								<Button name="MonitoringCenter_Settings" id="1840">
+									<Type>Hyperlink</Type>
+									<Enabled>false</Enabled>
+									<CommandName>Form.Command.MonitoringCenter_Settings</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Monitoring center settings</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MonitoringCenter_SettingsExtendedTooltip" id="1841"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="SendContactInformationGroup" id="1847">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Send contact information</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="SendContactInformationGroupExtendedTooltip" id="1848"/>
+							<ChildItems>
+								<LabelDecoration name="SendContactInformationDecoration" id="1849">
+									<Width>3</Width>
+									<ContextMenu name="SendContactInformationDecorationContextMenu" id="1850"/>
+									<ExtendedTooltip name="SendContactInformationDecorationExtendedTooltip" id="1851"/>
+								</LabelDecoration>
+								<Button name="MonitoringCenterSendContactInformation" id="1852">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.MonitoringCenterSendContactInformation</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Inform of performance issues</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MonitoringCenterSendContactInformationExtendedTooltip" id="1853"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ToThirdPartyGroup" id="1832">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Third-party</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ToThirdPartyGroupExtendedTooltip" id="1833"/>
+					<ChildItems>
+						<LabelDecoration name="ToThirdPartyDecoration" id="1834">
+							<Width>1</Width>
+							<Height>1</Height>
+							<ContextMenu name="ToThirdPartyDecorationContextMenu" id="1835"/>
+							<ExtendedTooltip name="ToThirdPartyDecorationExtendedTooltip" id="1836"/>
+						</LabelDecoration>
+						<RadioButtonField name="MonitoringCenterAllowSendingDataToThirdParty" id="1837">
+							<DataPath>MonitoringCenterAllowSendingData</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Monitoring center: allow sending data</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>RadioButtons</RadioButtonType>
+							<ColumnsCount>1</ColumnsCount>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Allow sending data to a third-party</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:decimal">1</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="MonitoringCenterAllowSendingDataToThirdPartyContextMenu" id="1838"/>
+							<ExtendedTooltip name="MonitoringCenterAllowSendingDataToThirdPartyExtendedTooltip" id="1839"/>
+							<Events>
+								<Event name="OnChange">AllowSendDataTo</Event>
+							</Events>
+						</RadioButtonField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="DataSendingGroupResourceSettingCommon" id="1678">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Configure resource for sending data</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DataSendingGroupResourceSettingCommonExtendedTooltip" id="1679"/>
+					<ChildItems>
+						<LabelDecoration name="ServiceAddressDecoration" id="1680">
+							<Width>3</Width>
+							<ContextMenu name="ServiceAddressDecorationContextMenu" id="1681"/>
+							<ExtendedTooltip name="ServiceAddressDecorationExtendedTooltip" id="1682"/>
+						</LabelDecoration>
+						<InputField name="MonitoringCenterServiceAddress" id="1683">
+							<DataPath>MonitoringCenterServiceAddress</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Service address</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="MonitoringCenterServiceAddressContextMenu" id="1684"/>
+							<ExtendedTooltip name="MonitoringCenterServiceAddressExtendedTooltip" id="1685"/>
+							<Events>
+								<Event name="OnChange">MonitoringCenterServiceAddressOnChange</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ProhibitSendingDataGroup" id="1686">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deny sending data</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ProhibitSendingDataGroupExtendedTooltip" id="1687"/>
+					<ChildItems>
+						<LabelDecoration name="ProhibitSendingDataDecoration" id="1688">
+							<Width>1</Width>
+							<ContextMenu name="ProhibitSendingDataDecorationContextMenu" id="1689"/>
+							<ExtendedTooltip name="ProhibitSendingDataDecorationExtendedTooltip" id="1690"/>
+						</LabelDecoration>
+						<RadioButtonField name="MonitoringCenterProhibitSendingData" id="1691">
+							<DataPath>MonitoringCenterAllowSendingData</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Monitoring center: allow sending data</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>RadioButtons</RadioButtonType>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Deny sending data</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:decimal">2</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="MonitoringCenterProhibitSendingDataContextMenu" id="1692"/>
+							<ExtendedTooltip name="MonitoringCenterProhibitSendingDataExtendedTooltip" id="1693"/>
+							<Events>
+								<Event name="OnChange">ForbidSendingDataOnChange</Event>
+							</Events>
+						</RadioButtonField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="AddInsGroup" id="1716">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add-ins</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="AddInsGroupExtendedTooltip" id="1717"/>
+			<ChildItems>
+				<UsualGroup name="AddInsManagementGroup" id="1718">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Manage add-ins</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AddInsManagementGroupExtendedTooltip" id="1719"/>
+					<ChildItems>
+						<Button name="OpenAddIns" id="1720">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.OpenAddIns</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure add-ins</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="OpenAddInsExtendedTooltip" id="1721">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Configure auto update of third-party add-ins attached to the application.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="MonitoringCenterServiceAddress" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Monitoring center: service address</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MonitoringCenterAllowSendingData" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Monitoring center: allow sending data</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MonitoringCenterJobID" id="26">
+			<Type>
+				<v8:Type>v8:UUID</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MonitoringCenterJobResultAddress" id="27">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ConversationsEnabled" id="29">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsSystemAdministrator" id="30">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DataSeparationEnabled" id="31">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsStandaloneWorkplace" id="32">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseMorpherDeclinationService" id="33">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use Morpher declension service</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseAddressesWebService" id="34">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Autocomplete and verify non-imported addresses over the Internet</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableDisableConversations" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Enable/disable conversations</v8:content>
+				</v8:item>
+			</Title>
+			<Action>EnableDisableConversations</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ConversationsConfigureIntegrationWithExternalSystems" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Messages from other applications</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure receiving and sending of messages to other texting apps, for example, Telegram or VK</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ConversationsConfigureIntegrationWithExternalSystems</Action>
+			<Representation>Text</Representation>
+		</Command>
+		<Command name="AddressClassifierLoading" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import address classifier</v8:content>
+				</v8:item>
+			</Title>
+			<Action>AddressClassifierLoading</Action>
+		</Command>
+		<Command name="ClearAddressInfoRecords" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cleanup</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ClearAddressInfoRecords</Action>
+		</Command>
+		<Command name="CurrenciesRatesImport" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import exchange rates</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CurrenciesRatesImport</Action>
+		</Command>
+		<Command name="MorpherServiceAccessSetting" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure access to Morpher service</v8:content>
+				</v8:item>
+			</Title>
+			<Action>MorpherServiceAccessSetting</Action>
+		</Command>
+		<Command name="MonitoringCenter_Settings" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure Monitoring center</v8:content>
+				</v8:item>
+			</Title>
+			<Action>MonitoringCenter_Settings</Action>
+		</Command>
+		<Command name="MonitoringCenterSendContactInformation" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Inform of performance issues</v8:content>
+				</v8:item>
+			</Title>
+			<Action>MonitoringCenterSendContactInformation</Action>
+		</Command>
+		<Command name="OpenAddIns" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure add-ins</v8:content>
+				</v8:item>
+			</Title>
+			<Action>OpenAddIns</Action>
+		</Command>
+	</Commands>
+</Form>

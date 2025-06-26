@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Schedule duty start</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<CheckBoxField name="PostponedProcessStart" id="18">
+			<DataPath>PostponedProcessStart</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deferred duty start</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="PostponedProcessStartContextMenu" id="19"/>
+			<ExtendedTooltip name="PostponedProcessStartExtendedTooltip" id="20"/>
+			<Events>
+				<Event name="OnChange">PostponedProcessStartOnChange</Event>
+			</Events>
+		</CheckBoxField>
+		<UsualGroup name="DeferredStartDateGroup" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deferred start date</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="DeferredStartDateGroupExtendedTooltip" id="17"/>
+			<ChildItems>
+				<InputField name="DeferredStartDate" id="1">
+					<DataPath>DeferredStartDate</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Date</v8:content>
+						</v8:item>
+					</Title>
+					<Width>9</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<EditFormat>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>DF=MM/dd/yyyy</v8:content>
+						</v8:item>
+					</EditFormat>
+					<ContextMenu name="DeferredStartDateContextMenu" id="2"/>
+					<ExtendedTooltip name="DeferredStartDateExtendedTooltip" id="3"/>
+					<Events>
+						<Event name="OnChange">DeferredStartDateOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="DeferredStartDateTime" id="4">
+					<DataPath>DeferredStartDate</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Time</v8:content>
+						</v8:item>
+					</Title>
+					<Width>7</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<DropListButton>true</DropListButton>
+					<ChoiceButton>false</ChoiceButton>
+					<EditFormat>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>DF=HH:mm</v8:content>
+						</v8:item>
+					</EditFormat>
+					<ContextMenu name="DeferredStartDateTimeContextMenu" id="5"/>
+					<ExtendedTooltip name="DeferredStartDateTimeExtendedTooltip" id="6"/>
+					<Events>
+						<Event name="OnChange">DeferredStartDateTimeOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="FooterPages" id="61">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Footer pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="FooterPagesExtendedTooltip" id="62"/>
+			<ChildItems>
+				<Page name="CancelStartPage" id="67">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page cancel start</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CancelStartPageExtendedTooltip" id="68"/>
+					<ChildItems>
+						<UsualGroup name="CancelStartGroup" id="69">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cancel start</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="CancelStartGroupExtendedTooltip" id="70"/>
+							<ChildItems>
+								<PictureDecoration name="DecorationPictureCancelStart" id="71">
+									<Width>2</Width>
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Decoration picture cancel start</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>CommonPicture.Warning</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="DecorationPictureCancelStartContextMenu" id="72"/>
+									<ExtendedTooltip name="DecorationPictureCancelStartExtendedTooltip" id="73"/>
+								</PictureDecoration>
+								<LabelDecoration name="DecorationCancelStart" id="74">
+									<TextColor>style:NoteText</TextColor>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>An error occurred during the deferred start of this process.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="DecorationCancelStartContextMenu" id="75"/>
+									<ExtendedTooltip name="DecorationCancelStartExtendedTooltip" id="76"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="JobStartedPage" id="63">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page duty started</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="JobStartedPageExtendedTooltip" id="64"/>
+					<ChildItems>
+						<UsualGroup name="JobStartedGroup" id="59">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Duty started</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="JobStartedGroupExtendedTooltip" id="60"/>
+							<ChildItems>
+								<PictureDecoration name="DecorationPictureJobStarted" id="53">
+									<Width>2</Width>
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Decoration picture duty started</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.Information</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="DecorationPictureJobStartedContextMenu" id="54"/>
+									<ExtendedTooltip name="DecorationPictureJobStartedExtendedTooltip" id="55"/>
+								</PictureDecoration>
+								<LabelDecoration name="DecorationJobIsStarted" id="56">
+									<TextColor>style:NoteText</TextColor>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Duty already started</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="DecorationJobIsStartedContextMenu" id="57"/>
+									<ExtendedTooltip name="DecorationJobIsStartedExtendedTooltip" id="58"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="EmptyPage" id="65">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page empty</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="EmptyPageExtendedTooltip" id="66"/>
+					<ChildItems>
+						<LabelDecoration name="IntervalDecoration" id="30">
+							<HorizontalStretch>true</HorizontalStretch>
+							<TextColor>style:NoteText</TextColor>
+							<ContextMenu name="IntervalDecorationContextMenu" id="31"/>
+							<ExtendedTooltip name="IntervalDecorationExtendedTooltip" id="32"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="JobIsCompletedPage" id="77">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page duty completed</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page duty started</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="JobIsCompletedPageExtendedTooltip" id="78"/>
+					<ChildItems>
+						<UsualGroup name="JobIsCompletedGroup" id="79">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Duty completed</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Duty started group</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="JobIsCompletedGroupExtendedTooltip" id="80"/>
+							<ChildItems>
+								<PictureDecoration name="DecorationPictureJobIsCompleted" id="81">
+									<Width>2</Width>
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Decoration picture duty completed</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.Information</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="DecorationPictureJobIsCompletedContextMenu" id="82"/>
+									<ExtendedTooltip name="DecorationPictureJobIsCompletedExtendedTooltip" id="83"/>
+								</PictureDecoration>
+								<LabelDecoration name="DecorationJobIsCompleted" id="84">
+									<TextColor>style:NoteText</TextColor>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Duty completed</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="DecorationJobIsCompletedContextMenu" id="85"/>
+									<ExtendedTooltip name="DecorationJobIsCompletedExtendedTooltip" id="86"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="ButtonsGroup2" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Buttons</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ButtonsGroup2ExtendedTooltip" id="25"/>
+			<ChildItems>
+				<Pages name="CommandsPages" id="87">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command pages</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="CommandsPagesExtendedTooltip" id="88"/>
+					<ChildItems>
+						<Page name="ProcessIsNotStartedPage" id="91">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Page process is not started</v8:content>
+								</v8:item>
+							</Title>
+							<Group>HorizontalIfPossible</Group>
+							<ExtendedTooltip name="ProcessIsNotStartedPageExtendedTooltip" id="92"/>
+							<ChildItems>
+								<Button name="Done" id="28">
+									<Type>UsualButton</Type>
+									<DefaultButton>true</DefaultButton>
+									<CommandName>Form.Command.Done</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Done</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="DoneExtendedTooltip" id="29"/>
+								</Button>
+								<Button name="Cancel" id="26">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.Cancel</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Cancel</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="CancelExtendedTooltip" id="27"/>
+								</Button>
+							</ChildItems>
+						</Page>
+						<Page name="ProcessIsStartedPage" id="89">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Page process is started</v8:content>
+								</v8:item>
+							</Title>
+							<Group>HorizontalIfPossible</Group>
+							<ExtendedTooltip name="ProcessIsStartedPageExtendedTooltip" id="90"/>
+							<ChildItems>
+								<Button name="Close" id="95">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.Cancel</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Close</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="CloseExtendedTooltip" id="96"/>
+								</Button>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="DeferredStartDate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deferred start date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="BusinessProcess" id="2">
+			<Type>
+				<v8:TypeSet>cfg:DefinedType.DeferredBusinessProcess</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="State" id="3">
+			<Type>
+				<v8:Type>cfg:EnumRef.ProcessesStatesForStart</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PostponedProcessStart" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deferred duty start</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DeferredProcessStartOnOpen" id="5">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ProcessIsStarted" id="6">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseDateAndTimeInTaskDeadlines" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DeferredStartSetupViewOnly" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TaskDueDate" id="12">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ProcessCompleted" id="13">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentServerDate" id="14">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Done" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Finish</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Finish</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Done</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Cancel" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Cancel</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="BusinessProcess">
+			<Type>
+				<v8:TypeSet>cfg:BusinessProcessRef</v8:TypeSet>
+			</Type>
+		</Parameter>
+		<Parameter name="TaskDueDate">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<Customizable>false</Customizable>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<ButtonGroup name="GroupCommandBar" id="34">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Command bar</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="GroupCommandBarExtendedTooltip" id="35"/>
+				<ChildItems>
+					<Button name="WriteAndClose" id="36">
+						<Type>CommandBarButton</Type>
+						<DefaultButton>true</DefaultButton>
+						<CommandName>Form.StandardCommand.WriteAndClose</CommandName>
+						<ExtendedTooltip name="WriteAndCloseExtendedTooltip" id="37"/>
+					</Button>
+					<Button name="Write" id="38">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.StandardCommand.Write</CommandName>
+						<ExtendedTooltip name="WriteExtendedTooltip" id="39"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<Button name="FormHelp" id="48">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="49"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<CheckBoxField name="Synchronize" id="138">
+			<DataPath>Record.Synchronize</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Synchronize files with cloud service:</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="SynchronizeContextMenu" id="139"/>
+			<ExtendedTooltip name="SynchronizeExtendedTooltip" id="140"/>
+		</CheckBoxField>
+		<InputField name="Account" id="118">
+			<DataPath>Record.Account</DataPath>
+			<DefaultItem>true</DefaultItem>
+			<TitleLocation>None</TitleLocation>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify the cloud service account.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+			<Width>40</Width>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<CreateButton>true</CreateButton>
+			<InputHint>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select from the list</v8:content>
+				</v8:item>
+			</InputHint>
+			<ContextMenu name="AccountContextMenu" id="119"/>
+			<ExtendedTooltip name="AccountExtendedTooltip" id="120">
+				<AutoMaxWidth>false</AutoMaxWidth>
+				<Title formatted="false">
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Specify the cloud service account.</v8:content>
+					</v8:item>
+				</Title>
+			</ExtendedTooltip>
+		</InputField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.FileSynchronizationSettings</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="FileOwner">
+			<Type>
+				<v8:TypeSet>cfg:BusinessProcessRef</v8:TypeSet>
+				<v8:TypeSet>cfg:DocumentRef</v8:TypeSet>
+				<v8:TypeSet>cfg:TaskRef</v8:TypeSet>
+				<v8:TypeSet>cfg:CatalogRef</v8:TypeSet>
+			</Type>
+		</Parameter>
+		<Parameter name="FileOwnerType">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExtensionObjectIDs</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="IsFile">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

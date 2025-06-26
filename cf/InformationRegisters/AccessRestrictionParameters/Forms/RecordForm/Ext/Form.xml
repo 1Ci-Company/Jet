@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormDelete" id="7">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Delete</CommandName>
+				<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormDeleteExtendedTooltip" id="8"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Version" id="1">
+			<DataPath>Record.Version</DataPath>
+			<ContextMenu name="VersionContextMenu" id="2"/>
+			<ExtendedTooltip name="VersionExtendedTooltip" id="3"/>
+		</InputField>
+		<InputField name="CreationDate" id="9">
+			<DataPath>Record.CreationDate</DataPath>
+			<ContextMenu name="CreationDateContextMenu" id="10"/>
+			<ExtendedTooltip name="CreationDateExtendedTooltip" id="11"/>
+		</InputField>
+		<InputField name="HashSum" id="4">
+			<DataPath>Record.HashSum</DataPath>
+			<ContextMenu name="HashSumContextMenu" id="5"/>
+			<ExtendedTooltip name="HashSumExtendedTooltip" id="6"/>
+		</InputField>
+		<InputField name="PersistentParametersHashSum" id="12">
+			<DataPath>Record.PersistentParametersHashSum</DataPath>
+			<ContextMenu name="PersistentParametersHashSumContextMenu" id="13"/>
+			<ExtendedTooltip name="PersistentParametersHashSumExtendedTooltip" id="14"/>
+		</InputField>
+		<InputField name="TemplatesParametersHashSum" id="15">
+			<DataPath>Record.TemplatesParametersHashSum</DataPath>
+			<ContextMenu name="TemplatesParametersHashSumContextMenu" id="16"/>
+			<ExtendedTooltip name="TemplatesParametersHashSumExtendedTooltip" id="17"/>
+		</InputField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.AccessRestrictionParameters</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

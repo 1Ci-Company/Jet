@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="56">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="57"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="58">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="59"/>
+			<ChildItems>
+				<Button name="FormUpdateRegisterData" id="35">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.UpdateRegisterData</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update register data</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormUpdateRegisterDataExtendedTooltip" id="36"/>
+				</Button>
+				<Button name="FormEnableEditing" id="28">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.EnableEditing</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allow editing</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="37"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="List" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<Height>8</Height>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>Create</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2"/>
+			<AutoCommandBar name="ListCommandBar" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ListExtendedTooltip" id="38"/>
+			<SearchStringAddition name="ListSearchString" id="60">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="61"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="62"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="63">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="64"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="65"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="66">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="67"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="68"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="MetadataObject" id="6">
+					<DataPath>List.MetadataObject</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>A metadata object presentation with an object type.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="MetadataObjectContextMenu" id="7"/>
+					<ExtendedTooltip name="MetadataObjectExtendedTooltip" id="39"/>
+				</LabelField>
+				<LabelField name="Role" id="4">
+					<DataPath>List.Role</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Role</v8:content>
+						</v8:item>
+					</Title>
+					<Width>25</Width>
+					<ContextMenu name="RoleContextMenu" id="5"/>
+					<ExtendedTooltip name="RoleExtendedTooltip" id="40"/>
+				</LabelField>
+				<ColumnGroup name="ReadRightGroup" id="31">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>"Read" right</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ReadRightGroupExtendedTooltip" id="41"/>
+					<ChildItems>
+						<CheckBoxField name="ReadRight" id="29">
+							<DataPath>List.ReadRight</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>"Read" right</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The "Read" right granted to the role.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ReadRightContextMenu" id="30"/>
+							<ExtendedTooltip name="ReadRightExtendedTooltip" id="42"/>
+						</CheckBoxField>
+						<CheckBoxField name="UnrestrictedReadRight" id="14">
+							<DataPath>List.UnrestrictedReadRight</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Unrestricted</v8:content>
+								</v8:item>
+							</Title>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UnrestrictedReadRightContextMenu" id="15"/>
+							<ExtendedTooltip name="UnrestrictedReadRightExtendedTooltip" id="43"/>
+						</CheckBoxField>
+					</ChildItems>
+				</ColumnGroup>
+				<ColumnGroup name="RightGroup2Update" id="33">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>"Update" right</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="RightGroup2UpdateExtendedTooltip" id="47"/>
+					<ChildItems>
+						<CheckBoxField name="RightUpdate" id="10">
+							<DataPath>List.RightUpdate</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="RightUpdateContextMenu" id="11"/>
+							<ExtendedTooltip name="RightUpdateExtendedTooltip" id="48"/>
+						</CheckBoxField>
+						<CheckBoxField name="UnrestrictedUpdateRight" id="18">
+							<DataPath>List.UnrestrictedUpdateRight</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Unrestricted</v8:content>
+								</v8:item>
+							</Title>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UnrestrictedUpdateRightContextMenu" id="19"/>
+							<ExtendedTooltip name="UnrestrictedUpdateRightExtendedTooltip" id="49"/>
+						</CheckBoxField>
+					</ChildItems>
+				</ColumnGroup>
+				<ColumnGroup name="AddRightGroup" id="32">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>"Add" right</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AddRightGroupExtendedTooltip" id="44"/>
+					<ChildItems>
+						<CheckBoxField name="AddRight" id="8">
+							<DataPath>List.AddRight</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="AddRightContextMenu" id="9"/>
+							<ExtendedTooltip name="AddRightExtendedTooltip" id="45"/>
+						</CheckBoxField>
+						<CheckBoxField name="UnrestrictedAddRight" id="16">
+							<DataPath>List.UnrestrictedAddRight</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Unrestricted</v8:content>
+								</v8:item>
+							</Title>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UnrestrictedAddRightContextMenu" id="17"/>
+							<ExtendedTooltip name="UnrestrictedAddRightExtendedTooltip" id="46"/>
+						</CheckBoxField>
+					</ChildItems>
+				</ColumnGroup>
+				<CheckBoxField name="ViewRight" id="22">
+					<DataPath>List.ViewRight</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ViewRightContextMenu" id="23"/>
+					<ExtendedTooltip name="ViewRightExtendedTooltip" id="53"/>
+				</CheckBoxField>
+				<CheckBoxField name="EditRight" id="26">
+					<DataPath>List.EditRight</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="EditRightContextMenu" id="27"/>
+					<ExtendedTooltip name="EditRightExtendedTooltip" id="55"/>
+				</CheckBoxField>
+				<CheckBoxField name="InteractiveAddRight" id="24">
+					<DataPath>List.InteractiveAddRight</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="InteractiveAddRightContextMenu" id="25"/>
+					<ExtendedTooltip name="InteractiveAddRightExtendedTooltip" id="54"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	RolesRights.MetadataObject AS MetadataObject,
+	RolesRights.Role AS Role,
+	TRUE AS ReadRight,
+	RolesRights.RightUpdate AS RightUpdate,
+	RolesRights.AddRight AS AddRight,
+	RolesRights.UnrestrictedReadRight AS UnrestrictedReadRight,
+	RolesRights.UnrestrictedUpdateRight AS UnrestrictedUpdateRight,
+	RolesRights.UnrestrictedAddRight AS UnrestrictedAddRight,
+	RolesRights.ViewRight AS ViewRight,
+	RolesRights.EditRight AS EditRight,
+	RolesRights.InteractiveAddRight AS InteractiveAddRight
+FROM
+	InformationRegister.RolesRights AS RolesRights
+WHERE
+	CASE
+		WHEN &amp;MetadataObject = VALUE(Catalog.MetadataObjectIDs.EmptyRef)
+			THEN TRUE
+		ELSE RolesRights.MetadataObject = &amp;MetadataObject
+	END</QueryText>
+				<MainTable>InformationRegister.RolesRights</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>MetadataObject.CollectionOrder</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>MetadataObject.Description</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Role.Description</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="UpdateRegisterData" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update register data</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update register data</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>UpdateRegisterData</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="MetadataObject">
+			<Type>
+				<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

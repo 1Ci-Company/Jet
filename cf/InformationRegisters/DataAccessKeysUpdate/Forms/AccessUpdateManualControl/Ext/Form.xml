@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Update access (manual)</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="UpdateAccessToObjectGroup" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>1. Update access to an object</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="UpdateAccessToObjectGroupExtendedTooltip" id="5"/>
+			<ChildItems>
+				<InputField name="AccessUpdateObject" id="43">
+					<DataPath>AccessUpdateObject</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<TypeLink>
+						<xr:DataPath>Items.ListsToUpdate.CurrentData.Value</xr:DataPath>
+						<xr:LinkItem>1</xr:LinkItem>
+					</TypeLink>
+					<ContextMenu name="AccessUpdateObjectContextMenu" id="44"/>
+					<ExtendedTooltip name="AccessUpdateObjectExtendedTooltip" id="45"/>
+					<Events>
+						<Event name="StartChoice">AccessUpdateObjectStartChoice</Event>
+					</Events>
+				</InputField>
+				<UsualGroup name="HorizontalGroup" id="48">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Horizontal group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="HorizontalGroupExtendedTooltip" id="49"/>
+					<ChildItems>
+						<Button name="UpdateAccessToObject" id="9">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.UpdateAccessToObject</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update access</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="UpdateAccessToObjectExtendedTooltip" id="10"/>
+						</Button>
+						<LabelDecoration name="Hspace" id="50">
+							<Width>2</Width>
+							<ContextMenu name="HspaceContextMenu" id="51"/>
+							<ExtendedTooltip name="HspaceExtendedTooltip" id="52"/>
+						</LabelDecoration>
+						<Button name="ShowAccessToObject" id="46">
+							<Type>Hyperlink</Type>
+							<Visible>false</Visible>
+							<CommandName>Form.Command.ShowAccessToObject</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>View access…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ShowAccessToObjectExtendedTooltip" id="47"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="AccessUpdateScheduleGroup" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>2. Update access to all list items</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="AccessUpdateScheduleGroupExtendedTooltip" id="12"/>
+			<ChildItems>
+				<Table name="ListsToUpdate" id="18">
+					<Representation>List</Representation>
+					<ChangeRowSet>false</ChangeRowSet>
+					<ChangeRowOrder>false</ChangeRowOrder>
+					<Header>false</Header>
+					<HorizontalLines>false</HorizontalLines>
+					<VerticalLines>false</VerticalLines>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>ListsToUpdate</DataPath>
+					<RowPictureDataPath>ListsToUpdate.Picture</RowPictureDataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Lists to be updated</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ListsToUpdateContextMenu" id="19"/>
+					<AutoCommandBar name="ListsToUpdateCommandBar" id="20">
+						<Autofill>false</Autofill>
+						<ChildItems>
+							<ButtonGroup name="ListsToUpdateCommandGroupFlags" id="70">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Lists to update command group check boxes</v8:content>
+									</v8:item>
+								</Title>
+								<Representation>Compact</Representation>
+								<ExtendedTooltip name="ListsToUpdateCommandGroupFlagsExtendedTooltip" id="71"/>
+								<ChildItems>
+									<Button name="ListsToUpdateCheckAll" id="39">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.ListsToUpdate.StandardCommand.CheckAll</CommandName>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ListsToUpdateCheckAllExtendedTooltip" id="40"/>
+									</Button>
+									<Button name="ListsToUpdateUncheckAll" id="41">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.ListsToUpdate.StandardCommand.UncheckAll</CommandName>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ListsToUpdateUncheckAllExtendedTooltip" id="42"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<SearchStringAddition name="SearchString_" id="67">
+								<AdditionSource>
+									<Item>ListsToUpdate</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Search</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="SearchString_ContextMenu" id="68"/>
+								<ExtendedTooltip name="SearchString_ExtendedTooltip" id="69"/>
+							</SearchStringAddition>
+						</ChildItems>
+					</AutoCommandBar>
+					<ExtendedTooltip name="ListsToUpdateExtendedTooltip" id="21"/>
+					<SearchStringAddition name="ListsToUpdateSearchString" id="22">
+						<AdditionSource>
+							<Item>ListsToUpdate</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ListsToUpdateSearchStringContextMenu" id="23"/>
+						<ExtendedTooltip name="ListsToUpdateSearchStringExtendedTooltip" id="24"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ListsToUpdateViewStatus" id="25">
+						<AdditionSource>
+							<Item>ListsToUpdate</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ListsToUpdateViewStatusContextMenu" id="26"/>
+						<ExtendedTooltip name="ListsToUpdateViewStatusExtendedTooltip" id="27"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ListsToUpdateSearchControl" id="28">
+						<AdditionSource>
+							<Item>ListsToUpdate</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ListsToUpdateSearchControlContextMenu" id="29"/>
+						<ExtendedTooltip name="ListsToUpdateSearchControlExtendedTooltip" id="30"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<ColumnGroup name="ListsToUpdateGroup" id="53">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Lists to be updated group</v8:content>
+								</v8:item>
+							</Title>
+							<Group>InCell</Group>
+							<ExtendedTooltip name="ListsToUpdateGroupExtendedTooltip" id="54"/>
+							<ChildItems>
+								<CheckBoxField name="ListsToUpdateCheckBox" id="34">
+									<DataPath>ListsToUpdate.Check</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Mark</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ListsToUpdateCheckBoxContextMenu" id="35"/>
+									<ExtendedTooltip name="ListsToUpdateCheckBoxExtendedTooltip" id="36"/>
+								</CheckBoxField>
+								<InputField name="ListsToUpdatePresentation" id="31">
+									<DataPath>ListsToUpdate.Presentation</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Presentation</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ListsToUpdatePresentationContextMenu" id="32"/>
+									<ExtendedTooltip name="ListsToUpdatePresentationExtendedTooltip" id="33"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+					</ChildItems>
+				</Table>
+				<CheckBoxField name="UpdateDataItemsAccessKeys" id="58">
+					<DataPath>UpdateDataItemsAccessKeys</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update data item access keys</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Process data items:
+use a query to select batches of objects or register record filters
+with obsolete access keys, and replace their access keys with new ones.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="UpdateDataItemsAccessKeysContextMenu" id="59"/>
+					<ExtendedTooltip name="UpdateDataItemsAccessKeysExtendedTooltip" id="60"/>
+				</CheckBoxField>
+				<CheckBoxField name="UpdateAccessKeysRights" id="61">
+					<DataPath>UpdateAccessKeysRights</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update rights to access keys</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Process access keys:
+use a query to select batches of previously generated list access keys;
+calculate access group rights, user rights, and external user rights; and
+update rights in registers that differ from the calculated rights.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="UpdateAccessKeysRightsContextMenu" id="62"/>
+					<ExtendedTooltip name="UpdateAccessKeysRightsExtendedTooltip" id="63"/>
+				</CheckBoxField>
+				<CheckBoxField name="DeleteObsoleteInternalData" id="64">
+					<DataPath>DeleteObsoleteInternalData</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Remove obsolete internal data</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="DeleteObsoleteInternalDataContextMenu" id="65"/>
+					<ExtendedTooltip name="DeleteObsoleteInternalDataExtendedTooltip" id="66">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Process obsolete items:
+- Use a query to select batches of obsolete data items and delete them.
+ - Use a query to select batches of unused access keys and set the period after which an unused key becomes obsolete.
+- Use a query to select batches of obsolete access keys and delete them.
+- Use a query to select batches of obsolete access group sets and delete them.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+				</CheckBoxField>
+				<Button name="ScheduleListsAccessUpdate" id="37">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ScheduleListsAccessUpdate</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Schedule update</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ScheduleListsAccessUpdateExtendedTooltip" id="38"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ListsToUpdate" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Lists to be updated</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="AccessUpdateObject" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access update object</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:TypeSet>cfg:ExchangePlanRef</v8:TypeSet>
+				<v8:TypeSet>cfg:BusinessProcessRef</v8:TypeSet>
+				<v8:TypeSet>cfg:DocumentRef</v8:TypeSet>
+				<v8:TypeSet>cfg:ChartOfCalculationTypesRef</v8:TypeSet>
+				<v8:TypeSet>cfg:TaskRef</v8:TypeSet>
+				<v8:TypeSet>cfg:ChartOfCharacteristicTypesRef</v8:TypeSet>
+				<v8:TypeSet>cfg:ChartOfAccountsRef</v8:TypeSet>
+				<v8:TypeSet>cfg:CatalogRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="AccessUpdateObjectsTypes" id="4">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="AccessUpdateObjectsTypesTablesNames" id="5">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="SelectedAccessUpdateObjectType" id="6">
+			<Type>
+				<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="UpdateDataItemsAccessKeys" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update data item access keys</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UpdateAccessKeysRights" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update rights to access keys</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteObsoleteInternalData" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove obsolete internal data</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="UpdateAccessToObject" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update access to object</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update access to the selected object now.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>UpdateAccessToObject</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ScheduleListsAccessUpdate" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Schedule access update for lists</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Schedule the updates for the selected lists.
+They will be updated by the "Access update" scheduled job.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ScheduleListsAccessUpdate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ShowAccessToObject" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View access…</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ShowAccessToObject</Action>
+		</Command>
+	</Commands>
+</Form>

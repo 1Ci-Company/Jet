@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormEnableEditing" id="10">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.EnableEditing</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Allow editing</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="11"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="List" id="1">
+			<DataPath>Record.List</DataPath>
+			<ContextMenu name="ListContextMenu" id="2"/>
+			<ExtendedTooltip name="ListExtendedTooltip" id="3"/>
+		</InputField>
+		<CheckBoxField name="ForExternalUsers" id="4">
+			<DataPath>Record.ForExternalUsers</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ForExternalUsersContextMenu" id="5"/>
+			<ExtendedTooltip name="ForExternalUsersExtendedTooltip" id="6"/>
+		</CheckBoxField>
+		<CheckBoxField name="SpotJob" id="15">
+			<DataPath>Record.SpotJob</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="SpotJobContextMenu" id="16"/>
+			<ExtendedTooltip name="SpotJobExtendedTooltip" id="17"/>
+		</CheckBoxField>
+		<InputField name="JobSize" id="18">
+			<DataPath>Record.JobSize</DataPath>
+			<ContextMenu name="JobSizeContextMenu" id="19"/>
+			<ExtendedTooltip name="JobSizeExtendedTooltip" id="20"/>
+		</InputField>
+		<InputField name="RegisterRecordChangeDate" id="7">
+			<DataPath>Record.RegisterRecordChangeDate</DataPath>
+			<ContextMenu name="RegisterRecordChangeDateContextMenu" id="8"/>
+			<ExtendedTooltip name="RegisterRecordChangeDateExtendedTooltip" id="9"/>
+		</InputField>
+		<LabelField name="UniqueKey" id="12">
+			<DataPath>Record.UniqueKey</DataPath>
+			<ContextMenu name="UniqueKeyContextMenu" id="13"/>
+			<ExtendedTooltip name="UniqueKeyExtendedTooltip" id="14"/>
+		</LabelField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.UsersAccessKeysUpdate</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IsNewRecord" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

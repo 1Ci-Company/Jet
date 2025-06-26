@@ -1,0 +1,892 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<DocumentJournal uuid="7da57c89-af2c-445a-96f7-39250f70306f">
+		<InternalInfo>
+			<xr:GeneratedType name="DocumentJournalSelection.Interactions" category="Selection">
+				<xr:TypeId>29e689f7-03af-49a8-a510-3dd42cdef072</xr:TypeId>
+				<xr:ValueId>a45ce3e6-618a-4dc6-9d44-60d5683a5178</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentJournalList.Interactions" category="List">
+				<xr:TypeId>48c68b2d-9396-49a2-ae4d-2f6668b7835e</xr:TypeId>
+				<xr:ValueId>17f32078-8827-405b-af43-f3bb5b1cef41</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentJournalManager.Interactions" category="Manager">
+				<xr:TypeId>bf9e5423-5b02-45c5-b7f3-be06621dfde9</xr:TypeId>
+				<xr:ValueId>41e2db16-bf58-4d26-92bf-07502e3801e4</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
+		<Properties>
+			<Name>Interactions</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business interactions</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<DefaultForm>DocumentJournal.Interactions.Form.ListForm</DefaultForm>
+			<AuxiliaryForm/>
+			<UseStandardCommands>true</UseStandardCommands>
+			<RegisteredDocuments>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage</xr:Item>
+			</RegisteredDocuments>
+			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<StandardAttributes>
+				<xr:StandardAttribute name="Type">
+					<xr:LinkByType/>
+					<xr:FillChecking>DontCheck</xr:FillChecking>
+					<xr:MultiLine>false</xr:MultiLine>
+					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+					<xr:CreateOnInput>Auto</xr:CreateOnInput>
+					<xr:MaxValue xsi:nil="true"/>
+					<xr:ToolTip/>
+					<xr:ExtendedEdit>false</xr:ExtendedEdit>
+					<xr:Format/>
+					<xr:ChoiceForm/>
+					<xr:QuickChoice>Auto</xr:QuickChoice>
+					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+					<xr:EditFormat/>
+					<xr:PasswordMode>false</xr:PasswordMode>
+					<xr:DataHistory>Use</xr:DataHistory>
+					<xr:MarkNegatives>false</xr:MarkNegatives>
+					<xr:MinValue xsi:nil="true"/>
+					<xr:Synonym/>
+					<xr:Comment/>
+					<xr:FullTextSearch>Use</xr:FullTextSearch>
+					<xr:ChoiceParameterLinks/>
+					<xr:FillValue xsi:nil="true"/>
+					<xr:Mask/>
+					<xr:ChoiceParameters/>
+				</xr:StandardAttribute>
+				<xr:StandardAttribute name="Ref">
+					<xr:LinkByType/>
+					<xr:FillChecking>DontCheck</xr:FillChecking>
+					<xr:MultiLine>false</xr:MultiLine>
+					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+					<xr:CreateOnInput>Auto</xr:CreateOnInput>
+					<xr:MaxValue xsi:nil="true"/>
+					<xr:ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reference to a logged document.</v8:content>
+						</v8:item>
+					</xr:ToolTip>
+					<xr:ExtendedEdit>false</xr:ExtendedEdit>
+					<xr:Format/>
+					<xr:ChoiceForm/>
+					<xr:QuickChoice>Auto</xr:QuickChoice>
+					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+					<xr:EditFormat/>
+					<xr:PasswordMode>false</xr:PasswordMode>
+					<xr:DataHistory>Use</xr:DataHistory>
+					<xr:MarkNegatives>false</xr:MarkNegatives>
+					<xr:MinValue xsi:nil="true"/>
+					<xr:Synonym/>
+					<xr:Comment/>
+					<xr:FullTextSearch>Use</xr:FullTextSearch>
+					<xr:ChoiceParameterLinks/>
+					<xr:FillValue xsi:nil="true"/>
+					<xr:Mask/>
+					<xr:ChoiceParameters/>
+				</xr:StandardAttribute>
+				<xr:StandardAttribute name="Date">
+					<xr:LinkByType/>
+					<xr:FillChecking>DontCheck</xr:FillChecking>
+					<xr:MultiLine>false</xr:MultiLine>
+					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+					<xr:CreateOnInput>Auto</xr:CreateOnInput>
+					<xr:MaxValue xsi:nil="true"/>
+					<xr:ToolTip/>
+					<xr:ExtendedEdit>false</xr:ExtendedEdit>
+					<xr:Format/>
+					<xr:ChoiceForm/>
+					<xr:QuickChoice>Auto</xr:QuickChoice>
+					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+					<xr:EditFormat/>
+					<xr:PasswordMode>false</xr:PasswordMode>
+					<xr:DataHistory>Use</xr:DataHistory>
+					<xr:MarkNegatives>false</xr:MarkNegatives>
+					<xr:MinValue xsi:nil="true"/>
+					<xr:Synonym/>
+					<xr:Comment/>
+					<xr:FullTextSearch>Use</xr:FullTextSearch>
+					<xr:ChoiceParameterLinks/>
+					<xr:FillValue xsi:nil="true"/>
+					<xr:Mask/>
+					<xr:ChoiceParameters/>
+				</xr:StandardAttribute>
+				<xr:StandardAttribute name="Posted">
+					<xr:LinkByType/>
+					<xr:FillChecking>DontCheck</xr:FillChecking>
+					<xr:MultiLine>false</xr:MultiLine>
+					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+					<xr:CreateOnInput>Auto</xr:CreateOnInput>
+					<xr:MaxValue xsi:nil="true"/>
+					<xr:ToolTip/>
+					<xr:ExtendedEdit>false</xr:ExtendedEdit>
+					<xr:Format/>
+					<xr:ChoiceForm/>
+					<xr:QuickChoice>Auto</xr:QuickChoice>
+					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+					<xr:EditFormat/>
+					<xr:PasswordMode>false</xr:PasswordMode>
+					<xr:DataHistory>Use</xr:DataHistory>
+					<xr:MarkNegatives>false</xr:MarkNegatives>
+					<xr:MinValue xsi:nil="true"/>
+					<xr:Synonym/>
+					<xr:Comment/>
+					<xr:FullTextSearch>Use</xr:FullTextSearch>
+					<xr:ChoiceParameterLinks/>
+					<xr:FillValue xsi:nil="true"/>
+					<xr:Mask/>
+					<xr:ChoiceParameters/>
+				</xr:StandardAttribute>
+				<xr:StandardAttribute name="DeletionMark">
+					<xr:LinkByType/>
+					<xr:FillChecking>DontCheck</xr:FillChecking>
+					<xr:MultiLine>false</xr:MultiLine>
+					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+					<xr:CreateOnInput>Auto</xr:CreateOnInput>
+					<xr:MaxValue xsi:nil="true"/>
+					<xr:ToolTip/>
+					<xr:ExtendedEdit>false</xr:ExtendedEdit>
+					<xr:Format/>
+					<xr:ChoiceForm/>
+					<xr:QuickChoice>Auto</xr:QuickChoice>
+					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+					<xr:EditFormat/>
+					<xr:PasswordMode>false</xr:PasswordMode>
+					<xr:DataHistory>Use</xr:DataHistory>
+					<xr:MarkNegatives>false</xr:MarkNegatives>
+					<xr:MinValue xsi:nil="true"/>
+					<xr:Synonym/>
+					<xr:Comment/>
+					<xr:FullTextSearch>Use</xr:FullTextSearch>
+					<xr:ChoiceParameterLinks/>
+					<xr:FillValue xsi:nil="true"/>
+					<xr:Mask/>
+					<xr:ChoiceParameters/>
+				</xr:StandardAttribute>
+				<xr:StandardAttribute name="Number">
+					<xr:LinkByType/>
+					<xr:FillChecking>DontCheck</xr:FillChecking>
+					<xr:MultiLine>false</xr:MultiLine>
+					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+					<xr:CreateOnInput>Auto</xr:CreateOnInput>
+					<xr:MaxValue xsi:nil="true"/>
+					<xr:ToolTip/>
+					<xr:ExtendedEdit>false</xr:ExtendedEdit>
+					<xr:Format/>
+					<xr:ChoiceForm/>
+					<xr:QuickChoice>Auto</xr:QuickChoice>
+					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+					<xr:EditFormat/>
+					<xr:PasswordMode>false</xr:PasswordMode>
+					<xr:DataHistory>Use</xr:DataHistory>
+					<xr:MarkNegatives>false</xr:MarkNegatives>
+					<xr:MinValue xsi:nil="true"/>
+					<xr:Synonym/>
+					<xr:Comment/>
+					<xr:FullTextSearch>Use</xr:FullTextSearch>
+					<xr:ChoiceParameterLinks/>
+					<xr:FillValue xsi:nil="true"/>
+					<xr:Mask/>
+					<xr:ChoiceParameters/>
+				</xr:StandardAttribute>
+			</StandardAttributes>
+			<ListPresentation/>
+			<ExtendedListPresentation/>
+			<Explanation/>
+		</Properties>
+		<ChildObjects>
+			<Column uuid="b5b94d94-25f7-4cfa-b1e9-6009fb848763">
+				<Properties>
+					<Name>Author</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Author</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>IndexWithAdditionalOrder</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting.Attribute.Author</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.Author</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction.Attribute.Author</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.Author</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.Author</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="a2accf54-5966-42e8-ab2e-e56e415963ee">
+				<Properties>
+					<Name>Incoming</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Incoming</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.Incoming</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="d8eb5329-5900-4b5d-b45e-458513dddfef">
+				<Properties>
+					<Name>EmployeeResponsible</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assigned to</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>IndexWithAdditionalOrder</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.EmployeeResponsible</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting.Attribute.EmployeeResponsible</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.EmployeeResponsible</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.EmployeeResponsible</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction.Attribute.EmployeeResponsible</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.EmployeeResponsible</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="6d521e58-24a3-4f19-b4b0-dff84f7ca86b">
+				<Properties>
+					<Name>Subject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Subject</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.Subject</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.Subject</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting.Attribute.Subject</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction.Attribute.Subject</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.Subject</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.Subject</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="8c413fa5-9e24-4b81-aa55-0e78c5e3e20f">
+				<Properties>
+					<Name>Attendees</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Participants</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting.Attribute.ParticipantsList</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.SubscriberPresentation</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.EmailRecipientsList</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.SenderPresentation</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction.Attribute.ParticipantsList</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.ParticipantsList</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="a4322f22-7de0-4018-8e06-9f1aa7cf0c07">
+				<Properties>
+					<Name>OutgoingEmailStatus</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Outgoing mail status</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.EmailStatus</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.State</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="eaaed107-69d4-4963-be83-74519e331715">
+				<Properties>
+					<Name>Account</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Email account</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>IndexWithAdditionalOrder</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.Account</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.Account</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="38cddf96-8703-4396-8c73-47fb22828a48">
+				<Properties>
+					<Name>HasAttachments</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Has attachments</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.HasAttachments</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.HasAttachments</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="2c2cb793-0177-4983-91ca-9c292c5b10f1">
+				<Properties>
+					<Name>InteractionBasis</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reference interaction</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>IndexWithAdditionalOrder</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting.Attribute.InteractionBasis</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction.Attribute.InteractionBasis</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.InteractionBasis</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.InteractionBasis</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.InteractionBasis</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.InteractionBasis</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="2a2e7f51-a4e5-48ec-b969-b1fca18ba9b5">
+				<Properties>
+					<Name>SentReceived</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Received/Sent</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>IndexWithAdditionalOrder</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.DateReceived</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.PostingDate</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="221fa473-3327-44e6-a033-6fdfd2be713c">
+				<Properties>
+					<Name>Size</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Size</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.Size</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.Size</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="7a5973f0-7e29-44af-8e7b-70af71f704a4">
+				<Properties>
+					<Name>Importance</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Importance</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>Index</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.Meeting.Attribute.Importance</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PlannedInteraction.Attribute.Importance</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.PhoneCall.Attribute.Importance</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.Importance</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.Importance</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.Importance</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="2b2bf0f7-0946-4492-bba0-27f007a70e64">
+				<Properties>
+					<Name>DateToSendEmail</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Schedule send</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.DateToSendEmail</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.DateToSendEmail</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="22c9a703-5ed3-4156-8fa6-476b1c1452f1">
+				<Properties>
+					<Name>EmailSendingRelevanceDate</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Messaging deadline</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.SMSMessage.Attribute.EmailSendingRelevanceDate</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.EmailSendingRelevanceDate</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="8be10d88-8c37-4444-9c89-6cbbe9913bda">
+				<Properties>
+					<Name>MessageID</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Message ID</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Indexing>Index</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.IncomingEmail.Attribute.MessageID</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.OutgoingEmail.Attribute.MessageID</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Form>ListForm</Form>
+			<Form>ParametricListForm</Form>
+			<Form>PrintEmail</Form>
+			<Form>EmailMessageParameters</Form>
+			<Form>EmailOperationSettings</Form>
+			<Form>SelectSubjectType</Form>
+			<Template>SchemaInteractionsFilter</Template>
+			<Template>InteractionsHierarchySubject</Template>
+			<Template>InteractionsHierarchyContact</Template>
+			<Template>SchemaFilterInteractionsContact</Template>
+			<Command uuid="314b0da2-24d3-48cc-8532-d36c45eb3bf8">
+				<Properties>
+					<Name>InteractionsByContact</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Interactions</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>FormNavigationPanelGoTo</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>View the list of interactions with the contact.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Picture/>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="2e3ac3fb-9f0e-463f-95c2-9f661ce2e015">
+				<Properties>
+					<Name>InteractionsBySubject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Interactions</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>FormNavigationPanelGoTo</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>View the list of interactions on the topic.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Picture/>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="4077e700-ec20-4afa-8155-bf7e516a70cb">
+				<Properties>
+					<Name>PlanInteractionByContact</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Schedule interaction</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.PlannedInteraction</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="5198c6db-2100-4902-82c8-85c8ea555e78">
+				<Properties>
+					<Name>PlanInteractionBySubject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Schedule interaction</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.PlannedInteraction</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="b99f2a63-54e8-490b-a0a4-1941fbc38b3f">
+				<Properties>
+					<Name>PlanMeetingByContact</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Schedule appointment</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.Meeting</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="f0b1e9f4-2e07-44e6-88d2-c11457135781">
+				<Properties>
+					<Name>PlanMeetingBySubject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Schedule appointment</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.Meeting</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="e010c0f9-f770-4fdc-8607-50838c0262ef">
+				<Properties>
+					<Name>WriteSMSMessageByContact</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Compose text message</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.WriteSMS</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="f935399f-3554-4c08-b0a6-eba13074e1b7">
+				<Properties>
+					<Name>WriteSMSMessageBySubject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Compose text message</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.WriteSMS</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="10008125-3aeb-4912-8ad6-d92d283ea09a">
+				<Properties>
+					<Name>WriteEmailByContact</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Compose mail</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.OutgoingEmail</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="765f9584-fefa-4695-b130-dd54c3b0d79d">
+				<Properties>
+					<Name>WriteEmailBySubject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Compose mail</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.OutgoingEmail</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="dd050ca0-8335-4654-ab5c-7babcb4824ef">
+				<Properties>
+					<Name>EmailOperationSettings</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Account settings</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>ActionsPanelTools</Group>
+					<CommandParameterType/>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture/>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="706cbf55-626d-4cab-b589-a2464368f6c1">
+				<Properties>
+					<Name>PrintEmail</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>FormCommandBarImportant</Group>
+					<CommandParameterType>
+						<v8:Type>cfg:DocumentRef.OutgoingEmail</v8:Type>
+						<v8:Type>cfg:DocumentRef.IncomingEmail</v8:Type>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Picture</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>StdPicture.Print</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="d22a0a50-220d-459e-a23a-39730a1e67c4">
+				<Properties>
+					<Name>CallByContact</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Create phone call</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.PhoneCall</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="2c1c9284-ba8b-4282-a89c-429f02ea41f6">
+				<Properties>
+					<Name>CallBySubject</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Create phone call</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>CommandGroup.Interactions</Group>
+					<CommandParameterType>
+						<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture>
+						<xr:Ref>CommonPicture.PhoneCall</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+			<Command uuid="8c241467-76f7-4161-a8a1-5da4a6576b75">
+				<Properties>
+					<Name>SaveEmail</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Save as</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>FormCommandBarImportant</Group>
+					<CommandParameterType>
+						<v8:Type>cfg:DocumentRef.OutgoingEmail</v8:Type>
+						<v8:Type>cfg:DocumentRef.IncomingEmail</v8:Type>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>PictureAndText</Representation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Save the mail message as EML</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Picture>
+						<xr:Ref>CommonPicture.SaveFileAs</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Shortcut>Ctrl+Shift+S</Shortcut>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
+		</ChildObjects>
+	</DocumentJournal>
+</MetaDataObject>

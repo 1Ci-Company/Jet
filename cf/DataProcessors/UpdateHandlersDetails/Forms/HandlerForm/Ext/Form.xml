@@ -1,0 +1,2238 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormWriteAndClose" id="231">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.WriteAndClose</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="232"/>
+			</Button>
+			<Button name="FormWrite" id="229">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.WriteHandler</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteExtendedTooltip" id="230"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="FormPages" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Form pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="FormPagesExtendedTooltip" id="2"/>
+			<Events>
+				<Event name="OnCurrentPageChange">FormPagesOnCurrentPageChange</Event>
+			</Events>
+			<ChildItems>
+				<Page name="DetailsPage" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Details</v8:content>
+						</v8:item>
+					</Title>
+					<Shortcut>Alt+1</Shortcut>
+					<ExtendedTooltip name="DetailsPageExtendedTooltip" id="4"/>
+					<ChildItems>
+						<UsualGroup name="HeaderGroup" id="10">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Header</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="HeaderGroupExtendedTooltip" id="11"/>
+							<ChildItems>
+								<UsualGroup name="HeaderLeftRightGroup" id="93">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Header left right</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="HeaderLeftRightGroupExtendedTooltip" id="94"/>
+									<ChildItems>
+										<UsualGroup name="HeaderLeftGroup" id="12">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Header left</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="HeaderLeftGroupExtendedTooltip" id="13"/>
+											<ChildItems>
+												<InputField name="MainMetadataObject" id="772">
+													<DataPath>MainMetadataObject</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Metadata object.</v8:content>
+														</v8:item>
+													</Title>
+													<ChoiceButton>true</ChoiceButton>
+													<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+													<ContextMenu name="MainMetadataObjectContextMenu" id="773"/>
+													<ExtendedTooltip name="MainMetadataObjectExtendedTooltip" id="774"/>
+													<Events>
+														<Event name="AutoComplete">MainMetadataObjectAutoComplete</Event>
+														<Event name="StartChoice">MainMetadataObjectStartChoice</Event>
+														<Event name="TextEditEnd">MainMetadataObjectTextEditEnd</Event>
+														<Event name="ChoiceProcessing">MainMetadataObjectChoiceProcessing</Event>
+													</Events>
+												</InputField>
+												<InputField name="Id" id="24">
+													<DataPath>Object.UpdateHandlers[0].Id</DataPath>
+													<ChoiceButton>true</ChoiceButton>
+													<ChoiceButtonPicture>
+														<xr:Ref>StdPicture.MoveLeft</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</ChoiceButtonPicture>
+													<ContextMenu name="IdContextMenu" id="25"/>
+													<ExtendedTooltip name="IdExtendedTooltip" id="26"/>
+													<Events>
+														<Event name="StartChoice">IdStartChoice</Event>
+													</Events>
+												</InputField>
+												<InputField name="Procedure" id="16">
+													<DataPath>Object.UpdateHandlers[0].Procedure</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Processing procedure</v8:content>
+														</v8:item>
+													</Title>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<ContextMenu name="ProcedureContextMenu" id="17"/>
+													<ExtendedTooltip name="ProcedureExtendedTooltip" id="18"/>
+													<Events>
+														<Event name="OnChange">ProcedureOnChange</Event>
+													</Events>
+												</InputField>
+												<InputField name="UpdateDataFillingProcedure" id="30">
+													<DataPath>Object.UpdateHandlers[0].UpdateDataFillingProcedure</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Data filling</v8:content>
+														</v8:item>
+													</Title>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<ContextMenu name="UpdateDataFillingProcedureContextMenu" id="31"/>
+													<ExtendedTooltip name="UpdateDataFillingProcedureExtendedTooltip" id="32"/>
+													<Events>
+														<Event name="OnChange">UpdateDataFillingProcedureOnChange</Event>
+													</Events>
+												</InputField>
+												<UsualGroup name="GroupProcedureCheckWarning" id="805">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Check procedure and warning</v8:content>
+														</v8:item>
+													</Title>
+													<Group>AlwaysHorizontal</Group>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="GroupProcedureCheckWarningExtendedTooltip" id="806"/>
+													<ChildItems>
+														<InputField name="CheckProcedure" id="33">
+															<DataPath>Object.UpdateHandlers[0].CheckProcedure</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Check</v8:content>
+																</v8:item>
+															</Title>
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<ChoiceButton>true</ChoiceButton>
+															<ChoiceButtonPicture>
+																<xr:Ref>StdPicture.MoveLeft</xr:Ref>
+																<xr:LoadTransparent>true</xr:LoadTransparent>
+															</ChoiceButtonPicture>
+															<ContextMenu name="CheckProcedureContextMenu" id="34"/>
+															<ExtendedTooltip name="CheckProcedureExtendedTooltip" id="35"/>
+															<Events>
+																<Event name="OnChange">CheckProcedureOnChange</Event>
+																<Event name="StartChoice">CheckProcedureStartChoice</Event>
+															</Events>
+														</InputField>
+														<PictureDecoration name="WarningDecoration" id="807">
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Warning decoration</v8:content>
+																</v8:item>
+															</Title>
+															<GroupVerticalAlign>Center</GroupVerticalAlign>
+															<Hyperlink>true</Hyperlink>
+															<Picture>
+																<xr:Ref>CommonPicture.Warning</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</Picture>
+															<ContextMenu name="WarningDecorationContextMenu" id="808"/>
+															<ExtendedTooltip name="WarningDecorationExtendedTooltip" id="809"/>
+															<Events>
+																<Event name="Click">WarningDecorationClick</Event>
+															</Events>
+														</PictureDecoration>
+													</ChildItems>
+												</UsualGroup>
+												<InputField name="ExecutionMode" id="39">
+													<DataPath>Object.UpdateHandlers[0].ExecutionMode</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>6</Width>
+													<MaxWidth>10</MaxWidth>
+													<ListChoiceMode>true</ListChoiceMode>
+													<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+													<AutoMarkIncomplete>true</AutoMarkIncomplete>
+													<ChoiceList>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation/>
+																<Value xsi:type="xs:string">Exclusively</Value>
+															</xr:Value>
+														</xr:Item>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation/>
+																<Value xsi:type="xs:string">Deferred</Value>
+															</xr:Value>
+														</xr:Item>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation/>
+																<Value xsi:type="xs:string">Seamless</Value>
+															</xr:Value>
+														</xr:Item>
+													</ChoiceList>
+													<DropListWidth>10</DropListWidth>
+													<ContextMenu name="ExecutionModeContextMenu" id="40"/>
+													<ExtendedTooltip name="ExecutionModeExtendedTooltip" id="41"/>
+													<Events>
+														<Event name="OnChange">ExecutionModeOnChange</Event>
+													</Events>
+												</InputField>
+												<InputField name="CommentInternal" id="36">
+													<DataPath>Object.UpdateHandlers[0].Comment</DataPath>
+													<Visible>false</Visible>
+													<TitleLocation>Left</TitleLocation>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Height>2</Height>
+													<VerticalStretch>false</VerticalStretch>
+													<ChoiceButton>true</ChoiceButton>
+													<ContextMenu name="CommentInternalContextMenu" id="37"/>
+													<ExtendedTooltip name="CommentInternalExtendedTooltip" id="38"/>
+													<Events>
+														<Event name="StartChoice">CommentStartChoice</Event>
+													</Events>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="HeaderRightGroup" id="14">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Header right</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="HeaderRightGroupExtendedTooltip" id="15"/>
+											<ChildItems>
+												<UsualGroup name="SubsystemGroup" id="22">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Subsystem</v8:content>
+														</v8:item>
+													</Title>
+													<Width>27</Width>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="SubsystemGroupExtendedTooltip" id="23"/>
+													<ChildItems>
+														<InputField name="Subsystem" id="7">
+															<DataPath>Object.UpdateHandlers[0].Subsystem</DataPath>
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<ListChoiceMode>true</ListChoiceMode>
+															<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+															<AutoMarkIncomplete>true</AutoMarkIncomplete>
+															<ContextMenu name="SubsystemContextMenu" id="8"/>
+															<ExtendedTooltip name="SubsystemExtendedTooltip" id="9"/>
+															<Events>
+																<Event name="OnChange">SubsystemOnChange</Event>
+															</Events>
+														</InputField>
+														<InputField name="MainServerModuleName" id="491">
+															<DataPath>Object.UpdateHandlers[0].MainServerModuleName</DataPath>
+															<ContextMenu name="MainServerModuleNameContextMenu" id="492"/>
+															<ExtendedTooltip name="MainServerModuleNameExtendedTooltip" id="493"/>
+														</InputField>
+														<InputField name="Version" id="19">
+															<DataPath>Object.UpdateHandlers[0].Version</DataPath>
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+															<AutoMarkIncomplete>true</AutoMarkIncomplete>
+															<ContextMenu name="VersionContextMenu" id="20"/>
+															<ExtendedTooltip name="VersionExtendedTooltip" id="21"/>
+														</InputField>
+														<InputField name="DeferredHandlersExecutionMode" id="496">
+															<DataPath>Object.UpdateHandlers[0].DeferredHandlersExecutionMode</DataPath>
+															<EditMode>EnterOnInput</EditMode>
+															<Width>6</Width>
+															<MaxWidth>10</MaxWidth>
+															<ListChoiceMode>true</ListChoiceMode>
+															<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+															<AutoMarkIncomplete>true</AutoMarkIncomplete>
+															<ChoiceList>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation/>
+																		<Value xsi:type="xs:string">Parallel</Value>
+																	</xr:Value>
+																</xr:Item>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation/>
+																		<Value xsi:type="xs:string">Sequentially</Value>
+																	</xr:Value>
+																</xr:Item>
+															</ChoiceList>
+															<DropListWidth>10</DropListWidth>
+															<ContextMenu name="DeferredHandlersExecutionModeContextMenu" id="497"/>
+															<ExtendedTooltip name="DeferredHandlersExecutionModeExtendedTooltip" id="498"/>
+															<Events>
+																<Event name="OnChange">ExecutionModeOnChange</Event>
+															</Events>
+														</InputField>
+														<InputField name="ExecutionPriority" id="810">
+															<DataPath>Object.UpdateHandlers[0].Order</DataPath>
+															<ContextMenu name="ExecutionPriorityContextMenu" id="811"/>
+															<ExtendedTooltip name="ExecutionPriorityExtendedTooltip" id="812"/>
+														</InputField>
+													</ChildItems>
+												</UsualGroup>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="OtherPropertiesGroup" id="91">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Other properties</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="OtherPropertiesGroupExtendedTooltip" id="92"/>
+									<ChildItems>
+										<UsualGroup name="OtherPropertiesTitlesGroup" id="42">
+											<Visible>false</Visible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Other properties: titles</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="OtherPropertiesTitlesGroupExtendedTooltip" id="43"/>
+											<ChildItems>
+												<LabelDecoration name="PropertiesToSetGroupTitlesIndent" id="44">
+													<ContextMenu name="PropertiesToSetGroupTitlesIndentContextMenu" id="45"/>
+													<ExtendedTooltip name="PropertiesToSetGroupTitlesIndentExtendedTooltip" id="46"/>
+												</LabelDecoration>
+												<LabelDecoration name="DeferredProcessingQueueTitle" id="47">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Deferred processing queue:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="DeferredProcessingQueueTitleContextMenu" id="48"/>
+													<ExtendedTooltip name="DeferredProcessingQueueTitleExtendedTooltip" id="49"/>
+												</LabelDecoration>
+												<LabelDecoration name="RequiredTitle" id="254">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Required:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="RequiredTitleContextMenu" id="255"/>
+													<ExtendedTooltip name="RequiredTitleExtendedTooltip" id="256"/>
+												</LabelDecoration>
+												<LabelDecoration name="InitialFillingTitle" id="260">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Initial population:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="InitialFillingTitleContextMenu" id="261"/>
+													<ExtendedTooltip name="InitialFillingTitleExtendedTooltip" id="262"/>
+												</LabelDecoration>
+												<LabelDecoration name="MultithreadTitle" id="65">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Multi-threaded:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MultithreadTitleContextMenu" id="66"/>
+													<ExtendedTooltip name="MultithreadTitleExtendedTooltip" id="67"/>
+												</LabelDecoration>
+												<LabelDecoration name="ExecuteInMasterNodeOnlyTitle" id="50">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Run in master node only:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="ExecuteInMasterNodeOnlyTitleContextMenu" id="51"/>
+													<ExtendedTooltip name="ExecuteInMasterNodeOnlyTitleExtendedTooltip" id="52"/>
+												</LabelDecoration>
+												<LabelDecoration name="RunAlsoInSubordinateDIBNodeWithFiltersTitle" id="53">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Also run in subordinate DIB node with filters:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="RunAlsoInSubordinateDIBNodeWithFiltersTitleContextMenu" id="54"/>
+													<ExtendedTooltip name="RunAlsoInSubordinateDIBNodeWithFiltersTitleExtendedTooltip" id="55"/>
+												</LabelDecoration>
+												<LabelDecoration name="SharedDataTitle" id="59">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Shared data:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="SharedDataTitleContextMenu" id="60"/>
+													<ExtendedTooltip name="SharedDataTitleExtendedTooltip" id="61"/>
+												</LabelDecoration>
+												<LabelDecoration name="HandlerManagementTitle" id="62">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Handlers management:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="HandlerManagementTitleContextMenu" id="63"/>
+													<ExtendedTooltip name="HandlerManagementTitleExtendedTooltip" id="64"/>
+												</LabelDecoration>
+												<LabelDecoration name="CommentTitle" id="56">
+													<Visible>false</Visible>
+													<VerticalStretch>true</VerticalStretch>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Handler details:</v8:content>
+														</v8:item>
+													</Title>
+													<VerticalAlign>Top</VerticalAlign>
+													<ContextMenu name="CommentTitleContextMenu" id="57"/>
+													<ExtendedTooltip name="CommentTitleExtendedTooltip" id="58"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="OtherPropertiesValuesGroup" id="68">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Other properties</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ExtendedTooltip name="OtherPropertiesValuesGroupExtendedTooltip" id="69"/>
+											<ChildItems>
+												<InputField name="DeferredProcessingQueue" id="70">
+													<DataPath>Object.UpdateHandlers[0].DeferredProcessingQueue</DataPath>
+													<Visible>false</Visible>
+													<ReadOnly>true</ReadOnly>
+													<TitleLocation>Left</TitleLocation>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<MaxWidth>5</MaxWidth>
+													<ContextMenu name="DeferredProcessingQueueContextMenu" id="71"/>
+													<ExtendedTooltip name="DeferredProcessingQueueExtendedTooltip" id="72"/>
+												</InputField>
+												<CheckBoxField name="IsRequired" id="257">
+													<DataPath>Object.UpdateHandlers[0].ExecuteInMandatoryGroup</DataPath>
+													<Visible>false</Visible>
+													<TitleLocation>Left</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="IsRequiredContextMenu" id="258"/>
+													<ExtendedTooltip name="IsRequiredExtendedTooltip" id="259"/>
+												</CheckBoxField>
+												<CheckBoxField name="InitialFilling" id="263">
+													<DataPath>Object.UpdateHandlers[0].InitialFilling</DataPath>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="InitialFillingContextMenu" id="264"/>
+													<ExtendedTooltip name="InitialFillingExtendedTooltip" id="265"/>
+												</CheckBoxField>
+												<CheckBoxField name="Multithreaded" id="88">
+													<DataPath>Object.UpdateHandlers[0].Multithreaded</DataPath>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MultithreadedContextMenu" id="89"/>
+													<ExtendedTooltip name="MultithreadedExtendedTooltip" id="90"/>
+												</CheckBoxField>
+												<CheckBoxField name="ExecuteInMasterNodeOnly" id="73">
+													<DataPath>Object.UpdateHandlers[0].ExecuteInMasterNodeOnly</DataPath>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ExecuteInMasterNodeOnlyContextMenu" id="74"/>
+													<ExtendedTooltip name="ExecuteInMasterNodeOnlyExtendedTooltip" id="75"/>
+												</CheckBoxField>
+												<CheckBoxField name="RunAlsoInSubordinateDIBNodeWithFilters" id="76">
+													<DataPath>Object.UpdateHandlers[0].RunAlsoInSubordinateDIBNodeWithFilters</DataPath>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="RunAlsoInSubordinateDIBNodeWithFiltersContextMenu" id="77"/>
+													<ExtendedTooltip name="RunAlsoInSubordinateDIBNodeWithFiltersExtendedTooltip" id="78"/>
+												</CheckBoxField>
+												<CheckBoxField name="SharedData" id="82">
+													<DataPath>Object.UpdateHandlers[0].SharedData</DataPath>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="SharedDataContextMenu" id="83"/>
+													<ExtendedTooltip name="SharedDataExtendedTooltip" id="84"/>
+												</CheckBoxField>
+												<CheckBoxField name="HandlerManagement" id="85">
+													<DataPath>Object.UpdateHandlers[0].HandlerManagement</DataPath>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="HandlerManagementContextMenu" id="86"/>
+													<ExtendedTooltip name="HandlerManagementExtendedTooltip" id="87"/>
+												</CheckBoxField>
+												<CheckBoxField name="TechnicalDesign" id="781">
+													<DataPath>Object.UpdateHandlers[0].TechnicalDesign</DataPath>
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<TitleLocation>Right</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Technical design handler</v8:content>
+														</v8:item>
+													</ToolTip>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="TechnicalDesignContextMenu" id="782"/>
+													<ExtendedTooltip name="TechnicalDesignExtendedTooltip" id="783"/>
+												</CheckBoxField>
+											</ChildItems>
+										</UsualGroup>
+										<InputField name="Comment" id="79">
+											<DataPath>Object.UpdateHandlers[0].Comment</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Handler details</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Top</TitleLocation>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Height>2</Height>
+											<MultiLine>true</MultiLine>
+											<ContextMenu name="CommentContextMenu" id="80"/>
+											<ExtendedTooltip name="CommentExtendedTooltip" id="81"/>
+											<Events>
+												<Event name="StartChoice">CommentStartChoice</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="ObjectsPage" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Objects</v8:content>
+						</v8:item>
+					</Title>
+					<Shortcut>Alt+2</Shortcut>
+					<ExtendedTooltip name="ObjectsPageExtendedTooltip" id="6"/>
+					<ChildItems>
+						<UsualGroup name="UsedDataGroup" id="95">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Data</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UsedDataGroupExtendedTooltip" id="96"/>
+							<ChildItems>
+								<UsualGroup name="UsedTableDataGroup" id="100">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Used table data</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="UsedTableDataGroupExtendedTooltip" id="101"/>
+									<ChildItems>
+										<Table name="ObjectsToRead" id="102">
+											<Representation>List</Representation>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>Object.ObjectsToRead</DataPath>
+											<RowPictureDataPath>Object.ObjectsToRead.PictureIndex</RowPictureDataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Objects to read</v8:content>
+												</v8:item>
+											</Title>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="ObjectsToReadContextMenu" id="103">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<ButtonGroup name="ObjectsToReadStandardCommands" id="786">
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Objects to read standard commands</v8:content>
+															</v8:item>
+														</Title>
+														<CommandSource>Item.ObjectsToRead</CommandSource>
+														<ExtendedTooltip name="ObjectsToReadStandardCommandsExtendedTooltip" id="787"/>
+													</ButtonGroup>
+													<Button name="ObjectsToReadAddObjectToReadToObjectsToChange" id="792">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.AddObjectToReadToDataToChange</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Add to objects to change</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ObjectsToReadAddObjectToReadToObjectsToChangeExtendedTooltip" id="793"/>
+													</Button>
+													<Button name="ObjectsToReadAddAttributeTypes" id="784">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.AddAttributeTypesToDataToRead</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Add attribute types</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ObjectsToReadAddAttributeTypesExtendedTooltip" id="785"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="ObjectsToReadCommandBar" id="104">
+												<ChildItems>
+													<Button name="ObjectsToReadInfoAboutLock" id="819">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.InfoAboutLock</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Lock information</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ObjectsToReadInfoAboutLockExtendedTooltip" id="820"/>
+													</Button>
+												</ChildItems>
+											</AutoCommandBar>
+											<ExtendedTooltip name="ObjectsToReadExtendedTooltip" id="105"/>
+											<SearchStringAddition name="ObjectsToReadSearchString" id="106">
+												<AdditionSource>
+													<Item>ObjectsToRead</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ObjectsToReadSearchStringContextMenu" id="107"/>
+												<ExtendedTooltip name="ObjectsToReadSearchStringExtendedTooltip" id="108"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="ObjectsToReadViewStatus" id="109">
+												<AdditionSource>
+													<Item>ObjectsToRead</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ObjectsToReadViewStatusContextMenu" id="110"/>
+												<ExtendedTooltip name="ObjectsToReadViewStatusExtendedTooltip" id="111"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="ObjectsToReadSearchControl" id="112">
+												<AdditionSource>
+													<Item>ObjectsToRead</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="ObjectsToReadSearchControlContextMenu" id="113"/>
+												<ExtendedTooltip name="ObjectsToReadSearchControlExtendedTooltip" id="114"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">ObjectsToReadSelection</Event>
+												<Event name="OnStartEdit">ObjectsOnStartEdit</Event>
+												<Event name="AfterDeleteRow">ObjectsAfterDeletion</Event>
+											</Events>
+											<ChildItems>
+												<InputField name="ObjectsToReadRowNumber" id="205">
+													<DataPath>Object.ObjectsToRead.LineNumber</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>1</Width>
+													<ContextMenu name="ObjectsToReadRowNumberContextMenu" id="206"/>
+													<ExtendedTooltip name="ObjectsToReadRowNumberExtendedTooltip" id="207"/>
+												</InputField>
+												<ColumnGroup name="ObjectsToReadGroupObjectPicture" id="118">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Objects to read group object picture</v8:content>
+														</v8:item>
+													</Title>
+													<Group>InCell</Group>
+													<ExtendedTooltip name="ObjectsToReadGroupObjectPictureExtendedTooltip" id="119"/>
+													<ChildItems>
+														<PictureField name="ObjectsToReadPictureIndex" id="239">
+															<DataPath>Object.ObjectsToRead.PictureIndex</DataPath>
+															<EditMode>EnterOnInput</EditMode>
+															<ShowInHeader>false</ShowInHeader>
+															<FileDragMode>AsFile</FileDragMode>
+															<ContextMenu name="ObjectsToReadPictureIndexContextMenu" id="240"/>
+															<ExtendedTooltip name="ObjectsToReadPictureIndexExtendedTooltip" id="241"/>
+														</PictureField>
+														<InputField name="ObjectsToReadMetadataObject" id="208">
+															<DataPath>Object.ObjectsToRead.MetadataObject</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Object to read</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<ChoiceButton>true</ChoiceButton>
+															<ContextMenu name="ObjectsToReadMetadataObjectContextMenu" id="209"/>
+															<ExtendedTooltip name="ObjectsToReadMetadataObjectExtendedTooltip" id="210"/>
+															<Events>
+																<Event name="AutoComplete">MetadataObjectAutoComplete</Event>
+																<Event name="StartChoice">MetadataObjectStartChoice</Event>
+																<Event name="TextEditEnd">MetadataObjectTextEditEnd</Event>
+																<Event name="ChoiceProcessing">MetadataObjectChoiceProcessing</Event>
+															</Events>
+														</InputField>
+													</ChildItems>
+												</ColumnGroup>
+												<PictureField name="ObjectsToReadWarning" id="813">
+													<DataPath>Object.ObjectsToRead.Warning</DataPath>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Handlers with low priority</v8:content>
+														</v8:item>
+													</ToolTip>
+													<ToolTipRepresentation>Balloon</ToolTipRepresentation>
+													<EditMode>EnterOnInput</EditMode>
+													<ShowInHeader>false</ShowInHeader>
+													<ContextMenu name="ObjectsToReadWarningContextMenu" id="814"/>
+													<ExtendedTooltip name="ObjectsToReadWarningExtendedTooltip" id="815"/>
+												</PictureField>
+												<CheckBoxField name="ObjectsToReadLockInterface" id="269">
+													<DataPath>Object.ObjectsToRead.LockInterface</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Lock</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ObjectsToReadLockInterfaceContextMenu" id="270"/>
+													<ExtendedTooltip name="ObjectsToReadLockInterfaceExtendedTooltip" id="271"/>
+												</CheckBoxField>
+											</ChildItems>
+										</Table>
+										<UsualGroup name="UsedTableDataGroupButtons" id="131">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Used table data buttons</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="UsedTableDataGroupButtonsExtendedTooltip" id="132"/>
+											<ChildItems>
+												<LabelDecoration name="UsedTableDataGroupButtonsIndent1" id="133">
+													<Height>2</Height>
+													<VerticalStretch>false</VerticalStretch>
+													<ContextMenu name="UsedTableDataGroupButtonsIndent1ContextMenu" id="134"/>
+													<ExtendedTooltip name="UsedTableDataGroupButtonsIndent1ExtendedTooltip" id="135"/>
+												</LabelDecoration>
+												<Button name="AddObjectToChangeToDataToRead" id="136">
+													<Type>UsualButton</Type>
+													<Visible>false</Visible>
+													<CommandName>Form.Command.AddObjectToChangeToDataToRead</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>&lt;--</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="AddObjectToChangeToDataToReadExtendedTooltip" id="137"/>
+												</Button>
+												<LabelDecoration name="UsedTableDataGroupButtonsIndent2" id="138">
+													<Height>1</Height>
+													<VerticalStretch>false</VerticalStretch>
+													<ContextMenu name="UsedTableDataGroupButtonsIndent2ContextMenu" id="139"/>
+													<ExtendedTooltip name="UsedTableDataGroupButtonsIndent2ExtendedTooltip" id="140"/>
+												</LabelDecoration>
+												<Button name="AddObjectAttributeTypesToDataToRead" id="141">
+													<Type>UsualButton</Type>
+													<Visible>false</Visible>
+													<CommandName>Form.Command.WriteHandler</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Save</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="AddObjectAttributeTypesToDataToReadExtendedTooltip" id="142"/>
+												</Button>
+											</ChildItems>
+										</UsualGroup>
+										<Table name="ObjectsToChange" id="143">
+											<Representation>List</Representation>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>Object.ObjectsToChange</DataPath>
+											<RowPictureDataPath>Object.ObjectsToChange.PictureIndex</RowPictureDataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Objects to change</v8:content>
+												</v8:item>
+											</Title>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="ObjectsToChangeContextMenu" id="144">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<Button name="ObjectsToChangeAddHandlerObject" id="775">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.AddHandlerObjectToDataToChange</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Add object by handler name</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ObjectsToChangeAddHandlerObjectExtendedTooltip" id="776"/>
+													</Button>
+													<Button name="ObjectsToChangeAddObjectToChangeToDataToRead" id="790">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.AddObjectToChangeToDataToRead</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Add to objects to read</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ObjectsToChangeAddObjectToChangeToDataToReadExtendedTooltip" id="791"/>
+													</Button>
+													<ButtonGroup name="ObjectsToChangeStandardCommands" id="788">
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Objects to change standard commands</v8:content>
+															</v8:item>
+														</Title>
+														<CommandSource>Item.ObjectsToChange</CommandSource>
+														<ExtendedTooltip name="ObjectsToChangeStandardCommandsExtendedTooltip" id="789"/>
+													</ButtonGroup>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="ObjectsToChangeCommandBar" id="145">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<ButtonGroup name="DataToChangeStandardCommandsGroup" id="179">
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Data to change group standard commands</v8:content>
+															</v8:item>
+														</Title>
+														<CommandSource>Item.ObjectsToChange</CommandSource>
+														<ExtendedTooltip name="DataToChangeStandardCommandsGroupExtendedTooltip" id="180"/>
+													</ButtonGroup>
+												</ChildItems>
+											</AutoCommandBar>
+											<ExtendedTooltip name="ObjectsToChangeExtendedTooltip" id="146"/>
+											<SearchStringAddition name="ObjectsToChangeSearchString" id="147">
+												<AdditionSource>
+													<Item>ObjectsToChange</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ObjectsToChangeSearchStringContextMenu" id="148"/>
+												<ExtendedTooltip name="ObjectsToChangeSearchStringExtendedTooltip" id="149"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="ObjectsToChangeViewStatus" id="150">
+												<AdditionSource>
+													<Item>ObjectsToChange</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ObjectsToChangeViewStatusContextMenu" id="151"/>
+												<ExtendedTooltip name="ObjectsToChangeViewStatusExtendedTooltip" id="152"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="ObjectsToChangeSearchControl" id="153">
+												<AdditionSource>
+													<Item>ObjectsToChange</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="ObjectsToChangeSearchControlContextMenu" id="154"/>
+												<ExtendedTooltip name="ObjectsToChangeSearchControlExtendedTooltip" id="155"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="OnStartEdit">ObjectsOnStartEdit</Event>
+												<Event name="AfterDeleteRow">ObjectsAfterDeletion</Event>
+											</Events>
+											<ChildItems>
+												<LabelField name="ObjectsToChangeRowNumber" id="211">
+													<DataPath>Object.ObjectsToChange.LineNumber</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>1</Width>
+													<ContextMenu name="ObjectsToChangeRowNumberContextMenu" id="212"/>
+													<ExtendedTooltip name="ObjectsToChangeRowNumberExtendedTooltip" id="213"/>
+												</LabelField>
+												<ColumnGroup name="ObjectsToChangePictureGroup" id="159">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Objects to change group picture</v8:content>
+														</v8:item>
+													</Title>
+													<Group>InCell</Group>
+													<ExtendedTooltip name="ObjectsToChangePictureGroupExtendedTooltip" id="160"/>
+													<ChildItems>
+														<PictureField name="ObjectsToChangePictureIndex" id="242">
+															<DataPath>Object.ObjectsToChange.PictureIndex</DataPath>
+															<EditMode>EnterOnInput</EditMode>
+															<ShowInHeader>false</ShowInHeader>
+															<FileDragMode>AsFile</FileDragMode>
+															<ContextMenu name="ObjectsToChangePictureIndexContextMenu" id="243"/>
+															<ExtendedTooltip name="ObjectsToChangePictureIndexExtendedTooltip" id="244"/>
+														</PictureField>
+														<InputField name="ObjectsToChangeMetadataObject" id="217">
+															<DataPath>Object.ObjectsToChange.MetadataObject</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Object to change</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<ChoiceButton>true</ChoiceButton>
+															<ContextMenu name="ObjectsToChangeMetadataObjectContextMenu" id="218"/>
+															<ExtendedTooltip name="ObjectsToChangeMetadataObjectExtendedTooltip" id="219"/>
+															<Events>
+																<Event name="AutoComplete">MainMetadataObjectAutoComplete</Event>
+																<Event name="StartChoice">MetadataObjectStartChoice</Event>
+																<Event name="TextEditEnd">MetadataObjectTextEditEnd</Event>
+																<Event name="ChoiceProcessing">MetadataObjectChoiceProcessing</Event>
+															</Events>
+														</InputField>
+													</ChildItems>
+												</ColumnGroup>
+												<CheckBoxField name="ObjectsToChangeLockInterface" id="272">
+													<DataPath>Object.ObjectsToChange.LockInterface</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Lock</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ObjectsToChangeLockInterfaceContextMenu" id="273"/>
+													<ExtendedTooltip name="ObjectsToChangeLockInterfaceExtendedTooltip" id="274"/>
+												</CheckBoxField>
+												<CheckBoxField name="ObjectsToChangeNewObjects" id="816">
+													<DataPath>Object.ObjectsToChange.NewObjects</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>New</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Creating new objects</v8:content>
+														</v8:item>
+													</ToolTip>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ObjectsToChangeNewObjectsContextMenu" id="817"/>
+													<ExtendedTooltip name="ObjectsToChangeNewObjectsExtendedTooltip" id="818"/>
+												</CheckBoxField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<Table name="ObjectsToLock" id="181">
+							<HeightInTableRows>2</HeightInTableRows>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.ObjectsToLock</DataPath>
+							<RowPictureDataPath>Object.ObjectsToLock.PictureIndex</RowPictureDataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Objects to lock</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ObjectsToLockContextMenu" id="182">
+								<ChildItems>
+									<Button name="ObjectsToLockAddAttributeTypes" id="799">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.AddAttributeTypesToObjectsToLock</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Add attribute types</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ObjectsToLockAddAttributeTypesExtendedTooltip" id="800"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="ObjectsToLockCommandBar" id="183"/>
+							<ExtendedTooltip name="ObjectsToLockExtendedTooltip" id="184"/>
+							<SearchStringAddition name="ObjectsToLockSearchString" id="185">
+								<AdditionSource>
+									<Item>ObjectsToLock</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ObjectsToLockSearchStringContextMenu" id="186"/>
+								<ExtendedTooltip name="ObjectsToLockSearchStringExtendedTooltip" id="187"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ObjectsToLockViewStatus" id="188">
+								<AdditionSource>
+									<Item>ObjectsToLock</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ObjectsToLockViewStatusContextMenu" id="189"/>
+								<ExtendedTooltip name="ObjectsToLockViewStatusExtendedTooltip" id="190"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ObjectsToLockSearchControl" id="191">
+								<AdditionSource>
+									<Item>ObjectsToLock</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ObjectsToLockSearchControlContextMenu" id="192"/>
+								<ExtendedTooltip name="ObjectsToLockSearchControlExtendedTooltip" id="193"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="OnStartEdit">ObjectsOnStartEdit</Event>
+								<Event name="AfterDeleteRow">ObjectsAfterDeletion</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="ObjectsToLockRowNumber" id="220">
+									<DataPath>Object.ObjectsToLock.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="ObjectsToLockRowNumberContextMenu" id="221"/>
+									<ExtendedTooltip name="ObjectsToLockRowNumberExtendedTooltip" id="222"/>
+								</LabelField>
+								<ColumnGroup name="ObjectsToLockObjectPictureGroup" id="197">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Objects to lock group object picture</v8:content>
+										</v8:item>
+									</Title>
+									<Group>InCell</Group>
+									<ExtendedTooltip name="ObjectsToLockObjectPictureGroupExtendedTooltip" id="198"/>
+									<ChildItems>
+										<PictureField name="ObjectsToLockPictureIndex" id="248">
+											<DataPath>Object.ObjectsToLock.PictureIndex</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<ShowInHeader>false</ShowInHeader>
+											<FileDragMode>AsFile</FileDragMode>
+											<ContextMenu name="ObjectsToLockPictureIndexContextMenu" id="249"/>
+											<ExtendedTooltip name="ObjectsToLockPictureIndexExtendedTooltip" id="250"/>
+										</PictureField>
+										<InputField name="ObjectsToLockMetadataObject" id="226">
+											<DataPath>Object.ObjectsToLock.MetadataObject</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>More object to lock</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ChoiceButton>true</ChoiceButton>
+											<ContextMenu name="ObjectsToLockMetadataObjectContextMenu" id="227"/>
+											<ExtendedTooltip name="ObjectsToLockMetadataObjectExtendedTooltip" id="228"/>
+											<Events>
+												<Event name="AutoComplete">MainMetadataObjectAutoComplete</Event>
+												<Event name="StartChoice">MetadataObjectStartChoice</Event>
+												<Event name="TextEditEnd">MetadataObjectTextEditEnd</Event>
+												<Event name="ChoiceProcessing">MetadataObjectChoiceProcessing</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ConflictsPage" id="275">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Conflicts</v8:content>
+						</v8:item>
+					</Title>
+					<Shortcut>Alt+3</Shortcut>
+					<TitleDataPath>Object.ExecutionPriorities.RowsCount</TitleDataPath>
+					<ExtendedTooltip name="ConflictsPageExtendedTooltip" id="276"/>
+					<ChildItems>
+						<LabelDecoration name="Declare" id="277">
+							<Visible>false</Visible>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:SpecialTextColor</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Handler's collisions details are not current. To update them, save the changes.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="DeclareContextMenu" id="278"/>
+							<ExtendedTooltip name="DeclareExtendedTooltip" id="279"/>
+						</LabelDecoration>
+						<Pages name="PrioritiesAndIntersectionsPages" id="758">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Priorities and intersections</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
+							<ExtendedTooltip name="PrioritiesAndIntersectionsPagesExtendedTooltip" id="759"/>
+							<ChildItems>
+								<Page name="PrioritiesPage" id="760">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Priorities</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="PrioritiesPageExtendedTooltip" id="761"/>
+								</Page>
+								<Page name="IntersectionsPage" id="762">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Intersections</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="IntersectionsPageExtendedTooltip" id="763"/>
+								</Page>
+							</ChildItems>
+						</Pages>
+						<Table name="ExecutionPriorities" id="669">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.ExecutionPriorities</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Execution priorities</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ExecutionPrioritiesContextMenu" id="670">
+								<ChildItems>
+									<Button name="SelectEmptyOrder" id="803">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.SelectEmptyOrder</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Select empty order</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SelectEmptyOrderExtendedTooltip" id="804"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="ExecutionPrioritiesCommandBar" id="671">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="FillHandler1" id="764">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.FillHandler1</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Current first</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FillHandler1ExtendedTooltip" id="765"/>
+									</Button>
+									<Button name="FillHandler2" id="766">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.FillHandler2</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Conflicting first</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FillHandler2ExtendedTooltip" id="767"/>
+									</Button>
+									<Button name="FillAny" id="768">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.FillAny</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Any order</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FillAnyExtendedTooltip" id="769"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="ExecutionPrioritiesExtendedTooltip" id="672"/>
+							<SearchStringAddition name="ExecutionPrioritiesSearchString" id="673">
+								<AdditionSource>
+									<Item>ExecutionPriorities</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ExecutionPrioritiesSearchStringContextMenu" id="674"/>
+								<ExtendedTooltip name="ExecutionPrioritiesSearchStringExtendedTooltip" id="675"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ExecutionPrioritiesViewStatus" id="676">
+								<AdditionSource>
+									<Item>ExecutionPriorities</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ExecutionPrioritiesViewStatusContextMenu" id="677"/>
+								<ExtendedTooltip name="ExecutionPrioritiesViewStatusExtendedTooltip" id="678"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ExecutionPrioritiesSearchControl" id="679">
+								<AdditionSource>
+									<Item>ExecutionPriorities</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ExecutionPrioritiesSearchControlContextMenu" id="680"/>
+								<ExtendedTooltip name="ExecutionPrioritiesSearchControlExtendedTooltip" id="681"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">ExecutionPrioritiesSelection</Event>
+								<Event name="OnActivateRow">ExecutionPrioritiesOnActivateRow</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="ExecutionPrioritiesRowNumber" id="682">
+									<DataPath>Object.ExecutionPriorities.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="ExecutionPrioritiesRowNumberContextMenu" id="683"/>
+									<ExtendedTooltip name="ExecutionPrioritiesRowNumberExtendedTooltip" id="684"/>
+								</LabelField>
+								<InputField name="ExecutionPrioritiesHandler1" id="685">
+									<DataPath>Object.ExecutionPriorities.Ref</DataPath>
+									<Visible>false</Visible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ExecutionPrioritiesHandler1ContextMenu" id="686"/>
+									<ExtendedTooltip name="ExecutionPrioritiesHandler1ExtendedTooltip" id="687"/>
+								</InputField>
+								<InputField name="ExecutionPrioritiesHandler2" id="688">
+									<DataPath>Object.ExecutionPriorities.Handler2</DataPath>
+									<Visible>false</Visible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ExecutionPrioritiesHandler2ContextMenu" id="689"/>
+									<ExtendedTooltip name="ExecutionPrioritiesHandler2ExtendedTooltip" id="690"/>
+								</InputField>
+								<InputField name="ExecutionPrioritiesProcedure1" id="694">
+									<DataPath>Object.ExecutionPriorities.Procedure1</DataPath>
+									<Visible>false</Visible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Handler1</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ExecutionPrioritiesProcedure1ContextMenu" id="695"/>
+									<ExtendedTooltip name="ExecutionPrioritiesProcedure1ExtendedTooltip" id="696"/>
+								</InputField>
+								<InputField name="ExecutionPrioritiesProcedure2" id="700">
+									<DataPath>Object.ExecutionPriorities.Procedure2</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Conflicting handler</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ExecutionPrioritiesProcedure2ContextMenu" id="701"/>
+									<ExtendedTooltip name="ExecutionPrioritiesProcedure2ExtendedTooltip" id="702"/>
+								</InputField>
+								<InputField name="ExecutionPrioritiesComment2" id="724">
+									<DataPath>Object.ExecutionPriorities.Comment2</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Comment</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ExecutionPrioritiesComment2ContextMenu" id="725"/>
+									<ExtendedTooltip name="ExecutionPrioritiesComment2ExtendedTooltip" id="726"/>
+								</InputField>
+								<InputField name="ExecutionPrioritiesSelectExecutionOrder" id="715">
+									<DataPath>Object.ExecutionPriorities.SelectExecutionOrder</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Execute first</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ListChoiceMode>true</ListChoiceMode>
+									<IncompleteChoiceMode>OnActivate</IncompleteChoiceMode>
+									<TextEdit>false</TextEdit>
+									<ContextMenu name="ExecutionPrioritiesSelectExecutionOrderContextMenu" id="716"/>
+									<ExtendedTooltip name="ExecutionPrioritiesSelectExecutionOrderExtendedTooltip" id="717"/>
+									<Events>
+										<Event name="OnChange">ExecutionPrioritiesSelectExecutionOrderOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="ExecutionPrioritiesOrder" id="721">
+									<DataPath>Object.ExecutionPriorities.Order</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Execution order</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ExecutionPrioritiesOrderContextMenu" id="722"/>
+									<ExtendedTooltip name="ExecutionPrioritiesOrderExtendedTooltip" id="723"/>
+								</InputField>
+								<LabelField name="ExecutionPrioritiesIntersectionObjects" id="796">
+									<DataPath>Object.ExecutionPriorities.IntersectionObjects</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CellHyperlink>true</CellHyperlink>
+									<ContextMenu name="ExecutionPrioritiesIntersectionObjectsContextMenu" id="797"/>
+									<ExtendedTooltip name="ExecutionPrioritiesIntersectionObjectsExtendedTooltip" id="798"/>
+								</LabelField>
+								<CheckBoxField name="ExecutionPrioritiesExecutionOrderSpecified" id="718">
+									<DataPath>Object.ExecutionPriorities.ExecutionOrderSpecified</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Has order</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ExecutionPrioritiesExecutionOrderSpecifiedContextMenu" id="719"/>
+									<ExtendedTooltip name="ExecutionPrioritiesExecutionOrderSpecifiedExtendedTooltip" id="720"/>
+								</CheckBoxField>
+								<CheckBoxField name="ExecutionPrioritiesDataToReadWriter" id="709">
+									<DataPath>Object.ExecutionPriorities.DataToReadWriter</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Writing of readable objects</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.AppearanceExclamationMark</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ExecutionPrioritiesDataToReadWriterContextMenu" id="710"/>
+									<ExtendedTooltip name="ExecutionPrioritiesDataToReadWriterExtendedTooltip" id="711"/>
+								</CheckBoxField>
+								<CheckBoxField name="ExecutionPrioritiesWriteAgain" id="712">
+									<DataPath>Object.ExecutionPriorities.WriteAgain</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Rewriting objects that are modified by other handlers.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>CommonPicture.Warning</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ExecutionPrioritiesWriteAgainContextMenu" id="713"/>
+									<ExtendedTooltip name="ExecutionPrioritiesWriteAgainExtendedTooltip" id="714"/>
+								</CheckBoxField>
+							</ChildItems>
+						</Table>
+						<UsualGroup name="HandlersDetailsGroup" id="494">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Handlers details</v8:content>
+								</v8:item>
+							</Title>
+							<Height>6</Height>
+							<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="HandlersDetailsGroupExtendedTooltip" id="495"/>
+							<ChildItems>
+								<InputField name="Comment1" id="663">
+									<DataPath>Object.UpdateHandlers[0].Comment</DataPath>
+									<Visible>false</Visible>
+									<ReadOnly>true</ReadOnly>
+									<SkipOnInput>true</SkipOnInput>
+									<TitleLocation>None</TitleLocation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<AutoMaxHeight>false</AutoMaxHeight>
+									<BorderColor>style:FormBackColor</BorderColor>
+									<HeightControlVariant>UseContentHeight</HeightControlVariant>
+									<ContextMenu name="Comment1ContextMenu" id="664"/>
+									<ExtendedTooltip name="Comment1ExtendedTooltip" id="665"/>
+								</InputField>
+								<InputField name="Comment2" id="666">
+									<DataPath>Comment2</DataPath>
+									<Visible>false</Visible>
+									<ReadOnly>true</ReadOnly>
+									<SkipOnInput>true</SkipOnInput>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Comment2</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<AutoMaxHeight>false</AutoMaxHeight>
+									<BorderColor>style:FormBackColor</BorderColor>
+									<HeightControlVariant>UseContentHeight</HeightControlVariant>
+									<ContextMenu name="Comment2ContextMenu" id="667"/>
+									<ExtendedTooltip name="Comment2ExtendedTooltip" id="668"/>
+								</InputField>
+								<LabelField name="Handler1" id="370">
+									<DataPath>Object.UpdateHandlers[0].Procedure</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<SkipOnInput>true</SkipOnInput>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Current handler</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<ContextMenu name="Handler1ContextMenu" id="371"/>
+									<ExtendedTooltip name="Handler1ExtendedTooltip" id="372">
+										<AutoMaxWidth>false</AutoMaxWidth>
+									</ExtendedTooltip>
+								</LabelField>
+								<LabelField name="Handler2" id="373">
+									<DataPath>Handler2</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<SkipOnInput>true</SkipOnInput>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Conflicting handler</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<ContextMenu name="Handler2ContextMenu" id="374"/>
+									<ExtendedTooltip name="Handler2ExtendedTooltip" id="375">
+										<AutoMaxWidth>false</AutoMaxWidth>
+									</ExtendedTooltip>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+						<Table name="Intersections" id="730">
+							<Representation>List</Representation>
+							<UserVisible>
+								<xr:Common>false</xr:Common>
+							</UserVisible>
+							<ChangeRowSet>false</ChangeRowSet>
+							<HeightControlVariant>UseContentHeight</HeightControlVariant>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Intersections</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Intersections</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="IntersectionsContextMenu" id="731"/>
+							<AutoCommandBar name="IntersectionsCommandBar" id="732">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="IntersectionsExtendedTooltip" id="733"/>
+							<SearchStringAddition name="IntersectionsSearchString" id="734">
+								<AdditionSource>
+									<Item>Intersections</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="IntersectionsSearchStringContextMenu" id="735"/>
+								<ExtendedTooltip name="IntersectionsSearchStringExtendedTooltip" id="736"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="IntersectionsViewStatus" id="737">
+								<AdditionSource>
+									<Item>Intersections</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="IntersectionsViewStatusContextMenu" id="738"/>
+								<ExtendedTooltip name="IntersectionsViewStatusExtendedTooltip" id="739"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="IntersectionsSearchControl" id="740">
+								<AdditionSource>
+									<Item>Intersections</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="IntersectionsSearchControlContextMenu" id="741"/>
+								<ExtendedTooltip name="IntersectionsSearchControlExtendedTooltip" id="742"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<CheckBoxField name="IntersectionsDataToReadWriter" id="752">
+									<DataPath>Intersections.DataToReadWriter</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Writing of readable objects</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Either this handler modifies objects readable by other handlers
+or other handlers modify objects readable by this handler.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.AppearanceExclamationMark</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="IntersectionsDataToReadWriterContextMenu" id="753"/>
+									<ExtendedTooltip name="IntersectionsDataToReadWriterExtendedTooltip" id="754"/>
+								</CheckBoxField>
+								<CheckBoxField name="IntersectionsWriteAgain" id="755">
+									<DataPath>Intersections.WriteAgain</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Write again</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Rewriting objects modifiable by other handlers.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>CommonPicture.Warning</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="IntersectionsWriteAgainContextMenu" id="756"/>
+									<ExtendedTooltip name="IntersectionsWriteAgainExtendedTooltip" id="757"/>
+								</CheckBoxField>
+								<InputField name="IntersectionsMetadataObject" id="749">
+									<DataPath>Intersections.MetadataObject</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Metadata object</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="IntersectionsMetadataObjectContextMenu" id="750"/>
+									<ExtendedTooltip name="IntersectionsMetadataObjectExtendedTooltip" id="751"/>
+								</InputField>
+								<InputField name="IntersectionsWriterHandler" id="743">
+									<DataPath>Intersections.WriteProcedure</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Writer handler</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="IntersectionsWriterHandlerContextMenu" id="744"/>
+									<ExtendedTooltip name="IntersectionsWriterHandlerExtendedTooltip" id="745"/>
+								</InputField>
+								<InputField name="IntersectionsReadOrWriteHandler2" id="746">
+									<DataPath>Intersections.ReadOrWriteProcedure2</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reader handler (or writer 2)</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="IntersectionsReadOrWriteHandler2ContextMenu" id="747"/>
+									<ExtendedTooltip name="IntersectionsReadOrWriteHandler2ExtendedTooltip" id="748"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.UpdateHandlersDetails</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<Columns>
+				<AdditionalColumns table="Object.ObjectsToRead">
+					<Column name="Order" id="1">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Order</v8:content>
+							</v8:item>
+						</Title>
+						<Type>
+							<v8:Type>xs:string</v8:Type>
+							<v8:StringQualifiers>
+								<v8:Length>30</v8:Length>
+								<v8:AllowedLength>Variable</v8:AllowedLength>
+							</v8:StringQualifiers>
+						</Type>
+					</Column>
+					<Column name="HasLowPriorityReadingWriter" id="2">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Has low order write handler</v8:content>
+							</v8:item>
+						</Title>
+						<Type>
+							<v8:Type>xs:boolean</v8:Type>
+						</Type>
+					</Column>
+					<Column name="Warning" id="3">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Warning</v8:content>
+							</v8:item>
+						</Title>
+						<Type>
+							<v8:Type>v8ui:Picture</v8:Type>
+						</Type>
+					</Column>
+				</AdditionalColumns>
+			</Columns>
+		</Attribute>
+		<Attribute name="SubsystemsModules" id="2">
+			<Type/>
+		</Attribute>
+		<Attribute name="MainMetadataObject" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Metadata object</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+			<FillCheck>ShowError</FillCheck>
+		</Attribute>
+		<Attribute name="TypesPicturesIndexes" id="4">
+			<Type/>
+		</Attribute>
+		<Attribute name="PluralForm" id="7">
+			<Type/>
+		</Attribute>
+		<Attribute name="SingularForm" id="8">
+			<Type/>
+		</Attribute>
+		<Attribute name="Handler2" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Handler2</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ExecutionOrder" id="11">
+			<Type/>
+		</Attribute>
+		<Attribute name="TotalForeignDataToReadRecord" id="12">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TotalOwnDataToReadRecord" id="13">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TotalWriteAgain" id="14">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="OrderPresentation" id="15">
+			<Type/>
+		</Attribute>
+		<Attribute name="Comment2" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Comment2</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentHandlerRef" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>36</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Intersections" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Intersections</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="WriteProcedure" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Handler1</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>350</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ReadOrWriteProcedure2" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Handler2</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>350</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MetadataObject" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Metadata object</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DataToReadWriter" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Writing of readable objects</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="WriteAgain" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Rewriting</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="DefaultPriorities" id="5">
+			<Type/>
+		</Attribute>
+		<Attribute name="StartFromConfiguration" id="6">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="HasMetadataObjectsIDs" id="18">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CommonModules" id="19">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Name" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>500</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ChangedCheckProcedure" id="20">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentValueProcedureCheck" id="21">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="LowPriorityReadingWriters" id="22">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="WriteProcedure" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>350</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MetadataObject" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Order" id="3">
+					<Type>
+						<v8:Type>cfg:EnumRef.OrderOfUpdateHandlers</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="HasLowPriorityReading" id="23">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="WriteAndClose" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WriteAndClose</Action>
+		</Command>
+		<Command name="WriteHandler" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save the handler.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WriteHandler</Action>
+		</Command>
+		<Command name="FillHandler1" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Current first</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill Current</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Ctrl+1</Shortcut>
+			<Action>FillHandler1</Action>
+		</Command>
+		<Command name="FillHandler2" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Conflicting first</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill Conflicting</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Ctrl+2</Shortcut>
+			<Action>FillHandler2</Action>
+		</Command>
+		<Command name="FillAny" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Any order</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Populate handler1</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Ctrl+3</Shortcut>
+			<Action>FillAny</Action>
+		</Command>
+		<Command name="AddHandlerObjectToDataToRead" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add object by handler name</v8:content>
+				</v8:item>
+			</Title>
+			<Shortcut>Shift+V</Shortcut>
+			<Action>AddHandlerObjectToDataToRead</Action>
+		</Command>
+		<Command name="AddHandlerObjectToDataToChange" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add object by handler name</v8:content>
+				</v8:item>
+			</Title>
+			<Shortcut>Shift+V</Shortcut>
+			<Action>AddHandlerObjectToDataToChange</Action>
+		</Command>
+		<Command name="AddObjectToChangeToDataToRead" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to objects to read</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add an object being changed to objects to read</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Shift+W</Shortcut>
+			<Action>AddObjectToChangeToDataToRead</Action>
+		</Command>
+		<Command name="AddAttributeTypesToDataToRead" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add attribute types</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add attribute types to objects to read</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Shift+R</Shortcut>
+			<Action>AddAttributeTypesToDataToRead</Action>
+		</Command>
+		<Command name="AddObjectToReadToDataToChange" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to objects to change</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add an object being read to objects to change</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Shift+W</Shortcut>
+			<Action>AddObjectToReadToDataToChange</Action>
+		</Command>
+		<Command name="AddAttributeTypesToObjectsToLock" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add attribute types</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add attribute types to objects to lock</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Shift+R</Shortcut>
+			<Action>AddAttributeTypesToObjectsToLock</Action>
+		</Command>
+		<Command name="SelectEmptyOrder" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select empty order</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select empty order</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Ctrl+Shift+A</Shortcut>
+			<Action>SelectEmptyOrder</Action>
+		</Command>
+		<Command name="InfoAboutLock" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Lock information</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Lock information</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InfoAboutLock</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="NewRow">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="HandlerAddress">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="StartFromConfiguration">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

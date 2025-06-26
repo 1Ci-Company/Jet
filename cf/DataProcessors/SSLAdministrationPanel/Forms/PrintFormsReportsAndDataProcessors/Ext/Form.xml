@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Customizable>false</Customizable>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="1580">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="1600"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="1581">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Configure print forms, report options, report distribution, and additional reports and data processors.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Top</VerticalAlign>
+					<ContextMenu name="SectionDetailsContextMenu" id="1582"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="1601"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="1583">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="1603"/>
+					<ChildItems>
+						<Button name="Help" id="1584">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="1604"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ColumnsGroup" id="1658">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Columns</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ColumnsGroupExtendedTooltip" id="1659"/>
+			<ChildItems>
+				<UsualGroup name="PrintGroup" id="1627">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="PrintGroupExtendedTooltip" id="1628"/>
+					<ChildItems>
+						<UsualGroup name="PrintFormsTemplatesGroup" id="1662">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Print form templates</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="PrintFormsTemplatesGroupExtendedTooltip" id="1663"/>
+							<ChildItems>
+								<Button name="OpenPrintFormsTemplates" id="1380">
+									<Type>Hyperlink</Type>
+									<CommandName>InformationRegister.UserPrintTemplates.StandardCommand.OpenList</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenPrintFormsTemplatesExtendedTooltip" id="1606">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure templates of document print forms.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<Button name="CatalogPrintFormsLanguagesOpenList" id="1707">
+									<Type>Hyperlink</Type>
+									<CommandName>0</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="CatalogPrintFormsLanguagesOpenListExtendedTooltip" id="1708">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Select the languages you want to translate print forms to.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="PrintSubmenuGroup" id="1664">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Submenu print</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="PrintSubmenuGroupExtendedTooltip" id="1665"/>
+							<ChildItems>
+								<Button name="PrintSubmenu" id="1682">
+									<Type>Hyperlink</Type>
+									<CommandName>CommonForm.PrintCommandsSetup.StandardCommand.Open</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Print submenu</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="1683">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure visibility of print commands in forms.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<UsualGroup name="AutomaticTranslationGroup" id="1709">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Automatic translation</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Group>AlwaysHorizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AutomaticTranslationGroupExtendedTooltip" id="1710">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Suggest machine translation when users edit print forms or enter attribute values in the selected languages.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<ChildItems>
+										<CheckBoxField name="UseTextTranslationService" id="1719">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Translator</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="UseTextTranslationServiceContextMenu" id="1720"/>
+											<ExtendedTooltip name="UseTextTranslationServiceExtendedTooltip" id="1721"/>
+											<Events>
+												<Event name="OnChange">UseTextTranslationServiceOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<LabelDecoration name="TextTranslationServiceSetting" id="1722">
+											<Title formatted="true">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Translate text with online service</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="TextTranslationServiceSettingContextMenu" id="1723"/>
+											<ExtendedTooltip name="TextTranslationServiceSettingExtendedTooltip" id="1724"/>
+											<Events>
+												<Event name="URLProcessing">TextTranslationServiceSettingURLProcessing</Event>
+											</Events>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="BulkEmailOptionsGroup" id="1575">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Options distribution</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="BulkEmailOptionsGroupExtendedTooltip" id="1608"/>
+					<ChildItems>
+						<UsualGroup name="GroupReportsUniversalReport" id="1740">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Reports and universal report</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupReportsUniversalReportExtendedTooltip" id="1741"/>
+							<ChildItems>
+								<UsualGroup name="ReportsGroup" id="1674">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reports</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ReportsGroupExtendedTooltip" id="1675"/>
+									<ChildItems>
+										<Button name="OpenReportsOptions" id="1391">
+											<Type>Hyperlink</Type>
+											<CommandName>Catalog.ReportsOptions.StandardCommand.OpenList</CommandName>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<ExtendedTooltip name="OpenReportsOptionsExtendedTooltip" id="1610">
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Administer report options, assign people responsible to reports, and configure report visibility.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="GroupUniversalReportHeadersFooters" id="1641">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Universal report and header or footer customization</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ChildItemsWidth>Equal</ChildItemsWidth>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupUniversalReportHeadersFootersExtendedTooltip" id="1642"/>
+									<ChildItems>
+										<UsualGroup name="UniversalReportGroup" id="1670">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Universal report</v8:content>
+												</v8:item>
+											</Title>
+											<Width>43</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="UniversalReportGroupExtendedTooltip" id="1671"/>
+											<ChildItems>
+												<Button name="UniversalReport" id="1678">
+													<Type>Hyperlink</Type>
+													<CommandName>Report.UniversalReport.StandardCommand.Open</CommandName>
+													<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+													<ExtendedTooltip name="UniversalReportExtendedTooltip" id="1679">
+														<AutoMaxWidth>false</AutoMaxWidth>
+														<Title formatted="false">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>View any catalogs, documents, registers, and other objects.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+												</Button>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="HeaderAndFooterSettingsGroup" id="1692">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Header and footer settings</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="HeaderAndFooterSettingsGroupExtendedTooltip" id="1693"/>
+											<ChildItems>
+												<Button name="HeaderAndFooterSettings" id="1694">
+													<Type>Hyperlink</Type>
+													<CommandName>CommonCommand.HeaderAndFooterSettings</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Configure headers and footers</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+													<ExtendedTooltip name="HeaderAndFooterSettingsExtendedTooltip" id="1695">
+														<Title formatted="false">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Add page numbers, dates, and other fields to report headers or footers when printing.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+												</Button>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ReportsBulkEmailsGroup" id="1676">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Report distribution</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ReportsBulkEmailsGroupExtendedTooltip" id="1677"/>
+							<ChildItems>
+								<Button name="OpenReportsBulkEmails" id="1577">
+									<Type>Hyperlink</Type>
+									<CommandName>0</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenReportsBulkEmailsExtendedTooltip" id="1613">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure automatic report distribution by email, publication to a folder, to an FTP resource according to the set schedule or at request.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<UsualGroup name="GroupReportDistributionHistorySetup" id="1728">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Report distribution history settings</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Group>AlwaysHorizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupReportDistributionHistorySetupExtendedTooltip" id="1729">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Provides you with the information on the date when reports were distributed, the recipients, and the distribution result. To limit the amount of stored data, obsolete report distribution history is automatically deleted.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<ChildItems>
+										<CheckBoxField name="RetainReportDistributionHistory" id="1725">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Store history for the last</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="RetainReportDistributionHistoryContextMenu" id="1726"/>
+											<ExtendedTooltip name="RetainReportDistributionHistoryExtendedTooltip" id="1727"/>
+											<Events>
+												<Event name="OnChange">RetainReportDistributionHistoryOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<InputField name="ReportDistributionHistoryRetentionPeriodInMonths" id="1732">
+											<TitleLocation>None</TitleLocation>
+											<SpinButton>true</SpinButton>
+											<ContextMenu name="ReportDistributionHistoryRetentionPeriodInMonthsContextMenu" id="1733"/>
+											<ExtendedTooltip name="ReportDistributionHistoryRetentionPeriodInMonthsExtendedTooltip" id="1734"/>
+											<Events>
+												<Event name="OnChange">ReportDistributionHistoryRetentionPeriodInMonthsOnChange</Event>
+											</Events>
+										</InputField>
+										<Button name="ClearReportDistributionHistory" id="1738">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.ClearReportDistributionHistory</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Clear</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ClearReportDistributionHistoryExtendedTooltip" id="1739"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ExtensionsAndAddInsGroup" id="1690">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Extensions and add-ins</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ExtensionsAndAddInsGroupExtendedTooltip" id="1691"/>
+					<ChildItems>
+						<UsualGroup name="ExtensionsGroup" id="1672">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Extensions</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ExtensionsGroupExtendedTooltip" id="1673"/>
+							<ChildItems>
+								<Button name="Extensions" id="1684">
+									<Type>Hyperlink</Type>
+									<CommandName>CommonForm.Extensions.StandardCommand.Open</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="ExtensionsExtendedTooltip" id="1685">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Install extensions that add application sections, reports, or data processors.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="AddInsGroup" id="1686">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Add-ins</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AddInsGroupExtendedTooltip" id="1687"/>
+							<ChildItems>
+								<Button name="AddInsManagementDataProcessor" id="1688">
+									<Type>Hyperlink</Type>
+									<CommandName>0</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="AddInsManagementDataProcessorExtendedTooltip" id="1689">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Attach third-party add-ins to the application.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="AdditionalReportsAndDataProcessorsGroup" id="1593">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional reports and data processors</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AdditionalReportsAndDataProcessorsGroupExtendedTooltip" id="1615"/>
+					<ChildItems>
+						<UsualGroup name="AdditionalReportsAndDataProcessorsUsageGroup" id="1666">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use additional reports and data processors</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AdditionalReportsAndDataProcessorsUsageGroupExtendedTooltip" id="1667"/>
+							<ChildItems>
+								<CheckBoxField name="UseAdditionalReportsAndDataProcessors" id="1589">
+									<DataPath>ConstantsSet.UseAdditionalReportsAndDataProcessors</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional reports and data processors</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Use external print forms, reports, and data processors.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseAdditionalReportsAndDataProcessorsContextMenu" id="1590"/>
+									<ExtendedTooltip name="UseAdditionalReportsAndDataProcessorsExtendedTooltip" id="1617"/>
+									<Events>
+										<Event name="OnChange">UseAdditionalReportsAndDataProcessorsOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="AdditionalReportsAndDataProcessorsSettingsGroup" id="1668">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure additional reports and data processors</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AdditionalReportsAndDataProcessorsSettingsGroupExtendedTooltip" id="1669"/>
+							<ChildItems>
+								<Button name="OpenAdditionalReportsAndDataProcessors" id="1680">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.OpenAdditionalReportsAndDataProcessors</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional reports and data processors</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenAdditionalReportsAndDataProcessorsExtendedTooltip" id="1681">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Attach external print forms, reports, and data processors.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="SourceDocumentsOriginalsStateGroup" id="1696">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>State of source document originals</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="SourceDocumentsOriginalsStateGroupExtendedTooltip" id="1697"/>
+			<ChildItems>
+				<UsualGroup name="SourceDocumentsOriginalsStateGroupUsage" id="1698">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>States of source document originals usage</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SourceDocumentsOriginalsStateGroupUsageExtendedTooltip" id="1699"/>
+					<ChildItems>
+						<CheckBoxField name="TrackPrintedDocumentsStates" id="1700">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Track states of printed documents</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="TrackPrintedDocumentsStatesContextMenu" id="1701"/>
+							<ExtendedTooltip name="TrackPrintedDocumentsStatesExtendedTooltip" id="1702">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Keep records of signed source document originals.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">UseSourceDocumentsOriginalsAccountingOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="SourceDocumentsOriginalsStateGroupSetup" id="1703">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>States of source document originals setup</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SourceDocumentsOriginalsStateGroupSetupExtendedTooltip" id="1704"/>
+					<ChildItems>
+						<Button name="OpenSourceDocumentsOriginalsStates" id="1705">
+							<Type>Hyperlink</Type>
+							<CommandName>0</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>States of source document originals</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="OpenSourceDocumentsOriginalsStatesExtendedTooltip" id="1706">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Configure states that will be used when tracking source document originals.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ConstantsSet" id="1">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.SystemTitle</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="WorkMode" id="15">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="OpenAdditionalReportsAndDataProcessors" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional reports and data processors</v8:content>
+				</v8:item>
+			</Title>
+			<Action>AdditionalReportsAndDataProcessors</Action>
+		</Command>
+		<Command name="ClearReportDistributionHistory" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear the report distribution history</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ClearReportDistributionHistory</Action>
+		</Command>
+	</Commands>
+</Form>

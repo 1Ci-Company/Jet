@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="22"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="24"/>
+			<ChildItems>
+				<Button name="FormSelect" id="72">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.StandardCommand.Choose</CommandName>
+					<ExtendedTooltip name="FormSelectExtendedTooltip" id="73"/>
+				</Button>
+				<Button name="FormChange" id="34">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Change</CommandName>
+					<ExtendedTooltip name="FormChangeExtendedTooltip" id="35"/>
+				</Button>
+				<Button name="FormRefresh" id="36">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Refresh</CommandName>
+					<ExtendedTooltip name="FormRefreshExtendedTooltip" id="37"/>
+				</Button>
+				<Popup name="FormViewMode" id="70">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>View mode</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.ListViewMode</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<ExtendedTooltip name="FormViewModeExtendedTooltip" id="71"/>
+					<ChildItems>
+						<Button name="FormHierarchicalList" id="38">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.HierarchicalList</CommandName>
+							<ExtendedTooltip name="FormHierarchicalListExtendedTooltip" id="39"/>
+						</Button>
+						<Button name="FormList" id="40">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.List</CommandName>
+							<ExtendedTooltip name="FormListExtendedTooltip" id="41"/>
+						</Button>
+						<Button name="FormTree" id="42">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Tree</CommandName>
+							<ExtendedTooltip name="FormTreeExtendedTooltip" id="43"/>
+						</Button>
+					</ChildItems>
+				</Popup>
+				<Button name="FormFind" id="52">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Find</CommandName>
+					<ExtendedTooltip name="FormFindExtendedTooltip" id="53"/>
+				</Button>
+				<Button name="FormCancelSearch" id="54">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.CancelSearch</CommandName>
+					<ExtendedTooltip name="FormCancelSearchExtendedTooltip" id="55"/>
+				</Button>
+				<Button name="FormListSettings" id="56">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.ListSettings</CommandName>
+					<ExtendedTooltip name="FormListSettingsExtendedTooltip" id="57"/>
+				</Button>
+				<Button name="FormLoadDynamicListSettings" id="64">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.LoadDynamicListSettings</CommandName>
+					<ExtendedTooltip name="FormLoadDynamicListSettingsExtendedTooltip" id="65"/>
+				</Button>
+				<Button name="FormSaveDynamicListSettings" id="66">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.SaveDynamicListSettings</CommandName>
+					<ExtendedTooltip name="FormSaveDynamicListSettingsExtendedTooltip" id="67"/>
+				</Button>
+				<Button name="FormDynamicListStandardSettings" id="68">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.DynamicListStandardSettings</CommandName>
+					<ExtendedTooltip name="FormDynamicListStandardSettingsExtendedTooltip" id="69"/>
+				</Button>
+				<Button name="FormOutputList" id="58">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.OutputList</CommandName>
+					<ExtendedTooltip name="FormOutputListExtendedTooltip" id="59"/>
+				</Button>
+				<Button name="FormCustomizeForm" id="62">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+					<ExtendedTooltip name="FormCustomizeFormExtendedTooltip" id="63"/>
+				</Button>
+				<Button name="FormHelp" id="60">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="FormHelpExtendedTooltip" id="61"/>
+				</Button>
+				<SearchStringAddition name="SearchList" id="74">
+					<AdditionSource>
+						<Item>List</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List search</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SearchListContextMenu" id="75"/>
+					<ExtendedTooltip name="SearchListExtendedTooltip" id="76"/>
+				</SearchStringAddition>
+				<SearchControlAddition name="ListSearchManagement" id="77">
+					<AdditionSource>
+						<Item>List</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="ListSearchManagementContextMenu" id="78"/>
+					<ExtendedTooltip name="ListSearchManagementExtendedTooltip" id="79"/>
+				</SearchControlAddition>
+			</ChildItems>
+		</CommandBar>
+		<Table name="List" id="1">
+			<CommandBarLocation>None</CommandBarLocation>
+			<ReadOnly>true</ReadOnly>
+			<DefaultItem>true</DefaultItem>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChoiceMode>true</ChoiceMode>
+			<Header>false</Header>
+			<HorizontalLines>false</HorizontalLines>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>false</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2"/>
+			<AutoCommandBar name="ListCommandBar" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ListExtendedTooltip" id="15"/>
+			<SearchStringAddition name="ListSearchString" id="25">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="26"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="27"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="28">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="29"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="30"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="31">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="32"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="33"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="ValueChoice">ListValueChoice</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="ListRef" id="18">
+					<DataPath>List.Ref</DataPath>
+					<ContextMenu name="ListRefContextMenu" id="19"/>
+					<ExtendedTooltip name="ListRefExtendedTooltip" id="20"/>
+				</LabelField>
+				<LabelField name="ListSynonym" id="4">
+					<DataPath>List.Synonym</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<DefaultItem>true</DefaultItem>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Synonym</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ListSynonymContextMenu" id="5"/>
+					<ExtendedTooltip name="ListSynonymExtendedTooltip" id="16"/>
+				</LabelField>
+				<LabelField name="ListFullName" id="13">
+					<DataPath>List.FullName</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="ListFullNameContextMenu" id="14"/>
+					<ExtendedTooltip name="ListFullNameExtendedTooltip" id="17"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.DeletionMark</Field>
+				<Field>List.Description</Field>
+				<Field>List.FutureDeletionMark</Field>
+				<Field>List.Name</Field>
+				<Field>List.Parent</Field>
+				<Field>List.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	IDs.Ref,
+	IDs.DataVersion,
+	IDs.DeletionMark,
+	CASE
+		WHEN SUBSTRING(IDs.Name, 0, 7) = "Delete"
+			THEN TRUE
+		ELSE FALSE
+	END AS FutureDeletionMark,
+	IDs.Predefined,
+	IDs.Parent,
+	IDs.Description,
+	IDs.CollectionOrder,
+	IDs.Name,
+	IDs.Synonym,
+	IDs.FullName,
+	IDs.FullSynonym,
+	IDs.NoData,
+	IDs.EmptyRefValue,
+	IDs.MetadataObjectKey
+FROM
+	Catalog.MetadataObjectIDs AS IDs</QueryText>
+				<MainTable>Catalog.MetadataObjectIDs</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="SelectMetadataObjectsGroups" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="SelectMetadataObjectsGroups">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,3039 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoTitle>false</AutoTitle>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<CommandSet>
+		<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+	</CommandSet>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormSetClearDeletionMark" id="453">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.SetClearDeletionMark</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Toggle deletion mark</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormSetClearDeletionMarkExtendedTooltip" id="454"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWrite">BeforeWrite</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="OnWriteAtServer">OnWriteAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="WIzardCardPages" id="200">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages wizard card</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="WIzardCardPagesExtendedTooltip" id="201"/>
+			<ChildItems>
+				<Page name="SelectAttribute" id="202">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select attribute</v8:content>
+						</v8:item>
+					</Title>
+					<ChildItemsWidth>LeftWidest</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SelectAttributeExtendedTooltip" id="203"/>
+					<ChildItems>
+						<UsualGroup name="TitleGroup" id="336">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Title</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="TitleGroupExtendedTooltip" id="337"/>
+							<ChildItems>
+								<LabelDecoration name="TitleDecoration" id="338">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Select %1 to include in %2 set:</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TitleDecorationContextMenu" id="339"/>
+									<ExtendedTooltip name="TitleDecorationExtendedTooltip" id="340"/>
+								</LabelDecoration>
+								<CommandBar name="MoreActionsPanel" id="408">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Panel More</v8:content>
+										</v8:item>
+									</Title>
+									<HorizontalLocation>Right</HorizontalLocation>
+									<ExtendedTooltip name="MoreActionsPanelExtendedTooltip" id="409"/>
+									<ChildItems>
+										<Popup name="MoreActionsSubmenu" id="410">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>More</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoreActionsSubmenuExtendedTooltip" id="411"/>
+											<ChildItems>
+												<Button name="UnusedAttributes" id="412">
+													<Type>CommandBarButton</Type>
+													<CommandName>Form.Command.UnusedAttributes</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Unused attributes</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="UnusedAttributesExtendedTooltip" id="413"/>
+												</Button>
+											</ChildItems>
+										</Popup>
+									</ChildItems>
+								</CommandBar>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ContentGroup" id="341">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Content</v8:content>
+								</v8:item>
+							</Title>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ContentGroupExtendedTooltip" id="342"/>
+							<ChildItems>
+								<UsualGroup name="PropertiesSetsGroup" id="343">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Property sets</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="PropertiesSetsGroupExtendedTooltip" id="344"/>
+									<ChildItems>
+										<Pages name="PropertiesSetsPages" id="414">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Property sets pages</v8:content>
+												</v8:item>
+											</Title>
+											<PagesRepresentation>None</PagesRepresentation>
+											<ExtendedTooltip name="PropertiesSetsPagesExtendedTooltip" id="415"/>
+											<ChildItems>
+												<Page name="AllSetsPage" id="416">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>All sets page</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="AllSetsPageExtendedTooltip" id="417"/>
+													<ChildItems>
+														<Table name="PropertiesSets" id="345" DisplayImportance="VeryHigh">
+															<Representation>Tree</Representation>
+															<CommandBarLocation>None</CommandBarLocation>
+															<ReadOnly>true</ReadOnly>
+															<SkipOnInput>false</SkipOnInput>
+															<ChangeRowSet>false</ChangeRowSet>
+															<ChangeRowOrder>false</ChangeRowOrder>
+															<Header>false</Header>
+															<HorizontalLines>false</HorizontalLines>
+															<VerticalLines>false</VerticalLines>
+															<UseAlternationRowColor>true</UseAlternationRowColor>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>PropertiesSets</DataPath>
+															<RowPictureDataPath>PropertiesSets.PictureNumber</RowPictureDataPath>
+															<RowsPicture>
+																<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</RowsPicture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Property sets</v8:content>
+																</v8:item>
+															</Title>
+															<CommandSet>
+																<ExcludedCommand>Change</ExcludedCommand>
+															</CommandSet>
+															<CurrentRowUse>SelectionPresentation</CurrentRowUse>
+															<AutoRefresh>false</AutoRefresh>
+															<AutoRefreshPeriod>60</AutoRefreshPeriod>
+															<Period>
+																<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+																<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+																<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+															</Period>
+															<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+															<RestoreCurrentRow>false</RestoreCurrentRow>
+															<TopLevelParent xsi:nil="true"/>
+															<ShowRoot>false</ShowRoot>
+															<AllowRootChoice>false</AllowRootChoice>
+															<UpdateOnDataChange>Auto</UpdateOnDataChange>
+															<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+															<ContextMenu name="PropertiesSetsContextMenu" id="346"/>
+															<AutoCommandBar name="PropertiesSetsCommandBar" id="347"/>
+															<ExtendedTooltip name="PropertiesSetsExtendedTooltip" id="348"/>
+															<SearchStringAddition name="PropertiesSetsSearchString" id="349">
+																<AdditionSource>
+																	<Item>PropertiesSets</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="PropertiesSetsSearchStringContextMenu" id="350"/>
+																<ExtendedTooltip name="PropertiesSetsSearchStringExtendedTooltip" id="351"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="PropertiesSetsViewStatus" id="352">
+																<AdditionSource>
+																	<Item>PropertiesSets</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="PropertiesSetsViewStatusContextMenu" id="353"/>
+																<ExtendedTooltip name="PropertiesSetsViewStatusExtendedTooltip" id="354"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="PropertiesSetsSearchControl" id="355">
+																<AdditionSource>
+																	<Item>PropertiesSets</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="PropertiesSetsSearchControlContextMenu" id="356"/>
+																<ExtendedTooltip name="PropertiesSetsSearchControlExtendedTooltip" id="357"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="OnActivateRow">PropertiesSetsOnActivateRow</Event>
+																<Event name="BeforeRowChange">PropertiesSetsBeforeRowChange</Event>
+															</Events>
+															<ChildItems>
+																<LabelField name="Presentation" id="396">
+																	<DataPath>PropertiesSets.Presentation</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Set presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ContextMenu name="PresentationContextMenu" id="397"/>
+																	<ExtendedTooltip name="PresentationExtendedTooltip" id="398"/>
+																</LabelField>
+																<LabelField name="Ref" id="399">
+																	<DataPath>PropertiesSets.Ref</DataPath>
+																	<UserVisible>
+																		<xr:Common>false</xr:Common>
+																	</UserVisible>
+																	<ContextMenu name="RefContextMenu" id="400"/>
+																	<ExtendedTooltip name="RefExtendedTooltip" id="401"/>
+																</LabelField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</Page>
+												<Page name="SharedSetsPage" id="418">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Common sets page</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="SharedSetsPageExtendedTooltip" id="419"/>
+													<ChildItems>
+														<Table name="CommonPropertySets" id="420">
+															<Representation>Tree</Representation>
+															<CommandBarLocation>None</CommandBarLocation>
+															<ReadOnly>true</ReadOnly>
+															<SkipOnInput>false</SkipOnInput>
+															<ChangeRowSet>false</ChangeRowSet>
+															<ChangeRowOrder>false</ChangeRowOrder>
+															<Header>false</Header>
+															<HorizontalLines>false</HorizontalLines>
+															<VerticalLines>false</VerticalLines>
+															<UseAlternationRowColor>true</UseAlternationRowColor>
+															<EnableStartDrag>true</EnableStartDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>CommonPropertySets</DataPath>
+															<RowPictureDataPath>CommonPropertySets.PictureNumber</RowPictureDataPath>
+															<RowsPicture>
+																<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</RowsPicture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Common property sets</v8:content>
+																</v8:item>
+															</Title>
+															<CommandSet>
+																<ExcludedCommand>ListSettings</ExcludedCommand>
+															</CommandSet>
+															<CurrentRowUse>SelectionPresentation</CurrentRowUse>
+															<AutoRefresh>false</AutoRefresh>
+															<AutoRefreshPeriod>60</AutoRefreshPeriod>
+															<Period>
+																<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+																<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+																<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+															</Period>
+															<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+															<RestoreCurrentRow>false</RestoreCurrentRow>
+															<TopLevelParent xsi:nil="true"/>
+															<ShowRoot>false</ShowRoot>
+															<AllowRootChoice>false</AllowRootChoice>
+															<UpdateOnDataChange>Auto</UpdateOnDataChange>
+															<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+															<ContextMenu name="CommonPropertySetsContextMenu" id="421"/>
+															<AutoCommandBar name="CommonPropertySetsCommandBar" id="422"/>
+															<ExtendedTooltip name="CommonPropertySetsExtendedTooltip" id="423"/>
+															<SearchStringAddition name="CommonPropertySetsSearchString" id="424">
+																<AdditionSource>
+																	<Item>CommonPropertySets</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="CommonPropertySetsSearchStringContextMenu" id="425"/>
+																<ExtendedTooltip name="CommonPropertySetsSearchStringExtendedTooltip" id="426"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="CommonPropertySetsViewStatus" id="427">
+																<AdditionSource>
+																	<Item>CommonPropertySets</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="CommonPropertySetsViewStatusContextMenu" id="428"/>
+																<ExtendedTooltip name="CommonPropertySetsViewStatusExtendedTooltip" id="429"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="CommonPropertySetsSearchControl" id="430">
+																<AdditionSource>
+																	<Item>CommonPropertySets</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="CommonPropertySetsSearchControlContextMenu" id="431"/>
+																<ExtendedTooltip name="CommonPropertySetsSearchControlExtendedTooltip" id="432"/>
+															</SearchControlAddition>
+															<ChildItems>
+																<LabelField name="CommonPropertySetsPresentation" id="436">
+																	<DataPath>CommonPropertySets.Presentation</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ContextMenu name="CommonPropertySetsPresentationContextMenu" id="437"/>
+																	<ExtendedTooltip name="CommonPropertySetsPresentationExtendedTooltip" id="438"/>
+																</LabelField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="AttributeDetails" id="364">
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional attributes</v8:content>
+										</v8:item>
+									</Title>
+									<TitleTextColor>style:FormTextColor</TitleTextColor>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AttributeDetailsExtendedTooltip" id="365"/>
+									<ChildItems>
+										<Table name="Properties" id="366" DisplayImportance="VeryLow">
+											<Representation>List</Representation>
+											<CommandBarLocation>Top</CommandBarLocation>
+											<SelectionMode>SingleRow</SelectionMode>
+											<Header>false</Header>
+											<HorizontalLines>false</HorizontalLines>
+											<VerticalLines>false</VerticalLines>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>Properties</DataPath>
+											<RowPictureDataPath>Properties.PictureNumber</RowPictureDataPath>
+											<RowsPicture>
+												<xr:Ref>CommonPicture.PropertiesIcons</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</RowsPicture>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Properties</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSet>
+												<ExcludedCommand>Add</ExcludedCommand>
+												<ExcludedCommand>CancelSearch</ExcludedCommand>
+												<ExcludedCommand>Change</ExcludedCommand>
+												<ExcludedCommand>Copy</ExcludedCommand>
+												<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+												<ExcludedCommand>Delete</ExcludedCommand>
+												<ExcludedCommand>EndEdit</ExcludedCommand>
+												<ExcludedCommand>Find</ExcludedCommand>
+												<ExcludedCommand>MoveDown</ExcludedCommand>
+												<ExcludedCommand>MoveUp</ExcludedCommand>
+												<ExcludedCommand>OutputList</ExcludedCommand>
+												<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+												<ExcludedCommand>SortListAsc</ExcludedCommand>
+												<ExcludedCommand>SortListDesc</ExcludedCommand>
+											</CommandSet>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="PropertiesContextMenu" id="367">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<Button name="PropertiesContextMenuChange" id="382">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.Change</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Change</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="PropertiesContextMenuChangeExtendedTooltip" id="383"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="PropertiesCommandBar" id="368">
+												<Autofill>false</Autofill>
+											</AutoCommandBar>
+											<ExtendedTooltip name="PropertiesExtendedTooltip" id="369"/>
+											<SearchStringAddition name="PropertiesSearchString" id="370">
+												<AdditionSource>
+													<Item>Properties</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="PropertiesSearchStringContextMenu" id="371"/>
+												<ExtendedTooltip name="PropertiesSearchStringExtendedTooltip" id="372"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="PropertiesViewStatus" id="373">
+												<AdditionSource>
+													<Item>Properties</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="PropertiesViewStatusContextMenu" id="374"/>
+												<ExtendedTooltip name="PropertiesViewStatusExtendedTooltip" id="375"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="PropertiesSearchControl" id="376">
+												<AdditionSource>
+													<Item>Properties</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="PropertiesSearchControlContextMenu" id="377"/>
+												<ExtendedTooltip name="PropertiesSearchControlExtendedTooltip" id="378"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">PropertiesSelection</Event>
+											</Events>
+											<ChildItems>
+												<InputField name="PropertiesTitle" id="379">
+													<DataPath>Properties.Title</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Attribute</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="PropertiesTitleContextMenu" id="380"/>
+													<ExtendedTooltip name="PropertiesTitleExtendedTooltip" id="381"/>
+												</InputField>
+											</ChildItems>
+										</Table>
+										<UsualGroup name="AdditionalInformationGroup" id="469">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Additional information</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="AdditionalInformationGroupExtendedTooltip" id="470"/>
+											<ChildItems>
+												<InputField name="AdditionalAttributesListValueType" id="384">
+													<DataPath>Items.Properties.CurrentData.ValueType</DataPath>
+													<TitleLocation>Top</TitleLocation>
+													<ContextMenu name="AdditionalAttributesListValueTypeContextMenu" id="385"/>
+													<ExtendedTooltip name="AdditionalAttributesListValueTypeExtendedTooltip" id="386"/>
+												</InputField>
+												<InputField name="AdditionalAttributesListTooltip" id="387">
+													<DataPath>Items.Properties.CurrentData.ToolTip</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Tooltip</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Top</TitleLocation>
+													<InputHint>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Not specified</v8:content>
+														</v8:item>
+													</InputHint>
+													<ContextMenu name="AdditionalAttributesListTooltipContextMenu" id="388"/>
+													<ExtendedTooltip name="AdditionalAttributesListTooltipExtendedTooltip" id="389"/>
+												</InputField>
+												<InputField name="AdditionalAttributesListValueFormHeader" id="390">
+													<DataPath>Items.Properties.CurrentData.ValueFormTitle</DataPath>
+													<TitleLocation>Top</TitleLocation>
+													<InputHint>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Not specified</v8:content>
+														</v8:item>
+													</InputHint>
+													<ContextMenu name="AdditionalAttributesListValueFormHeaderContextMenu" id="391"/>
+													<ExtendedTooltip name="AdditionalAttributesListValueFormHeaderExtendedTooltip" id="392"/>
+												</InputField>
+												<InputField name="AdditionalAttributesListValueChoiceFormHeader" id="393">
+													<DataPath>Items.Properties.CurrentData.ValueChoiceFormTitle</DataPath>
+													<TitleLocation>Top</TitleLocation>
+													<InputHint>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Not specified</v8:content>
+														</v8:item>
+													</InputHint>
+													<ContextMenu name="AdditionalAttributesListValueChoiceFormHeaderContextMenu" id="394"/>
+													<ExtendedTooltip name="AdditionalAttributesListValueChoiceFormHeaderExtendedTooltip" id="395"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="ActionChoice" id="204">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select action</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ActionChoiceExtendedTooltip" id="205"/>
+					<ChildItems>
+						<RadioButtonField name="AttributeAddMode" id="237">
+							<DataPath>AttributeAddMode</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Select an option of adding additional %1 "%2" to the "%3" set</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Top</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<VerticalAlign>Top</VerticalAlign>
+							<RadioButtonType>RadioButtons</RadioButtonType>
+							<ColumnsCount>1</ColumnsCount>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>1
+
+1</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">1</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="AttributeAddModeContextMenu" id="238"/>
+							<ExtendedTooltip name="AttributeAddModeExtendedTooltip" id="239"/>
+						</RadioButtonField>
+					</ChildItems>
+				</Page>
+				<Page name="AttributeCard" id="206">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attribute card</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AttributeCardExtendedTooltip" id="207"/>
+					<ChildItems>
+						<UsualGroup name="AttributeDescriptionGroup" id="79">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Attribute description</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AttributeDescriptionGroupExtendedTooltip" id="115"/>
+							<ChildItems>
+								<InputField name="Title" id="1">
+									<DataPath>Object.Title</DataPath>
+									<DefaultItem>true</DefaultItem>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Description</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Left</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Brief property presentation
+to display in value edit forms. </v8:content>
+										</v8:item>
+									</ToolTip>
+									<Wrap>false</Wrap>
+									<ContextMenu name="TitleContextMenu" id="2"/>
+									<ExtendedTooltip name="TitleExtendedTooltip" id="118"/>
+									<Events>
+										<Event name="OnChange">TitleOnChange</Event>
+									</Events>
+								</InputField>
+								<RadioButtonField name="PropertyKind" id="20">
+									<DataPath>PropertyKind</DataPath>
+									<Visible>false</Visible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Property type</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<RadioButtonType>Auto</RadioButtonType>
+									<ColumnsCount>1</ColumnsCount>
+									<ContextMenu name="PropertyKindContextMenu" id="21"/>
+									<ExtendedTooltip name="PropertyKindExtendedTooltip" id="119"/>
+									<Events>
+										<Event name="OnChange">PropertyKindOnChange</Event>
+									</Events>
+								</RadioButtonField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="AttributeValueType" id="43">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Attribute value type</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AttributeValueTypeExtendedTooltip" id="125"/>
+							<ChildItems>
+								<UsualGroup name="ValueTypeGroup" id="471">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Value type</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ValueTypeGroupExtendedTooltip" id="472"/>
+									<ChildItems>
+										<InputField name="ValueType" id="5">
+											<DataPath>Object.ValueType</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Value type</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Left</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The attribute will store data of the specified type. For example, a date, a number, or text.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<Wrap>false</Wrap>
+											<ContextMenu name="ValueTypeContextMenu" id="6"/>
+											<ExtendedTooltip name="ValueTypeExtendedTooltip" id="126"/>
+											<Events>
+												<Event name="OnChange">ValueTypeOnChange</Event>
+											</Events>
+										</InputField>
+										<Button name="EditValueFormat" id="37">
+											<Type>Hyperlink</Type>
+											<CommandName>Form.Command.EditValueFormat</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Format</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="EditValueFormatExtendedTooltip" id="127"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="ValueTypeNoteGroup" id="476">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Value type note</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ValueTypeNoteGroupExtendedTooltip" id="477"/>
+									<ChildItems>
+										<PictureDecoration name="NotePicture" id="478">
+											<Picture>
+												<xr:Ref>StdPicture.Information</xr:Ref>
+												<xr:LoadTransparent>true</xr:LoadTransparent>
+											</Picture>
+											<ContextMenu name="NotePictureContextMenu" id="479"/>
+											<ExtendedTooltip name="NotePictureExtendedTooltip" id="480"/>
+										</PictureDecoration>
+										<LabelDecoration name="StringLengthNote" id="473">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The maximum string length is 1024 characters.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="StringLengthNoteContextMenu" id="474"/>
+											<ExtendedTooltip name="StringLengthNoteExtendedTooltip" id="475"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="MultilineGroup" id="38">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Multiple-line</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<VerticalSpacing>Half</VerticalSpacing>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="MultilineGroupExtendedTooltip" id="129"/>
+							<ChildItems>
+								<UsualGroup name="SingleLineInputFieldSettingsGroup" id="448">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Single-line input field settings</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="SingleLineInputFieldSettingsGroupExtendedTooltip" id="449"/>
+									<ChildItems>
+										<RadioButtonField name="SingleLineKind" id="442">
+											<DataPath>AttributeRepresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Attribute presentation</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<GroupVerticalAlign>Top</GroupVerticalAlign>
+											<RadioButtonType>RadioButtons</RadioButtonType>
+											<ColumnsCount>1</ColumnsCount>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Single-line input field</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">SingleLineInputField</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="SingleLineKindContextMenu" id="443"/>
+											<ExtendedTooltip name="SingleLineKindExtendedTooltip" id="444"/>
+											<Events>
+												<Event name="OnChange">AttributeKindOnChange</Event>
+											</Events>
+										</RadioButtonField>
+										<CheckBoxField name="OutputAsHyperlink" id="445">
+											<DataPath>Object.OutputAsHyperlink</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<GroupVerticalAlign>Top</GroupVerticalAlign>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="OutputAsHyperlinkContextMenu" id="446"/>
+											<ExtendedTooltip name="OutputAsHyperlinkExtendedTooltip" id="447"/>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="MultilineInputFieldGroupSettings" id="46">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Multiple-line input field settings</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="MultilineInputFieldGroupSettingsExtendedTooltip" id="130"/>
+									<ChildItems>
+										<RadioButtonField name="MultilineKind" id="450">
+											<DataPath>AttributeRepresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Attribute presentation</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<GroupVerticalAlign>Top</GroupVerticalAlign>
+											<RadioButtonType>RadioButtons</RadioButtonType>
+											<ColumnsCount>1</ColumnsCount>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Multiple-line input field</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">MultilineInputField</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="MultilineKindContextMenu" id="451"/>
+											<ExtendedTooltip name="MultilineKindExtendedTooltip" id="452"/>
+											<Events>
+												<Event name="OnChange">AttributeKindOnChange</Event>
+											</Events>
+										</RadioButtonField>
+										<InputField name="MultilineInputFieldNumber" id="41">
+											<DataPath>MultilineInputFieldNumber</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content> lines</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<SpinButton>true</SpinButton>
+											<MinValue xsi:type="xs:decimal">1</MinValue>
+											<MaxValue xsi:type="xs:decimal">10</MaxValue>
+											<ContextMenu name="MultilineInputFieldNumberContextMenu" id="42"/>
+											<ExtendedTooltip name="MultilineInputFieldNumberExtendedTooltip" id="132"/>
+											<Events>
+												<Event name="OnChange">MultilineInputFieldNumberOnChange</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<Pages name="Pages" id="167">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Pages</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
+							<ExtendedTooltip name="PagesExtendedTooltip" id="168"/>
+							<ChildItems>
+								<Page name="MainPage" id="169">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Main</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MainPageExtendedTooltip" id="170"/>
+									<ChildItems>
+										<UsualGroup name="GroupPropertiesColors" id="498">
+											<Visible>false</Visible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Property colors</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Color</v8:content>
+												</v8:item>
+											</ToolTip>
+											<Behavior>Usual</Behavior>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupPropertiesColorsExtendedTooltip" id="499"/>
+											<ChildItems>
+												<LabelDecoration name="DecorationPropertiesColors" id="500">
+													<TextColor>style:ButtonTextColor</TextColor>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Color:</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTipRepresentation>ShowLeft</ToolTipRepresentation>
+													<ContextMenu name="DecorationPropertiesColorsContextMenu" id="501"/>
+													<ExtendedTooltip name="DecorationPropertiesColorsExtendedTooltip" id="502"/>
+												</LabelDecoration>
+												<CommandBar name="CommandBarPropertiesColors" id="503">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Command bar property colors</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="CommandBarPropertiesColorsExtendedTooltip" id="504"/>
+													<ChildItems>
+														<ButtonGroup name="GroupColors" id="505">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Color</v8:content>
+																</v8:item>
+															</Title>
+															<Representation>Compact</Representation>
+															<ExtendedTooltip name="GroupColorsExtendedTooltip" id="506"/>
+															<ChildItems>
+																<Button name="PropertyGray" id="507">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyGray</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property gray</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyGrayExtendedTooltip" id="508"/>
+																</Button>
+																<Button name="PropertyGreen" id="517">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyGreen</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property green</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyGreenExtendedTooltip" id="518"/>
+																</Button>
+																<Button name="PropertyYellow" id="515">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyYellow</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property yellow</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyYellowExtendedTooltip" id="516"/>
+																</Button>
+																<Button name="PropertyOrange" id="513">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyOrange</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property orange</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyOrangeExtendedTooltip" id="514"/>
+																</Button>
+																<Button name="PropertyRed" id="511">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyRed</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property red</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyRedExtendedTooltip" id="512"/>
+																</Button>
+																<Button name="PropertyPurple" id="523">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyPurple</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property purple</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyPurpleExtendedTooltip" id="524"/>
+																</Button>
+																<Button name="PropertyBlue" id="519">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyBlue</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property blue</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyBlueExtendedTooltip" id="520"/>
+																</Button>
+																<Button name="PropertyLime" id="509">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyLime</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property lime</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyLimeExtendedTooltip" id="510"/>
+																</Button>
+																<Button name="PropertyPink" id="525">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyPink</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property pink</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyPinkExtendedTooltip" id="526"/>
+																</Button>
+																<Button name="PropertyLightBlue" id="521">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.PropertyLightBlue</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Property light blue</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="PropertyLightBlueExtendedTooltip" id="522"/>
+																</Button>
+															</ChildItems>
+														</ButtonGroup>
+													</ChildItems>
+												</CommandBar>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="PropertiesAndDependenciesGroup" id="324">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Properties and dependencies</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="PropertiesAndDependenciesGroupExtendedTooltip" id="325"/>
+											<ChildItems>
+												<UsualGroup name="ItemVisibilityGroup" id="463">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Visible</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<United>false</United>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ItemVisibilityGroupExtendedTooltip" id="464"/>
+													<ChildItems>
+														<LabelDecoration name="isVisible" id="402">
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Visible:</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="isVisibleContextMenu" id="403"/>
+															<ExtendedTooltip name="isVisibleExtendedTooltip" id="404"/>
+														</LabelDecoration>
+														<LabelDecoration name="ChooseVisibilityOption" id="333">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>always</v8:content>
+																</v8:item>
+															</Title>
+															<Hyperlink>true</Hyperlink>
+															<ContextMenu name="ChooseVisibilityOptionContextMenu" id="334"/>
+															<ExtendedTooltip name="ChooseVisibilityOptionExtendedTooltip" id="335"/>
+															<Events>
+																<Event name="Click">ChooseVisibilityOptionClick</Event>
+															</Events>
+														</LabelDecoration>
+													</ChildItems>
+												</UsualGroup>
+												<UsualGroup name="ItemAvailabilityGroup" id="465">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Available</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<United>false</United>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ItemAvailabilityGroupExtendedTooltip" id="466"/>
+													<ChildItems>
+														<LabelDecoration name="Available" id="405">
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Available:</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="AvailableContextMenu" id="406"/>
+															<ExtendedTooltip name="AvailableExtendedTooltip" id="407"/>
+														</LabelDecoration>
+														<LabelDecoration name="ChooseAvailabilityOption" id="194">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>always</v8:content>
+																</v8:item>
+															</Title>
+															<Hyperlink>true</Hyperlink>
+															<ContextMenu name="ChooseAvailabilityOptionContextMenu" id="195"/>
+															<ExtendedTooltip name="ChooseAvailabilityOptionExtendedTooltip" id="196"/>
+															<Events>
+																<Event name="Click">ChooseAvailabilityOptionClick</Event>
+															</Events>
+														</LabelDecoration>
+													</ChildItems>
+												</UsualGroup>
+												<UsualGroup name="ItemRequiredGroup" id="467">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Required</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<United>false</United>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ItemRequiredGroupExtendedTooltip" id="468"/>
+													<ChildItems>
+														<CheckBoxField name="RequiredToFill" id="184">
+															<DataPath>Object.RequiredToFill</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Required:</v8:content>
+																</v8:item>
+															</Title>
+															<TitleLocation>Right</TitleLocation>
+															<CheckBoxType>Auto</CheckBoxType>
+															<ContextMenu name="RequiredToFillContextMenu" id="185"/>
+															<ExtendedTooltip name="RequiredToFillExtendedTooltip" id="186"/>
+															<Events>
+																<Event name="OnChange">RequiredToFillOnChange</Event>
+															</Events>
+														</CheckBoxField>
+														<LabelDecoration name="ChooseItemRequiredOption" id="197">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>always</v8:content>
+																</v8:item>
+															</Title>
+															<Hyperlink>true</Hyperlink>
+															<ContextMenu name="ChooseItemRequiredOptionContextMenu" id="198"/>
+															<ExtendedTooltip name="ChooseItemRequiredOptionExtendedTooltip" id="199"/>
+															<Events>
+																<Event name="Click">SetConditionClick</Event>
+															</Events>
+														</LabelDecoration>
+													</ChildItems>
+												</UsualGroup>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="OtherAttributes" id="107">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Other attributes</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="OtherAttributesExtendedTooltip" id="154"/>
+											<ChildItems>
+												<UsualGroup name="IDForFormulasGroup" id="481">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>ID for formulas</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="IDForFormulasGroupExtendedTooltip" id="482"/>
+													<ChildItems>
+														<InputField name="IDForFormulas" id="483">
+															<DataPath>Object.IDForFormulas</DataPath>
+															<ContextMenu name="IDForFormulasContextMenu" id="484"/>
+															<ExtendedTooltip name="IDForFormulasExtendedTooltip" id="485"/>
+														</InputField>
+														<Button name="FillIDForFormulas" id="486">
+															<Type>UsualButton</Type>
+															<CommandName>Form.Command.FillIDForFormulas</CommandName>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Fill in ID for formulas</v8:content>
+																</v8:item>
+															</Title>
+															<ExtendedTooltip name="FillIDForFormulasExtendedTooltip" id="487"/>
+														</Button>
+													</ChildItems>
+												</UsualGroup>
+												<InputField name="ToolTip" id="30">
+													<DataPath>Object.ToolTip</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Tooltip</v8:content>
+														</v8:item>
+													</Title>
+													<TitleHeight>2</TitleHeight>
+													<ContextMenu name="ToolTipContextMenu" id="31"/>
+													<ExtendedTooltip name="ToolTipExtendedTooltip" id="155"/>
+												</InputField>
+												<UsualGroup name="ValueFormsHeadersGroup" id="32">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Value form titles</v8:content>
+														</v8:item>
+													</Title>
+													<Group>Vertical</Group>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ValueFormsHeadersGroupExtendedTooltip" id="156"/>
+													<ChildItems>
+														<InputField name="ValueFormTitle" id="33">
+															<DataPath>Object.ValueFormTitle</DataPath>
+															<TitleHeight>2</TitleHeight>
+															<ToolTip>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Used in the title of an additional attribute value form.</v8:content>
+																</v8:item>
+															</ToolTip>
+															<Width>20</Width>
+															<ContextMenu name="ValueFormTitleContextMenu" id="34"/>
+															<ExtendedTooltip name="ValueFormTitleExtendedTooltip" id="157"/>
+														</InputField>
+														<InputField name="ValueChoiceFormTitle" id="35">
+															<DataPath>Object.ValueChoiceFormTitle</DataPath>
+															<TitleHeight>2</TitleHeight>
+															<ToolTip>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Used in the title of an additional attribute choice form.</v8:content>
+																</v8:item>
+															</ToolTip>
+															<Width>20</Width>
+															<ContextMenu name="ValueChoiceFormTitleContextMenu" id="36"/>
+															<ExtendedTooltip name="ValueChoiceFormTitleExtendedTooltip" id="158"/>
+														</InputField>
+													</ChildItems>
+												</UsualGroup>
+												<InputField name="Comment" id="28">
+													<DataPath>Object.Comment</DataPath>
+													<TitleLocation>Left</TitleLocation>
+													<VerticalStretch>false</VerticalStretch>
+													<MultiLine>true</MultiLine>
+													<ChoiceButton>true</ChoiceButton>
+													<ContextMenu name="CommentContextMenu" id="29"/>
+													<ExtendedTooltip name="CommentExtendedTooltip" id="159"/>
+													<Events>
+														<Event name="StartChoice">CommentStartChoice</Event>
+														<Event name="Opening">CommentOpening</Event>
+													</Events>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="SetsAdjustment" id="96">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Edit attribute set</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="SetsAdjustmentExtendedTooltip" id="160"/>
+											<ChildItems>
+												<LabelDecoration name="SetsAdjustmentComment" id="99">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Shared attribute belongs to set: Outgoing payment — Cash account</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Navigate to the set.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Hyperlink>true</Hyperlink>
+													<ContextMenu name="SetsAdjustmentCommentContextMenu" id="100"/>
+													<ExtendedTooltip name="SetsAdjustmentCommentExtendedTooltip" id="161"/>
+													<Events>
+														<Event name="Click">SetsAdjustmentCommentClick</Event>
+													</Events>
+												</LabelDecoration>
+												<Button name="SetsAdjustmentChange" id="106">
+													<Type>UsualButton</Type>
+													<CommandName>Form.Command.SetsAdjustmentChange</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Edit…</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="SetsAdjustmentChangeExtendedTooltip" id="162"/>
+												</Button>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</Page>
+								<Page name="ValuePage" id="182">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Values</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ValuePageExtendedTooltip" id="183"/>
+									<ChildItems>
+										<Pages name="AttributeValuePages" id="287">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Attribute values pages</v8:content>
+												</v8:item>
+											</Title>
+											<Width>65</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<PagesRepresentation>None</PagesRepresentation>
+											<ExtendedTooltip name="AttributeValuePagesExtendedTooltip" id="288"/>
+											<ChildItems>
+												<Page name="AdditionalValues" id="56">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Additional values:</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="AdditionalValuesExtendedTooltip" id="133"/>
+													<ChildItems>
+														<Table name="Values" id="57">
+															<Representation>Tree</Representation>
+															<Height>9</Height>
+															<HeightInTableRows>7</HeightInTableRows>
+															<RowSelectionMode>Row</RowSelectionMode>
+															<UseAlternationRowColor>true</UseAlternationRowColor>
+															<InitialTreeView>ExpandTopLevel</InitialTreeView>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>Values</DataPath>
+															<RowPictureDataPath>Values.DefaultPicture</RowPictureDataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Values</v8:content>
+																</v8:item>
+															</Title>
+															<CommandSet>
+																<ExcludedCommand>Copy</ExcludedCommand>
+																<ExcludedCommand>Delete</ExcludedCommand>
+															</CommandSet>
+															<AutoRefresh>false</AutoRefresh>
+															<AutoRefreshPeriod>60</AutoRefreshPeriod>
+															<Period>
+																<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+																<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+																<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+															</Period>
+															<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+															<RestoreCurrentRow>false</RestoreCurrentRow>
+															<TopLevelParent xsi:nil="true"/>
+															<ShowRoot>false</ShowRoot>
+															<AllowRootChoice>false</AllowRootChoice>
+															<UpdateOnDataChange>Auto</UpdateOnDataChange>
+															<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+															<ContextMenu name="ValuesContextMenu" id="58">
+																<Autofill>false</Autofill>
+																<ChildItems>
+																	<ButtonGroup name="ValuesEditingContextMenu" id="109">
+																		<Title>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Values edit context menu</v8:content>
+																			</v8:item>
+																		</Title>
+																		<ExtendedTooltip name="ValuesEditingContextMenuExtendedTooltip" id="134"/>
+																		<ChildItems>
+																			<Button name="ValuesCreateContextMenu" id="110">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.Create</CommandName>
+																				<ExtendedTooltip name="ValuesCreateContextMenuExtendedTooltip" id="135"/>
+																			</Button>
+																			<Button name="ValuesCreateGroupContextMenu" id="111">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.CreateFolder</CommandName>
+																				<ExtendedTooltip name="ValuesCreateGroupContextMenuExtendedTooltip" id="136"/>
+																			</Button>
+																			<Button name="ValuesChangeContextMenu" id="112">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.Change</CommandName>
+																				<ExtendedTooltip name="ValuesChangeContextMenuExtendedTooltip" id="137"/>
+																			</Button>
+																			<Button name="ValuesSetDeletionMarkContextMenu" id="113">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.SetDeletionMark</CommandName>
+																				<ExtendedTooltip name="ValuesSetDeletionMarkContextMenuExtendedTooltip" id="138"/>
+																			</Button>
+																			<ButtonGroup name="ValuesContextMenuStandardCommands" id="86">
+																				<Title>
+																					<v8:item>
+																						<v8:lang>en</v8:lang>
+																						<v8:content>Values context menu standard commands</v8:content>
+																					</v8:item>
+																				</Title>
+																				<CommandSource>Item.Values</CommandSource>
+																				<ExtendedTooltip name="ValuesContextMenuStandardCommandsExtendedTooltip" id="139"/>
+																			</ButtonGroup>
+																		</ChildItems>
+																	</ButtonGroup>
+																</ChildItems>
+															</ContextMenu>
+															<AutoCommandBar name="ValuesCommandBar" id="59">
+																<Autofill>false</Autofill>
+																<ChildItems>
+																	<ButtonGroup name="ValuesEditingCommandBar" id="108">
+																		<Title>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Values edit command bar</v8:content>
+																			</v8:item>
+																		</Title>
+																		<ExtendedTooltip name="ValuesEditingCommandBarExtendedTooltip" id="140"/>
+																		<ChildItems>
+																			<Button name="ValuesCreate" id="62">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.Create</CommandName>
+																				<ExtendedTooltip name="ValuesCreateExtendedTooltip" id="141"/>
+																			</Button>
+																			<Button name="ValuesCreateFolder" id="68">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.CreateFolder</CommandName>
+																				<ExtendedTooltip name="ValuesCreateFolderExtendedTooltip" id="142"/>
+																			</Button>
+																			<Button name="ValuesChange" id="64">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.Change</CommandName>
+																				<ExtendedTooltip name="ValuesChangeExtendedTooltip" id="143"/>
+																			</Button>
+																			<Button name="ValuesSetDeletionMark" id="65">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.SetDeletionMark</CommandName>
+																				<ExtendedTooltip name="ValuesSetDeletionMarkExtendedTooltip" id="144"/>
+																			</Button>
+																		</ChildItems>
+																	</ButtonGroup>
+																	<Button name="ValuesFind" id="66">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.Values.StandardCommand.Find</CommandName>
+																		<ExtendedTooltip name="ValuesFindExtendedTooltip" id="145"/>
+																	</Button>
+																	<Button name="ValuesCancelSearch" id="67">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.Values.StandardCommand.CancelSearch</CommandName>
+																		<ExtendedTooltip name="ValuesCancelSearchExtendedTooltip" id="146"/>
+																	</Button>
+																	<Popup name="ViewMode" id="488">
+																		<Title>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>View mode</v8:content>
+																			</v8:item>
+																		</Title>
+																		<Picture>
+																			<xr:Ref>StdPicture.ListViewMode</xr:Ref>
+																			<xr:LoadTransparent>true</xr:LoadTransparent>
+																		</Picture>
+																		<ExtendedTooltip name="ViewModeExtendedTooltip" id="489"/>
+																		<ChildItems>
+																			<Button name="ValuesHierarchicalList" id="492">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.HierarchicalList</CommandName>
+																				<ExtendedTooltip name="ValuesHierarchicalListExtendedTooltip" id="493"/>
+																			</Button>
+																			<Button name="ValuesList" id="490">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.List</CommandName>
+																				<ExtendedTooltip name="ValuesListExtendedTooltip" id="491"/>
+																			</Button>
+																			<Button name="ValuesTree" id="494">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.Tree</CommandName>
+																				<ExtendedTooltip name="ValuesTreeExtendedTooltip" id="495"/>
+																			</Button>
+																		</ChildItems>
+																	</Popup>
+																	<Button name="FormDuplicateObjectsDetection" id="322">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Command.DuplicateObjectsDetection</CommandName>
+																		<Title>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Clean up duplicates…</v8:content>
+																			</v8:item>
+																		</Title>
+																		<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+																		<ExtendedTooltip name="FormDuplicateObjectsDetectionExtendedTooltip" id="323"/>
+																	</Button>
+																	<Button name="ValuesOutputList" id="496">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.Values.StandardCommand.OutputList</CommandName>
+																		<ExtendedTooltip name="ValuesOutputListExtendedTooltip" id="497"/>
+																	</Button>
+																</ChildItems>
+															</AutoCommandBar>
+															<ExtendedTooltip name="ValuesExtendedTooltip" id="147"/>
+															<SearchStringAddition name="ValuesSearchString" id="173">
+																<AdditionSource>
+																	<Item>Values</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ValuesSearchStringContextMenu" id="174"/>
+																<ExtendedTooltip name="ValuesSearchStringExtendedTooltip" id="175"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="ValuesViewStatus" id="176">
+																<AdditionSource>
+																	<Item>Values</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ValuesViewStatusContextMenu" id="177"/>
+																<ExtendedTooltip name="ValuesViewStatusExtendedTooltip" id="178"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="ValuesSearchControl" id="179">
+																<AdditionSource>
+																	<Item>Values</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="ValuesSearchControlContextMenu" id="180"/>
+																<ExtendedTooltip name="ValuesSearchControlExtendedTooltip" id="181"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="BeforeAddRow">ValuesBeforeAddRow</Event>
+																<Event name="BeforeRowChange">ValuesBeforeRowChange</Event>
+																<Event name="OnChange">ValuesOnChange</Event>
+															</Events>
+															<ChildItems>
+																<LabelField name="ValuesDescription" id="60">
+																	<DataPath>Values.Description</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Description</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ContextMenu name="ValuesDescriptionContextMenu" id="61"/>
+																	<ExtendedTooltip name="ValuesDescriptionExtendedTooltip" id="148"/>
+																</LabelField>
+																<LabelField name="ValuesWeight" id="83">
+																	<DataPath>Values.Weight</DataPath>
+																	<Width>16</Width>
+																	<ContextMenu name="ValuesWeightContextMenu" id="84"/>
+																	<ExtendedTooltip name="ValuesWeightExtendedTooltip" id="149"/>
+																</LabelField>
+																<LabelField name="ValuesRef" id="460">
+																	<DataPath>Values.Ref</DataPath>
+																	<UserVisible>
+																		<xr:Common>false</xr:Common>
+																	</UserVisible>
+																	<ContextMenu name="ValuesRefContextMenu" id="461"/>
+																	<ExtendedTooltip name="ValuesRefExtendedTooltip" id="462"/>
+																</LabelField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</Page>
+												<Page name="ValueTreePage" id="289">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Value tree pages</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="ValueTreePageExtendedTooltip" id="290"/>
+													<ChildItems>
+														<Table name="AdditionalAttributeValues" id="291">
+															<Representation>Tree</Representation>
+															<HeightInTableRows>7</HeightInTableRows>
+															<RowSelectionMode>Row</RowSelectionMode>
+															<AutoInsertNewRow>true</AutoInsertNewRow>
+															<InitialTreeView>ExpandTopLevel</InitialTreeView>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>AdditionalAttributesValues</DataPath>
+															<RowPictureDataPath>AdditionalAttributesValues.PictureCode</RowPictureDataPath>
+															<RowsPicture>
+																<xr:Ref>StdPicture.Attribute</xr:Ref>
+																<xr:LoadTransparent>true</xr:LoadTransparent>
+															</RowsPicture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Additional attribute values</v8:content>
+																</v8:item>
+															</Title>
+															<CommandSet>
+																<ExcludedCommand>Add</ExcludedCommand>
+																<ExcludedCommand>Change</ExcludedCommand>
+																<ExcludedCommand>Copy</ExcludedCommand>
+																<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+																<ExcludedCommand>Delete</ExcludedCommand>
+																<ExcludedCommand>EndEdit</ExcludedCommand>
+																<ExcludedCommand>HierarchicalList</ExcludedCommand>
+																<ExcludedCommand>List</ExcludedCommand>
+																<ExcludedCommand>MoveDown</ExcludedCommand>
+																<ExcludedCommand>MoveUp</ExcludedCommand>
+																<ExcludedCommand>OutputList</ExcludedCommand>
+																<ExcludedCommand>SelectAll</ExcludedCommand>
+																<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+																<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+																<ExcludedCommand>SortListAsc</ExcludedCommand>
+																<ExcludedCommand>SortListDesc</ExcludedCommand>
+																<ExcludedCommand>Tree</ExcludedCommand>
+															</CommandSet>
+															<ContextMenu name="AdditionalAttributeValuesContextMenu" id="292">
+																<ChildItems>
+																	<Button name="ContextMenuAdditionalAttributeValuesCreate1" id="318">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.Values.StandardCommand.Create</CommandName>
+																		<ExtendedTooltip name="ContextMenuAdditionalAttributeValuesCreate1ExtendedTooltip" id="319"/>
+																	</Button>
+																	<Button name="ContextMenuAdditionalAttributeValuesGroup" id="316">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.Values.StandardCommand.CreateFolder</CommandName>
+																		<ExtendedTooltip name="ContextMenuAdditionalAttributeValuesGroupExtendedTooltip" id="317"/>
+																	</Button>
+																</ChildItems>
+															</ContextMenu>
+															<AutoCommandBar name="AdditionalAttributeValuesCommandBar" id="293">
+																<Autofill>false</Autofill>
+																<ChildItems>
+																	<ButtonGroup name="AdditionalAttributesValuesGroup" id="310">
+																		<Title>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Group</v8:content>
+																			</v8:item>
+																		</Title>
+																		<ExtendedTooltip name="AdditionalAttributesValuesGroupExtendedTooltip" id="311"/>
+																		<ChildItems>
+																			<Button name="AdditionalAttributeValuesCreate" id="312">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.Create</CommandName>
+																				<ExtendedTooltip name="AdditionalAttributeValuesCreateExtendedTooltip" id="313"/>
+																			</Button>
+																			<Button name="AdditionalAttributeValuesGroup" id="314">
+																				<Type>CommandBarButton</Type>
+																				<CommandName>Form.Item.Values.StandardCommand.CreateFolder</CommandName>
+																				<ExtendedTooltip name="AdditionalAttributeValuesGroupExtendedTooltip" id="315"/>
+																			</Button>
+																		</ChildItems>
+																	</ButtonGroup>
+																</ChildItems>
+															</AutoCommandBar>
+															<ExtendedTooltip name="AdditionalAttributeValuesExtendedTooltip" id="294"/>
+															<SearchStringAddition name="AdditionalAttributeValuesSearchString" id="295">
+																<AdditionSource>
+																	<Item>AdditionalAttributeValues</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="AdditionalAttributeValuesSearchStringContextMenu" id="296"/>
+																<ExtendedTooltip name="AdditionalAttributeValuesSearchStringExtendedTooltip" id="297"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="AdditionalAttributeValuesViewStatus" id="298">
+																<AdditionSource>
+																	<Item>AdditionalAttributeValues</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="AdditionalAttributeValuesViewStatusContextMenu" id="299"/>
+																<ExtendedTooltip name="AdditionalAttributeValuesViewStatusExtendedTooltip" id="300"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="AdditionalAttributeValuesSearchControl" id="301">
+																<AdditionSource>
+																	<Item>AdditionalAttributeValues</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="AdditionalAttributeValuesSearchControlContextMenu" id="302"/>
+																<ExtendedTooltip name="AdditionalAttributeValuesSearchControlExtendedTooltip" id="303"/>
+															</SearchControlAddition>
+															<ChildItems>
+																<InputField name="AdditionalAttributeValuesDescription" id="304">
+																	<DataPath>AdditionalAttributesValues.Description</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Description</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="AdditionalAttributeValuesDescriptionContextMenu" id="305"/>
+																	<ExtendedTooltip name="AdditionalAttributeValuesDescriptionExtendedTooltip" id="306"/>
+																</InputField>
+																<InputField name="AdditionalAttributeValuesWeight" id="307">
+																	<DataPath>AdditionalAttributesValues.Weight</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Weighting factor</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="AdditionalAttributeValuesWeightContextMenu" id="308"/>
+																	<ExtendedTooltip name="AdditionalAttributeValuesWeightExtendedTooltip" id="309"/>
+																</InputField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+										<CheckBoxField name="AdditionalValuesWithWeight" id="69">
+											<DataPath>Object.AdditionalValuesWithWeight</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="AdditionalValuesWithWeightContextMenu" id="70"/>
+											<ExtendedTooltip name="AdditionalValuesWithWeightExtendedTooltip" id="150"/>
+											<Events>
+												<Event name="OnChange">AdditionalValuesWithWeightOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<UsualGroup name="ValueListAdjustment" id="89">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Edit value list</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="ValueListAdjustmentExtendedTooltip" id="151"/>
+											<ChildItems>
+												<LabelDecoration name="ValueListAdjustmentComment" id="87">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>List of values shared for attribute "Color" of set "Products (bags)"</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Navigate to list of values.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Hyperlink>true</Hyperlink>
+													<ContextMenu name="ValueListAdjustmentCommentContextMenu" id="88"/>
+													<ExtendedTooltip name="ValueListAdjustmentCommentExtendedTooltip" id="152"/>
+													<Events>
+														<Event name="Click">ValueListAdjustmentCommentClick</Event>
+													</Events>
+												</LabelDecoration>
+												<Button name="ValueListAdjustmentChange" id="105">
+													<Type>UsualButton</Type>
+													<CommandName>Form.Command.ValueListAdjustmentChange</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Edit…</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="ValueListAdjustmentChangeExtendedTooltip" id="153"/>
+												</Button>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+						<UsualGroup name="GroupForDevelopers" id="455">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>For developing purpose</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Collapsible</Behavior>
+							<Collapsed>true</Collapsed>
+							<ControlRepresentation>Picture</ControlRepresentation>
+							<ExtendedTooltip name="GroupForDevelopersExtendedTooltip" id="456"/>
+							<ChildItems>
+								<InputField name="Name" id="457">
+									<DataPath>Object.Name</DataPath>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>With the name, you can address the additional attribute or information record in the code.
+The name must be a single word that starts with a letter and can contain digits, letters, and underscores ( _ ).
+Unless specified, the name is generated automatically. </v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<ContextMenu name="NameContextMenu" id="458"/>
+									<ExtendedTooltip name="NameExtendedTooltip" id="459"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="WizardCommandBar" id="227">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Wizard command bar</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>true</VerticalStretch>
+			<VerticalAlign>Bottom</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="WizardCommandBarExtendedTooltip" id="228"/>
+			<ChildItems>
+				<CommandBar name="CommandBarLeft" id="229">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar left</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CommandBarLeftExtendedTooltip" id="230"/>
+					<ChildItems>
+						<Button name="BackCommand" id="233">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.BackCommand</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt; Back</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="BackCommandExtendedTooltip" id="234"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<CommandBar name="CommandBarRight" id="231">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar right</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="CommandBarRightExtendedTooltip" id="232"/>
+					<ChildItems>
+						<Button name="NextCommand" id="235">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.NextCommand</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Next &gt;</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="NextCommandExtendedTooltip" id="236"/>
+						</Button>
+						<Button name="Close" id="242">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.CloseForm</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Close</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CloseExtendedTooltip" id="243"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesObject.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="PropertyKind" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property type</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:EnumRef.PropertiesKinds</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseAdditionalAttributesAndInfo</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="SetsList" id="2">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="MultilineInputField" id="7">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseAdditionalAttributesAndInfo</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="MultilineInputFieldNumber" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number of lines</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseAdditionalAttributesAndInfo</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="Values" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Values</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>Values.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	ValuesOverridable.Ref,
+	ValuesOverridable.DataVersion,
+	ValuesOverridable.DeletionMark,
+	ValuesOverridable.Predefined,
+	ValuesOverridable.Owner,
+	ValuesOverridable.Parent,
+	ValuesOverridable.IsFolder,
+	ValuesOverridable.Description AS Description,
+	ValuesOverridable.Weight
+FROM
+	Catalog.ObjectsPropertiesValues AS ValuesOverridable</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>FullDescr</dcssch:dataPath>
+					<dcssch:field>FullDescr</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DescriptionLanguage1</dcssch:dataPath>
+					<dcssch:field>DescriptionLanguage1</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DescriptionLanguage2</dcssch:dataPath>
+					<dcssch:field>DescriptionLanguage2</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Presentations</dcssch:dataPath>
+					<dcssch:field>Presentations</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PredefinedDataName</dcssch:dataPath>
+					<dcssch:field>PredefinedDataName</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ref</dcssch:dataPath>
+					<dcssch:field>Ref</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DataVersion</dcssch:dataPath>
+					<dcssch:field>DataVersion</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DeletionMark</dcssch:dataPath>
+					<dcssch:field>DeletionMark</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Predefined</dcssch:dataPath>
+					<dcssch:field>Predefined</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Owner</dcssch:dataPath>
+					<dcssch:field>Owner</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Parent</dcssch:dataPath>
+					<dcssch:field>Parent</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>IsFolder</dcssch:dataPath>
+					<dcssch:field>IsFolder</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Description</dcssch:dataPath>
+					<dcssch:field>Description</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Weight</dcssch:dataPath>
+					<dcssch:field>Weight</dcssch:field>
+				</Field>
+				<MainTable>Catalog.ObjectsPropertiesValues</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ShowSetAdjustment" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentPropertiesSet" id="4">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PassedFormParameters" id="13">
+			<Type/>
+		</Attribute>
+		<Attribute name="AttributeAddMode" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attribute add mode</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="WizardMode" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AdditionalAttributesValues" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional attributes values</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type>
+						<v8:Type>cfg:CatalogRef.ObjectPropertyValueHierarchy</v8:Type>
+						<v8:Type>cfg:CatalogRef.ObjectsPropertiesValues</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PictureCode" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Weight" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Weight factor</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Description" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="EmptyRef" id="17">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AttributeDependencyConditions" id="18">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="AttributeDependencyConditionsWereChanged" id="19">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedPropertiesSet" id="20">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PropertiesSets" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property sets</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>PropertiesSets.IsFolder</Field>
+				<Field>PropertiesSets.Parent</Field>
+				<Field>PropertiesSets.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>SELECT
+	Sets.Ref AS Ref,
+	Sets.DataVersion AS DataVersion,
+	Sets.DeletionMark AS DeletionMark,
+	Sets.Predefined AS Predefined,
+	Sets.Parent AS Parent,
+	Sets.IsFolder AS IsFolder,
+	Sets.Description AS Description,
+	Sets.Used AS Used,
+	CASE
+		WHEN Sets.IsFolder
+			THEN Sets.Description
+		WHEN &amp;PropertyKind = VALUE(Enum.PropertiesKinds.AdditionalInfo)
+			THEN CASE
+				WHEN Sets.InfoCount = ""
+					THEN Sets.Description
+				ELSE Sets.Description + " (" + Sets.InfoCount + ")"
+			END
+		WHEN &amp;PropertyKind = VALUE(Enum.PropertiesKinds.AdditionalAttributes)
+		THEN CASE
+			WHEN Sets.AttributesCount = ""
+				THEN Sets.Description
+			ELSE Sets.Description + " (" + Sets.AttributesCount + ")"
+		END
+		WHEN &amp;PropertyKind = VALUE(Enum.PropertiesKinds.Labels)
+		THEN CASE
+			WHEN Sets.LabelCount = ""
+				THEN Sets.Description
+			ELSE Sets.Description + " (" + Sets.LabelCount + ")"
+		END
+	END AS Presentation,
+	CASE
+		WHEN Sets.DeletionMark
+			THEN 1
+		ELSE 0
+	END + CASE
+		WHEN Sets.Predefined
+			THEN 2
+		ELSE 0
+	END AS PictureNumber
+FROM
+	Catalog.AdditionalAttributesAndInfoSets AS Sets
+WHERE
+	CASE
+		WHEN Sets.Parent = VALUE(Catalog.AdditionalAttributesAndInfoSets.EmptyRef)
+			THEN Sets.Ref IN (&amp;Sets)
+		ELSE Sets.Parent IN (&amp;Sets)
+	END
+	AND Sets.Used
+	AND ISNULL(Sets.Parent.Used, TRUE)
+	AND NOT Sets.Ref IN (&amp;SetsToExclude)
+	AND NOT Sets.DeletionMark</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ref</dcssch:dataPath>
+					<dcssch:field>Ref</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DataVersion</dcssch:dataPath>
+					<dcssch:field>DataVersion</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DeletionMark</dcssch:dataPath>
+					<dcssch:field>DeletionMark</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Predefined</dcssch:dataPath>
+					<dcssch:field>Predefined</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Parent</dcssch:dataPath>
+					<dcssch:field>Parent</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>IsFolder</dcssch:dataPath>
+					<dcssch:field>IsFolder</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Description</dcssch:dataPath>
+					<dcssch:field>Description</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Used</dcssch:dataPath>
+					<dcssch:field>Used</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PictureNumber</dcssch:dataPath>
+					<dcssch:field>PictureNumber</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture number</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AttributesCount</dcssch:dataPath>
+					<dcssch:field>AttributesCount</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>InfoCount</dcssch:dataPath>
+					<dcssch:field>InfoCount</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>LabelCount</dcssch:dataPath>
+					<dcssch:field>LabelCount</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PredefinedSetName</dcssch:dataPath>
+					<dcssch:field>PredefinedSetName</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DescriptionLanguage1</dcssch:dataPath>
+					<dcssch:field>DescriptionLanguage1</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DescriptionLanguage2</dcssch:dataPath>
+					<dcssch:field>DescriptionLanguage2</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalInfo</dcssch:dataPath>
+					<dcssch:field>AdditionalInfo</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Presentations</dcssch:dataPath>
+					<dcssch:field>Presentations</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PredefinedDataName</dcssch:dataPath>
+					<dcssch:field>PredefinedDataName</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Presentation</dcssch:dataPath>
+					<dcssch:field>Presentation</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Parameter>
+					<dcssch:name>SetsToExclude</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Sets to exclude</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+					<dcssch:valueListAllowed>true</dcssch:valueListAllowed>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Sets</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Sets</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+					<dcssch:valueListAllowed>true</dcssch:valueListAllowed>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>PropertyKind</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Property type</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:EnumRef.PropertiesKinds</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<MainTable>Catalog.AdditionalAttributesAndInfoSets</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="Properties" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Properties</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Title" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attribute</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DeletionMark" id="4">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Property" id="5">
+					<Type>
+						<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+					</Type>
+				</Column>
+				<Column name="LineNumber" id="6">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="AdditionalValuesOwner" id="7">
+					<Type>
+						<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>2</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ValueType" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Value type</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ToolTip" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Tooltip</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ValueFormTitle" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Value form title</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ValueChoiceFormTitle" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Value choice form title</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Common" id="11">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="CommonValues" id="12">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="CommonPropertySets" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Shared property sets</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>SELECT
+	&amp;ListPresentation AS Presentation,
+	0 AS PictureNumber</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Presentation</dcssch:dataPath>
+					<dcssch:field>Presentation</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PictureNumber</dcssch:dataPath>
+					<dcssch:field>PictureNumber</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture number</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Parameter>
+					<dcssch:name>ListPresentation</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List presentation</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="AttributeRepresentation" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attribute presentation</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="CurrentTitle" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowUnusedAttributes" id="25">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentSetDataVersion" id="26">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EditValueFormat" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Format</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Format determines valid values when a user tries to edit the property value.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EditValueFormat</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ValueListAdjustmentChange" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit additional attribute settings.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ValueListAdjustmentChange</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetsAdjustmentChange" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit additional attribute settings.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SetsAdjustmentChange</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="NextCommand" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Next &gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Next command</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>NextCommand</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="BackCommand" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt; Back</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Back command</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>BackCommand</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CloseForm" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Close form</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CloseForm</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DuplicateObjectsDetection" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clean up duplicates…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clean up duplicates</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DuplicateObjectsDetection</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Change" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F2</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Change</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="UnusedAttributes" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Unused attributes</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ShowUnusedAttributes</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetClearDeletionMark" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle deletion mark</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle deletion mark</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.MarkToDelete</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetClearDeletionMark</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FillIDForFormulas" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill in ID for formulas</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill in ID for formulas</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.FillForm</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FillIDForFormulas</Action>
+			<Representation>Picture</Representation>
+		</Command>
+		<Command name="PropertyLightBlue" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property light blue</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelLightBlue</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyLightBlue</Action>
+		</Command>
+		<Command name="PropertyYellow" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property yellow</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelYellow</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyYellow</Action>
+		</Command>
+		<Command name="PropertyGreen" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property green</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelGreen</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyGreen</Action>
+		</Command>
+		<Command name="PropertyLime" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property lime</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelLime</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyBrown</Action>
+		</Command>
+		<Command name="PropertyRed" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property red</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelRed</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyRed</Action>
+		</Command>
+		<Command name="PropertyOrange" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property orange</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelOrange</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyOrange</Action>
+		</Command>
+		<Command name="PropertyPink" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property pink</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelPink</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyPink</Action>
+		</Command>
+		<Command name="PropertyGray" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property gray</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelGray</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyGray</Action>
+		</Command>
+		<Command name="PropertyBlue" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property blue</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelBlue</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyBlue</Action>
+		</Command>
+		<Command name="PropertyPurple" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property purple</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.LabelPurple</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>PropertyPurple</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="IsAdditionalInfo">
+			<Type/>
+		</Parameter>
+		<Parameter name="CurrentPropertiesSet">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="AdditionalValuesOwner">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="ShowSetAdjustment">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="SelectSharedProperty">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="SelectedValues">
+			<Type/>
+		</Parameter>
+		<Parameter name="SelectAdditionalValuesOwner">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="CopyWithQuestion">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

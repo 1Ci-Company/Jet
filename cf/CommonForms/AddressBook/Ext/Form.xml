@@ -1,0 +1,2107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="SelectCommand" id="46">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.SelectCommand</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Select</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="SelectCommandExtendedTooltip" id="181"/>
+			</Button>
+			<Button name="Add" id="86">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Item.EmailRecipients.StandardCommand.Add</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Add recipient</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="AddExtendedTooltip" id="236"/>
+			</Button>
+			<Button name="Delete" id="133">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Item.EmailRecipients.StandardCommand.Delete</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Remove recipient</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="DeleteExtendedTooltip" id="237"/>
+			</Button>
+			<ButtonGroup name="MoveGroup" id="296">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Move</v8:content>
+					</v8:item>
+				</Title>
+				<Representation>Compact</Representation>
+				<ExtendedTooltip name="MoveGroupExtendedTooltip" id="297"/>
+				<ChildItems>
+					<Button name="MoveUp" id="87">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.EmailRecipients.StandardCommand.MoveUp</CommandName>
+						<ExtendedTooltip name="MoveUpExtendedTooltip" id="238"/>
+					</Button>
+					<Button name="MoveDown" id="88">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.EmailRecipients.StandardCommand.MoveDown</CommandName>
+						<ExtendedTooltip name="MoveDownExtendedTooltip" id="239"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ListsGroup" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Lists</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ListsGroupExtendedTooltip" id="182"/>
+			<ChildItems>
+				<UsualGroup name="SettingsListGroup" id="338">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SettingsListGroupExtendedTooltip" id="339"/>
+					<ChildItems>
+						<Pages name="PagesLists" id="83">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Pages lists</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>TabsOnTop</PagesRepresentation>
+							<ExtendedTooltip name="PagesListsExtendedTooltip" id="183"/>
+							<Events>
+								<Event name="OnCurrentPageChange">PagesOnCurrentPageChange</Event>
+							</Events>
+							<ChildItems>
+								<Page name="SearchContactsPage" id="90">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Search</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SearchContactsPageExtendedTooltip" id="184"/>
+									<ChildItems>
+										<UsualGroup name="SearchStringGroup" id="51">
+											<EnableContentChange>true</EnableContentChange>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Search bar</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="SearchStringGroupExtendedTooltip" id="185"/>
+											<ChildItems>
+												<InputField name="SearchString" id="22">
+													<DataPath>SearchString</DataPath>
+													<DefaultItem>true</DefaultItem>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Search bar</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<Width>30</Width>
+													<Wrap>false</Wrap>
+													<InputHint>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Type contact details</v8:content>
+														</v8:item>
+													</InputHint>
+													<ContextMenu name="SearchStringContextMenu" id="23"/>
+													<ExtendedTooltip name="SearchStringExtendedTooltip" id="187"/>
+												</InputField>
+												<CommandBar name="FindContactGroup" id="304">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Find contact</v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalLocation>Right</HorizontalLocation>
+													<ExtendedTooltip name="FindContactGroupExtendedTooltip" id="305"/>
+													<ChildItems>
+														<Button name="Find" id="50">
+															<Type>CommandBarButton</Type>
+															<SkipOnInput>false</SkipOnInput>
+															<CommandName>Form.Command.FindContacts</CommandName>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Find</v8:content>
+																</v8:item>
+															</Title>
+															<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+															<ExtendedTooltip name="FindExtendedTooltip" id="188"/>
+														</Button>
+														<Popup name="SearchOptionsGroup" id="306">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Search location</v8:content>
+																</v8:item>
+															</Title>
+															<Picture>
+																<xr:Ref>StdPicture.Find</xr:Ref>
+																<xr:LoadTransparent>true</xr:LoadTransparent>
+															</Picture>
+															<Representation>Picture</Representation>
+															<ExtendedTooltip name="SearchOptionsGroupExtendedTooltip" id="307"/>
+															<ChildItems>
+																<Button name="SearchEverywhereOption" id="310">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.SearchEverywhereOption</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Everywhere</v8:content>
+																		</v8:item>
+																	</Title>
+																	<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+																	<ExtendedTooltip name="SearchEverywhereOptionExtendedTooltip" id="311"/>
+																</Button>
+																<Button name="SearchInAddressesOption" id="312">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.SearchInAddressesOption</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>In email addresses</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="SearchInAddressesOptionExtendedTooltip" id="313"/>
+																</Button>
+																<Button name="SearchInContactsDescriptionsOption" id="314">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.SearchInContactsDescriptionsOption</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>In descriptions</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="SearchInContactsDescriptionsOptionExtendedTooltip" id="315"/>
+																</Button>
+																<Button name="SearchByDomainNameOption" id="316">
+																	<Type>CommandBarButton</Type>
+																	<CommandName>Form.Command.SearchByDomainNameOption</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>In email domains</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="SearchByDomainNameOptionExtendedTooltip" id="317"/>
+																</Button>
+															</ChildItems>
+														</Popup>
+													</ChildItems>
+												</CommandBar>
+												<InputField name="SearchOptions" id="119">
+													<DataPath>SearchOptions</DataPath>
+													<Visible>false</Visible>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Search options</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<Width>20</Width>
+													<Wrap>false</Wrap>
+													<ListChoiceMode>true</ListChoiceMode>
+													<ContextMenu name="SearchOptionsContextMenu" id="120"/>
+													<ExtendedTooltip name="SearchOptionsExtendedTooltip" id="186"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<Table name="FoundContacts" id="25">
+											<Representation>List</Representation>
+											<CommandBarLocation>None</CommandBarLocation>
+											<ReadOnly>true</ReadOnly>
+											<SkipOnInput>false</SkipOnInput>
+											<AutoMaxHeight>false</AutoMaxHeight>
+											<HeightInTableRows>5</HeightInTableRows>
+											<UseAlternationRowColor>true</UseAlternationRowColor>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>FoundContacts</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Found contacts</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSet>
+												<ExcludedCommand>CancelSearch</ExcludedCommand>
+												<ExcludedCommand>Change</ExcludedCommand>
+												<ExcludedCommand>Copy</ExcludedCommand>
+												<ExcludedCommand>Delete</ExcludedCommand>
+												<ExcludedCommand>EndEdit</ExcludedCommand>
+												<ExcludedCommand>Find</ExcludedCommand>
+												<ExcludedCommand>MoveDown</ExcludedCommand>
+												<ExcludedCommand>MoveUp</ExcludedCommand>
+											</CommandSet>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="FoundContactsContextMenu" id="26">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<Button name="FoundContactsView" id="333">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.View</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>View</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="FoundContactsViewExtendedTooltip" id="334"/>
+													</Button>
+													<Button name="FindInListFromFoundItemsList" id="143">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.FindInListFromFoundItemsList</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Find in list</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="FindInListFromFoundItemsListExtendedTooltip" id="189"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="FoundContactsCommandBar" id="27"/>
+											<ExtendedTooltip name="FoundContactsExtendedTooltip" id="190"/>
+											<SearchStringAddition name="FoundContactsSearchString" id="245">
+												<AdditionSource>
+													<Item>FoundContacts</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="FoundContactsSearchStringContextMenu" id="246"/>
+												<ExtendedTooltip name="FoundContactsSearchStringExtendedTooltip" id="247"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="FoundContactsViewStatus" id="248">
+												<AdditionSource>
+													<Item>FoundContacts</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="FoundContactsViewStatusContextMenu" id="249"/>
+												<ExtendedTooltip name="FoundContactsViewStatusExtendedTooltip" id="250"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="FoundContactsSearchControl" id="251">
+												<AdditionSource>
+													<Item>FoundContacts</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="FoundContactsSearchControlContextMenu" id="252"/>
+												<ExtendedTooltip name="FoundContactsSearchControlExtendedTooltip" id="253"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">FoundContactsSelection</Event>
+											</Events>
+											<ChildItems>
+												<InputField name="ContactName" id="28">
+													<DataPath>FoundContacts.ContactName</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Contact</v8:content>
+														</v8:item>
+													</Title>
+													<Wrap>false</Wrap>
+													<ContextMenu name="ContactNameContextMenu" id="29"/>
+													<ExtendedTooltip name="ContactNameExtendedTooltip" id="191"/>
+												</InputField>
+												<InputField name="EMAddress" id="30">
+													<DataPath>FoundContacts.Presentation</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Email address</v8:content>
+														</v8:item>
+													</Title>
+													<Wrap>false</Wrap>
+													<ContextMenu name="EMAddressContextMenu" id="31"/>
+													<ExtendedTooltip name="EMAddressExtendedTooltip" id="192"/>
+												</InputField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</Page>
+								<Page name="AllContactsBySubjectPage" id="94">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Topic participants</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="AllContactsBySubjectPageExtendedTooltip" id="196"/>
+									<ChildItems>
+										<Table name="ContactsBySubject" id="121">
+											<Representation>List</Representation>
+											<CommandBarLocation>None</CommandBarLocation>
+											<ReadOnly>true</ReadOnly>
+											<SkipOnInput>false</SkipOnInput>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>ContactsBySubject</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Topic participants</v8:content>
+												</v8:item>
+											</Title>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="ContactsBySubjectContextMenu" id="122">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<Button name="AddFromSubjectsList" id="131">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.AddFromSubjectsList</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Add to recipients</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="AddFromSubjectsListExtendedTooltip" id="197"/>
+													</Button>
+													<Button name="SetContactFromSubjectsList" id="132">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.SetContactFromSubjectsList</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Select contact's email</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="SetContactFromSubjectsListExtendedTooltip" id="198"/>
+													</Button>
+													<Button name="FindInListFromSubjectsList" id="130">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.FindInListFromSubjectsList</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Find in list</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="FindInListFromSubjectsListExtendedTooltip" id="199"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="ContactsBySubjectCommandBar" id="123"/>
+											<ExtendedTooltip name="ContactsBySubjectExtendedTooltip" id="200"/>
+											<SearchStringAddition name="ContactsBySubjectSearchString" id="254">
+												<AdditionSource>
+													<Item>ContactsBySubject</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ContactsBySubjectSearchStringContextMenu" id="255"/>
+												<ExtendedTooltip name="ContactsBySubjectSearchStringExtendedTooltip" id="256"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="ContactsBySubjectViewStatus" id="257">
+												<AdditionSource>
+													<Item>ContactsBySubject</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ContactsBySubjectViewStatusContextMenu" id="258"/>
+												<ExtendedTooltip name="ContactsBySubjectViewStatusExtendedTooltip" id="259"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="ContactsBySubjectSearchControl" id="260">
+												<AdditionSource>
+													<Item>ContactsBySubject</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="ContactsBySubjectSearchControlContextMenu" id="261"/>
+												<ExtendedTooltip name="ContactsBySubjectSearchControlExtendedTooltip" id="262"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">ContactsBySubjectSelection</Event>
+											</Events>
+											<ChildItems>
+												<InputField name="DescriptionPresentation" id="128">
+													<DataPath>ContactsBySubject.DescriptionPresentation</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Contact</v8:content>
+														</v8:item>
+													</Title>
+													<Wrap>false</Wrap>
+													<ContextMenu name="DescriptionPresentationContextMenu" id="129"/>
+													<ExtendedTooltip name="DescriptionPresentationExtendedTooltip" id="201"/>
+												</InputField>
+												<InputField name="ContactAddress" id="126">
+													<DataPath>ContactsBySubject.Address</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Email address</v8:content>
+														</v8:item>
+													</Title>
+													<Wrap>false</Wrap>
+													<ContextMenu name="ContactAddressContextMenu" id="127"/>
+													<ExtendedTooltip name="ContactAddressExtendedTooltip" id="202"/>
+												</InputField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</Page>
+								<Page name="UsersPage" id="93">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Users</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="UsersPageExtendedTooltip" id="203"/>
+									<ChildItems>
+										<Table name="UserGroups" id="176">
+											<Representation>Tree</Representation>
+											<CommandBarLocation>None</CommandBarLocation>
+											<SkipOnInput>false</SkipOnInput>
+											<AutoMaxHeight>false</AutoMaxHeight>
+											<HeightInTableRows>5</HeightInTableRows>
+											<SelectionMode>SingleRow</SelectionMode>
+											<RowSelectionMode>Row</RowSelectionMode>
+											<Header>false</Header>
+											<UseAlternationRowColor>true</UseAlternationRowColor>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>UserGroups</DataPath>
+											<RowPictureDataPath>UserGroups.PictureNumber</RowPictureDataPath>
+											<RowsPicture>
+												<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</RowsPicture>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User groups</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSet>
+												<ExcludedCommand>Change</ExcludedCommand>
+												<ExcludedCommand>Copy</ExcludedCommand>
+												<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+												<ExcludedCommand>Create</ExcludedCommand>
+												<ExcludedCommand>Delete</ExcludedCommand>
+												<ExcludedCommand>HierarchicalList</ExcludedCommand>
+												<ExcludedCommand>List</ExcludedCommand>
+												<ExcludedCommand>ListSettings</ExcludedCommand>
+												<ExcludedCommand>MoveItem</ExcludedCommand>
+												<ExcludedCommand>OutputList</ExcludedCommand>
+												<ExcludedCommand>Refresh</ExcludedCommand>
+												<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+												<ExcludedCommand>Tree</ExcludedCommand>
+											</CommandSet>
+											<AutoRefresh>false</AutoRefresh>
+											<AutoRefreshPeriod>60</AutoRefreshPeriod>
+											<Period>
+												<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+												<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+												<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+											</Period>
+											<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+											<RestoreCurrentRow>false</RestoreCurrentRow>
+											<TopLevelParent xsi:nil="true"/>
+											<ShowRoot>false</ShowRoot>
+											<AllowRootChoice>false</AllowRootChoice>
+											<UpdateOnDataChange>Auto</UpdateOnDataChange>
+											<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+											<ContextMenu name="UserGroupsContextMenu" id="177"/>
+											<AutoCommandBar name="UserGroupsCommandBar" id="178"/>
+											<ExtendedTooltip name="UserGroupsExtendedTooltip" id="204"/>
+											<SearchStringAddition name="UserGroupsSearchString" id="263">
+												<AdditionSource>
+													<Item>UserGroups</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="UserGroupsSearchStringContextMenu" id="264"/>
+												<ExtendedTooltip name="UserGroupsSearchStringExtendedTooltip" id="265"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="UserGroupsViewStatus" id="266">
+												<AdditionSource>
+													<Item>UserGroups</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="UserGroupsViewStatusContextMenu" id="267"/>
+												<ExtendedTooltip name="UserGroupsViewStatusExtendedTooltip" id="268"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="UserGroupsSearchControl" id="269">
+												<AdditionSource>
+													<Item>UserGroups</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="UserGroupsSearchControlContextMenu" id="270"/>
+												<ExtendedTooltip name="UserGroupsSearchControlExtendedTooltip" id="271"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="OnActivateRow">UserGroupsOnActivateRow</Event>
+											</Events>
+											<ChildItems>
+												<LabelField name="GroupDescription" id="179">
+													<DataPath>UserGroups.Description</DataPath>
+													<ContextMenu name="GroupDescriptionContextMenu" id="180"/>
+													<ExtendedTooltip name="GroupDescriptionExtendedTooltip" id="205"/>
+												</LabelField>
+												<LabelField name="UserGroupsRef" id="290">
+													<DataPath>UserGroups.Ref</DataPath>
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<ContextMenu name="UserGroupsRefContextMenu" id="291"/>
+													<ExtendedTooltip name="UserGroupsRefExtendedTooltip" id="292"/>
+												</LabelField>
+											</ChildItems>
+										</Table>
+										<Table name="UsersList" id="95">
+											<SkipOnInput>false</SkipOnInput>
+											<HeightInTableRows>6</HeightInTableRows>
+											<UseAlternationRowColor>true</UseAlternationRowColor>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>UsersList</DataPath>
+											<RowPictureDataPath>UsersList.PictureNumber</RowPictureDataPath>
+											<RowsPicture>
+												<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</RowsPicture>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Users</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSet>
+												<ExcludedCommand>Change</ExcludedCommand>
+												<ExcludedCommand>Copy</ExcludedCommand>
+												<ExcludedCommand>Create</ExcludedCommand>
+												<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+											</CommandSet>
+											<AutoRefresh>false</AutoRefresh>
+											<AutoRefreshPeriod>60</AutoRefreshPeriod>
+											<Period>
+												<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+												<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+												<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+											</Period>
+											<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+											<RestoreCurrentRow>false</RestoreCurrentRow>
+											<TopLevelParent xsi:nil="true"/>
+											<ShowRoot>false</ShowRoot>
+											<AllowRootChoice>false</AllowRootChoice>
+											<UpdateOnDataChange>Auto</UpdateOnDataChange>
+											<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+											<ContextMenu name="UsersListContextMenu" id="96">
+												<ChildItems>
+													<Button name="UsersListContextMenuView" id="331">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.View</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>View</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="UsersListContextMenuViewExtendedTooltip" id="332"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="UsersListCommandBar" id="97">
+												<ChildItems>
+													<Button name="UsersListView" id="329">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.View</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>View</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="UsersListViewExtendedTooltip" id="330"/>
+													</Button>
+												</ChildItems>
+											</AutoCommandBar>
+											<ExtendedTooltip name="UsersListExtendedTooltip" id="206"/>
+											<SearchStringAddition name="UsersListSearchString" id="272">
+												<AdditionSource>
+													<Item>UsersList</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="UsersListSearchStringContextMenu" id="273"/>
+												<ExtendedTooltip name="UsersListSearchStringExtendedTooltip" id="274"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="UsersListViewStatus" id="275">
+												<AdditionSource>
+													<Item>UsersList</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="UsersListViewStatusContextMenu" id="276"/>
+												<ExtendedTooltip name="UsersListViewStatusExtendedTooltip" id="277"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="UsersListSearchControl" id="278">
+												<AdditionSource>
+													<Item>UsersList</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="UsersListSearchControlContextMenu" id="279"/>
+												<ExtendedTooltip name="UsersListSearchControlExtendedTooltip" id="280"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">Attachable_CatalogListChoice</Event>
+											</Events>
+											<ChildItems>
+												<InputField name="User" id="98">
+													<DataPath>UsersList.Ref</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>User</v8:content>
+														</v8:item>
+													</Title>
+													<Wrap>false</Wrap>
+													<ContextMenu name="UserContextMenu" id="99"/>
+													<ExtendedTooltip name="UserExtendedTooltip" id="207"/>
+												</InputField>
+												<LabelField name="UsersListPresentation" id="326">
+													<DataPath>UsersList.Presentation</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Email</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="UsersListPresentationContextMenu" id="327"/>
+													<ExtendedTooltip name="UsersListPresentationExtendedTooltip" id="328"/>
+												</LabelField>
+												<LabelField name="UsersListRef" id="293">
+													<DataPath>UsersList.Ref</DataPath>
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<ContextMenu name="UsersListRefContextMenu" id="294"/>
+													<ExtendedTooltip name="UsersListRefExtendedTooltip" id="295"/>
+												</LabelField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+						<CheckBoxField name="ShowOnlyContactsWithAddresses" id="335">
+							<DataPath>ShowOnlyContactsWithAddresses</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show only contacts with email</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ShowOnlyContactsWithAddressesContextMenu" id="336"/>
+							<ExtendedTooltip name="ShowOnlyContactsWithAddressesExtendedTooltip" id="337">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>    It will apply only to lists that have the "Email" column</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">ShowOnlyContactsWithAddressesOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="RecipientsMoveGroup" id="152">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Recipients &amp; Move</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="RecipientsMoveGroupExtendedTooltip" id="208"/>
+					<ChildItems>
+						<Pages name="MovePages" id="161">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Pages move</v8:content>
+								</v8:item>
+							</Title>
+							<Width>5</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="MovePagesExtendedTooltip" id="209"/>
+							<ChildItems>
+								<Page name="MoveOneTablePage" id="162">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Page move for one table</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MoveOneTablePageExtendedTooltip" id="210"/>
+									<ChildItems>
+										<LabelDecoration name="MoveTopDecoration" id="153">
+											<VerticalStretch>true</VerticalStretch>
+											<ContextMenu name="MoveTopDecorationContextMenu" id="154"/>
+											<ExtendedTooltip name="MoveTopDecorationExtendedTooltip" id="211"/>
+										</LabelDecoration>
+										<Button name="MoveFromListToSelectedItems" id="158">
+											<Type>UsualButton</Type>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<AutoMaxHeight>false</AutoMaxHeight>
+											<CommandName>Form.Command.AddToRecipientsList</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&gt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveFromListToSelectedItemsExtendedTooltip" id="212"/>
+										</Button>
+										<LabelDecoration name="MoveCenterDecoration" id="159">
+											<ContextMenu name="MoveCenterDecorationContextMenu" id="160"/>
+											<ExtendedTooltip name="MoveCenterDecorationExtendedTooltip" id="213"/>
+										</LabelDecoration>
+										<Button name="MoveAllFromSelectedItemsToList" id="157">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.DeleteAllRecipients</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&lt;&lt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveAllFromSelectedItemsToListExtendedTooltip" id="214"/>
+										</Button>
+										<Button name="MoveFromSelectedItemsToList" id="151">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.DeleteRecipient</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&lt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveFromSelectedItemsToListExtendedTooltip" id="215"/>
+										</Button>
+										<LabelDecoration name="MoveBottomDecoration" id="155">
+											<VerticalStretch>true</VerticalStretch>
+											<ContextMenu name="MoveBottomDecorationContextMenu" id="156"/>
+											<ExtendedTooltip name="MoveBottomDecorationExtendedTooltip" id="216"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="MoveTwoTablesPage" id="163">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Page move for two tables</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MoveTwoTablesPageExtendedTooltip" id="217"/>
+									<ChildItems>
+										<LabelDecoration name="MoveTopDecorationTwoTables" id="164">
+											<VerticalStretch>true</VerticalStretch>
+											<ContextMenu name="MoveTopDecorationTwoTablesContextMenu" id="165"/>
+											<ExtendedTooltip name="MoveTopDecorationTwoTablesExtendedTooltip" id="218"/>
+										</LabelDecoration>
+										<Button name="MoveFromTopListToSelected" id="166">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.AddToRecipientsList</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&gt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveFromTopListToSelectedExtendedTooltip" id="219"/>
+										</Button>
+										<LabelDecoration name="IntervalUpperDecoration" id="167">
+											<ContextMenu name="IntervalUpperDecorationContextMenu" id="168"/>
+											<ExtendedTooltip name="IntervalUpperDecorationExtendedTooltip" id="220"/>
+										</LabelDecoration>
+										<Button name="MoveFromSelectedItemsToListTwoTables" id="169">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.DeleteRecipient</CommandName>
+											<Font ref="style:NormalTextFont" kind="StyleItem"/>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&lt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveFromSelectedItemsToListTwoTablesExtendedTooltip" id="221"/>
+										</Button>
+										<Button name="MoveAllFromSelectedItemsToListTwoTables" id="170">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.DeleteAllRecipients</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&lt;&lt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveAllFromSelectedItemsToListTwoTablesExtendedTooltip" id="222"/>
+										</Button>
+										<LabelDecoration name="IntervalLowerDecoration" id="171">
+											<ContextMenu name="IntervalLowerDecorationContextMenu" id="172"/>
+											<ExtendedTooltip name="IntervalLowerDecorationExtendedTooltip" id="223"/>
+										</LabelDecoration>
+										<Button name="MoveFromBottomListToSelectedItems" id="173">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.AddToRecipientsList</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&gt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MoveFromBottomListToSelectedItemsExtendedTooltip" id="224"/>
+										</Button>
+										<LabelDecoration name="MoveBottomDecorationTwoTables" id="174">
+											<VerticalStretch>true</VerticalStretch>
+											<ContextMenu name="MoveBottomDecorationTwoTablesContextMenu" id="175"/>
+											<ExtendedTooltip name="MoveBottomDecorationTwoTablesExtendedTooltip" id="225"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+						<UsualGroup name="RecipientsGroup" id="55">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Recipients</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="RecipientsGroupExtendedTooltip" id="226"/>
+							<ChildItems>
+								<Table name="EmailRecipients" id="56">
+									<Representation>List</Representation>
+									<TitleLocation>Top</TitleLocation>
+									<SkipOnInput>false</SkipOnInput>
+									<HeightInTableRows>3</HeightInTableRows>
+									<Header>false</Header>
+									<UseAlternationRowColor>true</UseAlternationRowColor>
+									<FileDragMode>AsFile</FileDragMode>
+									<DataPath>EmailRecipients</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Recipients</v8:content>
+										</v8:item>
+									</Title>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="EmailRecipientsContextMenu" id="57">
+										<Autofill>false</Autofill>
+										<ChildItems>
+											<Button name="Add1" id="318">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Item.EmailRecipients.StandardCommand.Add</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Add recipient</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="Add1ExtendedTooltip" id="319"/>
+											</Button>
+											<ButtonGroup name="ChangeGroup" id="134">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Change group</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ChangeGroupExtendedTooltip" id="232"/>
+												<ChildItems>
+													<Button name="ChangeGroupTo" id="135">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.ChangeGroupTo</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Specify "To"</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ChangeGroupToExtendedTooltip" id="233"/>
+													</Button>
+													<Button name="ChangeCcGroup" id="136">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.ChangeCcGroup</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Specify "Cc"</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ChangeCcGroupExtendedTooltip" id="234"/>
+													</Button>
+													<Button name="ChangeBCCGroup" id="137">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.ChangeBCCGroup</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Specify "Bcc"</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="ChangeBCCGroupExtendedTooltip" id="235"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<ButtonGroup name="EmailRecipientsContextMenuGroup" id="322">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Recipients context menu group</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="EmailRecipientsContextMenuGroupExtendedTooltip" id="323"/>
+												<ChildItems>
+													<Button name="Delete1" id="320">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Item.EmailRecipients.StandardCommand.Delete</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Remove recipient</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="Delete1ExtendedTooltip" id="321"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<Button name="FindInListFromRecipientsList" id="138">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.FindInListFromRecipientsList</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Find in list</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="FindInListFromRecipientsListExtendedTooltip" id="227"/>
+											</Button>
+											<ButtonGroup name="FindContact" id="139">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Find contact</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="FindContactExtendedTooltip" id="228"/>
+												<ChildItems>
+													<Button name="FindByAddress" id="140">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.FindByAddress</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Find by email address</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="FindByAddressExtendedTooltip" id="229"/>
+													</Button>
+													<Button name="FindByPresentation" id="141">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.FindByPresentation</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Find by name</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="FindByPresentationExtendedTooltip" id="230"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<Button name="SetContactAddress" id="142">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SelectAddressFromContact</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Select contact's email</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetContactAddressExtendedTooltip" id="231"/>
+											</Button>
+										</ChildItems>
+									</ContextMenu>
+									<AutoCommandBar name="EmailRecipientsCommandBar" id="58">
+										<Autofill>false</Autofill>
+									</AutoCommandBar>
+									<ExtendedTooltip name="EmailRecipientsExtendedTooltip" id="240"/>
+									<SearchStringAddition name="EmailRecipientsSearchString" id="281">
+										<AdditionSource>
+											<Item>EmailRecipients</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="EmailRecipientsSearchStringContextMenu" id="282"/>
+										<ExtendedTooltip name="EmailRecipientsSearchStringExtendedTooltip" id="283"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="EmailRecipientsViewStatus" id="284">
+										<AdditionSource>
+											<Item>EmailRecipients</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="EmailRecipientsViewStatusContextMenu" id="285"/>
+										<ExtendedTooltip name="EmailRecipientsViewStatusExtendedTooltip" id="286"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="EmailRecipientsSearchControl" id="287">
+										<AdditionSource>
+											<Item>EmailRecipients</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="EmailRecipientsSearchControlContextMenu" id="288"/>
+										<ExtendedTooltip name="EmailRecipientsSearchControlExtendedTooltip" id="289"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="OnStartEdit">EmailRecipientsOnStartEdit</Event>
+										<Event name="OnActivateCell">EmailRecipientsOnActivateCell</Event>
+									</Events>
+									<ChildItems>
+										<ColumnGroup name="EmailRecipientsGroup" id="302">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Recipients group</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="EmailRecipientsGroupExtendedTooltip" id="303"/>
+											<ChildItems>
+												<ColumnGroup name="AddressGroup" id="298">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Email</v8:content>
+														</v8:item>
+													</Title>
+													<Group>Horizontal</Group>
+													<ExtendedTooltip name="AddressGroupExtendedTooltip" id="299"/>
+													<ChildItems>
+														<InputField name="Group" id="84">
+															<DataPath>EmailRecipients.Group</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Group</v8:content>
+																</v8:item>
+															</Title>
+															<Width>12</Width>
+															<Wrap>false</Wrap>
+															<ListChoiceMode>true</ListChoiceMode>
+															<ChooseType>false</ChooseType>
+															<TextEdit>false</TextEdit>
+															<ChoiceList>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>To</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:string">Whom</Value>
+																	</xr:Value>
+																</xr:Item>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Cc</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:string">Cc</Value>
+																	</xr:Value>
+																</xr:Item>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Bcc</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:string">Hidden1</Value>
+																	</xr:Value>
+																</xr:Item>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Reply recipients</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:string">Recipients</Value>
+																	</xr:Value>
+																</xr:Item>
+															</ChoiceList>
+															<ContextMenu name="GroupContextMenu" id="85"/>
+															<ExtendedTooltip name="GroupExtendedTooltip" id="241"/>
+														</InputField>
+														<InputField name="Address" id="59">
+															<DataPath>EmailRecipients.Address</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Email address</v8:content>
+																</v8:item>
+															</Title>
+															<Wrap>false</Wrap>
+															<DropListButton>true</DropListButton>
+															<TextColor>style:HyperlinkColor</TextColor>
+															<ContextMenu name="AddressContextMenu" id="60"/>
+															<ExtendedTooltip name="AddressExtendedTooltip" id="242"/>
+														</InputField>
+													</ChildItems>
+												</ColumnGroup>
+												<ColumnGroup name="ContactPresentation" id="300">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Contact presentation</v8:content>
+														</v8:item>
+													</Title>
+													<Group>InCell</Group>
+													<ExtendedTooltip name="ContactPresentationExtendedTooltip" id="301"/>
+													<ChildItems>
+														<InputField name="Contact" id="63">
+															<DataPath>EmailRecipients.Contact</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Contact</v8:content>
+																</v8:item>
+															</Title>
+															<Wrap>false</Wrap>
+															<TextColor>style:NoteText</TextColor>
+															<ContextMenu name="ContactContextMenu" id="64"/>
+															<ExtendedTooltip name="ContactExtendedTooltip" id="244"/>
+															<Events>
+																<Event name="StartChoice">ContactStartChoice</Event>
+															</Events>
+														</InputField>
+														<InputField name="Presentation" id="61">
+															<DataPath>EmailRecipients.Presentation</DataPath>
+															<Visible>false</Visible>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Presentation</v8:content>
+																</v8:item>
+															</Title>
+															<Wrap>false</Wrap>
+															<TextColor>style:NoteText</TextColor>
+															<ContextMenu name="PresentationContextMenu" id="62"/>
+															<ExtendedTooltip name="PresentationExtendedTooltip" id="243"/>
+														</InputField>
+													</ChildItems>
+												</ColumnGroup>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="FoundContacts" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Found contacts</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Email</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>1000</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="CatalogName" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ContactName" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Contact</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PresentationFilled" id="4">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SearchString" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search bar</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="EmailRecipients" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Recipients</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Address" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Email</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>1000</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Contact" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Contact</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="Group" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>20</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AddressesList" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="UsersList" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User list</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>UsersList.Description</Field>
+				<Field>UsersList.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	Users.Ref,
+	Users.DeletionMark,
+	Users.Predefined,
+	Users.Description,
+	CASE
+		WHEN Users.DeletionMark
+			THEN 0
+		ELSE 1
+	END AS PictureNumber,
+	UsersContactInformation.Presentation
+FROM
+	Catalog.Users AS Users
+	LEFT JOIN Catalog.Users.ContactInformation AS UsersContactInformation
+	ON (UsersContactInformation.Ref = Users.Ref)
+		AND (UsersContactInformation.KindForList = &amp;Email)
+WHERE
+	Users.IsInternal = FALSE
+	AND Users.DeletionMark = FALSE
+	AND Users.Invalid = FALSE
+	AND TRUE IN
+			(SELECT
+				TRUE
+			FROM
+				InformationRegister.UserGroupCompositions AS UserGroupCompositions
+			WHERE
+				UserGroupCompositions.User = Users.Ref
+				AND UserGroupCompositions.UsersGroup = &amp;UsersGroup)
+</QueryText>
+				<MainTable>Catalog.Users</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="InformationOnFullTextSearchIndexRelevance" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SearchOptions" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search options</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>SearchOptions</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ContactsBySubject" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Topic participants</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="Description" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="CatalogName" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Address" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Email</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DescriptionPresentation" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Contact</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>1000</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AddressFilled" id="3">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="FTSEnabled" id="12">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SubjectOf" id="14">
+			<Type>
+				<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="IndexTrue" id="7">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DefaultGroup" id="9">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>20</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="UserGroups" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User groups</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>UserGroups.Parent</Field>
+				<Field>UserGroups.Ref</Field>
+			</UseAlways>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseUserGroups</Item>
+			</FunctionalOptions>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	CatalogUserGroups.Ref,
+	CatalogUserGroups.DeletionMark,
+	CatalogUserGroups.Predefined,
+	CatalogUserGroups.Parent,
+	CatalogUserGroups.Description,
+	CASE
+		WHEN CatalogUserGroups.DeletionMark
+			THEN 2
+		ELSE 3
+	END AS PictureNumber
+FROM
+	Catalog.UserGroups AS CatalogUserGroups</QueryText>
+				<MainTable>Catalog.UserGroups</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="UseUserGroups" id="16">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowOnlyContactsWithAddresses" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show only contacts with email</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowOnlyContactsWithAddresses</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="AddedTablesNames" id="8">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="SelectCommand" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Finish editing and close the form.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ChooseFromList</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>OkCommandExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FindContacts" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find contacts</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>FindContactsExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FindInListFromSubjectsList" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find in list</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find in list</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.FindInList</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>FindInListFromSubjectsListExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AddFromSubjectsList" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to recipients</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to recipients.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.BusinessProcessStart</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>AddFromSubjectsListExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetContactFromSubjectsList" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select contact's email</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select the contact's email.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.FindInTree</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetContactFromSubjectsListExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeGroupTo" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify "To"</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify "To"</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ChangeGroupToExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeCcGroup" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify "Cc"</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify "Cc"</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ChangeCcGroupExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeBCCGroup" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify "Bcc"</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Specify "Bcc"</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ChangeBCCGroupExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FindInListFromRecipientsList" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find in list</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find in list</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.FindInList</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>FindInListFromRecipientsListExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FindByAddress" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find by email address</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find a contact by an email address.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>FindByAddressExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FindByPresentation" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find by name</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find a contact by name.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>FindByPresentationExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SelectAddressFromContact" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select contact's email</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select the contact's email.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Meeting</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SetContactAddressExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FindInListFromFoundItemsList" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find in list</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find in list</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.FindInList</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>FindInListFromFoundItemsListExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DeleteRecipient" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove the contact from recipient list.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DeleteRecipient</Action>
+			<Representation>Text</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DeleteAllRecipients" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt;&lt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear the recipient list.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DeleteAllRecipients</Action>
+			<Representation>Text</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AddToRecipientsList" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to recipients.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AddToRecipientsList</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SearchEverywhereOption" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Everywhere</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search in email addresses and names.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SearchEverywhereOption</Action>
+		</Command>
+		<Command name="SearchInAddressesOption" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>In email addresses</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search only in email addresses.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SearchInAddressesOption</Action>
+		</Command>
+		<Command name="SearchInContactsDescriptionsOption" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>In descriptions</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search only in contact names.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SearchInContactsDescriptionsOption</Action>
+		</Command>
+		<Command name="SearchByDomainNameOption" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>In email domains</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search only in email domain names.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SearchByDomainNameOption</Action>
+		</Command>
+		<Command name="View" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View the selected item.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>View</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="SelectedItemsList">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="SubjectOf">
+			<Type>
+				<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+			</Type>
+		</Parameter>
+		<Parameter name="DefaultGroup">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

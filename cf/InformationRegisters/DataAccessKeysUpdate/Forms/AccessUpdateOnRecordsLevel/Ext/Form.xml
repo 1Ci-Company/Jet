@@ -1,0 +1,1951 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Width>80</Width>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoURL>false</AutoURL>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnReopen">OnReopen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="WarningUniversalRestrictionDisabledGroup" id="199">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>High-performance mode disabled warning group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<VerticalAlign>Center</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="WarningUniversalRestrictionDisabledGroupExtendedTooltip" id="200"/>
+			<ChildItems>
+				<PictureDecoration name="WarningUniversalRestrictionDisabledPicture" id="201">
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="WarningUniversalRestrictionDisabledPictureContextMenu" id="202"/>
+					<ExtendedTooltip name="WarningUniversalRestrictionDisabledPictureExtendedTooltip" id="203"/>
+				</PictureDecoration>
+				<LabelDecoration name="WarningUniversalRestrictionDisabledLabel" id="204">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>High-performance mode is disabled. Standard mode is used instead.
+See the access restriction mode in the "Users and rights settings" panel.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="WarningUniversalRestrictionDisabledLabelContextMenu" id="205"/>
+					<ExtendedTooltip name="WarningUniversalRestrictionDisabledLabelExtendedTooltip" id="206"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="InitialAccessUpdateInProgressWarningGroup" id="207">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>First access update completed warning group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<VerticalAlign>Center</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="InitialAccessUpdateInProgressWarningGroupExtendedTooltip" id="208"/>
+			<ChildItems>
+				<PictureDecoration name="InitialAccessUpdateInProgressWarningPicture" id="209">
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="InitialAccessUpdateInProgressWarningPictureContextMenu" id="210"/>
+					<ExtendedTooltip name="InitialAccessUpdateInProgressWarningPictureExtendedTooltip" id="211"/>
+				</PictureDecoration>
+				<LabelDecoration name="InitialAccessUpdateInProgressWarningPictureLabel" id="212">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Standard access restriction mode is enabled until the first update is completed.
+See the "First access update completed" constant).
+</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="InitialAccessUpdateInProgressWarningPictureLabelContextMenu" id="213"/>
+					<ExtendedTooltip name="InitialAccessUpdateInProgressWarningPictureLabelExtendedTooltip" id="214"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="FormTopPanel" id="148">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Top form panel</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<VerticalAlign>Center</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="FormTopPanelExtendedTooltip" id="149"/>
+			<ChildItems>
+				<UsualGroup name="AccessUpdateNotStarted" id="215">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access update not running</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AccessUpdateNotStartedExtendedTooltip" id="216"/>
+					<ChildItems>
+						<PictureDecoration name="AccessUpdateNotStartedPicture" id="245">
+							<Width>2</Width>
+							<Height>1</Height>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access update not running picture</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Scheduled or background job</v8:content>
+								</v8:item>
+							</ToolTip>
+							<PictureSize>AutoSize</PictureSize>
+							<Picture>
+								<xr:Ref>StdPicture.ScheduledJob</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="AccessUpdateNotStartedPictureContextMenu" id="246"/>
+							<ExtendedTooltip name="AccessUpdateNotStartedPictureExtendedTooltip" id="247"/>
+						</PictureDecoration>
+						<UsualGroup name="NumberOfAccessUpdateThreads1Group" id="309">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>1 thread</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>PopUp</Behavior>
+							<Representation>None</Representation>
+							<ExtendedTooltip name="NumberOfAccessUpdateThreads1GroupExtendedTooltip" id="310"/>
+							<ChildItems>
+								<UsualGroup name="AccessUpdateThreadsCountGroupTooltip1" id="311">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Number of access update threads tooltip1</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AccessUpdateThreadsCountGroupTooltip1ExtendedTooltip" id="312"/>
+									<ChildItems>
+										<InputField name="AccessUpdateThreadsCount1" id="313">
+											<DataPath>AccessUpdateThreadsCount</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Number of access update threads</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<ClearButton>true</ClearButton>
+											<SpinButton>true</SpinButton>
+											<MinValue xsi:type="xs:decimal">1</MinValue>
+											<ContextMenu name="AccessUpdateThreadsCount1ContextMenu" id="314"/>
+											<ExtendedTooltip name="AccessUpdateThreadsCount1ExtendedTooltip" id="315"/>
+											<Events>
+												<Event name="OnChange">AccessUpdateThreadsOnChangeCount</Event>
+												<Event name="EditTextChange">AccessUpdateThreadsCountChangeEditingText</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+								<LabelDecoration name="Vspace1" id="316">
+									<ContextMenu name="Vspace1ContextMenu" id="317"/>
+									<ExtendedTooltip name="Vspace1ExtendedTooltip" id="318"/>
+								</LabelDecoration>
+								<UsualGroup name="DiskLoadBalancingGroupTooltip1" id="319">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Hard drive load balancing tooltip 1</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="DiskLoadBalancingGroupTooltip1ExtendedTooltip" id="320"/>
+									<ChildItems>
+										<InputField name="DiskLoadBalancing1" id="321">
+											<DataPath>DiskLoadBalancing</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Optimize for a database stored
+on a hard drive</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<Width>12</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ListChoiceMode>true</ListChoiceMode>
+											<TextEdit>false</TextEdit>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Faster storage (SSD)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:boolean">false</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Slower storage (HDD)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:boolean">true</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="DiskLoadBalancing1ContextMenu" id="322"/>
+											<ExtendedTooltip name="DiskLoadBalancing1ExtendedTooltip" id="323"/>
+											<Events>
+												<Event name="OnChange">DiskLoadBalancingOnChange</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<LabelDecoration name="AccessUpdateNotStartedLabel" id="223">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Not running</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>A pause between job runs, or 100% updated.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ContextMenu name="AccessUpdateNotStartedLabelContextMenu" id="224"/>
+							<ExtendedTooltip name="AccessUpdateNotStartedLabelExtendedTooltip" id="225"/>
+						</LabelDecoration>
+						<Button name="StartAccessUpdateImmediately" id="144">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.StartAccessUpdateImmediately</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Run now</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="StartAccessUpdateImmediatelyExtendedTooltip" id="145"/>
+						</Button>
+						<LabelDecoration name="LastAccessUpdateCompletion" id="260">
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>(completed at &lt;b&gt;09:05:03&lt;/&gt;, 1 min 5 sec total)</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="LastAccessUpdateCompletionContextMenu" id="261"/>
+							<ExtendedTooltip name="LastAccessUpdateCompletionExtendedTooltip" id="262"/>
+							<Events>
+								<Event name="URLProcessing">LastAccessUpdateCompletionURLProcessing</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="AccessUpdateInProgress" id="179">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access update running</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AccessUpdateInProgressExtendedTooltip" id="180"/>
+					<ChildItems>
+						<PictureDecoration name="BackgroundJobInProgressPicture" id="181">
+							<Width>2</Width>
+							<Height>1</Height>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Background job running picture</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access update running</v8:content>
+								</v8:item>
+							</ToolTip>
+							<PictureSize>AutoSize</PictureSize>
+							<Picture>
+								<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="BackgroundJobInProgressPictureContextMenu" id="182"/>
+							<ExtendedTooltip name="BackgroundJobInProgressPictureExtendedTooltip" id="183"/>
+						</PictureDecoration>
+						<PictureDecoration name="BackgroundJobPendingExecutionPicture" id="187">
+							<Visible>false</Visible>
+							<Width>2</Width>
+							<Height>1</Height>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Background job awaits execution picture</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The access update is queued
+(there are other background jobs in the queue).</v8:content>
+								</v8:item>
+							</ToolTip>
+							<PictureSize>AutoSize</PictureSize>
+							<Picture>
+								<xr:Ref>CommonPicture.ExpectedTimeConsumingOperation48</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="BackgroundJobPendingExecutionPictureContextMenu" id="188"/>
+							<ExtendedTooltip name="BackgroundJobPendingExecutionPictureExtendedTooltip" id="189"/>
+						</PictureDecoration>
+						<UsualGroup name="NumberOfAccessUpdateStreams2Group" id="324">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>1 thread</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>PopUp</Behavior>
+							<Representation>None</Representation>
+							<ExtendedTooltip name="NumberOfAccessUpdateStreams2GroupExtendedTooltip" id="325"/>
+							<ChildItems>
+								<UsualGroup name="AccessUpdateThreadsCountGroupTooltip2" id="326">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Number of access update threads tooltip 2</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AccessUpdateThreadsCountGroupTooltip2ExtendedTooltip" id="327"/>
+									<ChildItems>
+										<InputField name="AccessUpdateThreadsCount2" id="328">
+											<DataPath>AccessUpdateThreadsCount</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Number of access update threads</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<ClearButton>true</ClearButton>
+											<SpinButton>true</SpinButton>
+											<MinValue xsi:type="xs:decimal">1</MinValue>
+											<ContextMenu name="AccessUpdateThreadsCount2ContextMenu" id="329"/>
+											<ExtendedTooltip name="AccessUpdateThreadsCount2ExtendedTooltip" id="330"/>
+											<Events>
+												<Event name="OnChange">AccessUpdateThreadsOnChangeCount</Event>
+												<Event name="EditTextChange">AccessUpdateThreadsCountChangeEditingText</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+								<LabelDecoration name="Vspace2" id="331">
+									<ContextMenu name="Vspace2ContextMenu" id="332"/>
+									<ExtendedTooltip name="Vspace2ExtendedTooltip" id="333"/>
+								</LabelDecoration>
+								<UsualGroup name="DiskLoadBalancingGroupTooltip2" id="334">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Hard drive load balancing tooltip 1</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="DiskLoadBalancingGroupTooltip2ExtendedTooltip" id="335"/>
+									<ChildItems>
+										<InputField name="DiskLoadBalancing2" id="336">
+											<DataPath>DiskLoadBalancing</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Optimize for a database stored
+on a hard drive</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<Width>12</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ListChoiceMode>true</ListChoiceMode>
+											<TextEdit>false</TextEdit>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Faster storage (SSD)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:boolean">false</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Slower storage (HDD)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:boolean">true</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="DiskLoadBalancing2ContextMenu" id="337"/>
+											<ExtendedTooltip name="DiskLoadBalancing2ExtendedTooltip" id="338"/>
+											<Events>
+												<Event name="OnChange">DiskLoadBalancingOnChange</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<LabelDecoration name="BackgroundJobRunTime1" id="226">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Running for 2 min 22 sec</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="BackgroundJobRunTime1ContextMenu" id="227"/>
+							<ExtendedTooltip name="BackgroundJobRunTime1ExtendedTooltip" id="228"/>
+						</LabelDecoration>
+						<LabelDecoration name="BackgroundJobRunTime2" id="190">
+							<Visible>false</Visible>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Running for 3 min 33 sec</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="BackgroundJobRunTime2ContextMenu" id="191"/>
+							<ExtendedTooltip name="BackgroundJobRunTime2ExtendedTooltip" id="192"/>
+						</LabelDecoration>
+						<Button name="StopAndProhibitAccessUpdate" id="195">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.StopAndProhibitAccessUpdate</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cancel</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="StopAndProhibitAccessUpdateExtendedTooltip" id="196"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="AccessUpdateProhibited" id="232">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access update denied</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<VerticalAlign>Center</VerticalAlign>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AccessUpdateProhibitedExtendedTooltip" id="233"/>
+					<ChildItems>
+						<LabelDecoration name="Indent4" id="234">
+							<Width>1</Width>
+							<ContextMenu name="Indent4ContextMenu" id="235"/>
+							<ExtendedTooltip name="Indent4ExtendedTooltip" id="236"/>
+						</LabelDecoration>
+						<PictureDecoration name="AccessUpdateProhibitedPicture" id="237">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access update denied picture</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The access update is denied.
+The "Access update at record level" scheduled job is disabled.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Picture>
+								<xr:Ref>CommonPicture.Warning</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="AccessUpdateProhibitedPictureContextMenu" id="238"/>
+							<ExtendedTooltip name="AccessUpdateProhibitedPictureExtendedTooltip" id="239"/>
+						</PictureDecoration>
+						<LabelDecoration name="AccessUpdateProhibitedLabel" id="240">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update denied</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The access update is denied.
+The "Access update at record level" scheduled job is disabled.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ContextMenu name="AccessUpdateProhibitedLabelContextMenu" id="241"/>
+							<ExtendedTooltip name="AccessUpdateProhibitedLabelExtendedTooltip" id="242"/>
+						</LabelDecoration>
+						<Button name="AllowAccessUpdate" id="243">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.AllowAccessUpdate</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Allow</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="AllowAccessUpdateExtendedTooltip" id="244"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ScheduledJobDisabled" id="110">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Scheduled job disabled</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<VerticalAlign>Center</VerticalAlign>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ScheduledJobDisabledExtendedTooltip" id="111"/>
+					<ChildItems>
+						<LabelDecoration name="Indent2" id="164">
+							<Width>1</Width>
+							<ContextMenu name="Indent2ContextMenu" id="165"/>
+							<ExtendedTooltip name="Indent2ExtendedTooltip" id="166"/>
+						</LabelDecoration>
+						<PictureDecoration name="ScheduledJobDisabledPicture" id="115">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Scheduled job disabled picture</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The "Access update at record level"
+scheduled job is disabled.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Picture>
+								<xr:Ref>CommonPicture.Warning</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ScheduledJobDisabledPictureContextMenu" id="116"/>
+							<ExtendedTooltip name="ScheduledJobDisabledPictureExtendedTooltip" id="117"/>
+						</PictureDecoration>
+						<LabelDecoration name="ScheduledJobDisabledLabel" id="112">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Scheduled job disabled</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The "Access update at record level"
+scheduled job is disabled.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ContextMenu name="ScheduledJobDisabledLabelContextMenu" id="113"/>
+							<ExtendedTooltip name="ScheduledJobDisabledLabelExtendedTooltip" id="114"/>
+						</LabelDecoration>
+						<Button name="EnableScheduledJob" id="118">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.EnableScheduledJob</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Enable</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="EnableScheduledJobExtendedTooltip" id="119"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="FormCommands" id="108">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Form commands</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="FormCommandsExtendedTooltip" id="109"/>
+					<ChildItems>
+						<Button name="FormManualControl" id="3">
+							<Type>CommandBarButton</Type>
+							<DefaultItem>true</DefaultItem>
+							<CommandName>Form.Command.ManualControl</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure access manually…</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="FormManualControlExtendedTooltip" id="4"/>
+						</Button>
+						<Button name="FormStopAndProhibitAccessUpdate" id="275">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.StopAndProhibitAccessUpdate</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Stop and deny access update</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="FormStopAndProhibitAccessUpdateExtendedTooltip" id="276"/>
+						</Button>
+						<Button name="FormOutputList" id="59">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.Lists.StandardCommand.OutputList</CommandName>
+							<ExtendedTooltip name="FormOutputListExtendedTooltip" id="60"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GeneralUpdateProgressBar" id="91">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update progress indicator</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<VerticalAlign>Center</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GeneralUpdateProgressBarExtendedTooltip" id="92"/>
+			<ChildItems>
+				<ProgressBarField name="UpdatedTotal" id="88">
+					<DataPath>UpdatedTotal</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access update</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The progress of access update for all lists.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Width>1</Width>
+					<ShowPercent>true</ShowPercent>
+					<ContextMenu name="UpdatedTotalContextMenu" id="89"/>
+					<ExtendedTooltip name="UpdatedTotalExtendedTooltip" id="90"/>
+				</ProgressBarField>
+				<Pages name="ProgressBarRefresh" id="61">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Progress bar update</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="ProgressBarRefreshExtendedTooltip" id="62"/>
+					<ChildItems>
+						<Page name="RefreshingProgressBarCompleted" id="63">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Progress bar update completed</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<ExtendedTooltip name="RefreshingProgressBarCompletedExtendedTooltip" id="64"/>
+							<ChildItems>
+								<Button name="RefreshProgressBar" id="84">
+									<Type>Hyperlink</Type>
+									<Height>1</Height>
+									<CommandName>Form.Command.RefreshProgressBar</CommandName>
+									<Font ref="style:SmallTextFont" kind="StyleItem"/>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Refresh progress bar</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="RefreshProgressBarExtendedTooltip" id="85"/>
+								</Button>
+							</ChildItems>
+						</Page>
+						<Page name="RefreshingProgressBar" id="65">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Updating progress bar</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<ExtendedTooltip name="RefreshingProgressBarExtendedTooltip" id="66"/>
+							<ChildItems>
+								<PictureDecoration name="RefreshingProgressBarPicture" id="70">
+									<Width>2</Width>
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Progress bar update picture</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Updating progress bar</v8:content>
+										</v8:item>
+									</ToolTip>
+									<PictureSize>AutoSize</PictureSize>
+									<Picture>
+										<xr:Ref>CommonPicture.TimeConsumingOperation16</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="RefreshingProgressBarPictureContextMenu" id="71"/>
+									<ExtendedTooltip name="RefreshingProgressBarPictureExtendedTooltip" id="72"/>
+								</PictureDecoration>
+								<PictureDecoration name="RefreshingProgressBarPendingPicture" id="167">
+									<Visible>false</Visible>
+									<Width>2</Width>
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Progress bar update picture</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The progress bar update is queued
+(there are other background jobs in the queue).</v8:content>
+										</v8:item>
+									</ToolTip>
+									<PictureSize>AutoSize</PictureSize>
+									<Picture>
+										<xr:Ref>CommonPicture.ExpectedTimeConsumingOperation16</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="RefreshingProgressBarPendingPictureContextMenu" id="168"/>
+									<ExtendedTooltip name="RefreshingProgressBarPendingPictureExtendedTooltip" id="169"/>
+								</PictureDecoration>
+								<Button name="CancelRefreshingProgressBar" id="86">
+									<Type>Hyperlink</Type>
+									<Height>1</Height>
+									<CommandName>Form.Command.CancelRefreshingProgressBar</CommandName>
+									<Font ref="style:SmallTextFont" kind="StyleItem"/>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Cancel</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="CancelRefreshingProgressBarExtendedTooltip" id="87"/>
+								</Button>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+				<UsualGroup name="AutoRefresh" id="106">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update automatically</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AutoRefreshExtendedTooltip" id="107"/>
+					<ChildItems>
+						<CheckBoxField name="ProgressAutoUpdate" id="79">
+							<DataPath>ProgressAutoUpdate</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update automatically</v8:content>
+								</v8:item>
+							</Title>
+							<TitleFont ref="style:SmallTextFont" kind="StyleItem"/>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update the progress bar
+automatically.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ProgressAutoUpdateContextMenu" id="80"/>
+							<ExtendedTooltip name="ProgressAutoUpdateExtendedTooltip" id="81"/>
+							<Events>
+								<Event name="OnChange">ProgressAutoUpdateOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<InputField name="ProgressUpdatePeriod" id="48">
+							<DataPath>ProgressUpdatePeriod</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>sec</v8:content>
+								</v8:item>
+							</Title>
+							<TitleFont ref="style:SmallTextFont" kind="StyleItem"/>
+							<TitleLocation>Right</TitleLocation>
+							<SpinButton>true</SpinButton>
+							<MinValue xsi:type="xs:decimal">1</MinValue>
+							<Font ref="style:SmallTextFont" kind="StyleItem"/>
+							<ContextMenu name="ProgressUpdatePeriodContextMenu" id="49"/>
+							<ExtendedTooltip name="ProgressUpdatePeriodExtendedTooltip" id="50"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="BriefDetailed" id="193">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Details</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<CollapsedRepresentationTitle>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Details</v8:content>
+				</v8:item>
+			</CollapsedRepresentationTitle>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>None</Representation>
+			<ShowLeftMargin>false</ShowLeftMargin>
+			<ExtendedTooltip name="BriefDetailedExtendedTooltip" id="194"/>
+			<ChildItems>
+				<UsualGroup name="CalculateProgressByDataVolume" id="282">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Calculate progress by amount of data</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CalculateProgressByDataVolumeExtendedTooltip" id="283"/>
+					<ChildItems>
+						<SearchStringAddition name="SearchString_" id="339">
+							<AdditionSource>
+								<Item>Lists</Item>
+								<Type>SearchStringRepresentation</Type>
+							</AdditionSource>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Search</v8:content>
+								</v8:item>
+							</Title>
+							<Width>15</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="SearchString_ContextMenu" id="340"/>
+							<ExtendedTooltip name="SearchString_ExtendedTooltip" id="341"/>
+						</SearchStringAddition>
+						<CheckBoxField name="CalculateByDataAmount" id="93">
+							<DataPath>CalculateByDataAmount</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Calculate progress by amount of data</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>To calculate progress by the number of
+data items and access keys (low performance), select the check box.
+
+To calculate progress by the number of processed lists,
+clear the check box.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="CalculateByDataAmountContextMenu" id="94"/>
+							<ExtendedTooltip name="CalculateByDataAmountExtendedTooltip" id="95"/>
+							<Events>
+								<Event name="OnChange">CalculateByDataAmountOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<UsualGroup name="ViewSettings" id="277">
+							<Visible>false</Visible>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Customize progress view</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Customize progress view for individual lists.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Vertical</Group>
+							<Behavior>PopUp</Behavior>
+							<Representation>None</Representation>
+							<ExtendedTooltip name="ViewSettingsExtendedTooltip" id="278"/>
+							<ChildItems>
+								<CheckBoxField name="ShowItemsCount" id="279">
+									<DataPath>ShowItemsCount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Show number of items</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShowItemsCountContextMenu" id="280"/>
+									<ExtendedTooltip name="ShowItemsCountExtendedTooltip" id="281"/>
+									<Events>
+										<Event name="OnChange">ShowItemsCountOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<CheckBoxField name="ShowAccessKeysCount" id="287">
+									<DataPath>ShowAccessKeysCount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Show number of access keys</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShowAccessKeysCountContextMenu" id="288"/>
+									<ExtendedTooltip name="ShowAccessKeysCountExtendedTooltip" id="289"/>
+									<Events>
+										<Event name="OnChange">ShowAccessKeysCountOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<CheckBoxField name="ShowProcessingDelay" id="306">
+									<DataPath>ShowProcessingDelay</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Show processing delay</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShowProcessingDelayContextMenu" id="307"/>
+									<ExtendedTooltip name="ShowProcessingDelayExtendedTooltip" id="308"/>
+									<Events>
+										<Event name="OnChange">ShowProcessingDelayOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<CheckBoxField name="ShowTableName" id="290">
+									<DataPath>ShowTableName</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Show table name</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShowTableNameContextMenu" id="291"/>
+									<ExtendedTooltip name="ShowTableNameExtendedTooltip" id="292"/>
+									<Events>
+										<Event name="OnChange">ShowTableNameOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<CheckBoxField name="ShowProcessedLists" id="284">
+									<DataPath>ShowProcessedLists</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Show processed lists</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShowProcessedListsContextMenu" id="285"/>
+									<ExtendedTooltip name="ShowProcessedListsExtendedTooltip" id="286"/>
+									<Events>
+										<Event name="OnChange">ShowProcessedListsOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<Table name="Lists" id="5">
+					<Representation>List</Representation>
+					<ChangeRowSet>false</ChangeRowSet>
+					<HeaderHeight>3</HeaderHeight>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>Lists</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Lists</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>Add</ExcludedCommand>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Delete</ExcludedCommand>
+						<ExcludedCommand>EndEdit</ExcludedCommand>
+						<ExcludedCommand>MoveDown</ExcludedCommand>
+						<ExcludedCommand>MoveUp</ExcludedCommand>
+						<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+						<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+						<ExcludedCommand>SortListAsc</ExcludedCommand>
+						<ExcludedCommand>SortListDesc</ExcludedCommand>
+					</CommandSet>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="ListsContextMenu" id="6">
+						<ChildItems>
+							<Button name="ListsContextMenuFind" id="96">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.Lists.StandardCommand.Find</CommandName>
+								<ExtendedTooltip name="ListsContextMenuFindExtendedTooltip" id="97"/>
+							</Button>
+							<Button name="ListsContextMenuCancelSearch" id="98">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.Lists.StandardCommand.CancelSearch</CommandName>
+								<ExtendedTooltip name="ListsContextMenuCancelSearchExtendedTooltip" id="99"/>
+							</Button>
+							<Button name="ListsContextMenuSortListAsc" id="102">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.SortListAsc</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Sort list in ascending order</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ListsContextMenuSortListAscExtendedTooltip" id="103"/>
+							</Button>
+							<Button name="ListsContextMenuSortListDesc" id="104">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.SortListDesc</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Sort list in ascending order</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ListsContextMenuSortListDescExtendedTooltip" id="105"/>
+							</Button>
+							<Button name="ListsContextMenuOutputList" id="100">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.Lists.StandardCommand.OutputList</CommandName>
+								<ExtendedTooltip name="ListsContextMenuOutputListExtendedTooltip" id="101"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="ListsCommandBar" id="7">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="ListsExtendedTooltip" id="8"/>
+					<SearchStringAddition name="ListsSearchString" id="9">
+						<AdditionSource>
+							<Item>Lists</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ListsSearchStringContextMenu" id="10"/>
+						<ExtendedTooltip name="ListsSearchStringExtendedTooltip" id="11"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ListsViewStatus" id="12">
+						<AdditionSource>
+							<Item>Lists</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ListsViewStatusContextMenu" id="13"/>
+						<ExtendedTooltip name="ListsViewStatusExtendedTooltip" id="14"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ListsSearchControl" id="15">
+						<AdditionSource>
+							<Item>Lists</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ListsSearchControlContextMenu" id="16"/>
+						<ExtendedTooltip name="ListsSearchControlExtendedTooltip" id="17"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="OnActivateRow">ListsOnActivateRow</Event>
+					</Events>
+					<ChildItems>
+						<InputField name="ListsListPresentation" id="18">
+							<DataPath>Lists.ListPresentation</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Data items list</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>A name of a list of documents, catalog items, register records, or similar items.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>30</Width>
+							<ContextMenu name="ListsListPresentationContextMenu" id="19"/>
+							<ExtendedTooltip name="ListsListPresentationExtendedTooltip" id="20"/>
+						</InputField>
+						<InputField name="ListsItemsProcessed" id="27">
+							<DataPath>Lists.ItemsProcessed</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Data
+items
+processed, %</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Validation and update of access keys to
+objects and register record groups.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<HorizontalAlign>Right</HorizontalAlign>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>6</Width>
+							<Format>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>NZ=0</v8:content>
+								</v8:item>
+							</Format>
+							<EditFormat>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>NZ=0</v8:content>
+								</v8:item>
+							</EditFormat>
+							<ContextMenu name="ListsItemsProcessedContextMenu" id="28"/>
+							<ExtendedTooltip name="ListsItemsProcessedExtendedTooltip" id="29"/>
+						</InputField>
+						<InputField name="ListsAccessKeysProcessed" id="30">
+							<DataPath>Lists.AccessKeysProcessed</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access
+keys
+processed, %</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Validation and update of "allowed" property of access keys
+for users, external users, and access groups.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<HorizontalAlign>Right</HorizontalAlign>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>6</Width>
+							<Format>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>NZ=0</v8:content>
+								</v8:item>
+							</Format>
+							<EditFormat>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>NZ=0</v8:content>
+								</v8:item>
+							</EditFormat>
+							<ContextMenu name="ListsAccessKeysProcessedContextMenu" id="31"/>
+							<ExtendedTooltip name="ListsAccessKeysProcessedExtendedTooltip" id="32"/>
+						</InputField>
+						<InputField name="ListsItemCount" id="33">
+							<DataPath>Lists.ItemCount</DataPath>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Total
+items</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The total number of objects
+or register record groups.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>8</Width>
+							<ContextMenu name="ListsItemCountContextMenu" id="34"/>
+							<ExtendedTooltip name="ListsItemCountExtendedTooltip" id="35"/>
+						</InputField>
+						<InputField name="ListsProcessedItemsCount" id="36">
+							<DataPath>Lists.ProcessedItemsCount</DataPath>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Processed
+items
+</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The number of processed objects
+or register record groups.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>8</Width>
+							<ContextMenu name="ListsProcessedItemsCountContextMenu" id="37"/>
+							<ExtendedTooltip name="ListsProcessedItemsCountExtendedTooltip" id="38"/>
+						</InputField>
+						<InputField name="ListsAccessKeysCount" id="39">
+							<DataPath>Lists.AccessKeysCount</DataPath>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Total
+access
+keys</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>8</Width>
+							<ContextMenu name="ListsAccessKeysCountContextMenu" id="40"/>
+							<ExtendedTooltip name="ListsAccessKeysCountExtendedTooltip" id="41"/>
+						</InputField>
+						<InputField name="ListsProcessedAccessKeysCount" id="42">
+							<DataPath>Lists.ProcessedAccessKeysCount</DataPath>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Processed
+access
+keys</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>8</Width>
+							<ContextMenu name="ListsProcessedAccessKeysCountContextMenu" id="43"/>
+							<ExtendedTooltip name="ListsProcessedAccessKeysCountExtendedTooltip" id="44"/>
+						</InputField>
+						<InputField name="ListsListProcessingDelay" id="303">
+							<DataPath>Lists.ListProcessingDelay</DataPath>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>List
+processing
+delay, sec</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The time elapsed since the completion
+of the last access update job for the list.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>7</Width>
+							<ContextMenu name="ListsListProcessingDelayContextMenu" id="304"/>
+							<ExtendedTooltip name="ListsListProcessingDelayExtendedTooltip" id="305"/>
+						</InputField>
+						<InputField name="ListsTableName" id="21">
+							<DataPath>Lists.TableName</DataPath>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Table name</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ListsTableNameContextMenu" id="22"/>
+							<ExtendedTooltip name="ListsTableNameExtendedTooltip" id="23"/>
+						</InputField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Lists" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Lists</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="List" id="1">
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExtensionObjectIDs</v8:Type>
+						<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+					</Type>
+				</Column>
+				<Column name="TableName" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Table name</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ItemsProcessed" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data items processed</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>3</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="AccessKeysProcessed" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access keys processed</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>3</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ItemCount" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Total items</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ProcessedItemsCount" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Processed items</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="AccessKeysCount" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Total access keys</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ProcessedAccessKeysCount" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Processed access keys</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="LatestUpdatedItemDate" id="11">
+					<Type/>
+				</Column>
+				<Column name="LastUpdatedItem" id="12">
+					<Type/>
+				</Column>
+				<Column name="ListPresentation" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ListProcessingDelay" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List processing delay</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>6</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="LatestUpdate" id="14">
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="FirstUpdateSchedule" id="3">
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ProgressUpdatePeriod" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Progress update period, sec</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowProcessedLists" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show processed lists</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowProcessedLists</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ProgressAutoUpdate" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update progress bar automatically</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsRepeatedProgressUpdate" id="7">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UpdatedTotal" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Total items updated</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CalculateByDataAmount" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate by amount of data</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SortFields" id="10">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="LastAccessUpdateCompletion" id="13">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="RefreshingProgressBar" id="17">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="LastExecutionDuration" id="18">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowItemsCount" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show number of items</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowItemsCount</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ShowAccessKeysCount" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show number of access keys</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowAccessKeysCount</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ShowTableName" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show table name</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowTableName</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="AccessUpdateThreadsCount" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number of access update threads</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowProcessingDelay" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show processing delay</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowProcessingDelay</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="MaxDate" id="22">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="RedColor" id="12">
+			<Type>
+				<v8:Type>v8ui:Color</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="BoldFont" id="14">
+			<Type>
+				<v8:Type>v8ui:Font</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DiskLoadBalancing" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Optimize for a database stored
+on a hard drive</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ManualControl" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure access manually…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update an object or schedule update of access to the selected lists.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ManualControl</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RefreshProgressBar" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh progress bar</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh the progress bar
+of the access update.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Action>RefreshProgressBar</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CancelRefreshingProgressBar" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel refreshing progress bar</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel refreshing progress bar</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CancelRefreshingProgressBar</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SortListAsc" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sort list in ascending order</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.SortListAsc</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SortListAsc</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SortListDesc" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sort list in ascending order</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.SortListDesc</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SortListDesc</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="EnableScheduledJob" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Enable scheduled job</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Enable the "Access update at record level"
+scheduled job.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableAccessUpdate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="StartAccessUpdateImmediately" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Run access update now</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Run the access update now and
+proceed until it is completed or canceled.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>StartAccessUpdateImmediately</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="StopAndProhibitAccessUpdate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Stop and deny access update</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Stop and deny access update, and disable
+the "Access update at record level" scheduled job.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>StopAndProhibitAccessUpdate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AllowAccessUpdate" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow access update</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow access update and enable
+the "Access update at record level" scheduled job.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableAccessUpdate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ShowProgressPerLists">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="DisableProgressAutoUpdate">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

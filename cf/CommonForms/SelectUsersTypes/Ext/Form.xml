@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormSelect" id="21">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.Select</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Select</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormSelectExtendedTooltip" id="22"/>
+			</Button>
+			<ButtonGroup name="GroupOfCommandsFlags" id="72">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Checkboxes</v8:content>
+					</v8:item>
+				</Title>
+				<Representation>Compact</Representation>
+				<ExtendedTooltip name="GroupOfCommandsFlagsExtendedTooltip" id="73"/>
+				<ChildItems>
+					<Button name="PurposeSelectAll" id="68">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.Purpose.StandardCommand.CheckAll</CommandName>
+						<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="PurposeSelectAllExtendedTooltip" id="69"/>
+					</Button>
+					<Button name="PurposeClearAll" id="70">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.Purpose.StandardCommand.UncheckAll</CommandName>
+						<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="PurposeClearAllExtendedTooltip" id="71"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<SearchStringAddition name="SearchString_" id="74">
+				<AdditionSource>
+					<Item>Purpose</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Search</v8:content>
+					</v8:item>
+				</Title>
+				<ContextMenu name="SearchString_ContextMenu" id="75"/>
+				<ExtendedTooltip name="SearchString_ExtendedTooltip" id="76"/>
+			</SearchStringAddition>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="Purpose" id="47">
+			<Representation>List</Representation>
+			<Header>false</Header>
+			<HorizontalLines>false</HorizontalLines>
+			<VerticalLines>false</VerticalLines>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Purpose</DataPath>
+			<RowPictureDataPath>Purpose.Picture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assignment</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="PurposeContextMenu" id="48"/>
+			<AutoCommandBar name="PurposeCommandBar" id="49">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="PurposeExtendedTooltip" id="50"/>
+			<SearchStringAddition name="PurposeSearchString" id="51">
+				<AdditionSource>
+					<Item>Purpose</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="PurposeSearchStringContextMenu" id="52"/>
+				<ExtendedTooltip name="PurposeSearchStringExtendedTooltip" id="53"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="PurposeViewStatus" id="54">
+				<AdditionSource>
+					<Item>Purpose</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="PurposeViewStatusContextMenu" id="55"/>
+				<ExtendedTooltip name="PurposeViewStatusExtendedTooltip" id="56"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="PurposeSearchControl" id="57">
+				<AdditionSource>
+					<Item>Purpose</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="PurposeSearchControlContextMenu" id="58"/>
+				<ExtendedTooltip name="PurposeSearchControlExtendedTooltip" id="59"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<ColumnGroup name="PurposeGroup" id="66">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Purpose group</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="PurposeGroupExtendedTooltip" id="67"/>
+					<ChildItems>
+						<CheckBoxField name="PurposeCheckBox" id="63">
+							<DataPath>Purpose.Check</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Mark</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="PurposeCheckBoxContextMenu" id="64"/>
+							<ExtendedTooltip name="PurposeCheckBoxExtendedTooltip" id="65"/>
+						</CheckBoxField>
+						<InputField name="PurposePresentation" id="60">
+							<DataPath>Purpose.Presentation</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Presentation</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="PurposePresentationContextMenu" id="61"/>
+							<ExtendedTooltip name="PurposePresentationExtendedTooltip" id="62"/>
+						</InputField>
+					</ChildItems>
+				</ColumnGroup>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Purpose" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assignment</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Select" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Select</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Title">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="Purpose">
+			<Type/>
+		</Parameter>
+		<Parameter name="SelectUsersAllowed">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="IsFilter">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

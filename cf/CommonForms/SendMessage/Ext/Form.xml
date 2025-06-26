@@ -1,0 +1,1016 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandBarLocation>Top</CommandBarLocation>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="SendMail" id="1">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.SendMail</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Send</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="SendMailExtendedTooltip" id="49"/>
+			</Button>
+			<Button name="FormGenerateFromTemplate" id="106">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.GenerateFromTemplate</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Create from template</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormGenerateFromTemplateExtendedTooltip" id="107"/>
+			</Button>
+			<Button name="Help" id="27">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="HelpExtendedTooltip" id="50"/>
+			</Button>
+			<Button name="FormSaveAsTemplate" id="108">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.SaveAsTemplate</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save as template…</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormSaveAsTemplateExtendedTooltip" id="109"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Account" id="76">
+			<DataPath>Account</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>From</v8:content>
+				</v8:item>
+			</Title>
+			<ChoiceParameters>
+				<app:item name="Filter.UseForSending">
+					<app:value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation/>
+						<Value xsi:type="xs:boolean">true</Value>
+					</app:value>
+				</app:item>
+				<app:item name="Filter.DeletionMark">
+					<app:value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation/>
+						<Value xsi:type="xs:boolean">false</Value>
+					</app:value>
+				</app:item>
+			</ChoiceParameters>
+			<ContextMenu name="AccountContextMenu" id="77"/>
+			<ExtendedTooltip name="AccountExtendedTooltip" id="78"/>
+			<Events>
+				<Event name="OnChange">SetFormModificationFlag</Event>
+				<Event name="ChoiceProcessing">AccountChoiceProcessing</Event>
+			</Events>
+		</InputField>
+		<UsualGroup name="EmailBodyMainGroup" id="10" DisplayImportance="VeryHigh">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Message body main group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="EmailBodyMainGroupExtendedTooltip" id="51"/>
+			<ChildItems>
+				<Table name="RecipientsMailAddresses" id="87" DisplayImportance="VeryHigh">
+					<Representation>List</Representation>
+					<HeightInTableRows>3</HeightInTableRows>
+					<Header>false</Header>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>RecipientsMailAddresses</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Recipient addresses</v8:content>
+						</v8:item>
+					</Title>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="RecipientsMailAddressesContextMenu" id="88"/>
+					<AutoCommandBar name="RecipientsMailAddressesCommandBar" id="89">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="RecipientsMailAddressesExtendedTooltip" id="90"/>
+					<SearchStringAddition name="RecipientsMailAddressesSearchString" id="91">
+						<AdditionSource>
+							<Item>RecipientsMailAddresses</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="RecipientsMailAddressesSearchStringContextMenu" id="92"/>
+						<ExtendedTooltip name="RecipientsMailAddressesSearchStringExtendedTooltip" id="93"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="RecipientsMailAddressesViewStatus" id="94">
+						<AdditionSource>
+							<Item>RecipientsMailAddresses</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="RecipientsMailAddressesViewStatusContextMenu" id="95"/>
+						<ExtendedTooltip name="RecipientsMailAddressesViewStatusExtendedTooltip" id="96"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="RecipientsMailAddressesSearchControl" id="97">
+						<AdditionSource>
+							<Item>RecipientsMailAddresses</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="RecipientsMailAddressesSearchControlContextMenu" id="98"/>
+						<ExtendedTooltip name="RecipientsMailAddressesSearchControlExtendedTooltip" id="99"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="BeforeDeleteRow">RecipientPostalAddressesBeforeDelete</Event>
+						<Event name="BeforeEditEnd">RecipientPostalAddressesBeforeEditEnd</Event>
+						<Event name="OnStartEdit">RecipientPostalAddressesOnStartEdit</Event>
+					</Events>
+					<ChildItems>
+						<InputField name="RecipientsEmailAddressSendingOption" id="100">
+							<DataPath>RecipientsMailAddresses.SendingOption</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Recipient type</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>Directly</EditMode>
+							<Width>12</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ListChoiceMode>true</ListChoiceMode>
+							<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+							<ChooseType>false</ChooseType>
+							<IncompleteChoiceMode>OnActivate</IncompleteChoiceMode>
+							<TextEdit>false</TextEdit>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>To:</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">Whom</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Cc:</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">Copy</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Bcc:</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">HiddenCopy</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="RecipientsEmailAddressSendingOptionContextMenu" id="101"/>
+							<ExtendedTooltip name="RecipientsEmailAddressSendingOptionExtendedTooltip" id="102"/>
+						</InputField>
+						<InputField name="RecipientsEmailAddressPresentation" id="110">
+							<DataPath>RecipientsMailAddresses.Presentation</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Presentation</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>40</Width>
+							<ChooseType>false</ChooseType>
+							<ContextMenu name="RecipientsEmailAddressPresentationContextMenu" id="111"/>
+							<ExtendedTooltip name="RecipientsEmailAddressPresentationExtendedTooltip" id="112"/>
+							<Events>
+								<Event name="AutoComplete">RecipientsEmailAddressPresentationAutoComplete</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</Table>
+				<UsualGroup name="GroupEmailSubject" id="113">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Email subject</v8:content>
+						</v8:item>
+					</Title>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupEmailSubjectExtendedTooltip" id="114"/>
+					<ChildItems>
+						<InputField name="EmailSubject" id="11">
+							<DataPath>EmailSubject</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Subject</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The outgoing message subject.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Width>60</Width>
+							<Wrap>false</Wrap>
+							<ContextMenu name="EmailSubjectContextMenu" id="12"/>
+							<ExtendedTooltip name="EmailSubjectExtendedTooltip" id="53"/>
+							<Events>
+								<Event name="OnChange">SetFormModificationFlag</Event>
+							</Events>
+						</InputField>
+						<CommandBar name="CommandBarEmailSubject" id="115">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar email subject</v8:content>
+								</v8:item>
+							</Title>
+							<Width>5</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedTooltip name="CommandBarEmailSubjectExtendedTooltip" id="116"/>
+							<ChildItems>
+								<Popup name="SeverityGroup" id="117">
+									<EnableContentChange>true</EnableContentChange>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Importance</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>CommonPicture.ImportanceNotSpecified</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<Representation>Picture</Representation>
+									<ExtendedTooltip name="SeverityGroupExtendedTooltip" id="118"/>
+									<ChildItems>
+										<Button name="ImportanceHigh" id="119">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ImportanceHigh</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>High importance</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ImportanceHighExtendedTooltip" id="120"/>
+										</Button>
+										<Button name="ImportanceNormal" id="121">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ImportanceNormal</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Normal importance</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ImportanceNormalExtendedTooltip" id="122"/>
+										</Button>
+										<Button name="ImportanceLow" id="123">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ImportanceLow</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Low importance</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ImportanceLowExtendedTooltip" id="124"/>
+										</Button>
+									</ChildItems>
+								</Popup>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="CommandBarFormatting" id="79">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Formatting command bar</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Item.EmailBody</CommandSource>
+					<ExtendedTooltip name="CommandBarFormattingExtendedTooltip" id="80"/>
+				</CommandBar>
+				<FormattedDocumentField name="EmailBody" id="22">
+					<DataPath>EmailBody</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Message body</v8:content>
+						</v8:item>
+					</ToolTip>
+					<AutoMaxHeight>false</AutoMaxHeight>
+					<ContextMenu name="EmailBodyContextMenu" id="23"/>
+					<ExtendedTooltip name="EmailBodyExtendedTooltip" id="54"/>
+					<Events>
+						<Event name="OnChange">SetFormModificationFlag</Event>
+					</Events>
+				</FormattedDocumentField>
+				<UsualGroup name="AttachmentsGroup" id="21">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attachments</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AttachmentsGroupExtendedTooltip" id="55"/>
+					<ChildItems>
+						<Table name="Attachments" id="13">
+							<Representation>List</Representation>
+							<SkipOnInput>false</SkipOnInput>
+							<HeightInTableRows>2</HeightInTableRows>
+							<SelectionMode>SingleRow</SelectionMode>
+							<Header>false</Header>
+							<HorizontalScrollBar>DontUse</HorizontalScrollBar>
+							<HorizontalLines>false</HorizontalLines>
+							<VerticalLines>false</VerticalLines>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>AttachmentsPresentation</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Attach</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>SortListAsc</ExcludedCommand>
+								<ExcludedCommand>SortListDesc</ExcludedCommand>
+							</CommandSet>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="AttachmentsContextMenu" id="14">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<ButtonGroup name="AttachFileGroup" id="45">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Attach file</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AttachFileGroupExtendedTooltip" id="56"/>
+										<ChildItems>
+											<Button name="ContextMenuAttachmentsAttachFile" id="44">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.AttachFile</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Attach file…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ContextMenuAttachmentsAttachFileExtendedTooltip" id="57"/>
+											</Button>
+											<Button name="ContextMenuAttachmentsDelete" id="43">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Item.Attachments.StandardCommand.Delete</CommandName>
+												<ExtendedTooltip name="ContextMenuAttachmentsDeleteExtendedTooltip" id="58"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="ContextMenuAttachmentsOpenFile" id="46">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.OpenFile</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Open file</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ContextMenuAttachmentsOpenFileExtendedTooltip" id="59"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="AttachmentsCommandBar" id="15">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="AttachFile" id="40">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.AttachFile</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Attach file…</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AttachFileExtendedTooltip" id="60"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="AttachmentsExtendedTooltip" id="61"/>
+							<SearchStringAddition name="AttachmentsSearchString" id="67">
+								<AdditionSource>
+									<Item>Attachments</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AttachmentsSearchStringContextMenu" id="68"/>
+								<ExtendedTooltip name="AttachmentsSearchStringExtendedTooltip" id="69"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="AttachmentsViewStatus" id="70">
+								<AdditionSource>
+									<Item>Attachments</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AttachmentsViewStatusContextMenu" id="71"/>
+								<ExtendedTooltip name="AttachmentsViewStatusExtendedTooltip" id="72"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="AttachmentsSearchControl" id="73">
+								<AdditionSource>
+									<Item>Attachments</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="AttachmentsSearchControlContextMenu" id="74"/>
+								<ExtendedTooltip name="AttachmentsSearchControlExtendedTooltip" id="75"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="DragCheck">AttachmentsDragCheck</Event>
+								<Event name="Selection">AttachmentsSelection</Event>
+								<Event name="BeforeAddRow">AttachmentsBeforeAddRow</Event>
+								<Event name="BeforeDeleteRow">AttachmentsBeforeDeleteRow</Event>
+								<Event name="Drag">AttachmentsDrag</Event>
+								<Event name="OnChange">SetFormModificationFlag</Event>
+							</Events>
+							<ChildItems>
+								<InputField name="Attachment1" id="34">
+									<DataPath>AttachmentsPresentation.Attachment1</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Attachment1</v8:content>
+										</v8:item>
+									</Title>
+									<Wrap>false</Wrap>
+									<ContextMenu name="Attachment1ContextMenu" id="35">
+										<Autofill>false</Autofill>
+									</ContextMenu>
+									<ExtendedTooltip name="Attachment1ExtendedTooltip" id="62"/>
+								</InputField>
+								<InputField name="Attachment2" id="36">
+									<DataPath>AttachmentsPresentation.Attachment2</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Attachment2</v8:content>
+										</v8:item>
+									</Title>
+									<Wrap>false</Wrap>
+									<ContextMenu name="Attachment2ContextMenu" id="37">
+										<Autofill>false</Autofill>
+									</ContextMenu>
+									<ExtendedTooltip name="Attachment2ExtendedTooltip" id="63"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</UsualGroup>
+				<InputField name="ReplyToAddress" id="47">
+					<DataPath>ReplyToAddress</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reply-to address</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>A reply-to email address.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Wrap>false</Wrap>
+					<ContextMenu name="ReplyToAddressContextMenu" id="48"/>
+					<ExtendedTooltip name="ReplyToAddressExtendedTooltip" id="66"/>
+					<Events>
+						<Event name="OnChange">SetFormModificationFlag</Event>
+						<Event name="Clearing">ReplyToAddressClearing</Event>
+						<Event name="TextEditEnd">ReplyToAddressTextEditEnd</Event>
+						<Event name="ChoiceProcessing">ReplyToAddressChoiceProcessing</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="RecipientEmailAddress" id="1">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="EmailBody" id="2">
+			<Type>
+				<v8:Type xmlns:fd="http://v8.1c.ru/8.2/data/formatted-document">fd:FormattedDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="EmailSubject" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Subject</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="EmailAttachments" id="5">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="Account" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>From</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.EmailAccounts</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ReplyToAddress" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reply-to address</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FillReplyToAddressAutomatically" id="8">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AttachmentsPresentation" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attachments presentation</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Attachment1" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attachment1</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Attachment2" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attachment2</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="AttachmentsHaveRefs" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsPasswordSet" id="11">
+			<Type/>
+		</Attribute>
+		<Attribute name="ReplyToAddressesByAccounts" id="10">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription">
+				<v8:Type>cfg:CatalogRef.EmailAccounts</v8:Type>
+			</Settings>
+		</Attribute>
+		<Attribute name="Attachments" id="13">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Presentation" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AddressInTempStorage" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Encoding" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PathToFile" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Id" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="FormClosingConfirmationRequired" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="RecipientsMailAddresses" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Recipient addresses</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<Columns>
+				<Column name="SendingOption" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Recipient type</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="MessageRecipients" id="20">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="SuccessResultColor" id="21">
+			<Type>
+				<v8:Type>v8ui:Color</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SubjectOf" id="12">
+			<Type/>
+		</Attribute>
+		<Attribute name="RecipientDetailsInTempStorage" id="14">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="EmailImportance" id="22">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>10</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="SendMail" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Send</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Send</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SendMail</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AttachFile" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attach file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attach file…</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Clip</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>AttachFileExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenFile" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open file</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open file</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.OpenFile</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>OpenFile</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GenerateFromTemplate" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Create from template</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Create from template</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GenerateFromTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SaveAsTemplate" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save as template…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save the message as a mail template.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SaveAsTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ImportanceHigh" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>High importance</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>High importance</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ImportanceHigh</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ImportanceHigh</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ImportanceLow" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Low importance</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Low importance</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ImportanceLow</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ImportanceLow</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ImportanceNormal" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Normal importance</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Normal importance</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ImportanceNotSpecified</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ImportanceNormal</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Sender">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+				<v8:Type>cfg:CatalogRef.EmailAccounts</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="Recipient">
+			<Type/>
+		</Parameter>
+		<Parameter name="Subject">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="Text">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="Attachments">
+			<Type/>
+		</Parameter>
+		<Parameter name="ReplyToAddress">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="DeleteFilesAfterSending">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="Cc">
+			<Type/>
+		</Parameter>
+		<Parameter name="BCCs">
+			<Type/>
+		</Parameter>
+		<Parameter name="SubjectOf">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

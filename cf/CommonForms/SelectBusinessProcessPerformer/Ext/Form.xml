@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<Group>HorizontalIfPossible</Group>
+	<CommandSet>
+		<ExcludedCommand>CustomizeForm</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="Select" id="22">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.Select</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Select</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="SelectExtendedTooltip" id="55"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="Pages" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="56"/>
+			<ChildItems>
+				<Page name="Users" id="24">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Users</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="UsersExtendedTooltip" id="57"/>
+					<ChildItems>
+						<CommandBar name="UsersCommandBar" id="31">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Users command bar</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSource>Item.ListUsers</CommandSource>
+							<ExtendedTooltip name="UsersCommandBarExtendedTooltip" id="58"/>
+						</CommandBar>
+						<Table name="ListUsers" id="1">
+							<Representation>List</Representation>
+							<CommandBarLocation>None</CommandBarLocation>
+							<SkipOnInput>false</SkipOnInput>
+							<ChoiceMode>true</ChoiceMode>
+							<Header>false</Header>
+							<HorizontalLines>false</HorizontalLines>
+							<VerticalLines>false</VerticalLines>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>ListUsers</DataPath>
+							<RowPictureDataPath>ListUsers.PictureNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Users</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Choose</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>Create</ExcludedCommand>
+								<ExcludedCommand>Delete</ExcludedCommand>
+								<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+							</CommandSet>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>true</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+							<ContextMenu name="ListUsersContextMenu" id="2"/>
+							<AutoCommandBar name="ListUsersCommandBar" id="3"/>
+							<ExtendedTooltip name="ListUsersExtendedTooltip" id="59"/>
+							<SearchStringAddition name="ListUsersSearchString" id="65">
+								<AdditionSource>
+									<Item>ListUsers</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListUsersSearchStringContextMenu" id="66"/>
+								<ExtendedTooltip name="ListUsersSearchStringExtendedTooltip" id="67"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ListUsersViewStatus" id="68">
+								<AdditionSource>
+									<Item>ListUsers</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListUsersViewStatusContextMenu" id="69"/>
+								<ExtendedTooltip name="ListUsersViewStatusExtendedTooltip" id="70"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ListUsersSearchControl" id="71">
+								<AdditionSource>
+									<Item>ListUsers</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ListUsersSearchControlContextMenu" id="72"/>
+								<ExtendedTooltip name="ListUsersSearchControlExtendedTooltip" id="73"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="ValueChoice">ListUsersValueChoice</Event>
+								<Event name="OnGetDataAtServer">ListUsersOnGetDataAtServer</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="Description" id="4">
+									<DataPath>ListUsers.Description</DataPath>
+									<DefaultItem>true</DefaultItem>
+									<Width>20</Width>
+									<ContextMenu name="DescriptionContextMenu" id="5"/>
+									<ExtendedTooltip name="DescriptionExtendedTooltip" id="60"/>
+								</LabelField>
+								<LabelField name="Ref" id="83">
+									<DataPath>ListUsers.Ref</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="RefContextMenu" id="84"/>
+									<ExtendedTooltip name="RefExtendedTooltip" id="85"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="Roles" id="25">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Business roles</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="RolesExtendedTooltip" id="61"/>
+					<ChildItems>
+						<Table name="ListRoles" id="26">
+							<Representation>List</Representation>
+							<SkipOnInput>false</SkipOnInput>
+							<ChoiceMode>true</ChoiceMode>
+							<Header>false</Header>
+							<HorizontalLines>false</HorizontalLines>
+							<VerticalLines>false</VerticalLines>
+							<EnableStartDrag>true</EnableStartDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>ListRoles</DataPath>
+							<RowPictureDataPath>ListRoles.DefaultPicture</RowPictureDataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Roles</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Choose</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>Create</ExcludedCommand>
+								<ExcludedCommand>Delete</ExcludedCommand>
+								<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+							</CommandSet>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>true</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+							<ContextMenu name="ListRolesContextMenu" id="27"/>
+							<AutoCommandBar name="ListRolesCommandBar" id="28"/>
+							<ExtendedTooltip name="ListRolesExtendedTooltip" id="62"/>
+							<SearchStringAddition name="ListRolesSearchString" id="74">
+								<AdditionSource>
+									<Item>ListRoles</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListRolesSearchStringContextMenu" id="75"/>
+								<ExtendedTooltip name="ListRolesSearchStringExtendedTooltip" id="76"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ListRolesViewStatus" id="77">
+								<AdditionSource>
+									<Item>ListRoles</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListRolesViewStatusContextMenu" id="78"/>
+								<ExtendedTooltip name="ListRolesViewStatusExtendedTooltip" id="79"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ListRolesSearchControl" id="80">
+								<AdditionSource>
+									<Item>ListRoles</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ListRolesSearchControlContextMenu" id="81"/>
+								<ExtendedTooltip name="ListRolesSearchControlExtendedTooltip" id="82"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="ValueChoice">ListRolesValueChoice</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="RoleDescription" id="29">
+									<DataPath>ListRoles.Description</DataPath>
+									<ContextMenu name="RoleDescriptionContextMenu" id="30"/>
+									<ExtendedTooltip name="RoleDescriptionExtendedTooltip" id="63"/>
+								</LabelField>
+								<LabelField name="ListRolesRef" id="86">
+									<DataPath>ListRoles.Ref</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="ListRolesRefContextMenu" id="87"/>
+									<ExtendedTooltip name="ListRolesRefExtendedTooltip" id="88"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+						<InputField name="RolesListComment" id="53">
+							<DataPath>Items.ListRoles.CurrentData.Comment</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>Left</TitleLocation>
+							<ContextMenu name="RolesListCommentContextMenu" id="54"/>
+							<ExtendedTooltip name="RolesListCommentExtendedTooltip" id="64"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ListUsers" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Users list</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>ListUsers.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	Users.Ref,
+	Users.DeletionMark,
+	Users.Predefined,
+	Users.Description,
+	-1 AS PictureNumber
+FROM
+	Catalog.Users AS Users
+WHERE
+	Users.Invalid = FALSE
+	AND Users.IsInternal = FALSE
+	AND Users.DeletionMark = FALSE</QueryText>
+				<MainTable>Catalog.Users</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ListRoles" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Roles list</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>ListRoles.Ref</Field>
+				<Field>ListRoles.UsedByAddressingObjects</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	CatalogPerformerRoles.Ref,
+	CatalogPerformerRoles.DataVersion,
+	CatalogPerformerRoles.DeletionMark,
+	CatalogPerformerRoles.Predefined,
+	CatalogPerformerRoles.Code,
+	CatalogPerformerRoles.Description,
+	CatalogPerformerRoles.UsedWithoutAddressingObjects,
+	CatalogPerformerRoles.BriefPresentation,
+	CatalogPerformerRoles.UsedByAddressingObjects,
+	CatalogPerformerRoles.Comment,
+	CatalogPerformerRoles.AdditionalAddressingObjectTypes,
+	CatalogPerformerRoles.MainAddressingObjectTypes,
+	CatalogPerformerRoles.ExternalRole,
+	CatalogPerformerRoles.ExchangeNode,
+	CASE
+		WHEN CatalogPerformerRoles.UsedByAddressingObjects
+			THEN TRUE
+		WHEN CatalogPerformerRoles.Ref IN
+				(SELECT TOP 1
+					InformationRegister.TaskPerformers.PerformerRole.Ref
+				FROM
+					InformationRegister.TaskPerformers
+				WHERE
+					InformationRegister.TaskPerformers.PerformerRole = CatalogPerformerRoles.Ref)
+			THEN TRUE
+		ELSE FALSE
+	END AS HasPerformers
+FROM
+	Catalog.PerformerRoles AS CatalogPerformerRoles</QueryText>
+				<MainTable>Catalog.PerformerRoles</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:item xsi:type="dcsset:FilterItemComparison">
+							<dcsset:use>false</dcsset:use>
+							<dcsset:left xsi:type="dcscor:Field">UsedWithoutAddressingObjects</dcsset:left>
+							<dcsset:comparisonType>Equal</dcsset:comparisonType>
+							<dcsset:right xsi:type="xs:boolean">false</dcsset:right>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Select" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ChooseValue</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Select</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Performer">
+			<Type/>
+		</Parameter>
+		<Parameter name="ShowFunctions">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="SimpleRolesOnly">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="NoExternalRoles">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+	<CommandInterface>
+		<CommandBar>
+			<Item>
+				<Command>0</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</CommandBar>
+	</CommandInterface>
+</Form>

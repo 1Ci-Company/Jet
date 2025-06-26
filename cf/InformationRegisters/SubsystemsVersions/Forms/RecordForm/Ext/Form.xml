@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormEnableEditing" id="17">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.EnableEditing</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Allow editing</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="18"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="SubsystemName" id="1">
+			<DataPath>Record.SubsystemName</DataPath>
+			<ContextMenu name="SubsystemNameContextMenu" id="2"/>
+			<ExtendedTooltip name="SubsystemNameExtendedTooltip" id="3"/>
+		</InputField>
+		<UsualGroup name="VersionGroup" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Version</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="VersionGroupExtendedTooltip" id="14"/>
+			<ChildItems>
+				<InputField name="Version" id="4">
+					<DataPath>Record.Version</DataPath>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="VersionContextMenu" id="5"/>
+					<ExtendedTooltip name="VersionExtendedTooltip" id="6">
+						<Title formatted="true">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>&lt;b&gt;&lt;Major&gt;.&lt;Minor&gt;.&lt;Revision&gt;.&lt;Build&gt;&lt;/&gt;
+
+Each part of the sequence contains at least 1 digit:
+&lt;b&gt;Major&lt;/&gt; is the major version number.
+&lt;b&gt;Minor&lt;/&gt; is the minor version number.
+&lt;b&gt;Revision&lt;/&gt; is the revision number.
+&lt;b&gt;Build&lt;/&gt; is the build number.
+
+Example:
+&lt;b&gt;1.6.4.7&lt;/&gt; — major version 1, minor version 6, revision 4, and build 7.
+
+For more details, see &lt;link https://kb.1ci.com/1C_Enterprise_Platform/Guides/Developer_Guides/1C_Enterprise_Development_Standards/Creating_and_modifying_metadata_objects/Configuration_version_management/Version_numbering/&gt;Version numbering&lt;/&gt;.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+				</InputField>
+				<CheckBoxField name="IsMainConfiguration" id="7">
+					<DataPath>Record.IsMainConfiguration</DataPath>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="IsMainConfigurationContextMenu" id="8"/>
+					<ExtendedTooltip name="IsMainConfigurationExtendedTooltip" id="9"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<CheckBoxField name="DeferredHandlersRegistrationCompleted" id="10">
+			<DataPath>Record.DeferredHandlersRegistrationCompleted</DataPath>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="DeferredHandlersRegistrationCompletedContextMenu" id="11"/>
+			<ExtendedTooltip name="DeferredHandlersRegistrationCompletedExtendedTooltip" id="12"/>
+		</CheckBoxField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.SubsystemsVersions</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. The feature is for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

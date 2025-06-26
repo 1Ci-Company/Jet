@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Customizable>false</Customizable>
+	<CommandBarLocation>Top</CommandBarLocation>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="134">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Title</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="135"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="136">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Full-text search index update, clean up, and check settings. Text extraction settings.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SectionDetailsContextMenu" id="137"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="138"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="142">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="143"/>
+					<ChildItems>
+						<Button name="Help" id="144">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="145"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="UseFullTextSearchGroup" id="212">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use full-text search</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="UseFullTextSearchGroupExtendedTooltip" id="213"/>
+			<ChildItems>
+				<CheckBoxField name="UseFullTextSearch" id="214">
+					<DataPath>UseFullTextSearch</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use full-text search</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="UseFullTextSearchContextMenu" id="215"/>
+					<ExtendedTooltip name="UseFullTextSearchExtendedTooltip" id="216"/>
+					<Events>
+						<Event name="OnChange">UseFullTextSearchOnChange</Event>
+					</Events>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="MainGroup3" id="151">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Main</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="MainGroup3ExtendedTooltip" id="152"/>
+			<ChildItems>
+				<UsualGroup name="GroupActiveUsers" id="101">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Active users</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupActiveUsersExtendedTooltip" id="114"/>
+					<ChildItems>
+						<Button name="ActiveUsersDataProcessor" id="102">
+							<Type>Hyperlink</Type>
+							<Visible>false</Visible>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ActiveUsersDataProcessorExtendedTooltip" id="116"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="MaxSizeOfDataToIndexGroup" id="193">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Maximum size of indexed data</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="MaxSizeOfDataToIndexGroupExtendedTooltip" id="194"/>
+					<ChildItems>
+						<UsualGroup name="MaxSizeOfDataToIndexGroupValue" id="195">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Maximum size of indexed data value</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="MaxSizeOfDataToIndexGroupValueExtendedTooltip" id="196"/>
+							<ChildItems>
+								<CheckBoxField name="LimitMaxIndexedDataSize" id="209">
+									<DataPath>LimitMaxIndexedDataSize</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Limit the maximum index size</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="LimitMaxIndexedDataSizeContextMenu" id="210"/>
+									<ExtendedTooltip name="LimitMaxIndexedDataSizeExtendedTooltip" id="211"/>
+									<Events>
+										<Event name="OnChange">LimitMaxIndexedDataSizeOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="IndexedDataMaxSize" id="197">
+									<DataPath>IndexedDataMaxSize</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Limit maximum index size</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<ContextMenu name="IndexedDataMaxSizeContextMenu" id="198"/>
+									<ExtendedTooltip name="IndexedDataMaxSizeExtendedTooltip" id="199"/>
+									<Events>
+										<Event name="OnChange">IndexedDataMaxSizeOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="MBDecoration" id="200">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>MB</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="MBDecorationContextMenu" id="201"/>
+									<ExtendedTooltip name="MBDecorationExtendedTooltip" id="202"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<LabelDecoration name="MaxSizeOfDataToIndexTooltip" id="203">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Limiting the index size results in faster full-text search and indexing.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="MaxSizeOfDataToIndexTooltipContextMenu" id="204"/>
+							<ExtendedTooltip name="MaxSizeOfDataToIndexTooltipExtendedTooltip" id="205"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="FullTextSearchManagementGroup" id="30">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Full-text search management</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Automatic text extraction management group</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="FullTextSearchManagementGroupExtendedTooltip" id="117"/>
+					<ChildItems>
+						<LabelField name="IndexUpdateDate" id="5">
+							<DataPath>IndexUpdateDate</DataPath>
+							<SkipOnInput>true</SkipOnInput>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Index date</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="IndexUpdateDateContextMenu" id="6"/>
+							<ExtendedTooltip name="IndexUpdateDateExtendedTooltip" id="118"/>
+						</LabelField>
+						<LabelField name="IndexStatus" id="3">
+							<DataPath>IndexStatus</DataPath>
+							<SkipOnInput>true</SkipOnInput>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Index status</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="IndexStatusContextMenu" id="4"/>
+							<ExtendedTooltip name="IndexStatusExtendedTooltip" id="119"/>
+						</LabelField>
+						<UsualGroup name="ButtonsGroup" id="93">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Buttons</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ButtonsGroupExtendedTooltip" id="120"/>
+							<ChildItems>
+								<Button name="UpdateIndex" id="11">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.UpdateIndex</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Update index</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="UpdateIndexExtendedTooltip" id="121"/>
+								</Button>
+								<Button name="ClearIndex" id="12">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ClearIndex</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Delete index</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ClearIndexExtendedTooltip" id="122"/>
+								</Button>
+								<Button name="CheckIndex" id="155">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.CheckIndex</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Index status</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="CheckIndexExtendedTooltip" id="156"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="AutomaticTextsExtractionGroup" id="56">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Automatic text extraction</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>false</VerticalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="AutomaticTextsExtractionGroupExtendedTooltip" id="123"/>
+			<ChildItems>
+				<LabelDecoration name="NoteExtractFilesTextsAtServer4" id="103">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<SkipOnInput>true</SkipOnInput>
+					<TextColor>style:NoteText</TextColor>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Text extraction feature provides for full-text search within the application.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="NoteExtractFilesTextsAtServer4ContextMenu" id="104"/>
+					<ExtendedTooltip name="NoteExtractFilesTextsAtServer4ExtendedTooltip" id="124"/>
+				</LabelDecoration>
+				<UsualGroup name="GroupAutoTextsExtractionMain" id="189">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupAutoTextsExtractionMainExtendedTooltip" id="190"/>
+					<ChildItems>
+						<UsualGroup name="ColumnsGroup" id="157">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Columns</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ColumnsGroupExtendedTooltip" id="158"/>
+							<ChildItems>
+								<RadioButtonField name="ExtractFilesTextsAtWindowsServer" id="159">
+									<DataPath>ExtractTextFilesOnServer</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Extract texts</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<RadioButtonType>Auto</RadioButtonType>
+									<ItemTitleHeight>2</ItemTitleHeight>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Schedule extraction on server that runs on Windows</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:decimal">1</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="ExtractFilesTextsAtWindowsServerContextMenu" id="160"/>
+									<ExtendedTooltip name="ExtractFilesTextsAtWindowsServerExtendedTooltip" id="161"/>
+									<Events>
+										<Event name="OnChange">ExtractFilesTextsAtServerOnChange</Event>
+									</Events>
+								</RadioButtonField>
+								<Button name="EditScheduledJob" id="187">
+									<Type>Hyperlink</Type>
+									<VerticalStretch>true</VerticalStretch>
+									<CommandName>Form.Command.EditScheduledJob</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Set schedule</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="EditScheduledJobExtendedTooltip" id="188">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>&lt;Schedule&gt;</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupTextsExtraction" id="171">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Extract text</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupTextsExtractionExtendedTooltip" id="172"/>
+							<ChildItems>
+								<RadioButtonField name="ExtractFilesTextsAtLinuxServer" id="175">
+									<DataPath>ExtractTextFilesOnServer</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Extract texts</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<RadioButtonType>Auto</RadioButtonType>
+									<ItemTitleHeight>2</ItemTitleHeight>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Cluster consists of servers that run on Linux</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:decimal">0</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="ExtractFilesTextsAtLinuxServerContextMenu" id="176"/>
+									<ExtendedTooltip name="ExtractFilesTextsAtLinuxServerExtendedTooltip" id="177"/>
+									<Events>
+										<Event name="OnChange">ExtractFilesTextsAtServerOnChange</Event>
+									</Events>
+								</RadioButtonField>
+								<Button name="StartTextExtraction" id="191">
+									<Type>Hyperlink</Type>
+									<CommandName>DataProcessor.AutoTextExtraction.Command.AutoTextExtraction</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Start text extraction</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="StartTextExtractionExtendedTooltip" id="192">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Extract texts on thin client at workstation that runs on Windows.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="IndexStatus" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Index status</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="IndexUpdateDate" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Index date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ExtractTextFilesOnServer" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Extract texts</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantsSet" id="7">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.ExtractTextFilesOnServer</Field>
+				<Field>ConstantsSet.UseFullTextSearch</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="IndexTrue" id="1">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseFullTextSearch" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use full-text search</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ScheduledJobsInfo" id="11">
+			<Type/>
+		</Attribute>
+		<Attribute name="Jobs" id="6">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="PredefinedItemName" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Id" id="2">
+					<Type>
+						<v8:Type>v8:UUID</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Schedule" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="IndexContainsCorrectData" id="12">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IndexedDataMaxSize" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Limit the maximum index size</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>6</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="LimitMaxIndexedDataSize" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Limit the maximum index size</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="UpdateIndex" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update index</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update index</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>UpdateIndex</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ClearIndex" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete index</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete index</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ClearIndex</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="EditScheduledJob" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Schedule</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Settings of text extraction scheduled job.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EditScheduledJob</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CheckIndex" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Index status</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Index status</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CheckIndex</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

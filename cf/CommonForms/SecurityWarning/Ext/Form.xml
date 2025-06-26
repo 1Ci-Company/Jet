@@ -1,0 +1,1011 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Security warning</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<Group>Horizontal</Group>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<CommandSet>
+		<ExcludedCommand>CustomizeForm</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<PictureDecoration name="WarningPicture32" id="21">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Picture warning32</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<FileDragMode>AsFile</FileDragMode>
+			<ContextMenu name="WarningPicture32ContextMenu" id="22"/>
+			<ExtendedTooltip name="WarningPicture32ExtendedTooltip" id="23"/>
+		</PictureDecoration>
+		<Pages name="Pages" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="16"/>
+			<ChildItems>
+				<Page name="AfterUpdate" id="40">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>After update</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AfterUpdateExtendedTooltip" id="41"/>
+					<ChildItems>
+						<LabelDecoration name="Label1" id="42">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>For safety reasons, it is recommended that you prohibit opening external reports 
+and data processors from the &lt;b&gt;File - &lt;/&gt;&lt;b&gt;Open&lt;/&gt; menu.
+External report or data processor files from 
+untrusted sources
+can be harmful to your computer and data.
+
+Instead of opening external reports and data processors, it is recommended that you use 
+&lt;link e1cib/list/Guide.Additional reportsreferences&gt;additional reports and data processors&lt;/&gt; and &lt;link e1cib/app/General form.Extensions&gt;extensions&lt;/&gt; from trusted sources.
+
+See also: &lt;link http://1c.ru/news/info.jsp?id=21537&gt;Example of a virus in an external data processor (in Russian)&lt;/&gt;.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label1ContextMenu" id="43"/>
+							<ExtendedTooltip name="Label1ExtendedTooltip" id="44"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar1" id="47">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 1</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar1ExtendedTooltip" id="48"/>
+							<ChildItems>
+								<Button name="DenyOpeningExternalReportsAndDataProcessors" id="104">
+									<Type>CommandBarButton</Type>
+									<DefaultButton>true</DefaultButton>
+									<CommandName>Form.Command.DenyOpeningExternalReportsAndDataProcessors</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Forbid external reports and data processors</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="DenyOpeningExternalReportsAndDataProcessorsExtendedTooltip" id="105"/>
+								</Button>
+								<Button name="Allow" id="64">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.AllowOpeningExternalReportsAndDataProcessors</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allow</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="AllowExtendedTooltip" id="65"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="AfterObtainRight" id="53">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>After granting right</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AfterObtainRightExtendedTooltip" id="54"/>
+					<ChildItems>
+						<LabelDecoration name="Label2" id="55">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Based on your access rights, you can open files of external reports and data processors from the &lt;b&gt;File — &lt;/&gt;&lt;b&gt;Open&lt;/&gt; menu.
+Be cautious about the file sources.
+
+Do not open files from untrusted sources, as they might harm your computer and application data.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label2ContextMenu" id="56"/>
+							<ExtendedTooltip name="Label2ExtendedTooltip" id="57"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar2" id="58">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 2</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar2ExtendedTooltip" id="59"/>
+							<ChildItems>
+								<Button name="IAgree" id="106">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.IAgree</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>OK</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="IAgreeExtendedTooltip" id="107"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeAddExternalReportOrDataProcessor" id="68">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before adding an additional report or data processor</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeAddExternalReportOrDataProcessorExtendedTooltip" id="69"/>
+					<ChildItems>
+						<LabelDecoration name="Label3" id="70">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>60</MaxWidth>
+							<HorizontalStretch>false</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>When attaching an additional report or data processor, 
+pay attention to its source.
+If you are not sure that the file came from a trusted source,
+do not attach it.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label3ContextMenu" id="71"/>
+							<ExtendedTooltip name="Label3ExtendedTooltip" id="72"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar3" id="78">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 3</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar3ExtendedTooltip" id="79"/>
+							<ChildItems>
+								<Button name="Continue3" id="84">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue3ExtendedTooltip" id="85"/>
+								</Button>
+								<Button name="Cancel3" id="82">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel3ExtendedTooltip" id="83"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeAddExtensions" id="17">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before adding extensions</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeAddExtensionsExtendedTooltip" id="18"/>
+					<ChildItems>
+						<LabelDecoration name="Label4" id="26">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>When attaching configuration extensions, 
+pay attention to their sources.
+If you are not sure the extension file came from a trusted source, 
+do not attach it.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label4ContextMenu" id="27"/>
+							<ExtendedTooltip name="Label4ExtendedTooltip" id="28"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar4" id="34">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 4</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar4ExtendedTooltip" id="35"/>
+							<ChildItems>
+								<Button name="Continue4" id="66">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue4ExtendedTooltip" id="67"/>
+								</Button>
+								<Button name="Cancel4" id="38">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel4ExtendedTooltip" id="39"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeSelectUpdateFile" id="153">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before selecting an update file</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before adding extensions</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="BeforeSelectUpdateFileExtendedTooltip" id="154"/>
+					<ChildItems>
+						<LabelDecoration name="Label7" id="155">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>When installing configuration updates, 
+pay attention to their sources.
+If you are not sure the update file came from a trusted source,
+do not install it.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label7ContextMenu" id="156"/>
+							<ExtendedTooltip name="Label7ExtendedTooltip" id="157"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar8" id="160">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 8</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar8ExtendedTooltip" id="161"/>
+							<ChildItems>
+								<Button name="Continue8" id="162">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue8ExtendedTooltip" id="163"/>
+								</Button>
+								<Button name="Cancel8" id="164">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel8ExtendedTooltip" id="165"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeSelectRole" id="108">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before selecting a role</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeSelectRoleExtendedTooltip" id="109"/>
+					<ChildItems>
+						<LabelDecoration name="Label5" id="110">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The selected role allows opening files of external reports and data processors using the &lt;b&gt;File — &lt;/&gt;&lt;b&gt;Open&lt;/&gt; menu.
+Always check the sources of these files.
+
+Do not open files from untrusted sources, as they might harm your computer and compromise your application data.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label5ContextMenu" id="111"/>
+							<ExtendedTooltip name="Label5ExtendedTooltip" id="112"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar5" id="118">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 5</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar5ExtendedTooltip" id="119"/>
+							<ChildItems>
+								<Button name="Continue5" id="120">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue5ExtendedTooltip" id="121"/>
+								</Button>
+								<Button name="Cancel5" id="122">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel5ExtendedTooltip" id="123"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="OnChangeDeniedExtensionsList" id="124">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>On list of prohibited extensions change</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="OnChangeDeniedExtensionsListExtendedTooltip" id="125"/>
+					<ChildItems>
+						<LabelDecoration name="Label6" id="126">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Disabling this option will allow adding potentially harmful files to the application.
+Always check the sources of these files.
+
+Do not open files from untrusted sources, as they might harm your users' computers.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Label6ContextMenu" id="127"/>
+							<ExtendedTooltip name="Label6ExtendedTooltip" id="128"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar6" id="131">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 6</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar6ExtendedTooltip" id="132"/>
+							<ChildItems>
+								<Button name="Continue6" id="133">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue6ExtendedTooltip" id="134"/>
+								</Button>
+								<Button name="Cancel6" id="135">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel6ExtendedTooltip" id="136"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeOpenFile" id="137">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before opening a file</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeOpenFileExtendedTooltip" id="138"/>
+					<ChildItems>
+						<LabelDecoration name="WarningOnOpenFile" id="139">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>%1</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="WarningOnOpenFileContextMenu" id="140"/>
+							<ExtendedTooltip name="WarningOnOpenFileExtendedTooltip" id="141"/>
+						</LabelDecoration>
+						<LabelDecoration name="WarningOnOpenFileNote" id="142">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>This file contains potentially harmful executable code.
+It is recommended that you open files obtained from trusted sources only.
+
+Files from untrusted sources might harm your computer.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="WarningOnOpenFileNoteContextMenu" id="143"/>
+							<ExtendedTooltip name="WarningOnOpenFileNoteExtendedTooltip" id="144"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar7" id="147">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 7</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar7ExtendedTooltip" id="148"/>
+							<ChildItems>
+								<Button name="Continue7" id="149">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue7ExtendedTooltip" id="150"/>
+								</Button>
+								<Button name="Cancel7" id="151">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel7ExtendedTooltip" id="152"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeAddAddIn" id="166">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before adding add-ins</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeAddAddInExtendedTooltip" id="167"/>
+					<ChildItems>
+						<LabelDecoration name="WarningOnAddAddIn" id="168">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>When attaching add-ins, 
+pay attention to their sources.
+If you are not sure the add-in file came from a trusted source,
+do not attach it.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="WarningOnAddAddInContextMenu" id="169"/>
+							<ExtendedTooltip name="WarningOnAddAddInExtendedTooltip" id="170"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar9" id="173">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 9</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar9ExtendedTooltip" id="174"/>
+							<ChildItems>
+								<Button name="Continue9" id="175">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Continue</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue9ExtendedTooltip" id="176"/>
+								</Button>
+								<Button name="Cancel9" id="177">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel9ExtendedTooltip" id="178"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeDeleteExtensionWithoutData" id="211">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before deleting an extension without data</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeDeleteExtensionWithoutDataExtendedTooltip" id="212"/>
+					<ChildItems>
+						<LabelDecoration name="WarningBeforeDeleteExtensionWithoutData" id="213">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Extension deletion is permanent.
+Settings made (for example, report options) will be lost.</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ContextMenu name="WarningBeforeDeleteExtensionWithoutDataContextMenu" id="214"/>
+							<ExtendedTooltip name="WarningBeforeDeleteExtensionWithoutDataExtendedTooltip" id="215">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>If you need to:
+• Update an extension, click &lt;b&gt;Update from file…&lt;/&gt; instead of deleting and adding it.
+• Temporarily disable an extension, clear the &lt;b&gt;Attach the extension when a user signs in&lt;/&gt; check box.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</LabelDecoration>
+						<UsualGroup name="IndentGroupExtensionsWithoutData" id="243">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Indent extension without data</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="IndentGroupExtensionsWithoutDataExtendedTooltip" id="244"/>
+							<ChildItems>
+								<LabelDecoration name="WarningBeforeDeleteExtensionWithoutDataBackup" id="234">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>It is recommended that you back up the infobase
+before deleting the extension.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="WarningBeforeDeleteExtensionWithoutDataBackupContextMenu" id="235"/>
+									<ExtendedTooltip name="WarningBeforeDeleteExtensionWithoutDataBackupExtendedTooltip" id="236"/>
+									<Events>
+										<Event name="URLProcessing">WarningBeforeDeleteExtensionBackupURLProcessing</Event>
+									</Events>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<LabelDecoration name="WarningBeforeDeleteExtensionWithoutDataTextDelete" id="240">
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt;&lt;Do you want to delete the selected extensions?&gt;&gt;
+&lt;&lt;Do you want to delete the extension?&gt;&gt;</v8:content>
+								</v8:item>
+							</Title>
+							<VerticalAlign>Top</VerticalAlign>
+							<ContextMenu name="WarningBeforeDeleteExtensionWithoutDataTextDeleteContextMenu" id="241"/>
+							<ExtendedTooltip name="WarningBeforeDeleteExtensionWithoutDataTextDeleteExtendedTooltip" id="242"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar12" id="222">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 12</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar12ExtendedTooltip" id="223"/>
+							<ChildItems>
+								<Button name="Continue12" id="224">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Delete</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue12ExtendedTooltip" id="225"/>
+								</Button>
+								<Button name="Cancel12" id="226">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel12ExtendedTooltip" id="227"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeDeleteExtensionWithData" id="179">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before deleting an extension with data</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeDeleteExtensionWithDataExtendedTooltip" id="180"/>
+					<ChildItems>
+						<LabelDecoration name="WarningBeforeDeleteExtension" id="228">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The extension you are about to delete stores its data in the infobase. If you delete the extension, its data will be lost.</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ContextMenu name="WarningBeforeDeleteExtensionContextMenu" id="229"/>
+							<ExtendedTooltip name="WarningBeforeDeleteExtensionExtendedTooltip" id="230">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<MaxWidth>64</MaxWidth>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Read the extension documentation available from the extension provider.
+If you need to 
+update an extension, click &lt;b&gt;Update from file…&lt;/&gt; instead of deleting and adding it again.
+If you need to temporarily disable an extension, clear the &lt;b&gt;Attach the extension when a user signs in&lt;/&gt; check box.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</LabelDecoration>
+						<UsualGroup name="IndentGroupExtensionWithData" id="245">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Indent extension with data</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="IndentGroupExtensionWithDataExtendedTooltip" id="246"/>
+							<ChildItems>
+								<LabelDecoration name="WarningBeforeDeleteExtensionWithDataBackup" id="205">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>It is recommended that you back up the infobase
+before deleting the extension.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="WarningBeforeDeleteExtensionWithDataBackupContextMenu" id="206"/>
+									<ExtendedTooltip name="WarningBeforeDeleteExtensionWithDataBackupExtendedTooltip" id="207"/>
+									<Events>
+										<Event name="URLProcessing">WarningBeforeDeleteExtensionBackupURLProcessing</Event>
+									</Events>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<LabelDecoration name="WarningBeforeDeleteExtensionWithDataTextDelete" id="208">
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt;&lt;Do you want to delete the selected extensions?&gt;&gt;
+&lt;&lt;Do you want to delete the extension?&gt;&gt;</v8:content>
+								</v8:item>
+							</Title>
+							<VerticalAlign>Top</VerticalAlign>
+							<ContextMenu name="WarningBeforeDeleteExtensionWithDataTextDeleteContextMenu" id="209"/>
+							<ExtendedTooltip name="WarningBeforeDeleteExtensionWithDataTextDeleteExtendedTooltip" id="210"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBar10" id="186">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 10</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar10ExtendedTooltip" id="187"/>
+							<ChildItems>
+								<Button name="Continue10" id="188">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Delete</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue10ExtendedTooltip" id="189"/>
+								</Button>
+								<Button name="Cancel10" id="190">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel10ExtendedTooltip" id="191"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+				<Page name="BeforeDisableExtensionWithData" id="192">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Before deleting an extension</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BeforeDisableExtensionWithDataExtendedTooltip" id="193"/>
+					<ChildItems>
+						<LabelDecoration name="WarningBeforeDetachExtension" id="194">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>60</MaxWidth>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The extension you are about to detach stores its data in the app.
+If you detach the extension, the data will become unavailable, and some app data can become unavailable for editing.</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ContextMenu name="WarningBeforeDetachExtensionContextMenu" id="195"/>
+							<ExtendedTooltip name="WarningBeforeDetachExtensionExtendedTooltip" id="196">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<MaxWidth>60</MaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Please consult the extension documentation available from the extension provider.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</LabelDecoration>
+						<UsualGroup name="BeforeDisableExtensionWithDataIndentGroup" id="247">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Indent before disabling an extension without data</v8:content>
+								</v8:item>
+							</Title>
+							<Shortcut>F7</Shortcut>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="BeforeDisableExtensionWithDataIndentGroupExtendedTooltip" id="248"/>
+							<ChildItems>
+								<LabelDecoration name="WarningBeforeDetachExtensionTextDetach" id="231">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<VerticalStretch>true</VerticalStretch>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Do you want to detach the extension?</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalAlign>Top</VerticalAlign>
+									<ContextMenu name="WarningBeforeDetachExtensionTextDetachContextMenu" id="232"/>
+									<ExtendedTooltip name="WarningBeforeDetachExtensionTextDetachExtendedTooltip" id="233"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<CommandBar name="CommandBar11" id="199">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar 11</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalLocation>Right</HorizontalLocation>
+							<ExtendedTooltip name="CommandBar11ExtendedTooltip" id="200"/>
+							<ChildItems>
+								<Button name="Continue11" id="201">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Continue</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Disable</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="Continue11ExtendedTooltip" id="202"/>
+								</Button>
+								<Button name="Cancel11" id="203">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.StandardCommand.Cancel</CommandName>
+									<ExtendedTooltip name="Cancel11ExtendedTooltip" id="204"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="RestartRequired" id="1">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedButtonName" id="2">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AllowInteractiveOpening" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="AllowOpeningExternalReportsAndDataProcessors" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow opening external reports and data processors.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AllowOpeningExternalReportsAndDataProcessors</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Continue" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Continue</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Continue</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CommandContinue</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DenyOpeningExternalReportsAndDataProcessors" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Forbid external reports and data processors</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Role "Open external reports and data processors interactively" will be disabled for all users and administrators.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DenyOpeningExternalReportsAndDataProcessors</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="IAgree" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>IAgree</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AllowForAdministrators" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow for administrators only</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow for administrators only</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AllowForAll" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow for all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow for all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DenyForAll" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny for all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny for all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Key">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="AdditionalParameter">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

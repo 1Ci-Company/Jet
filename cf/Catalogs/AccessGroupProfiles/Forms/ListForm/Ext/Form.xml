@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandSet>
+		<ExcludedCommand>Delete</ExcludedCommand>
+		<ExcludedCommand>Refresh</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="SettingsGroup" id="33">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Settings</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="SettingsGroupExtendedTooltip" id="34"/>
+			<ChildItems>
+				<InputField name="ShowProfiles" id="17">
+					<DataPath>ShowProfiles</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Show</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All profiles</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">AllProfiles</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Built-in profiles</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Supplied1</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Custom profiles</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">UnsuppliedProfiles</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Obsolete profiles</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Obsolete</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="ShowProfilesContextMenu" id="18"/>
+					<ExtendedTooltip name="ShowProfilesExtendedTooltip" id="19">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Built-in profiles are included in the configuration (subject to automatic update).
+Custom profiles are the remaining ones (manual update required).
+Obsolete profiles contain deleted roles (manual update skipped).</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<Events>
+						<Event name="OnChange">ShowProfilesOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="UsersKind" id="35">
+					<DataPath>UsersKind</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assignment</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ChoiceButton>true</ChoiceButton>
+					<ClearButton>true</ClearButton>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="UsersKindContextMenu" id="36"/>
+					<ExtendedTooltip name="UsersKindExtendedTooltip" id="37"/>
+					<Events>
+						<Event name="StartChoice">UsersKindStartChoice</Event>
+						<Event name="Clearing">UsersKindClearing</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="CustomSettingsFolder" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="21"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="23"/>
+			<ChildItems>
+				<Button name="FormSelect" id="64">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.StandardCommand.Choose</CommandName>
+					<ExtendedTooltip name="FormSelectExtendedTooltip" id="65"/>
+				</Button>
+				<Button name="FormCreate" id="50">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Create</CommandName>
+					<ExtendedTooltip name="FormCreateExtendedTooltip" id="51"/>
+				</Button>
+				<Button name="FormCreateFolder" id="52">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.CreateFolder</CommandName>
+					<ExtendedTooltip name="FormCreateFolderExtendedTooltip" id="53"/>
+				</Button>
+				<Button name="FormCopy" id="54">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Copy</CommandName>
+					<ExtendedTooltip name="FormCopyExtendedTooltip" id="55"/>
+				</Button>
+				<Button name="FormChange" id="56">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Change</CommandName>
+					<ExtendedTooltip name="FormChangeExtendedTooltip" id="57"/>
+				</Button>
+				<Button name="FormSetDeletionMark" id="58">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.SetDeletionMark</CommandName>
+					<ExtendedTooltip name="FormSetDeletionMarkExtendedTooltip" id="59"/>
+				</Button>
+				<Button name="FormRefresh" id="48">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Refresh</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Refresh</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormRefreshExtendedTooltip" id="49"/>
+				</Button>
+				<ButtonGroup name="FormStandardCommands" id="60">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Form standard commands</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="FormStandardCommandsExtendedTooltip" id="61"/>
+				</ButtonGroup>
+				<Popup name="ReportsSubmenu" id="72">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reports</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>CommonPicture.Reports</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<Representation>PictureAndText</Representation>
+					<ExtendedTooltip name="ReportsSubmenuExtendedTooltip" id="73"/>
+					<ChildItems>
+						<ButtonGroup name="ReportsImportantSubmenu" id="74">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Submenu reports important</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ReportsImportantSubmenuExtendedTooltip" id="75"/>
+						</ButtonGroup>
+						<ButtonGroup name="SubmenuReportsStandard" id="76">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Submenu fill in standard</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="SubmenuReportsStandardExtendedTooltip" id="77"/>
+						</ButtonGroup>
+						<ButtonGroup name="ReportsSubmenuSeeAlso" id="78">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Submenu reports see also</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ReportsSubmenuSeeAlsoExtendedTooltip" id="79"/>
+						</ButtonGroup>
+					</ChildItems>
+				</Popup>
+				<Button name="Help" id="62">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="HelpExtendedTooltip" id="63"/>
+				</Button>
+				<SearchStringAddition name="SearchList" id="69">
+					<AdditionSource>
+						<Item>List</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List search</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SearchListContextMenu" id="70"/>
+					<ExtendedTooltip name="SearchListExtendedTooltip" id="71"/>
+				</SearchStringAddition>
+				<SearchControlAddition name="ListSearchManagement" id="66">
+					<AdditionSource>
+						<Item>List</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="ListSearchManagementContextMenu" id="67"/>
+					<ExtendedTooltip name="ListSearchManagementExtendedTooltip" id="68"/>
+				</SearchControlAddition>
+			</ChildItems>
+		</CommandBar>
+		<Table name="List" id="1">
+			<CommandBarLocation>None</CommandBarLocation>
+			<SkipOnInput>false</SkipOnInput>
+			<DefaultItem>true</DefaultItem>
+			<Height>8</Height>
+			<ChoiceMode>true</ChoiceMode>
+			<Header>false</Header>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>Refresh</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2"/>
+			<AutoCommandBar name="ListCommandBar" id="3"/>
+			<ExtendedTooltip name="ListExtendedTooltip" id="6"/>
+			<SearchStringAddition name="ListSearchString" id="24">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="25"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="26"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="27">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="28"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="29"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="30">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="31"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="32"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="OnActivateRow">ListOnActivateRow</Event>
+				<Event name="OnChange">ListOnChange</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="Description" id="4">
+					<DataPath>List.Description</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</Title>
+					<Wrap>false</Wrap>
+					<ContextMenu name="DescriptionContextMenu" id="5"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="7"/>
+				</InputField>
+				<LabelField name="Ref" id="8">
+					<DataPath>List.Ref</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="RefContextMenu" id="9"/>
+					<ExtendedTooltip name="RefExtendedTooltip" id="10"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.Predefined</Field>
+				<Field>List.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	Profiles.Ref,
+	Profiles.DeletionMark,
+	Profiles.Predefined,
+	Profiles.Parent,
+	Profiles.IsFolder,
+	Profiles.Description AS Description,
+	Profiles.SuppliedProfileChanged,
+	Profiles.Comment
+FROM
+	Catalog.AccessGroupProfiles AS Profiles</QueryText>
+				<MainTable>Catalog.AccessGroupProfiles</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ShowProfiles" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show profiles</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="UsersKind" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User type</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Refresh" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Refresh</Action>
+			<Representation>Text</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

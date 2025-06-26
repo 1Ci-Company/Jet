@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Subsystem uuid="9233322b-dfdb-4c66-91fe-1299292d40a5">
+		<Properties>
+			<Name>Administration</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Administration</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
+			<IncludeInCommandInterface>true</IncludeInCommandInterface>
+			<UseOneCommand>false</UseOneCommand>
+			<Explanation>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Administration, setup, utility functions</v8:content>
+				</v8:item>
+			</Explanation>
+			<Picture>
+				<xr:Ref>CommonPicture.AdministrationSection</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Content>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.SystemEmailAccountSetup</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.EventLog</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.ScheduledAndBackgroundJobs</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.MarkedObjectsDeletion</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.UsersSettings</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.Users</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AccessGroups</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.UserGroups</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.ExternalUsers</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.ExternalUsersGroups</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.FileStorageVolumes</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.ContactInformationKinds</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AdditionalAttributesAndInfoSets</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.UserPrintTemplates</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.EmailAccounts</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AccessGroupProfiles</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AdditionalReportsAndDataProcessors</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.ApplicationReleaseNotes</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.TaskPerformers</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AutoTextExtraction</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.ReportsOptions</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.AdministrationSection48</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.SSLAdministrationPanel</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.ProxyServerParameters</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.ScannedFilesNumbers</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.Currencies</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.OutboundSMSSettings</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.BatchEditAttributes</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.ApplicationUpdateResult</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.ReportPanelAdministration</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.ImportDataFromFile</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.AdditionalDataProcessorsAdministration</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.AdditionalReportsAdministration</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.FileTransfer</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.IrrelevantFilesVolume</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.DuplicateObjectsDetection</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.DeferredUpdateProgress</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.UniversalReport</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.PrintCommandsSetup</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.Extensions</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.FilesClearingSettings</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.TimeInApp</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.UserAuthorizationSettings</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.MessageTemplates</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.PasswordsRecovery</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.DeferredUpdateDuration</xr:Item>
+			</Content>
+		</Properties>
+		<ChildObjects>
+			<Subsystem>UserMonitoring</Subsystem>
+		</ChildObjects>
+	</Subsystem>
+</MetaDataObject>

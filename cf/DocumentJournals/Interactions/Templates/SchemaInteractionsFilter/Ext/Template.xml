@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>DataSource1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>MainDataSet</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Date</dataPath>
+			<field>Date</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>DeletionMark</dataPath>
+			<field>DeletionMark</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Number</dataPath>
+			<field>Number</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Posted</dataPath>
+			<field>Posted</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Ref</dataPath>
+			<field>Ref</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Author</dataPath>
+			<field>Author</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Incoming</dataPath>
+			<field>Incoming</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>HasAttachments</dataPath>
+			<field>HasAttachments</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>EmployeeResponsible</dataPath>
+			<field>EmployeeResponsible</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assigned to</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SubjectOf</dataPath>
+			<field>SubjectOf</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Topic</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>OutgoingEmailStatus</dataPath>
+			<field>OutgoingEmailStatus</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Attendees</dataPath>
+			<field>Attendees</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SubjectType</dataPath>
+			<field>SubjectType</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Topic category</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Account</dataPath>
+			<field>Account</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Reviewed</dataPath>
+			<field>Reviewed</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reviewed</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ReviewAfter</dataPath>
+			<field>ReviewAfter</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Snooze till</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Type</dataPath>
+			<field>Type</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Folder</dataPath>
+			<field>Folder</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Folder</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Subject</dataPath>
+			<field>Subject</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SentReceived</dataPath>
+			<field>SentReceived</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Size</dataPath>
+			<field>Size</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SubjectIsActive</dataPath>
+			<field>SubjectIsActive</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Active topic</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Importance</dataPath>
+			<field>Importance</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ImportancePictureNumber</dataPath>
+			<field>ImportancePictureNumber</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Importance Picture index</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>DataSource1</dataSource>
+		<query>SELECT ALLOWED
+	InteractionDocumentsLog.Ref,
+	InteractionDocumentsLog.Date,
+	InteractionDocumentsLog.DeletionMark,
+	InteractionDocumentsLog.Number,
+	InteractionDocumentsLog.Posted,
+	InteractionDocumentsLog.Author,
+	InteractionDocumentsLog.Incoming,
+	InteractionDocumentsLog.Subject,
+	InteractionDocumentsLog.EmployeeResponsible AS EmployeeResponsible,
+	ISNULL(InteractionsSubjects.Reviewed, FALSE) AS Reviewed,
+	ISNULL(InteractionsSubjects.ReviewAfter, DATETIME(1,1,1)) AS ReviewAfter,
+	InteractionDocumentsLog.Attendees,
+	InteractionDocumentsLog.Type,
+	InteractionDocumentsLog.OutgoingEmailStatus,
+	InteractionDocumentsLog.HasAttachments,
+	InteractionDocumentsLog.Account,
+	ISNULL(InteractionsSubjects.SubjectOf, UNDEFINED) AS SubjectOf,
+	VALUETYPE(InteractionsSubjects.SubjectOf) AS SubjectType,
+	InteractionsSubjectsStates.Running AS SubjectIsActive,
+	InteractionsSubjects.EmailMessageFolder AS Folder,
+	InteractionDocumentsLog.SentReceived,
+	InteractionDocumentsLog.Size,
+	InteractionDocumentsLog.Importance,
+	CASE
+		WHEN InteractionDocumentsLog.Importance = VALUE(Enum.InteractionImportanceOptions.High) THEN 2
+		WHEN InteractionDocumentsLog.Importance = VALUE(Enum.InteractionImportanceOptions.Low) THEN 0
+		ELSE 1
+	END AS ImportancePictureNumber
+FROM
+	DocumentJournal.Interactions AS InteractionDocumentsLog
+		{LEFT JOIN InformationRegister.InteractionsFolderSubjects AS InteractionsSubjects
+			LEFT JOIN InformationRegister.InteractionsSubjectsStates AS InteractionsSubjectsStates
+			ON InteractionsSubjects.SubjectOf = InteractionsSubjectsStates.SubjectOf
+		ON InteractionDocumentsLog.Ref = InteractionsSubjects.Interaction}
+{WHERE
+	(InteractionDocumentsLog.Date BETWEEN &amp;BeginningOfSelectionPeriod AND &amp;EndOfSelectionPeriod)}</query>
+	</dataSet>
+	<parameter>
+		<name>Interval</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>v8:StandardPeriod</v8:Type>
+		</valueType>
+		<value xsi:type="v8:StandardPeriod">
+			<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+			<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+			<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+		</value>
+		<useRestriction>false</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>EndOfSelectionPeriod</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Filter period end</v8:content>
+			</v8:item>
+		</title>
+		<value xsi:type="xs:string">1/1/0001, 12:00:00 AM</value>
+		<useRestriction>true</useRestriction>
+		<expression>&amp;Interval.EndDate</expression>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>BeginningOfSelectionPeriod</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Filter period start</v8:content>
+			</v8:item>
+		</title>
+		<value xsi:type="xs:string">1/1/0001, 12:00:00 AM</value>
+		<useRestriction>true</useRestriction>
+		<expression>&amp;Interval.StartDate</expression>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Main</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Ref</dcsset:field>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

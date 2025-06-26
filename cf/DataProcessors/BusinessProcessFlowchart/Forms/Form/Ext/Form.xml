@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CommonGroup" id="57">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Common group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CommonGroupExtendedTooltip" id="58"/>
+			<ChildItems>
+				<InputField name="BusinessProcess" id="1">
+					<DataPath>BusinessProcess</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Business process</v8:content>
+						</v8:item>
+					</Title>
+					<Wrap>false</Wrap>
+					<ContextMenu name="BusinessProcessContextMenu" id="2"/>
+					<ExtendedTooltip name="BusinessProcessExtendedTooltip" id="33"/>
+					<Events>
+						<Event name="OnChange">BusinessProcessOnChange</Event>
+					</Events>
+				</InputField>
+				<UsualGroup name="BusinessProcessProperties" id="32">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Business process properties</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<United>false</United>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="BusinessProcessPropertiesExtendedTooltip" id="34"/>
+					<ChildItems>
+						<InputField name="Author" id="9">
+							<DataPath>Author</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Author</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="AuthorContextMenu" id="10"/>
+							<ExtendedTooltip name="AuthorExtendedTooltip" id="35"/>
+						</InputField>
+						<UsualGroup name="GroupBusinessProcessProperties" id="11">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Business process properties</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupBusinessProcessPropertiesExtendedTooltip" id="36"/>
+							<ChildItems>
+								<InputField name="Date" id="24">
+									<DataPath>Date</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Date</v8:content>
+										</v8:item>
+									</Title>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="DateContextMenu" id="25"/>
+									<ExtendedTooltip name="DateExtendedTooltip" id="37"/>
+								</InputField>
+								<Pages name="StatusGroup" id="16">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Status</v8:content>
+										</v8:item>
+									</Title>
+									<PagesRepresentation>None</PagesRepresentation>
+									<ExtendedTooltip name="StatusGroupExtendedTooltip" id="38"/>
+									<ChildItems>
+										<Page name="NotCompletedGroup" id="17">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Not completed</v8:content>
+												</v8:item>
+											</Title>
+											<Group>HorizontalIfPossible</Group>
+											<ExtendedTooltip name="NotCompletedGroupExtendedTooltip" id="39"/>
+											<ChildItems>
+												<LabelField name="Status" id="26">
+													<DataPath>Status</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Status</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ContextMenu name="StatusContextMenu" id="27"/>
+													<ExtendedTooltip name="StatusExtendedTooltip" id="40"/>
+												</LabelField>
+											</ChildItems>
+										</Page>
+										<Page name="CompletedGroup" id="19">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Completed</v8:content>
+												</v8:item>
+											</Title>
+											<Group>HorizontalIfPossible</Group>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="CompletedGroupExtendedTooltip" id="42"/>
+											<ChildItems>
+												<InputField name="CompletedOn" id="28">
+													<DataPath>CompletedOn</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Completed</v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ContextMenu name="CompletedOnContextMenu" id="29"/>
+													<ExtendedTooltip name="CompletedOnExtendedTooltip" id="43"/>
+												</InputField>
+											</ChildItems>
+										</Page>
+									</ChildItems>
+								</Pages>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="44"/>
+			<ChildItems>
+				<Button name="TasksInRoutePoint" id="7">
+					<Type>CommandBarButton</Type>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.Command.ShowTasksCommand</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Show route point tasks</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TasksInRoutePointExtendedTooltip" id="45"/>
+				</Button>
+				<ButtonGroup name="FlowchartGroup" id="49">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Flowchart</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="FlowchartGroupExtendedTooltip" id="50"/>
+					<ChildItems>
+						<Button name="FormPrint" id="51">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.Flowchart.StandardCommand.Print</CommandName>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="FormPrintExtendedTooltip" id="52"/>
+						</Button>
+						<Button name="FormPreview" id="53">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.Flowchart.StandardCommand.Preview</CommandName>
+							<ExtendedTooltip name="FormPreviewExtendedTooltip" id="54"/>
+						</Button>
+						<Button name="FormPageSetup" id="55">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.Flowchart.StandardCommand.PageSetup</CommandName>
+							<ExtendedTooltip name="FormPageSetupExtendedTooltip" id="56"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="Refresh" id="5">
+					<Type>CommandBarButton</Type>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.Command.Refresh</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Refresh</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="RefreshExtendedTooltip" id="46"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<GraphicalSchemaField name="Flowchart" id="3">
+			<DataPath>Flowchart</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Flowchart</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>None</TitleLocation>
+			<Width>80</Width>
+			<Height>25</Height>
+			<Edit>false</Edit>
+			<ContextMenu name="FlowchartContextMenu" id="4">
+				<ChildItems>
+					<Button name="Tasks" id="6">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Command.ShowTasksCommand</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show route point tasks</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TasksExtendedTooltip" id="47"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<ExtendedTooltip name="FlowchartExtendedTooltip" id="48"/>
+			<Events>
+				<Event name="Selection">FlowchartSelection</Event>
+			</Events>
+		</GraphicalSchemaField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.BusinessProcessFlowchart</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="BusinessProcess" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business process</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:TypeSet>cfg:BusinessProcessRef</v8:TypeSet>
+			</Type>
+			<FillCheck>ShowError</FillCheck>
+		</Attribute>
+		<Attribute name="Flowchart" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Flowchart</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.2/data/graphscheme">d5p1:FlowchartContextType</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Status" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Status</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="State" id="6">
+			<Type>
+				<v8:Type>cfg:EnumRef.BusinessProcessStates</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Author" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Author</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Users</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CompletedOn" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Completed</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Date" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Refresh" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update flowchart</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>RefreshExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ShowTasksCommand" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show route point tasks</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open task list for the selected route point</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>TasksExecute</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="BusinessProcess">
+			<Type>
+				<v8:TypeSet>cfg:BusinessProcessRef</v8:TypeSet>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,1877 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Interactions</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="234">
+			<UserVisible>
+				<xr:Common>false</xr:Common>
+			</UserVisible>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="235"/>
+		</UsualGroup>
+		<UsualGroup name="FiltersGroup" id="34">
+			<EnableContentChange>true</EnableContentChange>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filters</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="FiltersGroupExtendedTooltip" id="147"/>
+			<ChildItems>
+				<Button name="SwitchViewMode" id="102">
+					<Type>UsualButton</Type>
+					<Representation>Picture</Representation>
+					<Check>true</Check>
+					<CommandName>Form.Command.SwitchViewMode</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Toggle view</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SwitchViewModeExtendedTooltip" id="148"/>
+				</Button>
+				<InputField name="InteractionType" id="136">
+					<DataPath>InteractionType</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Interaction type</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<Width>25</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ListChoiceMode>true</ListChoiceMode>
+					<TextEdit>false</TextEdit>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All interactions</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">All</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All mail</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">AllEmails</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Appointments</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Meetings</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Phone calls</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">PhoneCalls</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Scheduled interactions</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">PlannedInteractions</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Incoming mails</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">IncomingMessages</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Drafts</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">MessageDrafts</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Outgoing mails</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">OutgoingMessages</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Sent mails</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">SentMessages</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Trash</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">DeletedMessages</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Outgoing calls</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">OutgoingCalls</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Incoming calls</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">IncomingCalls</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Text messages</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">SMSMessages</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="InteractionTypeContextMenu" id="137"/>
+					<ExtendedTooltip name="InteractionTypeExtendedTooltip" id="149"/>
+					<Events>
+						<Event name="OnChange">InteractionTypeOnChange</Event>
+						<Event name="Clearing">InteractionTypeStatusClearing</Event>
+					</Events>
+				</InputField>
+				<InputField name="Status" id="50">
+					<DataPath>Status</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Status</v8:content>
+						</v8:item>
+					</Title>
+					<Width>12</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ListChoiceMode>true</ListChoiceMode>
+					<TextEdit>false</TextEdit>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">All</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Pending review</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">ToReview</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Snoozed</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Deferred3</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Reviewed</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">ReviewedItems</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="StatusContextMenu" id="51"/>
+					<ExtendedTooltip name="StatusExtendedTooltip" id="150"/>
+					<Events>
+						<Event name="OnChange">StatusOnChange</Event>
+						<Event name="Clearing">InteractionTypeStatusClearing</Event>
+					</Events>
+				</InputField>
+				<InputField name="EmployeeResponsible" id="46">
+					<DataPath>EmployeeResponsible</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assigned to</v8:content>
+						</v8:item>
+					</Title>
+					<Width>25</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="EmployeeResponsibleContextMenu" id="47"/>
+					<ExtendedTooltip name="EmployeeResponsibleExtendedTooltip" id="151"/>
+					<Events>
+						<Event name="OnChange">EmployeeResponsibleOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="TreeListPages" id="103">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages list tree</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="TreeListPagesExtendedTooltip" id="152"/>
+			<ChildItems>
+				<Page name="ListPage" id="104">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page list</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ListPageExtendedTooltip" id="153"/>
+					<ChildItems>
+						<Table name="List" id="1">
+							<Representation>List</Representation>
+							<SkipOnInput>false</SkipOnInput>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>List</DataPath>
+							<RowPictureDataPath>List.PictureNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.Interactions</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>List</v8:content>
+								</v8:item>
+							</Title>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>false</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+							<ContextMenu name="ListContextMenu" id="2">
+								<ChildItems>
+									<Button name="Snooze" id="76">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.DeferReview</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Snooze till…</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SnoozeExtendedTooltip" id="154"/>
+									</Button>
+									<Button name="SetReviewed" id="48">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.Reviewed</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Mark as Reviewed</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SetReviewedExtendedTooltip" id="155"/>
+									</Button>
+									<Button name="SetEmployeeResponsible" id="49">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.EmployeeResponsible</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Assign to…</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SetEmployeeResponsibleExtendedTooltip" id="156"/>
+									</Button>
+									<Button name="SetSubject" id="73">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.SubjectOf</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Select topic…</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SetSubjectExtendedTooltip" id="157"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="ListCommandBar" id="3">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="CreateEmailSpecialButtonList" id="135">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<CommandName>Form.Command.CreateEmailMessage</CommandName>
+										<Picture>
+											<xr:Ref>CommonPicture.SendEmail</xr:Ref>
+											<xr:LoadTransparent>false</xr:LoadTransparent>
+										</Picture>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Compose mail</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="CreateEmailSpecialButtonListExtendedTooltip" id="158"/>
+									</Button>
+									<Popup name="GroupCreate" id="80">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Create</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="GroupCreateExtendedTooltip" id="159"/>
+										<ChildItems>
+											<Button name="ListCreateMeeting" id="81">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateMeeting</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Appointment</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ListCreateMeetingExtendedTooltip" id="160"/>
+											</Button>
+											<Button name="ListCreateScheduledInteraction" id="93">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateScheduledInteraction</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Scheduled interaction</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ListCreateScheduledInteractionExtendedTooltip" id="161"/>
+											</Button>
+											<Button name="ListCreateSMSMessage" id="146">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateSMSMessage</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Text message</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ListCreateSMSMessageExtendedTooltip" id="162"/>
+											</Button>
+											<Button name="ListCreatePhoneCall" id="94">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreatePhoneCall</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Phone call</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ListCreatePhoneCallExtendedTooltip" id="163"/>
+											</Button>
+											<Button name="ListCreateEmailMessage" id="95">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateEmailMessage</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mail message</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ListCreateEmailMessageExtendedTooltip" id="164"/>
+											</Button>
+										</ChildItems>
+									</Popup>
+									<ButtonGroup name="InteractionsCommandsGroup" id="77">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Interaction commands</v8:content>
+											</v8:item>
+										</Title>
+										<Representation>Compact</Representation>
+										<ExtendedTooltip name="InteractionsCommandsGroupExtendedTooltip" id="165"/>
+										<ChildItems>
+											<Button name="CommandReviewed" id="45">
+												<Type>CommandBarButton</Type>
+												<Representation>Picture</Representation>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.Reviewed</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mark as Reviewed</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CommandReviewedExtendedTooltip" id="166"/>
+											</Button>
+											<Button name="ListNotReviewed" id="138">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.NotReviewed</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mark as Unreviewed</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="ListNotReviewedExtendedTooltip" id="167"/>
+											</Button>
+											<Button name="DeferReview" id="75">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.DeferReview</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Snooze till…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="DeferReviewExtendedTooltip" id="168"/>
+											</Button>
+											<Button name="CommandEmployeeResponsible" id="70">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.EmployeeResponsible</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Assign to…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CommandEmployeeResponsibleExtendedTooltip" id="169"/>
+											</Button>
+											<Button name="CommandSubject" id="74">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SubjectOf</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Select topic…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CommandSubjectExtendedTooltip" id="170"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Popup name="InteractionTypeList" id="232">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Show</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="InteractionTypeListExtendedTooltip" id="233"/>
+									</Popup>
+									<ButtonGroup name="GroupListCommands" id="82">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>List commands</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="GroupListCommandsExtendedTooltip" id="171"/>
+										<ChildItems>
+											<ButtonGroup name="FindGroup" id="89">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Find</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="FindGroupExtendedTooltip" id="172"/>
+												<ChildItems>
+													<Button name="Find" id="90">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.List.StandardCommand.Find</CommandName>
+														<ExtendedTooltip name="FindExtendedTooltip" id="173"/>
+													</Button>
+													<Button name="CancelSearch" id="92">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.List.StandardCommand.CancelSearch</CommandName>
+														<ExtendedTooltip name="CancelSearchExtendedTooltip" id="174"/>
+													</Button>
+													<Button name="SetDatesInterval" id="88">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.StandardCommand.ChangeHistory</CommandName>
+														<ExtendedTooltip name="SetDatesIntervalExtendedTooltip" id="175"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<Button name="Change" id="83">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.List.StandardCommand.Change</CommandName>
+												<ExtendedTooltip name="ChangeExtendedTooltip" id="176"/>
+											</Button>
+											<Button name="Copy" id="84">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.List.StandardCommand.Copy</CommandName>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="CopyExtendedTooltip" id="177"/>
+											</Button>
+											<ButtonGroup name="SetDeletionMarkListGroup" id="86">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>List set deletion mark</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetDeletionMarkListGroupExtendedTooltip" id="178"/>
+												<ChildItems>
+													<Button name="SetDeletionMark" id="85">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.List.StandardCommand.SetDeletionMark</CommandName>
+														<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+														<ExtendedTooltip name="SetDeletionMarkExtendedTooltip" id="179"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="ListRefresh" id="96">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.List.StandardCommand.Refresh</CommandName>
+										<ExtendedTooltip name="ListRefreshExtendedTooltip" id="180"/>
+									</Button>
+									<Button name="ListSwitchViewMode" id="144">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.SwitchViewMode</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Toggle view</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ListSwitchViewModeExtendedTooltip" id="181"/>
+									</Button>
+									<Button name="ListListSettings" id="97">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.List.StandardCommand.ListSettings</CommandName>
+										<ExtendedTooltip name="ListListSettingsExtendedTooltip" id="182"/>
+									</Button>
+									<Button name="ListOutputList" id="98">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.List.StandardCommand.OutputList</CommandName>
+										<ExtendedTooltip name="ListOutputListExtendedTooltip" id="183"/>
+									</Button>
+									<Button name="ListHelp" id="78">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.StandardCommand.Help</CommandName>
+										<ExtendedTooltip name="ListHelpExtendedTooltip" id="184"/>
+									</Button>
+									<Button name="ListCustomizeForm" id="99">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+										<ExtendedTooltip name="ListCustomizeFormExtendedTooltip" id="185"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="ListExtendedTooltip" id="186"/>
+							<SearchStringAddition name="ListSearchString" id="236">
+								<AdditionSource>
+									<Item>List</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListSearchStringContextMenu" id="237"/>
+								<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="238"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ListViewStatus" id="239">
+								<AdditionSource>
+									<Item>List</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListViewStatusContextMenu" id="240"/>
+								<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="241"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ListSearchControl" id="242">
+								<AdditionSource>
+									<Item>List</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ListSearchControlContextMenu" id="243"/>
+								<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="244"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="BeforeAddRow">ListBeforeAddRow</Event>
+							</Events>
+							<ChildItems>
+								<ColumnGroup name="MainGroup3" id="221">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Main</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MainGroup3ExtendedTooltip" id="222"/>
+									<ChildItems>
+										<ColumnGroup name="StateParticipantsDateGroup" id="223">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Status, participants, date</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Horizontal</Group>
+											<ExtendedTooltip name="StateParticipantsDateGroupExtendedTooltip" id="224"/>
+											<ChildItems>
+												<PictureField name="PictureNumber" id="225">
+													<DataPath>List.PictureNumber</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Interaction icon</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<HeaderPicture>
+														<xr:Ref>CommonPicture.SendEmail</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</HeaderPicture>
+													<Width>2</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ValuesPicture>
+														<xr:Ref>CommonPicture.Interactions</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</ValuesPicture>
+													<FileDragMode>AsFile</FileDragMode>
+													<ContextMenu name="PictureNumberContextMenu" id="226"/>
+													<ExtendedTooltip name="PictureNumberExtendedTooltip" id="227"/>
+												</PictureField>
+												<InputField name="Attendees" id="66">
+													<DataPath>List.Attendees</DataPath>
+													<Width>20</Width>
+													<Wrap>false</Wrap>
+													<ContextMenu name="AttendeesContextMenu" id="67"/>
+													<ExtendedTooltip name="AttendeesExtendedTooltip" id="188"/>
+												</InputField>
+												<InputField name="Date" id="68">
+													<DataPath>List.Date</DataPath>
+													<Width>9</Width>
+													<Wrap>false</Wrap>
+													<Format>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>DF=MM/dd/yyyy</v8:content>
+														</v8:item>
+													</Format>
+													<ContextMenu name="DateContextMenu" id="69"/>
+													<ExtendedTooltip name="DateExtendedTooltip" id="187"/>
+												</InputField>
+												<PictureField name="HasAttachments" id="254">
+													<DataPath>List.HasAttachments</DataPath>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Has attachments</v8:content>
+														</v8:item>
+													</ToolTip>
+													<HeaderPicture>
+														<xr:Ref>CommonPicture.Clip</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</HeaderPicture>
+													<ShowInFooter>false</ShowInFooter>
+													<Width>2</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ValuesPicture>
+														<xr:Ref>CommonPicture.Clip</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</ValuesPicture>
+													<ContextMenu name="HasAttachmentsContextMenu" id="255"/>
+													<ExtendedTooltip name="HasAttachmentsExtendedTooltip" id="256"/>
+												</PictureField>
+											</ChildItems>
+										</ColumnGroup>
+										<InputField name="Subject" id="20">
+											<DataPath>List.Subject</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Subject</v8:content>
+												</v8:item>
+											</Title>
+											<Wrap>false</Wrap>
+											<ContextMenu name="SubjectContextMenu" id="21"/>
+											<ExtendedTooltip name="SubjectExtendedTooltip" id="189"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+								<LabelField name="Ref" id="216">
+									<DataPath>List.Ref</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="RefContextMenu" id="217"/>
+									<ExtendedTooltip name="RefExtendedTooltip" id="218"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="TreePage" id="105">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Tree page</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TreePageExtendedTooltip" id="190"/>
+					<ChildItems>
+						<Table name="InteractionsTree" id="106">
+							<Representation>Tree</Representation>
+							<RowSelectionMode>Row</RowSelectionMode>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<InitialTreeView>ExpandAllLevels</InitialTreeView>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>InteractionsTree</DataPath>
+							<RowPictureDataPath>InteractionsTree.PictureNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.Interactions</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Interactions tree</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>HierarchicalList</ExcludedCommand>
+								<ExcludedCommand>List</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+								<ExcludedCommand>OutputList</ExcludedCommand>
+								<ExcludedCommand>SortListAsc</ExcludedCommand>
+								<ExcludedCommand>SortListDesc</ExcludedCommand>
+								<ExcludedCommand>Tree</ExcludedCommand>
+							</CommandSet>
+							<ContextMenu name="InteractionsTreeContextMenu" id="107"/>
+							<AutoCommandBar name="InteractionsTreeCommandBar" id="108">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="CreateEmailSpecialButtonTreeList" id="140">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<CommandName>Form.Command.CreateEmailMessage</CommandName>
+										<Picture>
+											<xr:Ref>CommonPicture.SendEmail</xr:Ref>
+											<xr:LoadTransparent>false</xr:LoadTransparent>
+										</Picture>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Compose mail</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="CreateEmailSpecialButtonTreeListExtendedTooltip" id="191"/>
+									</Button>
+									<Popup name="CreateTreeGroup" id="120">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Create</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="CreateTreeGroupExtendedTooltip" id="192"/>
+										<ChildItems>
+											<Button name="CreateMeetingTreeList" id="121">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateMeeting</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Appointment</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CreateMeetingTreeListExtendedTooltip" id="193"/>
+											</Button>
+											<Button name="CreateScheduledInteractionTreeList" id="122">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateScheduledInteraction</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Scheduled interaction</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CreateScheduledInteractionTreeListExtendedTooltip" id="194"/>
+											</Button>
+											<Button name="InteractionsTreeCreateSMSMessage" id="219">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateSMSMessage</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Text message</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="InteractionsTreeCreateSMSMessageExtendedTooltip" id="220"/>
+											</Button>
+											<Button name="CreatePhoneCallTreeList" id="123">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreatePhoneCall</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Phone call</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CreatePhoneCallTreeListExtendedTooltip" id="195"/>
+											</Button>
+											<Button name="CreateEmailTreeList" id="124">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CreateEmailMessage</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mail message</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CreateEmailTreeListExtendedTooltip" id="196"/>
+											</Button>
+										</ChildItems>
+									</Popup>
+									<ButtonGroup name="InteractionsCommandsTreeGroup" id="126">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Interaction commands group</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="InteractionsCommandsTreeGroupExtendedTooltip" id="197"/>
+										<ChildItems>
+											<Button name="CommandReviewedTree" id="127">
+												<Type>CommandBarButton</Type>
+												<Representation>Picture</Representation>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.Reviewed</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mark as Reviewed</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CommandReviewedTreeExtendedTooltip" id="198"/>
+											</Button>
+											<Button name="InteractionsTreeNotReviewed" id="139">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.NotReviewed</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mark as Unreviewed</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="InteractionsTreeNotReviewedExtendedTooltip" id="199"/>
+											</Button>
+											<Button name="DeferReviewTree" id="128">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.DeferReview</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Snooze till…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="DeferReviewTreeExtendedTooltip" id="200"/>
+											</Button>
+											<Button name="CommandEmployeeResponsibleTree" id="129">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.EmployeeResponsible</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Assign to…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CommandEmployeeResponsibleTreeExtendedTooltip" id="201"/>
+											</Button>
+											<Button name="CommandSubjectTree" id="130">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SubjectOf</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Select topic…</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CommandSubjectTreeExtendedTooltip" id="202"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Popup name="TreeInteractionType" id="230">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Interaction category tree</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="TreeInteractionTypeExtendedTooltip" id="231"/>
+									</Popup>
+									<Button name="InteractionsTreeSetDateInterval" id="132">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.SetDateInterval</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Period…</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="InteractionsTreeSetDateIntervalExtendedTooltip" id="203"/>
+									</Button>
+									<ButtonGroup name="StandardCommandsTreeGroup" id="125">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Standard commands tree</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="StandardCommandsTreeGroupExtendedTooltip" id="204"/>
+										<ChildItems>
+											<Button name="InteractionsTreeChange" id="141">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.InteractionsTree.StandardCommand.Change</CommandName>
+												<ExtendedTooltip name="InteractionsTreeChangeExtendedTooltip" id="205"/>
+											</Button>
+											<Button name="InteractionsTreeCopy" id="142">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.InteractionsTree.StandardCommand.Copy</CommandName>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="InteractionsTreeCopyExtendedTooltip" id="206"/>
+											</Button>
+											<Button name="InteractionsTreeDelete" id="143">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.InteractionsTree.StandardCommand.Delete</CommandName>
+												<Picture>
+													<xr:Ref>StdPicture.MarkToDelete</xr:Ref>
+													<xr:LoadTransparent>true</xr:LoadTransparent>
+												</Picture>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Toggle deletion mark</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="InteractionsTreeDeleteExtendedTooltip" id="207"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="InteractionsTreeSwitchViewMode" id="145">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.SwitchViewMode</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Toggle view</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="InteractionsTreeSwitchViewModeExtendedTooltip" id="208"/>
+									</Button>
+									<Button name="RefreshTree" id="131">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.RefreshTree</CommandName>
+										<Picture>
+											<xr:Ref>StdPicture.Refresh</xr:Ref>
+											<xr:LoadTransparent>true</xr:LoadTransparent>
+										</Picture>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Refresh</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="RefreshTreeExtendedTooltip" id="209"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="InteractionsTreeExtendedTooltip" id="210"/>
+							<SearchStringAddition name="InteractionsTreeSearchString" id="245">
+								<AdditionSource>
+									<Item>InteractionsTree</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InteractionsTreeSearchStringContextMenu" id="246"/>
+								<ExtendedTooltip name="InteractionsTreeSearchStringExtendedTooltip" id="247"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="InteractionsTreeViewStatus" id="248">
+								<AdditionSource>
+									<Item>InteractionsTree</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InteractionsTreeViewStatusContextMenu" id="249"/>
+								<ExtendedTooltip name="InteractionsTreeViewStatusExtendedTooltip" id="250"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="InteractionsTreeSearchControl" id="251">
+								<AdditionSource>
+									<Item>InteractionsTree</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="InteractionsTreeSearchControlContextMenu" id="252"/>
+								<ExtendedTooltip name="InteractionsTreeSearchControlExtendedTooltip" id="253"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">InteractionsTreeSelection</Event>
+								<Event name="BeforeAddRow">InteractionsTreeBeforeAddRow</Event>
+								<Event name="BeforeDeleteRow">InteractionsTreeBeforeDeleteRow</Event>
+								<Event name="BeforeRowChange">InteractionsTreeBeforeRowChange</Event>
+							</Events>
+							<ChildItems>
+								<ColumnGroup name="InteractionsTreeMainGroup" id="228">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Interactions tree group main</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="InteractionsTreeMainGroupExtendedTooltip" id="229"/>
+									<ChildItems>
+										<ColumnGroup name="ParticipantsStateDate" id="115">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Participants, status, date</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Horizontal</Group>
+											<ExtendedTooltip name="ParticipantsStateDateExtendedTooltip" id="211"/>
+											<ChildItems>
+												<PictureField name="InteractionsTreePictureNumber" id="113">
+													<DataPath>InteractionsTree.PictureNumber</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Picture index</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<EditMode>EnterOnInput</EditMode>
+													<HeaderPicture>
+														<xr:Ref>CommonPicture.SendEmail</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</HeaderPicture>
+													<Width>2</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ValuesPicture>
+														<xr:Ref>CommonPicture.Interactions</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</ValuesPicture>
+													<FileDragMode>AsFile</FileDragMode>
+													<ContextMenu name="InteractionsTreePictureNumberContextMenu" id="114"/>
+													<ExtendedTooltip name="InteractionsTreePictureNumberExtendedTooltip" id="212"/>
+												</PictureField>
+												<InputField name="InteractionsTreeAttendees" id="118">
+													<DataPath>InteractionsTree.Attendees</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Members</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>20</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ChoiceButton>false</ChoiceButton>
+													<ClearButton>false</ClearButton>
+													<OpenButton>false</OpenButton>
+													<ChooseType>false</ChooseType>
+													<ContextMenu name="InteractionsTreeAttendeesContextMenu" id="119"/>
+													<ExtendedTooltip name="InteractionsTreeAttendeesExtendedTooltip" id="214"/>
+												</InputField>
+												<InputField name="InteractionsTreeDate" id="111">
+													<DataPath>InteractionsTree.Date</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Date</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>9</Width>
+													<ChoiceButton>false</ChoiceButton>
+													<ClearButton>false</ClearButton>
+													<ContextMenu name="InteractionsTreeDateContextMenu" id="112"/>
+													<ExtendedTooltip name="InteractionsTreeDateExtendedTooltip" id="213"/>
+												</InputField>
+											</ChildItems>
+										</ColumnGroup>
+										<InputField name="InteractionsTreeSubject" id="116">
+											<DataPath>InteractionsTree.Subject</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Subject</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ChoiceButton>false</ChoiceButton>
+											<ClearButton>false</ClearButton>
+											<SpinButton>false</SpinButton>
+											<OpenButton>false</OpenButton>
+											<ChooseType>false</ChooseType>
+											<ChoiceListButton>false</ChoiceListButton>
+											<ContextMenu name="InteractionsTreeSubjectContextMenu" id="117"/>
+											<ExtendedTooltip name="InteractionsTreeSubjectExtendedTooltip" id="215"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.Date</Field>
+				<Field>List.EmployeeResponsible</Field>
+				<Field>List.PictureNumber</Field>
+				<Field>List.Ref</Field>
+				<Field>List.Reviewed</Field>
+				<Field>List.SubjectOf</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	CASE
+		WHEN InteractionDocumentsLog.Ref REFS Document.Meeting
+			THEN CASE
+					WHEN InteractionDocumentsLog.DeletionMark
+						THEN 10
+					ELSE 0
+				END
+		WHEN InteractionDocumentsLog.Ref REFS Document.PlannedInteraction
+			THEN CASE
+					WHEN InteractionDocumentsLog.DeletionMark
+						THEN 11
+					ELSE 1
+				END
+		WHEN InteractionDocumentsLog.Ref REFS Document.PhoneCall
+			THEN CASE
+					WHEN InteractionDocumentsLog.DeletionMark
+						THEN 12
+					ELSE 2
+				END
+		WHEN InteractionDocumentsLog.Ref REFS Document.IncomingEmail
+			THEN CASE
+					WHEN InteractionDocumentsLog.DeletionMark
+						THEN 13
+					ELSE 3
+				END
+		WHEN InteractionDocumentsLog.Ref REFS Document.OutgoingEmail
+			THEN CASE
+					WHEN InteractionDocumentsLog.DeletionMark
+						THEN 14
+					ELSE CASE
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.OutgoingEmailStatuses.Draft)
+								THEN 15
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.OutgoingEmailStatuses.Outgoing)
+								THEN 16
+							ELSE 4
+						END
+				END
+		WHEN InteractionDocumentsLog.Ref REFS Document.SMSMessage
+			THEN CASE
+					WHEN InteractionDocumentsLog.DeletionMark
+						THEN 22
+					ELSE CASE
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.SMSDocumentStatuses.Draft)
+								THEN 17
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.SMSDocumentStatuses.Outgoing)
+								THEN 18
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.SMSDocumentStatuses.DeliveryInProgress)
+								THEN 19
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.SMSDocumentStatuses.PartiallyDelivered)
+								THEN 21
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.SMSDocumentStatuses.NotDelivered)
+								THEN 23
+							WHEN InteractionDocumentsLog.OutgoingEmailStatus = VALUE(Enum.SMSDocumentStatuses.Delivered)
+								THEN 24
+							ELSE 17
+						END
+				END
+	END AS PictureNumber,
+	InteractionDocumentsLog.Ref,
+	InteractionDocumentsLog.Date,
+	InteractionDocumentsLog.DeletionMark,
+	InteractionDocumentsLog.Number,
+	InteractionDocumentsLog.Posted,
+	InteractionDocumentsLog.Author,
+	InteractionDocumentsLog.Incoming,
+	InteractionDocumentsLog.Subject,
+	InteractionDocumentsLog.EmployeeResponsible AS EmployeeResponsible,
+	ISNULL(InteractionsSubjects.Reviewed, FALSE) AS Reviewed,
+	ISNULL(InteractionsSubjects.ReviewAfter, DATETIME(1,1,1)) AS ReviewAfter,
+	InteractionDocumentsLog.Attendees,
+	InteractionDocumentsLog.Type,
+	ISNULL(InteractionsSubjects.SubjectOf, UNDEFINED) AS SubjectOf,
+	VALUETYPE(InteractionsSubjects.SubjectOf) AS SubjectType,
+	InteractionsSubjects.EmailMessageFolder,
+	InteractionDocumentsLog.Size,
+	InteractionDocumentsLog.OutgoingEmailStatus,
+	InteractionDocumentsLog.HasAttachments
+FROM
+	DocumentJournal.Interactions AS InteractionDocumentsLog
+		INNER JOIN InformationRegister.InteractionsFolderSubjects AS InteractionsSubjects
+		ON InteractionDocumentsLog.Ref = InteractionsSubjects.Interaction</QueryText>
+				<MainTable>DocumentJournal.Interactions</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>ReviewAfter</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Date</dcsset:field>
+							<dcsset:orderType>Desc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="EmployeeResponsible" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assigned to</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Users</v8:Type>
+			</Type>
+			<Save>
+				<Field>EmployeeResponsible</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Status" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Status</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>14</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>Status</Field>
+			</Save>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseReviewedFlag</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="IsFilterBySubject" id="6">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Contact" id="8">
+			<Type>
+				<v8:TypeSet>cfg:DefinedType.InteractionContact</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="SubjectForFilter" id="9">
+			<Type>
+				<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="InTreeStructure" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>InTreeStructure</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="InteractionsTree" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Interactions tree</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type>
+						<v8:Type>cfg:DocumentRef.OutgoingEmail</v8:Type>
+						<v8:Type>cfg:DocumentRef.PlannedInteraction</v8:Type>
+						<v8:Type>cfg:DocumentRef.IncomingEmail</v8:Type>
+						<v8:Type>cfg:DocumentRef.PhoneCall</v8:Type>
+						<v8:Type>cfg:DocumentRef.Meeting</v8:Type>
+						<v8:Type>cfg:DocumentRef.SMSMessage</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Date" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Date</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture index</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Subject" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Subject</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Attendees" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Participants</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Reviewed" id="6">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DeletionMark" id="7">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="EmployeeResponsible" id="8">
+					<Type>
+						<v8:Type>cfg:CatalogRef.Users</v8:Type>
+					</Type>
+				</Column>
+				<Column name="SubjectOf" id="9">
+					<Type>
+						<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Interval" id="10">
+			<Type>
+				<v8:Type>v8:StandardPeriod</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InteractionType" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Interaction type</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>30</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>InteractionType</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="OnlyEmail" id="12">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DocumentsAvailableForCreation" id="13">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="UseReviewedFlag" id="14">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Reviewed" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mark as Reviewed</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mark as Reviewed</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SetReviewedFlagForInteraction</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ReviewedExecute</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseReviewedFlag</Item>
+			</FunctionalOptions>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="EmployeeResponsible" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assign to…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assign to</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SetPersonResponsibleForInteraction</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>EmployeeResponsibleExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SubjectOf" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select topic…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select topic</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SetInteractionSubject</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SubjectOfExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DeferReview" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Snooze till…</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.PostponeInteractionReview</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>DeferReviewExecute</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseReviewedFlag</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CreateMeeting" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Appointment</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Appointment</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CreateMeeting</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseOtherInteractions</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CreateScheduledInteraction" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Scheduled interaction</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Scheduled interaction</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CreateScheduledInteraction</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseOtherInteractions</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CreatePhoneCall" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Phone call</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Phone call</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CreatePhoneCall</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseOtherInteractions</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CreateEmailMessage" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mail message</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mail message</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CreateEmailMessage</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SwitchViewMode" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle view</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle between list and tree view.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.HierarchicalList</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SwitchViewMode</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RefreshTree" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Action>RefreshTree</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetDateInterval" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Period…</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.SetDateInterval</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetDateInterval</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="NotReviewed" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mark as Unreviewed</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mark as Unreviewed</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.RemoveInteractionReviewedAttribute</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ReviewedExecute</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseReviewedFlag</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CreateSMSMessage" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Text message</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Text message</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CreateSMSMessage</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseOtherInteractions</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="AdditionalParameters">
+			<Type/>
+		</Parameter>
+		<Parameter name="Filter">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

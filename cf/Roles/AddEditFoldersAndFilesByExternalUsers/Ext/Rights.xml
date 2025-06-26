@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.17">
+	<setForNewObjects>false</setForNewObjects>
+	<setForAttributesByDefault>true</setForAttributesByDefault>
+	<independentRightsOfChildObjects>false</independentRightsOfChildObjects>
+	<object>
+		<name>Catalog.Files.Command.FileVersions</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.Files.Command.Files</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.FilesFolders</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("Ref")
+#Else
+#ByValues("Catalog.FilesFolders", "", "",
+"RightsSettings", "Ref", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Insert</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("Ref")
+#Else
+#ByValues("Catalog.FilesFolders", "", "",
+"RightsSettings", "Ref", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("Ref")
+#Else
+#ByValues("Catalog.FilesFolders", "", "",
+"RightsSettings", "Ref", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","", "","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveInsert</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveSetDeletionMark</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveClearDeletionMark</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Configuration.Jet</name>
+		<right>
+			<name>MainWindowModeNormal</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeEmbeddedWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeFullscreenWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeKiosk</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>AnalyticsSystemClient</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>CommonForm.WorkingDirectorySettings</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>CommonCommand.AttachedFiles</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>CommonCommand.FilesToEdit</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.Files</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("")
+#Else
+#ByValuesAndSetsAdvanced("Catalog.Files", "", "",
+"",
+"SELECT WHEN THE VALUE TYPE(file owner) = Type(Reference.Folders of files) THEN",
+"RightsSettings","T.FileOwner","Else", "ExternalUsers","Cast(T.Author As Catalog.ExternalUsers)","End", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Insert</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("")
+#Else
+#ByValuesAndSetsAdvanced("Catalog.Files", "", "",
+"",
+"SELECT WHEN THE VALUE TYPE(file owner) = Type(Reference.Folders of files) THEN",
+"RightsSettings","T.FileOwner","Else", "ExternalUsers","Cast(T.Author As Catalog.ExternalUsers)","End", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("")
+#Else
+#ByValuesAndSetsAdvanced("Catalog.Files", "", "",
+"",
+"SELECT WHEN THE VALUE TYPE(file owner) = Type(Reference.Folders of files) THEN",
+"RightsSettings","T.FileOwner","Else", "ExternalUsers","Cast(T.Author As Catalog.ExternalUsers)","End", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveInsert</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveSetDeletionMark</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveClearDeletionMark</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Catalog.FilesVersions</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("Owner.FileOwner")
+#Else
+#ByValuesAndSetsAdvanced("Catalog.FilesVersions", "", "",
+"",
+"",
+"Object","T.Owner.FileOwner","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForObject("Owner.FileOwner")
+#Else
+#ByValuesAndSetsAdvanced("Catalog.FilesVersions", "", "",
+"",
+"",
+"Object","T.Owner.FileOwner","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","", "","","")
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveSetDeletionMark</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InteractiveClearDeletionMark</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>true</value>
+		</right>
+	</object>
+	<restrictionTemplate>
+		<name>ByValues</name>
+		<condition>Error: template not supported "#Parameter(1) #Parameter(2) #Parameter(3) #Parameter(4) #Parameter(5) #Parameter(6) #Parameter(7) #Parameter(8) #Parameter(9) #Parameter(10) #Parameter(11) #Parameter(12) #Parameter(13) #Parameter(14) #Parameter(15) #Parameter(16) #Parameter(17) #Parameter(18) #Parameter(19) #Parameter(20) #Parameter(21) #Parameter(22) #Parameter(23) #Parameter(24) #Parameter(25) #Parameter(26) #Parameter(27) #Parameter(28) #Parameter(29) #Parameter(30) #Parameter(31) #Parameter(32) #Parameter(33) #Parameter(34) #Parameter(35)"</condition>
+	</restrictionTemplate>
+	<restrictionTemplate>
+		<name>ByValuesAndSetsAdvanced</name>
+		<condition>Error: template not supported "#Parameter(1) #Parameter(2) #Parameter(3) #Parameter(4) #Parameter(5) #Parameter(6) #Parameter(7) #Parameter(8) #Parameter(9) #Parameter(10) #Parameter(11) #Parameter(12) #Parameter(13) #Parameter(14) #Parameter(15) #Parameter(16) #Parameter(17) #Parameter(18) #Parameter(19) #Parameter(20) #Parameter(21) #Parameter(22) #Parameter(23) #Parameter(24) #Parameter(25) #Parameter(26) #Parameter(27) #Parameter(28) #Parameter(29) #Parameter(30) #Parameter(31) #Parameter(32) #Parameter(33) #Parameter(34) #Parameter(35) #Parameter(36) #Parameter(37) #Parameter(38) #Parameter(39) #Parameter(40) #Parameter(41) #Parameter(42) #Parameter(43) #Parameter(44) #Parameter(45) #Parameter(46) #Parameter(47) #Parameter(48) #Parameter(49) #Parameter(50) #Parameter(51) #Parameter(52) #Parameter(53)"</condition>
+	</restrictionTemplate>
+	<restrictionTemplate>
+		<name>ForObject(ObjectField)</name>
+		<condition>#If &amp;ListsWithReadRestrictionDisabled = "Undefined" #Then
+  WHERE FALSE
+
+#ElseIf Not StrContains(&amp;AccessRestrictionTemplatesVersions, ",ForObject9,") #Then
+  Error: Required2 Refresh Template to1 actual version, supplied IN Roles EditAccessGroupMembers BY reason: Used deprecated Version 9 template Restrictions access ForObject. Object: #CurrentTableName, Right: #CurrentAccessRightName.
+
+#ElseIf &amp;ListsWithReadRestrictionDisabled = "All" #Then
+  WHERE TRUE
+
+#ElseIf StrContains(&amp;ListsWithReadRestrictionDisabled, #CurrentTableName + ";") #Then
+  WHERE TRUE
+
+#ElseIf StrContains(&amp;AccessRestrictionTemplatesVersions, ",SessionRestartRequired1,") #Then
+  Error: Version Applications Updated1, Required2 Restart session. Object: #CurrentTableName, Right: #CurrentAccessRightName.
+
+#ElseIf #CurrentAccessRightName &lt;&gt; "Read" #Then
+  WHERE TRUE
+
+#ElseIf StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ";0") #Then
+  WHERE FALSE
+
+#ElseIf StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ";1") #Then
+  Error: External users are disabled.
+
+#ElseIf Not StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction,  #CurrentTableName + ":#ObjectField;")
+         And Not StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;") #Then
+
+  Error: Required2 actualize Restriction access BY reason: NOT ManagedTo define Variant Restrictions access IN parameters sessions FOR template ForObject with value parameter "#ObjectField". Object: #CurrentTableName, Right: #CurrentAccessRightName.
+#Else
+
+CurrentTable WHERE TRUE IN
+ (
+  SELECT TOP 1 TRUE
+  FROM InformationRegister.AccessKeysForObjects AS AccessKeysForObjects
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ":#ObjectField;") #Then
+      LEFT JOIN InformationRegister.AccessGroupSetsAccessKeys AS AccessGroupSetsAccessKeys
+      ON
+      #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then
+          AccessGroupSetsAccessKeys.AccessKey = AccessKeysForObjects.UsersAccessKey
+      #Else
+          AccessGroupSetsAccessKeys.AccessKey = AccessKeysForObjects.ExternalUsersAccessKey
+      #EndIf
+        AND AccessGroupSetsAccessKeys.AccessGroupsSet = &amp;AllowedAccessGroupsSet
+  #EndIf
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ":#ObjectField;*") #Then
+      
+      LEFT JOIN InformationRegister.AccessGroupSetsAccessKeys AS AccessKeysAllowedSetAccessGroups
+      ON
+      #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then
+          AccessKeysAllowedSetAccessGroups.AccessKey = AccessKeysForObjects.UsersAccessKey
+      #Else
+          AccessKeysAllowedSetAccessGroups.AccessKey = AccessKeysForObjects.ExternalUsersAccessKey
+      #EndIf
+        AND AccessKeysAllowedSetAccessGroups.AccessGroupsSet = &amp;AllowedBlankAccessGroupsSet
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;") #Then
+      
+    #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then
+      LEFT JOIN InformationRegister.UsersAccessKeys AS UsersAccessKeys
+      ON
+          UsersAccessKeys.AccessKey = AccessKeysForObjects.UsersAccessKey
+        AND UsersAccessKeys.User = &amp;AllowedUser
+    #Else
+      LEFT JOIN InformationRegister.ExternalUsersAccessKeys AS UsersAccessKeys
+      ON
+          UsersAccessKeys.AccessKey = AccessKeysForObjects.ExternalUsersAccessKey
+        AND UsersAccessKeys.ExternalUser = &amp;AllowedUser
+    #EndIf
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;+") #Then
+      
+    #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then
+      LEFT JOIN InformationRegister.UsersAccessKeys AS SetsAccessKeysAccessGroups
+      ON
+          SetsAccessKeysAccessGroups.AccessKey = AccessKeysForObjects.UsersAccessKey
+        AND SetsAccessKeysAccessGroups.User = &amp;AllowedUserGroupsSet
+    #Else
+      LEFT JOIN InformationRegister.ExternalUsersAccessKeys AS SetsAccessKeysAccessGroups
+      ON
+          SetsAccessKeysAccessGroups.AccessKey = AccessKeysForObjects.ExternalUsersAccessKey
+        AND SetsAccessKeysAccessGroups.ExternalUser = &amp;AllowedUserGroupsSet
+    #EndIf
+  #EndIf
+  WHERE
+  #If "#ObjectField"  = ""
+    Or StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction,  #CurrentTableName + ":#ObjectField;;-")
+    Or StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction,  #CurrentTableName + ":#ObjectField;*;-")
+    Or StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;;-")
+    Or StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;+;-") #Then
+      AccessKeysForObjects.Object = CurrentTable.Ref
+  #Else
+      AccessKeysForObjects.Object = CurrentTable.#ObjectField
+  #EndIf
+    AND (
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ":#ObjectField;") #Then
+          NOT AccessGroupSetsAccessKeys.AccessKey IS NULL
+  #Else
+          FALSE
+  #EndIf
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ":#ObjectField;*") #Then
+      OR NOT AccessKeysAllowedSetAccessGroups.AccessKey IS NULL
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;") #Then
+      OR NOT UsersAccessKeys.AccessKey IS NULL
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;+") #Then
+      OR NOT SetsAccessKeysAccessGroups.AccessKey IS NULL
+  #EndIf
+      )
+ )
+
+ #If Not StrContains(&amp;CommonAccessRestrictionTemplateParameters, #CurrentTableName + ":Skip;")
+   And (    StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";ClarifyForAll;")
+      Or StrContains(&amp;CommonAccessRestrictionTemplateParameters, #CurrentTableName + ":Specify;") ) #Then
+  
+  #If Not StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":#ObjectField;") #Then
+  AND TRUE IN (TRUE
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";31;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";30;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";29;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";28;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";27;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";26;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";25;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";24;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";23;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";22;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";21;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";20;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";19;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";18;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";17;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";16;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";15;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";14;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";13;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";12;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";11;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";10;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";09;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";08;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";07;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";06;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";05;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";04;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";03;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";02;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";01;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";00;") #Then ,TRUE #Else ,FALSE #EndIf
+	)
+  #Else
+  AND TRUE IN (TRUE
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";31^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";30^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";29^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";28^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";27^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";26^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";25^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";24^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";23^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";22^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";21^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";20^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";19^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";18^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";17^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";16^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";15^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";14^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";13^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";12^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";11^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";10^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";09^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";08^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";07^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";06^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";05^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";04^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";03^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";02^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";01^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";00^;") #Then ,TRUE #Else ,FALSE #EndIf
+	)
+  #EndIf
+ #EndIf
+
+#EndIf</condition>
+	</restrictionTemplate>
+</Rights>

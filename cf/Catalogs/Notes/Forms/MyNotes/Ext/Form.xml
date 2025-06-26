@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>My notes</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>CancelSearch</ExcludedCommand>
+		<ExcludedCommand>Close</ExcludedCommand>
+		<ExcludedCommand>Copy</ExcludedCommand>
+		<ExcludedCommand>CreateFolder</ExcludedCommand>
+		<ExcludedCommand>Delete</ExcludedCommand>
+		<ExcludedCommand>DynamicListStandardSettings</ExcludedCommand>
+		<ExcludedCommand>Find</ExcludedCommand>
+		<ExcludedCommand>HierarchicalList</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>LevelDown</ExcludedCommand>
+		<ExcludedCommand>LevelUp</ExcludedCommand>
+		<ExcludedCommand>List</ExcludedCommand>
+		<ExcludedCommand>LoadDynamicListSettings</ExcludedCommand>
+		<ExcludedCommand>MoveItem</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>Refresh</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveDynamicListSettings</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Tree</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormCreate" id="19">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Create</CommandName>
+				<ExtendedTooltip name="FormCreateExtendedTooltip" id="20"/>
+			</Button>
+			<Button name="FormCommonCommandRemind" id="15">
+				<Type>CommandBarButton</Type>
+				<Representation>Text</Representation>
+				<CommandName>CommonCommand.Remind</CommandName>
+				<DataPath>Items.List.CurrentData.Ref</DataPath>
+				<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormCommonCommandRemindExtendedTooltip" id="16"/>
+			</Button>
+			<SearchStringAddition name="SearchString" id="47">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SearchStringContextMenu" id="48"/>
+				<ExtendedTooltip name="SearchStringExtendedTooltip" id="49"/>
+			</SearchStringAddition>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="List" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<Header>false</Header>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.PictureIndex</RowPictureDataPath>
+			<RowsPicture>
+				<xr:Ref>CommonPicture.NotesCollection</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</RowsPicture>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>CancelSearch</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>CreateFolder</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>Find</ExcludedCommand>
+				<ExcludedCommand>HierarchicalList</ExcludedCommand>
+				<ExcludedCommand>LevelDown</ExcludedCommand>
+				<ExcludedCommand>LevelUp</ExcludedCommand>
+				<ExcludedCommand>List</ExcludedCommand>
+				<ExcludedCommand>ListSettings</ExcludedCommand>
+				<ExcludedCommand>MoveItem</ExcludedCommand>
+				<ExcludedCommand>Refresh</ExcludedCommand>
+				<ExcludedCommand>Tree</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2">
+				<ChildItems>
+					<Button name="ListContextMenuCommonCommandRemind" id="17">
+						<Type>CommandBarButton</Type>
+						<CommandName>CommonCommand.Remind</CommandName>
+						<DataPath>Items.List.CurrentData.Ref</DataPath>
+						<ExtendedTooltip name="ListContextMenuCommonCommandRemindExtendedTooltip" id="18"/>
+					</Button>
+					<ButtonGroup name="ListContextMenuGroupOutput" id="33">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Output</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuGroupOutputExtendedTooltip" id="34"/>
+						<ChildItems>
+							<Button name="ListContextMenuCopyToClipboard" id="31">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.List.StandardCommand.CopyToClipboard</CommandName>
+								<ExtendedTooltip name="ListContextMenuCopyToClipboardExtendedTooltip" id="32"/>
+							</Button>
+							<Button name="ListContextMenuOutputList" id="23">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.OutputList</CommandName>
+								<ExtendedTooltip name="ListContextMenuOutputListExtendedTooltip" id="24"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<ButtonGroup name="ListContextMenuGroupSettings" id="27">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Setting</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuGroupSettingsExtendedTooltip" id="28"/>
+						<ChildItems>
+							<Button name="ListContextMenuListSettings" id="21">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.ListSettings</CommandName>
+								<ExtendedTooltip name="ListContextMenuListSettingsExtendedTooltip" id="22"/>
+							</Button>
+							<Button name="ListContextMenuCustomizeForm" id="25">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+								<ExtendedTooltip name="ListContextMenuCustomizeFormExtendedTooltip" id="26"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Button name="ListContextMenuHelp" id="29">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.StandardCommand.Help</CommandName>
+						<ExtendedTooltip name="ListContextMenuHelpExtendedTooltip" id="30"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="ListCommandBar" id="3"/>
+			<ExtendedTooltip name="ListExtendedTooltip" id="11"/>
+			<SearchStringAddition name="ListSearchString" id="38">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="39"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="40"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="41">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="42"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="43"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="44">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="45"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="46"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<ColumnGroup name="Content" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Content</v8:content>
+						</v8:item>
+					</Title>
+					<Width>5</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="ContentExtendedTooltip" id="12"/>
+					<ChildItems>
+						<LabelField name="NotePresentation" id="4">
+							<DataPath>List.Description</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<AutoCellHeight>true</AutoCellHeight>
+							<Width>5</Width>
+							<ContextMenu name="NotePresentationContextMenu" id="5"/>
+							<ExtendedTooltip name="NotePresentationExtendedTooltip" id="13"/>
+						</LabelField>
+						<LabelField name="SubjectPresentation" id="9">
+							<DataPath>List.SubjectPresentation</DataPath>
+							<Width>5</Width>
+							<ContextMenu name="SubjectPresentationContextMenu" id="10"/>
+							<ExtendedTooltip name="SubjectPresentationExtendedTooltip" id="14"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+				<LabelField name="Ref" id="35">
+					<DataPath>List.Ref</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="RefContextMenu" id="36"/>
+					<ExtendedTooltip name="RefExtendedTooltip" id="37"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	CatalogNotes.Ref,
+	CatalogNotes.DeletionMark,
+	CatalogNotes.Predefined,
+	CatalogNotes.Description,
+	CatalogNotes.Author,
+	CatalogNotes.Content,
+	CatalogNotes.ContentText,
+	CatalogNotes.ForDesktop,
+	CatalogNotes.Check,
+	CASE
+		WHEN CatalogNotes.DeletionMark
+			THEN 0
+		WHEN CatalogNotes.IsFolder
+			THEN -1
+		WHEN CatalogNotes.Check = VALUE(Enum.NoteColors.EmptyRef)
+			THEN 4
+		ELSE ISNULL(NoteColors.Order, 0) + 2
+	END AS PictureIndex,
+	CatalogNotes.SubjectPresentation,
+	CatalogNotes.ChangeDate
+FROM
+	Catalog.Notes AS CatalogNotes
+		LEFT JOIN Enum.NoteColors AS NoteColors
+		ON CatalogNotes.Check.Order = NoteColors.Order
+WHERE
+	CatalogNotes.DeletionMark = FALSE
+	AND CatalogNotes.Author = &amp;User
+	AND CatalogNotes.ForDesktop = TRUE</QueryText>
+				<MainTable>Catalog.Notes</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>ChangeDate</dcsset:field>
+							<dcsset:orderType>Desc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+</Form>

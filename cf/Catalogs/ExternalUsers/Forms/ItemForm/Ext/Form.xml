@@ -1,0 +1,1752 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<CommandSet>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+	</CommandSet>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormWriteAndClose" id="351">
+				<Type>CommandBarButton</Type>
+				<Representation>Text</Representation>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.WriteAndClose</CommandName>
+				<Picture>
+					<xr:Ref>StdPicture.WriteAndClose</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="352"/>
+			</Button>
+			<ButtonGroup name="FormCommands" id="353">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Form commands</v8:content>
+					</v8:item>
+				</Title>
+				<CommandSource>Form</CommandSource>
+				<ExtendedTooltip name="FormCommandsExtendedTooltip" id="354"/>
+			</ButtonGroup>
+			<Popup name="ReportsSubmenu" id="405">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Reports</v8:content>
+					</v8:item>
+				</Title>
+				<Picture>
+					<xr:Ref>CommonPicture.Reports</xr:Ref>
+					<xr:LoadTransparent>false</xr:LoadTransparent>
+				</Picture>
+				<Representation>PictureAndText</Representation>
+				<ExtendedTooltip name="ReportsSubmenuExtendedTooltip" id="406"/>
+				<ChildItems>
+					<ButtonGroup name="ReportsImportantSubmenu" id="407">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports important</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ReportsImportantSubmenuExtendedTooltip" id="408"/>
+					</ButtonGroup>
+					<ButtonGroup name="SubmenuReportsStandard" id="409">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu fill in standard</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="SubmenuReportsStandardExtendedTooltip" id="410"/>
+					</ButtonGroup>
+					<ButtonGroup name="ReportsSubmenuSeeAlso" id="411">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports see also</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ReportsSubmenuSeeAlsoExtendedTooltip" id="412"/>
+					</ButtonGroup>
+				</ChildItems>
+			</Popup>
+			<Button name="FormHelp" id="355">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="356"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="BeforeWrite">BeforeWrite</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="OnWriteAtServer">OnWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+		<Event name="BeforeLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="PropertiesMismatchProcessing" id="228">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Properties mismatch processing</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="PropertiesMismatchProcessingExtendedTooltip" id="229"/>
+			<ChildItems>
+				<PictureDecoration name="PropertiesWarningPicture" id="230">
+					<SkipOnInput>false</SkipOnInput>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties warning picture</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="PropertiesWarningPictureContextMenu" id="231"/>
+					<ExtendedTooltip name="PropertiesWarningPictureExtendedTooltip" id="232"/>
+				</PictureDecoration>
+				<UsualGroup name="PropertiesNoteAndCommands" id="250">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties note and commands</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="PropertiesNoteAndCommandsExtendedTooltip" id="251"/>
+					<ChildItems>
+						<LabelDecoration name="PropertiesMismatchNote" id="235">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<SkipOnInput>false</SkipOnInput>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The following infobase user properties differ from the properties specified in the form:
+%1.
+Click "Save" to resolve the differences and hide this message.</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Some of the infobase user properties are stored in the external user card. The values stored in the card do not match the values specified here.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<VerticalAlign>Top</VerticalAlign>
+							<ContextMenu name="PropertiesMismatchNoteContextMenu" id="236"/>
+							<ExtendedTooltip name="PropertiesMismatchNoteExtendedTooltip" id="237"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="MappingMismatchProcessing" id="169">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mapping mismatch processing</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="MappingMismatchProcessingExtendedTooltip" id="199"/>
+			<ChildItems>
+				<PictureDecoration name="MappingWarningPicture" id="170">
+					<SkipOnInput>false</SkipOnInput>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Mapping warning picture</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="MappingWarningPictureContextMenu" id="171"/>
+					<ExtendedTooltip name="MappingWarningPictureExtendedTooltip" id="200"/>
+				</PictureDecoration>
+				<LabelDecoration name="MappingMismatchNote" id="172">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<SkipOnInput>false</SkipOnInput>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The infobase user is not found.
+Click "Save" to resolve the issue and hide this message.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Center</VerticalAlign>
+					<ContextMenu name="MappingMismatchNoteContextMenu" id="173"/>
+					<ExtendedTooltip name="MappingMismatchNoteExtendedTooltip" id="201"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="HeaderGroup" id="287">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HeaderGroupExtendedTooltip" id="288"/>
+			<ChildItems>
+				<UsualGroup name="DescriptionGroup" id="332">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DescriptionGroupExtendedTooltip" id="333"/>
+					<ChildItems>
+						<InputField name="AuthorizationObject" id="164">
+							<DataPath>Object.AuthorizationObject</DataPath>
+							<Width>45</Width>
+							<ContextMenu name="AuthorizationObjectContextMenu" id="165"/>
+							<ExtendedTooltip name="AuthorizationObjectExtendedTooltip" id="202"/>
+							<Events>
+								<Event name="OnChange">AuthorizationObjectOnChange</Event>
+							</Events>
+						</InputField>
+						<CheckBoxField name="Invalid" id="190">
+							<DataPath>Object.Invalid</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="InvalidContextMenu" id="191"/>
+							<ExtendedTooltip name="InvalidExtendedTooltip" id="203"/>
+							<Events>
+								<Event name="OnChange">InvalidOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="CanSignInGroup" id="264">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Login allowed</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CanSignInGroupExtendedTooltip" id="265"/>
+			<ChildItems>
+				<CheckBoxField name="CanSignIn" id="99">
+					<DataPath>CanSignIn</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Login allowed</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allow the external user to log in using
+the specified authentication methods.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="CanSignInContextMenu" id="100"/>
+					<ExtendedTooltip name="CanSignInExtendedTooltip" id="204"/>
+					<Events>
+						<Event name="OnChange">CanSignInOnChange</Event>
+					</Events>
+				</CheckBoxField>
+				<UsualGroup name="GroupNoRights" id="376">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>No access rights</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupNoRightsExtendedTooltip" id="377"/>
+					<ChildItems>
+						<PictureDecoration name="NoRightsPicture" id="378">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>No access rights picture</v8:content>
+								</v8:item>
+							</Title>
+							<Picture>
+								<xr:Ref>CommonPicture.Warning</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<ContextMenu name="NoRightsPictureContextMenu" id="379"/>
+							<ExtendedTooltip name="NoRightsPictureExtendedTooltip" id="380"/>
+						</PictureDecoration>
+						<LabelDecoration name="NoRightsLabel" id="381">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>No access rights</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User is not assigned access rights (no role)</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ContextMenu name="NoRightsLabelContextMenu" id="382"/>
+							<ExtendedTooltip name="NoRightsLabelExtendedTooltip" id="383"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupNoStartupRights" id="384">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>No startup rights</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupNoStartupRightsExtendedTooltip" id="385"/>
+					<ChildItems>
+						<PictureDecoration name="NoStartupRightsPicture" id="386">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>No startup rights picture</v8:content>
+								</v8:item>
+							</Title>
+							<Picture>
+								<xr:Ref>CommonPicture.Warning</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<ContextMenu name="NoStartupRightsPictureContextMenu" id="387"/>
+							<ExtendedTooltip name="NoStartupRightsPictureExtendedTooltip" id="388"/>
+						</PictureDecoration>
+						<LabelDecoration name="NoStartupRightsLabel" id="389">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>No startup rights</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User does not have any startup rights
+(e.g. thin client or web client).</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ContextMenu name="NoStartupRightsLabelContextMenu" id="390"/>
+							<ExtendedTooltip name="NoStartupRightsLabelExtendedTooltip" id="391"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupNoLogonRights" id="397">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>No rights to log in</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupNoLogonRightsExtendedTooltip" id="398"/>
+					<ChildItems>
+						<PictureDecoration name="NoLogonRightsPicture" id="399">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>No rights to log in picture</v8:content>
+								</v8:item>
+							</Title>
+							<Picture>
+								<xr:Ref>CommonPicture.Warning</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<ContextMenu name="NoLogonRightsPictureContextMenu" id="400"/>
+							<ExtendedTooltip name="NoLogonRightsPictureExtendedTooltip" id="401"/>
+						</PictureDecoration>
+						<LabelDecoration name="NoLogonRightsLabel" id="402">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>No rights to log in</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User is not granted the minimum access rights to use the application.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ContextMenu name="NoLogonRightsLabelContextMenu" id="403"/>
+							<ExtendedTooltip name="NoLogonRightsLabelExtendedTooltip" id="404"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ChangeRestrictionGroup" id="346">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Change time restriction</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ChangeRestrictionGroupExtendedTooltip" id="347"/>
+					<ChildItems>
+						<Button name="ChangeAuthorizationRestriction" id="344">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.ChangeAuthorizationRestriction</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Change time restriction</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ChangeAuthorizationRestrictionExtendedTooltip" id="345"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<LabelDecoration name="CheckAuthorizationSettingsRecommendation" id="269">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<TextColor>style:NoteText</TextColor>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Consider reviewing login settings</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>It is recommended that you review the settings because the user was created
+by the external user list owner (not by the administrator).</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<ContextMenu name="CheckAuthorizationSettingsRecommendationContextMenu" id="270"/>
+					<ExtendedTooltip name="CheckAuthorizationSettingsRecommendationExtendedTooltip" id="271"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="281">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="282"/>
+			<Events>
+				<Event name="OnCurrentPageChange">PagesOnCurrentPageChange</Event>
+			</Events>
+			<ChildItems>
+				<Page name="Main_Page" id="283">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Main_PageExtendedTooltip" id="284"/>
+					<ChildItems>
+						<UsualGroup name="GroupName" id="374">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Name</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNameExtendedTooltip" id="375"/>
+							<ChildItems>
+								<InputField name="IBUserName" id="242">
+									<DataPath>IBUserName</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Username</v8:content>
+										</v8:item>
+									</Title>
+									<AutoMarkIncomplete>true</AutoMarkIncomplete>
+									<ContextMenu name="IBUserNameContextMenu" id="243"/>
+									<ExtendedTooltip name="IBUserNameExtendedTooltip" id="244"/>
+									<Events>
+										<Event name="OnChange">IBUserNameOnChange</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="IBUserProperies" id="75">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Infobase user properties</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="IBUserProperiesExtendedTooltip" id="206"/>
+							<ChildItems>
+								<UsualGroup name="AuthenticationProperties" id="366">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Authentication properties</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AuthenticationPropertiesExtendedTooltip" id="367"/>
+									<ChildItems>
+										<UsualGroup name="OneCEnterpriseAuthenticationProperties" id="193">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>1C:Enterprise authentication properties</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="OneCEnterpriseAuthenticationPropertiesExtendedTooltip" id="208"/>
+											<ChildItems>
+												<CheckBoxField name="IBUserStandardAuthentication" id="194">
+													<DataPath>IBUserStandardAuthentication</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>1C:Enterprise authentication</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Authentication with 1C:Enterprise
+username and password.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="IBUserStandardAuthenticationContextMenu" id="195"/>
+													<ExtendedTooltip name="IBUserStandardAuthenticationExtendedTooltip" id="209"/>
+													<Events>
+														<Event name="OnChange">IBUserStandardAuthenticationOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<UsualGroup name="GroupIndent" id="274">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Indent</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="GroupIndentExtendedTooltip" id="275"/>
+													<ChildItems>
+														<LabelDecoration name="Indent" id="276">
+															<ContextMenu name="IndentContextMenu" id="277"/>
+															<ExtendedTooltip name="IndentExtendedTooltip" id="278"/>
+														</LabelDecoration>
+														<UsualGroup name="OneCEnterpriseAuthenticationParameters" id="196">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>1C: Enterprise authentication parameters</v8:content>
+																</v8:item>
+															</Title>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="OneCEnterpriseAuthenticationParametersExtendedTooltip" id="210"/>
+															<ChildItems>
+																<UsualGroup name="PasswordGroup" id="319">
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Password</v8:content>
+																		</v8:item>
+																	</Title>
+																	<Behavior>Usual</Behavior>
+																	<Representation>None</Representation>
+																	<ShowTitle>false</ShowTitle>
+																	<ExtendedTooltip name="PasswordGroupExtendedTooltip" id="320"/>
+																	<ChildItems>
+																		<LabelDecoration name="PasswordExistsLabel" id="321">
+																			<AutoMaxWidth>false</AutoMaxWidth>
+																			<TextColor>style:NoteText</TextColor>
+																			<Title formatted="false">
+																				<v8:item>
+																					<v8:lang>en</v8:lang>
+																					<v8:content>Blank password</v8:content>
+																				</v8:item>
+																			</Title>
+																			<ContextMenu name="PasswordExistsLabelContextMenu" id="322"/>
+																			<ExtendedTooltip name="PasswordExistsLabelExtendedTooltip" id="323"/>
+																		</LabelDecoration>
+																		<Button name="ChangePassword" id="324">
+																			<Type>UsualButton</Type>
+																			<CommandName>Form.Command.ChangePassword</CommandName>
+																			<Title>
+																				<v8:item>
+																					<v8:lang>en</v8:lang>
+																					<v8:content>Change password…</v8:content>
+																				</v8:item>
+																			</Title>
+																			<ExtendedTooltip name="ChangePasswordExtendedTooltip" id="325"/>
+																		</Button>
+																	</ChildItems>
+																</UsualGroup>
+																<CheckBoxField name="UserMustChangePasswordOnAuthorization" id="326">
+																	<DataPath>UserMustChangePasswordOnAuthorization</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Demand password change on next login</v8:content>
+																		</v8:item>
+																	</Title>
+																	<TitleLocation>Right</TitleLocation>
+																	<ToolTipRepresentation>Button</ToolTipRepresentation>
+																	<CheckBoxType>Auto</CheckBoxType>
+																	<ContextMenu name="UserMustChangePasswordOnAuthorizationContextMenu" id="327"/>
+																	<ExtendedTooltip name="UserMustChangePasswordOnAuthorizationExtendedTooltip" id="328">
+																		<Events>
+																			<Event name="URLProcessing">UserMustChangePasswordOnAuthorizationExtendedTooltipURLProcessing</Event>
+																		</Events>
+																	</ExtendedTooltip>
+																	<Events>
+																		<Event name="OnChange">UserMustChangePasswordOnAuthorizationOnChange</Event>
+																	</Events>
+																</CheckBoxField>
+																<CheckBoxField name="IBUserCannotChangePassword" id="51">
+																	<DataPath>IBUserCannotChangePassword</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Deny password change</v8:content>
+																		</v8:item>
+																	</Title>
+																	<TitleLocation>Right</TitleLocation>
+																	<ToolTip>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Prevent the external user from
+changing their password.</v8:content>
+																		</v8:item>
+																	</ToolTip>
+																	<CheckBoxType>Auto</CheckBoxType>
+																	<ContextMenu name="IBUserCannotChangePasswordContextMenu" id="52"/>
+																	<ExtendedTooltip name="IBUserCannotChangePasswordExtendedTooltip" id="213"/>
+																	<Events>
+																		<Event name="OnChange">IBUserCannotChangePasswordOnChange</Event>
+																	</Events>
+																</CheckBoxField>
+																<CheckBoxField name="IBUserCannotRecoveryPassword" id="361">
+																	<DataPath>IBUserCannotRecoveryPassword</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Deny password recovery</v8:content>
+																		</v8:item>
+																	</Title>
+																	<TitleLocation>Right</TitleLocation>
+																	<CheckBoxType>Auto</CheckBoxType>
+																	<ContextMenu name="IBUserCannotRecoveryPasswordContextMenu" id="362"/>
+																	<ExtendedTooltip name="IBUserCannotRecoveryPasswordExtendedTooltip" id="363"/>
+																</CheckBoxField>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</UsualGroup>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="AuthenticationPropertiesAdditional" id="279">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Additional authentication properties</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="AuthenticationPropertiesAdditionalExtendedTooltip" id="280"/>
+											<ChildItems>
+												<CheckBoxField name="IBUserOpenIDAuthentication" id="197">
+													<DataPath>IBUserOpenIDAuthentication</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>OpenID authentication</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Authentication with the name assigned to the 1C:Enterprise user,
+which is sent to the authentication service over OpenID protocol.
+Only for a web server connection (the service address must be configured)</v8:content>
+														</v8:item>
+													</ToolTip>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="IBUserOpenIDAuthenticationContextMenu" id="198"/>
+													<ExtendedTooltip name="IBUserOpenIDAuthenticationExtendedTooltip" id="214"/>
+													<Events>
+														<Event name="OnChange">IBUserOpenIDAuthenticationOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<CheckBoxField name="InfobaseUserAuthWithOpenIDConnect" id="368">
+													<DataPath>InfobaseUserAuthWithOpenIDConnect</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>OpenID-Connect authentication</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="InfobaseUserAuthWithOpenIDConnectContextMenu" id="369"/>
+													<ExtendedTooltip name="InfobaseUserAuthWithOpenIDConnectExtendedTooltip" id="370">
+														<Title formatted="false">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>OpenID Connect enables the 1C:Enterprise system to verify a user's identity through third-party authentication. Users can log in to the 1C:Enterprise application with their account credentials from other websites that support OpenID Connect authentication, such as Google.
+
+This authentication applies only to web server connections and requires the service address to be configured accordingly.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+													<Events>
+														<Event name="OnChange">InfobaseUserAuthWithOpenIDConnectOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<CheckBoxField name="InfobaseUserAuthWithAccessToken" id="371">
+													<DataPath>InfobaseUserAuthWithAccessToken</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Access token authentication</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="InfobaseUserAuthWithAccessTokenContextMenu" id="372"/>
+													<ExtendedTooltip name="InfobaseUserAuthWithAccessTokenExtendedTooltip" id="373">
+														<Title formatted="false">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>JWT token authentication (RFC 7519).
+This is a more advanced form of authentication than OpenID and OpenID Connect.
+
+It is widely used by many public digital services.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+													<Events>
+														<Event name="OnChange">InfobaseUserAuthWithAccessTokenOnChange</Event>
+													</Events>
+												</CheckBoxField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="PropertiesAdditional" id="192">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional properties</v8:content>
+										</v8:item>
+									</Title>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="PropertiesAdditionalExtendedTooltip" id="215"/>
+									<ChildItems>
+										<InputField name="IBUserLanguage" id="348">
+											<DataPath>IBUserLanguage</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>UI language
+</v8:content>
+												</v8:item>
+											</Title>
+											<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+											<Wrap>false</Wrap>
+											<ClearButton>true</ClearButton>
+											<ListChoiceMode>true</ListChoiceMode>
+											<BorderColor>style:BorderColor</BorderColor>
+											<ContextMenu name="IBUserLanguageContextMenu" id="349"/>
+											<ExtendedTooltip name="IBUserLanguageExtendedTooltip" id="350"/>
+											<Events>
+												<Event name="OnChange">IBUserLanguageOnChange</Event>
+											</Events>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="EditOrViewRoles" id="364">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allowed actions (roles)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="EditOrViewRolesExtendedTooltip" id="365"/>
+					<ChildItems>
+						<CheckBoxField name="SetRolesDirectly" id="166">
+							<DataPath>Object.SetRolesDirectly</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="SetRolesDirectlyContextMenu" id="167"/>
+							<ExtendedTooltip name="SetRolesDirectlyExtendedTooltip" id="218"/>
+							<Events>
+								<Event name="OnChange">SetRolesDirectlyOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<UsualGroup name="RolesRepresentation" id="103">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Role list</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="RolesRepresentationExtendedTooltip" id="219"/>
+							<ChildItems>
+								<Table name="Roles" id="174">
+									<Representation>Tree</Representation>
+									<SkipOnInput>false</SkipOnInput>
+									<ChangeRowSet>false</ChangeRowSet>
+									<ChangeRowOrder>false</ChangeRowOrder>
+									<Header>false</Header>
+									<UseAlternationRowColor>true</UseAlternationRowColor>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<InitialTreeView>ExpandAllLevels</InitialTreeView>
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<FileDragMode>AsFile</FileDragMode>
+									<DataPath>Roles</DataPath>
+									<RowPictureDataPath>Roles.PictureNumber</RowPictureDataPath>
+									<RowsPicture>
+										<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</RowsPicture>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allowed actions (roles)</v8:content>
+										</v8:item>
+									</Title>
+									<CommandSet>
+										<ExcludedCommand>Add</ExcludedCommand>
+										<ExcludedCommand>Change</ExcludedCommand>
+										<ExcludedCommand>Copy</ExcludedCommand>
+										<ExcludedCommand>Delete</ExcludedCommand>
+										<ExcludedCommand>EndEdit</ExcludedCommand>
+										<ExcludedCommand>HierarchicalList</ExcludedCommand>
+										<ExcludedCommand>List</ExcludedCommand>
+										<ExcludedCommand>MoveDown</ExcludedCommand>
+										<ExcludedCommand>MoveUp</ExcludedCommand>
+										<ExcludedCommand>SortListAsc</ExcludedCommand>
+										<ExcludedCommand>SortListDesc</ExcludedCommand>
+										<ExcludedCommand>Tree</ExcludedCommand>
+									</CommandSet>
+									<ContextMenu name="RolesContextMenu" id="175">
+										<Autofill>false</Autofill>
+									</ContextMenu>
+									<AutoCommandBar name="RolesCommandBar" id="176">
+										<Autofill>false</Autofill>
+										<ChildItems>
+											<ButtonGroup name="RolesGroupOfCommandsFlags" id="392">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Roles command group check boxes</v8:content>
+													</v8:item>
+												</Title>
+												<Representation>Compact</Representation>
+												<ExtendedTooltip name="RolesGroupOfCommandsFlagsExtendedTooltip" id="393"/>
+												<ChildItems>
+													<Button name="RolesSelectAll" id="182">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.AddRoles</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Include selected roles</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="RolesSelectAllExtendedTooltip" id="220"/>
+													</Button>
+													<Button name="RolesClearAll" id="183">
+														<Type>CommandBarButton</Type>
+														<SkipOnInput>false</SkipOnInput>
+														<CommandName>Form.Command.RemoveRoles</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Exclude selected roles</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="RolesClearAllExtendedTooltip" id="221"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<Button name="RolesShowSelectedRolesOnly" id="184">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.ShowSelectedRolesOnly</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Selected roles only</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="RolesShowSelectedRolesOnlyExtendedTooltip" id="222"/>
+											</Button>
+											<Button name="RolesShowRolesSubsystems" id="189">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.RolesBySubsystemsGroup</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Group by subsystem</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="RolesShowRolesSubsystemsExtendedTooltip" id="223"/>
+											</Button>
+											<ButtonGroup name="RolesStandardCommands" id="289">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Roles standard commands</v8:content>
+													</v8:item>
+												</Title>
+												<CommandSource>Item.Roles</CommandSource>
+												<ExtendedTooltip name="RolesStandardCommandsExtendedTooltip" id="290"/>
+											</ButtonGroup>
+											<SearchStringAddition name="RolesStringSearch" id="394">
+												<AdditionSource>
+													<Item>Roles</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Search</v8:content>
+													</v8:item>
+												</Title>
+												<ContextMenu name="RolesStringSearchContextMenu" id="395"/>
+												<ExtendedTooltip name="RolesStringSearchExtendedTooltip" id="396"/>
+											</SearchStringAddition>
+										</ChildItems>
+									</AutoCommandBar>
+									<ExtendedTooltip name="RolesExtendedTooltip" id="224"/>
+									<SearchStringAddition name="RolesSearchString" id="291">
+										<AdditionSource>
+											<Item>Roles</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="RolesSearchStringContextMenu" id="292"/>
+										<ExtendedTooltip name="RolesSearchStringExtendedTooltip" id="293"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="RolesViewStatus" id="294">
+										<AdditionSource>
+											<Item>Roles</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="RolesViewStatusContextMenu" id="295"/>
+										<ExtendedTooltip name="RolesViewStatusExtendedTooltip" id="296"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="RolesSearchControl" id="297">
+										<AdditionSource>
+											<Item>Roles</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="RolesSearchControlContextMenu" id="298"/>
+										<ExtendedTooltip name="RolesSearchControlExtendedTooltip" id="299"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<ColumnGroup name="ColumnsRoles" id="177">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Role columns</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="ColumnsRolesExtendedTooltip" id="225"/>
+											<ChildItems>
+												<CheckBoxField name="RolesCheck" id="185">
+													<DataPath>Roles.Check</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Checkmark</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>Directly</EditMode>
+													<ShowInHeader>false</ShowInHeader>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="RolesCheckContextMenu" id="186"/>
+													<ExtendedTooltip name="RolesCheckExtendedTooltip" id="226"/>
+													<Events>
+														<Event name="OnChange">RolesCheckOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="RolesSynonym" id="187">
+													<DataPath>Roles.Synonym</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Allowed action (role)</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="RolesSynonymContextMenu" id="188"/>
+													<ExtendedTooltip name="RolesSynonymExtendedTooltip" id="227"/>
+												</InputField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="PageContactInformation" id="357">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Addresses and phones</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="PageContactInformationExtendedTooltip" id="358"/>
+					<ChildItems>
+						<UsualGroup name="ContactInformationGroup" id="359">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Contact information</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ContactInformationGroupExtendedTooltip" id="360"/>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="AdditionalAttributesPage" id="300">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional attributes</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AdditionalAttributesPageExtendedTooltip" id="301"/>
+				</Page>
+				<Page name="CommentPage" id="285">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Comment</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CommentPageExtendedTooltip" id="286"/>
+					<ChildItems>
+						<InputField name="Comment" id="257">
+							<DataPath>Object.Comment</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<ContextMenu name="CommentContextMenu" id="258"/>
+							<ExtendedTooltip name="CommentExtendedTooltip" id="259"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.ExternalUsers</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IBUserLanguage" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>UI language
+</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="IBUserCannotChangePassword" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny password change</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="IBUserName" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Username</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="CanSignIn" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Login allowed</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="IBUserExists" id="23">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="NewExternalUserGroup" id="2">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsersGroups</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ActionsOnForm" id="8">
+			<Type/>
+		</Attribute>
+		<Attribute name="CurrentAuthorizationObjectPresentation" id="18">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AuthorizationObjectsType" id="5">
+			<Type/>
+		</Attribute>
+		<Attribute name="AuthorizationObjectSetOnOpen" id="6">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="HasMappingToNonexistentIBUser" id="9">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IBUserRoles" id="11">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Role" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Roles" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Roles</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<Columns>
+				<Column name="Check" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check box</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Synonym" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allowed action (role)</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Name" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="IsRole" id="5">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsUnavailableRole" id="6">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsNonExistingRole" id="7">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="CannotEditRoles" id="14">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowRoleSubsystems" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowRoleSubsystems</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="CopyingValue" id="20">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IBUserOpenIDAuthentication" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OpenID authentication</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="IBUserStandardAuthentication" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>1C:Enterprise authentication</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="InitialIBUserDetails" id="24">
+			<Type/>
+		</Attribute>
+		<Attribute name="IBUserFullName" id="25">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="AccessLevel" id="26">
+			<Type/>
+		</Attribute>
+		<Attribute name="IBUserOSAuthentication" id="29">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IBUserOSUser" id="27">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IBUserRunMode" id="30">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IBUserShowInList" id="31">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="CanSignInOnRead" id="19">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CanSignInDirectChangeValue" id="28">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UserMustChangePasswordOnAuthorization" id="33">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Demand password change on next login</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="ValidityPeriod" id="34">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="UnlimitedValidityPeriod" id="35">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InactivityPeriodBeforeDenyingAuthorization" id="36">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="IBUserNameDirectChangeValue" id="37">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="IBUserPassword" id="38">
+			<Type/>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IBUserPreviousPassword" id="39">
+			<Type/>
+		</Attribute>
+		<Attribute name="IBUserDefaultInterface" id="40">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IBUserStandardAuthenticationDirectChangeValue" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IBUserEmailAddress" id="4">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>256</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AttributeWithEmailForPasswordRecoveryName" id="7">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordToConfirmEmailChange" id="32">
+			<Type/>
+		</Attribute>
+		<Attribute name="IBUserCannotRecoveryPassword" id="41">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny password recovery</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="InfobaseUserAuthWithOpenIDConnect" id="42">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OpenID-Connect authentication</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="InfobaseUserAuthWithAccessToken" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access token authentication</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="WhetherRightsAreAssigned" id="44">
+			<Type/>
+		</Attribute>
+		<Attribute name="InfobaseUserUnsafeActionProtection" id="45">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PropertiesParameters" id="46">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ShowSelectedRolesOnly" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Selected roles only</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show selected roles only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ShowSelectedRolesOnly</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ShowSelectedRolesOnly</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RemoveRoles" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exclude selected roles</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exclude selected roles</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.UncheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>RemoveRoles</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AddRoles" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Include selected roles</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Include selected roles</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>AddRoles</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RolesBySubsystemsGroup" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by subsystem</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group roles by subsystem.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Subsystem</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>RolesBySubsystemsGroup</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangePassword" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Change password…</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ChangePassword</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeAuthorizationRestriction" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Change time restriction</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ChangeAuthorizationRestriction</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseExternalUsers</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="WriteAndClose" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WriteAndClose</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="NewExternalUserGroup">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsersGroups</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="IBUserID">
+			<Type>
+				<v8:Type>v8:UUID</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="NewExternalUserAuthorizationObject">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

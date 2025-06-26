@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Popup name="GroupCurrencyInWordsParameters" id="154">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Number-to-words conversion rules</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="GroupCurrencyInWordsParametersExtendedTooltip" id="155"/>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="HeaderGroup" id="150">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HeaderGroupExtendedTooltip" id="151"/>
+			<ChildItems>
+				<InputField name="DescriptionFull" id="4">
+					<DataPath>Object.DescriptionFull</DataPath>
+					<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<BorderColor>style:BorderColor</BorderColor>
+					<ContextMenu name="DescriptionFullContextMenu" id="23"/>
+					<ExtendedTooltip name="DescriptionFullExtendedTooltip" id="72"/>
+				</InputField>
+				<UsualGroup name="CodeDescriptionGroup" id="148">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code and description group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CodeDescriptionGroupExtendedTooltip" id="149"/>
+					<ChildItems>
+						<InputField name="Code" id="2">
+							<DataPath>Object.Code</DataPath>
+							<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+							<Width>3</Width>
+							<Wrap>false</Wrap>
+							<BorderColor>style:BorderColor</BorderColor>
+							<ContextMenu name="CodeContextMenu" id="24"/>
+							<ExtendedTooltip name="CodeExtendedTooltip" id="75"/>
+							<Events>
+								<Event name="OnChange">CodeOnChange</Event>
+							</Events>
+						</InputField>
+						<InputField name="Description" id="3">
+							<DataPath>Object.Description</DataPath>
+							<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+							<Width>5</Width>
+							<Wrap>false</Wrap>
+							<BorderColor>style:BorderColor</BorderColor>
+							<ContextMenu name="DescriptionContextMenu" id="22"/>
+							<ExtendedTooltip name="DescriptionExtendedTooltip" id="76"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="RateSourceGroup" id="106">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exchange rate source</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="RateSourceGroupExtendedTooltip" id="107"/>
+			<ChildItems>
+				<LabelDecoration name="CurrencyRateLabel" id="142">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Exchange rate source:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="CurrencyRateLabelContextMenu" id="143"/>
+					<ExtendedTooltip name="CurrencyRateLabelExtendedTooltip" id="144"/>
+				</LabelDecoration>
+				<RadioButtonField name="CurrencyRateInputManually" id="101">
+					<DataPath>Object.RateSource</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<RadioButtonType>Auto</RadioButtonType>
+					<ColumnsCount>1</ColumnsCount>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Input manually</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xr:DesignTimeRef">Enum.RateSources.EnumValue.ManualInput</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="CurrencyRateInputManuallyContextMenu" id="102"/>
+					<ExtendedTooltip name="CurrencyRateInputManuallyExtendedTooltip" id="103"/>
+					<Events>
+						<Event name="OnChange">CurrencyRateOnChange</Event>
+					</Events>
+				</RadioButtonField>
+				<RadioButtonField name="CurrencyRateImportedFromInternet" id="129">
+					<DataPath>Object.RateSource</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<RadioButtonType>Auto</RadioButtonType>
+					<ColumnsCount>1</ColumnsCount>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Import from the Internet</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xr:DesignTimeRef">Enum.RateSources.EnumValue.DownloadFromInternet</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="CurrencyRateImportedFromInternetContextMenu" id="130"/>
+					<ExtendedTooltip name="CurrencyRateImportedFromInternetExtendedTooltip" id="131"/>
+					<Events>
+						<Event name="OnChange">CurrencyRateOnChange</Event>
+					</Events>
+				</RadioButtonField>
+				<UsualGroup name="CurrencyRateDependsOnOtherCurrencyGroup" id="138">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Calculate exchange rate based on another currency's exchange rate</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<United>false</United>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CurrencyRateDependsOnOtherCurrencyGroupExtendedTooltip" id="139"/>
+					<ChildItems>
+						<RadioButtonField name="CurrencyRateDependsOnOtherCurrencyExchangeRate" id="132">
+							<DataPath>Object.RateSource</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>Auto</RadioButtonType>
+							<ColumnsCount>1</ColumnsCount>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Calculate by multiplying</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xr:DesignTimeRef">Enum.RateSources.EnumValue.MarkupForOtherCurrencyRate</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="CurrencyRateDependsOnOtherCurrencyExchangeRateContextMenu" id="133"/>
+							<ExtendedTooltip name="CurrencyRateDependsOnOtherCurrencyExchangeRateExtendedTooltip" id="134"/>
+							<Events>
+								<Event name="OnChange">CurrencyRateOnChange</Event>
+							</Events>
+						</RadioButtonField>
+						<UsualGroup name="IncreaseByGroup" id="119">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Increase by</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>None</ToolTipRepresentation>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="IncreaseByGroupExtendedTooltip" id="120"/>
+							<ChildItems>
+								<InputField name="MainCurrency" id="5">
+									<DataPath>Object.MainCurrency</DataPath>
+									<TitleLocation>None</TitleLocation>
+									<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+									<Width>15</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Wrap>false</Wrap>
+									<ChooseType>false</ChooseType>
+									<TypeDomainEnabled>false</TypeDomainEnabled>
+									<AvailableTypes>
+										<v8:Type>cfg:CatalogRef.Currencies</v8:Type>
+									</AvailableTypes>
+									<BorderColor>style:BorderColor</BorderColor>
+									<ChoiceHistoryOnInput>DontUse</ChoiceHistoryOnInput>
+									<ContextMenu name="MainCurrencyContextMenu" id="35"/>
+									<ExtendedTooltip name="MainCurrencyExtendedTooltip" id="81"/>
+									<Events>
+										<Event name="StartChoice">MainCurrencyStartChoice</Event>
+									</Events>
+								</InputField>
+								<UsualGroup name="ExchangeRateMarkupGroup" id="152">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>by</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The percentage to be added to the base currency exchange rate.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<Group>AlwaysHorizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ExchangeRateMarkupGroupExtendedTooltip" id="153"/>
+									<ChildItems>
+										<InputField name="Markup" id="6">
+											<DataPath>Object.Markup</DataPath>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The percentage to be added to the primary currency.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+											<Width>7</Width>
+											<Wrap>false</Wrap>
+											<ChoiceButton>false</ChoiceButton>
+											<SpinButton>true</SpinButton>
+											<MinValue xsi:type="xs:decimal">-99</MinValue>
+											<MaxValue xsi:type="xs:decimal">100</MaxValue>
+											<BorderColor>style:BorderColor</BorderColor>
+											<ContextMenu name="MarkupContextMenu" id="36"/>
+											<ExtendedTooltip name="MarkupExtendedTooltip" id="82"/>
+										</InputField>
+										<LabelDecoration name="PercentText" id="126">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>%</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="PercentTextContextMenu" id="127"/>
+											<ExtendedTooltip name="PercentTextExtendedTooltip" id="128"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="CalculateExchangeRateByFormulaGroup" id="140">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Calculate exchange rate by formula</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<United>false</United>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CalculateExchangeRateByFormulaGroupExtendedTooltip" id="141"/>
+					<ChildItems>
+						<RadioButtonField name="CalculateExchangeRateByFormula" id="135">
+							<DataPath>Object.RateSource</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>Auto</RadioButtonType>
+							<ColumnsCount>1</ColumnsCount>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Calculate by formula:</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xr:DesignTimeRef">Enum.RateSources.EnumValue.CalculationByFormula</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="CalculateExchangeRateByFormulaContextMenu" id="136"/>
+							<ExtendedTooltip name="CalculateExchangeRateByFormulaExtendedTooltip" id="137"/>
+							<Events>
+								<Event name="OnChange">CurrencyRateOnChange</Event>
+							</Events>
+						</RadioButtonField>
+						<InputField name="RateCalculationFormula" id="121">
+							<DataPath>Object.RateCalculationFormula</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Rates of other currencies are specified in the formula as descriptions in square brackets. For example:
+(0.55 * [USD] + 0.45 * [EUR]) / 2</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<Width>35</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ChoiceButton>true</ChoiceButton>
+							<ContextMenu name="RateCalculationFormulaContextMenu" id="122"/>
+							<ExtendedTooltip name="RateCalculationFormulaExtendedTooltip" id="123"/>
+							<Events>
+								<Event name="StartChoice">RateCalculationFormulaStartChoice</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="HyperlinkCurrencyInWordsParameters" id="145">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number-to-words conversion rules</v8:content>
+				</v8:item>
+			</Title>
+			<Hyperlink>true</Hyperlink>
+			<ContextMenu name="HyperlinkCurrencyInWordsParametersContextMenu" id="146"/>
+			<ExtendedTooltip name="HyperlinkCurrencyInWordsParametersExtendedTooltip" id="147"/>
+			<Events>
+				<Event name="Click">CurrencyInWordsParametersClick</Event>
+			</Events>
+		</LabelDecoration>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.Currencies</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="WritingInWordsInputForms" id="14">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="CurrenciesImportedFromInternetCodes" id="2">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="FormulaPresentation" id="15">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="CurrencyInWordsInOtherLanguagesParameters" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>In other languages…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number-to-words conversion rules (other languages)</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CurrencyInWordsInOtherLanguagesParameters</Action>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWrite">BeforeWrite</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="MainInformationGroup" id="148">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Main information</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="MainInformationGroupExtendedTooltip" id="149"/>
+			<ChildItems>
+				<UsualGroup name="TypeAndSettingsGroup" id="155">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Type and settings</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="TypeAndSettingsGroupExtendedTooltip" id="156"/>
+					<ChildItems>
+						<InputField name="Type" id="70">
+							<DataPath>Object.Type</DataPath>
+							<Width>19</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<TextEdit>false</TextEdit>
+							<BackColor>style:MasterFieldBackground</BackColor>
+							<ContextMenu name="TypeContextMenu" id="71"/>
+							<ExtendedTooltip name="TypeExtendedTooltip" id="86"/>
+							<Events>
+								<Event name="OnChange">TypeOnChange</Event>
+								<Event name="Clearing">TypeClearing</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<InputField name="Description" id="1">
+					<DataPath>Object.Description</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<Wrap>false</Wrap>
+					<ContextMenu name="DescriptionContextMenu" id="2"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="87"/>
+					<Events>
+						<Event name="OnChange">DescriptionOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="Parent" id="11">
+					<DataPath>Object.Parent</DataPath>
+					<Wrap>false</Wrap>
+					<OpenButton>false</OpenButton>
+					<ChooseType>false</ChooseType>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="ParentContextMenu" id="12"/>
+					<ExtendedTooltip name="ParentExtendedTooltip" id="89"/>
+					<Events>
+						<Event name="Clearing">ParentClearing</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ContactInformationTypeGroup" id="63">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Contact information type</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ContactInformationTypeGroupExtendedTooltip" id="90"/>
+			<ChildItems>
+				<UsualGroup name="TypeCommonGroup" id="64">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings common to all types</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="TypeCommonGroupExtendedTooltip" id="91"/>
+					<ChildItems>
+						<CheckBoxField name="IsAlwaysDisplayed" id="189">
+							<DataPath>Object.IsAlwaysDisplayed</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="IsAlwaysDisplayedContextMenu" id="190"/>
+							<ExtendedTooltip name="IsAlwaysDisplayedExtendedTooltip" id="191"/>
+						</CheckBoxField>
+						<CheckBoxField name="Mandatory" id="18">
+							<DataPath>Object.Mandatory</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="MandatoryContextMenu" id="19"/>
+							<ExtendedTooltip name="MandatoryExtendedTooltip" id="92"/>
+							<Events>
+								<Event name="OnChange">MandatoryOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<InputField name="EditingOption" id="168">
+							<DataPath>Object.EditingOption</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edit</v8:content>
+								</v8:item>
+							</Title>
+							<Width>15</Width>
+							<ListChoiceMode>true</ListChoiceMode>
+							<ChooseType>false</ChooseType>
+							<TextEdit>false</TextEdit>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>In dialog box</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">Dialog</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>In input field</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">InputField</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>In dialog box and input field</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">InputFieldAndDialog</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="EditingOptionContextMenu" id="169"/>
+							<ExtendedTooltip name="EditingOptionExtendedTooltip" id="170"/>
+							<Events>
+								<Event name="OnChange">EditingOptionOnChange</Event>
+							</Events>
+						</InputField>
+						<UsualGroup name="StoreChangeHistoryGroup" id="157">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Store change history</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="StoreChangeHistoryGroupExtendedTooltip" id="158"/>
+							<ChildItems>
+								<LabelDecoration name="IndentStoreChangeHistory" id="159">
+									<Width>1</Width>
+									<ContextMenu name="IndentStoreChangeHistoryContextMenu" id="160"/>
+									<ExtendedTooltip name="IndentStoreChangeHistoryExtendedTooltip" id="161"/>
+								</LabelDecoration>
+								<CheckBoxField name="StoreChangeHistory" id="162">
+									<DataPath>Object.StoreChangeHistory</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The contact information field stores not only the current value but also its change history for the specified date. To view the history, select "Change history" in the context menu.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="StoreChangeHistoryContextMenu" id="163"/>
+									<ExtendedTooltip name="StoreChangeHistoryExtendedTooltip" id="164"/>
+									<Events>
+										<Event name="OnChange">StoreChangeHistoryOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<CheckBoxField name="AllowMultipleValueInput" id="80">
+							<DataPath>Object.AllowMultipleValueInput</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Allow users to enter multiple values of the same contact information kind.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="AllowMultipleValueInputContextMenu" id="81"/>
+							<ExtendedTooltip name="AllowMultipleValueInputExtendedTooltip" id="94"/>
+							<Events>
+								<Event name="OnChange">AllowMultipleValueInputOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="SettingDescriptionByTypeGroup" id="65">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Type-specific settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SettingDescriptionByTypeGroupExtendedTooltip" id="97"/>
+					<ChildItems>
+						<Pages name="Checks" id="27">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Validation</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="ChecksExtendedTooltip" id="99"/>
+							<ChildItems>
+								<Page name="Address" id="25">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Address</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="AddressExtendedTooltip" id="100"/>
+									<ChildItems>
+										<CheckBoxField name="IncludeCountryInPresentation" id="16">
+											<DataPath>Object.IncludeCountryInPresentation</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="IncludeCountryInPresentationContextMenu" id="17"/>
+											<ExtendedTooltip name="IncludeCountryInPresentationExtendedTooltip" id="107"/>
+										</CheckBoxField>
+										<CheckBoxField name="InternationalAddressFormat" id="165">
+											<DataPath>Object.InternationalAddressFormat</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="InternationalAddressFormatContextMenu" id="166"/>
+											<ExtendedTooltip name="InternationalAddressFormatExtendedTooltip" id="167"/>
+											<Events>
+												<Event name="OnChange">InternationalAddressFormatOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<Button name="AdditionalAddressSettings" id="153">
+											<Type>Hyperlink</Type>
+											<CommandName>Form.Command.AdditionalAddressSettings</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Advanced address settings</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="AdditionalAddressSettingsExtendedTooltip" id="154"/>
+										</Button>
+									</ChildItems>
+								</Page>
+								<Page name="Email" id="28">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Email address</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="EmailExtendedTooltip" id="108"/>
+									<ChildItems>
+										<CheckBoxField name="CheckValidity" id="20">
+											<DataPath>Object.CheckValidity</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Forbid invalid address entries</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="CheckValidityContextMenu" id="21"/>
+											<ExtendedTooltip name="CheckValidityExtendedTooltip" id="109"/>
+										</CheckBoxField>
+									</ChildItems>
+								</Page>
+								<Page name="Phone" id="132">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Phone</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="PhoneExtendedTooltip" id="133"/>
+									<ChildItems>
+										<CheckBoxField name="PhoneWithExtensionNumber" id="134">
+											<DataPath>Object.PhoneWithExtensionNumber</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="PhoneWithExtensionNumberContextMenu" id="135"/>
+											<ExtendedTooltip name="PhoneWithExtensionNumberExtendedTooltip" id="136"/>
+											<Events>
+												<Event name="OnChange">PhoneWithExtensionNumberOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="CheckPhoneValidity" id="137">
+											<DataPath>Object.CheckValidity</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Prevent entry of invalid phone numbers</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="CheckPhoneValidityContextMenu" id="138"/>
+											<ExtendedTooltip name="CheckPhoneValidityExtendedTooltip" id="139"/>
+										</CheckBoxField>
+										<CheckBoxField name="MaskOnEnterPhoneNumber" id="178">
+											<DataPath>Object.EnterNumberByMask</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Enter number by mask:</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="MaskOnEnterPhoneNumberContextMenu" id="179"/>
+											<ExtendedTooltip name="MaskOnEnterPhoneNumberExtendedTooltip" id="180"/>
+											<Events>
+												<Event name="OnChange">MaskOnEnterPhoneNumberOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<UsualGroup name="PhoneMask" id="184">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Phone mask</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="PhoneMaskExtendedTooltip" id="185"/>
+											<ChildItems>
+												<LabelDecoration name="IndentPhoneMaskDecoration" id="186">
+													<Width>1</Width>
+													<ContextMenu name="IndentPhoneMaskDecorationContextMenu" id="187"/>
+													<ExtendedTooltip name="IndentPhoneMaskDecorationExtendedTooltip" id="188"/>
+												</LabelDecoration>
+												<InputField name="PhoneNumberMaskTemplate" id="181">
+													<DataPath>Object.PhoneNumberMask</DataPath>
+													<TitleLocation>None</TitleLocation>
+													<ToolTipRepresentation>Button</ToolTipRepresentation>
+													<Width>20</Width>
+													<DropListButton>true</DropListButton>
+													<ChooseType>false</ChooseType>
+													<InputHint>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>+9 (999) 999-99-99</v8:content>
+														</v8:item>
+													</InputHint>
+													<ContextMenu name="PhoneNumberMaskTemplateContextMenu" id="182"/>
+													<ExtendedTooltip name="PhoneNumberMaskTemplateExtendedTooltip" id="183">
+														<Title formatted="true">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;In a mask string, you can use the following special characters:&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;!: any entered character is converted to uppercase.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;9: you can enter an arbitrary digit.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;#: you can enter an arbitrary digit, the minus sign, the plus sign, or space.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;N: you can enter any alphanumeric characters (letters and digits).&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;U: you can enter any alphanumeric characters (letters and digits) and any entered character is converted to uppercase.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;X: you can enter any arbitrary character.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;
+&lt;font Arial&gt;&lt;fontsize 8&gt;&lt;bgcolor #ffffff&gt;&lt;color #333333&gt;@: you can enter any alphanumeric characters (letters and digits) in uppercase or space.&lt;/&gt;&lt;/&gt;&lt;/&gt;&lt;/&gt;</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</Page>
+								<Page name="Skype" id="124">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Skype</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SkypeExtendedTooltip" id="125"/>
+									<ChildItems>
+										<LabelDecoration name="SkypeStubDecoration" id="126">
+											<ContextMenu name="SkypeStubDecorationContextMenu" id="127"/>
+											<ExtendedTooltip name="SkypeStubDecorationExtendedTooltip" id="128"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="Other" id="51">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Other</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="OtherExtendedTooltip" id="110"/>
+									<ChildItems>
+										<RadioButtonField name="FieldKindOther" id="150">
+											<DataPath>Object.FieldKindOther</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Field layout</v8:content>
+												</v8:item>
+											</Title>
+											<RadioButtonType>Auto</RadioButtonType>
+											<ColumnsCount>1</ColumnsCount>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Multiline wide</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">MultilineWide</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Single line wide</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">SingleLineWide</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Single line narrow</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">OneLineThin</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="FieldKindOtherContextMenu" id="151"/>
+											<ExtendedTooltip name="FieldKindOtherExtendedTooltip" id="152"/>
+										</RadioButtonField>
+									</ChildItems>
+								</Page>
+								<Page name="OtherItems" id="140">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Other</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="OtherItemsExtendedTooltip" id="141"/>
+									<ChildItems>
+										<LabelDecoration name="StubDecoration" id="54">
+											<ContextMenu name="StubDecorationContextMenu" id="55"/>
+											<ExtendedTooltip name="StubDecorationExtendedTooltip" id="111"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="IDForFormulasGroup" id="171">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>ID for formulas</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="IDForFormulasGroupExtendedTooltip" id="172"/>
+			<ChildItems>
+				<InputField name="IDForFormulas" id="173">
+					<DataPath>Object.IDForFormulas</DataPath>
+					<TitleHeight>2</TitleHeight>
+					<ContextMenu name="IDForFormulasContextMenu" id="174"/>
+					<ExtendedTooltip name="IDForFormulasExtendedTooltip" id="175"/>
+				</InputField>
+				<Button name="FillIDForFormulas" id="176">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.FillIDForFormulas</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Fill in ID for formulas</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="FillIDForFormulasExtendedTooltip" id="177"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.ContactInformationKinds</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="CheckAgainstClassfier" id="2">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="AdditionalAddressSettingsAvailable" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="StoresHistoryChanges" id="4">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="AdditionalAddressSettings" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Advanced address settings</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Advanced address settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AdditionalAddressSettings</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FillIDForFormulas" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill in ID for formulas</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill in ID for formulas</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.FillForm</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FillIDForFormulas</Action>
+			<Representation>Picture</Representation>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormEnableEditing" id="202">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.EnableEditing</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Allow editing</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="203"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Description" id="1">
+			<DataPath>Object.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="DescriptionContextMenu" id="2"/>
+			<ExtendedTooltip name="DescriptionExtendedTooltip" id="3"/>
+		</InputField>
+		<UsualGroup name="GroupList" id="200">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupListExtendedTooltip" id="201"/>
+			<ChildItems>
+				<InputField name="List" id="4">
+					<DataPath>Object.List</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ListContextMenu" id="5"/>
+					<ExtendedTooltip name="ListExtendedTooltip" id="6"/>
+				</InputField>
+				<CheckBoxField name="ForExternalUsers" id="7">
+					<DataPath>Object.ForExternalUsers</DataPath>
+					<TitleLocation>Right</TitleLocation>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ForExternalUsersContextMenu" id="8"/>
+					<ExtendedTooltip name="ForExternalUsersExtendedTooltip" id="9"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="HashAndNotUsedFromGroup" id="212">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Hash and Obsolete since</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HashAndNotUsedFromGroupExtendedTooltip" id="213"/>
+			<ChildItems>
+				<InputField name="Hash" id="13">
+					<DataPath>Object.Hash</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="HashContextMenu" id="14"/>
+					<ExtendedTooltip name="HashExtendedTooltip" id="15"/>
+				</InputField>
+				<InputField name="NotUsedSince" id="209">
+					<DataPath>Object.NotUsedSince</DataPath>
+					<ContextMenu name="NotUsedSinceContextMenu" id="210"/>
+					<ExtendedTooltip name="NotUsedSinceExtendedTooltip" id="211"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="FieldsCompositionGroup" id="204">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fields</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalAlign>Center</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="FieldsCompositionGroupExtendedTooltip" id="205"/>
+			<ChildItems>
+				<InputField name="FieldsComposition" id="10">
+					<DataPath>Object.FieldsComposition</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="FieldsCompositionContextMenu" id="11"/>
+					<ExtendedTooltip name="FieldsCompositionExtendedTooltip" id="12"/>
+				</InputField>
+				<LabelField name="FieldsCompositionDetails" id="206">
+					<DataPath>FieldsCompositionDetails</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Fields detailed</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<VerticalAlign>Center</VerticalAlign>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>2</Height>
+					<ContextMenu name="FieldsCompositionDetailsContextMenu" id="207"/>
+					<ExtendedTooltip name="FieldsCompositionDetailsExtendedTooltip" id="208"/>
+				</LabelField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="31">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="32"/>
+			<ChildItems>
+				<Page name="HeaderGroup" id="198">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Header</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HeaderGroupExtendedTooltip" id="199"/>
+					<ChildItems>
+						<InputField name="Value1" id="16">
+							<DataPath>Object.Value1</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="Value1ContextMenu" id="17"/>
+							<ExtendedTooltip name="Value1ExtendedTooltip" id="18"/>
+						</InputField>
+						<InputField name="Value2" id="19">
+							<DataPath>Object.Value2</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="Value2ContextMenu" id="20"/>
+							<ExtendedTooltip name="Value2ExtendedTooltip" id="21"/>
+						</InputField>
+						<InputField name="Value3" id="22">
+							<DataPath>Object.Value3</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="Value3ContextMenu" id="23"/>
+							<ExtendedTooltip name="Value3ExtendedTooltip" id="24"/>
+						</InputField>
+						<InputField name="Value4" id="25">
+							<DataPath>Object.Value4</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="Value4ContextMenu" id="26"/>
+							<ExtendedTooltip name="Value4ExtendedTooltip" id="27"/>
+						</InputField>
+						<InputField name="Value5" id="28">
+							<DataPath>Object.Value5</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="Value5ContextMenu" id="29"/>
+							<ExtendedTooltip name="Value5ExtendedTooltip" id="30"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="HeaderAdditionalGroup" id="33">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Header (more)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HeaderAdditionalGroupExtendedTooltip" id="34"/>
+					<ChildItems>
+						<Table name="Header" id="35">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.Header</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Header</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="HeaderContextMenu" id="36"/>
+							<AutoCommandBar name="HeaderCommandBar" id="37"/>
+							<ExtendedTooltip name="HeaderExtendedTooltip" id="38"/>
+							<SearchStringAddition name="HeaderSearchString" id="39">
+								<AdditionSource>
+									<Item>Header</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="HeaderSearchStringContextMenu" id="40"/>
+								<ExtendedTooltip name="HeaderSearchStringExtendedTooltip" id="41"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="HeaderViewStatus" id="42">
+								<AdditionSource>
+									<Item>Header</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="HeaderViewStatusContextMenu" id="43"/>
+								<ExtendedTooltip name="HeaderViewStatusExtendedTooltip" id="44"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="HeaderSearchControl" id="45">
+								<AdditionSource>
+									<Item>Header</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="HeaderSearchControlContextMenu" id="46"/>
+								<ExtendedTooltip name="HeaderSearchControlExtendedTooltip" id="47"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="HeaderRowNumber" id="48">
+									<DataPath>Object.Header.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="HeaderRowNumberContextMenu" id="49"/>
+									<ExtendedTooltip name="HeaderRowNumberExtendedTooltip" id="50"/>
+								</LabelField>
+								<InputField name="HeaderValue6" id="51">
+									<DataPath>Object.Header.Value6</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="HeaderValue6ContextMenu" id="52"/>
+									<ExtendedTooltip name="HeaderValue6ExtendedTooltip" id="53"/>
+								</InputField>
+								<InputField name="HeaderValue7" id="54">
+									<DataPath>Object.Header.Value7</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="HeaderValue7ContextMenu" id="55"/>
+									<ExtendedTooltip name="HeaderValue7ExtendedTooltip" id="56"/>
+								</InputField>
+								<InputField name="HeaderValue8" id="57">
+									<DataPath>Object.Header.Value8</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="HeaderValue8ContextMenu" id="58"/>
+									<ExtendedTooltip name="HeaderValue8ExtendedTooltip" id="59"/>
+								</InputField>
+								<InputField name="HeaderValue9" id="60">
+									<DataPath>Object.Header.Value9</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="HeaderValue9ContextMenu" id="61"/>
+									<ExtendedTooltip name="HeaderValue9ExtendedTooltip" id="62"/>
+								</InputField>
+								<InputField name="HeaderValue10" id="63">
+									<DataPath>Object.Header.Value10</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="HeaderValue10ContextMenu" id="64"/>
+									<ExtendedTooltip name="HeaderValue10ExtendedTooltip" id="65"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="TabularSection1Group" id="66">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Table 1</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TabularSection1GroupExtendedTooltip" id="67"/>
+					<ChildItems>
+						<Table name="TabularSection1" id="68">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.TabularSection1</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Table 1</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="TabularSection1ContextMenu" id="69"/>
+							<AutoCommandBar name="TabularSection1CommandBar" id="70"/>
+							<ExtendedTooltip name="TabularSection1ExtendedTooltip" id="71"/>
+							<SearchStringAddition name="TabularSection1SearchString" id="72">
+								<AdditionSource>
+									<Item>TabularSection1</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection1SearchStringContextMenu" id="73"/>
+								<ExtendedTooltip name="TabularSection1SearchStringExtendedTooltip" id="74"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="TabularSection1ViewStatus" id="75">
+								<AdditionSource>
+									<Item>TabularSection1</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection1ViewStatusContextMenu" id="76"/>
+								<ExtendedTooltip name="TabularSection1ViewStatusExtendedTooltip" id="77"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="TabularSection1SearchControl" id="78">
+								<AdditionSource>
+									<Item>TabularSection1</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection1SearchControlContextMenu" id="79"/>
+								<ExtendedTooltip name="TabularSection1SearchControlExtendedTooltip" id="80"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="TabularSection1RowNumber" id="81">
+									<DataPath>Object.TabularSection1.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection1RowNumberContextMenu" id="82"/>
+									<ExtendedTooltip name="TabularSection1RowNumberExtendedTooltip" id="83"/>
+								</LabelField>
+								<InputField name="TabularSection1Value1" id="84">
+									<DataPath>Object.TabularSection1.Value1</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection1Value1ContextMenu" id="85"/>
+									<ExtendedTooltip name="TabularSection1Value1ExtendedTooltip" id="86"/>
+								</InputField>
+								<InputField name="TabularSection1Value2" id="87">
+									<DataPath>Object.TabularSection1.Value2</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection1Value2ContextMenu" id="88"/>
+									<ExtendedTooltip name="TabularSection1Value2ExtendedTooltip" id="89"/>
+								</InputField>
+								<InputField name="TabularSection1Value3" id="90">
+									<DataPath>Object.TabularSection1.Value3</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection1Value3ContextMenu" id="91"/>
+									<ExtendedTooltip name="TabularSection1Value3ExtendedTooltip" id="92"/>
+								</InputField>
+								<InputField name="TabularSection1Value4" id="93">
+									<DataPath>Object.TabularSection1.Value4</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection1Value4ContextMenu" id="94"/>
+									<ExtendedTooltip name="TabularSection1Value4ExtendedTooltip" id="95"/>
+								</InputField>
+								<InputField name="TabularSection1Value5" id="96">
+									<DataPath>Object.TabularSection1.Value5</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection1Value5ContextMenu" id="97"/>
+									<ExtendedTooltip name="TabularSection1Value5ExtendedTooltip" id="98"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="TabularSection2Group" id="99">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Table 2</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TabularSection2GroupExtendedTooltip" id="100"/>
+					<ChildItems>
+						<Table name="TabularSection2" id="101">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.TabularSection2</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Table 2</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="TabularSection2ContextMenu" id="102"/>
+							<AutoCommandBar name="TabularSection2CommandBar" id="103"/>
+							<ExtendedTooltip name="TabularSection2ExtendedTooltip" id="104"/>
+							<SearchStringAddition name="TabularSection2SearchString" id="105">
+								<AdditionSource>
+									<Item>TabularSection2</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection2SearchStringContextMenu" id="106"/>
+								<ExtendedTooltip name="TabularSection2SearchStringExtendedTooltip" id="107"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="TabularSection2ViewStatus" id="108">
+								<AdditionSource>
+									<Item>TabularSection2</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection2ViewStatusContextMenu" id="109"/>
+								<ExtendedTooltip name="TabularSection2ViewStatusExtendedTooltip" id="110"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="TabularSection2SearchControl" id="111">
+								<AdditionSource>
+									<Item>TabularSection2</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection2SearchControlContextMenu" id="112"/>
+								<ExtendedTooltip name="TabularSection2SearchControlExtendedTooltip" id="113"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="TabularSection2RowNumber" id="114">
+									<DataPath>Object.TabularSection2.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection2RowNumberContextMenu" id="115"/>
+									<ExtendedTooltip name="TabularSection2RowNumberExtendedTooltip" id="116"/>
+								</LabelField>
+								<InputField name="TabularSection2Value1" id="117">
+									<DataPath>Object.TabularSection2.Value1</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection2Value1ContextMenu" id="118"/>
+									<ExtendedTooltip name="TabularSection2Value1ExtendedTooltip" id="119"/>
+								</InputField>
+								<InputField name="TabularSection2Value2" id="120">
+									<DataPath>Object.TabularSection2.Value2</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection2Value2ContextMenu" id="121"/>
+									<ExtendedTooltip name="TabularSection2Value2ExtendedTooltip" id="122"/>
+								</InputField>
+								<InputField name="TabularSection2Value3" id="123">
+									<DataPath>Object.TabularSection2.Value3</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection2Value3ContextMenu" id="124"/>
+									<ExtendedTooltip name="TabularSection2Value3ExtendedTooltip" id="125"/>
+								</InputField>
+								<InputField name="TabularSection2Value4" id="126">
+									<DataPath>Object.TabularSection2.Value4</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection2Value4ContextMenu" id="127"/>
+									<ExtendedTooltip name="TabularSection2Value4ExtendedTooltip" id="128"/>
+								</InputField>
+								<InputField name="TabularSection2Value5" id="129">
+									<DataPath>Object.TabularSection2.Value5</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection2Value5ContextMenu" id="130"/>
+									<ExtendedTooltip name="TabularSection2Value5ExtendedTooltip" id="131"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="TabularSection3Group" id="132">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Table 3</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TabularSection3GroupExtendedTooltip" id="133"/>
+					<ChildItems>
+						<Table name="TabularSection3" id="134">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.TabularSection3</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Table 3</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="TabularSection3ContextMenu" id="135"/>
+							<AutoCommandBar name="TabularSection3CommandBar" id="136"/>
+							<ExtendedTooltip name="TabularSection3ExtendedTooltip" id="137"/>
+							<SearchStringAddition name="TabularSection3SearchString" id="138">
+								<AdditionSource>
+									<Item>TabularSection3</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection3SearchStringContextMenu" id="139"/>
+								<ExtendedTooltip name="TabularSection3SearchStringExtendedTooltip" id="140"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="TabularSection3ViewStatus" id="141">
+								<AdditionSource>
+									<Item>TabularSection3</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection3ViewStatusContextMenu" id="142"/>
+								<ExtendedTooltip name="TabularSection3ViewStatusExtendedTooltip" id="143"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="TabularSection3SearchControl" id="144">
+								<AdditionSource>
+									<Item>TabularSection3</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection3SearchControlContextMenu" id="145"/>
+								<ExtendedTooltip name="TabularSection3SearchControlExtendedTooltip" id="146"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="TabularSection3RowNumber" id="147">
+									<DataPath>Object.TabularSection3.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection3RowNumberContextMenu" id="148"/>
+									<ExtendedTooltip name="TabularSection3RowNumberExtendedTooltip" id="149"/>
+								</LabelField>
+								<InputField name="TabularSection3Value1" id="150">
+									<DataPath>Object.TabularSection3.Value1</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection3Value1ContextMenu" id="151"/>
+									<ExtendedTooltip name="TabularSection3Value1ExtendedTooltip" id="152"/>
+								</InputField>
+								<InputField name="TabularSection3Value2" id="153">
+									<DataPath>Object.TabularSection3.Value2</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection3Value2ContextMenu" id="154"/>
+									<ExtendedTooltip name="TabularSection3Value2ExtendedTooltip" id="155"/>
+								</InputField>
+								<InputField name="TabularSection3Value3" id="156">
+									<DataPath>Object.TabularSection3.Value3</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection3Value3ContextMenu" id="157"/>
+									<ExtendedTooltip name="TabularSection3Value3ExtendedTooltip" id="158"/>
+								</InputField>
+								<InputField name="TabularSection3Value4" id="159">
+									<DataPath>Object.TabularSection3.Value4</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection3Value4ContextMenu" id="160"/>
+									<ExtendedTooltip name="TabularSection3Value4ExtendedTooltip" id="161"/>
+								</InputField>
+								<InputField name="TabularSection3Value5" id="162">
+									<DataPath>Object.TabularSection3.Value5</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection3Value5ContextMenu" id="163"/>
+									<ExtendedTooltip name="TabularSection3Value5ExtendedTooltip" id="164"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="TabularSection4Group" id="165">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Table 4</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TabularSection4GroupExtendedTooltip" id="166"/>
+					<ChildItems>
+						<Table name="TabularSection4" id="167">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.TabularSection4</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Table 4</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="TabularSection4ContextMenu" id="168"/>
+							<AutoCommandBar name="TabularSection4CommandBar" id="169"/>
+							<ExtendedTooltip name="TabularSection4ExtendedTooltip" id="170"/>
+							<SearchStringAddition name="TabularSection4SearchString" id="171">
+								<AdditionSource>
+									<Item>TabularSection4</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection4SearchStringContextMenu" id="172"/>
+								<ExtendedTooltip name="TabularSection4SearchStringExtendedTooltip" id="173"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="TabularSection4ViewStatus" id="174">
+								<AdditionSource>
+									<Item>TabularSection4</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection4ViewStatusContextMenu" id="175"/>
+								<ExtendedTooltip name="TabularSection4ViewStatusExtendedTooltip" id="176"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="TabularSection4SearchControl" id="177">
+								<AdditionSource>
+									<Item>TabularSection4</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="TabularSection4SearchControlContextMenu" id="178"/>
+								<ExtendedTooltip name="TabularSection4SearchControlExtendedTooltip" id="179"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="TabularSection4RowNumber" id="180">
+									<DataPath>Object.TabularSection4.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection4RowNumberContextMenu" id="181"/>
+									<ExtendedTooltip name="TabularSection4RowNumberExtendedTooltip" id="182"/>
+								</LabelField>
+								<InputField name="TabularSection4Value1" id="183">
+									<DataPath>Object.TabularSection4.Value1</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection4Value1ContextMenu" id="184"/>
+									<ExtendedTooltip name="TabularSection4Value1ExtendedTooltip" id="185"/>
+								</InputField>
+								<InputField name="TabularSection4Value2" id="186">
+									<DataPath>Object.TabularSection4.Value2</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection4Value2ContextMenu" id="187"/>
+									<ExtendedTooltip name="TabularSection4Value2ExtendedTooltip" id="188"/>
+								</InputField>
+								<InputField name="TabularSection4Value3" id="189">
+									<DataPath>Object.TabularSection4.Value3</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection4Value3ContextMenu" id="190"/>
+									<ExtendedTooltip name="TabularSection4Value3ExtendedTooltip" id="191"/>
+								</InputField>
+								<InputField name="TabularSection4Value4" id="192">
+									<DataPath>Object.TabularSection4.Value4</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection4Value4ContextMenu" id="193"/>
+									<ExtendedTooltip name="TabularSection4Value4ExtendedTooltip" id="194"/>
+								</InputField>
+								<InputField name="TabularSection4Value5" id="195">
+									<DataPath>Object.TabularSection4.Value5</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="TabularSection4Value5ContextMenu" id="196"/>
+									<ExtendedTooltip name="TabularSection4Value5ExtendedTooltip" id="197"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AccessKeys</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="FieldsCompositionDetails" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fields detailed</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

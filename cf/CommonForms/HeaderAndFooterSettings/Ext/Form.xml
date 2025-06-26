@@ -1,0 +1,1015 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormOK" id="67">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.OK</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormOKExtendedTooltip" id="92"/>
+			</Button>
+			<Button name="FormCancel" id="68">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>Form.StandardCommand.Cancel</CommandName>
+				<ExtendedTooltip name="FormCancelExtendedTooltip" id="93"/>
+			</Button>
+			<Button name="FormCustomizeStandardSettings" id="137">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.CustomizeStandardSettings</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Restore the default settings</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormCustomizeStandardSettingsExtendedTooltip" id="138"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<CommandBar name="HeaderCommandsGroup" id="139">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header commands</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="HeaderCommandsGroupExtendedTooltip" id="140"/>
+			<ChildItems>
+				<ButtonGroup name="HeaderTemplates" id="141">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Header templates</v8:content>
+						</v8:item>
+					</Title>
+					<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+					<ExtendedTooltip name="HeaderTemplatesExtendedTooltip" id="142"/>
+					<ChildItems>
+						<Button name="HeaderTime" id="58">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Time</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Time</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderTimeExtendedTooltip" id="97"/>
+						</Button>
+						<Button name="HeaderDate" id="59">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Date</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Date</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderDateExtendedTooltip" id="98"/>
+						</Button>
+						<Button name="HeaderReportName" id="60">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ReportTitle</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Report name</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderReportNameExtendedTooltip" id="99"/>
+						</Button>
+						<Button name="HeaderUser" id="62">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.User</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderUserExtendedTooltip" id="100"/>
+						</Button>
+						<Button name="HeaderPageNumber" id="61">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PageNumber</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Page number</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderPageNumberExtendedTooltip" id="101"/>
+						</Button>
+						<Button name="HeaderPagesCount" id="63">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PagesTotal</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Total pages</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderPagesCountExtendedTooltip" id="102"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="HeaderFont" id="21">
+					<Type>CommandBarButton</Type>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<CommandName>Form.Command.CustomizeHeaderFont</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Font…</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HeaderFontExtendedTooltip" id="104"/>
+				</Button>
+				<ButtonGroup name="HeaderVerticalAlignment" id="78">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Header text vertical alignment</v8:content>
+						</v8:item>
+					</Title>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<Representation>Compact</Representation>
+					<ExtendedTooltip name="HeaderVerticalAlignmentExtendedTooltip" id="105"/>
+					<ChildItems>
+						<Button name="HeaderVerticalAlignTop" id="79">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.HeaderVerticalAlignTop</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Top</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderVerticalAlignTopExtendedTooltip" id="106"/>
+						</Button>
+						<Button name="HeaderVerticalAlignCenter" id="80">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.HeaderVerticalAlignCenter</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Center</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderVerticalAlignCenterExtendedTooltip" id="107"/>
+						</Button>
+						<Button name="HeaderVerticalAlignBottom" id="81">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.HeaderVerticalAlignBottom</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Bottom</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HeaderVerticalAlignBottomExtendedTooltip" id="108"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+			</ChildItems>
+		</CommandBar>
+		<UsualGroup name="HeaderTextGroup" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header text</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HeaderTextGroupExtendedTooltip" id="109"/>
+			<ChildItems>
+				<InputField name="TopLeftText" id="1">
+					<DataPath>TopLeftText</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Top left text</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="TopLeftTextContextMenu" id="2"/>
+					<ExtendedTooltip name="TopLeftTextExtendedTooltip" id="110"/>
+					<Events>
+						<Event name="OnChange">TextOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="TopMiddleText" id="4">
+					<DataPath>TopMiddleText</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Top center text</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="TopMiddleTextContextMenu" id="5"/>
+					<ExtendedTooltip name="TopMiddleTextExtendedTooltip" id="111"/>
+					<Events>
+						<Event name="OnChange">TextOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="TopRightText" id="6">
+					<DataPath>TopRightText</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Top right text</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="TopRightTextContextMenu" id="7"/>
+					<ExtendedTooltip name="TopRightTextExtendedTooltip" id="112"/>
+					<Events>
+						<Event name="OnChange">TextOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="StartHeaderFromPage" id="17">
+			<DataPath>HeaderStartPage</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert header starting page #</v8:content>
+				</v8:item>
+			</Title>
+			<SpinButton>true</SpinButton>
+			<ContextMenu name="StartHeaderFromPageContextMenu" id="18"/>
+			<ExtendedTooltip name="StartHeaderFromPageExtendedTooltip" id="113"/>
+			<Events>
+				<Event name="OnChange">StartHeaderFromPageOnChange</Event>
+			</Events>
+		</InputField>
+		<SpreadSheetDocumentField name="Pattern" id="15">
+			<DataPath>Pattern</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Preview</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>None</TitleLocation>
+			<Width>70</Width>
+			<Height>9</Height>
+			<VerticalScrollBar>false</VerticalScrollBar>
+			<HorizontalScrollBar>false</HorizontalScrollBar>
+			<ContextMenu name="PatternContextMenu" id="16"/>
+			<ExtendedTooltip name="PatternExtendedTooltip" id="114"/>
+		</SpreadSheetDocumentField>
+		<UsualGroup name="BottomGroup" id="39">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Bottom</v8:content>
+				</v8:item>
+			</Title>
+			<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="BottomGroupExtendedTooltip" id="115"/>
+			<ChildItems>
+				<InputField name="PageSample" id="35">
+					<DataPath>PageSample</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Preview page #</v8:content>
+						</v8:item>
+					</Title>
+					<Width>4</Width>
+					<SpinButton>true</SpinButton>
+					<MinValue xsi:type="xs:decimal">1</MinValue>
+					<ContextMenu name="PageSampleContextMenu" id="36"/>
+					<ExtendedTooltip name="PageSampleExtendedTooltip" id="117"/>
+					<Events>
+						<Event name="OnChange">PageSampleOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="FooterCommandGroup" id="143">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Footer commands</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="FooterCommandGroupExtendedTooltip" id="144"/>
+			<ChildItems>
+				<ButtonGroup name="FooterTemplates" id="145">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Footer templates</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="FooterTemplatesExtendedTooltip" id="146"/>
+					<ChildItems>
+						<Button name="FooterTime" id="44">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Time</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Time</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterTimeExtendedTooltip" id="120"/>
+						</Button>
+						<Button name="FooterDate" id="45">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Date</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Date</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterDateExtendedTooltip" id="121"/>
+						</Button>
+						<Button name="FooterReportName" id="46">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ReportTitle</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Report name</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterReportNameExtendedTooltip" id="122"/>
+						</Button>
+						<Button name="FooterUser" id="49">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.User</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterUserExtendedTooltip" id="123"/>
+						</Button>
+						<Button name="FooterPageNumber" id="47">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PageNumber</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Page number</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterPageNumberExtendedTooltip" id="124"/>
+						</Button>
+						<Button name="FooterPageTotal" id="50">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PagesTotal</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Total pages</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterPageTotalExtendedTooltip" id="125"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="FooterFont" id="34">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.CustomizeFooterFont</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Font…</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="FooterFontExtendedTooltip" id="127"/>
+				</Button>
+				<ButtonGroup name="FooterVerticalAlignment" id="86">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Footer text vertical alignment</v8:content>
+						</v8:item>
+					</Title>
+					<Representation>Compact</Representation>
+					<ExtendedTooltip name="FooterVerticalAlignmentExtendedTooltip" id="128"/>
+					<ChildItems>
+						<Button name="FooterVerticalAlignTop" id="87">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.FooterVerticalAlignTop</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Top</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterVerticalAlignTopExtendedTooltip" id="129"/>
+						</Button>
+						<Button name="FooterVerticalAlignCenter" id="88">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.FooterVerticalAlignCenter</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Center</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterVerticalAlignCenterExtendedTooltip" id="130"/>
+						</Button>
+						<Button name="FooterVerticalAlignBottom" id="89">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.FooterVerticalAlignBottom</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Bottom</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FooterVerticalAlignBottomExtendedTooltip" id="131"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+			</ChildItems>
+		</CommandBar>
+		<UsualGroup name="FooterTextGroup" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Footer text</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="FooterTextGroupExtendedTooltip" id="132"/>
+			<ChildItems>
+				<InputField name="BottomLeftText" id="9">
+					<DataPath>BottomLeftText</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Bottom left text</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="BottomLeftTextContextMenu" id="10"/>
+					<ExtendedTooltip name="BottomLeftTextExtendedTooltip" id="133"/>
+					<Events>
+						<Event name="OnChange">TextOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="BottomCenterText" id="11">
+					<DataPath>BottomCenterText</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Bottom center text</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="BottomCenterTextContextMenu" id="12"/>
+					<ExtendedTooltip name="BottomCenterTextExtendedTooltip" id="134"/>
+					<Events>
+						<Event name="OnChange">TextOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="BottomRightText" id="13">
+					<DataPath>BottomRightText</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Bottom right text</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="BottomRightTextContextMenu" id="14"/>
+					<ExtendedTooltip name="BottomRightTextExtendedTooltip" id="135"/>
+					<Events>
+						<Event name="OnChange">TextOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="StartFooterFromPage" id="19">
+			<DataPath>FooterStartPage</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert footer starting page #</v8:content>
+				</v8:item>
+			</Title>
+			<SpinButton>true</SpinButton>
+			<ContextMenu name="StartFooterFromPageContextMenu" id="20"/>
+			<ExtendedTooltip name="StartFooterFromPageExtendedTooltip" id="136"/>
+			<Events>
+				<Event name="OnChange">StartFooterFromPageOnChange</Event>
+			</Events>
+		</InputField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="TopLeftText" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Top left text</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TopMiddleText" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Top center text</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TopRightText" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Top right text</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="BottomCenterText" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Bottom center text</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="BottomLeftText" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Bottom left text</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="BottomRightText" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Bottom right text</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Pattern" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Preview</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="HeaderStartPage" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert header starting page #</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FooterStartPage" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert footer starting page #</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PageSample" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Preview page #</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FontHeader" id="11">
+			<Type>
+				<v8:Type>v8ui:Font</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FontFooter" id="12">
+			<Type>
+				<v8:Type>v8ui:Font</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="VerticalAlignTop" id="13">
+			<Type>
+				<v8:Type>v8ui:VerticalAlign</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="VerticalAlignBottom" id="14">
+			<Type>
+				<v8:Type>v8ui:VerticalAlign</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentUser" id="15">
+			<Type>
+				<v8:Type>cfg:CatalogRef.Users</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsCustomSettings" id="16">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Settings" id="17">
+			<Type/>
+		</Attribute>
+		<Attribute name="SettingsStatus" id="18">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="CustomizeHeaderFont" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Font…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header font settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Font</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>CustomizeHeaderFont</Action>
+			<Representation>Picture</Representation>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CustomizeFooterFont" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Font…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Footer font settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Font</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>CustomizeFooterFont</Action>
+			<Representation>Picture</Representation>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Time" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Time</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert time</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InsertTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Date" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Date</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Date</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InsertTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ReportTitle" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Report name</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Report name</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InsertTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="PageNumber" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Page number</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Page number</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InsertTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="User" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InsertTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="PagesTotal" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Total pages</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Total pages</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>InsertTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OK" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OK</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="HeaderVerticalAlignBottom" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Bottom</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.VerticalLocationBottom</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>HeaderVerticalAlignBottom</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="HeaderVerticalAlignCenter" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Center</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.VerticalLocationCenter</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>HeaderVerticalAlignCenter</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="HeaderVerticalAlignTop" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Top</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.VerticalLocationTop</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>HeaderVerticalAlignTop</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FooterVerticalAlignTop" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Top</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.VerticalLocationTop</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FooterVerticalAlignTop</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FooterVerticalAlignBottom" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Bottom</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.VerticalLocationBottom</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FooterVerticalAlignBottom</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="FooterVerticalAlignCenter" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Center</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.VerticalLocationCenter</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FooterVerticalAlignCenter</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CustomizeStandardSettings" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set standard settings</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set standard settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CustomizeStandardSettings</Action>
+		</Command>
+	</Commands>
+</Form>

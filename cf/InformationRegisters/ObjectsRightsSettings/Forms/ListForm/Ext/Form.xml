@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="69">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="70"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="71">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="72"/>
+			<ChildItems>
+				<Button name="FormUpdateAuxiliaryRegisterData" id="33">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.UpdateAuxiliaryRegisterData</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update register's service data.</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormUpdateAuxiliaryRegisterDataExtendedTooltip" id="39"/>
+				</Button>
+				<Button name="FormEnableEditing" id="32">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.EnableEditing</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allow editing</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="40"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="List" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<Height>8</Height>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Copy</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2"/>
+			<AutoCommandBar name="ListCommandBar" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ListExtendedTooltip" id="41"/>
+			<SearchStringAddition name="ListSearchString" id="73">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="74"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="75"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="76">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="77"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="78"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="79">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="80"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="81"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ListObject" id="4">
+					<DataPath>List.Object</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="ListObjectContextMenu" id="5"/>
+					<ExtendedTooltip name="ListObjectExtendedTooltip" id="42"/>
+				</LabelField>
+				<LabelField name="ListUser" id="6">
+					<DataPath>List.User</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="ListUserContextMenu" id="7"/>
+					<ExtendedTooltip name="ListUserExtendedTooltip" id="43"/>
+				</LabelField>
+				<LabelField name="ListRight" id="8">
+					<DataPath>List.ObjectRight</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access right</v8:content>
+						</v8:item>
+					</Title>
+					<Width>20</Width>
+					<ContextMenu name="ListRightContextMenu" id="9"/>
+					<ExtendedTooltip name="ListRightExtendedTooltip" id="44"/>
+				</LabelField>
+				<ColumnGroup name="ListGroupRightValue" id="38">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group right value</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ListGroupRightValueExtendedTooltip" id="45"/>
+					<ChildItems>
+						<CheckBoxField name="ListRightIsProhibited" id="12">
+							<DataPath>List.RightIsProhibited</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ListRightIsProhibitedContextMenu" id="13"/>
+							<ExtendedTooltip name="ListRightIsProhibitedExtendedTooltip" id="46"/>
+						</CheckBoxField>
+						<CheckBoxField name="ListInheritanceIsAllowed" id="14">
+							<DataPath>List.InheritanceIsAllowed</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ListInheritanceIsAllowedContextMenu" id="15"/>
+							<ExtendedTooltip name="ListInheritanceIsAllowedExtendedTooltip" id="47"/>
+						</CheckBoxField>
+					</ChildItems>
+				</ColumnGroup>
+				<LabelField name="ListSettingsOrder" id="66">
+					<DataPath>List.SettingsOrder</DataPath>
+					<ContextMenu name="ListSettingsOrderContextMenu" id="67"/>
+					<ExtendedTooltip name="ListSettingsOrderExtendedTooltip" id="68"/>
+				</LabelField>
+				<ColumnGroup name="ListGroupRightLevel" id="58">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group right level</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ListGroupRightLevelExtendedTooltip" id="59"/>
+					<ChildItems>
+						<LabelField name="ListRightPermissionLevel" id="60">
+							<DataPath>List.RightPermissionLevel</DataPath>
+							<ContextMenu name="ListRightPermissionLevelContextMenu" id="61"/>
+							<ExtendedTooltip name="ListRightPermissionLevelExtendedTooltip" id="62"/>
+						</LabelField>
+						<LabelField name="ListRightProhibitionLevel" id="63">
+							<DataPath>List.RightProhibitionLevel</DataPath>
+							<ContextMenu name="ListRightProhibitionLevelContextMenu" id="64"/>
+							<ExtendedTooltip name="ListRightProhibitionLevelExtendedTooltip" id="65"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+				<LabelField name="ListTable" id="10">
+					<DataPath>List.Table</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="ListTableContextMenu" id="11"/>
+					<ExtendedTooltip name="ListTableExtendedTooltip" id="48"/>
+				</LabelField>
+				<ColumnGroup name="ListGroupReadLevel" id="34">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group read level</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ListGroupReadLevelExtendedTooltip" id="49"/>
+					<ChildItems>
+						<LabelField name="ListReadingPermissionLevel" id="16">
+							<DataPath>List.ReadingPermissionLevel</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ListReadingPermissionLevelContextMenu" id="17"/>
+							<ExtendedTooltip name="ListReadingPermissionLevelExtendedTooltip" id="50"/>
+						</LabelField>
+						<LabelField name="ListReadingProhibitionLevel" id="18">
+							<DataPath>List.ReadingProhibitionLevel</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ListReadingProhibitionLevelContextMenu" id="19"/>
+							<ExtendedTooltip name="ListReadingProhibitionLevelExtendedTooltip" id="51"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+				<ColumnGroup name="ListGroupUpdateLevel" id="36">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group update level</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ListGroupUpdateLevelExtendedTooltip" id="55"/>
+					<ChildItems>
+						<LabelField name="ListChangingPermissionLevel" id="24">
+							<DataPath>List.ChangingPermissionLevel</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ListChangingPermissionLevelContextMenu" id="25"/>
+							<ExtendedTooltip name="ListChangingPermissionLevelExtendedTooltip" id="56"/>
+						</LabelField>
+						<LabelField name="ListChangingProhibitionLevel" id="26">
+							<DataPath>List.ChangingProhibitionLevel</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ListChangingProhibitionLevelContextMenu" id="27"/>
+							<ExtendedTooltip name="ListChangingProhibitionLevelExtendedTooltip" id="57"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	InformationRegisterObjectsRightsSettings.Object,
+	InformationRegisterObjectsRightsSettings.User,
+	InformationRegisterObjectsRightsSettings.Right AS ObjectRight,
+	InformationRegisterObjectsRightsSettings.Table,
+	InformationRegisterObjectsRightsSettings.RightIsProhibited,
+	InformationRegisterObjectsRightsSettings.InheritanceIsAllowed,
+	InformationRegisterObjectsRightsSettings.SettingsOrder,
+	InformationRegisterObjectsRightsSettings.RightPermissionLevel,
+	InformationRegisterObjectsRightsSettings.RightProhibitionLevel,
+	InformationRegisterObjectsRightsSettings.ReadingPermissionLevel,
+	InformationRegisterObjectsRightsSettings.ReadingProhibitionLevel,
+	InformationRegisterObjectsRightsSettings.ChangingPermissionLevel,
+	InformationRegisterObjectsRightsSettings.ChangingProhibitionLevel
+FROM
+	InformationRegister.ObjectsRightsSettings AS InformationRegisterObjectsRightsSettings</QueryText>
+				<MainTable>InformationRegister.ObjectsRightsSettings</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="UpdateAuxiliaryRegisterData" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update service data</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update register's service data.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>UpdateAuxiliaryRegisterData</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

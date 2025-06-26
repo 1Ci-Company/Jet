@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Handler intersection objects</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="TablesPages" id="29">
+			<Enabled>false</Enabled>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Table pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="TablesPagesExtendedTooltip" id="30"/>
+			<ChildItems>
+				<Page name="IntersectionsPage" id="31">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Intersection page</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="IntersectionsPageExtendedTooltip" id="32"/>
+					<ChildItems>
+						<Table name="Intersections" id="1">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<HeightControlVariant>UseContentHeight</HeightControlVariant>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Intersections</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Intersections</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="IntersectionsContextMenu" id="2"/>
+							<AutoCommandBar name="IntersectionsCommandBar" id="3">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="IntersectionsExtendedTooltip" id="4"/>
+							<SearchStringAddition name="IntersectionsSearchString" id="5">
+								<AdditionSource>
+									<Item>Intersections</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="IntersectionsSearchStringContextMenu" id="6"/>
+								<ExtendedTooltip name="IntersectionsSearchStringExtendedTooltip" id="7"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="IntersectionsViewStatus" id="8">
+								<AdditionSource>
+									<Item>Intersections</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="IntersectionsViewStatusContextMenu" id="9"/>
+								<ExtendedTooltip name="IntersectionsViewStatusExtendedTooltip" id="10"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="IntersectionsSearchControl" id="11">
+								<AdditionSource>
+									<Item>Intersections</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="IntersectionsSearchControlContextMenu" id="12"/>
+								<ExtendedTooltip name="IntersectionsSearchControlExtendedTooltip" id="13"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<CheckBoxField name="IntersectionsDataToReadWriter" id="23">
+									<DataPath>Intersections.DataToReadWriter</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Writing of readable objects</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Either this handler modifies objects readable by other handlers
+or other handlers modify objects readable by this handler.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.AppearanceExclamationMark</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="IntersectionsDataToReadWriterContextMenu" id="24"/>
+									<ExtendedTooltip name="IntersectionsDataToReadWriterExtendedTooltip" id="25"/>
+								</CheckBoxField>
+								<CheckBoxField name="IntersectionsWriteAgain" id="26">
+									<DataPath>Intersections.WriteAgain</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Write again</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Rewriting objects that are modified by other handlers.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>CommonPicture.Warning</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="IntersectionsWriteAgainContextMenu" id="27"/>
+									<ExtendedTooltip name="IntersectionsWriteAgainExtendedTooltip" id="28"/>
+								</CheckBoxField>
+								<InputField name="IntersectionsMetadataObject" id="20">
+									<DataPath>Intersections.MetadataObject</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Metadata object</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="IntersectionsMetadataObjectContextMenu" id="21"/>
+									<ExtendedTooltip name="IntersectionsMetadataObjectExtendedTooltip" id="22"/>
+								</InputField>
+								<InputField name="IntersectionsWriteProcedure" id="14">
+									<DataPath>Intersections.WriteProcedure</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Writer handler</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="IntersectionsWriteProcedureContextMenu" id="15"/>
+									<ExtendedTooltip name="IntersectionsWriteProcedureExtendedTooltip" id="16"/>
+								</InputField>
+								<InputField name="IntersectionsReadOrWriteProcedure2" id="17">
+									<DataPath>Intersections.ReadOrWriteProcedure2</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reader handler (or writer 2)</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="IntersectionsReadOrWriteProcedure2ContextMenu" id="18"/>
+									<ExtendedTooltip name="IntersectionsReadOrWriteProcedure2ExtendedTooltip" id="19"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="PageLowPriorityHandlers" id="33">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page handlers with low priority</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="PageLowPriorityHandlersExtendedTooltip" id="34"/>
+					<ChildItems>
+						<Table name="LowPriorityHandlers" id="35">
+							<Representation>List</Representation>
+							<HeightControlVariant>UseContentHeight</HeightControlVariant>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>LowPriorityHandlers</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Handlers with low priority</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="LowPriorityHandlersContextMenu" id="36"/>
+							<AutoCommandBar name="LowPriorityHandlersCommandBar" id="37">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="LowPriorityHandlersExtendedTooltip" id="38"/>
+							<SearchStringAddition name="LowPriorityHandlersSearchString" id="39">
+								<AdditionSource>
+									<Item>LowPriorityHandlers</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="LowPriorityHandlersSearchStringContextMenu" id="40"/>
+								<ExtendedTooltip name="LowPriorityHandlersSearchStringExtendedTooltip" id="41"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="LowPriorityHandlersViewStatus" id="42">
+								<AdditionSource>
+									<Item>LowPriorityHandlers</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="LowPriorityHandlersViewStatusContextMenu" id="43"/>
+								<ExtendedTooltip name="LowPriorityHandlersViewStatusExtendedTooltip" id="44"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="LowPriorityHandlersSearchControl" id="45">
+								<AdditionSource>
+									<Item>LowPriorityHandlers</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="LowPriorityHandlersSearchControlContextMenu" id="46"/>
+								<ExtendedTooltip name="LowPriorityHandlersSearchControlExtendedTooltip" id="47"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="LowPriorityHandlersMetadataObject" id="51">
+									<DataPath>LowPriorityHandlers.MetadataObject</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Metadata object</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="LowPriorityHandlersMetadataObjectContextMenu" id="52"/>
+									<ExtendedTooltip name="LowPriorityHandlersMetadataObjectExtendedTooltip" id="53"/>
+								</InputField>
+								<InputField name="LowPriorityHandlersWriteProcedure" id="48">
+									<DataPath>LowPriorityHandlers.WriteProcedure</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Handler</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="LowPriorityHandlersWriteProcedureContextMenu" id="49"/>
+									<ExtendedTooltip name="LowPriorityHandlersWriteProcedureExtendedTooltip" id="50"/>
+								</InputField>
+								<InputField name="LowPriorityHandlersOrderWriter" id="54">
+									<DataPath>LowPriorityHandlers.OrderWriter</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Execution priority</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="LowPriorityHandlersOrderWriterContextMenu" id="55"/>
+									<ExtendedTooltip name="LowPriorityHandlersOrderWriterExtendedTooltip" id="56"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.UpdateHandlersDetails</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="Intersections" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Intersections</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="WriteProcedure" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Handler1</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>350</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ReadOrWriteProcedure2" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Handler2</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>350</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MetadataObject" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Metadata object</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DataToReadWriter" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Writing of readable objects</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="WriteAgain" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Rewriting</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="LowPriorityHandlers" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Handlers with low priority</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="WriteProcedure" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Handler</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>350</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MetadataObject" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Metadata object</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="OrderWriter" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Execution priority</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:EnumRef.OrderOfUpdateHandlers</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="DataAddress">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="AreLowPriorityHandlers">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

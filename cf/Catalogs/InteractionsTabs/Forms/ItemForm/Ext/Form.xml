@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Code" id="1">
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="CodeContextMenu" id="2"/>
+			<ExtendedTooltip name="CodeExtendedTooltip" id="9"/>
+		</InputField>
+		<InputField name="Description" id="3">
+			<DataPath>Object.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<DropListButton>true</DropListButton>
+			<ChooseType>false</ChooseType>
+			<ContextMenu name="DescriptionContextMenu" id="4"/>
+			<ExtendedTooltip name="DescriptionExtendedTooltip" id="10"/>
+			<Events>
+				<Event name="OnChange">DescriptionOnChange</Event>
+			</Events>
+		</InputField>
+		<Table name="SettingsComposerSettingsFilter" id="5">
+			<Representation>Tree</Representation>
+			<Autofill>true</Autofill>
+			<InitialTreeView>ExpandAllLevels</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>SettingsComposer.Settings.Filter</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Settings Composer settings filter</v8:content>
+				</v8:item>
+			</Title>
+			<ViewMode>All</ViewMode>
+			<SettingsNamedItemDetailedRepresentation>false</SettingsNamedItemDetailedRepresentation>
+			<ContextMenu name="SettingsComposerSettingsFilterContextMenu" id="6"/>
+			<AutoCommandBar name="SettingsComposerSettingsFilterCommandBar" id="7">
+				<ChildItems>
+					<Button name="SettingsComposerSettingsFilterUserSettingItemProperties" id="8">
+						<Type>CommandBarButton</Type>
+						<Visible>false</Visible>
+						<CommandName>Form.Item.SettingsComposerSettingsFilter.StandardCommand.UserSettingItemProperties</CommandName>
+						<ExtendedTooltip name="SettingsComposerSettingsFilterUserSettingItemPropertiesExtendedTooltip" id="11"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="SettingsComposerSettingsFilterExtendedTooltip" id="12"/>
+			<SearchStringAddition name="SettingsComposerSettingsFilterSearchString" id="13">
+				<AdditionSource>
+					<Item>SettingsComposerSettingsFilter</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SettingsComposerSettingsFilterSearchStringContextMenu" id="14"/>
+				<ExtendedTooltip name="SettingsComposerSettingsFilterSearchStringExtendedTooltip" id="15"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="SettingsComposerSettingsFilterViewStatus" id="16">
+				<AdditionSource>
+					<Item>SettingsComposerSettingsFilter</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SettingsComposerSettingsFilterViewStatusContextMenu" id="17"/>
+				<ExtendedTooltip name="SettingsComposerSettingsFilterViewStatusExtendedTooltip" id="18"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="SettingsComposerSettingsFilterSearchControl" id="19">
+				<AdditionSource>
+					<Item>SettingsComposerSettingsFilter</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="SettingsComposerSettingsFilterSearchControlContextMenu" id="20"/>
+				<ExtendedTooltip name="SettingsComposerSettingsFilterSearchControlExtendedTooltip" id="21"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="OnChange">SettingsComposerSettingsFilterOnChange</Event>
+			</Events>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.InteractionsTabs</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="SettingsComposer" id="2">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>

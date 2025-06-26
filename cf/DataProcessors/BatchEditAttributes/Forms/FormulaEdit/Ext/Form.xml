@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="OK" id="20">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.OK</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="OKExtendedTooltip" id="32"/>
+			</Button>
+			<Button name="Validate" id="17">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.Validate</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Validate formula</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="ValidateExtendedTooltip" id="33"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="OperandsAndOperatorsGroup" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Operands and operators</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="OperandsAndOperatorsGroupExtendedTooltip" id="34"/>
+			<ChildItems>
+				<UsualGroup name="MainGroup2" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="MainGroup2ExtendedTooltip" id="35"/>
+					<ChildItems>
+						<UsualGroup name="OperandsGroup" id="18">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Operands</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<ExtendedTooltip name="OperandsGroupExtendedTooltip" id="36"/>
+							<ChildItems>
+								<Pages name="OperandsPagesGroup" id="26">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Page operands</v8:content>
+										</v8:item>
+									</Title>
+									<PagesRepresentation>None</PagesRepresentation>
+									<ExtendedTooltip name="OperandsPagesGroupExtendedTooltip" id="37"/>
+									<ChildItems>
+										<Page name="OperandsTreePage" id="67">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Operand tree page</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="OperandsTreePageExtendedTooltip" id="68"/>
+											<ChildItems>
+												<Table name="OperandsTree" id="69">
+													<Representation>Tree</Representation>
+													<SelectionMode>SingleRow</SelectionMode>
+													<Header>false</Header>
+													<AutoInsertNewRow>true</AutoInsertNewRow>
+													<EnableStartDrag>true</EnableStartDrag>
+													<EnableDrag>true</EnableDrag>
+													<FileDragMode>AsFile</FileDragMode>
+													<DataPath>OperandsTree</DataPath>
+													<RowPictureDataPath>OperandsTree.PictureCode</RowPictureDataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Operand tree</v8:content>
+														</v8:item>
+													</Title>
+													<CommandSet>
+														<ExcludedCommand>Add</ExcludedCommand>
+														<ExcludedCommand>Change</ExcludedCommand>
+														<ExcludedCommand>Copy</ExcludedCommand>
+														<ExcludedCommand>Delete</ExcludedCommand>
+														<ExcludedCommand>HierarchicalList</ExcludedCommand>
+														<ExcludedCommand>List</ExcludedCommand>
+														<ExcludedCommand>Tree</ExcludedCommand>
+													</CommandSet>
+													<ContextMenu name="OperandsTreeContextMenu" id="70"/>
+													<AutoCommandBar name="OperandsTreeCommandBar" id="71">
+														<Autofill>false</Autofill>
+													</AutoCommandBar>
+													<ExtendedTooltip name="OperandsTreeExtendedTooltip" id="72"/>
+													<SearchStringAddition name="OperandsTreeSearchString" id="87">
+														<AdditionSource>
+															<Item>OperandsTree</Item>
+															<Type>SearchStringRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="OperandsTreeSearchStringContextMenu" id="88"/>
+														<ExtendedTooltip name="OperandsTreeSearchStringExtendedTooltip" id="89"/>
+													</SearchStringAddition>
+													<ViewStatusAddition name="OperandsTreeViewStatus" id="90">
+														<AdditionSource>
+															<Item>OperandsTree</Item>
+															<Type>ViewStatusRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="OperandsTreeViewStatusContextMenu" id="91"/>
+														<ExtendedTooltip name="OperandsTreeViewStatusExtendedTooltip" id="92"/>
+													</ViewStatusAddition>
+													<SearchControlAddition name="OperandsTreeSearchControl" id="93">
+														<AdditionSource>
+															<Item>OperandsTree</Item>
+															<Type>SearchControl</Type>
+														</AdditionSource>
+														<ContextMenu name="OperandsTreeSearchControlContextMenu" id="94"/>
+														<ExtendedTooltip name="OperandsTreeSearchControlExtendedTooltip" id="95"/>
+													</SearchControlAddition>
+													<Events>
+														<Event name="Selection">OperandsTreeSelection</Event>
+														<Event name="DragStart">OperandsTreeDragStart</Event>
+													</Events>
+													<ChildItems>
+														<ColumnGroup name="OperandsTreePicturePresentationCodeGroup" id="85">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Operand tree group picture code presentation</v8:content>
+																</v8:item>
+															</Title>
+															<Group>InCell</Group>
+															<ExtendedTooltip name="OperandsTreePicturePresentationCodeGroupExtendedTooltip" id="86"/>
+															<ChildItems>
+																<PictureField name="OperandsTreePictureCode" id="79">
+																	<DataPath>OperandsTree.PictureCode</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Picture code</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<FileDragMode>AsFile</FileDragMode>
+																	<ContextMenu name="OperandsTreePictureCodeContextMenu" id="80"/>
+																	<ExtendedTooltip name="OperandsTreePictureCodeExtendedTooltip" id="81"/>
+																</PictureField>
+																<InputField name="OperandsTreePresentation" id="76">
+																	<DataPath>OperandsTree.Presentation</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="OperandsTreePresentationContextMenu" id="77"/>
+																	<ExtendedTooltip name="OperandsTreePresentationExtendedTooltip" id="78"/>
+																</InputField>
+															</ChildItems>
+														</ColumnGroup>
+														<InputField name="OperandsTreeId" id="73">
+															<DataPath>OperandsTree.Id</DataPath>
+															<Visible>false</Visible>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>ID</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<ContextMenu name="OperandsTreeIdContextMenu" id="74"/>
+															<ExtendedTooltip name="OperandsTreeIdExtendedTooltip" id="75"/>
+														</InputField>
+													</ChildItems>
+												</Table>
+											</ChildItems>
+										</Page>
+										<Page name="NumericOperandsPage" id="27">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Numeric operands page</v8:content>
+												</v8:item>
+											</Title>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="NumericOperandsPageExtendedTooltip" id="38"/>
+											<ChildItems>
+												<Table name="Operands" id="3">
+													<Representation>Tree</Representation>
+													<CommandBarLocation>None</CommandBarLocation>
+													<SkipOnInput>false</SkipOnInput>
+													<ChangeRowSet>false</ChangeRowSet>
+													<Header>false</Header>
+													<AutoInsertNewRow>true</AutoInsertNewRow>
+													<EnableStartDrag>true</EnableStartDrag>
+													<EnableDrag>true</EnableDrag>
+													<FileDragMode>AsFile</FileDragMode>
+													<DataPath>Operands</DataPath>
+													<RowPictureDataPath>Operands.PictureIndex</RowPictureDataPath>
+													<RowsPicture>
+														<xr:Ref>CommonPicture.ItemIconsCollection</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</RowsPicture>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Operands</v8:content>
+														</v8:item>
+													</Title>
+													<RowFilter xsi:nil="true"/>
+													<ContextMenu name="OperandsContextMenu" id="4"/>
+													<AutoCommandBar name="OperandsCommandBar" id="5"/>
+													<ExtendedTooltip name="OperandsExtendedTooltip" id="39"/>
+													<SearchStringAddition name="OperandsSearchString" id="96">
+														<AdditionSource>
+															<Item>Operands</Item>
+															<Type>SearchStringRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="OperandsSearchStringContextMenu" id="97"/>
+														<ExtendedTooltip name="OperandsSearchStringExtendedTooltip" id="98"/>
+													</SearchStringAddition>
+													<ViewStatusAddition name="OperandsViewStatus" id="99">
+														<AdditionSource>
+															<Item>Operands</Item>
+															<Type>ViewStatusRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="OperandsViewStatusContextMenu" id="100"/>
+														<ExtendedTooltip name="OperandsViewStatusExtendedTooltip" id="101"/>
+													</ViewStatusAddition>
+													<SearchControlAddition name="OperandsSearchControl" id="102">
+														<AdditionSource>
+															<Item>Operands</Item>
+															<Type>SearchControl</Type>
+														</AdditionSource>
+														<ContextMenu name="OperandsSearchControlContextMenu" id="103"/>
+														<ExtendedTooltip name="OperandsSearchControlExtendedTooltip" id="104"/>
+													</SearchControlAddition>
+													<Events>
+														<Event name="Selection">OperandsSelection</Event>
+														<Event name="DragStart">OperandsDragStart</Event>
+														<Event name="DragEnd">OperandsDragEnd</Event>
+													</Events>
+													<ChildItems>
+														<InputField name="OperandsPresentation" id="50">
+															<DataPath>Operands.Presentation</DataPath>
+															<Visible>false</Visible>
+															<ReadOnly>true</ReadOnly>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Operands</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<ContextMenu name="OperandsPresentationContextMenu" id="51"/>
+															<ExtendedTooltip name="OperandsPresentationExtendedTooltip" id="52"/>
+														</InputField>
+														<InputField name="OperandsId" id="21">
+															<DataPath>Operands.Id</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>ID</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<ContextMenu name="OperandsIdContextMenu" id="22"/>
+															<ExtendedTooltip name="OperandsIdExtendedTooltip" id="40"/>
+														</InputField>
+														<InputField name="OperandsValue" id="53">
+															<DataPath>Operands.Value</DataPath>
+															<Visible>false</Visible>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Value</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<ChoiceButton>false</ChoiceButton>
+															<OpenButton>true</OpenButton>
+															<ContextMenu name="OperandsValueContextMenu" id="54"/>
+															<ExtendedTooltip name="OperandsValueExtendedTooltip" id="55"/>
+														</InputField>
+													</ChildItems>
+												</Table>
+											</ChildItems>
+										</Page>
+										<Page name="StringOperandsPage" id="28">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Sting operands page</v8:content>
+												</v8:item>
+											</Title>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="StringOperandsPageExtendedTooltip" id="41"/>
+											<ChildItems>
+												<Table name="SettingsComposer" id="29">
+													<Representation>Tree</Representation>
+													<CommandBarLocation>None</CommandBarLocation>
+													<Autofill>true</Autofill>
+													<HeightInTableRows>10</HeightInTableRows>
+													<ChoiceMode>true</ChoiceMode>
+													<HorizontalLines>false</HorizontalLines>
+													<VerticalLines>false</VerticalLines>
+													<EnableStartDrag>true</EnableStartDrag>
+													<EnableDrag>true</EnableDrag>
+													<FileDragMode>AsFile</FileDragMode>
+													<DataPath>SettingsComposer.Settings.Filter.FilterAvailableFields</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Settings Composer</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="SettingsComposerContextMenu" id="30"/>
+													<AutoCommandBar name="SettingsComposerCommandBar" id="31"/>
+													<ExtendedTooltip name="SettingsComposerExtendedTooltip" id="42"/>
+													<SearchStringAddition name="SettingsComposerSearchString" id="105">
+														<AdditionSource>
+															<Item>SettingsComposer</Item>
+															<Type>SearchStringRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="SettingsComposerSearchStringContextMenu" id="106"/>
+														<ExtendedTooltip name="SettingsComposerSearchStringExtendedTooltip" id="107"/>
+													</SearchStringAddition>
+													<ViewStatusAddition name="SettingsComposerViewStatus" id="108">
+														<AdditionSource>
+															<Item>SettingsComposer</Item>
+															<Type>ViewStatusRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="SettingsComposerViewStatusContextMenu" id="109"/>
+														<ExtendedTooltip name="SettingsComposerViewStatusExtendedTooltip" id="110"/>
+													</ViewStatusAddition>
+													<SearchControlAddition name="SettingsComposerSearchControl" id="111">
+														<AdditionSource>
+															<Item>SettingsComposer</Item>
+															<Type>SearchControl</Type>
+														</AdditionSource>
+														<ContextMenu name="SettingsComposerSearchControlContextMenu" id="112"/>
+														<ExtendedTooltip name="SettingsComposerSearchControlExtendedTooltip" id="113"/>
+													</SearchControlAddition>
+													<Events>
+														<Event name="Selection">SettingsComposerSettingsChoiceAvailableChoiceFieldsChoice</Event>
+														<Event name="DragStart">SettingsComposerDragStart</Event>
+													</Events>
+												</Table>
+											</ChildItems>
+										</Page>
+									</ChildItems>
+								</Pages>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupOperators" id="19">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Operators and functions</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<ExtendedTooltip name="GroupOperatorsExtendedTooltip" id="43"/>
+							<ChildItems>
+								<Table name="Operators" id="8">
+									<Representation>Tree</Representation>
+									<CommandBarLocation>None</CommandBarLocation>
+									<ReadOnly>true</ReadOnly>
+									<SkipOnInput>false</SkipOnInput>
+									<Header>false</Header>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<EnableStartDrag>true</EnableStartDrag>
+									<FileDragMode>AsFile</FileDragMode>
+									<DataPath>Operators</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Operators</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="OperatorsContextMenu" id="9"/>
+									<AutoCommandBar name="OperatorsCommandBar" id="10"/>
+									<ExtendedTooltip name="OperatorsExtendedTooltip" id="44"/>
+									<SearchStringAddition name="OperatorsSearchString" id="114">
+										<AdditionSource>
+											<Item>Operators</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="OperatorsSearchStringContextMenu" id="115"/>
+										<ExtendedTooltip name="OperatorsSearchStringExtendedTooltip" id="116"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="OperatorsViewStatus" id="117">
+										<AdditionSource>
+											<Item>Operators</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="OperatorsViewStatusContextMenu" id="118"/>
+										<ExtendedTooltip name="OperatorsViewStatusExtendedTooltip" id="119"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="OperatorsSearchControl" id="120">
+										<AdditionSource>
+											<Item>Operators</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="OperatorsSearchControlContextMenu" id="121"/>
+										<ExtendedTooltip name="OperatorsSearchControlExtendedTooltip" id="122"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="Selection">OperatorsSelection</Event>
+										<Event name="DragStart">OperatorsDragStart</Event>
+										<Event name="DragEnd">OperatorsDragEnd</Event>
+									</Events>
+									<ChildItems>
+										<InputField name="OperatorsOperator" id="11">
+											<DataPath>Operators.Description</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Operators</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="OperatorsOperatorContextMenu" id="12"/>
+											<ExtendedTooltip name="OperatorsOperatorExtendedTooltip" id="45"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<TextDocumentField name="Formula" id="13">
+					<DataPath>Formula</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Formula</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<Height>5</Height>
+					<ContextMenu name="FormulaContextMenu" id="14"/>
+					<ExtendedTooltip name="FormulaExtendedTooltip" id="46"/>
+				</TextDocumentField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Formula" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Formula</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="Operators" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Operators</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Description" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Operators</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Operator" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Move" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Operands" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Operands</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Id" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>ID</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>50</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureIndex" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="DeletionMark" id="3">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Value" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Value</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="StringFormula" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SettingsComposer" id="5">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PropertiesSet" id="6">
+			<Type/>
+		</Attribute>
+		<Attribute name="SourceFormula" id="7">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Presentation" id="8">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Calculation" id="9">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Advanced" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="EnableValue" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DetailsParameters" id="13">
+			<Type/>
+		</Attribute>
+		<Attribute name="OperandsTree" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Operand tree</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<Columns>
+				<Column name="Id" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>ID</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureCode" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture code</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="UsesOperandTree" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ResultType" id="16">
+			<Type>
+				<v8:Type>v8:TypeDescription</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FormulaForCalculationInQuery" id="17">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Object" id="18">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.BatchEditAttributes</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Save>
+				<Field>Object.ChangeInTransaction</Field>
+				<Field>Object.InterruptOnError</Field>
+			</Save>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Validate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Validate formula</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Validate formula</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Validate</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OK" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OK</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Formula">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="Operands">
+			<Type/>
+		</Parameter>
+		<Parameter name="OperandsTitle">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="UsesOperandTree">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,1191 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Additional data processing procedures</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">GroupCommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Close</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormCloseForm" id="8">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.CloseForm</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormCloseFormExtendedTooltip" id="22"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupFilterCommandBar" id="91">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar filter</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupFilterCommandBarExtendedTooltip" id="92"/>
+			<ChildItems>
+				<UsualGroup name="FilterByStatusAndSearch" id="52">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filter by status and search</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="FilterByStatusAndSearchExtendedTooltip" id="53"/>
+					<ChildItems>
+						<InputField name="Status" id="54">
+							<DataPath>Status</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show</v8:content>
+								</v8:item>
+							</Title>
+							<Width>20</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<DropListButton>true</DropListButton>
+							<ListChoiceMode>true</ListChoiceMode>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>All procedures</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">AllProcedures</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>High priority</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">HighPriority</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Paused</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">Paused</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="StatusContextMenu" id="55"/>
+							<ExtendedTooltip name="StatusExtendedTooltip" id="56"/>
+							<Events>
+								<Event name="OnChange">StatusOnChange</Event>
+							</Events>
+						</InputField>
+						<InputField name="SearchString" id="57">
+							<DataPath>SearchString</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Find</v8:content>
+								</v8:item>
+							</Title>
+							<Width>20</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ClearButton>true</ClearButton>
+							<InputHint>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>one or more search words</v8:content>
+								</v8:item>
+							</InputHint>
+							<ContextMenu name="SearchStringContextMenu" id="58"/>
+							<ExtendedTooltip name="SearchStringExtendedTooltip" id="59"/>
+							<Events>
+								<Event name="OnChange">SearchStringOnChange</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="GroupCommandBar" id="89">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="GroupCommandBarExtendedTooltip" id="90"/>
+					<ChildItems>
+						<Button name="Refresh" id="97">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Refresh</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Refresh</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="RefreshExtendedTooltip" id="98"/>
+						</Button>
+						<Button name="RunProcedure" id="123">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.RunProcedure</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Run procedure</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="RunProcedureExtendedTooltip" id="124"/>
+						</Button>
+						<Button name="Resume" id="93">
+							<Type>CommandBarButton</Type>
+							<Representation>PictureAndText</Representation>
+							<CommandName>Form.Command.Resume</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Resume</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ResumeExtendedTooltip" id="94"/>
+						</Button>
+						<Button name="Stop" id="95">
+							<Type>CommandBarButton</Type>
+							<Representation>PictureAndText</Representation>
+							<CommandName>Form.Command.Stop</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Suspend</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="StopExtendedTooltip" id="96"/>
+						</Button>
+						<ButtonGroup name="OrderGroup" id="110">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Order</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="OrderGroupExtendedTooltip" id="111"/>
+							<ChildItems>
+								<Button name="OnSchedule" id="106">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.OnSchedule</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Normal priority</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="OnScheduleExtendedTooltip" id="107"/>
+								</Button>
+								<Button name="HighPriority" id="108">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.HighPriority</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>High priority</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="HighPriorityExtendedTooltip" id="109"/>
+								</Button>
+							</ChildItems>
+						</ButtonGroup>
+						<Button name="OutputList" id="118">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.DeferredHandlers.StandardCommand.OutputList</CommandName>
+							<ExtendedTooltip name="OutputListExtendedTooltip" id="119"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ContentGroup" id="127">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Content</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ContentGroupExtendedTooltip" id="128"/>
+			<ChildItems>
+				<Table name="DeferredHandlers" id="34">
+					<Representation>List</Representation>
+					<ReadOnly>true</ReadOnly>
+					<UseAlternationRowColor>true</UseAlternationRowColor>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>DeferredHandlers</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deferred handlers</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>Add</ExcludedCommand>
+						<ExcludedCommand>CancelSearch</ExcludedCommand>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Delete</ExcludedCommand>
+						<ExcludedCommand>EndEdit</ExcludedCommand>
+						<ExcludedCommand>Find</ExcludedCommand>
+						<ExcludedCommand>MoveDown</ExcludedCommand>
+						<ExcludedCommand>MoveUp</ExcludedCommand>
+						<ExcludedCommand>SortListAsc</ExcludedCommand>
+						<ExcludedCommand>SortListDesc</ExcludedCommand>
+					</CommandSet>
+					<CurrentRowUse>Choice</CurrentRowUse>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="DeferredHandlersContextMenu" id="35">
+						<ChildItems>
+							<Button name="ContextMenuRunSelectedHandler" id="125">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.RunProcedure</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Run procedure</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ContextMenuRunSelectedHandlerExtendedTooltip" id="126"/>
+							</Button>
+							<Button name="ContextMenuPause" id="85">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.Stop</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Suspend</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ContextMenuPauseExtendedTooltip" id="86"/>
+							</Button>
+							<Button name="ContextMenuRun" id="87">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.Resume</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Resume</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ContextMenuRunExtendedTooltip" id="88"/>
+							</Button>
+							<ButtonGroup name="DeferredHandlersContextMenuOrder" id="112">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Deferred handlers context menu order</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="DeferredHandlersContextMenuOrderExtendedTooltip" id="113"/>
+								<ChildItems>
+									<Button name="NormalPriorityContextMenu" id="104">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.OnSchedule</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Normal priority</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="NormalPriorityContextMenuExtendedTooltip" id="105"/>
+									</Button>
+									<Button name="HighPriorityContextMenu" id="102">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.HighPriority</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>High priority</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="HighPriorityContextMenuExtendedTooltip" id="103"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<Button name="DeferredHandlersContextMenuCopyToClipboard" id="114">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.DeferredHandlers.StandardCommand.CopyToClipboard</CommandName>
+								<ExtendedTooltip name="DeferredHandlersContextMenuCopyToClipboardExtendedTooltip" id="115"/>
+							</Button>
+							<Button name="DeferredHandlersContextMenuSelectAll" id="116">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.DeferredHandlers.StandardCommand.SelectAll</CommandName>
+								<ExtendedTooltip name="DeferredHandlersContextMenuSelectAllExtendedTooltip" id="117"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="DeferredHandlersCommandBar" id="36">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="DeferredHandlersExtendedTooltip" id="37"/>
+					<SearchStringAddition name="DeferredHandlersSearchString" id="60">
+						<AdditionSource>
+							<Item>DeferredHandlers</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="DeferredHandlersSearchStringContextMenu" id="61"/>
+						<ExtendedTooltip name="DeferredHandlersSearchStringExtendedTooltip" id="62"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="DeferredHandlersViewStatus" id="63">
+						<AdditionSource>
+							<Item>DeferredHandlers</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="DeferredHandlersViewStatusContextMenu" id="64"/>
+						<ExtendedTooltip name="DeferredHandlersViewStatusExtendedTooltip" id="65"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="DeferredHandlersSearchControl" id="66">
+						<AdditionSource>
+							<Item>DeferredHandlers</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="DeferredHandlersSearchControlContextMenu" id="67"/>
+						<ExtendedTooltip name="DeferredHandlersSearchControlExtendedTooltip" id="68"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="Selection">DeferredHandlersSelection</Event>
+						<Event name="OnActivateRow">DeferredHandlersOnActivateRow</Event>
+					</Events>
+					<ChildItems>
+						<PictureField name="Priority" id="99">
+							<DataPath>DeferredHandlers.PriorityPicture</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Priority picture</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<EditMode>EnterOnInput</EditMode>
+							<HeaderPicture>
+								<xr:Ref>CommonPicture.ExclamationMarkGray</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</HeaderPicture>
+							<Width>2</Width>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="PriorityContextMenu" id="100"/>
+							<ExtendedTooltip name="PriorityExtendedTooltip" id="101"/>
+						</PictureField>
+						<InputField name="Number" id="38">
+							<DataPath>DeferredHandlers.Number</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>#</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalAlign>Left</HorizontalAlign>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>3</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="NumberContextMenu" id="39"/>
+							<ExtendedTooltip name="NumberExtendedTooltip" id="40"/>
+						</InputField>
+						<ColumnGroup name="HandlerGroup" id="148">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Handler</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="HandlerGroupExtendedTooltip" id="149"/>
+							<ChildItems>
+								<InputField name="DeferredHandlersHandler" id="41">
+									<DataPath>DeferredHandlers.Handler</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Data processing procedure</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoCellHeight>true</AutoCellHeight>
+									<Width>40</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="DeferredHandlersHandlerContextMenu" id="42"/>
+									<ExtendedTooltip name="DeferredHandlersHandlerExtendedTooltip" id="43"/>
+								</InputField>
+								<LabelField name="DeferredHandlersHandlerAddOn" id="150">
+									<DataPath>DeferredHandlers.HandlerAddOn</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Addition</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<CellHyperlink>true</CellHyperlink>
+									<ShowInHeader>false</ShowInHeader>
+									<ContextMenu name="DeferredHandlersHandlerAddOnContextMenu" id="151"/>
+									<ExtendedTooltip name="DeferredHandlersHandlerAddOnExtendedTooltip" id="152"/>
+								</LabelField>
+							</ChildItems>
+						</ColumnGroup>
+						<ColumnGroup name="StatusPictureGroup" id="44">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Status picture</v8:content>
+								</v8:item>
+							</Title>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>InCell</Group>
+							<ExtendedTooltip name="StatusPictureGroupExtendedTooltip" id="45"/>
+							<ChildItems>
+								<PictureField name="DeferredHandlersStatusPicture" id="46">
+									<DataPath>DeferredHandlers.StatusPicture</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Status picture</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoCellHeight>true</AutoCellHeight>
+									<Width>3</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="DeferredHandlersStatusPictureContextMenu" id="47"/>
+									<ExtendedTooltip name="DeferredHandlersStatusPictureExtendedTooltip" id="48"/>
+								</PictureField>
+								<InputField name="DeferredHandlersHandlerStatus" id="49">
+									<DataPath>DeferredHandlers.StatusPresentation</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Status</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="DeferredHandlersHandlerStatusContextMenu" id="50"/>
+									<ExtendedTooltip name="DeferredHandlersHandlerStatusExtendedTooltip" id="51"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+						<InputField name="DeferredHandlersExecutionInterval" id="80">
+							<DataPath>DeferredHandlers.ExecutionInterval</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Frequency</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>15</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<MultiLine>true</MultiLine>
+							<ContextMenu name="DeferredHandlersExecutionIntervalContextMenu" id="81"/>
+							<ExtendedTooltip name="DeferredHandlersExecutionIntervalExtendedTooltip" id="82"/>
+						</InputField>
+						<InputField name="DeferredHandlersExecutionDuration" id="77">
+							<DataPath>DeferredHandlers.ExecutionDuration</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Duration</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>15</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="DeferredHandlersExecutionDurationContextMenu" id="78"/>
+							<ExtendedTooltip name="DeferredHandlersExecutionDurationExtendedTooltip" id="79"/>
+						</InputField>
+					</ChildItems>
+				</Table>
+				<InputField name="DeferredHandlersUpdateProcedureInformation" id="15">
+					<DataPath>Items.DeferredHandlers.CurrentData.UpdateProcessInformation</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>4</Height>
+					<AutoMaxHeight>false</AutoMaxHeight>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="DeferredHandlersUpdateProcedureInformationContextMenu" id="16"/>
+					<ExtendedTooltip name="DeferredHandlersUpdateProcedureInformationExtendedTooltip" id="28"/>
+				</InputField>
+				<UsualGroup name="AdditionalDataGroup" id="129">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional information</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AdditionalDataGroupExtendedTooltip" id="130"/>
+					<ChildItems>
+						<LabelDecoration name="UpdateProgressHyperlink" id="120">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Deferred update progress report</v8:content>
+								</v8:item>
+							</Title>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="UpdateProgressHyperlinkContextMenu" id="121"/>
+							<ExtendedTooltip name="UpdateProgressHyperlinkExtendedTooltip" id="122"/>
+							<Events>
+								<Event name="Click">UpdateProgressHyperlinkClick</Event>
+							</Events>
+						</LabelDecoration>
+						<LabelDecoration name="IndentDecoration" id="131">
+							<ContextMenu name="IndentDecorationContextMenu" id="132"/>
+							<ExtendedTooltip name="IndentDecorationExtendedTooltip" id="133"/>
+						</LabelDecoration>
+						<LabelDecoration name="DecorationTitleTechnicalInformation" id="134">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Technical details:</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="DecorationTitleTechnicalInformationContextMenu" id="135"/>
+							<ExtendedTooltip name="DecorationTitleTechnicalInformationExtendedTooltip" id="136"/>
+						</LabelDecoration>
+						<LabelDecoration name="HyperlinkHandlersUpdates" id="137">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update handlers</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="HyperlinkHandlersUpdatesContextMenu" id="138"/>
+							<ExtendedTooltip name="HyperlinkHandlersUpdatesExtendedTooltip" id="139"/>
+							<Events>
+								<Event name="Click">HyperlinkHandlersUpdatesClick</Event>
+							</Events>
+						</LabelDecoration>
+						<LabelDecoration name="DeferredUpdateHyperlink" id="13">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Event log</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="DeferredUpdateHyperlinkContextMenu" id="14"/>
+							<ExtendedTooltip name="DeferredUpdateHyperlinkExtendedTooltip" id="29">
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>• &lt;b&gt;Update handlers&lt;/&gt;: The list of update handlers and service information to troubleshoot update issues.
+• &lt;b&gt;Event log&lt;/&gt;: Technical details, which you can attach to your support ticket.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="Click">DeferredUpdateHyperlinkClick</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<Button name="CheckPatches" id="143">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.CheckPatches</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check patches</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CheckPatchesExtendedTooltip" id="144"/>
+				</Button>
+				<LabelDecoration name="UpdateInProgress" id="20">
+					<Visible>false</Visible>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>2</Height>
+					<TextColor>style:NoteText</TextColor>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional data processing procedures are running</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Bottom</VerticalAlign>
+					<ContextMenu name="UpdateInProgressContextMenu" id="21"/>
+					<ExtendedTooltip name="UpdateInProgressExtendedTooltip" id="30"/>
+				</LabelDecoration>
+				<UsualGroup name="RunAgainGroup" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Restart</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="RunAgainGroupExtendedTooltip" id="31"/>
+					<ChildItems>
+						<LabelDecoration name="ExplanationText" id="11">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>It is recommended that you restart the procedures that have not been completed.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ExplanationTextContextMenu" id="12"/>
+							<ExtendedTooltip name="ExplanationTextExtendedTooltip" id="32"/>
+						</LabelDecoration>
+						<Button name="RunAgain" id="9">
+							<Type>UsualButton</Type>
+							<Representation>PictureAndText</Representation>
+							<CommandName>Form.Command.RunAgain</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Run</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="RunAgainExtendedTooltip" id="33"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.ApplicationUpdateResult</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="DeferredHandlers" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deferred handlers</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Handler" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data processing procedure</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="StatusPresentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Status</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="UpdateProcessInformation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update progress details</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="StatusPicture" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Status picture</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>v8ui:Picture</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Number" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Number</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Id" id="7">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ExecutionDuration" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Duration</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ExecutionInterval" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Frequency</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Status" id="8">
+					<Type>
+						<v8:Type>cfg:EnumRef.UpdateHandlersStatuses</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PriorityPicture" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Priority picture</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>v8ui:Picture</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Priority" id="11">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Queue" id="12">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="HandlerAddOn" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update handler</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="IsObsoleteDataCleanupHandler" id="14">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="DeferredUpdateStartTime" id="3">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeferredUpdateEndTime" id="4">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentSessionNumber" id="5">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="UpdateInProgress" id="6">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FileIB" id="7">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Status" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Status</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SearchString" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search bar</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FullUser" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseParallelMode" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="HandlerObjectsAddress" id="12">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DataToProcess" id="13">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ObjectName" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>255</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Handler" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>255</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Queue" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="CanCheckForPatchesManually" id="14">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="CloseForm" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Close</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CloseForm</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RunAgain" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Restart</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Restart the procedures.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.GenerateReport</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>RunAgain</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Stop" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Suspend</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pause the selected data processing procedure.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.StopSign</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>Pause</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Resume" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Resume</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Run the selected data processing procedure.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.GenerateReport</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Run</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Refresh" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh the list of additional data processing procedures.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Refresh</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="HighPriority" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>High priority</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>High priority</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>HighPriority</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OnSchedule" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Normal priority</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Normal priority</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OnSchedule</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RunProcedure" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Run procedure</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Run the selected procedure.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>RunSelectedHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CheckPatches" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Check patches</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CheckPatches</Action>
+		</Command>
+	</Commands>
+</Form>

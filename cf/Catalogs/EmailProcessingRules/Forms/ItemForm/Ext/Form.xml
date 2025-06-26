@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Description" id="1">
+			<DataPath>Object.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<DropListButton>true</DropListButton>
+			<DropListWidth>70</DropListWidth>
+			<InputHint>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Name is auto-generated after you add conditions</v8:content>
+				</v8:item>
+			</InputHint>
+			<ContextMenu name="DescriptionContextMenu" id="2"/>
+			<ExtendedTooltip name="DescriptionExtendedTooltip" id="15"/>
+			<Events>
+				<Event name="OnChange">DescriptionOnChange</Event>
+			</Events>
+		</InputField>
+		<InputField name="PutInFolder" id="3">
+			<DataPath>Object.PutInFolder</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ChoiceParameterLinks>
+				<xr:Link>
+					<xr:Name>Filter.Owner</xr:Name>
+					<xr:DataPath xsi:type="xs:string">Object.Owner</xr:DataPath>
+					<xr:ValueChange>Clear</xr:ValueChange>
+				</xr:Link>
+			</ChoiceParameterLinks>
+			<InputHint>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Folder the mail that triggers the rule will be moved to</v8:content>
+				</v8:item>
+			</InputHint>
+			<ContextMenu name="PutInFolderContextMenu" id="4"/>
+			<ExtendedTooltip name="PutInFolderExtendedTooltip" id="16"/>
+		</InputField>
+		<Table name="SettingsComposerSettingsFilter" id="11">
+			<Representation>Tree</Representation>
+			<Autofill>true</Autofill>
+			<InitialTreeView>ExpandAllLevels</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>SettingsComposer.Settings.Filter</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Settings Composer settings filter</v8:content>
+				</v8:item>
+			</Title>
+			<ViewMode>All</ViewMode>
+			<SettingsNamedItemDetailedRepresentation>false</SettingsNamedItemDetailedRepresentation>
+			<ContextMenu name="SettingsComposerSettingsFilterContextMenu" id="12"/>
+			<AutoCommandBar name="SettingsComposerSettingsFilterCommandBar" id="13">
+				<ChildItems>
+					<Button name="SettingsComposerSettingsFilterUserSettingItemProperties" id="14">
+						<Type>CommandBarButton</Type>
+						<Visible>false</Visible>
+						<CommandName>Form.Item.SettingsComposerSettingsFilter.StandardCommand.UserSettingItemProperties</CommandName>
+						<ExtendedTooltip name="SettingsComposerSettingsFilterUserSettingItemPropertiesExtendedTooltip" id="17"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="SettingsComposerSettingsFilterExtendedTooltip" id="18"/>
+			<SearchStringAddition name="SettingsComposerSettingsFilterSearchString" id="19">
+				<AdditionSource>
+					<Item>SettingsComposerSettingsFilter</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SettingsComposerSettingsFilterSearchStringContextMenu" id="20"/>
+				<ExtendedTooltip name="SettingsComposerSettingsFilterSearchStringExtendedTooltip" id="21"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="SettingsComposerSettingsFilterViewStatus" id="22">
+				<AdditionSource>
+					<Item>SettingsComposerSettingsFilter</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SettingsComposerSettingsFilterViewStatusContextMenu" id="23"/>
+				<ExtendedTooltip name="SettingsComposerSettingsFilterViewStatusExtendedTooltip" id="24"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="SettingsComposerSettingsFilterSearchControl" id="25">
+				<AdditionSource>
+					<Item>SettingsComposerSettingsFilter</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="SettingsComposerSettingsFilterSearchControlContextMenu" id="26"/>
+				<ExtendedTooltip name="SettingsComposerSettingsFilterSearchControlExtendedTooltip" id="27"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="OnChange">SettingsComposerSettingsFilterOnChange</Event>
+			</Events>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.EmailProcessingRules</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="SettingsComposer" id="2">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>

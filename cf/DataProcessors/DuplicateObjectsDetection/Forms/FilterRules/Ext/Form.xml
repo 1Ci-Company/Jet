@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Filter criteria</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">PrefilterComposerSettingsFilterCommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<ButtonGroup name="HiddenAtMobileClientGroup" id="22">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Hidden on the mobile client</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="HiddenAtMobileClientGroupExtendedTooltip" id="23"/>
+				<ChildItems>
+					<Button name="FormSelect" id="5">
+						<Type>CommandBarButton</Type>
+						<DefaultButton>true</DefaultButton>
+						<CommandName>Form.Command.Select</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>OK</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormSelectExtendedTooltip" id="6"/>
+					</Button>
+					<Button name="FormCancel" id="9">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.StandardCommand.Cancel</CommandName>
+						<ExtendedTooltip name="FormCancelExtendedTooltip" id="10"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<ButtonGroup name="FormGroupHelp" id="11">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Form help group</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormGroupHelpExtendedTooltip" id="12"/>
+				<ChildItems>
+					<Button name="FormHelp" id="7">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.StandardCommand.Help</CommandName>
+						<ExtendedTooltip name="FormHelpExtendedTooltip" id="8"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="PrefilterComposerSettingsFilter" id="1">
+			<Representation>Tree</Representation>
+			<Autofill>true</Autofill>
+			<InitialTreeView>ExpandAllLevels</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>PrefilterComposer.Settings.Filter</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pre-filter composer settings filter</v8:content>
+				</v8:item>
+			</Title>
+			<SearchStringLocation>CommandBar</SearchStringLocation>
+			<ViewMode>All</ViewMode>
+			<SettingsNamedItemDetailedRepresentation>false</SettingsNamedItemDetailedRepresentation>
+			<ContextMenu name="PrefilterComposerSettingsFilterContextMenu" id="2"/>
+			<AutoCommandBar name="PrefilterComposerSettingsFilterCommandBar" id="3"/>
+			<ExtendedTooltip name="PrefilterComposerSettingsFilterExtendedTooltip" id="4"/>
+			<SearchStringAddition name="PrefilterComposerSettingsFilterSearchString" id="13">
+				<AdditionSource>
+					<Item>PrefilterComposerSettingsFilter</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="PrefilterComposerSettingsFilterSearchStringContextMenu" id="14"/>
+				<ExtendedTooltip name="PrefilterComposerSettingsFilterSearchStringExtendedTooltip" id="15"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="PrefilterComposerSettingsFilterViewStatus" id="16">
+				<AdditionSource>
+					<Item>PrefilterComposerSettingsFilter</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="PrefilterComposerSettingsFilterViewStatusContextMenu" id="17"/>
+				<ExtendedTooltip name="PrefilterComposerSettingsFilterViewStatusExtendedTooltip" id="18"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="PrefilterComposerSettingsFilterSearchControl" id="19">
+				<AdditionSource>
+					<Item>PrefilterComposerSettingsFilter</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="PrefilterComposerSettingsFilterSearchControlContextMenu" id="20"/>
+				<ExtendedTooltip name="PrefilterComposerSettingsFilterSearchControlExtendedTooltip" id="21"/>
+			</SearchControlAddition>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.DuplicateObjectsDetection</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="MasterFormID" id="2">
+			<Type>
+				<v8:Type>v8:UUID</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PrefilterComposer" id="3">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IsMobileClient" id="4">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Select" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Select</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="MasterFormID">
+			<Type>
+				<v8:Type>v8:UUID</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="CompositionSchemaAddress">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="FilterComposerSettingsAddress">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="FilterAreaPresentation">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,29 @@
+﻿# General description of tags in comments
+# Lists all possible tags in the initial configuration 
+tags:
+  - id: NameTag
+    description: Everything that is not included in the configuration
+    begin: //++ NameTag # what does the beginning of a tag look like in the code 
+    end: //-- NameTag # what does the end of the tag look like in the code 
+    
+# Description of configurations for which you need to cut, control the correctness of the placement of tags and place tags in the code
+# All configurations are listed: 
+#   - to be cut
+#   - for which you need to generate update modules
+
+configurations:
+  <ShortName>:
+    description: Clipping configurations <ShortName> # short description of the configuration or arbitrary name of the configuration
+    name: ConfigurationName # name configurations as in procedure InfobaseUpdate<ShortName>.OnAddSubsystem
+    module: InfobaseUpdate<ShortName> # the update module that hosts the WhenAddingHandlers procedure
+
+    tags:
+      - NameTag
+
+    content:
+      # objects - lists the names of the first-level subsystems that include configuration objects
+      - ServiceSubsystems.TM11CA2AndEM2Objects
+      - StandardSubsystems
+    
+    except_content:# lists the full names of the second-level subsystems that are excluded from the configuration
+      - StandardSubsystems.PersonalDataProtection

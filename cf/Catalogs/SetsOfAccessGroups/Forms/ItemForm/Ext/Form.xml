@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormEnableEditing" id="32">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.EnableEditing</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Allow editing</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="33"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Description" id="1">
+			<DataPath>Object.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="DescriptionContextMenu" id="2"/>
+			<ExtendedTooltip name="DescriptionExtendedTooltip" id="3"/>
+		</InputField>
+		<UsualGroup name="HorizontalGroup" id="55">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Horizontal group</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HorizontalGroupExtendedTooltip" id="56"/>
+			<ChildItems>
+				<CheckBoxField name="NotUsedSince" id="4">
+					<DataPath>Object.NotUsedSince</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="NotUsedSinceContextMenu" id="5"/>
+					<ExtendedTooltip name="NotUsedSinceExtendedTooltip" id="6"/>
+				</CheckBoxField>
+				<CheckBoxField name="ForExternalUsers" id="52">
+					<DataPath>Object.ForExternalUsers</DataPath>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ForExternalUsersContextMenu" id="53"/>
+					<ExtendedTooltip name="ForExternalUsersExtendedTooltip" id="54"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="SetItemsTypeAndHashGroup" id="60">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Type of set items and hash</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="SetItemsTypeAndHashGroupExtendedTooltip" id="61"/>
+			<ChildItems>
+				<InputField name="SetItemsType" id="10">
+					<DataPath>Object.SetItemsType</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<DropListButton>false</DropListButton>
+					<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+					<OpenButton>false</OpenButton>
+					<CreateButton>false</CreateButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ContextMenu name="SetItemsTypeContextMenu" id="11"/>
+					<ExtendedTooltip name="SetItemsTypeExtendedTooltip" id="12"/>
+					<Events>
+						<Event name="OnChange">SetItemsTypeOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="Hash" id="57">
+					<DataPath>Object.Hash</DataPath>
+					<ContextMenu name="HashContextMenu" id="58"/>
+					<ExtendedTooltip name="HashExtendedTooltip" id="59"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="SetsAttributes" id="34">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set attributes</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="SetsAttributesExtendedTooltip" id="35"/>
+			<ChildItems>
+				<Page name="GroupsSetAttributes" id="36">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group set attributes</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupsSetAttributesExtendedTooltip" id="37"/>
+					<ChildItems>
+						<Table name="Groups" id="13">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.Groups</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Groups</v8:content>
+								</v8:item>
+							</Title>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="GroupsContextMenu" id="14"/>
+							<AutoCommandBar name="GroupsCommandBar" id="15"/>
+							<ExtendedTooltip name="GroupsExtendedTooltip" id="16"/>
+							<SearchStringAddition name="GroupsSearchString" id="17">
+								<AdditionSource>
+									<Item>Groups</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="GroupsSearchStringContextMenu" id="18"/>
+								<ExtendedTooltip name="GroupsSearchStringExtendedTooltip" id="19"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="GroupsViewStatus" id="20">
+								<AdditionSource>
+									<Item>Groups</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="GroupsViewStatusContextMenu" id="21"/>
+								<ExtendedTooltip name="GroupsViewStatusExtendedTooltip" id="22"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="GroupsSearchControl" id="23">
+								<AdditionSource>
+									<Item>Groups</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="GroupsSearchControlContextMenu" id="24"/>
+								<ExtendedTooltip name="GroupsSearchControlExtendedTooltip" id="25"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="GroupsRowNumber" id="26">
+									<DataPath>Object.Groups.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="GroupsRowNumberContextMenu" id="27"/>
+									<ExtendedTooltip name="GroupsRowNumberExtendedTooltip" id="28"/>
+								</LabelField>
+								<InputField name="GroupsGroup" id="29">
+									<DataPath>Object.Groups.Group</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="GroupsGroupContextMenu" id="30"/>
+									<ExtendedTooltip name="GroupsGroupExtendedTooltip" id="31"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="SingleUserSetAttributes" id="38">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Single-user set attributes</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalSpacing>Double</VerticalSpacing>
+					<ExtendedTooltip name="SingleUserSetAttributesExtendedTooltip" id="39"/>
+					<ChildItems>
+						<InputField name="User" id="7">
+							<DataPath>Object.User</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="UserContextMenu" id="8"/>
+							<ExtendedTooltip name="UserExtendedTooltip" id="9"/>
+						</InputField>
+						<InputField name="AllowedAccessGroupsSet" id="40">
+							<DataPath>Object.AllowedAccessGroupsSet</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Allowed access
+group set</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="AllowedAccessGroupsSetContextMenu" id="41"/>
+							<ExtendedTooltip name="AllowedAccessGroupsSetExtendedTooltip" id="42"/>
+						</InputField>
+						<InputField name="AllowedUserGroupsSet" id="43">
+							<DataPath>Object.AllowedUserGroupsSet</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Allowed user
+group set</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="AllowedUserGroupsSetContextMenu" id="44"/>
+							<ExtendedTooltip name="AllowedUserGroupsSetExtendedTooltip" id="45"/>
+						</InputField>
+						<InputField name="NewAccessGroupsSet" id="46">
+							<DataPath>Object.NewAccessGroupsSet</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>New access
+group set</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="NewAccessGroupsSetContextMenu" id="47"/>
+							<ExtendedTooltip name="NewAccessGroupsSetExtendedTooltip" id="48"/>
+						</InputField>
+						<InputField name="NewUserGroupsSet" id="49">
+							<DataPath>Object.NewUserGroupsSet</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>New user
+group set</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="NewUserGroupsSetContextMenu" id="50"/>
+							<ExtendedTooltip name="NewUserGroupsSetExtendedTooltip" id="51"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.SetsOfAccessGroups</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

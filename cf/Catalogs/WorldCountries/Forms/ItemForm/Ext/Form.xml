@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="DescriptionGroup" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Description</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<United>false</United>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="DescriptionGroupExtendedTooltip" id="13"/>
+			<ChildItems>
+				<InputField name="Description" id="3">
+					<DataPath>Object.Description</DataPath>
+					<Wrap>false</Wrap>
+					<ContextMenu name="DescriptionContextMenu" id="4"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="14"/>
+				</InputField>
+				<InputField name="Code" id="1">
+					<DataPath>Object.Code</DataPath>
+					<Wrap>false</Wrap>
+					<ContextMenu name="CodeContextMenu" id="2"/>
+					<ExtendedTooltip name="CodeExtendedTooltip" id="15"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="DescriptionFull" id="5">
+			<DataPath>Object.DescriptionFull</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Full description</v8:content>
+				</v8:item>
+			</Title>
+			<Wrap>false</Wrap>
+			<ContextMenu name="DescriptionFullContextMenu" id="6"/>
+			<ExtendedTooltip name="DescriptionFullExtendedTooltip" id="16"/>
+		</InputField>
+		<InputField name="InternationalDescription" id="23">
+			<DataPath>Object.InternationalDescription</DataPath>
+			<ContextMenu name="InternationalDescriptionContextMenu" id="24"/>
+			<ExtendedTooltip name="InternationalDescriptionExtendedTooltip" id="25"/>
+		</InputField>
+		<UsualGroup name="AlphaCodesGroup" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Alpha codes</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="AlphaCodesGroupExtendedTooltip" id="17"/>
+			<ChildItems>
+				<InputField name="CodeAlpha2" id="7">
+					<DataPath>Object.CodeAlpha2</DataPath>
+					<Width>2</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ContextMenu name="CodeAlpha2ContextMenu" id="8"/>
+					<ExtendedTooltip name="CodeAlpha2ExtendedTooltip" id="18"/>
+				</InputField>
+				<InputField name="CodeAlpha3" id="9">
+					<DataPath>Object.CodeAlpha3</DataPath>
+					<Width>3</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ContextMenu name="CodeAlpha3ContextMenu" id="10"/>
+					<ExtendedTooltip name="CodeAlpha3ExtendedTooltip" id="19"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CheckBoxField name="EEUMember" id="20">
+			<DataPath>Object.EEUMember</DataPath>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Country is a member of the Eurasian Economic Union.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<ToolTipRepresentation>Button</ToolTipRepresentation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="EEUMemberContextMenu" id="21"/>
+			<ExtendedTooltip name="EEUMemberExtendedTooltip" id="22"/>
+		</CheckBoxField>
+		<UsualGroup name="GroupAdditionalAttributes" id="26">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional attributes</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="27"/>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.WorldCountries</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="Title">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,2220 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Marked object deletion</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<AutoFillCheck>false</AutoFillCheck>
+	<Customizable>false</Customizable>
+	<CommandBarLocation>None</CommandBarLocation>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">CommandBarForm</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<ShowCloseButton>false</ShowCloseButton>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="SearchFilterSettingsGroup" id="523">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search filter settings</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="SearchFilterSettingsGroupExtendedTooltip" id="524"/>
+			<ChildItems>
+				<LabelDecoration name="SearchFilterSettingsTitleDecoration" id="525">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Show:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SearchFilterSettingsTitleDecorationContextMenu" id="526"/>
+					<ExtendedTooltip name="SearchFilterSettingsTitleDecorationExtendedTooltip" id="527"/>
+				</LabelDecoration>
+				<Button name="ConfigureFilter" id="521">
+					<Type>Hyperlink</Type>
+					<TitleHeight>1</TitleHeight>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>60</MaxWidth>
+					<Height>1</Height>
+					<CommandName>Form.Command.ConfigureFilter</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>All objects marked for deletion</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ConfigureFilterExtendedTooltip" id="522"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="CommandBarForm" id="534">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Form command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarFormExtendedTooltip" id="535"/>
+			<ChildItems>
+				<ButtonGroup name="CommandBarMarkedObjectsSearch" id="681">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar "Find objects marked for deletion"</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CommandBarMarkedObjectsSearchExtendedTooltip" id="682"/>
+					<ChildItems>
+						<ButtonGroup name="ActiveAfterSearchMarkedObjectsGroup" id="562">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Delete</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ActiveAfterSearchMarkedObjectsGroupExtendedTooltip" id="563"/>
+							<ChildItems>
+								<Button name="MarkedForDeletionItemsTreeDeleteSelectedItems" id="519">
+									<Type>CommandBarButton</Type>
+									<DefaultButton>true</DefaultButton>
+									<CommandName>Form.Command.DeleteSelectedItems</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Delete selected objects</v8:content>
+										</v8:item>
+									</Title>
+									<RepresentationInContextMenu>None</RepresentationInContextMenu>
+									<ExtendedTooltip name="MarkedForDeletionItemsTreeDeleteSelectedItemsExtendedTooltip" id="520"/>
+								</Button>
+								<ButtonGroup name="SelectionCommands" id="57">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Selection command</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>Compact</Representation>
+									<ExtendedTooltip name="SelectionCommandsExtendedTooltip" id="91"/>
+									<ChildItems>
+										<Button name="MarkedItemsListSelectAllCommand" id="37">
+											<Type>CommandBarButton</Type>
+											<SkipOnInput>false</SkipOnInput>
+											<CommandName>Form.Command.MarkedForDeletionItemsTreeSelectAll</CommandName>
+											<TextColor>style:ButtonTextColor</TextColor>
+											<BackColor>style:ButtonBackColor</BackColor>
+											<BorderColor>style:BorderColor</BorderColor>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Select all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MarkedItemsListSelectAllCommandExtendedTooltip" id="92"/>
+										</Button>
+										<Button name="MarkedForDeletionItemsTreeClearAll" id="38">
+											<Type>CommandBarButton</Type>
+											<SkipOnInput>false</SkipOnInput>
+											<CommandName>Form.Command.MarkedForDeletionItemsTreeClearAll</CommandName>
+											<TextColor>style:ButtonTextColor</TextColor>
+											<BackColor>style:ButtonBackColor</BackColor>
+											<BorderColor>style:BorderColor</BorderColor>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Clear all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="MarkedForDeletionItemsTreeClearAllExtendedTooltip" id="93"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<ButtonGroup name="CollapseExpandCommands" id="713">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Collapse/Expand commands</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>Compact</Representation>
+									<ExtendedTooltip name="CollapseExpandCommandsExtendedTooltip" id="714"/>
+									<ChildItems>
+										<Button name="CollapseMarkedObjectTreeRows" id="717">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CollapseMarkedObjectTreeRows</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Collapse all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CollapseMarkedObjectTreeRowsExtendedTooltip" id="718"/>
+										</Button>
+										<Button name="ExpandRowsOfMarkedObjectsTree" id="715">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ExpandRowsOfMarkedObjectsTree</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Expand all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ExpandRowsOfMarkedObjectsTreeExtendedTooltip" id="716"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<Button name="MarkedForDeletionItemsTreeChange" id="339">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.MarkedForDeletionItemsTreeChange</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Edit</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="MarkedForDeletionItemsTreeChangeExtendedTooltip" id="340"/>
+								</Button>
+							</ChildItems>
+						</ButtonGroup>
+						<Button name="Refresh" id="573">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Refresh</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Refresh</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="RefreshExtendedTooltip" id="574"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<ButtonGroup name="CommandBarErrorsProcessing" id="685">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar "Handle errors"</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CommandBarErrorsProcessingExtendedTooltip" id="686"/>
+					<ChildItems>
+						<ButtonGroup name="MainGroup2" id="617">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Main</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="MainGroup2ExtendedTooltip" id="618"/>
+							<ChildItems>
+								<Button name="ExecuteActionsAndDelete" id="611">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.ExecuteActionsAndDelete</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Retry deletion</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ExecuteActionsAndDeleteExtendedTooltip" id="612"/>
+								</Button>
+								<Button name="Back" id="609">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Back</CommandName>
+									<Picture>
+										<xr:Ref>StdPicture.Back</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Go to objects marked for deletion</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="BackExtendedTooltip" id="610"/>
+								</Button>
+							</ChildItems>
+						</ButtonGroup>
+						<ButtonGroup name="ListItemsActionsGroup" id="619">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>List item actions</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ListItemsActionsGroupExtendedTooltip" id="620"/>
+							<ChildItems>
+								<ButtonGroup name="GroupOperationsWithNotDeletedItems" id="733">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Undeleted object actions</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>None</ToolTipRepresentation>
+									<Representation>Compact</Representation>
+									<ExtendedTooltip name="GroupOperationsWithNotDeletedItemsExtendedTooltip" id="734"/>
+									<ChildItems>
+										<Button name="NotDeletedItemsChange" id="621">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.NotDeletedItemsChange</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Edit</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="NotDeletedItemsChangeExtendedTooltip" id="622"/>
+										</Button>
+										<Button name="NotDeletedItemsSetClearDeletionMark" id="735">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.SetClearDeletionMark</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Toggle deletion mark</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="NotDeletedItemsSetClearDeletionMarkExtendedTooltip" id="736"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<Popup name="Actions" id="639">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Actions</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ActionsExtendedTooltip" id="640"/>
+									<ChildItems>
+										<Button name="InstallDelete" id="641">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.InstallDelete</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Delete</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="InstallDeleteExtendedTooltip" id="642"/>
+										</Button>
+										<Button name="SetReplaceWith" id="643">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.SetReplaceWith</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Replace with...</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="SetReplaceWithExtendedTooltip" id="644"/>
+										</Button>
+									</ChildItems>
+								</Popup>
+							</ChildItems>
+						</ButtonGroup>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="MarkedForDeletionItemsTreeConfigure" id="528">
+					<Type>CommandBarButton</Type>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<CommandName>Form.Command.Customize</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Configure…</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="MarkedForDeletionItemsTreeConfigureExtendedTooltip" id="529"/>
+				</Button>
+				<Button name="Help" id="687">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="HelpExtendedTooltip" id="688"/>
+				</Button>
+				<SearchStringAddition name="SearchStringForDeletion" id="737">
+					<AdditionSource>
+						<Item>MarkedForDeletionItemsTree</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="SearchStringForDeletionContextMenu" id="738"/>
+					<ExtendedTooltip name="SearchStringForDeletionExtendedTooltip" id="739"/>
+				</SearchStringAddition>
+				<ButtonGroup name="CommandBarTechnologicalData" id="750">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar technological data</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar technological data</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="CommandBarTechnologicalDataExtendedTooltip" id="751"/>
+					<ChildItems>
+						<Button name="ShowTechnologicalData" id="746">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ShowTechnologicalData</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show technological data</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ShowTechnologicalDataExtendedTooltip" id="747"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+			</ChildItems>
+		</CommandBar>
+		<Pages name="StatePresentationPages" id="645">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>State display pages</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>true</HorizontalStretch>
+			<VerticalStretch>false</VerticalStretch>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="StatePresentationPagesExtendedTooltip" id="646"/>
+			<ChildItems>
+				<Page name="RunningState" id="647">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>In progress state</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<VerticalAlign>Center</VerticalAlign>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="RunningStateExtendedTooltip" id="648"/>
+					<ChildItems>
+						<PictureDecoration name="LongRunningOperationIconDecoration" id="579">
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Long-running operation icon decoration</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Picture>
+								<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<ContextMenu name="LongRunningOperationIconDecorationContextMenu" id="580"/>
+							<ExtendedTooltip name="LongRunningOperationIconDecorationExtendedTooltip" id="581"/>
+						</PictureDecoration>
+						<UsualGroup name="LongRunningOperationNoteGroup" id="711">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Note to long-running operation</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="LongRunningOperationNoteGroupExtendedTooltip" id="712"/>
+							<ChildItems>
+								<LabelDecoration name="LongRunningOperationPresentationDecoration" id="582">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Deleting all objects marked for deletion.
+Searching for marked objects</v8:content>
+										</v8:item>
+									</Title>
+									<GroupVerticalAlign>Center</GroupVerticalAlign>
+									<ContextMenu name="LongRunningOperationPresentationDecorationContextMenu" id="583"/>
+									<ExtendedTooltip name="LongRunningOperationPresentationDecorationExtendedTooltip" id="584"/>
+								</LabelDecoration>
+								<LabelDecoration name="ProgressPresentation" id="708">
+									<Visible>false</Visible>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Progress presentation</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ProgressPresentationContextMenu" id="709"/>
+									<ExtendedTooltip name="ProgressPresentationExtendedTooltip" id="710"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<Button name="CancelOperation" id="587">
+							<Type>UsualButton</Type>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<CommandName>Form.Command.CancelOperation</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cancel</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CancelOperationExtendedTooltip" id="588"/>
+						</Button>
+					</ChildItems>
+				</Page>
+				<Page name="CompletedState" id="649">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Completed state</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<ShowTitle>false</ShowTitle>
+					<BackColor>style:ToolTipBackColor</BackColor>
+					<ExtendedTooltip name="CompletedStateExtendedTooltip" id="650"/>
+					<ChildItems>
+						<PictureDecoration name="SuccessPicture" id="699">
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Picture successfully completed with errors</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Picture>
+								<xr:Ref>CommonPicture.Success32</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="SuccessPictureContextMenu" id="700"/>
+							<ExtendedTooltip name="SuccessPictureExtendedTooltip" id="701"/>
+						</PictureDecoration>
+						<LabelDecoration name="CompletionPresentationSuccessDecoration" id="702">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Deleted successfully.</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<ContextMenu name="CompletionPresentationSuccessDecorationContextMenu" id="703"/>
+							<ExtendedTooltip name="CompletionPresentationSuccessDecorationExtendedTooltip" id="704"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="CompletedWithErrorsState" id="671">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Completed with errors state</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Group>AlwaysHorizontal</Group>
+					<ShowTitle>false</ShowTitle>
+					<BackColor>style:ToolTipBackColor</BackColor>
+					<ExtendedTooltip name="CompletedWithErrorsStateExtendedTooltip" id="672"/>
+					<ChildItems>
+						<PictureDecoration name="SuccessCompletedWithErrorsPicture" id="673">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Picture successfully completed with errors</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Picture>
+								<xr:Ref>StdPicture.DialogStop</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="SuccessCompletedWithErrorsPictureContextMenu" id="674"/>
+							<ExtendedTooltip name="SuccessCompletedWithErrorsPictureExtendedTooltip" id="675"/>
+						</PictureDecoration>
+						<LabelDecoration name="CompletionPresentationFailedDecoration" id="676">
+							<HorizontalStretch>true</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>An error occurred.</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<ContextMenu name="CompletionPresentationFailedDecorationContextMenu" id="677"/>
+							<ExtendedTooltip name="CompletionPresentationFailedDecorationExtendedTooltip" id="678"/>
+						</LabelDecoration>
+						<LabelDecoration name="DetailsBackgroundJobError" id="466">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Generate error report</v8:content>
+								</v8:item>
+							</Title>
+							<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+							<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="DetailsBackgroundJobErrorContextMenu" id="467"/>
+							<ExtendedTooltip name="DetailsBackgroundJobErrorExtendedTooltip" id="468"/>
+							<Events>
+								<Event name="Click">DetailsRefClick</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="DeletionNotRequiredState" id="693">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deletion is not required state</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<BackColor>style:ToolTipBackColor</BackColor>
+					<ExtendedTooltip name="DeletionNotRequiredStateExtendedTooltip" id="694"/>
+					<ChildItems>
+						<PictureDecoration name="DeletionNotRequiredPicture" id="178">
+							<VerticalStretch>true</VerticalStretch>
+							<Picture>
+								<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="DeletionNotRequiredPictureContextMenu" id="179"/>
+							<ExtendedTooltip name="DeletionNotRequiredPictureExtendedTooltip" id="180"/>
+						</PictureDecoration>
+						<LabelDecoration name="DeletionNotRequiredLabel" id="181">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>There are no objects marked for deletion.
+</v8:content>
+								</v8:item>
+							</Title>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="DeletionNotRequiredLabelContextMenu" id="182"/>
+							<ExtendedTooltip name="DeletionNotRequiredLabelExtendedTooltip" id="183"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="PartialDeletionState" id="719">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deletion is not required state</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<BackColor>style:ToolTipBackColor</BackColor>
+					<ExtendedTooltip name="PartialDeletionStateExtendedTooltip" id="720"/>
+					<ChildItems>
+						<PictureDecoration name="PartialDeletionStatePicture" id="721">
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Picture state partial deletion</v8:content>
+								</v8:item>
+							</Title>
+							<Picture>
+								<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="PartialDeletionStatePictureContextMenu" id="722"/>
+							<ExtendedTooltip name="PartialDeletionStatePictureExtendedTooltip" id="723"/>
+						</PictureDecoration>
+						<LabelDecoration name="PartialDeletionStateLabel" id="724">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Objects are deleted partially.</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="PartialDeletionStateLabelContextMenu" id="725"/>
+							<ExtendedTooltip name="PartialDeletionStateLabelExtendedTooltip" id="726"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<Pages name="InformationPages" id="536">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Information pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="InformationPagesExtendedTooltip" id="537"/>
+			<ChildItems>
+				<Page name="ObjectsToProcessChoicePage" id="540">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select objects to process page</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ObjectsToProcessChoicePageExtendedTooltip" id="541"/>
+					<ChildItems>
+						<Table name="MarkedForDeletionItemsTree" id="26">
+							<Representation>Tree</Representation>
+							<CommandBarLocation>Top</CommandBarLocation>
+							<SkipOnInput>false</SkipOnInput>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Header>false</Header>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>MarkedForDeletionItemsTree</DataPath>
+							<RowPictureDataPath>MarkedForDeletionItemsTree.PictureNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<BorderColor>style:BorderColor</BorderColor>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Tree of objects marked for deletion</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>Delete</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>HierarchicalList</ExcludedCommand>
+								<ExcludedCommand>List</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+								<ExcludedCommand>SortListAsc</ExcludedCommand>
+								<ExcludedCommand>SortListDesc</ExcludedCommand>
+								<ExcludedCommand>Tree</ExcludedCommand>
+							</CommandSet>
+							<ContextMenu name="MarkedForDeletionItemsTreeContextMenu" id="27">
+								<ChildItems>
+									<ButtonGroup name="SelectionFromMenuCommands" id="363">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Menu choice command</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SelectionFromMenuCommandsExtendedTooltip" id="364"/>
+										<ChildItems>
+											<Button name="MarkedItemsListSelectAllFromMenuCommand" id="365">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.MarkedForDeletionItemsTreeSelectAll</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Select all</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="MarkedItemsListSelectAllFromMenuCommandExtendedTooltip" id="366"/>
+											</Button>
+											<Button name="MarkedForDeletionItemsTreeClearAllFromMenu" id="367">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.MarkedForDeletionItemsTreeClearAll</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Clear all</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="MarkedForDeletionItemsTreeClearAllFromMenuExtendedTooltip" id="368"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="MarkedForDeletionItemsTreeChangeFromMenu" id="369">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.MarkedForDeletionItemsTreeChange</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Edit</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="MarkedForDeletionItemsTreeChangeFromMenuExtendedTooltip" id="370"/>
+									</Button>
+									<ButtonGroup name="MarkedForDeletionItemsTreeAuxiliaryButtonsFromMenu" id="371">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Objects marked for deletion tree additional menu buttons</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="MarkedForDeletionItemsTreeAuxiliaryButtonsFromMenuExtendedTooltip" id="372"/>
+										<ChildItems>
+											<Button name="MarkedForDeletionItemsTreeUpdateFromMenu" id="373">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.MarkedForDeletionItemsTreeUpdate</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Refresh</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="MarkedForDeletionItemsTreeUpdateFromMenuExtendedTooltip" id="374"/>
+											</Button>
+											<Button name="MarkedForDeletionItemsListOutputListFromMenu" id="375">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.MarkedForDeletionItemsTree.StandardCommand.OutputList</CommandName>
+												<ExtendedTooltip name="MarkedForDeletionItemsListOutputListFromMenuExtendedTooltip" id="376"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="MarkedForDeletionItemsTreeCommandBar" id="28">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="MarkedForDeletionItemsTreeExtendedTooltip" id="97"/>
+							<SearchStringAddition name="MarkedForDeletionItemsTreeSearchString" id="409">
+								<AdditionSource>
+									<Item>MarkedForDeletionItemsTree</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="MarkedForDeletionItemsTreeSearchStringContextMenu" id="410"/>
+								<ExtendedTooltip name="MarkedForDeletionItemsTreeSearchStringExtendedTooltip" id="411"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="MarkedForDeletionItemsTreeViewStatus" id="412">
+								<AdditionSource>
+									<Item>MarkedForDeletionItemsTree</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="MarkedForDeletionItemsTreeViewStatusContextMenu" id="413"/>
+								<ExtendedTooltip name="MarkedForDeletionItemsTreeViewStatusExtendedTooltip" id="414"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="MarkedForDeletionItemsTreeSearchControl" id="415">
+								<AdditionSource>
+									<Item>MarkedForDeletionItemsTree</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="MarkedForDeletionItemsTreeSearchControlContextMenu" id="416"/>
+								<ExtendedTooltip name="MarkedForDeletionItemsTreeSearchControlExtendedTooltip" id="417"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">MarkedForDeletionItemsTreeSelection</Event>
+							</Events>
+							<ChildItems>
+								<ColumnGroup name="MarkedItemsListRow" id="29">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>List of objects marked for deletion line</v8:content>
+										</v8:item>
+									</Title>
+									<Width>20</Width>
+									<Group>InCell</Group>
+									<ExtendedTooltip name="MarkedItemsListRowExtendedTooltip" id="98"/>
+									<ChildItems>
+										<CheckBoxField name="MarkedForDeletionItemsTreeCheck" id="30">
+											<DataPath>MarkedForDeletionItemsTree.Check</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Checkmark</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<ShowInFooter>false</ShowInFooter>
+											<ThreeState>true</ThreeState>
+											<ContextMenu name="MarkedForDeletionItemsTreeCheckContextMenu" id="31"/>
+											<ExtendedTooltip name="MarkedForDeletionItemsTreeCheckExtendedTooltip" id="99"/>
+											<Events>
+												<Event name="OnChange">MarkedForDeletionItemsTreeCheckOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<InputField name="MarkedForDeletionItemsTreePresentation" id="32">
+											<DataPath>MarkedForDeletionItemsTree.Presentation</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Presentation</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<ShowInFooter>false</ShowInFooter>
+											<Width>10</Width>
+											<Wrap>false</Wrap>
+											<ContextMenu name="MarkedForDeletionItemsTreePresentationContextMenu" id="33"/>
+											<ExtendedTooltip name="MarkedForDeletionItemsTreePresentationExtendedTooltip" id="100"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="DeletionFailureReasonsPage" id="39">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deletion failure reasons page</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="DeletionFailureReasonsPageExtendedTooltip" id="101"/>
+					<ChildItems>
+						<UsualGroup name="NotDeletedItemsGroup" id="229">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Skipped objects</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ChildItemsWidth>Equal</ChildItemsWidth>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="NotDeletedItemsGroupExtendedTooltip" id="230"/>
+							<ChildItems>
+								<UsualGroup name="NotDeletedItemsGroupTable" id="313">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Skipped objects table</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="NotDeletedItemsGroupTableExtendedTooltip" id="314"/>
+									<ChildItems>
+										<Table name="NotTrash" id="220">
+											<Representation>Tree</Representation>
+											<ChangeRowSet>false</ChangeRowSet>
+											<ChangeRowOrder>false</ChangeRowOrder>
+											<MultipleChoice>true</MultipleChoice>
+											<RowSelectionMode>Row</RowSelectionMode>
+											<Header>false</Header>
+											<HorizontalLines>false</HorizontalLines>
+											<VerticalLines>false</VerticalLines>
+											<AutoAddIncomplete>false</AutoAddIncomplete>
+											<AutoMarkIncomplete>false</AutoMarkIncomplete>
+											<SearchOnInput>DontUse</SearchOnInput>
+											<InitialListView>Beginning</InitialListView>
+											<InitialTreeView>ExpandAllLevels</InitialTreeView>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>NotTrash</DataPath>
+											<RowPictureDataPath>NotTrash.PictureNumber</RowPictureDataPath>
+											<RowsPicture>
+												<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</RowsPicture>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Skipped objects</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSet>
+												<ExcludedCommand>Add</ExcludedCommand>
+												<ExcludedCommand>Copy</ExcludedCommand>
+												<ExcludedCommand>Delete</ExcludedCommand>
+												<ExcludedCommand>EndEdit</ExcludedCommand>
+												<ExcludedCommand>HierarchicalList</ExcludedCommand>
+												<ExcludedCommand>List</ExcludedCommand>
+												<ExcludedCommand>MoveDown</ExcludedCommand>
+												<ExcludedCommand>MoveUp</ExcludedCommand>
+												<ExcludedCommand>SortListAsc</ExcludedCommand>
+												<ExcludedCommand>SortListDesc</ExcludedCommand>
+												<ExcludedCommand>Tree</ExcludedCommand>
+											</CommandSet>
+											<ToolTipRepresentation>None</ToolTipRepresentation>
+											<ContextMenu name="NotTrashContextMenu" id="221">
+												<ChildItems>
+													<Button name="NotDeletedItemsChangeFromMenu" id="348">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.NotTrash.StandardCommand.Change</CommandName>
+														<ExtendedTooltip name="NotDeletedItemsChangeFromMenuExtendedTooltip" id="349"/>
+													</Button>
+													<Button name="NotDeletedItemsOutputListFromMenu" id="354">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.NotTrash.StandardCommand.OutputList</CommandName>
+														<ExtendedTooltip name="NotDeletedItemsOutputListFromMenuExtendedTooltip" id="355"/>
+													</Button>
+													<Button name="NotTrashContextMenuSetClearDeletionMark" id="731">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.SetClearDeletionMark</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Toggle deletion mark</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="NotTrashContextMenuSetClearDeletionMarkExtendedTooltip" id="732"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="NotTrashCommandBar" id="222">
+												<Autofill>false</Autofill>
+												<ChildItems>
+													<SearchStringAddition name="SearchStringUndeleted" id="740">
+														<AdditionSource>
+															<Item>NotTrash</Item>
+															<Type>SearchStringRepresentation</Type>
+														</AdditionSource>
+														<ContextMenu name="SearchStringUndeletedContextMenu" id="741"/>
+														<ExtendedTooltip name="SearchStringUndeletedExtendedTooltip" id="742"/>
+													</SearchStringAddition>
+												</ChildItems>
+											</AutoCommandBar>
+											<ExtendedTooltip name="NotTrashExtendedTooltip" id="223"/>
+											<SearchStringAddition name="NotTrashSearchString" id="418">
+												<AdditionSource>
+													<Item>NotTrash</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="NotTrashSearchStringContextMenu" id="419"/>
+												<ExtendedTooltip name="NotTrashSearchStringExtendedTooltip" id="420"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="NotTrashViewStatus" id="421">
+												<AdditionSource>
+													<Item>NotTrash</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="NotTrashViewStatusContextMenu" id="422"/>
+												<ExtendedTooltip name="NotTrashViewStatusExtendedTooltip" id="423"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="NotTrashSearchControl" id="424">
+												<AdditionSource>
+													<Item>NotTrash</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="NotTrashSearchControlContextMenu" id="425"/>
+												<ExtendedTooltip name="NotTrashSearchControlExtendedTooltip" id="426"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">NotTrashSelection</Event>
+												<Event name="OnActivateRow">NotTrashOnActivateRow</Event>
+												<Event name="BeforeRowChange">NotTrashBeforeRowChange</Event>
+											</Events>
+											<ChildItems>
+												<InputField name="NotTrashPresentation" id="224">
+													<DataPath>NotTrash.Presentation</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Presentation</v8:content>
+														</v8:item>
+													</Title>
+													<WarningOnEditRepresentation>DontShow</WarningOnEditRepresentation>
+													<PasswordMode>false</PasswordMode>
+													<ExtendedEdit>false</ExtendedEdit>
+													<AutoChoiceIncomplete>false</AutoChoiceIncomplete>
+													<AutoMarkIncomplete>false</AutoMarkIncomplete>
+													<ChooseType>false</ChooseType>
+													<IncompleteChoiceMode>OnActivate</IncompleteChoiceMode>
+													<TextEdit>false</TextEdit>
+													<EditTextUpdate>DontUse</EditTextUpdate>
+													<ContextMenu name="NotTrashPresentationContextMenu" id="225"/>
+													<ExtendedTooltip name="NotTrashPresentationExtendedTooltip" id="226"/>
+													<Events>
+														<Event name="Opening">NotTrashPresentationOpening</Event>
+													</Events>
+												</InputField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="ReasonsGroup" id="315">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reasons</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ReasonsGroupExtendedTooltip" id="316"/>
+									<ChildItems>
+										<LabelField name="NotDeletedItemsTooltip" id="436">
+											<DataPath>NotDeletedItemsTooltip</DataPath>
+											<Visible>false</Visible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Skipped objects tooltip</v8:content>
+												</v8:item>
+											</Title>
+											<TitleTextColor>style:FieldTextColor</TitleTextColor>
+											<TitleLocation>None</TitleLocation>
+											<HorizontalAlign>Left</HorizontalAlign>
+											<VerticalAlign>Bottom</VerticalAlign>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Height>3</Height>
+											<HorizontalStretch>true</HorizontalStretch>
+											<VerticalStretch>false</VerticalStretch>
+											<TextColor>style:FieldTextColor</TextColor>
+											<ContextMenu name="NotDeletedItemsTooltipContextMenu" id="437"/>
+											<ExtendedTooltip name="NotDeletedItemsTooltipExtendedTooltip" id="438"/>
+										</LabelField>
+										<Pages name="ReasonsDisplayOptionsPages" id="255">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Deletion failure reasons pages</v8:content>
+												</v8:item>
+											</Title>
+											<PagesRepresentation>None</PagesRepresentation>
+											<ExtendedTooltip name="ReasonsDisplayOptionsPagesExtendedTooltip" id="256"/>
+											<ChildItems>
+												<Page name="ReasonsForNotDeletionPage" id="257">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Deletion failure reasons page</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="ReasonsForNotDeletionPageExtendedTooltip" id="258"/>
+													<ChildItems>
+														<Table name="NotDeletedItemsUsageInstances" id="235">
+															<Representation>Tree</Representation>
+															<ChangeRowSet>false</ChangeRowSet>
+															<ChangeRowOrder>false</ChangeRowOrder>
+															<Height>5</Height>
+															<MultipleChoice>true</MultipleChoice>
+															<Header>false</Header>
+															<HorizontalLines>false</HorizontalLines>
+															<VerticalLines>false</VerticalLines>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>NotDeletedItemsUsageInstances</DataPath>
+															<RowPictureDataPath>NotDeletedItemsUsageInstances.PictureNumber</RowPictureDataPath>
+															<RowsPicture>
+																<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</RowsPicture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Skipped objects occurrences</v8:content>
+																</v8:item>
+															</Title>
+															<CommandSet>
+																<ExcludedCommand>Add</ExcludedCommand>
+																<ExcludedCommand>Copy</ExcludedCommand>
+																<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+																<ExcludedCommand>Delete</ExcludedCommand>
+																<ExcludedCommand>EndEdit</ExcludedCommand>
+																<ExcludedCommand>MoveDown</ExcludedCommand>
+																<ExcludedCommand>MoveUp</ExcludedCommand>
+																<ExcludedCommand>OutputList</ExcludedCommand>
+																<ExcludedCommand>SelectAll</ExcludedCommand>
+																<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+																<ExcludedCommand>SortListAsc</ExcludedCommand>
+																<ExcludedCommand>SortListDesc</ExcludedCommand>
+															</CommandSet>
+															<ContextMenu name="NotDeletedItemsUsageInstancesContextMenu" id="236">
+																<Autofill>false</Autofill>
+																<ChildItems>
+																	<Button name="NotDeletedItemsLinksChangeFromMenu" id="359">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Command.NotDeletedItemsChange</CommandName>
+																		<Title>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Edit</v8:content>
+																			</v8:item>
+																		</Title>
+																		<ExtendedTooltip name="NotDeletedItemsLinksChangeFromMenuExtendedTooltip" id="360"/>
+																	</Button>
+																</ChildItems>
+															</ContextMenu>
+															<AutoCommandBar name="NotDeletedItemsUsageInstancesCommandBar" id="237">
+																<Autofill>false</Autofill>
+																<ChildItems>
+																	<SearchStringAddition name="SearchStringInstancesOfUndeleted" id="743">
+																		<AdditionSource>
+																			<Item>NotDeletedItemsUsageInstances</Item>
+																			<Type>SearchStringRepresentation</Type>
+																		</AdditionSource>
+																		<ContextMenu name="SearchStringInstancesOfUndeletedContextMenu" id="744"/>
+																		<ExtendedTooltip name="SearchStringInstancesOfUndeletedExtendedTooltip" id="745"/>
+																	</SearchStringAddition>
+																</ChildItems>
+															</AutoCommandBar>
+															<ExtendedTooltip name="NotDeletedItemsUsageInstancesExtendedTooltip" id="238"/>
+															<SearchStringAddition name="NotDeletedItemsLinksSearchString" id="427">
+																<AdditionSource>
+																	<Item>NotDeletedItemsUsageInstances</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="NotDeletedItemsLinksSearchStringContextMenu" id="428"/>
+																<ExtendedTooltip name="NotDeletedItemsLinksSearchStringExtendedTooltip" id="429"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="NotDeletedItemsLinksViewStatus" id="430">
+																<AdditionSource>
+																	<Item>NotDeletedItemsUsageInstances</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="NotDeletedItemsLinksViewStatusContextMenu" id="431"/>
+																<ExtendedTooltip name="NotDeletedItemsLinksViewStatusExtendedTooltip" id="432"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="NotDeletedItemsLinksSearchControl" id="433">
+																<AdditionSource>
+																	<Item>NotDeletedItemsUsageInstances</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="NotDeletedItemsLinksSearchControlContextMenu" id="434"/>
+																<ExtendedTooltip name="NotDeletedItemsLinksSearchControlExtendedTooltip" id="435"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="Selection">NotDeletedItemsLinksChoice</Event>
+																<Event name="OnActivateRow">NotDeletedItemsUsageInstancesOnActivateRow</Event>
+																<Event name="ChoiceProcessing">NotDeletedItemsUsageInstancesChoiceProcessing</Event>
+															</Events>
+															<ChildItems>
+																<InputField name="NotDeletedItemsLinksPresentation" id="601">
+																	<DataPath>NotDeletedItemsUsageInstances.Presentation</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ContextMenu name="NotDeletedItemsLinksPresentationContextMenu" id="602"/>
+																	<ExtendedTooltip name="NotDeletedItemsLinksPresentationExtendedTooltip" id="603"/>
+																</InputField>
+																<InputField name="NotDeletedItemRelationsAction" id="604">
+																	<DataPath>NotDeletedItemsUsageInstances.ActionPresentation</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Action presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<CellHyperlink>true</CellHyperlink>
+																	<MultiLine>true</MultiLine>
+																	<ListChoiceMode>true</ListChoiceMode>
+																	<EditTextUpdate>OnValueChange</EditTextUpdate>
+																	<ChoiceList>
+																		<xr:Item>
+																			<xr:Presentation/>
+																			<xr:CheckState>0</xr:CheckState>
+																			<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																				<Presentation>
+																					<v8:item>
+																						<v8:lang>en</v8:lang>
+																						<v8:content>Mark for deletion and delete</v8:content>
+																					</v8:item>
+																				</Presentation>
+																				<Value xsi:type="xs:string">MarkToDelete</Value>
+																			</xr:Value>
+																		</xr:Item>
+																		<xr:Item>
+																			<xr:Presentation/>
+																			<xr:CheckState>0</xr:CheckState>
+																			<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																				<Presentation>
+																					<v8:item>
+																						<v8:lang>en</v8:lang>
+																						<v8:content>Replace reference</v8:content>
+																					</v8:item>
+																				</Presentation>
+																				<Value xsi:type="xs:string">ReplaceRef</Value>
+																			</xr:Value>
+																		</xr:Item>
+																	</ChoiceList>
+																	<ContextMenu name="NotDeletedItemRelationsActionContextMenu" id="605"/>
+																	<ExtendedTooltip name="NotDeletedItemRelationsActionExtendedTooltip" id="606"/>
+																	<Events>
+																		<Event name="OnChange">NotDeletedItemRelationsActionOnChange</Event>
+																		<Event name="ChoiceProcessing">NotDeletedItemRelationsActionChoiceProcessing</Event>
+																	</Events>
+																</InputField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</Page>
+												<Page name="ErrorTextPage" id="259">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Error text page</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="ErrorTextPageExtendedTooltip" id="260"/>
+													<ChildItems>
+														<UsualGroup name="ErrorTextGroup" id="634">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Error text</v8:content>
+																</v8:item>
+															</Title>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="ErrorTextGroupExtendedTooltip" id="635"/>
+															<ChildItems>
+																<LabelDecoration name="ErrorText" id="636">
+																	<Title formatted="false">
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Error text</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ContextMenu name="ErrorTextContextMenu" id="637"/>
+																	<ExtendedTooltip name="ErrorTextExtendedTooltip" id="638"/>
+																</LabelDecoration>
+																<LabelDecoration name="DetailsRef" id="452">
+																	<AutoMaxWidth>false</AutoMaxWidth>
+																	<Title formatted="false">
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Details</v8:content>
+																		</v8:item>
+																	</Title>
+																	<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+																	<Hyperlink>true</Hyperlink>
+																	<ContextMenu name="DetailsRefContextMenu" id="453"/>
+																	<ExtendedTooltip name="DetailsRefExtendedTooltip" id="454"/>
+																	<Events>
+																		<Event name="Click">DetailsRefClick</Event>
+																	</Events>
+																</LabelDecoration>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.MarkedObjectsDeletion</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="MarkedForDeletionItemsTree" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List of objects marked for deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Check" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Mark</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ItemToDeleteRef" id="2">
+					<Type/>
+				</Column>
+				<Column name="Presentation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="4">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="HadErrorsOnDelete" id="63">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsMetadataObjectDetails" id="64">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Date" id="68">
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ErrorText" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="NotTrash" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Skipped objects</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ItemToDeleteRef" id="1">
+					<Type/>
+				</Column>
+				<Column name="PictureNumber" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="LinkCount" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PresentationItemToDelete" id="59">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="NotDeletedItemsLinks" id="20">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ItemToDeleteRef" id="1">
+					<Type/>
+				</Column>
+				<Column name="FoundItemReference" id="2">
+					<Type/>
+				</Column>
+				<Column name="PictureNumber" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Visible" id="5">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DeletionMark" id="6">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ReferenceType" id="7">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsError" id="8">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsConstant" id="9">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DeletionMarkModified" id="10">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PresentationItemToDelete" id="60">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="NotDeletedItemsTooltip" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Skipped objects tooltip</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Exclusively" id="8">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>Exclusively</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="DetailedErrorText" id="23">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="QuickSearch" id="24">
+			<Type/>
+		</Attribute>
+		<Attribute name="NotDeletedItemsCurrentRowID" id="25">
+			<Type/>
+		</Attribute>
+		<Attribute name="ShowDialogBeforeClose" id="26">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteMarkedObjectsID" id="29">
+			<Type/>
+		</Attribute>
+		<Attribute name="DeleteMarkedObjectsUsage" id="30">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteMarkedObjectsSchedule" id="31">
+			<Type/>
+		</Attribute>
+		<Attribute name="MetadataFilter" id="32">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Save>
+				<Field>MetadataFilter</Field>
+			</Save>
+			<Settings xsi:type="v8:TypeDescription">
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Settings>
+		</Attribute>
+		<Attribute name="CurrentOperation" id="34">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="NotDeletedItemsUsageInstances" id="35">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Dependencies of skipped objects</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ItemToDeleteRef" id="1">
+					<Type/>
+				</Column>
+				<Column name="FoundItemReference" id="2">
+					<Type/>
+				</Column>
+				<Column name="PictureNumber" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Visible" id="5">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DeletionMark" id="6">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ReferenceType" id="7">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsError" id="8">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsConstant" id="9">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DeletionMarkModified" id="10">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Action" id="37">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ActionPresentation" id="43">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Action presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MainReason" id="48">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PresentationItemToDelete" id="61">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ReasonsForNotDeletionCache" id="36">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="ActionsTable" id="38">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="FoundItemReference" id="40">
+					<Type/>
+				</Column>
+				<Column name="Action" id="41">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ActionParameter" id="42">
+					<Type/>
+				</Column>
+				<Column name="Source" id="49">
+					<Type>
+						<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ActionsOptions" id="44">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="NotDeletedItemsUsageInstancesActions" id="46">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="AdditionalAttributesOfItemsMarkedForDeletion" id="50">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>AdditionalAttributesOfItemsMarkedForDeletion</Field>
+			</Save>
+			<Columns>
+				<Column name="Attribute" id="51">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Metadata" id="52">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="53">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="DeletionMode" id="54">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>DeletionMode</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="UseScheduledDeletion" id="58">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="BackgroundJobErrorInfo" id="62">
+			<Type/>
+		</Attribute>
+		<Attribute name="PreviousStepResultAddress" id="65">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteOnOpen" id="66">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsMobileClient" id="67">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ItemsWithoutDeletionMark" id="2">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="JobInProgress" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="BatchesCount" id="4">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeletionProgress" id="7">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="SessionNumber" id="1">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ProcessedItemsCount" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SelectedCountTotal" id="9">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="MarkedForDeletionItemsTreeSelectAll" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>MarkedForDeletionItemsTreeSelectAll</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="MarkedForDeletionItemsTreeClearAll" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.UncheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>MarkedForDeletionItemsTreeClearAll</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="MarkedForDeletionItemsTreeUpdate" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh the list of objects marked for deletion.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>MarkedForDeletionItemsTreeUpdate</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="MarkedForDeletionItemsTreeChange" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Tree of objects marked for deletion edit</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F2</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>MarkedForDeletionItemsTreeChange</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DeleteSelectedItems" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete selected objects</v8:content>
+				</v8:item>
+			</Title>
+			<Action>DeleteSelectedItems</Action>
+		</Command>
+		<Command name="ConfigureFilter" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure filter</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ConfigureFilter</Action>
+		</Command>
+		<Command name="Customize" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure…</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Customize</Action>
+		</Command>
+		<Command name="Refresh" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update</v8:content>
+				</v8:item>
+			</Title>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Reread</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Refresh</Action>
+			<Representation>Picture</Representation>
+		</Command>
+		<Command name="CancelOperation" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CancelOperation</Action>
+		</Command>
+		<Command name="Back" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to objects marked for deletion</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to objects marked for deletion</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>TotalObjectsToSelect</Action>
+		</Command>
+		<Command name="ExecuteActionsAndDelete" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Retry deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ExecuteActionsAndDelete</Action>
+		</Command>
+		<Command name="NotDeletedItemsChange" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Change</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>NotDeletedItemsChange</Action>
+			<Representation>Picture</Representation>
+		</Command>
+		<Command name="InstallDelete" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete</v8:content>
+				</v8:item>
+			</Title>
+			<Action>InstallDelete</Action>
+		</Command>
+		<Command name="SetReplaceWith" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Replace with...</v8:content>
+				</v8:item>
+			</Title>
+			<Action>SetReplaceWith</Action>
+		</Command>
+		<Command name="CollapseMarkedObjectTreeRows" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse all</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.CollapseAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>CollapseMarkedObjectTreeRows</Action>
+		</Command>
+		<Command name="ExpandRowsOfMarkedObjectsTree" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Expand all</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.ExpandAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ExpandRowsOfMarkedObjectsTree</Action>
+		</Command>
+		<Command name="SetClearDeletionMark" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle deletion mark</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle deletion mark</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.MarkToDelete</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetClearDeletionMark</Action>
+		</Command>
+		<Command name="ShowTechnologicalData" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show technological data</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show technological data</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowTechnologicalData</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ObjectsToDelete">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="DeletionMode">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="MetadataFilter">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

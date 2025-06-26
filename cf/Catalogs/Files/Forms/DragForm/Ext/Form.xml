@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Upload files</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<Customizable>false</Customizable>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupFiles" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Files</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupFilesExtendedTooltip" id="47"/>
+			<ChildItems>
+				<UsualGroup name="Title" id="26">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Title</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="TitleExtendedTooltip" id="48"/>
+					<ChildItems>
+						<LabelField name="FilesLabel" id="27">
+							<DataPath>FilesLabel</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Files</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="FilesLabelContextMenu" id="28"/>
+							<ExtendedTooltip name="FilesLabelExtendedTooltip" id="49"/>
+						</LabelField>
+					</ChildItems>
+				</UsualGroup>
+				<Table name="FilesTree" id="31">
+					<Representation>Tree</Representation>
+					<CommandBarLocation>None</CommandBarLocation>
+					<SkipOnInput>false</SkipOnInput>
+					<ChangeRowSet>false</ChangeRowSet>
+					<ChangeRowOrder>false</ChangeRowOrder>
+					<Height>6</Height>
+					<Header>false</Header>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>FilesTree</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>File tree</v8:content>
+						</v8:item>
+					</Title>
+					<SearchStringLocation>Top</SearchStringLocation>
+					<ViewStatusLocation>None</ViewStatusLocation>
+					<SearchControlLocation>None</SearchControlLocation>
+					<ContextMenu name="FilesTreeContextMenu" id="32"/>
+					<AutoCommandBar name="FilesTreeCommandBar" id="33"/>
+					<ExtendedTooltip name="FilesTreeExtendedTooltip" id="50"/>
+					<SearchStringAddition name="FilesTreeSearchString" id="66">
+						<AdditionSource>
+							<Item>FilesTree</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="FilesTreeSearchStringContextMenu" id="67"/>
+						<ExtendedTooltip name="FilesTreeSearchStringExtendedTooltip" id="68"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="FilesTreeViewStatus" id="69">
+						<AdditionSource>
+							<Item>FilesTree</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="FilesTreeViewStatusContextMenu" id="70"/>
+						<ExtendedTooltip name="FilesTreeViewStatusExtendedTooltip" id="71"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="FilesTreeSearchControl" id="72">
+						<AdditionSource>
+							<Item>FilesTree</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="FilesTreeSearchControlContextMenu" id="73"/>
+						<ExtendedTooltip name="FilesTreeSearchControlExtendedTooltip" id="74"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<ColumnGroup name="PictureAndDescription" id="40">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Picture and description</v8:content>
+								</v8:item>
+							</Title>
+							<Group>InCell</Group>
+							<ExtendedTooltip name="PictureAndDescriptionExtendedTooltip" id="51"/>
+							<ChildItems>
+								<CheckBoxField name="FilesTreeCheck" id="41">
+									<DataPath>FilesTree.Check</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Checkmark</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="FilesTreeCheckContextMenu" id="42"/>
+									<ExtendedTooltip name="FilesTreeCheckExtendedTooltip" id="52"/>
+									<Events>
+										<Event name="OnChange">FilesTreeCheckOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<PictureField name="FilesTreePictureIndex" id="38">
+									<DataPath>FilesTree.PictureIndex</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Picture index</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ValuesPicture>
+										<xr:Ref>CommonPicture.FileIconCollection</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</ValuesPicture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="FilesTreePictureIndexContextMenu" id="39"/>
+									<ExtendedTooltip name="FilesTreePictureIndexExtendedTooltip" id="53"/>
+								</PictureField>
+								<InputField name="FilesTreeFileName" id="34">
+									<DataPath>FilesTree.FileName</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>File name</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<TextEdit>false</TextEdit>
+									<ContextMenu name="FilesTreeFileNameContextMenu" id="35"/>
+									<ExtendedTooltip name="FilesTreeFileNameExtendedTooltip" id="54"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="FolderForAdding" id="14">
+			<DataPath>FolderForAdding</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Folder</v8:content>
+				</v8:item>
+			</Title>
+			<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+			<Wrap>false</Wrap>
+			<BorderColor>style:BorderColor</BorderColor>
+			<ContextMenu name="FolderForAddingContextMenu" id="15"/>
+			<ExtendedTooltip name="FolderForAddingExtendedTooltip" id="55"/>
+		</InputField>
+		<CheckBoxField name="DeleteAfterAdd" id="3">
+			<DataPath>ShouldDeleteAddedFiles</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete uploaded files</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>Right</TitleLocation>
+			<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="DeleteAfterAddContextMenu" id="10"/>
+			<ExtendedTooltip name="DeleteAfterAddExtendedTooltip" id="56"/>
+		</CheckBoxField>
+		<UsualGroup name="FilesAttributes" id="25">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>File attributes</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="FilesAttributesExtendedTooltip" id="57"/>
+			<ChildItems>
+				<InputField name="LongDesc" id="2">
+					<DataPath>Comment</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Comment</v8:content>
+						</v8:item>
+					</Title>
+					<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>2</Height>
+					<MultiLine>true</MultiLine>
+					<BorderColor>style:BorderColor</BorderColor>
+					<ContextMenu name="LongDescContextMenu" id="9"/>
+					<ExtendedTooltip name="LongDescExtendedTooltip" id="58"/>
+				</InputField>
+				<CheckBoxField name="StoreVersions" id="21">
+					<DataPath>StoreVersions</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Track versions</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="StoreVersionsContextMenu" id="22"/>
+					<ExtendedTooltip name="StoreVersionsExtendedTooltip" id="59"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="EncodingGroup" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Encoding</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="EncodingGroupExtendedTooltip" id="60"/>
+			<ChildItems>
+				<LabelDecoration name="EncodingDecoration" id="44">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Text file encoding:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="EncodingDecorationContextMenu" id="45"/>
+					<ExtendedTooltip name="EncodingDecorationExtendedTooltip" id="61"/>
+				</LabelDecoration>
+				<Button name="SelectEncoding" id="46">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.SelectEncoding</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select encoding</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SelectEncodingExtendedTooltip" id="62"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="MainCommandBar" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Main command bar</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalLocation>Right</HorizontalLocation>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="MainCommandBarExtendedTooltip" id="63"/>
+			<ChildItems>
+				<Button name="Add" id="4">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.Command.ImportFiles</CommandName>
+					<TextColor>style:ButtonTextColor</TextColor>
+					<BackColor>style:ButtonBackColor</BackColor>
+					<BorderColor>style:BorderColor</BorderColor>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Upload files</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AddExtendedTooltip" id="64"/>
+				</Button>
+				<Button name="Cancel" id="20">
+					<Type>CommandBarButton</Type>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.StandardCommand.Cancel</CommandName>
+					<TextColor>style:ButtonTextColor</TextColor>
+					<BackColor>style:ButtonBackColor</BackColor>
+					<BorderColor>style:BorderColor</BorderColor>
+					<ExtendedTooltip name="CancelExtendedTooltip" id="65"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Comment" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Comment</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldDeleteAddedFiles" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete uploaded files</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Recursively" id="7">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="StoreVersions" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Track versions</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FilesLabel" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Files label</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ListFileNames" id="6">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="FilesTree" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>File tree</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="FileName" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>File name</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="FullPath" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureIndex" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture index</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Check" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check mark</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="FolderForAdding" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Folder to add files to</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.FilesFolders</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="EncodingPresentation" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FileTextEncoding" id="11">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ImportFiles" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Upload files</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Upload files</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ImportFiles</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SelectEncoding" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select encoding</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select encoding</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SelectEncoding</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="FolderForAdding">
+			<Type>
+				<v8:Type>cfg:CatalogRef.FilesFolders</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="FileNamesArray">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

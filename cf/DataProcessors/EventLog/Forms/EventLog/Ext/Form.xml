@@ -1,0 +1,2476 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Event log</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoFillCheck>false</AutoFillCheck>
+	<CommandBarLocation>Top</CommandBarLocation>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Close</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="FilterGroup" id="103">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="FilterGroupExtendedTooltip" id="135"/>
+			<ChildItems>
+				<InputField name="EventsCountLimit" id="101">
+					<DataPath>EventsCountLimit</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Events to display</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The number of the most recent events in the given date interval.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalAlign>Right</HorizontalAlign>
+					<Width>8</Width>
+					<Wrap>false</Wrap>
+					<DropListButton>true</DropListButton>
+					<EditFormat>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>NG=0</v8:content>
+						</v8:item>
+					</EditFormat>
+					<ChooseType>false</ChooseType>
+					<TypeDomainEnabled>false</TypeDomainEnabled>
+					<MinValue xsi:type="xs:decimal">1</MinValue>
+					<MaxValue xsi:type="xs:decimal">10000</MaxValue>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>    200 events</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">200</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>    500 events</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">500</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>  1000 events</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">1000</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>10000 events</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">10000</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<BorderColor>style:BorderColor</BorderColor>
+					<ContextMenu name="EventsCountLimitContextMenu" id="102"/>
+					<ExtendedTooltip name="EventsCountLimitExtendedTooltip" id="136"/>
+					<Events>
+						<Event name="OnChange">EventsCountLimitOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="Severity" id="170">
+					<DataPath>Severity</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Severity</v8:content>
+						</v8:item>
+					</Title>
+					<Width>15</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<DropListButton>true</DropListButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<TextEdit>false</TextEdit>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Error</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Error</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Warning</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Warning</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Information</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Information</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Note</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Note</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All events</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">AllEvents</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="SeverityContextMenu" id="171"/>
+					<ExtendedTooltip name="SeverityExtendedTooltip" id="172"/>
+					<Events>
+						<Event name="OnChange">SeverityOnChange</Event>
+						<Event name="Clearing">SeverityClearing</Event>
+					</Events>
+				</InputField>
+				<LabelField name="FilterPresentation" id="35">
+					<DataPath>FilterPresentation</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filter</v8:content>
+						</v8:item>
+					</Title>
+					<FooterHorizontalAlign>Left</FooterHorizontalAlign>
+					<Hiperlink>true</Hiperlink>
+					<ContextMenu name="FilterPresentationContextMenu" id="36"/>
+					<ExtendedTooltip name="FilterPresentationExtendedTooltip" id="137"/>
+					<Events>
+						<Event name="Click">FilterPresentationClick</Event>
+					</Events>
+				</LabelField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="116">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="138"/>
+			<ChildItems>
+				<Page name="EventLog" id="117">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Event log</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="EventLogExtendedTooltip" id="139"/>
+					<ChildItems>
+						<Table name="Log" id="48">
+							<Representation>List</Representation>
+							<ReadOnly>true</ReadOnly>
+							<SkipOnInput>false</SkipOnInput>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<InitialListView>End</InitialListView>
+							<Output>Enable</Output>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Log</DataPath>
+							<RowPictureDataPath>Log.PicNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.EventLogEventKindCollection</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<BorderColor>style:BorderColor</BorderColor>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Log</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+							</CommandSet>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="LogContextMenu" id="49">
+								<ChildItems>
+									<ButtonGroup name="FilterGroupContext" id="107">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Filter group context</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FilterGroupContextExtendedTooltip" id="140"/>
+										<ChildItems>
+											<Button name="SetFilterByValueInCurrentColumnContext" id="98">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SetFilterByValueInCurrentColumn</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Filter by current column value</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetFilterByValueInCurrentColumnContextExtendedTooltip" id="141"/>
+											</Button>
+											<Button name="LogContextMenuClearFilter" id="113">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.ClearFilter</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Clear filter</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="LogContextMenuClearFilterExtendedTooltip" id="142"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="ViewCurrentEventInNewWindowContext" id="96">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.ViewCurrentEventInNewWindow</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Open</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ViewCurrentEventInNewWindowContextExtendedTooltip" id="143"/>
+									</Button>
+									<Button name="OpenDataForViewingContext" id="97">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.OpenDataForViewing</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>View data</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="OpenDataForViewingContextExtendedTooltip" id="144"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="LogCommandBar" id="50">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="ExportLogForTechnicalSupport" id="209">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ExportLogForTechnicalSupport</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Export to file...</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ExportLogForTechnicalSupportExtendedTooltip" id="210"/>
+									</Button>
+									<Button name="ViewCurrentEventInNewWindow" id="38">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.ViewCurrentEventInNewWindow</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Open</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ViewCurrentEventInNewWindowExtendedTooltip" id="126"/>
+									</Button>
+									<Button name="OpenDataForViewing" id="40">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.OpenDataForViewing</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>View data</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="OpenDataForViewingExtendedTooltip" id="127"/>
+									</Button>
+									<ButtonGroup name="FilterCommands" id="105">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Filter commands</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FilterCommandsExtendedTooltip" id="121"/>
+										<ChildItems>
+											<Button name="SetPeriodForViewing" id="108">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Command.SetPeriodForViewing</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Date range</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetPeriodForViewingExtendedTooltip" id="122"/>
+											</Button>
+											<Button name="SetFilter" id="42">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SetFilter</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Filter</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetFilterExtendedTooltip" id="123"/>
+											</Button>
+											<Button name="SetFilterByValueInCurrentColumn" id="43">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SetFilterByValueInCurrentColumn</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Filter by current column value</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetFilterByValueInCurrentColumnExtendedTooltip" id="124"/>
+											</Button>
+											<Button name="ClearFilter" id="44">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.ClearFilter</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Clear filter</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ClearFilterExtendedTooltip" id="125"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<ButtonGroup name="SearchCommands" id="109">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Search commands</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SearchCommandsExtendedTooltip" id="130"/>
+										<ChildItems>
+											<Button name="FormFind" id="110">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.Log.StandardCommand.Find</CommandName>
+												<ExtendedTooltip name="FormFindExtendedTooltip" id="131"/>
+											</Button>
+											<Button name="FormCancelSearch" id="111">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.Log.StandardCommand.CancelSearch</CommandName>
+												<ExtendedTooltip name="FormCancelSearchExtendedTooltip" id="132"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<ButtonGroup name="RefreshCommand" id="106">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Refresh command</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="RefreshCommandExtendedTooltip" id="128"/>
+										<ChildItems>
+											<Button name="RefreshCurrentList" id="46">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.RefreshCurrentList</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Refresh list</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="RefreshCurrentListExtendedTooltip" id="129"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="CustomizeForm" id="104">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="CustomizeFormExtendedTooltip" id="133"/>
+									</Button>
+									<Button name="OutputList" id="82">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Item.Log.StandardCommand.OutputList</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<ExtendedTooltip name="OutputListExtendedTooltip" id="134"/>
+									</Button>
+									<Button name="LogHelp" id="173">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.StandardCommand.Help</CommandName>
+										<ExtendedTooltip name="LogHelpExtendedTooltip" id="174"/>
+									</Button>
+									<SearchStringAddition name="SearchString_" id="211">
+										<AdditionSource>
+											<Item>Log</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Search</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="SearchString_ContextMenu" id="212"/>
+										<ExtendedTooltip name="SearchString_ExtendedTooltip" id="213"/>
+									</SearchStringAddition>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="LogExtendedTooltip" id="145"/>
+							<SearchStringAddition name="LogSearchString" id="181">
+								<AdditionSource>
+									<Item>Log</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="LogSearchStringContextMenu" id="182"/>
+								<ExtendedTooltip name="LogSearchStringExtendedTooltip" id="183"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="LogViewStatus" id="184">
+								<AdditionSource>
+									<Item>Log</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="LogViewStatusContextMenu" id="185"/>
+								<ExtendedTooltip name="LogViewStatusExtendedTooltip" id="186"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="LogSearchControl" id="187">
+								<AdditionSource>
+									<Item>Log</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="LogSearchControlContextMenu" id="188"/>
+								<ExtendedTooltip name="LogSearchControlExtendedTooltip" id="189"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">LogSelection</Event>
+								<Event name="OnActivateField">LogOnActivateField</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="Date" id="51">
+									<DataPath>Log.Date</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Date, time</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The event date and time converted to the application time zone.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Width>3</Width>
+									<ContextMenu name="DateContextMenu" id="52"/>
+									<ExtendedTooltip name="DateExtendedTooltip" id="146"/>
+								</LabelField>
+								<LabelField name="Importance" id="529">
+									<DataPath>Log.Level</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Importance</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="ImportanceContextMenu" id="530"/>
+									<ExtendedTooltip name="ImportanceExtendedTooltip" id="531"/>
+								</LabelField>
+								<LabelField name="SessionDataSeparationPresentation" id="119">
+									<DataPath>Log.SessionDataSeparationPresentation</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Separate session data</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="SessionDataSeparationPresentationContextMenu" id="120"/>
+									<ExtendedTooltip name="SessionDataSeparationPresentationExtendedTooltip" id="147"/>
+								</LabelField>
+								<ColumnGroup name="ApplicationSessionGroup" id="218">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>App, Session</v8:content>
+										</v8:item>
+									</Title>
+									<Width>5</Width>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="ApplicationSessionGroupExtendedTooltip" id="219"/>
+									<ChildItems>
+										<LabelField name="ApplicationPresentation" id="59">
+											<DataPath>Log.ApplicationPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Application</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>5</Width>
+											<ContextMenu name="ApplicationPresentationContextMenu" id="60"/>
+											<ExtendedTooltip name="ApplicationPresentationExtendedTooltip" id="152"/>
+										</LabelField>
+										<ColumnGroup name="SessionGroup" id="517">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Session</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Horizontal</Group>
+											<ExtendedTooltip name="SessionGroupExtendedTooltip" id="518"/>
+											<ChildItems>
+												<LabelField name="Session" id="80">
+													<DataPath>Log.Session</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Session</v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Left</HorizontalAlign>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>3</Width>
+													<ContextMenu name="SessionContextMenu" id="81"/>
+													<ExtendedTooltip name="SessionExtendedTooltip" id="153"/>
+												</LabelField>
+												<LabelField name="DataArea" id="514">
+													<DataPath>Log.DataArea</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Data area</v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Right</HorizontalAlign>
+													<EditMode>EnterOnInput</EditMode>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>2</Width>
+													<ContextMenu name="DataAreaContextMenu" id="515"/>
+													<ExtendedTooltip name="DataAreaExtendedTooltip" id="516"/>
+												</LabelField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="GroupEventAndUserAndComputer" id="53">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Event, User, Computer</v8:content>
+										</v8:item>
+									</Title>
+									<Width>25</Width>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="GroupEventAndUserAndComputerExtendedTooltip" id="148"/>
+									<ChildItems>
+										<LabelField name="EventPresentation" id="64">
+											<DataPath>Log.EventPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Event</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>25</Width>
+											<ContextMenu name="EventPresentationContextMenu" id="65"/>
+											<ExtendedTooltip name="EventPresentationExtendedTooltip" id="159"/>
+										</LabelField>
+										<ColumnGroup name="GroupUserAndSession" id="214">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User, Session</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="GroupUserAndSessionExtendedTooltip" id="215"/>
+											<ChildItems>
+												<LabelField name="UserName" id="54">
+													<DataPath>Log.UserName</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>User</v8:content>
+														</v8:item>
+													</Title>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>15</Width>
+													<ContextMenu name="UserNameContextMenu" id="55"/>
+													<ExtendedTooltip name="UserNameExtendedTooltip" id="149"/>
+												</LabelField>
+												<LabelField name="Computer" id="56">
+													<DataPath>Log.Computer</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Computer</v8:content>
+														</v8:item>
+													</Title>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>10</Width>
+													<ContextMenu name="ComputerContextMenu" id="57"/>
+													<ExtendedTooltip name="ComputerExtendedTooltip" id="150"/>
+												</LabelField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="GroupEventInfo" id="175">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Event info</v8:content>
+										</v8:item>
+									</Title>
+									<Width>30</Width>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="GroupEventInfoExtendedTooltip" id="176"/>
+									<ChildItems>
+										<LabelField name="Data" id="220">
+											<DataPath>Log.Data</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Data</v8:content>
+												</v8:item>
+											</Title>
+											<HorizontalAlign>Left</HorizontalAlign>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="DataContextMenu" id="221"/>
+											<ExtendedTooltip name="DataExtendedTooltip" id="222"/>
+										</LabelField>
+										<LabelField name="DataPresentation" id="76">
+											<DataPath>Log.DataPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Data presentation</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="DataPresentationContextMenu" id="77"/>
+											<ExtendedTooltip name="DataPresentationExtendedTooltip" id="166"/>
+										</LabelField>
+										<LabelField name="MetadataPresentation" id="74">
+											<DataPath>Log.MetadataPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Metadata</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="MetadataPresentationContextMenu" id="75"/>
+											<ExtendedTooltip name="MetadataPresentationExtendedTooltip" id="165"/>
+										</LabelField>
+										<LabelField name="Comment" id="66">
+											<DataPath>Log.Comment</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Comment</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="CommentContextMenu" id="67"/>
+											<ExtendedTooltip name="CommentExtendedTooltip" id="160"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="TransactionGroup" id="68">
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Transaction</v8:content>
+										</v8:item>
+									</Title>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="TransactionGroupExtendedTooltip" id="161"/>
+									<ChildItems>
+										<LabelField name="TransactionStatus" id="69">
+											<DataPath>Log.TransactionStatus</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Transaction status</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<ContextMenu name="TransactionStatusContextMenu" id="70"/>
+											<ExtendedTooltip name="TransactionStatusExtendedTooltip" id="162"/>
+										</LabelField>
+										<LabelField name="Transaction" id="71">
+											<DataPath>Log.TransactionID</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Transaction</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<ContextMenu name="TransactionContextMenu" id="72"/>
+											<ExtendedTooltip name="TransactionExtendedTooltip" id="163"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="GroupServer" id="84">
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Production server, IP ports</v8:content>
+										</v8:item>
+									</Title>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="GroupServerExtendedTooltip" id="154"/>
+									<ChildItems>
+										<LabelField name="ServerName" id="85">
+											<DataPath>Log.ServerName</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Production server</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>10</Width>
+											<ContextMenu name="ServerNameContextMenu" id="86"/>
+											<ExtendedTooltip name="ServerNameExtendedTooltip" id="155"/>
+										</LabelField>
+										<ColumnGroup name="GroupPorts" id="216">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>IP ports</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="GroupPortsExtendedTooltip" id="217"/>
+											<ChildItems>
+												<LabelField name="PrimaryIPPort" id="89">
+													<DataPath>Log.Port</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Primary IP port</v8:content>
+														</v8:item>
+													</Title>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>3</Width>
+													<ContextMenu name="PrimaryIPPortContextMenu" id="90"/>
+													<ExtendedTooltip name="PrimaryIPPortExtendedTooltip" id="156"/>
+												</LabelField>
+												<LabelField name="SyncPort" id="91">
+													<DataPath>Log.SyncPort</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Secondary IP port</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Secondary IP port</v8:content>
+														</v8:item>
+													</ToolTip>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>3</Width>
+													<ContextMenu name="SyncPortContextMenu" id="92"/>
+													<ExtendedTooltip name="SyncPortExtendedTooltip" id="157"/>
+												</LabelField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</ColumnGroup>
+								<LabelField name="DateAtServer" id="206">
+									<DataPath>Log.DateAtServer</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Server date</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The event date and time converted to the server time zone.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>5</Width>
+									<ContextMenu name="DateAtServerContextMenu" id="207"/>
+									<ExtendedTooltip name="DateAtServerExtendedTooltip" id="208"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+						<Table name="Log2" id="350">
+							<Representation>List</Representation>
+							<ReadOnly>true</ReadOnly>
+							<SkipOnInput>false</SkipOnInput>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<InitialListView>End</InitialListView>
+							<Output>Enable</Output>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Log</DataPath>
+							<RowPictureDataPath>Log.PicNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.EventLogEventKindCollection</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<BorderColor>style:BorderColor</BorderColor>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Log</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+							</CommandSet>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="Log2ContextMenu" id="351">
+								<ChildItems>
+									<ButtonGroup name="FilterGroupContext2" id="430">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Filter group context</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FilterGroupContext2ExtendedTooltip" id="431"/>
+										<ChildItems>
+											<Button name="SetFilterByValueInCurrentColumnContext2" id="432">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SetFilterByValueInCurrentColumn</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Filter by current column value</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetFilterByValueInCurrentColumnContext2ExtendedTooltip" id="433"/>
+											</Button>
+											<Button name="LogContextMenuClearFilter2" id="434">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.ClearFilter</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Clear filter</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="LogContextMenuDisableSelection2ExtendedTooltip" id="435"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="ViewCurrentEventInNewWindowContext2" id="436">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.ViewCurrentEventInNewWindow</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Open</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ViewCurrentEventInNewWindowContext2ExtendedTooltip" id="437"/>
+									</Button>
+									<Button name="OpenDataForViewingContext2" id="438">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.OpenDataForViewing</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>View data</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="OpenDataForViewingContext2ExtendedTooltip" id="439"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="Log2CommandBar" id="352">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="ExportLogForTechnicalSupport2" id="440">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ExportLogForTechnicalSupport</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Export to file...</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ExportLogForTechnicalSupport2ExtendedTooltip" id="441"/>
+									</Button>
+									<Button name="ViewCurrentEventInNewWindow2" id="442">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.ViewCurrentEventInNewWindow</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Open</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ViewCurrentEventInNewWindow2ExtendedTooltip" id="443"/>
+									</Button>
+									<Button name="OpenDataForViewing2" id="444">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.OpenDataForViewing</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>View data</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="OpenDataForViewing2ExtendedTooltip" id="445"/>
+									</Button>
+									<ButtonGroup name="FilterCommands2" id="446">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Filter commands</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FilterCommands2ExtendedTooltip" id="447"/>
+										<ChildItems>
+											<Button name="SetPeriodForViewing2" id="448">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Command.SetPeriodForViewing</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Date range</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetPeriodForViewing2ExtendedTooltip" id="449"/>
+											</Button>
+											<Button name="SetFilter2" id="450">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SetFilter</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Filter</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetFilter2ExtendedTooltip" id="451"/>
+											</Button>
+											<Button name="SetFilterByValueInCurrentColumn2" id="452">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.SetFilterByValueInCurrentColumn</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Filter by current column value</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="SetFilterByValueInCurrentColumn2ExtendedTooltip" id="453"/>
+											</Button>
+											<Button name="ClearFilter2" id="454">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.ClearFilter</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Clear filter</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ClearFilter2ExtendedTooltip" id="455"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<ButtonGroup name="SearchCommands2" id="456">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Search commands</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SearchCommands2ExtendedTooltip" id="457"/>
+										<ChildItems>
+											<Button name="FormFind2" id="458">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.Log2.StandardCommand.Find</CommandName>
+												<ExtendedTooltip name="FormFind2ExtendedTooltip" id="459"/>
+											</Button>
+											<Button name="FormCancelSearch2" id="460">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.Log2.StandardCommand.CancelSearch</CommandName>
+												<ExtendedTooltip name="FormCancelSearch2ExtendedTooltip" id="461"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<ButtonGroup name="RefreshCommand2" id="462">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Refresh command</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="RefreshCommand2ExtendedTooltip" id="463"/>
+										<ChildItems>
+											<Button name="RefreshCurrentList2" id="464">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<CommandName>Form.Command.RefreshCurrentList</CommandName>
+												<TextColor>style:ButtonTextColor</TextColor>
+												<BackColor>style:ButtonBackColor</BackColor>
+												<BorderColor>style:BorderColor</BorderColor>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Refresh list</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="RefreshCurrentList2ExtendedTooltip" id="465"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="CustomizeForm2" id="466">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="CustomizeForm2ExtendedTooltip" id="467"/>
+									</Button>
+									<Button name="OutputList2" id="468">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Item.Log2.StandardCommand.OutputList</CommandName>
+										<TextColor>style:ButtonTextColor</TextColor>
+										<BackColor>style:ButtonBackColor</BackColor>
+										<BorderColor>style:BorderColor</BorderColor>
+										<ExtendedTooltip name="OutputList2ExtendedTooltip" id="469"/>
+									</Button>
+									<Button name="LogHelp2" id="470">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.StandardCommand.Help</CommandName>
+										<ExtendedTooltip name="LogHelp2ExtendedTooltip" id="471"/>
+									</Button>
+									<SearchStringAddition name="SearchString_2" id="472">
+										<AdditionSource>
+											<Item>Log2</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Search</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="SearchString_2ContextMenu" id="473"/>
+										<ExtendedTooltip name="SearchString_2ExtendedTooltip" id="474"/>
+									</SearchStringAddition>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="Log2ExtendedTooltip" id="353"/>
+							<SearchStringAddition name="Log2SearchString" id="354">
+								<AdditionSource>
+									<Item>Log2</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="Log2SearchStringContextMenu" id="355"/>
+								<ExtendedTooltip name="Log2SearchStringExtendedTooltip" id="356"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="Log2ViewStatus" id="357">
+								<AdditionSource>
+									<Item>Log2</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="Log2ViewStatusContextMenu" id="358"/>
+								<ExtendedTooltip name="Log2ViewStatusExtendedTooltip" id="359"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="Log2SearchControl" id="360">
+								<AdditionSource>
+									<Item>Log2</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="Log2SearchControlContextMenu" id="361"/>
+								<ExtendedTooltip name="Log2SearchControlExtendedTooltip" id="362"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">LogSelection</Event>
+								<Event name="OnActivateField">LogOnActivateField</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="Date2" id="365">
+									<DataPath>Log.Date</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Date, time</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The event date and time converted to the application time zone.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Width>10</Width>
+									<ContextMenu name="Date2ContextMenu" id="366"/>
+									<ExtendedTooltip name="Date2ExtendedTooltip" id="367"/>
+								</LabelField>
+								<LabelField name="Importance2" id="532">
+									<DataPath>Log.Level</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Importance</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="Importance2ContextMenu" id="533"/>
+									<ExtendedTooltip name="Importance2ExtendedTooltip" id="534"/>
+								</LabelField>
+								<ColumnGroup name="GroupDataSeparation" id="524">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Data separation</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="GroupDataSeparationExtendedTooltip" id="525"/>
+									<ChildItems>
+										<LabelField name="SessionDataSeparationPresentation2" id="368">
+											<DataPath>Log.SessionDataSeparationPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Separate session data</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="SessionDataSeparationPresentation2ContextMenu" id="369"/>
+											<ExtendedTooltip name="SessionDataSeparationPresentation2ExtendedTooltip" id="370"/>
+										</LabelField>
+										<LabelField name="DataArea3" id="526">
+											<DataPath>Log.DataArea</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Data area</v8:content>
+												</v8:item>
+											</Title>
+											<HorizontalAlign>Right</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>3</Width>
+											<ContextMenu name="DataArea3ContextMenu" id="527"/>
+											<ExtendedTooltip name="DataArea3ExtendedTooltip" id="528"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="ApplicationSessionGroup2" id="371">
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>App, Session</v8:content>
+										</v8:item>
+									</Title>
+									<Width>5</Width>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="ApplicationSessionGroup2ExtendedTooltip" id="372"/>
+									<ChildItems>
+										<LabelField name="ApplicationPresentation2" id="373">
+											<DataPath>Log.ApplicationPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>App</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>5</Width>
+											<ContextMenu name="ApplicationPresentation2ContextMenu" id="374"/>
+											<ExtendedTooltip name="ApplicationPresentation2ExtendedTooltip" id="375"/>
+										</LabelField>
+										<ColumnGroup name="SessionGroup2" id="519">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Session</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Horizontal</Group>
+											<ExtendedTooltip name="SessionGroup2ExtendedTooltip" id="520"/>
+											<ChildItems>
+												<LabelField name="Session2" id="376">
+													<DataPath>Log.Session</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Session</v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Left</HorizontalAlign>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>3</Width>
+													<ContextMenu name="Session2ContextMenu" id="377"/>
+													<ExtendedTooltip name="Session2ExtendedTooltip" id="378"/>
+												</LabelField>
+												<LabelField name="DataArea2" id="521">
+													<DataPath>Log.DataArea</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Data area</v8:content>
+														</v8:item>
+													</Title>
+													<HorizontalAlign>Right</HorizontalAlign>
+													<EditMode>EnterOnInput</EditMode>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>2</Width>
+													<ContextMenu name="DataArea2ContextMenu" id="522"/>
+													<ExtendedTooltip name="DataArea2ExtendedTooltip" id="523"/>
+												</LabelField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="GroupEventAndUserAndComputer2" id="379">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Event</v8:content>
+										</v8:item>
+									</Title>
+									<Width>25</Width>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="GroupEventAndUserAndComputer2ExtendedTooltip" id="380"/>
+									<ChildItems>
+										<LabelField name="EventPresentation2" id="381">
+											<DataPath>Log.EventPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Event</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>25</Width>
+											<ContextMenu name="EventPresentation2ContextMenu" id="382"/>
+											<ExtendedTooltip name="EventPresentation2ExtendedTooltip" id="383"/>
+										</LabelField>
+										<ColumnGroup name="GroupUserAndSession2" id="384">
+											<UserVisible>
+												<xr:Common>false</xr:Common>
+											</UserVisible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User, Session</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="GroupUserAndSession2ExtendedTooltip" id="385"/>
+											<ChildItems>
+												<LabelField name="UserName2" id="386">
+													<DataPath>Log.UserName</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>User</v8:content>
+														</v8:item>
+													</Title>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>15</Width>
+													<ContextMenu name="UserName2ContextMenu" id="387"/>
+													<ExtendedTooltip name="UserName2ExtendedTooltip" id="388"/>
+												</LabelField>
+												<LabelField name="Computer2" id="389">
+													<DataPath>Log.Computer</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Computer</v8:content>
+														</v8:item>
+													</Title>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>10</Width>
+													<ContextMenu name="Computer2ContextMenu" id="390"/>
+													<ExtendedTooltip name="Computer2ExtendedTooltip" id="391"/>
+												</LabelField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</ColumnGroup>
+								<LabelField name="UserName3" id="511">
+									<DataPath>Log.UserName</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User</v8:content>
+										</v8:item>
+									</Title>
+									<Width>15</Width>
+									<ContextMenu name="UserName3ContextMenu" id="512"/>
+									<ExtendedTooltip name="UserName3ExtendedTooltip" id="513"/>
+								</LabelField>
+								<ColumnGroup name="GroupEventInfo2" id="392">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Event info</v8:content>
+										</v8:item>
+									</Title>
+									<Width>30</Width>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="GroupEventInfo2ExtendedTooltip" id="393"/>
+									<ChildItems>
+										<LabelField name="Data2" id="394">
+											<DataPath>Log.Data</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Data</v8:content>
+												</v8:item>
+											</Title>
+											<HorizontalAlign>Left</HorizontalAlign>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="Data2ContextMenu" id="395"/>
+											<ExtendedTooltip name="Data2ExtendedTooltip" id="396"/>
+										</LabelField>
+										<LabelField name="DataPresentation2" id="397">
+											<DataPath>Log.DataPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Data presentation</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="DataPresentation2ContextMenu" id="398"/>
+											<ExtendedTooltip name="DataPresentation2ExtendedTooltip" id="399"/>
+										</LabelField>
+										<LabelField name="MetadataPresentation2" id="400">
+											<DataPath>Log.MetadataPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Metadata</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="MetadataPresentation2ContextMenu" id="401"/>
+											<ExtendedTooltip name="MetadataPresentation2ExtendedTooltip" id="402"/>
+										</LabelField>
+										<LabelField name="Comment2" id="403">
+											<DataPath>Log.Comment</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Comment</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>30</Width>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="Comment2ContextMenu" id="404"/>
+											<ExtendedTooltip name="Comment2ExtendedTooltip" id="405"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="TransactionGroup2" id="406">
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Transaction</v8:content>
+										</v8:item>
+									</Title>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="TransactionGroup2ExtendedTooltip" id="407"/>
+									<ChildItems>
+										<LabelField name="TransactionStatus2" id="408">
+											<DataPath>Log.TransactionStatus</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Transaction status</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<ContextMenu name="TransactionStatus2ContextMenu" id="409"/>
+											<ExtendedTooltip name="TransactionStatus2ExtendedTooltip" id="410"/>
+										</LabelField>
+										<LabelField name="Transaction2" id="411">
+											<DataPath>Log.TransactionID</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Transaction</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<ContextMenu name="Transaction2ContextMenu" id="412"/>
+											<ExtendedTooltip name="Transaction2ExtendedTooltip" id="413"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="GroupServer2" id="414">
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Production server, IP ports</v8:content>
+										</v8:item>
+									</Title>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="GroupServer2ExtendedTooltip" id="415"/>
+									<ChildItems>
+										<LabelField name="ServerName2" id="416">
+											<DataPath>Log.ServerName</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Production server</v8:content>
+												</v8:item>
+											</Title>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>10</Width>
+											<ContextMenu name="ServerName2ContextMenu" id="417"/>
+											<ExtendedTooltip name="ServerName2ExtendedTooltip" id="418"/>
+										</LabelField>
+										<ColumnGroup name="GroupPorts2" id="419">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>IP ports</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="GroupPorts2ExtendedTooltip" id="420"/>
+											<ChildItems>
+												<LabelField name="PrimaryIPPort2" id="421">
+													<DataPath>Log.Port</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Primary IP port</v8:content>
+														</v8:item>
+													</Title>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>3</Width>
+													<ContextMenu name="PrimaryIPPort2ContextMenu" id="422"/>
+													<ExtendedTooltip name="PrimaryIPPort2ExtendedTooltip" id="423"/>
+												</LabelField>
+												<LabelField name="AuxiliaryIPPort2" id="424">
+													<DataPath>Log.SyncPort</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Secondary IP port</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Secondary IP port</v8:content>
+														</v8:item>
+													</ToolTip>
+													<ShowInHeader>false</ShowInHeader>
+													<Width>3</Width>
+													<ContextMenu name="AuxiliaryIPPort2ContextMenu" id="425"/>
+													<ExtendedTooltip name="AuxiliaryIPPort2ExtendedTooltip" id="426"/>
+												</LabelField>
+											</ChildItems>
+										</ColumnGroup>
+									</ChildItems>
+								</ColumnGroup>
+								<LabelField name="DateAtServer2" id="427">
+									<DataPath>Log.DateAtServer</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Server date</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The event date and time converted to the server time zone.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>5</Width>
+									<ContextMenu name="DateAtServer2ContextMenu" id="428"/>
+									<ExtendedTooltip name="DateAtServer2ExtendedTooltip" id="429"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="TimeConsumingOperationProgress" id="118">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Long-running operation progress</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="TimeConsumingOperationProgressExtendedTooltip" id="168"/>
+					<ChildItems>
+						<SpreadSheetDocumentField name="TimeConsumingOperationProgressField" id="114">
+							<DataPath>TimeConsumingOperationProgressField</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Long-running operation progress field</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<VerticalScrollBar>true</VerticalScrollBar>
+							<HorizontalScrollBar>true</HorizontalScrollBar>
+							<ContextMenu name="TimeConsumingOperationProgressFieldContextMenu" id="115"/>
+							<ExtendedTooltip name="TimeConsumingOperationProgressFieldExtendedTooltip" id="169"/>
+						</SpreadSheetDocumentField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.EventLog</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="FilterPresentation" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter presentation</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Log" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Log</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="SyncPort" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Secondary IP port</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Data" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="Date" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Date</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="UserName" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Username</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ApplicationName" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Comment" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Comment</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Computer" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Computer</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Metadata" id="8">
+					<Type>
+						<v8:Type>v8:ValueListType</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Port" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Primary IP port</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="User" id="10">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DataPresentation" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MetadataPresentation" id="12">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Metadata presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ApplicationPresentation" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Application presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="EventPresentation" id="14">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Event presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ServerName" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Production server</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Session" id="16">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Session</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Event" id="17">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Connection" id="18">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="TransactionStatus" id="19">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Transaction status</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="TransactionID" id="20">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Transaction</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Level" id="21">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PicNumber" id="22">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="DataAsStr" id="23">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="SessionDataSeparationPresentation" id="24">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Session data separation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="SessionDataSeparation" id="25">
+					<Type>
+						<v8:Type>v8:ValueListType</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DateAtServer" id="26">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Server date</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</Type>
+				</Column>
+				<Column name="IsDataStringMatchesDataPresentation" id="27">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DataArea" id="28">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data area</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>10</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="EventKey" id="29">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="EventLogFilter" id="5">
+			<Type/>
+			<Save>
+				<Field>EventLogFilter</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="EventsCountLimit" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number of events displayed</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<FillCheck>ShowError</FillCheck>
+		</Attribute>
+		<Attribute name="DateInterval" id="2">
+			<Type>
+				<v8:Type>v8:StandardPeriod</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TimeConsumingOperationProgressField" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Long-running operation progress field</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+			<Settings xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet" xsi:type="mxl:SpreadsheetDocument">
+				<mxl:languageSettings>
+					<mxl:currentLanguage/>
+					<mxl:defaultLanguage/>
+					<mxl:languageInfo>
+						<mxl:id>en</mxl:id>
+						<mxl:code>Английский</mxl:code>
+						<mxl:description/>
+					</mxl:languageInfo>
+				</mxl:languageSettings>
+				<mxl:columns>
+					<mxl:size>0</mxl:size>
+				</mxl:columns>
+				<mxl:rowsItem>
+					<mxl:index>0</mxl:index>
+					<mxl:row>
+						<mxl:empty>true</mxl:empty>
+					</mxl:row>
+				</mxl:rowsItem>
+				<mxl:vgRows>0</mxl:vgRows>
+			</Settings>
+		</Attribute>
+		<Attribute name="StorageAddress" id="9">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DefaultEventLogFilter" id="11">
+			<Type/>
+		</Attribute>
+		<Attribute name="Severity" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Severity</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldNotRunInBackground" id="14">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="JobID" id="8">
+			<Type>
+				<v8:Type>v8:UUID</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="StandardSeparatorsOnly" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ViewCurrentEventInNewWindow" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View the current event in a new window.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F2</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Properties</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ViewCurrentEventInNewWindow</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenDataForViewing" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View data</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View data</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ShowData</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>OpenDataForViewing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetPeriodForViewing" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Period</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set date interval</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.SetDateInterval</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetPeriodForViewing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetFilter" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.FilterCriterion</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetFilter</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SetFilterByValueInCurrentColumn" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter by current column value</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter by current column value</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.FilterByCurrentValue</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetFilterByValueInCurrentColumn</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ClearFilter" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear filter</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear filter</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ClearFilter</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ClearFilter</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RefreshCurrentList" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh current list</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>RefreshCurrentList</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ExportLogForTechnicalSupport" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Export to file…</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ExportLogForTechnicalSupport</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="User">
+			<Type/>
+		</Parameter>
+		<Parameter name="EventLogEvent">
+			<Type/>
+		</Parameter>
+		<Parameter name="ShouldNotRunInBackground">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="StartDate">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="EndDate">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="Data">
+			<Type/>
+		</Parameter>
+		<Parameter name="Session">
+			<Type/>
+		</Parameter>
+		<Parameter name="Level">
+			<Type/>
+		</Parameter>
+		<Parameter name="ApplicationName">
+			<Type/>
+		</Parameter>
+		<Parameter name="DataAccessLog">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

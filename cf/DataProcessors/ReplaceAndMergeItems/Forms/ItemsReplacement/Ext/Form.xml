@@ -1,0 +1,1184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Item replacement</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="WizardSteps" id="70">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Wizard steps</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="WizardStepsExtendedTooltip" id="71"/>
+			<ChildItems>
+				<Page name="ReplacementItemSelectionStep" id="74">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select replacement item</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ReplacementItemSelectionStepExtendedTooltip" id="75"/>
+					<ChildItems>
+						<LabelDecoration name="SelectedItemTypeLabel" id="197">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Label type of the selected item</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="SelectedItemTypeLabelContextMenu" id="198"/>
+							<ExtendedTooltip name="SelectedItemTypeLabelExtendedTooltip" id="199"/>
+						</LabelDecoration>
+						<CommandBar name="ReplacementItemSelectionCommandBar" id="66">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Replacement item selection command bar</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSource>Item.List</CommandSource>
+							<ExtendedTooltip name="ReplacementItemSelectionCommandBarExtendedTooltip" id="67"/>
+							<ChildItems>
+								<Button name="CustomizeFormFromList" id="68">
+									<Type>CommandBarButton</Type>
+									<Visible>false</Visible>
+									<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+									<ExtendedTooltip name="CustomizeFormFromListExtendedTooltip" id="69"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+						<UsualGroup name="CustomSettingsFolder" id="205">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User settings group</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="206"/>
+						</UsualGroup>
+						<Table name="List" id="182">
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>6</Height>
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<InitialTreeView>ExpandTopLevel</InitialTreeView>
+							<EnableStartDrag>true</EnableStartDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>List</DataPath>
+							<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>List</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>true</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+							<ContextMenu name="ListContextMenu" id="183"/>
+							<AutoCommandBar name="ListCommandBar" id="184">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="ListExtendedTooltip" id="185"/>
+							<SearchStringAddition name="ListSearchString" id="207">
+								<AdditionSource>
+									<Item>List</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListSearchStringContextMenu" id="208"/>
+								<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="209"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ListViewStatus" id="210">
+								<AdditionSource>
+									<Item>List</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ListViewStatusContextMenu" id="211"/>
+								<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="212"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ListSearchControl" id="213">
+								<AdditionSource>
+									<Item>List</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ListSearchControlContextMenu" id="214"/>
+								<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="215"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">ListSelection</Event>
+								<Event name="OnActivateRow">ListOnActivateRow</Event>
+							</Events>
+							<ChildItems>
+								<ColumnGroup name="ListItem" id="195">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Item</v8:content>
+										</v8:item>
+									</Title>
+									<Group>InCell</Group>
+									<ExtendedTooltip name="ListItemExtendedTooltip" id="196"/>
+									<ChildItems>
+										<InputField name="ListStandardPicture" id="192">
+											<DataPath>List.DefaultPicture</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Picture</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ContextMenu name="ListStandardPictureContextMenu" id="193"/>
+											<ExtendedTooltip name="ListStandardPictureExtendedTooltip" id="194"/>
+										</InputField>
+										<LabelField name="ListRef" id="189">
+											<DataPath>List.Ref</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Description</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ListRefContextMenu" id="190"/>
+											<ExtendedTooltip name="ListRefExtendedTooltip" id="191"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+								<LabelField name="ListCode" id="186">
+									<DataPath>List.Code</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Code</v8:content>
+										</v8:item>
+									</Title>
+									<Width>10</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="ListCodeContextMenu" id="187"/>
+									<ExtendedTooltip name="ListCodeExtendedTooltip" id="188"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+						<LabelDecoration name="ListFilterTooltip" id="244">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>List filter tooltip</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ListFilterTooltipContextMenu" id="245"/>
+							<ExtendedTooltip name="ListFilterTooltipExtendedTooltip" id="246"/>
+							<Events>
+								<Event name="URLProcessing">ReplacementItemSelectionTooltipURLProcessing</Event>
+							</Events>
+						</LabelDecoration>
+						<LabelDecoration name="ReplacementItemSelectionTooltip" id="227">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Replacement item selection tooltip</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ReplacementItemSelectionTooltipContextMenu" id="228"/>
+							<ExtendedTooltip name="ReplacementItemSelectionTooltipExtendedTooltip" id="229"/>
+							<Events>
+								<Event name="URLProcessing">ReplacementItemSelectionTooltipURLProcessing</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="ReplacementStep" id="87">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Replace</v8:content>
+						</v8:item>
+					</Title>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="ReplacementStepExtendedTooltip" id="88"/>
+					<ChildItems>
+						<PictureDecoration name="TimeConsumingOperationPic" id="91">
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Picture>
+								<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="TimeConsumingOperationPicContextMenu" id="92"/>
+							<ExtendedTooltip name="TimeConsumingOperationPicExtendedTooltip" id="93"/>
+						</PictureDecoration>
+						<LabelDecoration name="TimeConsumingOperationDetails" id="94">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Replacing items.
+Please wait…</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="TimeConsumingOperationDetailsContextMenu" id="95"/>
+							<ExtendedTooltip name="TimeConsumingOperationDetailsExtendedTooltip" id="96"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="RetryReplacementStep" id="107">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Merge again</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="RetryReplacementStepExtendedTooltip" id="108"/>
+					<ChildItems>
+						<LabelDecoration name="UnsuccessfulReplacementsResult" id="133">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<HorizontalStretch>true</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Unsuccessful replacements result</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="UnsuccessfulReplacementsResultContextMenu" id="134"/>
+							<ExtendedTooltip name="UnsuccessfulReplacementsResultExtendedTooltip" id="135"/>
+						</LabelDecoration>
+						<CommandBar name="CommandBarUnsuccessfulReplacements" id="125">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Unsuccessful replacements command bar</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CommandBarUnsuccessfulReplacementsExtendedTooltip" id="126"/>
+							<ChildItems>
+								<Button name="OpenUnsuccessfulReplacementItem" id="164">
+									<Type>CommandBarButton</Type>
+									<Representation>PictureAndText</Representation>
+									<CommandName>Form.Command.OpenUnsuccessfulReplacementItem</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Change</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="OpenUnsuccessfulReplacementItemExtendedTooltip" id="165"/>
+								</Button>
+								<ButtonGroup name="GroupExpandCollapse" id="255">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Expand collapse</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>Compact</Representation>
+									<ExtendedTooltip name="GroupExpandCollapseExtendedTooltip" id="256"/>
+									<ChildItems>
+										<Button name="ExpandAllUnsuccessfulReplacements" id="129">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ExpandAllUnsuccessfulReplacements</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Expand all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ExpandAllUnsuccessfulReplacementsExtendedTooltip" id="130"/>
+										</Button>
+										<Button name="CollapseAllUnsuccessfulReplacements" id="131">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CollapseAllUnsuccessfulReplacements</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Collapse all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CollapseAllUnsuccessfulReplacementsExtendedTooltip" id="132"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<ButtonGroup name="AllActions2" id="136">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>All actions 2</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>All actions</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ExtendedTooltip name="AllActions2ExtendedTooltip" id="137"/>
+									<ChildItems>
+										<Button name="OutputList" id="138">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Item.UnsuccessfulReplacements.StandardCommand.OutputList</CommandName>
+											<ExtendedTooltip name="OutputListExtendedTooltip" id="139"/>
+										</Button>
+										<Button name="CopyToClipboard" id="140">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Item.UnsuccessfulReplacements.StandardCommand.CopyToClipboard</CommandName>
+											<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+											<ExtendedTooltip name="CopyToClipboardExtendedTooltip" id="141"/>
+										</Button>
+										<Button name="CustomizeForm" id="142">
+											<Type>CommandBarButton</Type>
+											<Visible>false</Visible>
+											<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+											<ExtendedTooltip name="CustomizeFormExtendedTooltip" id="143"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<SearchStringAddition name="SearchString" id="241">
+									<AdditionSource>
+										<Item>UnsuccessfulReplacements</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Search</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="SearchStringContextMenu" id="242"/>
+									<ExtendedTooltip name="SearchStringExtendedTooltip" id="243"/>
+								</SearchStringAddition>
+							</ChildItems>
+						</CommandBar>
+						<Table name="UnsuccessfulReplacements" id="112">
+							<Representation>Tree</Representation>
+							<CommandBarLocation>None</CommandBarLocation>
+							<ReadOnly>true</ReadOnly>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Height>6</Height>
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<InitialTreeView>ExpandTopLevel</InitialTreeView>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>UnsuccessfulReplacements</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Unsuccessful replacements</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="UnsuccessfulReplacementsContextMenu" id="113"/>
+							<AutoCommandBar name="UnsuccessfulReplacementsCommandBar" id="114">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="UnsuccessfulReplacementsExtendedTooltip" id="115"/>
+							<SearchStringAddition name="UnsuccessfulReplacementsSearchString" id="216">
+								<AdditionSource>
+									<Item>UnsuccessfulReplacements</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="UnsuccessfulReplacementsSearchStringContextMenu" id="217"/>
+								<ExtendedTooltip name="UnsuccessfulReplacementsSearchStringExtendedTooltip" id="218"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="UnsuccessfulReplacementsViewStatus" id="219">
+								<AdditionSource>
+									<Item>UnsuccessfulReplacements</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="UnsuccessfulReplacementsViewStatusContextMenu" id="220"/>
+								<ExtendedTooltip name="UnsuccessfulReplacementsViewStatusExtendedTooltip" id="221"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="UnsuccessfulReplacementsSearchControl" id="222">
+								<AdditionSource>
+									<Item>UnsuccessfulReplacements</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="UnsuccessfulReplacementsSearchControlContextMenu" id="223"/>
+								<ExtendedTooltip name="UnsuccessfulReplacementsSearchControlExtendedTooltip" id="224"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">UnsuccessfulReplacementsSelection</Event>
+								<Event name="OnActivateRow">UnsuccessfulReplacementsOnActivateRow</Event>
+							</Events>
+							<ChildItems>
+								<ColumnGroup name="UnsuccessfulReplacementsDataCode" id="150">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Unsuccessful replacements data code</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<ExtendedTooltip name="UnsuccessfulReplacementsDataCodeExtendedTooltip" id="151"/>
+									<ChildItems>
+										<ColumnGroup name="UnsuccessfulReplacementsGroup" id="178">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Unsuccessful replacements group</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="UnsuccessfulReplacementsGroupExtendedTooltip" id="179"/>
+											<ChildItems>
+												<PictureField name="UnsuccessfulReplacementsPictogram" id="175">
+													<DataPath>UnsuccessfulReplacements.Pictogram</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Icon</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<EditMode>EnterOnInput</EditMode>
+													<ValuesPicture>
+														<xr:Ref>CommonPicture.Warning</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</ValuesPicture>
+													<FileDragMode>AsFile</FileDragMode>
+													<ContextMenu name="UnsuccessfulReplacementsPictogramContextMenu" id="176"/>
+													<ExtendedTooltip name="UnsuccessfulReplacementsPictogramExtendedTooltip" id="177"/>
+												</PictureField>
+												<InputField name="UnsuccessfulReplacementsData" id="144">
+													<DataPath>UnsuccessfulReplacements.Data</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Description / Occurrence</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="UnsuccessfulReplacementsDataContextMenu" id="145"/>
+													<ExtendedTooltip name="UnsuccessfulReplacementsDataExtendedTooltip" id="146"/>
+												</InputField>
+											</ChildItems>
+										</ColumnGroup>
+										<InputField name="UnsuccessfulReplacementsCode" id="147">
+											<DataPath>UnsuccessfulReplacements.Code</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Code</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>10</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ContextMenu name="UnsuccessfulReplacementsCodeContextMenu" id="148"/>
+											<ExtendedTooltip name="UnsuccessfulReplacementsCodeExtendedTooltip" id="149"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+								<InputField name="UnsuccessfulReplacementsCause" id="122">
+									<DataPath>UnsuccessfulReplacements.Cause</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reason</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UnsuccessfulReplacementsCauseContextMenu" id="123"/>
+									<ExtendedTooltip name="UnsuccessfulReplacementsCauseExtendedTooltip" id="124"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<UsualGroup name="GroupErrorReport" id="253">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Error report</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalStretch>true</HorizontalStretch>
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupErrorReportExtendedTooltip" id="254"/>
+							<ChildItems>
+								<LabelDecoration name="DecorationMoreDetails" id="247">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Details:</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="DecorationMoreDetailsContextMenu" id="248"/>
+									<ExtendedTooltip name="DecorationMoreDetailsExtendedTooltip" id="249"/>
+								</LabelDecoration>
+								<LabelDecoration name="DecorationSendErrorReport" id="250">
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Send error report</v8:content>
+										</v8:item>
+									</Title>
+									<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+									<Hyperlink>true</Hyperlink>
+									<ContextMenu name="DecorationSendErrorReportContextMenu" id="251"/>
+									<ExtendedTooltip name="DecorationSendErrorReportExtendedTooltip" id="252"/>
+									<Events>
+										<Event name="Click">DecorationSendErrorReportClick</Event>
+									</Events>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<InputField name="FailureReasonDetails" id="172">
+							<DataPath>FailureReasonDetails</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Details</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>2</Height>
+							<AutoMaxHeight>false</AutoMaxHeight>
+							<MaxHeight>3</MaxHeight>
+							<MultiLine>true</MultiLine>
+							<ContextMenu name="FailureReasonDetailsContextMenu" id="173"/>
+							<ExtendedTooltip name="FailureReasonDetailsExtendedTooltip" id="174"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="ErrorOccurredStep" id="230">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Error occurred</v8:content>
+						</v8:item>
+					</Title>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="ErrorOccurredStepExtendedTooltip" id="231"/>
+					<ChildItems>
+						<PictureDecoration name="WarningPicture32" id="232">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Picture warning32</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Picture>
+								<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="WarningPicture32ContextMenu" id="233"/>
+							<ExtendedTooltip name="WarningPicture32ExtendedTooltip" id="234"/>
+						</PictureDecoration>
+						<LabelDecoration name="ErrorTextLabel" id="235">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>5</Height>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Error text label</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="ErrorTextLabelContextMenu" id="236"/>
+							<ExtendedTooltip name="ErrorTextLabelExtendedTooltip" id="237"/>
+						</LabelDecoration>
+						<LabelDecoration name="DetailsRef" id="238">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Details</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Hyperlink>true</Hyperlink>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="DetailsRefContextMenu" id="239"/>
+							<ExtendedTooltip name="DetailsRefExtendedTooltip" id="240"/>
+							<Events>
+								<Event name="Click">DetailsRefClick</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="WizardActionsPanel" id="41">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Wizard actions panel</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="WizardActionsPanelExtendedTooltip" id="42"/>
+			<ChildItems>
+				<CommandBar name="BackGroup" id="56">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Back</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BackGroupExtendedTooltip" id="57"/>
+					<ChildItems>
+						<Button name="WizardStepBack" id="43">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.WizardStepBack</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt; Back</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="WizardStepBackExtendedTooltip" id="44"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<CommandBar name="ForwardGroup" id="54">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Forward</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="ForwardGroupExtendedTooltip" id="55"/>
+					<ChildItems>
+						<Button name="WizardStepNext" id="48">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.WizardStepNext</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Next &gt;</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="WizardStepNextExtendedTooltip" id="49"/>
+						</Button>
+						<Button name="WizardStepCancel" id="50">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.WizardStepCancel</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cancel</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="WizardStepCancelExtendedTooltip" id="51"/>
+						</Button>
+						<Button name="Help" id="58">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="59"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.ReplaceAndMergeItems</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="BaseFormName" id="6">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="UnsuccessfulReplacements" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Unsuccessful replacements</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type/>
+				</Column>
+				<Column name="Code" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Cause" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reason</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Data" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description / Occurrence</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DetailedReason" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Pictogram" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Icon</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ErrorInfo" id="7">
+					<Type/>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ReplacementItem" id="8">
+			<Type>
+				<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="FailureReasonDetails" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reason details</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="List" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>List.Code</Field>
+				<Field>List.DeletionMark</Field>
+				<Field>List.IsFolder</Field>
+				<Field>List.Owner</Field>
+				<Field>List.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>SELECT
+	NULL AS Owner,
+	NULL AS Code,
+	FALSE AS IsFolder
+FROM
+	Catalog.Users AS UsersOverridable</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Code</dcssch:dataPath>
+					<dcssch:field>Code</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>IsFolder</dcssch:dataPath>
+					<dcssch:field>IsFolder</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>This is a group</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Owner</dcssch:dataPath>
+					<dcssch:field>Owner</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Owner</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Description</dcssch:dataPath>
+					<dcssch:field>Description</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Invalid</dcssch:dataPath>
+					<dcssch:field>Invalid</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Department</dcssch:dataPath>
+					<dcssch:field>Department</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Individual</dcssch:dataPath>
+					<dcssch:field>Individual</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Comment</dcssch:dataPath>
+					<dcssch:field>Comment</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>IsInternal</dcssch:dataPath>
+					<dcssch:field>IsInternal</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Prepared</dcssch:dataPath>
+					<dcssch:field>Prepared</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>IBUserID</dcssch:dataPath>
+					<dcssch:field>IBUserID</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ServiceUserID</dcssch:dataPath>
+					<dcssch:field>ServiceUserID</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DeleteInfobaseUserProperties</dcssch:dataPath>
+					<dcssch:field>DeleteInfobaseUserProperties</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Photo</dcssch:dataPath>
+					<dcssch:field>Photo</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ContactInformation</dcssch:dataPath>
+					<dcssch:field>ContactInformation</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Predefined</dcssch:dataPath>
+					<dcssch:field>Predefined</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PredefinedDataName</dcssch:dataPath>
+					<dcssch:field>PredefinedDataName</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DeletionMark</dcssch:dataPath>
+					<dcssch:field>DeletionMark</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ref</dcssch:dataPath>
+					<dcssch:field>Ref</dcssch:field>
+				</Field>
+				<MainTable>Catalog.Users</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="RefsToReplace" id="9">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type>
+						<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ReplacementNotificationEvent" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="HasRightToDeletePermanently" id="13">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentDeletionOption" id="14">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ReplacementItemResult" id="5">
+			<Type>
+				<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="ReferencesToReplaceCommonOwner" id="7">
+			<Type/>
+		</Attribute>
+		<Attribute name="WizardSettings" id="11">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="WizardStepNext" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Next &gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Proceed to the next step.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WizardButtonHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="WizardStepBack" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt; Back</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Return to the previous step.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WizardButtonHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="WizardStepCancel" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exit the wizard.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WizardButtonHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ExpandAllUnsuccessfulReplacements" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Expand all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Expand all unsuccessful replacements.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ExpandAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ExpandAllUnsuccessfulReplacements</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CollapseAllUnsuccessfulReplacements" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse all unsuccessful replacements.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CollapseAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>CollapseAllUnsuccessfulReplacements</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenUnsuccessfulReplacementItem" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open item.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F2</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>OpenUnsuccessfulReplacementItem</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="RefSet">
+			<Type/>
+		</Parameter>
+		<Parameter name="Title">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="OpenByScenario">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

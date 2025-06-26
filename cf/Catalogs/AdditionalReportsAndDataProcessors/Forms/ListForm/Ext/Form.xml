@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<CommandBarLocation>None</CommandBarLocation>
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+		<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="78">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="79"/>
+		</UsualGroup>
+		<UsualGroup name="QuickFilters" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Quick filters</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="QuickFiltersExtendedTooltip" id="32"/>
+			<ChildItems>
+				<InputField name="KindFilter" id="20">
+					<DataPath>KindFilter</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Type</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ClearButton>true</ClearButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ChooseType>false</ChooseType>
+					<IncompleteChoiceMode>OnActivate</IncompleteChoiceMode>
+					<ChoiceListButton>false</ChoiceListButton>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>All</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="KindFilterContextMenu" id="21"/>
+					<ExtendedTooltip name="KindFilterExtendedTooltip" id="33"/>
+					<Events>
+						<Event name="OnChange">KindFilterOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="PublicationFilter" id="17">
+					<DataPath>PublicationFilter</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Publication</v8:content>
+						</v8:item>
+					</Title>
+					<Width>26</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ClearButton>true</ClearButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ChooseType>false</ChooseType>
+					<IncompleteChoiceMode>OnActivate</IncompleteChoiceMode>
+					<ChoiceListButton>false</ChoiceListButton>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>All</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="PublicationFilterContextMenu" id="18"/>
+					<ExtendedTooltip name="PublicationFilterExtendedTooltip" id="34"/>
+					<Events>
+						<Event name="OnChange">PublicationFilterOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="NoteServiceGroup" id="130">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Service note</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="NoteServiceGroupExtendedTooltip" id="131"/>
+			<ChildItems>
+				<PictureDecoration name="NotesPicture" id="132">
+					<Picture>
+						<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="NotesPictureContextMenu" id="133"/>
+					<ExtendedTooltip name="NotesPictureExtendedTooltip" id="134"/>
+				</PictureDecoration>
+				<LabelDecoration name="NoteService" id="127">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The permissions to use and add data processors are given by the service provider.
+For further assistance, contact provider's technical support.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="NoteServiceContextMenu" id="128"/>
+					<ExtendedTooltip name="NoteServiceExtendedTooltip" id="129"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="35"/>
+			<ChildItems>
+				<ButtonGroup name="AddingButtons" id="26">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Add buttons</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AddingButtonsExtendedTooltip" id="36"/>
+					<ChildItems>
+						<Button name="Create" id="27">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Create</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Add from file…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CreateExtendedTooltip" id="37">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Add from local file...</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+						<Button name="CreateFolder" id="28">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.CreateFolder</CommandName>
+							<ExtendedTooltip name="CreateFolderExtendedTooltip" id="38"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<ButtonGroup name="ImportExportGroup" id="99">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Import and export</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ImportExportGroupExtendedTooltip" id="100"/>
+					<ChildItems>
+						<Button name="LoadFromFile" id="56">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.LoadFromFile</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update from file…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="LoadFromFileExtendedTooltip" id="57"/>
+						</Button>
+						<Button name="ExportToFile" id="58">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ExportToFile</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Save as…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ExportToFileExtendedTooltip" id="59"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<ButtonGroup name="GroupChange" id="103">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Edit</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupChangeExtendedTooltip" id="104"/>
+					<ChildItems>
+						<Button name="ChangeDeletionMarkNoProfiles" id="105">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.List.StandardCommand.SetDeletionMark</CommandName>
+							<ExtendedTooltip name="ChangeDeletionMarkNoProfilesExtendedTooltip" id="106"/>
+						</Button>
+						<Button name="ChangeSelectedItems" id="62">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ChangeSelectedItems</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edit selected…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ChangeSelectedItemsExtendedTooltip" id="63"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<ButtonGroup name="FormCommands" id="30">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Form commands</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="FormCommandsExtendedTooltip" id="40"/>
+				</ButtonGroup>
+				<Popup name="ChangePublishingOptionGroup" id="64">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Availability</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ChangePublishingOptionGroupExtendedTooltip" id="65"/>
+					<ChildItems>
+						<Button name="Used" id="72">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PublicationAvailable</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Active</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="UsedExtendedTooltip" id="73"/>
+						</Button>
+						<Button name="DebugMode" id="76">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PublicationDebugMode</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Debug mode</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="DebugModeExtendedTooltip" id="77"/>
+						</Button>
+						<Button name="isDisabled" id="74">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.PublicationDisabled</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Inactive</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="isDisabledExtendedTooltip" id="75"/>
+						</Button>
+					</ChildItems>
+				</Popup>
+				<Button name="Help" id="31">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="HelpExtendedTooltip" id="41"/>
+				</Button>
+				<SearchStringAddition name="SearchList" id="135">
+					<AdditionSource>
+						<Item>List</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List search</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SearchListContextMenu" id="136"/>
+					<ExtendedTooltip name="SearchListExtendedTooltip" id="137"/>
+				</SearchStringAddition>
+				<SearchControlAddition name="ListSearchManagement" id="138">
+					<AdditionSource>
+						<Item>List</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List search management</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ListSearchManagementContextMenu" id="139"/>
+					<ExtendedTooltip name="ListSearchManagementExtendedTooltip" id="140"/>
+				</SearchControlAddition>
+			</ChildItems>
+		</CommandBar>
+		<Table name="List" id="1">
+			<Representation>Tree</Representation>
+			<SkipOnInput>false</SkipOnInput>
+			<DefaultItem>true</DefaultItem>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandAllLevels</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Copy</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>false</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<ButtonGroup name="AddingButtonsMenu" id="111">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Add buttons</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="AddingButtonsMenuExtendedTooltip" id="112"/>
+						<ChildItems>
+							<Button name="CreateMenu" id="113">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.Create</CommandName>
+								<ExtendedTooltip name="CreateMenuExtendedTooltip" id="114"/>
+							</Button>
+							<Button name="CreateMenuGroup" id="115">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.CreateFolder</CommandName>
+								<ExtendedTooltip name="CreateMenuGroupExtendedTooltip" id="116"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Popup name="ChangePublishingOptionGroupMenu" id="119">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Availability</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ChangePublishingOptionGroupMenuExtendedTooltip" id="120"/>
+						<ChildItems>
+							<Button name="EnabledMenu" id="121">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.PublicationAvailable</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Active</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="EnabledMenuExtendedTooltip" id="122"/>
+							</Button>
+							<Button name="DebugModeMenu" id="123">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.PublicationDebugMode</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Debug mode</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="DebugModeMenuExtendedTooltip" id="124"/>
+							</Button>
+							<Button name="DisabledMenu" id="125">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.PublicationDisabled</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Inactive</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="DisabledMenuExtendedTooltip" id="126"/>
+							</Button>
+						</ChildItems>
+					</Popup>
+					<ButtonGroup name="ChangeGroupMenu" id="107">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Edit menu</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ChangeGroupMenuExtendedTooltip" id="108"/>
+						<ChildItems>
+							<Button name="ChangeDeletionMarkNoProfilesMenu" id="109">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.List.StandardCommand.SetDeletionMark</CommandName>
+								<ExtendedTooltip name="ChangeDeletionMarkNoProfilesMenuExtendedTooltip" id="110"/>
+							</Button>
+							<Button name="ChangeSelectedItemsMenu" id="60">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.ChangeSelectedItems</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Edit selected…</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ChangeSelectedItemsMenuExtendedTooltip" id="61"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<ButtonGroup name="ImportExportGroupMenu" id="101">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Import and export menu</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ImportExportGroupMenuExtendedTooltip" id="102"/>
+						<ChildItems>
+							<Button name="ExportFromMenuFile" id="54">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.LoadFromFile</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Update from file…</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ExportFromMenuFileExtendedTooltip" id="55"/>
+							</Button>
+							<Button name="ExportToFileMenu" id="52">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.ExportToFile</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Save as…</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ExportToFileMenuExtendedTooltip" id="53"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="ListCommandBar" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ListExtendedTooltip" id="42"/>
+			<SearchStringAddition name="ListSearchString" id="80">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="81"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="82"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="83">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="84"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="85"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="86">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="87"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="88"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="BeforeAddRow">ListBeforeAddRow</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="Description" id="4">
+					<DataPath>List.Description</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="DescriptionContextMenu" id="5"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="43"/>
+				</LabelField>
+				<LabelField name="Kind" id="13">
+					<DataPath>List.Kind</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<Width>21</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="KindContextMenu" id="14"/>
+					<ExtendedTooltip name="KindExtendedTooltip" id="44"/>
+				</LabelField>
+				<LabelField name="Publication" id="11">
+					<DataPath>List.Publication</DataPath>
+					<Width>12</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="PublicationContextMenu" id="12"/>
+					<ExtendedTooltip name="PublicationExtendedTooltip" id="45"/>
+				</LabelField>
+				<LabelField name="Version" id="9">
+					<DataPath>List.Version</DataPath>
+					<Width>7</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="VersionContextMenu" id="10"/>
+					<ExtendedTooltip name="VersionExtendedTooltip" id="46"/>
+				</LabelField>
+				<LabelField name="EmployeeResponsible" id="7">
+					<DataPath>List.EmployeeResponsible</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="EmployeeResponsibleContextMenu" id="8"/>
+					<ExtendedTooltip name="EmployeeResponsibleExtendedTooltip" id="47"/>
+				</LabelField>
+				<LabelField name="ObjectName" id="15">
+					<DataPath>List.ObjectName</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="ObjectNameContextMenu" id="16"/>
+					<ExtendedTooltip name="ObjectNameExtendedTooltip" id="48"/>
+				</LabelField>
+				<LabelField name="Ref" id="49">
+					<DataPath>List.Ref</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="RefContextMenu" id="50"/>
+					<ExtendedTooltip name="RefExtendedTooltip" id="51"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.DeletionMark</Field>
+				<Field>List.Description</Field>
+				<Field>List.FileName</Field>
+				<Field>List.IsFolder</Field>
+				<Field>List.IsReport</Field>
+				<Field>List.ObjectName</Field>
+				<Field>List.Publication</Field>
+				<Field>List.Ref</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	Table.Ref,
+	Table.DeletionMark,
+	Table.Description,
+	Table.Version,
+	Table.EmployeeResponsible,
+	Table.Publication,
+	Table.Kind,
+	Table.ObjectName,
+	Table.IsFolder,
+	CASE
+		WHEN Table.Kind IN (&amp;AddlReportsKinds)
+			THEN TRUE
+		ELSE FALSE
+	END AS IsReport,
+	Table.FileName
+FROM
+	Catalog.AdditionalReportsAndDataProcessors AS Table
+WHERE
+	CASE
+			WHEN Table.IsFolder
+				THEN TRUE
+			WHEN &amp;PublicationFilter = UNDEFINED
+				THEN TRUE
+			WHEN &amp;PublicationFilter = 1
+				THEN Table.Publication IN (&amp;AllPublicationsExceptDisabled)
+			ELSE Table.Publication = &amp;PublicationFilter
+		END
+	AND CASE
+			WHEN Table.IsFolder
+				THEN TRUE
+			WHEN &amp;KindFilter = UNDEFINED
+				THEN TRUE
+			WHEN &amp;KindFilter = 1
+				THEN Table.Kind IN (&amp;AddlReportsKinds)
+			WHEN &amp;KindFilter = 2
+				THEN NOT Table.Kind IN (&amp;AddlReportsKinds)
+			ELSE Table.Kind = &amp;KindFilter
+		END</QueryText>
+				<MainTable>Catalog.AdditionalReportsAndDataProcessors</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="PublicationFilter" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Availability</v8:content>
+				</v8:item>
+			</Title>
+			<Type/>
+			<Save>
+				<Field>PublicationFilter</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="KindFilter" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Type</v8:content>
+				</v8:item>
+			</Title>
+			<Type/>
+			<Save>
+				<Field>KindFilter</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="UseProfiles" id="4">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ExportToFile" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save as…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save the data processor or report to a file.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SaveFileAs</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ExportToFile</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.StandardSubsystemsLocalMode</Item>
+			</FunctionalOptions>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="LoadFromFile" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update from file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update the data processor or report from a file.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.UpdateFileFromFileOnHardDrive</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ImportReportDataProcessorsFile</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.StandardSubsystemsLocalMode</Item>
+			</FunctionalOptions>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeSelectedItems" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit selected…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit the selected items.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ChangeSelectedItems</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.StandardSubsystemsLocalMode</Item>
+			</FunctionalOptions>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="PublicationDebugMode" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Debug mode</v8:content>
+				</v8:item>
+			</Title>
+			<Action>PublicationDebugMode</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="PublicationDisabled" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Disabled</v8:content>
+				</v8:item>
+			</Title>
+			<Action>PublicationDisabled</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="PublicationAvailable" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Used</v8:content>
+				</v8:item>
+			</Title>
+			<Action>PublicationAvailable</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Title">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="Representation">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>
