@@ -3,10 +3,32 @@
 	<AutoTime>CurrentOrLast</AutoTime>
 	<UsePostingMode>Auto</UsePostingMode>
 	<RepostOnWrite>true</RepostOnWrite>
-	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Popup name="PrintSubmenu" id="123">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Print</v8:content>
+					</v8:item>
+				</Title>
+				<Picture>
+					<xr:Ref>StdPicture.Print</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<Representation>Picture</Representation>
+				<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="124"/>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
 	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
 		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
 		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
 	</Events>
 	<ChildItems>
 		<UsualGroup name="GroupHeader" id="100">
@@ -276,29 +298,38 @@
 							<v8:content>Additional information</v8:content>
 						</v8:item>
 					</Title>
+					<Group>HorizontalIfPossible</Group>
 					<ExtendedTooltip name="GroupAdditionalInfoExtendedTooltip" id="97"/>
 					<ChildItems>
+						<UsualGroup name="GroupInfo" id="121">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupInfoExtendedTooltip" id="122"/>
+							<ChildItems>
+								<InputField name="Comment" id="22">
+									<DataPath>Object.Comment</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="CommentContextMenu" id="23"/>
+									<ExtendedTooltip name="CommentExtendedTooltip" id="24"/>
+								</InputField>
+								<LabelField name="Author" id="25">
+									<DataPath>Object.Author</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AuthorContextMenu" id="26"/>
+									<ExtendedTooltip name="AuthorExtendedTooltip" id="27"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
 						<UsualGroup name="GroupAdditionalAttributes" id="98">
 							<Group>Vertical</Group>
 							<Behavior>Usual</Behavior>
-							<Representation>NormalSeparation</Representation>
+							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
 							<ThroughAlign>Use</ThroughAlign>
 							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="99"/>
 						</UsualGroup>
-						<InputField name="Comment" id="22">
-							<DataPath>Object.Comment</DataPath>
-							<EditMode>EnterOnInput</EditMode>
-							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="CommentContextMenu" id="23"/>
-							<ExtendedTooltip name="CommentExtendedTooltip" id="24"/>
-						</InputField>
-						<LabelField name="Author" id="25">
-							<DataPath>Object.Author</DataPath>
-							<EditMode>EnterOnInput</EditMode>
-							<ContextMenu name="AuthorContextMenu" id="26"/>
-							<ExtendedTooltip name="AuthorExtendedTooltip" id="27"/>
-						</LabelField>
 					</ChildItems>
 				</Page>
 			</ChildItems>

@@ -4,8 +4,14 @@
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
 	<AutoCommandBar name="FormCommandBar" id="-1"/>
 	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
 		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
 		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
 	</Events>
 	<ChildItems>
 		<RadioButtonField name="ProductType" id="13">
@@ -99,6 +105,12 @@
 					<ExtendedTooltip name="VATRateExtendedTooltip" id="21"/>
 				</InputField>
 			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupAdditionalAttributes" id="32">
+			<Group>Vertical</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="33"/>
 		</UsualGroup>
 	</ChildItems>
 	<Attributes>

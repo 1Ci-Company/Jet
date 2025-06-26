@@ -31,7 +31,17 @@
 //
 Procedure OnGetPredefinedPropertiesSets(Sets) Export
 	
+	Set = Sets.Rows.Add();
+	Set.Name = "Catalog_Counterparties";
+	Set.Id = New UUID("482e8520-99cb-4470-a45e-208a893b9f7d");
 	
+	Set = Sets.Rows.Add();
+	Set.Name = "Catalog_Products";
+	Set.Id = New UUID("c98ff7be-cf63-42be-b1b3-fe6a06a5d21c");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_SupplierInvoice";
+	Set.Id = New UUID("5c04a609-0f47-4c24-9647-72950a35e35d");
 	
 EndProcedure
 

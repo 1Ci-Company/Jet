@@ -28,7 +28,7 @@
 //
 Procedure OnDefinePrintSettings(Settings) Export
 	
-	
+	Settings.PrintObjects.Add(Documents.SupplierInvoice);
 	
 EndProcedure
 
