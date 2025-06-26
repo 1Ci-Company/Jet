@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormSet" id="44">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.Set</CommandName>
+				<ExtendedTooltip name="FormSetExtendedTooltip" id="45"/>
+			</Button>
+			<Button name="FormClose" id="46">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Close</CommandName>
+				<ExtendedTooltip name="FormCloseExtendedTooltip" id="47"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupMain" id="48">
+			<Group>Vertical</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupMainExtendedTooltip" id="49"/>
+			<ChildItems>
+				<InputField name="EffectiveDate" id="41">
+					<DataPath>EffectiveDate</DataPath>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="EffectiveDateContextMenu" id="42"/>
+					<ExtendedTooltip name="EffectiveDateExtendedTooltip" id="43"/>
+					<Events>
+						<Event name="OnChange">EffectiveDateOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="PriceType" id="1">
+					<DataPath>PriceType</DataPath>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="PriceTypeContextMenu" id="2"/>
+					<ExtendedTooltip name="PriceTypeExtendedTooltip" id="3"/>
+					<Events>
+						<Event name="OnChange">PriceTypeOnChange</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupProductPrices" id="60">
+			<Group>Vertical</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupProductPricesExtendedTooltip" id="61"/>
+			<ChildItems>
+				<Table name="ProductPrices" id="10">
+					<Representation>List</Representation>
+					<AutoMaxRowsCount>false</AutoMaxRowsCount>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<DataPath>ProductPrices</DataPath>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="ProductPricesContextMenu" id="11"/>
+					<AutoCommandBar name="ProductPricesCommandBar" id="12">
+						<ChildItems>
+							<Button name="FillIn" id="52">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.FillIn</CommandName>
+								<BackColor>style:ImportantColor</BackColor>
+								<ExtendedTooltip name="FillInExtendedTooltip" id="53"/>
+							</Button>
+						</ChildItems>
+					</AutoCommandBar>
+					<ExtendedTooltip name="ProductPricesExtendedTooltip" id="13"/>
+					<SearchStringAddition name="ProductPricesSearchString" id="14">
+						<AdditionSource>
+							<Item>ProductPrices</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ProductPricesSearchStringContextMenu" id="15"/>
+						<ExtendedTooltip name="ProductPricesSearchStringExtendedTooltip" id="16"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ProductPricesViewStatus" id="17">
+						<AdditionSource>
+							<Item>ProductPrices</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ProductPricesViewStatusContextMenu" id="18"/>
+						<ExtendedTooltip name="ProductPricesViewStatusExtendedTooltip" id="19"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ProductPricesSearchControl" id="20">
+						<AdditionSource>
+							<Item>ProductPrices</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ProductPricesSearchControlContextMenu" id="21"/>
+						<ExtendedTooltip name="ProductPricesSearchControlExtendedTooltip" id="22"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<InputField name="ProductPricesProduct" id="23">
+							<DataPath>ProductPrices.Product</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ProductPricesProductContextMenu" id="24"/>
+							<ExtendedTooltip name="ProductPricesProductExtendedTooltip" id="25"/>
+						</InputField>
+						<InputField name="ProductPricesCurrentPrice" id="26">
+							<DataPath>ProductPrices.CurrentPrice</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ProductPricesCurrentPriceContextMenu" id="27"/>
+							<ExtendedTooltip name="ProductPricesCurrentPriceExtendedTooltip" id="28"/>
+						</InputField>
+						<InputField name="ProductPricesNewPrice" id="29">
+							<DataPath>ProductPrices.NewPrice</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ProductPricesNewPriceContextMenu" id="30"/>
+							<ExtendedTooltip name="ProductPricesNewPriceExtendedTooltip" id="31"/>
+						</InputField>
+						<LabelField name="ProductPricesAdditionalColumn" id="64">
+							<DataPath>ProductPrices.AdditionalColumn</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ProductPricesAdditionalColumnContextMenu" id="65"/>
+							<ExtendedTooltip name="ProductPricesAdditionalColumnExtendedTooltip" id="66"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+				<UsualGroup name="GroupChanging" id="58">
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupChangingExtendedTooltip" id="59"/>
+					<ChildItems>
+						<InputField name="PriceAdjustmentMethod" id="32">
+							<DataPath>PriceAdjustmentMethod</DataPath>
+							<ListChoiceMode>true</ListChoiceMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ChooseType>false</ChooseType>
+							<TextEdit>false</TextEdit>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Increase by percent</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">IncByPercent</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Decrease by percent</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">DecByPercent</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Increase by amount</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">IncByAmount</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Decrease by amount</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">DecByAmount</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<InputHint>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Select method</v8:content>
+								</v8:item>
+							</InputHint>
+							<ContextMenu name="PriceAdjustmentMethodContextMenu" id="33"/>
+							<ExtendedTooltip name="PriceAdjustmentMethodExtendedTooltip" id="34"/>
+							<Events>
+								<Event name="OnChange">PriceAdjustmentMethodOnChange</Event>
+							</Events>
+						</InputField>
+						<InputField name="AdjustmentPercent" id="38">
+							<DataPath>AdjustmentPercent</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="AdjustmentPercentContextMenu" id="39"/>
+							<ExtendedTooltip name="AdjustmentPercentExtendedTooltip" id="40"/>
+						</InputField>
+						<InputField name="AdjustmentAmount" id="35">
+							<DataPath>AdjustmentAmount</DataPath>
+							<Visible>false</Visible>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="AdjustmentAmountContextMenu" id="36"/>
+							<ExtendedTooltip name="AdjustmentAmountExtendedTooltip" id="37"/>
+						</InputField>
+						<Button name="ApplyNewPrices" id="67">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.ApplyNewPrices</CommandName>
+							<ExtendedTooltip name="ApplyNewPricesExtendedTooltip" id="68"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.PricesSetup</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="PriceType" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Price type</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.PriceTypes</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ProductPrices" id="3">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Product" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Product</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Products</v8:Type>
+					</Type>
+				</Column>
+				<Column name="CurrentPrice" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Current price</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="NewPrice" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>New price</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="AdditionalColumn" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SourcePriceType" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Source price type</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.PriceTypes</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PriceAdjustmentMethod" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Price adjustment method</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AdjustmentAmount" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Amount</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>15</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AdjustmentPercent" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Percent</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="EffectiveDate" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Effective date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+			<FillCheck>ShowError</FillCheck>
+		</Attribute>
+		<Attribute name="PrevEffectiveDate" id="5">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PrevPriceType" id="10">
+			<Type>
+				<v8:Type>cfg:CatalogRef.PriceTypes</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Set" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.Success</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Set</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="FillIn" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill in</v8:content>
+				</v8:item>
+			</Title>
+			<Action>FillIn</Action>
+		</Command>
+		<Command name="ApplyNewPrices" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ApplyNewPrices</Action>
+		</Command>
+	</Commands>
+</Form>

@@ -144,15 +144,6 @@
 	CatalogProducts.ProductType AS ProductType,
 	CatalogProducts.Unit AS Unit,
 	CatalogProducts.VATRate AS VATRate,
-	CatalogProducts.AdditionalAttributes.(
-		Ref AS Ref,
-		LineNumber AS LineNumber,
-		Property AS Property,
-		Value AS Value,
-		TextString AS TextString
-	) AS AdditionalAttributes,
-	CatalogProducts.Predefined AS Predefined,
-	CatalogProducts.PredefinedDataName AS PredefinedDataName,
 	CASE
 		WHEN FilesExist.HasFiles IS NULL
 			THEN 0
@@ -205,28 +196,8 @@ FROM
 					<dcssch:field>Description</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.LineNumber</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.LineNumber</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.Ref</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.Ref</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>VATRate</dcssch:dataPath>
 					<dcssch:field>VATRate</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.Property</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.Property</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.Value</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.Value</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.TextString</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.TextString</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>Predefined</dcssch:dataPath>

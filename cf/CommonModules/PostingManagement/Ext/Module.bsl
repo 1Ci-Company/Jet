@@ -69,6 +69,27 @@ Procedure ReflectPurchases(AdditionalProperties, RegisterRecords, Cancel) Export
 	
 EndProcedure
 
+// Movements on the Sales register.
+//
+// Parameters:
+//  AdditionalProperties -  Structure - additional properties.
+//  RegisterRecords - RegisterRecordsCollection - collection of document register record recordsets.
+//  Cancel - Boolean - if set True, the document will not be posted.
+//
+Procedure ReflectSales(AdditionalProperties, RegisterRecords, Cancel) Export
+	
+	TableSales = AdditionalProperties.TableForRegisterRecords.TableSales;
+	
+	If Cancel Or TableSales.Count() = 0 Then
+		Return;
+	EndIf;
+	
+	PurchaseRecord = RegisterRecords.Sales;
+	PurchaseRecord.Write = True;
+	PurchaseRecord.Load(TableSales);
+	
+EndProcedure
+
 #EndRegion
 
 #Region Private
