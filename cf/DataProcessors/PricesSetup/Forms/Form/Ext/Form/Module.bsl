@@ -66,6 +66,21 @@ Procedure Set(Command)
 	
 EndProcedure
 
+// StandardSubsystems.ImportDataFromFile
+&AtClient
+Procedure ImportPricesFromFile(Command)
+	
+	ImportParameters = ImportDataFromFileClient.DataImportParameters();
+	ImportParameters.FullTabularSectionName = "PricesSetupAuxiliary.ProductPrices";
+	ImportParameters.Title = NStr("en = 'Import prices from file'");
+	
+	CallbackDescription = New CallbackDescription("ImportPricesFromFileEnd", ThisObject);
+	
+	ImportDataFromFileClient.ShowImportForm(ImportParameters, CallbackDescription);
+	
+EndProcedure
+// End StandardSubsystems.ImportDataFromFile
+
 #EndRegion
 
 #Region Private
@@ -287,6 +302,8 @@ Procedure SetPricesAtServer()
 		RecordSet.Write();
 	EndIf;
 	
+	Common.MessageToUser(NStr("en = 'Prices are set.'"));
+	
 EndProcedure
 
 &AtServer
@@ -378,5 +395,37 @@ Function ProductListClearQuestionText()
 	Return NStr("en = 'The product list will be cleared. Continue?'");
 	
 EndFunction
+
+// StandardSubsystems.ImportDataFromFile
+&AtClient
+Procedure ImportPricesFromFileEnd(ImportedDataAddress, AdditionalParameters) Export
+	
+	If ImportedDataAddress = Undefined Then
+		Return;
+	EndIf;
+	
+	ImportPricesFromFileAtServer(ImportedDataAddress);
+	
+EndProcedure
+
+&AtServer
+Procedure ImportPricesFromFileAtServer(ImportedDataAddress)
+	
+	ImportedData = GetFromTempStorage(ImportedDataAddress);
+	
+	For Each TableRow In ImportedData Do
+		
+		If Not ValueIsFilled(TableRow.Product) Then 
+			Continue;
+		EndIf;
+		
+		NewRow = ProductPrices.Add();
+		NewRow.Product = TableRow.Product;
+		NewRow.NewPrice = TableRow.NewPrice;
+		
+	EndDo;
+	
+EndProcedure
+// End StandardSubsystems.ImportDataFromFile
 
 #EndRegion

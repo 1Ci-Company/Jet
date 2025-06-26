@@ -121,6 +121,14 @@ Procedure UndoPosting(Cancel)
 	
 EndProcedure
 
+Procedure FillCheckProcessing(Cancel, CheckedAttributes)
+	
+	If Operation = Enums.BankPaymentOperations.Other Then
+		CheckedAttributes.Delete(CheckedAttributes.Find("Counterparty"));
+	EndIf;
+	
+EndProcedure
+
 #EndRegion
 
 #EndIf

@@ -3,7 +3,24 @@
 	<AutoTime>CurrentOrLast</AutoTime>
 	<UsePostingMode>Auto</UsePostingMode>
 	<RepostOnWrite>true</RepostOnWrite>
-	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Popup name="PrintSubmenu" id="70">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Print</v8:content>
+					</v8:item>
+				</Title>
+				<Picture>
+					<xr:Ref>StdPicture.Print</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<Representation>Picture</Representation>
+				<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="71"/>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
 	<Events>
 		<Event name="AfterWrite">AfterWrite</Event>
 		<Event name="NotificationProcessing">NotificationProcessing</Event>
@@ -86,7 +103,15 @@
 							<DataPath>Object.Inventory</DataPath>
 							<RowFilter xsi:nil="true"/>
 							<ContextMenu name="InventoryContextMenu" id="17"/>
-							<AutoCommandBar name="InventoryCommandBar" id="18"/>
+							<AutoCommandBar name="InventoryCommandBar" id="18">
+								<ChildItems>
+									<Button name="InventoryImportInventoryFromFile" id="72">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ImportInventoryFromFile</CommandName>
+										<ExtendedTooltip name="InventoryImportInventoryFromFileExtendedTooltip" id="73"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
 							<ExtendedTooltip name="InventoryExtendedTooltip" id="19"/>
 							<SearchStringAddition name="InventorySearchString" id="20">
 								<AdditionSource>
@@ -242,4 +267,23 @@
 			</UseAlways>
 		</Attribute>
 	</Attributes>
+	<Commands>
+		<Command name="ImportInventoryFromFile" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import from file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import inventory from file</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ImportInventoryFromFile</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
 </Form>

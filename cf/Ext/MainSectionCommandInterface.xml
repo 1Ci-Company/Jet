@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CommandInterface xmlns="http://v8.1c.ru/8.3/xcf/extrnprops" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandsVisibility>
+		<Command name="Catalog.Counterparties.Command.Customers">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="Catalog.Products.StandardCommand.OpenList">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="Document.SupplierInvoice.StandardCommand.OpenList">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="Document.SalesInvoice.StandardCommand.OpenList">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="DocumentJournal.Interactions.StandardCommand.OpenList">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="CommonCommand.MyNotes">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="CommonCommand.MyReminders">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="DataProcessor.InventoryCostRecalculation.StandardCommand.Open">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="CommonCommand.GitHubRepository">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="CommonCommand.JetProductPage">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+		<Command name="CommonForm.ApplicationReleaseNotes.StandardCommand.Open">
+			<Visibility>
+				<xr:Common>true</xr:Common>
+			</Visibility>
+		</Command>
+	</CommandsVisibility>
+	<CommandsPlacement>
+		<Command name="Catalog.Counterparties.Command.Customers">
+			<CommandGroup>CommandGroup.Catalogs</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="Catalog.Products.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.Catalogs</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="Document.SupplierInvoice.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.Documents</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="Document.SalesInvoice.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.Documents</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="DocumentJournal.Interactions.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.OrganizerJet</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="CommonCommand.MyNotes">
+			<CommandGroup>CommandGroup.OrganizerJet</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="CommonCommand.MyReminders">
+			<CommandGroup>CommandGroup.OrganizerJet</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="DataProcessor.InventoryCostRecalculation.StandardCommand.Open">
+			<CommandGroup>ActionsPanelTools</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="CommonCommand.GitHubRepository">
+			<CommandGroup>CommandGroup.Information</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="CommonCommand.JetProductPage">
+			<CommandGroup>CommandGroup.Information</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+		<Command name="CommonForm.ApplicationReleaseNotes.StandardCommand.Open">
+			<CommandGroup>CommandGroup.Information</CommandGroup>
+			<Placement>Manual</Placement>
+		</Command>
+	</CommandsPlacement>
+	<CommandsOrder>
+		<Command name="Catalog.Counterparties.Command.Customers">
+			<CommandGroup>CommandGroup.Catalogs</CommandGroup>
+		</Command>
+		<Command name="Catalog.Products.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.Catalogs</CommandGroup>
+		</Command>
+		<Command name="Document.SupplierInvoice.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.Documents</CommandGroup>
+		</Command>
+		<Command name="Document.SalesInvoice.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.Documents</CommandGroup>
+		</Command>
+		<Command name="DocumentJournal.Interactions.StandardCommand.OpenList">
+			<CommandGroup>CommandGroup.OrganizerJet</CommandGroup>
+		</Command>
+		<Command name="CommonCommand.MyNotes">
+			<CommandGroup>CommandGroup.OrganizerJet</CommandGroup>
+		</Command>
+		<Command name="CommonCommand.MyReminders">
+			<CommandGroup>CommandGroup.OrganizerJet</CommandGroup>
+		</Command>
+		<Command name="CommonCommand.GitHubRepository">
+			<CommandGroup>CommandGroup.Information</CommandGroup>
+		</Command>
+		<Command name="CommonCommand.JetProductPage">
+			<CommandGroup>CommandGroup.Information</CommandGroup>
+		</Command>
+		<Command name="CommonForm.ApplicationReleaseNotes.StandardCommand.Open">
+			<CommandGroup>CommandGroup.Information</CommandGroup>
+		</Command>
+	</CommandsOrder>
+	<GroupsOrder>
+		<Group>NavigationPanelImportant</Group>
+		<Group>NavigationPanelOrdinary</Group>
+		<Group>CommandGroup.Catalogs</Group>
+		<Group>CommandGroup.Documents</Group>
+		<Group>CommandGroup.OrganizerJet</Group>
+		<Group>CommandGroup.Information</Group>
+	</GroupsOrder>
+</CommandInterface>

@@ -11,7 +11,12 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	// End StandardSubsystems.AttachableCommands
 	
 	// StandardSubsystems.Properties
+	LabelsDisplayParameters = PropertyManager.LabelsDisplayParameters();
+	LabelsDisplayParameters.LabelsDestinationElementName = Items.GroupLabels.Name;
+	LabelsDisplayParameters.LabelsDisplayOption = Enums.LabelsDisplayOptions.Label;
+	
 	AdditionalParameters = New Structure;
+	AdditionalParameters.Insert("LabelsDisplayParameters", LabelsDisplayParameters);
 	AdditionalParameters.Insert("ItemForPlacementName", "GroupAdditionalAttributes");
 	PropertyManager.OnCreateAtServer(ThisObject, AdditionalParameters);
 	// End StandardSubsystems.Properties

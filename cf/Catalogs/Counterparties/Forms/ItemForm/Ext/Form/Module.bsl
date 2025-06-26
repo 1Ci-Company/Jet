@@ -9,7 +9,12 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	// End StandardSubsystems.AttachableCommands
 	
 	// StandardSubsystems.Properties
+	LabelsDisplayParameters = PropertyManager.LabelsDisplayParameters();
+	LabelsDisplayParameters.LabelsDestinationElementName = Items.GroupLabels.Name;
+	LabelsDisplayParameters.LabelsDisplayOption = Enums.LabelsDisplayOptions.Label;
+	
 	AdditionalParameters = New Structure;
+	AdditionalParameters.Insert("LabelsDisplayParameters", LabelsDisplayParameters);
 	AdditionalParameters.Insert("ItemForPlacementName", "GroupAdditionalAttributes");
 	PropertyManager.OnCreateAtServer(ThisObject, AdditionalParameters);
 	// End StandardSubsystems.Properties
@@ -19,6 +24,10 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	AdditionalParameters.ItemForPlacementName = "ContactInformationGroup";
 	ContactsManager.OnCreateAtServer(ThisObject, Object, AdditionalParameters);
 	// End StandardSubsystems.ContactInformation
+	
+	// StandardSubsystems.Interactions
+	Interactions.PrepareNotifications(ThisObject, Parameters, False);
+	// End StandardSubsystems.Interactions
 	
 EndProcedure
 
@@ -58,6 +67,10 @@ Procedure AfterWrite(WriteParameters)
 	// StandardSubsystems.AttachableCommands
 	AttachableCommandsClient.AfterWrite(ThisObject, Object, WriteParameters);
 	// End StandardSubsystems.AttachableCommands
+	
+	// StandardSubsystems.Interactions
+	InteractionsClient.ContactAfterWrite(ThisObject, Object, WriteParameters, "Counterparties");
+	// End StandardSubsystems.Interactions
 	
 EndProcedure
 

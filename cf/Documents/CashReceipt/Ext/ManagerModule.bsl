@@ -106,6 +106,31 @@ Procedure InitializeDocumentData(CashReceiptRef, AdditionalProperties) Export
 	
 EndProcedure
 
+// StandardSubsystems.Print
+
+// Overrides object's print settings.
+//
+// Parameters:
+//  Settings - See PrintManagement.ObjectPrintingSettings.
+//
+Procedure OnDefinePrintSettings(Settings) Export
+	
+	Settings.OnAddPrintCommands = True;
+	
+EndProcedure
+
+// Populates a list of print commands.
+// 
+// Parameters:
+//  PrintCommands - See PrintManagement.CreatePrintCommandsCollection
+//
+Procedure AddPrintCommands(PrintCommands) Export
+	
+	
+EndProcedure
+
+// End StandardSubsystems.Print
+
 #EndRegion
 
 #EndIf

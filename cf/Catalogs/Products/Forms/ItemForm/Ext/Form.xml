@@ -49,25 +49,11 @@
 			<ContextMenu name="ProductTypeContextMenu" id="14"/>
 			<ExtendedTooltip name="ProductTypeExtendedTooltip" id="15"/>
 		</RadioButtonField>
-		<InputField name="Description" id="4">
-			<DataPath>Object.Description</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="DescriptionContextMenu" id="5"/>
-			<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
-		</InputField>
-		<UsualGroup name="GroupParentCode" id="22">
+		<UsualGroup name="GroupCodeLabels" id="22">
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="GroupParentCodeExtendedTooltip" id="23"/>
+			<ExtendedTooltip name="GroupCodeLabelsExtendedTooltip" id="23"/>
 			<ChildItems>
-				<InputField name="Parent" id="7">
-					<DataPath>Object.Parent</DataPath>
-					<EditMode>EnterOnInput</EditMode>
-					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="ParentContextMenu" id="8"/>
-					<ExtendedTooltip name="ParentExtendedTooltip" id="9"/>
-				</InputField>
 				<InputField name="Code" id="1">
 					<DataPath>Object.Code</DataPath>
 					<EditMode>EnterOnInput</EditMode>
@@ -75,8 +61,34 @@
 					<ContextMenu name="CodeContextMenu" id="2"/>
 					<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
 				</InputField>
+				<UsualGroup name="GroupLabels" id="34">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Labels</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupLabelsExtendedTooltip" id="35"/>
+				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
+		<InputField name="Description" id="4">
+			<DataPath>Object.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="DescriptionContextMenu" id="5"/>
+			<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
+		</InputField>
+		<InputField name="Parent" id="7">
+			<DataPath>Object.Parent</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ParentContextMenu" id="8"/>
+			<ExtendedTooltip name="ParentExtendedTooltip" id="9"/>
+		</InputField>
 		<InputField name="DetailedDescription" id="10">
 			<DataPath>Object.DetailedDescription</DataPath>
 			<EditMode>EnterOnInput</EditMode>

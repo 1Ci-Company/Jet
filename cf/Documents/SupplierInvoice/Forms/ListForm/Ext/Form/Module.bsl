@@ -23,6 +23,24 @@ Procedure ListOnActivateRow(Item)
 	
 EndProcedure
 
+&AtClient
+Procedure ListDragCheck(Item, DragParameters, StandardProcessing, Row, Field)
+	
+	// StandardSubsystems.Interactions
+	InteractionsClient.ListSubjectDragCheck(Item, DragParameters, StandardProcessing, Row, Field);
+	// End StandardSubsystems.Interactions
+	
+EndProcedure
+
+&AtClient
+Procedure ListDrag(Item, DragParameters, StandardProcessing, Row, Field)
+	
+	// StandardSubsystems.Interactions
+	InteractionsClient.ListSubjectDrag(Item, DragParameters, StandardProcessing, Row, Field);
+	// End StandardSubsystems.Interactions
+	
+EndProcedure
+
 #EndRegion
 
 #Region FormCommandsEventHandlers

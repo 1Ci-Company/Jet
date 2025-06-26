@@ -126,14 +126,14 @@ EndProcedure
 &AtClient
 Procedure InventoryQuantityOnChange(Item)
 	
-	InventoryTabularSectionClient.CalculateAmount(Items.Inventory.CurrentData);
+	InventoryTabularSectionClientServer.CalculateAmount(Items.Inventory.CurrentData);
 	
 EndProcedure
 
 &AtClient
 Procedure InventoryPriceOnChange(Item)
 	
-	InventoryTabularSectionClient.CalculateAmount(Items.Inventory.CurrentData);
+	InventoryTabularSectionClientServer.CalculateAmount(Items.Inventory.CurrentData);
 	
 EndProcedure
 
@@ -146,14 +146,14 @@ Procedure InventoryAmountOnChange(Item)
 		TabSectionRow.Price = Round(TabSectionRow.Amount / TabSectionRow.Quantity, 2);
 	EndIf;
 	
-	InventoryTabularSectionClient.CalculateVATAmountAndTotal(TabSectionRow);
+	InventoryTabularSectionClientServer.CalculateVATAmountAndTotal(TabSectionRow);
 	
 EndProcedure
 
 &AtClient
 Procedure InventoryVATRateOnChange(Item)
 	
-	InventoryTabularSectionClient.CalculateVATAmountAndTotal(Items.Inventory.CurrentData);
+	InventoryTabularSectionClientServer.CalculateVATAmountAndTotal(Items.Inventory.CurrentData);
 	
 EndProcedure
 
@@ -218,6 +218,21 @@ Procedure SelectAdvances(Command)
 	OpenForm("CommonForm.SelectAdvances", FormParameters,,,,, SelectAdvancesOnClose);
 	
 EndProcedure
+
+// StandardSubsystems.ImportDataFromFile
+&AtClient
+Procedure ImportInventoryFromFile(Command)
+	
+	ImportParameters = ImportDataFromFileClient.DataImportParameters();
+	ImportParameters.FullTabularSectionName = "SupplierInvoice.Inventory";
+	ImportParameters.Title = NStr("en = 'Import inventory from file'");
+	
+	CallbackDescription = New CallbackDescription("ImportInventoryFromFileEnd", ThisObject);
+	
+	ImportDataFromFileClient.ShowImportForm(ImportParameters, CallbackDescription);
+	
+EndProcedure
+// End StandardSubsystems.ImportDataFromFile
 
 // StandardSubsystems.AttachableCommands
 &AtClient
@@ -296,6 +311,16 @@ Procedure FormManagement()
 				Object.Currency);
 	EndIf;
 	
+#If MobileClient Then
+	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Title", NStr("en = 'Totals'"));
+	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Behavior", UsualGroupBehavior.Collapsible);
+	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "ShowTitle", True);
+	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "ControlRepresentation", UsualGroupControlRepresentation.TitleHyperlink);
+	Items.GroupTotal.Hide();
+	
+	Items.InventoryImportInventoryFromFile.Visible = False;
+#EndIf
+
 EndProcedure
 
 &AtClient
@@ -340,5 +365,45 @@ Procedure UpdateAdditionalAttributesItems()
 	PropertyManager.UpdateAdditionalAttributesItems(ThisObject);
 EndProcedure
 // End StandardSubsystems.Properties
+
+// StandardSubsystems.ImportDataFromFile
+
+&AtClient
+Procedure ImportInventoryFromFileEnd(ImportedDataAddress, AdditionalParameters) Export
+	
+	If ImportedDataAddress = Undefined Then
+		Return;
+	EndIf;
+	
+	ImportInventoryFromFileAtServer(ImportedDataAddress);
+	
+EndProcedure
+
+&AtServer
+Procedure ImportInventoryFromFileAtServer(ImportedDataAddress)
+	
+	ImportedData = GetFromTempStorage(ImportedDataAddress);
+	
+	For Each TableRow In ImportedData Do
+		
+		If Not ValueIsFilled(TableRow.Product) Then 
+			Continue;
+		EndIf;
+		
+		NewRow = Object.Inventory.Add();
+		NewRow.Product = TableRow.Product;
+		NewRow.Quantity = TableRow.Quantity;
+		NewRow.Price = TableRow.Price;
+		NewRow.VATRate = TableRow.VATRate;
+		
+		InventoryTabularSectionClientServer.CalculateAmount(NewRow);
+		
+		Modified = True;
+		
+	EndDo;
+	
+EndProcedure
+
+// End StandardSubsystems.ImportDataFromFile
 
 #EndRegion

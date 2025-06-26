@@ -66,6 +66,11 @@
 					<ContextMenu name="ProductPricesContextMenu" id="11"/>
 					<AutoCommandBar name="ProductPricesCommandBar" id="12">
 						<ChildItems>
+							<Button name="ImportPricesFromFile" id="69">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.ImportPricesFromFile</CommandName>
+								<ExtendedTooltip name="ImportPricesFromFileExtendedTooltip" id="70"/>
+							</Button>
 							<Button name="FillIn" id="52">
 								<Type>CommandBarButton</Type>
 								<CommandName>Form.Command.FillIn</CommandName>
@@ -278,7 +283,7 @@
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
 							<v8:Digits>15</v8:Digits>
-							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:FractionDigits>2</v8:FractionDigits>
 							<v8:AllowedSign>Any</v8:AllowedSign>
 						</v8:NumberQualifiers>
 					</Type>
@@ -294,7 +299,7 @@
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
 							<v8:Digits>15</v8:Digits>
-							<v8:FractionDigits>3</v8:FractionDigits>
+							<v8:FractionDigits>2</v8:FractionDigits>
 							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
 						</v8:NumberQualifiers>
 					</Type>
@@ -429,6 +434,22 @@
 				</v8:item>
 			</Title>
 			<Action>ApplyNewPrices</Action>
+		</Command>
+		<Command name="ImportPricesFromFile" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import from file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import prices from file</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ImportPricesFromFile</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
 	</Commands>
 </Form>

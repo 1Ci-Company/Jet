@@ -21,7 +21,11 @@
 //
 Procedure GetSectionsWithAdditionalDataProcessors(Sections) Export
 	
-	
+	Sections.Add(Metadata.Subsystems.CashManagement);
+	Sections.Add(Metadata.Subsystems.Company);
+	Sections.Add(Metadata.Subsystems.Purchases);
+	Sections.Add(Metadata.Subsystems.Sales);
+	Sections.Add(Metadata.Subsystems.Warehouses);
 	
 EndProcedure
 
@@ -36,7 +40,11 @@ EndProcedure
 //
 Procedure GetSectionsWithAdditionalReports(Sections) Export
 	
-	
+	Sections.Add(Metadata.Subsystems.CashManagement);
+	Sections.Add(Metadata.Subsystems.Company);
+	Sections.Add(Metadata.Subsystems.Purchases);
+	Sections.Add(Metadata.Subsystems.Sales);
+	Sections.Add(Metadata.Subsystems.Warehouses);
 	
 EndProcedure
 

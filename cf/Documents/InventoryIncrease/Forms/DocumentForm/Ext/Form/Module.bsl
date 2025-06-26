@@ -32,6 +32,8 @@ EndProcedure
 &AtClient
 Procedure OnOpen(Cancel)
 	
+	FormManagement();
+	
 	// StandardSubsystems.AttachableCommands
 	AttachableCommandsClient.StartCommandUpdate(ThisObject);
 	// End StandardSubsystems.AttachableCommands
@@ -114,6 +116,21 @@ EndProcedure
 
 #Region FormCommandsEventHandlers
 
+// StandardSubsystems.ImportDataFromFile
+&AtClient
+Procedure ImportInventoryFromFile(Command)
+	
+	ImportParameters = ImportDataFromFileClient.DataImportParameters();
+	ImportParameters.FullTabularSectionName = "InventoryIncrease.Inventory";
+	ImportParameters.Title = NStr("en = 'Import inventory from file'");
+	
+	CallbackDescription = New CallbackDescription("ImportInventoryFromFileEnd", ThisObject);
+	
+	ImportDataFromFileClient.ShowImportForm(ImportParameters, CallbackDescription);
+	
+EndProcedure
+// End StandardSubsystems.ImportDataFromFile
+
 // StandardSubsystems.AttachableCommands
 &AtClient
 Procedure Attachable_ExecuteCommand(Command)
@@ -158,6 +175,15 @@ Procedure CalculateAmount()
 	
 EndProcedure
 
+&AtClient
+Procedure FormManagement()
+
+#If MobileClient Then
+	Items.InventoryImportInventoryFromFile.Visible = False;
+#EndIf
+
+EndProcedure
+
 // StandardSubsystems.Properties
 &AtClient
 Procedure UpdateAdditionalAttributesDependencies()
@@ -174,5 +200,44 @@ Procedure UpdateAdditionalAttributesItems()
 	PropertyManager.UpdateAdditionalAttributesItems(ThisObject);
 EndProcedure
 // End StandardSubsystems.Properties
+
+// StandardSubsystems.ImportDataFromFile
+
+&AtClient
+Procedure ImportInventoryFromFileEnd(ImportedDataAddress, AdditionalParameters) Export
+	
+	If ImportedDataAddress = Undefined Then
+		Return;
+	EndIf;
+	
+	ImportInventoryFromFileAtServer(ImportedDataAddress);
+	
+EndProcedure
+
+&AtServer
+Procedure ImportInventoryFromFileAtServer(ImportedDataAddress)
+	
+	ImportedData = GetFromTempStorage(ImportedDataAddress);
+	
+	For Each TableRow In ImportedData Do
+		
+		If Not ValueIsFilled(TableRow.Product) Then 
+			Continue;
+		EndIf;
+		
+		NewRow = Object.Inventory.Add();
+		NewRow.Product = TableRow.Product;
+		NewRow.Quantity = TableRow.Quantity;
+		NewRow.Price = TableRow.Price;
+		
+		NewRow.Amount = NewRow.Quantity * NewRow.Price;
+		
+		Modified = True;
+		
+	EndDo;
+	
+EndProcedure
+
+// End StandardSubsystems.ImportDataFromFile
 
 #EndRegion

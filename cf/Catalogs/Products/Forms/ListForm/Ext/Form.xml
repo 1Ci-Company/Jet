@@ -72,6 +72,7 @@
 			</SearchControlAddition>
 			<Events>
 				<Event name="OnActivateRow">ListOnActivateRow</Event>
+				<Event name="OnGetDataAtServer">ListOnGetDataAtServer</Event>
 			</Events>
 			<ChildItems>
 				<PictureField name="HasFiles" id="34">
@@ -89,6 +90,75 @@
 					<ContextMenu name="HasFilesContextMenu" id="35"/>
 					<ExtendedTooltip name="HasFilesExtendedTooltip" id="36"/>
 				</PictureField>
+				<ColumnGroup name="GroupLabels" id="37">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Labels</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<ShowTitle>false</ShowTitle>
+					<ShowInHeader>true</ShowInHeader>
+					<HeaderPicture>
+						<xr:Ref>CommonPicture.Label</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</HeaderPicture>
+					<ExtendedTooltip name="GroupLabelsExtendedTooltip" id="38"/>
+					<ChildItems>
+						<PictureField name="Label1" id="41">
+							<DataPath>List.Label1</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Label 1</v8:content>
+								</v8:item>
+							</Title>
+							<ShowInHeader>false</ShowInHeader>
+							<ShowInFooter>false</ShowInFooter>
+							<ValuesPicture>
+								<xr:Ref>CommonPicture.PropertiesIcons</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</ValuesPicture>
+							<ContextMenu name="Label1ContextMenu" id="42"/>
+							<ExtendedTooltip name="Label1ExtendedTooltip" id="43"/>
+						</PictureField>
+						<PictureField name="Label2" id="44">
+							<DataPath>List.Label2</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Label 2</v8:content>
+								</v8:item>
+							</Title>
+							<ShowInHeader>false</ShowInHeader>
+							<ShowInFooter>false</ShowInFooter>
+							<ValuesPicture>
+								<xr:Ref>CommonPicture.PropertiesIcons</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</ValuesPicture>
+							<ContextMenu name="Label2ContextMenu" id="45"/>
+							<ExtendedTooltip name="Label2ExtendedTooltip" id="46"/>
+						</PictureField>
+						<PictureField name="Label3" id="47">
+							<DataPath>List.Label3</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Label 3</v8:content>
+								</v8:item>
+							</Title>
+							<ShowInHeader>false</ShowInHeader>
+							<ShowInFooter>false</ShowInFooter>
+							<ValuesPicture>
+								<xr:Ref>CommonPicture.PropertiesIcons</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</ValuesPicture>
+							<ContextMenu name="Label3ContextMenu" id="48"/>
+							<ExtendedTooltip name="Label3ExtendedTooltip" id="49"/>
+						</PictureField>
+					</ChildItems>
+				</ColumnGroup>
 				<LabelField name="Description" id="19">
 					<DataPath>List.Description</DataPath>
 					<DefaultItem>true</DefaultItem>
@@ -115,11 +185,30 @@
 					<UserVisible>
 						<xr:Common>false</xr:Common>
 					</UserVisible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Ref</v8:content>
+						</v8:item>
+					</Title>
 					<ContextMenu name="RefContextMenu" id="17"/>
 					<ExtendedTooltip name="RefExtendedTooltip" id="18"/>
 				</LabelField>
 			</ChildItems>
 		</Table>
+		<UsualGroup name="GroupLegendLabels" id="39">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Label legend</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>true</HorizontalStretch>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupLegendLabelsExtendedTooltip" id="40"/>
+		</UsualGroup>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="List" id="1">
@@ -144,13 +233,23 @@
 	CatalogProducts.ProductType AS ProductType,
 	CatalogProducts.Unit AS Unit,
 	CatalogProducts.VATRate AS VATRate,
+	CatalogProducts.AdditionalAttributes.(
+		Ref AS Ref,
+		LineNumber AS LineNumber,
+		Property AS Property,
+		Value AS Value,
+		TextString AS TextString
+	) AS AdditionalAttributes,
 	CASE
 		WHEN FilesExist.HasFiles IS NULL
 			THEN 0
 		WHEN FilesExist.HasFiles
 			THEN 1
 		ELSE 0
-	END AS HasFiles
+	END AS HasFiles,
+	0 AS Label1,
+	0 AS Label2,
+	0 AS Label3
 FROM
 	Catalog.Products AS CatalogProducts
 		LEFT JOIN InformationRegister.FilesExist AS FilesExist
@@ -214,6 +313,56 @@ FROM
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>Has files</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes.LineNumber</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes.LineNumber</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes.Ref</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes.Ref</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes.Property</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes.Property</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes.Value</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes.Value</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AdditionalAttributes.TextString</dcssch:dataPath>
+					<dcssch:field>AdditionalAttributes.TextString</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Label1</dcssch:dataPath>
+					<dcssch:field>Label1</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Label 1</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Label2</dcssch:dataPath>
+					<dcssch:field>Label2</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Label 2</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Label3</dcssch:dataPath>
+					<dcssch:field>Label3</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Label 3</v8:content>
 						</v8:item>
 					</dcssch:title>
 				</Field>

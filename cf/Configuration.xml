@@ -705,6 +705,7 @@
 			<CommonPicture>SectionCompany</CommonPicture>
 			<CommonPicture>SectionPurchases</CommonPicture>
 			<CommonPicture>SectionSales</CommonPicture>
+			<CommonPicture>SectionSettings</CommonPicture>
 			<CommonPicture>SectionWarehouse</CommonPicture>
 			<CommonPicture>SelectReportOption</CommonPicture>
 			<CommonPicture>SendEmail</CommonPicture>
@@ -867,6 +868,7 @@
 			<Role>Administration</Role>
 			<Role>BasicAccessExternalUserSSL</Role>
 			<Role>BasicAccessSSL</Role>
+			<Role>BasicRights</Role>
 			<Role>EditAccessGroupMembers</Role>
 			<Role>EditAdditionalInfo</Role>
 			<Role>EditCompleteTask</Role>
@@ -1056,6 +1058,7 @@
 			<CommonModule>ImportDataFromFile</CommonModule>
 			<CommonModule>ImportDataFromFileClient</CommonModule>
 			<CommonModule>ImportDataFromFileClientServer</CommonModule>
+			<CommonModule>ImportDataFromFileJet</CommonModule>
 			<CommonModule>ImportDataFromFileOverridable</CommonModule>
 			<CommonModule>InfobaseUpdate</CommonModule>
 			<CommonModule>InfobaseUpdateClient</CommonModule>
@@ -1078,7 +1081,7 @@
 			<CommonModule>InteractionsLocalization</CommonModule>
 			<CommonModule>InteractionsOverridable</CommonModule>
 			<CommonModule>InteractionsServerCall</CommonModule>
-			<CommonModule>InventoryTabularSectionClient</CommonModule>
+			<CommonModule>InventoryTabularSectionClientServer</CommonModule>
 			<CommonModule>ItemOrderSetup</CommonModule>
 			<CommonModule>ItemOrderSetupInternal</CommonModule>
 			<CommonModule>JetCached</CommonModule>
@@ -1195,6 +1198,7 @@
 			<CommonModule>UserRemindersGlobal</CommonModule>
 			<CommonModule>UserRemindersInternal</CommonModule>
 			<CommonModule>UserRemindersInternalClient</CommonModule>
+			<CommonModule>UserRemindersJet</CommonModule>
 			<CommonModule>UserRemindersOverridable</CommonModule>
 			<CommonModule>UserRemindersServerCall</CommonModule>
 			<CommonModule>Users</CommonModule>
@@ -1266,6 +1270,8 @@
 			<EventSubscription>SetClearNotesDeletionMark</EventSubscription>
 			<EventSubscription>SetDeletionMarkForAttachedDocumentFiles</EventSubscription>
 			<EventSubscription>SetDeletionMarkForInteractionsDocumentAttachments</EventSubscription>
+			<EventSubscription>SetDocumentDeletionMarkChangeStatus</EventSubscription>
+			<EventSubscription>SetObjectDeletionMarkChangeStatus</EventSubscription>
 			<EventSubscription>SetUserDeletionNoteChangeStatus</EventSubscription>
 			<EventSubscription>ShouldCheckAccessBeforeWrite</EventSubscription>
 			<EventSubscription>UpdateAccessValuesGroupsBeforeWrite</EventSubscription>
@@ -1391,8 +1397,18 @@
 			<DefinedType>User</DefinedType>
 			<CommonCommand>AccessRights</CommonCommand>
 			<CommonCommand>AdditionalDataProcessorsAdministration</CommonCommand>
+			<CommonCommand>AdditionalDataProcessorsCashManagement</CommonCommand>
+			<CommonCommand>AdditionalDataProcessorsCompany</CommonCommand>
+			<CommonCommand>AdditionalDataProcessorsPurchases</CommonCommand>
+			<CommonCommand>AdditionalDataProcessorsSales</CommonCommand>
+			<CommonCommand>AdditionalDataProcessorsWarehouses</CommonCommand>
 			<CommonCommand>AdditionalInfoCommandBar</CommonCommand>
 			<CommonCommand>AdditionalReportsAdministration</CommonCommand>
+			<CommonCommand>AdditionalReportsCashManagement</CommonCommand>
+			<CommonCommand>AdditionalReportsCompany</CommonCommand>
+			<CommonCommand>AdditionalReportsPurchases</CommonCommand>
+			<CommonCommand>AdditionalReportsSales</CommonCommand>
+			<CommonCommand>AdditionalReportsWarehouses</CommonCommand>
 			<CommonCommand>AllFiles</CommonCommand>
 			<CommonCommand>AttachedFiles</CommonCommand>
 			<CommonCommand>BusinessProcessFlowchart</CommonCommand>
@@ -1402,15 +1418,23 @@
 			<CommonCommand>ExitWarnings</CommonCommand>
 			<CommonCommand>FilesInVolume</CommonCommand>
 			<CommonCommand>FilesToEdit</CommonCommand>
+			<CommonCommand>GitHubRepository</CommonCommand>
 			<CommonCommand>HeaderAndFooterSettings</CommonCommand>
 			<CommonCommand>ImportCurrenciesRates</CommonCommand>
 			<CommonCommand>Install1CEnterpriseExtension</CommonCommand>
+			<CommonCommand>JetProductPage</CommonCommand>
+			<CommonCommand>MyNotes</CommonCommand>
 			<CommonCommand>MyNotesOnSubject</CommonCommand>
+			<CommonCommand>MyReminders</CommonCommand>
 			<CommonCommand>ProxyServerCustomSettings</CommonCommand>
 			<CommonCommand>RelatedDocuments</CommonCommand>
 			<CommonCommand>RelatedObjectsCreation</CommonCommand>
 			<CommonCommand>Remind</CommonCommand>
 			<CommonCommand>ReportPanelAdministration</CommonCommand>
+			<CommonCommand>ReportPanelCashManagement</CommonCommand>
+			<CommonCommand>ReportPanelPurchases</CommonCommand>
+			<CommonCommand>ReportPanelSales</CommonCommand>
+			<CommonCommand>ReportPanelWarehouses</CommonCommand>
 			<CommonCommand>ReportsSnapshotsForStandaloneMode</CommonCommand>
 			<CommonCommand>RolesAndTaskPerformers</CommonCommand>
 			<CommonCommand>SendMail</CommonCommand>
@@ -1422,9 +1446,12 @@
 			<CommonCommand>TasksBySubject</CommonCommand>
 			<CommonCommand>TimeInApp</CommonCommand>
 			<CommonCommand>UserInfo</CommonCommand>
+			<CommandGroup>Catalogs</CommandGroup>
+			<CommandGroup>Documents</CommandGroup>
 			<CommandGroup>Information</CommandGroup>
 			<CommandGroup>Interactions</CommandGroup>
 			<CommandGroup>Organizer</CommandGroup>
+			<CommandGroup>OrganizerJet</CommandGroup>
 			<CommandGroup>Print</CommandGroup>
 			<Constant>AccessUpdateThreadsCount</Constant>
 			<Constant>ChangeJobsBackdated</Constant>
@@ -1654,6 +1681,7 @@
 			<Document>OutgoingEmail</Document>
 			<Document>PhoneCall</Document>
 			<Document>PlannedInteraction</Document>
+			<Document>PricesSetupAuxiliary</Document>
 			<Document>SalesInvoice</Document>
 			<Document>SMSMessage</Document>
 			<Document>SupplierInvoice</Document>
@@ -1725,6 +1753,7 @@
 			<Report>BusinessProcesses</Report>
 			<Report>CashStatement</Report>
 			<Report>CustomerBalance</Report>
+			<Report>Dashboard</Report>
 			<Report>DeferredUpdateDuration</Report>
 			<Report>DeferredUpdateProgress</Report>
 			<Report>DocumentRegisterRecords</Report>
@@ -1761,6 +1790,7 @@
 			<DataProcessor>ImportDataFromFile</DataProcessor>
 			<DataProcessor>InventoryCostRecalculation</DataProcessor>
 			<DataProcessor>MarkedObjectsDeletion</DataProcessor>
+			<DataProcessor>PersonalSettings</DataProcessor>
 			<DataProcessor>PlatformUpdateRecommended</DataProcessor>
 			<DataProcessor>PricesSetup</DataProcessor>
 			<DataProcessor>ReplaceAndMergeItems</DataProcessor>

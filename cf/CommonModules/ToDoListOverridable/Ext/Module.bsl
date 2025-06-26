@@ -34,7 +34,11 @@
 //
 Procedure OnDetermineToDoListHandlers(ToDoList) Export
 	
+	ToDoList.Add(DataProcessors.InventoryCostRecalculation);
 	
+	If GetFunctionalOption("UseUserReminders") Then
+		ToDoList.Add(UserRemindersJet);
+	EndIf;
 	
 EndProcedure
 

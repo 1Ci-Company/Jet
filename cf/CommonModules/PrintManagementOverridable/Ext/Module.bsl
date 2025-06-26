@@ -30,6 +30,13 @@ Procedure OnDefinePrintSettings(Settings) Export
 	
 	Settings.PrintObjects.Add(Documents.SupplierInvoice);
 	Settings.PrintObjects.Add(Documents.SalesInvoice);
+	Settings.PrintObjects.Add(Documents.BankPayment);
+	Settings.PrintObjects.Add(Documents.BankReceipt);
+	Settings.PrintObjects.Add(Documents.CashReceipt);
+	Settings.PrintObjects.Add(Documents.CashVoucher);
+	Settings.PrintObjects.Add(Documents.InventoryIncrease);
+	Settings.PrintObjects.Add(Documents.InventoryTransfer);
+	Settings.PrintObjects.Add(Documents.InventoryWriteOff);
 	
 EndProcedure
 
