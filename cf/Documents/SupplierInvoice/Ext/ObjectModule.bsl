@@ -28,6 +28,9 @@ Procedure Posting(Cancel, PostingMode)
 	// Movements on the SupplierBalance register
 	PostingManagement.ReflectSupplierBalance(AdditionalProperties, RegisterRecords, Cancel);
 	
+	// Movements on the InventoryCost register
+	PostingManagement.ReflectInventoryCost(AdditionalProperties, RegisterRecords, Cancel);
+	
 	// Writing of the records sets.
 	PostingManagement.WriteRecordSets(ThisObject);
 	

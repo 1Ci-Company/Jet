@@ -29,7 +29,8 @@ Procedure InitializeDocumentData(InventoryIncreaseRef, AdditionalProperties) Exp
 	|	DocumentHeader.Date AS Period,
 	|	DocumentHeader.Warehouse AS Warehouse,
 	|	InventoryIncreaseInventory.Product AS Product,
-	|	InventoryIncreaseInventory.Quantity AS Quantity
+	|	InventoryIncreaseInventory.Quantity AS Quantity,
+	|	InventoryIncreaseInventory.Amount AS Amount
 	|INTO DocumentInventory
 	|FROM
 	|	DocumentHeader AS DocumentHeader
@@ -50,13 +51,31 @@ Procedure InitializeDocumentData(InventoryIncreaseRef, AdditionalProperties) Exp
 	|GROUP BY
 	|	DocumentInventory.Product,
 	|	DocumentInventory.Period,
-	|	DocumentInventory.Warehouse";
+	|	DocumentInventory.Warehouse
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Receipt) AS RecordType,
+	|	DocumentInventory.Period AS Period,
+	|	DocumentInventory.Product AS Product,
+	|	DocumentInventory.Warehouse AS Warehouse,
+	|	SUM(DocumentInventory.Quantity) AS Quantity,
+	|	SUM(DocumentInventory.Amount) AS Amount
+	|FROM
+	|	DocumentInventory AS DocumentInventory
+	|
+	|GROUP BY
+	|	DocumentInventory.Warehouse,
+	|	DocumentInventory.Product,
+	|	DocumentInventory.Period";
 	
 	Query.SetParameter("Ref", InventoryIncreaseRef);
 	
 	QueryResult = Query.ExecuteBatch();
 	
 	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[2].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryCost", QueryResult[3].Unload());
 	
 EndProcedure
 

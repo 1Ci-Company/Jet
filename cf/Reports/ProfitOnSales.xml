@@ -1,36 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
-	<Subsystem uuid="767beaa8-80d1-480d-97ad-903dd427861b">
+	<Report uuid="041e6a57-926b-44d1-96b6-40742ca9e378">
+		<InternalInfo>
+			<xr:GeneratedType name="ReportObject.ProfitOnSales" category="Object">
+				<xr:TypeId>7412bd59-0d53-4343-a6a0-e4cdb6d94505</xr:TypeId>
+				<xr:ValueId>872fb5c3-7f0b-4206-ac62-bfd9b769fd37</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="ReportManager.ProfitOnSales" category="Manager">
+				<xr:TypeId>f6a34fb8-2704-4e3d-aafa-86367b966d4f</xr:TypeId>
+				<xr:ValueId>37e9e0ce-479c-4fbd-a02b-1e240448bdc8</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
 		<Properties>
-			<Name>Warehouses</Name>
+			<Name>ProfitOnSales</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>en</v8:lang>
-					<v8:content>Warehouses</v8:content>
+					<v8:content>Profit on sales</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
-			<IncludeHelpInContents>true</IncludeHelpInContents>
-			<IncludeInCommandInterface>true</IncludeInCommandInterface>
-			<UseOneCommand>false</UseOneCommand>
+			<UseStandardCommands>true</UseStandardCommands>
+			<DefaultForm/>
+			<AuxiliaryForm/>
+			<MainDataCompositionSchema>Report.ProfitOnSales.Template.MainDataCompositionSchema</MainDataCompositionSchema>
+			<DefaultSettingsForm/>
+			<AuxiliarySettingsForm/>
+			<DefaultVariantForm/>
+			<VariantsStorage/>
+			<SettingsStorage/>
+			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<ExtendedPresentation/>
 			<Explanation/>
-			<Picture>
-				<xr:Ref>CommonPicture.SectionWarehouse</xr:Ref>
-				<xr:LoadTransparent>true</xr:LoadTransparent>
-			</Picture>
-			<Content>
-				<xr:Item xsi:type="xr:MDObjectRef">AccumulationRegister.InventoryInWarehouses</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Report.AvailableStock</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Role.UseWarehouses</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">AccumulationRegister.InventoryCost</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Report.StockStatement</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.InventoryCostRecalculation</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Sequence.InventoryCostRecalculation</xr:Item>
-			</Content>
 		</Properties>
 		<ChildObjects>
-			<Subsystem>Catalogs</Subsystem>
-			<Subsystem>Warehouse</Subsystem>
+			<Template>MainDataCompositionSchema</Template>
 		</ChildObjects>
-	</Subsystem>
+	</Report>
 </MetaDataObject>

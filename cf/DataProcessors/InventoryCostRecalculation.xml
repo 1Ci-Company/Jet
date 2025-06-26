@@ -1,36 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
-	<Subsystem uuid="767beaa8-80d1-480d-97ad-903dd427861b">
+	<DataProcessor uuid="ec69a8f3-8f12-4e6f-bfc7-b00a277e93ed">
+		<InternalInfo>
+			<xr:GeneratedType name="DataProcessorObject.InventoryCostRecalculation" category="Object">
+				<xr:TypeId>eedf1bbc-15f7-41a8-a872-47990d49f40d</xr:TypeId>
+				<xr:ValueId>d50ef829-06cb-4dfb-a0a1-047079ff248f</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DataProcessorManager.InventoryCostRecalculation" category="Manager">
+				<xr:TypeId>8e293e25-ec99-4b7b-b9a9-c20cfd09c050</xr:TypeId>
+				<xr:ValueId>01478609-d138-4695-b210-046521ca923f</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
 		<Properties>
-			<Name>Warehouses</Name>
+			<Name>InventoryCostRecalculation</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>en</v8:lang>
-					<v8:content>Warehouses</v8:content>
+					<v8:content>Inventory cost recalculation</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
-			<IncludeHelpInContents>true</IncludeHelpInContents>
-			<IncludeInCommandInterface>true</IncludeInCommandInterface>
-			<UseOneCommand>false</UseOneCommand>
+			<UseStandardCommands>true</UseStandardCommands>
+			<DefaultForm>DataProcessor.InventoryCostRecalculation.Form.Form</DefaultForm>
+			<AuxiliaryForm/>
+			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<ExtendedPresentation/>
 			<Explanation/>
-			<Picture>
-				<xr:Ref>CommonPicture.SectionWarehouse</xr:Ref>
-				<xr:LoadTransparent>true</xr:LoadTransparent>
-			</Picture>
-			<Content>
-				<xr:Item xsi:type="xr:MDObjectRef">AccumulationRegister.InventoryInWarehouses</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Report.AvailableStock</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Role.UseWarehouses</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">AccumulationRegister.InventoryCost</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Report.StockStatement</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.InventoryCostRecalculation</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Sequence.InventoryCostRecalculation</xr:Item>
-			</Content>
 		</Properties>
 		<ChildObjects>
-			<Subsystem>Catalogs</Subsystem>
-			<Subsystem>Warehouse</Subsystem>
+			<Form>Form</Form>
 		</ChildObjects>
-	</Subsystem>
+	</DataProcessor>
 </MetaDataObject>

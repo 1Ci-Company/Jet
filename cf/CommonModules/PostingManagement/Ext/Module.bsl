@@ -186,6 +186,27 @@ Procedure ReflectSupplierBalance(AdditionalProperties, RegisterRecords, Cancel) 
 	
 EndProcedure
 
+// Movements on the InventoryCost register.
+//
+// Parameters:
+//  AdditionalProperties -  Structure - additional properties.
+//  RegisterRecords - RegisterRecordsCollection - collection of document register record recordsets.
+//  Cancel - Boolean - if set True, the document will not be posted.
+//
+Procedure ReflectInventoryCost(AdditionalProperties, RegisterRecords, Cancel) Export
+	
+	TableInventoryCost = AdditionalProperties.TableForRegisterRecords.TableInventoryCost;
+	
+	If Cancel Or TableInventoryCost.Count() = 0 Then
+		Return;
+	EndIf;
+	
+	InventoryCostRecord = RegisterRecords.InventoryCost;
+	InventoryCostRecord.Write = True;
+	InventoryCostRecord.Load(TableInventoryCost);
+	
+EndProcedure
+
 #EndRegion
 
 #Region Private
