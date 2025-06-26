@@ -277,6 +277,7 @@
 			<Subsystem>Purchases</Subsystem>
 			<Subsystem>Sales</Subsystem>
 			<Subsystem>StandardSubsystems</Subsystem>
+			<Subsystem>Warehouses</Subsystem>
 			<StyleItem>ActionInListColumnFont</StyleItem>
 			<StyleItem>AddedAttributeBackground</StyleItem>
 			<StyleItem>AllowedAccessRightColor</StyleItem>
@@ -701,6 +702,7 @@
 			<CommonPicture>SectionCompany</CommonPicture>
 			<CommonPicture>SectionPurchases</CommonPicture>
 			<CommonPicture>SectionSales</CommonPicture>
+			<CommonPicture>SectionWarehouse</CommonPicture>
 			<CommonPicture>SelectReportOption</CommonPicture>
 			<CommonPicture>SendEmail</CommonPicture>
 			<CommonPicture>SendReceiveEmail</CommonPicture>
@@ -898,6 +900,7 @@
 			<Role>UsePurchases</Role>
 			<Role>UseSales</Role>
 			<Role>UseUniversalReport</Role>
+			<Role>UseWarehouses</Role>
 			<Role>ViewApplicationChangeLog</Role>
 			<Role>ViewDocumentRecordsReport</Role>
 			<Role>ViewEventLog</Role>
@@ -1587,6 +1590,9 @@
 			<Catalog>IncomingEmailAttachedFiles</Catalog>
 			<Catalog>InteractionsTabs</Catalog>
 			<Catalog>InternetServicesAuthorizationSettings</Catalog>
+			<Catalog>InventoryIncreaseAttachedFiles</Catalog>
+			<Catalog>InventoryTransferAttachedFiles</Catalog>
+			<Catalog>InventoryWriteOffAttachedFiles</Catalog>
 			<Catalog>MeetingAttachedFiles</Catalog>
 			<Catalog>MessageTemplates</Catalog>
 			<Catalog>MessageTemplatesAttachedFiles</Catalog>
@@ -1617,8 +1623,13 @@
 			<Catalog>UserReportSettings</Catalog>
 			<Catalog>Users</Catalog>
 			<Catalog>VATRates</Catalog>
+			<Catalog>Warehouses</Catalog>
+			<Catalog>WarehousesAttachedFiles</Catalog>
 			<Catalog>WorldCountries</Catalog>
 			<Document>IncomingEmail</Document>
+			<Document>InventoryIncrease</Document>
+			<Document>InventoryTransfer</Document>
+			<Document>InventoryWriteOff</Document>
 			<Document>Meeting</Document>
 			<Document>OutgoingEmail</Document>
 			<Document>PhoneCall</Document>
@@ -1683,6 +1694,7 @@
 			<Report>AccessGroupsMembers</Report>
 			<Report>AccessRights</Report>
 			<Report>AccessRightsAnalysis</Report>
+			<Report>AvailableStock</Report>
 			<Report>BusinessProcesses</Report>
 			<Report>DeferredUpdateDuration</Report>
 			<Report>DeferredUpdateProgress</Report>
@@ -1808,6 +1820,7 @@
 			<InformationRegister>UsersAccessKeysCurrentJobs</InformationRegister>
 			<InformationRegister>UsersAccessKeysUpdate</InformationRegister>
 			<InformationRegister>UsersInfo</InformationRegister>
+			<AccumulationRegister>InventoryInWarehouses</AccumulationRegister>
 			<AccumulationRegister>Purchases</AccumulationRegister>
 			<AccumulationRegister>Sales</AccumulationRegister>
 			<ChartOfCharacteristicTypes>AdditionalAttributesAndInfo</ChartOfCharacteristicTypes>

@@ -100,6 +100,11 @@
 					<ContextMenu name="CustomerContextMenu" id="44"/>
 					<ExtendedTooltip name="CustomerExtendedTooltip" id="45"/>
 				</LabelField>
+				<LabelField name="Warehouse" id="46">
+					<DataPath>List.Warehouse</DataPath>
+					<ContextMenu name="WarehouseContextMenu" id="47"/>
+					<ExtendedTooltip name="WarehouseExtendedTooltip" id="48"/>
+				</LabelField>
 				<LabelField name="Number" id="22">
 					<DataPath>List.Number</DataPath>
 					<ContextMenu name="NumberContextMenu" id="23"/>
@@ -153,6 +158,7 @@
 	DocumentSalesInvoice.Date AS Date,
 	DocumentSalesInvoice.Posted AS Posted,
 	DocumentSalesInvoice.Customer AS Customer,
+	DocumentSalesInvoice.Warehouse AS Warehouse,
 	DocumentSalesInvoice.Currency AS Currency,
 	DocumentSalesInvoice.ExchangeRate AS ExchangeRate,
 	DocumentSalesInvoice.Multiplier AS Multiplier,
@@ -245,6 +251,10 @@ FROM
 				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>PriceType</dcssch:dataPath>
 					<dcssch:field>PriceType</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Warehouse</dcssch:dataPath>
+					<dcssch:field>Warehouse</dcssch:field>
 				</Field>
 				<MainTable>Document.SalesInvoice</MainTable>
 				<ListSettings>

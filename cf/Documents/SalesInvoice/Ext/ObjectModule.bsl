@@ -23,8 +23,30 @@ Procedure Posting(Cancel, PostingMode)
 	// Movements on the Sales register
 	PostingManagement.ReflectSales(AdditionalProperties, RegisterRecords, Cancel);
 	
+	// Movements on the InventoryInWarehouses register
+	PostingManagement.ReflectInventoryInWarehouses(AdditionalProperties, RegisterRecords, Cancel);
+	
 	// Writing of the records sets.
 	PostingManagement.WriteRecordSets(ThisObject);
+	
+	// Negative balance control
+	AccumulationRegisters.InventoryInWarehouses.NegativeBalanceControl(Ref, AdditionalProperties, Cancel);
+	
+EndProcedure
+
+Procedure UndoPosting(Cancel)
+	
+	// Initialization of additional properties for document posting.
+	PostingManagement.InitializeAdditionalPropertiesForPosting(Ref, AdditionalProperties);
+	
+	// Preparation of records sets.
+	PostingManagement.PrepareRecordSetsForWriting(ThisObject);
+	
+	// Writing of the records sets.
+	PostingManagement.WriteRecordSets(ThisObject);
+	
+	// Negative balance control
+	AccumulationRegisters.InventoryInWarehouses.NegativeBalanceControl(Ref, AdditionalProperties, Cancel);
 	
 EndProcedure
 
