@@ -275,6 +275,7 @@
 			<Subsystem>Company</Subsystem>
 			<Subsystem>InternalSubsystem</Subsystem>
 			<Subsystem>Purchases</Subsystem>
+			<Subsystem>Sales</Subsystem>
 			<Subsystem>StandardSubsystems</Subsystem>
 			<StyleItem>ActionInListColumnFont</StyleItem>
 			<StyleItem>AddedAttributeBackground</StyleItem>
@@ -699,6 +700,7 @@
 			<CommonPicture>Scanning</CommonPicture>
 			<CommonPicture>SectionCompany</CommonPicture>
 			<CommonPicture>SectionPurchases</CommonPicture>
+			<CommonPicture>SectionSales</CommonPicture>
 			<CommonPicture>SelectReportOption</CommonPicture>
 			<CommonPicture>SendEmail</CommonPicture>
 			<CommonPicture>SendReceiveEmail</CommonPicture>
@@ -894,6 +896,7 @@
 			<Role>UseCompany</Role>
 			<Role>UseCurrentToDosProcessor</Role>
 			<Role>UsePurchases</Role>
+			<Role>UseSales</Role>
 			<Role>UseUniversalReport</Role>
 			<Role>ViewApplicationChangeLog</Role>
 			<Role>ViewDocumentRecordsReport</Role>
@@ -1098,6 +1101,8 @@
 			<CommonModule>PersonsClientServer</CommonModule>
 			<CommonModule>PersonsClientServerLocalization</CommonModule>
 			<CommonModule>PostingManagement</CommonModule>
+			<CommonModule>PriceManagementClient</CommonModule>
+			<CommonModule>PriceManagementServerCall</CommonModule>
 			<CommonModule>PrintManagement</CommonModule>
 			<CommonModule>PrintManagementCached</CommonModule>
 			<CommonModule>PrintManagementClient</CommonModule>
@@ -1595,10 +1600,13 @@
 			<Catalog>PlannedInteractionAttachedFiles</Catalog>
 			<Catalog>PredefinedExtensionsReportsOptions</Catalog>
 			<Catalog>PredefinedReportsOptions</Catalog>
+			<Catalog>PriceTypes</Catalog>
+			<Catalog>PriceTypesAttachedFiles</Catalog>
 			<Catalog>PrintFormTemplates</Catalog>
 			<Catalog>Products</Catalog>
 			<Catalog>ProductsAttachedFiles</Catalog>
 			<Catalog>ReportsOptions</Catalog>
+			<Catalog>SalesInvoiceAttachedFiles</Catalog>
 			<Catalog>SetsOfAccessGroups</Catalog>
 			<Catalog>SMSMessageAttachedFiles</Catalog>
 			<Catalog>StringContactInteractions</Catalog>
@@ -1615,6 +1623,7 @@
 			<Document>OutgoingEmail</Document>
 			<Document>PhoneCall</Document>
 			<Document>PlannedInteraction</Document>
+			<Document>SalesInvoice</Document>
 			<Document>SMSMessage</Document>
 			<Document>SupplierInvoice</Document>
 			<DocumentJournal>Interactions</DocumentJournal>
@@ -1683,8 +1692,10 @@
 			<Report>IrrelevantFilesVolume</Report>
 			<Report>Jobs</Report>
 			<Report>OverdueTasks</Report>
+			<Report>PriceList</Report>
 			<Report>Purchases</Report>
 			<Report>RolesRights</Report>
+			<Report>Sales</Report>
 			<Report>SearchForReferences</Report>
 			<Report>Tasks</Report>
 			<Report>UniversalReport</Report>
@@ -1706,6 +1717,7 @@
 			<DataProcessor>ImportDataFromFile</DataProcessor>
 			<DataProcessor>MarkedObjectsDeletion</DataProcessor>
 			<DataProcessor>PlatformUpdateRecommended</DataProcessor>
+			<DataProcessor>PricesSetup</DataProcessor>
 			<DataProcessor>ReplaceAndMergeItems</DataProcessor>
 			<DataProcessor>Scanning</DataProcessor>
 			<DataProcessor>ScheduledAndBackgroundJobs</DataProcessor>
@@ -1765,6 +1777,7 @@
 			<InformationRegister>OutgoingMailNotAcceptedByMailServer</InformationRegister>
 			<InformationRegister>PeriodicServerNotifications</InformationRegister>
 			<InformationRegister>PredefinedExtensionsVersionsReportsOptions</InformationRegister>
+			<InformationRegister>Prices</InformationRegister>
 			<InformationRegister>PrintCommandsSettings</InformationRegister>
 			<InformationRegister>ProcessesToStart</InformationRegister>
 			<InformationRegister>ProgramInterfaceCache</InformationRegister>
@@ -1796,6 +1809,7 @@
 			<InformationRegister>UsersAccessKeysUpdate</InformationRegister>
 			<InformationRegister>UsersInfo</InformationRegister>
 			<AccumulationRegister>Purchases</AccumulationRegister>
+			<AccumulationRegister>Sales</AccumulationRegister>
 			<ChartOfCharacteristicTypes>AdditionalAttributesAndInfo</ChartOfCharacteristicTypes>
 			<ChartOfCharacteristicTypes>TaskAddressingObjects</ChartOfCharacteristicTypes>
 			<BusinessProcess>Job</BusinessProcess>

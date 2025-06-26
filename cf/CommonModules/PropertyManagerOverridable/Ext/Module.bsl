@@ -40,8 +40,16 @@ Procedure OnGetPredefinedPropertiesSets(Sets) Export
 	Set.Id = New UUID("c98ff7be-cf63-42be-b1b3-fe6a06a5d21c");
 	
 	Set = Sets.Rows.Add();
+	Set.Name = "Catalog_PriceTypes";
+	Set.Id = New UUID("f09c76a3-b080-4305-9c37-f2468234408c");
+	
+	Set = Sets.Rows.Add();
 	Set.Name = "Document_SupplierInvoice";
 	Set.Id = New UUID("5c04a609-0f47-4c24-9647-72950a35e35d");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_SalesInvoice";
+	Set.Id = New UUID("da2de4f6-31be-4b40-b16e-6c1bc2ec1bfc");
 	
 EndProcedure
 

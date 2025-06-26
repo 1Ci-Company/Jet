@@ -30,6 +30,10 @@ EndProcedure
 
 Procedure BeforeWrite(Cancel, WriteMode, PostingMode)
 	
+	If DataExchange.Load Then
+		Return;
+	EndIf;
+	
 	Total = Inventory.Total("Total");
 	
 EndProcedure
