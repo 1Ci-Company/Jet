@@ -123,6 +123,27 @@ Procedure ReflectInventoryInWarehouses(AdditionalProperties, RegisterRecords, Ca
 	
 EndProcedure
 
+// Movements on the CashBalance register.
+//
+// Parameters:
+//  AdditionalProperties -  Structure - additional properties.
+//  RegisterRecords - RegisterRecordsCollection - collection of document register record recordsets.
+//  Cancel - Boolean - if set True, the document will not be posted.
+//
+Procedure ReflectCashBalance(AdditionalProperties, RegisterRecords, Cancel) Export
+	
+	TableCashBalance = AdditionalProperties.TableForRegisterRecords.TableCashBalance;
+	
+	If Cancel Or TableCashBalance.Count() = 0 Then
+		Return;
+	EndIf;
+	
+	CashBalanceRecord = RegisterRecords.CashBalance;
+	CashBalanceRecord.Write = True;
+	CashBalanceRecord.Load(TableCashBalance);
+	
+EndProcedure
+
 #EndRegion
 
 #Region Private

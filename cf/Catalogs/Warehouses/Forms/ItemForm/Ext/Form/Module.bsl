@@ -16,7 +16,6 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 EndProcedure
 
-
 &AtServer
 Procedure OnReadAtServer(CurrentObject)
 	

@@ -272,6 +272,7 @@
 			<Language>English</Language>
 			<Subsystem>Administration</Subsystem>
 			<Subsystem>AttachableReportsAndDataProcessors</Subsystem>
+			<Subsystem>CashManagement</Subsystem>
 			<Subsystem>Company</Subsystem>
 			<Subsystem>InternalSubsystem</Subsystem>
 			<Subsystem>Purchases</Subsystem>
@@ -300,6 +301,7 @@
 			<StyleItem>HeaderOrFooterSettingsPreviewFont</StyleItem>
 			<StyleItem>HeadersAndFootersSettingsPreviewColor</StyleItem>
 			<StyleItem>HiddenReportOptionColor</StyleItem>
+			<StyleItem>HintTextColor</StyleItem>
 			<StyleItem>HyperlinkColor</StyleItem>
 			<StyleItem>ImportantLabelFont</StyleItem>
 			<StyleItem>ImportantReportsOptionsGroupFont</StyleItem>
@@ -699,6 +701,7 @@
 			<CommonPicture>SaveFileAs</CommonPicture>
 			<CommonPicture>SaveReportOption</CommonPicture>
 			<CommonPicture>Scanning</CommonPicture>
+			<CommonPicture>SectionCash</CommonPicture>
 			<CommonPicture>SectionCompany</CommonPicture>
 			<CommonPicture>SectionPurchases</CommonPicture>
 			<CommonPicture>SectionSales</CommonPicture>
@@ -895,6 +898,7 @@
 			<Role>SystemAdministrator</Role>
 			<Role>TechnicianMode</Role>
 			<Role>UpdateDataBaseConfiguration</Role>
+			<Role>UseCashManagement</Role>
 			<Role>UseCompany</Role>
 			<Role>UseCurrentToDosProcessor</Role>
 			<Role>UsePurchases</Role>
@@ -955,6 +959,8 @@
 			<CommonModule>BusinessProcessesAndTasksOverridable</CommonModule>
 			<CommonModule>BusinessProcessesAndTasksServer</CommonModule>
 			<CommonModule>BusinessProcessesAndTasksServerCall</CommonModule>
+			<CommonModule>CashManagementClient</CommonModule>
+			<CommonModule>CashManagementServerCall</CommonModule>
 			<CommonModule>ClusterAdministration</CommonModule>
 			<CommonModule>ClusterAdministrationClientServer</CommonModule>
 			<CommonModule>ClusterAdministrationCOM</CommonModule>
@@ -1569,7 +1575,15 @@
 			<Catalog>AccessKeys</Catalog>
 			<Catalog>AdditionalAttributesAndInfoSets</Catalog>
 			<Catalog>AdditionalReportsAndDataProcessors</Catalog>
+			<Catalog>BankAccounts</Catalog>
+			<Catalog>BankAccountsAttachedFiles</Catalog>
+			<Catalog>BankPaymentAttachedFiles</Catalog>
+			<Catalog>BankReceiptAttachedFiles</Catalog>
 			<Catalog>BinaryDataStorage</Catalog>
+			<Catalog>CashAccounts</Catalog>
+			<Catalog>CashAccountsAttachedFiles</Catalog>
+			<Catalog>CashReceiptAttachedFiles</Catalog>
+			<Catalog>CashVoucherAttachedFiles</Catalog>
 			<Catalog>Companies</Catalog>
 			<Catalog>ContactInformationKinds</Catalog>
 			<Catalog>Counterparties</Catalog>
@@ -1626,6 +1640,10 @@
 			<Catalog>Warehouses</Catalog>
 			<Catalog>WarehousesAttachedFiles</Catalog>
 			<Catalog>WorldCountries</Catalog>
+			<Document>BankPayment</Document>
+			<Document>BankReceipt</Document>
+			<Document>CashReceipt</Document>
+			<Document>CashVoucher</Document>
 			<Document>IncomingEmail</Document>
 			<Document>InventoryIncrease</Document>
 			<Document>InventoryTransfer</Document>
@@ -1645,8 +1663,13 @@
 			<Enum>AdditionalReportsAndDataProcessorsPublicationOptions</Enum>
 			<Enum>APICacheDataTypes</Enum>
 			<Enum>AvailableReportPeriods</Enum>
+			<Enum>BankPaymentOperations</Enum>
+			<Enum>BankReceiptOperations</Enum>
 			<Enum>BuiltInEditorFileTypes</Enum>
 			<Enum>BusinessProcessStates</Enum>
+			<Enum>CashReceiptOperations</Enum>
+			<Enum>CashTypes</Enum>
+			<Enum>CashVoucherOperations</Enum>
 			<Enum>ContactInformationTypes</Enum>
 			<Enum>DeferredHandlersExecutionModes</Enum>
 			<Enum>DoubleClickFileActions</Enum>
@@ -1696,6 +1719,7 @@
 			<Report>AccessRightsAnalysis</Report>
 			<Report>AvailableStock</Report>
 			<Report>BusinessProcesses</Report>
+			<Report>CashStatement</Report>
 			<Report>DeferredUpdateDuration</Report>
 			<Report>DeferredUpdateProgress</Report>
 			<Report>DocumentRegisterRecords</Report>
@@ -1820,6 +1844,7 @@
 			<InformationRegister>UsersAccessKeysCurrentJobs</InformationRegister>
 			<InformationRegister>UsersAccessKeysUpdate</InformationRegister>
 			<InformationRegister>UsersInfo</InformationRegister>
+			<AccumulationRegister>CashBalance</AccumulationRegister>
 			<AccumulationRegister>InventoryInWarehouses</AccumulationRegister>
 			<AccumulationRegister>Purchases</AccumulationRegister>
 			<AccumulationRegister>Sales</AccumulationRegister>

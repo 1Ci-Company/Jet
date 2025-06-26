@@ -21,14 +21,20 @@
 			</Synonym>
 			<Comment/>
 			<Type>
-				<v8:Type>xs:string</v8:Type>
-				<v8:StringQualifiers>
-					<v8:Length>10</v8:Length>
-					<v8:AllowedLength>Variable</v8:AllowedLength>
-				</v8:StringQualifiers>
+				<v8:Type>cfg:DocumentRef.BankPayment</v8:Type>
+				<v8:Type>cfg:DocumentRef.SalesInvoice</v8:Type>
+				<v8:Type>cfg:DocumentRef.CashVoucher</v8:Type>
+				<v8:Type>cfg:DocumentRef.SupplierInvoice</v8:Type>
+				<v8:Type>cfg:DocumentRef.CashReceipt</v8:Type>
+				<v8:Type>cfg:DocumentRef.BankReceipt</v8:Type>
 			</Type>
 			<UseStandardCommands>false</UseStandardCommands>
-			<Content/>
+			<Content>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.BankPayment.TabularSection.PaymentDetails.Attribute.Document</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.BankReceipt.TabularSection.PaymentDetails.Attribute.Document</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.CashReceipt.TabularSection.PaymentDetails.Attribute.Document</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.CashVoucher.TabularSection.PaymentDetails.Attribute.Document</xr:Item>
+			</Content>
 			<DefaultForm/>
 			<AuxiliaryForm/>
 			<ListPresentation/>

@@ -48,6 +48,14 @@ Procedure OnGetPredefinedPropertiesSets(Sets) Export
 	Set.Id = New UUID("fe34af13-6305-41d5-ab0c-852e4a229521");
 	
 	Set = Sets.Rows.Add();
+	Set.Name = "Catalog_BankAccounts";
+	Set.Id = New UUID("00c576e8-04ad-4079-b83b-2fd820165997");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Catalog_CashAccounts";
+	Set.Id = New UUID("12a7292a-a44d-4f64-a17b-b290998fa6dd");
+	
+	Set = Sets.Rows.Add();
 	Set.Name = "Document_SupplierInvoice";
 	Set.Id = New UUID("5c04a609-0f47-4c24-9647-72950a35e35d");
 	
@@ -66,6 +74,22 @@ Procedure OnGetPredefinedPropertiesSets(Sets) Export
 	Set = Sets.Rows.Add();
 	Set.Name = "Document_InventoryWriteOff";
 	Set.Id = New UUID("8ff32816-dc89-49b9-b8bb-5278f63f5f5f");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_BankPayment";
+	Set.Id = New UUID("b1e89d02-fce0-4bba-9230-2009a5b9881a");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_BankReceipt";
+	Set.Id = New UUID("e272be93-eac4-48de-a464-7d6b554f22e3");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_CashReceipt";
+	Set.Id = New UUID("3b1b103e-4d17-4f35-969d-cb0758c6df8d");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_CashVoucher";
+	Set.Id = New UUID("47f0d01a-634d-4202-980a-17cbfa8bf9af");
 	
 EndProcedure
 

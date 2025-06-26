@@ -11,7 +11,8 @@
 //
 Procedure NegativeBalanceControl(Ref, AdditionalProperties, Cancel) Export
 	
-	If AdditionalProperties.ForPosting.IsInventoryInWarehousesChange Then
+	If AdditionalProperties.ForPosting.Property("IsInventoryInWarehousesChange")
+		And AdditionalProperties.ForPosting.IsInventoryInWarehousesChange Then
 		
 		Query = New Query;
 		Query.TempTablesManager = AdditionalProperties.ForPosting.TempTablesManager;
