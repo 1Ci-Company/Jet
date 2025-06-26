@@ -25,6 +25,9 @@ Procedure Posting(Cancel, PostingMode)
 	// Movements on the InventoryInWarehouses register
 	PostingManagement.ReflectInventoryInWarehouses(AdditionalProperties, RegisterRecords, Cancel);
 	
+	// Movements on the SupplierBalance register
+	PostingManagement.ReflectSupplierBalance(AdditionalProperties, RegisterRecords, Cancel);
+	
 	// Writing of the records sets.
 	PostingManagement.WriteRecordSets(ThisObject);
 	

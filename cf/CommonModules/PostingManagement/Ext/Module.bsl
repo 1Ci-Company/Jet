@@ -144,6 +144,48 @@ Procedure ReflectCashBalance(AdditionalProperties, RegisterRecords, Cancel) Expo
 	
 EndProcedure
 
+// Movements on the CustomerBalance register.
+//
+// Parameters:
+//  AdditionalProperties -  Structure - additional properties.
+//  RegisterRecords - RegisterRecordsCollection - collection of document register record recordsets.
+//  Cancel - Boolean - if set True, the document will not be posted.
+//
+Procedure ReflectCustomerBalance(AdditionalProperties, RegisterRecords, Cancel) Export
+	
+	TableCustomerBalance = AdditionalProperties.TableForRegisterRecords.TableCustomerBalance;
+	
+	If Cancel Or TableCustomerBalance.Count() = 0 Then
+		Return;
+	EndIf;
+	
+	CustomerBalanceRecord = RegisterRecords.CustomerBalance;
+	CustomerBalanceRecord.Write = True;
+	CustomerBalanceRecord.Load(TableCustomerBalance);
+	
+EndProcedure
+
+// Movements on the SupplierBalance register.
+//
+// Parameters:
+//  AdditionalProperties -  Structure - additional properties.
+//  RegisterRecords - RegisterRecordsCollection - collection of document register record recordsets.
+//  Cancel - Boolean - if set True, the document will not be posted.
+//
+Procedure ReflectSupplierBalance(AdditionalProperties, RegisterRecords, Cancel) Export
+	
+	TableSupplierBalance = AdditionalProperties.TableForRegisterRecords.TableSupplierBalance;
+	
+	If Cancel Or TableSupplierBalance.Count() = 0 Then
+		Return;
+	EndIf;
+	
+	SupplierBalanceRecord = RegisterRecords.SupplierBalance;
+	SupplierBalanceRecord.Write = True;
+	SupplierBalanceRecord.Load(TableSupplierBalance);
+	
+EndProcedure
+
 #EndRegion
 
 #Region Private

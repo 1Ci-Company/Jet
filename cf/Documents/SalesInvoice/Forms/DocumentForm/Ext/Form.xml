@@ -309,6 +309,94 @@
 						</UsualGroup>
 					</ChildItems>
 				</Page>
+				<Page name="GroupAdvanceClearing" id="131">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Advance clearing</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupAdvanceClearingExtendedTooltip" id="132"/>
+					<ChildItems>
+						<Table name="AdvanceClearing" id="133">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.AdvanceClearing</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="AdvanceClearingContextMenu" id="134"/>
+							<AutoCommandBar name="AdvanceClearingCommandBar" id="135">
+								<ChildItems>
+									<Button name="SelectAdvances" id="158">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.SelectAdvances</CommandName>
+										<ExtendedTooltip name="SelectAdvancesExtendedTooltip" id="159"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="AdvanceClearingExtendedTooltip" id="136"/>
+							<SearchStringAddition name="AdvanceClearingSearchString" id="137">
+								<AdditionSource>
+									<Item>AdvanceClearing</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AdvanceClearingSearchStringContextMenu" id="138"/>
+								<ExtendedTooltip name="AdvanceClearingSearchStringExtendedTooltip" id="139"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="AdvanceClearingViewStatus" id="140">
+								<AdditionSource>
+									<Item>AdvanceClearing</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AdvanceClearingViewStatusContextMenu" id="141"/>
+								<ExtendedTooltip name="AdvanceClearingViewStatusExtendedTooltip" id="142"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="AdvanceClearingSearchControl" id="143">
+								<AdditionSource>
+									<Item>AdvanceClearing</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="AdvanceClearingSearchControlContextMenu" id="144"/>
+								<ExtendedTooltip name="AdvanceClearingSearchControlExtendedTooltip" id="145"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="AdvanceClearingLineNumber" id="146">
+									<DataPath>Object.AdvanceClearing.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AdvanceClearingLineNumberContextMenu" id="147"/>
+									<ExtendedTooltip name="AdvanceClearingLineNumberExtendedTooltip" id="148"/>
+								</LabelField>
+								<InputField name="AdvanceClearingDocument" id="149">
+									<DataPath>Object.AdvanceClearing.Document</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="AdvanceClearingDocumentContextMenu" id="150"/>
+									<ExtendedTooltip name="AdvanceClearingDocumentExtendedTooltip" id="151"/>
+								</InputField>
+								<InputField name="AdvanceClearingAmount" id="152">
+									<DataPath>Object.AdvanceClearing.Amount</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="AdvanceClearingAmountContextMenu" id="153"/>
+									<ExtendedTooltip name="AdvanceClearingAmountExtendedTooltip" id="154"/>
+									<Events>
+										<Event name="OnChange">AdvanceClearingAmountOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="AdvanceClearingAmountCur" id="155">
+									<DataPath>Object.AdvanceClearing.AmountCur</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="AdvanceClearingAmountCurContextMenu" id="156"/>
+									<ExtendedTooltip name="AdvanceClearingAmountCurExtendedTooltip" id="157"/>
+									<Events>
+										<Event name="OnChange">AdvanceClearingAmountCurOnChange</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
 				<Page name="GroupAdditionalInfo" id="96">
 					<Title>
 						<v8:item>
@@ -370,4 +458,15 @@
 			</Type>
 		</Attribute>
 	</Attributes>
+	<Commands>
+		<Command name="SelectAdvances" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</Title>
+			<Action>SelectAdvances</Action>
+		</Command>
+	</Commands>
 </Form>

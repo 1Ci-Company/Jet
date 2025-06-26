@@ -100,6 +100,9 @@ Procedure Posting(Cancel, PostingMode)
 	// Movements on the CashBalance register
 	PostingManagement.ReflectCashBalance(AdditionalProperties, RegisterRecords, Cancel);
 	
+	// Movements on the CustomerBalance register
+	PostingManagement.ReflectCustomerBalance(AdditionalProperties, RegisterRecords, Cancel);
+	
 	// Writing of the records sets.
 	PostingManagement.WriteRecordSets(ThisObject);
 	
