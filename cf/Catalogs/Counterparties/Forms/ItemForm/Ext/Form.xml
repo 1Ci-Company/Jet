@@ -3,70 +3,111 @@
 	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
 	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
 	<ChildItems>
-		<UsualGroup name="GroupCustomerSupplier" id="25">
-			<Representation>None</Representation>
-			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="GroupCustomerSupplierExtendedTooltip" id="26"/>
+		<Pages name="Pages" id="37">
+			<ExtendedTooltip name="PagesExtendedTooltip" id="38"/>
 			<ChildItems>
-				<CheckBoxField name="Customer" id="10">
-					<DataPath>Object.Customer</DataPath>
-					<EditMode>EnterOnInput</EditMode>
-					<CheckBoxType>Auto</CheckBoxType>
-					<ContextMenu name="CustomerContextMenu" id="11"/>
-					<ExtendedTooltip name="CustomerExtendedTooltip" id="12"/>
-				</CheckBoxField>
-				<CheckBoxField name="Supplier" id="13">
-					<DataPath>Object.Supplier</DataPath>
-					<EditMode>EnterOnInput</EditMode>
-					<CheckBoxType>Auto</CheckBoxType>
-					<ContextMenu name="SupplierContextMenu" id="14"/>
-					<ExtendedTooltip name="SupplierExtendedTooltip" id="15"/>
-				</CheckBoxField>
+				<Page name="GroupGeneral" id="39">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>General</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupGeneralExtendedTooltip" id="40"/>
+					<ChildItems>
+						<UsualGroup name="GroupCustomerSupplier" id="25">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupCustomerSupplierExtendedTooltip" id="26"/>
+							<ChildItems>
+								<CheckBoxField name="Customer" id="10">
+									<DataPath>Object.Customer</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="CustomerContextMenu" id="11"/>
+									<ExtendedTooltip name="CustomerExtendedTooltip" id="12"/>
+								</CheckBoxField>
+								<CheckBoxField name="Supplier" id="13">
+									<DataPath>Object.Supplier</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="SupplierContextMenu" id="14"/>
+									<ExtendedTooltip name="SupplierExtendedTooltip" id="15"/>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<InputField name="Description" id="4">
+							<DataPath>Object.Description</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="DescriptionContextMenu" id="5"/>
+							<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
+						</InputField>
+						<InputField name="LegalName" id="16">
+							<DataPath>Object.LegalName</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="LegalNameContextMenu" id="17"/>
+							<ExtendedTooltip name="LegalNameExtendedTooltip" id="18"/>
+						</InputField>
+						<UsualGroup name="GroupParentCode" id="27">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupParentCodeExtendedTooltip" id="28"/>
+							<ChildItems>
+								<InputField name="Parent" id="7">
+									<DataPath>Object.Parent</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ParentContextMenu" id="8"/>
+									<ExtendedTooltip name="ParentExtendedTooltip" id="9"/>
+								</InputField>
+								<InputField name="Code" id="1">
+									<DataPath>Object.Code</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="CodeContextMenu" id="2"/>
+									<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<InputField name="TIN" id="19">
+							<DataPath>Object.TIN</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="TINContextMenu" id="20"/>
+							<ExtendedTooltip name="TINExtendedTooltip" id="21"/>
+						</InputField>
+						<UsualGroup name="GroupAdditionalAttributes" id="35">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="36"/>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="ContactInformationGroup" id="41">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Addresses, phones</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ContactInformationGroupExtendedTooltip" id="42"/>
+				</Page>
 			</ChildItems>
-		</UsualGroup>
-		<InputField name="Description" id="4">
-			<DataPath>Object.Description</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="DescriptionContextMenu" id="5"/>
-			<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
-		</InputField>
-		<InputField name="LegalName" id="16">
-			<DataPath>Object.LegalName</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="LegalNameContextMenu" id="17"/>
-			<ExtendedTooltip name="LegalNameExtendedTooltip" id="18"/>
-		</InputField>
-		<UsualGroup name="GroupParentCode" id="27">
-			<Representation>None</Representation>
-			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="GroupParentCodeExtendedTooltip" id="28"/>
-			<ChildItems>
-				<InputField name="Parent" id="7">
-					<DataPath>Object.Parent</DataPath>
-					<EditMode>EnterOnInput</EditMode>
-					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="ParentContextMenu" id="8"/>
-					<ExtendedTooltip name="ParentExtendedTooltip" id="9"/>
-				</InputField>
-				<InputField name="Code" id="1">
-					<DataPath>Object.Code</DataPath>
-					<EditMode>EnterOnInput</EditMode>
-					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="CodeContextMenu" id="2"/>
-					<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
-				</InputField>
-			</ChildItems>
-		</UsualGroup>
-		<InputField name="TIN" id="19">
-			<DataPath>Object.TIN</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="TINContextMenu" id="20"/>
-			<ExtendedTooltip name="TINExtendedTooltip" id="21"/>
-		</InputField>
+		</Pages>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="Object" id="1">

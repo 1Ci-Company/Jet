@@ -113,9 +113,159 @@ EndProcedure
 //  TabularSections - See InfobaseUpdateOverridable.OnInitialItemsFilling.TabularSections
 //
 Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
+
+#Region Company
 	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogCompanies";
+	Item.IsFolder = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Contact information of the ""Companies"" catalog'", Common.DefaultLanguageCode());
 	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyActualAddress";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.AddlOrderingAttribute = 1;
+	Item.Description = NStr("en = 'Actual address'", Common.DefaultLanguageCode());
 	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyLegalAddress";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "LegalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.AddlOrderingAttribute = 2;
+	Item.Description = NStr("en = 'Legal address'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyWebpage";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	Item.IDForFormulas = "Webpage";
+	Item.EditingOption = "InputField";
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 3;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Webpage'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyPhone";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 4;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Phone'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyEmail";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.IDForFormulas = "Email";
+	Item.EditingOption = "InputField";
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 5;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Email'", Common.DefaultLanguageCode());
+	
+#EndRegion
+
+#Region Counterparties
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogCounterparties";
+	Item.IsFolder = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Contact information of the ""Counterparties"" catalog'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyActualAddress";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.AddlOrderingAttribute = 1;
+	Item.Description = NStr("en = 'Actual address'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyLegalAddress";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "LegalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.AddlOrderingAttribute = 2;
+	Item.Description = NStr("en = 'Legal address'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyWebpage";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	Item.IDForFormulas = "Webpage";
+	Item.EditingOption = "InputField";
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 3;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Webpage'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyPhone";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 4;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Phone'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyEmail";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.IDForFormulas = "Email";
+	Item.EditingOption = "InputField";
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 5;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Email'", Common.DefaultLanguageCode());
+	
+#EndRegion
+
 EndProcedure
 
 // See also InfobaseUpdateOverridable.OnSetUpInitialItemsFilling.

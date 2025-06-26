@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>DataSource1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>DataSet1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Ref</dataPath>
+			<field>Ref</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Number</dataPath>
+			<field>Number</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Date</dataPath>
+			<field>Date</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ExchangeRate</dataPath>
+			<field>ExchangeRate</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Currency</dataPath>
+			<field>Currency</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Supplier</dataPath>
+			<field>Supplier</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.VATAmount</dataPath>
+			<field>Inventory.VATAmount</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Comment</dataPath>
+			<field>Comment</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Multiplier</dataPath>
+			<field>Multiplier</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Author</dataPath>
+			<field>Author</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.Amount</dataPath>
+			<field>Inventory.Amount</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Total</dataPath>
+			<field>Total</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.LineNumber</dataPath>
+			<field>Inventory.LineNumber</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.Product</dataPath>
+			<field>Inventory.Product</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.Quantity</dataPath>
+			<field>Inventory.Quantity</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.Price</dataPath>
+			<field>Inventory.Price</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.VATRate</dataPath>
+			<field>Inventory.VATRate</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Inventory.Total</dataPath>
+			<field>Inventory.Total</field>
+		</field>
+		<field xsi:type="DataSetFieldNestedDataSet">
+			<dataPath>Inventory</dataPath>
+			<field>Inventory</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Company</dataPath>
+			<field>Company</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Company</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>DataSource1</dataSource>
+		<query>SELECT
+	SupplierInvoice.Ref AS Ref,
+	SupplierInvoice.Number AS Number,
+	SupplierInvoice.Date AS Date,
+	VALUE(Catalog.Companies.MainCompany) AS Company,
+	SupplierInvoice.Supplier AS Supplier,
+	SupplierInvoice.Currency AS Currency,
+	SupplierInvoice.ExchangeRate AS ExchangeRate,
+	SupplierInvoice.Multiplier AS Multiplier,
+	SupplierInvoice.Comment AS Comment,
+	SupplierInvoice.Author AS Author,
+	SupplierInvoice.Total AS Total,
+	SupplierInvoice.Inventory.(
+		LineNumber AS LineNumber,
+		Product AS Product,
+		Quantity AS Quantity,
+		Price AS Price,
+		Amount AS Amount,
+		VATRate AS VATRate,
+		VATAmount AS VATAmount,
+		Total AS Total
+	) AS Inventory
+FROM
+	Document.SupplierInvoice AS SupplierInvoice</query>
+	</dataSet>
+	<settingsVariant>
+		<dcsset:name>Default</dcsset:name>
+		<dcsset:presentation xsi:type="xs:string">Default</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows"/>
+	</settingsVariant>
+</DataCompositionSchema>

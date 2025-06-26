@@ -3,35 +3,68 @@
 	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
 	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
 	<ChildItems>
-		<InputField name="LegalName" id="4">
-			<DataPath>Object.LegalName</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="LegalNameContextMenu" id="5"/>
-			<ExtendedTooltip name="LegalNameExtendedTooltip" id="6"/>
-		</InputField>
-		<InputField name="Description" id="1">
-			<DataPath>Object.Description</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="DescriptionContextMenu" id="2"/>
-			<ExtendedTooltip name="DescriptionExtendedTooltip" id="3"/>
-		</InputField>
-		<InputField name="TIN" id="7">
-			<DataPath>Object.TIN</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="TINContextMenu" id="8"/>
-			<ExtendedTooltip name="TINExtendedTooltip" id="9"/>
-		</InputField>
-		<InputField name="PresentationCurrency" id="10">
-			<DataPath>Object.PresentationCurrency</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="PresentationCurrencyContextMenu" id="11"/>
-			<ExtendedTooltip name="PresentationCurrencyExtendedTooltip" id="12"/>
-		</InputField>
+		<Pages name="Pages" id="13">
+			<ExtendedTooltip name="PagesExtendedTooltip" id="14"/>
+			<ChildItems>
+				<Page name="GroupGeneral" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>General</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupGeneralExtendedTooltip" id="16"/>
+					<ChildItems>
+						<InputField name="LegalName" id="4">
+							<DataPath>Object.LegalName</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="LegalNameContextMenu" id="5"/>
+							<ExtendedTooltip name="LegalNameExtendedTooltip" id="6"/>
+						</InputField>
+						<InputField name="Description" id="1">
+							<DataPath>Object.Description</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="DescriptionContextMenu" id="2"/>
+							<ExtendedTooltip name="DescriptionExtendedTooltip" id="3"/>
+						</InputField>
+						<InputField name="TIN" id="7">
+							<DataPath>Object.TIN</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="TINContextMenu" id="8"/>
+							<ExtendedTooltip name="TINExtendedTooltip" id="9"/>
+						</InputField>
+						<InputField name="PresentationCurrency" id="10">
+							<DataPath>Object.PresentationCurrency</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="PresentationCurrencyContextMenu" id="11"/>
+							<ExtendedTooltip name="PresentationCurrencyExtendedTooltip" id="12"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="ContactInformationGroup" id="17">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Addresses, phones</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ContactInformationGroupExtendedTooltip" id="18"/>
+				</Page>
+			</ChildItems>
+		</Pages>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="Object" id="1">

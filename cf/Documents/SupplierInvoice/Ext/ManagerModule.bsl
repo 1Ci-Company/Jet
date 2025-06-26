@@ -68,6 +68,35 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	
 EndProcedure
 
+// StandardSubsystems.Print
+
+// Overrides object's print settings.
+//
+// Parameters:
+//  Settings - See PrintManagement.ObjectPrintingSettings.
+//
+Procedure OnDefinePrintSettings(Settings) Export
+	
+	Settings.OnAddPrintCommands = True;
+	
+EndProcedure
+
+// Populates a list of print commands.
+// 
+// Parameters:
+//  PrintCommands - See PrintManagement.CreatePrintCommandsCollection
+//
+Procedure AddPrintCommands(PrintCommands) Export
+	
+	PrintCommand = PrintCommands.Add();
+	PrintCommand.PrintManager = "PrintManagement";
+	PrintCommand.Id = "Document.SupplierInvoice.PF_MXL_GoodsReceivedNote";
+	PrintCommand.Presentation = NStr("en = 'Goods received note'");
+	
+EndProcedure
+
+// End StandardSubsystems.Print
+
 #EndRegion
 
 #EndIf
