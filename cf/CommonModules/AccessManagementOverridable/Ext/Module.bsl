@@ -201,7 +201,7 @@ EndProcedure
 //  SimplifiedInterface - Boolean - the initial value is False.
 //
 Procedure OnDefineAccessSettingInterface(SimplifiedInterface) Export
-	
+	SimplifiedInterface = True;
 EndProcedure
 
 // Fills in the usage of access kinds depending on functional options of the configuration,

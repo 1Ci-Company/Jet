@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupHeader" id="100">
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupHeaderExtendedTooltip" id="101"/>
+			<ChildItems>
+				<UsualGroup name="GroupLeft" id="102">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupLeftExtendedTooltip" id="103"/>
+					<ChildItems>
+						<InputField name="Supplier" id="7">
+							<DataPath>Object.Supplier</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="SupplierContextMenu" id="8"/>
+							<ExtendedTooltip name="SupplierExtendedTooltip" id="9"/>
+						</InputField>
+						<InputField name="Currency" id="13">
+							<DataPath>Object.Currency</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="CurrencyContextMenu" id="14"/>
+							<ExtendedTooltip name="CurrencyExtendedTooltip" id="15"/>
+							<Events>
+								<Event name="OnChange">CurrencyOnChange</Event>
+							</Events>
+						</InputField>
+						<UsualGroup name="GroupExchRate" id="108">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupExchRateExtendedTooltip" id="109"/>
+							<ChildItems>
+								<InputField name="ExchangeRate" id="16">
+									<DataPath>Object.ExchangeRate</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ExchangeRateContextMenu" id="17"/>
+									<ExtendedTooltip name="ExchangeRateExtendedTooltip" id="18"/>
+								</InputField>
+								<InputField name="Multiplier" id="19">
+									<DataPath>Object.Multiplier</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="MultiplierContextMenu" id="20"/>
+									<ExtendedTooltip name="MultiplierExtendedTooltip" id="21"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupRight" id="104">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupRightExtendedTooltip" id="105"/>
+					<ChildItems>
+						<UsualGroup name="GroupNumberDate" id="106">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNumberDateExtendedTooltip" id="107"/>
+							<ChildItems>
+								<InputField name="Number" id="1">
+									<DataPath>Object.Number</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="NumberContextMenu" id="2"/>
+									<ExtendedTooltip name="NumberExtendedTooltip" id="3"/>
+								</InputField>
+								<InputField name="Date" id="4">
+									<DataPath>Object.Date</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="DateContextMenu" id="5"/>
+									<ExtendedTooltip name="DateExtendedTooltip" id="6"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="29"/>
+			<ChildItems>
+				<Page name="GroupInventory" id="30">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Inventory</v8:content>
+						</v8:item>
+					</Title>
+					<ScrollOnCompress>true</ScrollOnCompress>
+					<ExtendedTooltip name="GroupInventoryExtendedTooltip" id="31"/>
+					<ChildItems>
+						<Table name="Inventory" id="32">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.Inventory</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="InventoryContextMenu" id="33"/>
+							<AutoCommandBar name="InventoryCommandBar" id="34"/>
+							<ExtendedTooltip name="InventoryExtendedTooltip" id="35"/>
+							<SearchStringAddition name="InventorySearchString" id="36">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InventorySearchStringContextMenu" id="37"/>
+								<ExtendedTooltip name="InventorySearchStringExtendedTooltip" id="38"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="InventoryViewStatus" id="39">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InventoryViewStatusContextMenu" id="40"/>
+								<ExtendedTooltip name="InventoryViewStatusExtendedTooltip" id="41"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="InventorySearchControl" id="42">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="InventorySearchControlContextMenu" id="43"/>
+								<ExtendedTooltip name="InventorySearchControlExtendedTooltip" id="44"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="InventoryLineNumber" id="45">
+									<DataPath>Object.Inventory.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="InventoryLineNumberContextMenu" id="46"/>
+									<ExtendedTooltip name="InventoryLineNumberExtendedTooltip" id="47"/>
+								</LabelField>
+								<InputField name="InventoryProduct" id="48">
+									<DataPath>Object.Inventory.Product</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryProductContextMenu" id="49"/>
+									<ExtendedTooltip name="InventoryProductExtendedTooltip" id="50"/>
+									<Events>
+										<Event name="OnChange">InventoryProductOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="InventoryQuantity" id="51">
+									<DataPath>Object.Inventory.Quantity</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryQuantityContextMenu" id="52"/>
+									<ExtendedTooltip name="InventoryQuantityExtendedTooltip" id="53"/>
+									<Events>
+										<Event name="OnChange">InventoryQuantityOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelField name="InventoryUnit" id="54">
+									<DataPath>Object.Inventory.Product.Unit</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="InventoryUnitContextMenu" id="55"/>
+									<ExtendedTooltip name="InventoryUnitExtendedTooltip" id="56"/>
+								</LabelField>
+								<InputField name="InventoryPrice" id="57">
+									<DataPath>Object.Inventory.Price</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryPriceContextMenu" id="58"/>
+									<ExtendedTooltip name="InventoryPriceExtendedTooltip" id="59"/>
+									<Events>
+										<Event name="OnChange">InventoryPriceOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="InventoryAmount" id="60">
+									<DataPath>Object.Inventory.Amount</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryAmountContextMenu" id="61"/>
+									<ExtendedTooltip name="InventoryAmountExtendedTooltip" id="62"/>
+									<Events>
+										<Event name="OnChange">InventoryAmountOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="InventoryVATRate" id="63">
+									<DataPath>Object.Inventory.VATRate</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryVATRateContextMenu" id="64"/>
+									<ExtendedTooltip name="InventoryVATRateExtendedTooltip" id="65"/>
+									<Events>
+										<Event name="OnChange">InventoryVATRateOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="InventoryVATAmount" id="66">
+									<DataPath>Object.Inventory.VATAmount</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryVATAmountContextMenu" id="67"/>
+									<ExtendedTooltip name="InventoryVATAmountExtendedTooltip" id="68"/>
+								</InputField>
+								<InputField name="InventoryTotal" id="69">
+									<DataPath>Object.Inventory.Total</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryTotalContextMenu" id="70"/>
+									<ExtendedTooltip name="InventoryTotalExtendedTooltip" id="71"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<UsualGroup name="GroupTotal" id="110">
+							<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<BackColor>style:TotalsGroupBackground</BackColor>
+							<ExtendedTooltip name="GroupTotalExtendedTooltip" id="111"/>
+							<ChildItems>
+								<LabelField name="TotalAmount" id="112">
+									<DataPath>Object.Inventory.TotalAmount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Amount</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalAmountContextMenu" id="113"/>
+									<ExtendedTooltip name="TotalAmountExtendedTooltip" id="114"/>
+								</LabelField>
+								<LabelField name="TotalVATAmount" id="115">
+									<DataPath>Object.Inventory.TotalVATAmount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>VAT amount</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalVATAmountContextMenu" id="116"/>
+									<ExtendedTooltip name="TotalVATAmountExtendedTooltip" id="117"/>
+								</LabelField>
+								<LabelField name="TotalTotal" id="118">
+									<DataPath>Object.Inventory.TotalTotal</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Total</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalTotalContextMenu" id="119"/>
+									<ExtendedTooltip name="TotalTotalExtendedTooltip" id="120"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="GroupAdditionalInfo" id="96">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional information</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupAdditionalInfoExtendedTooltip" id="97"/>
+					<ChildItems>
+						<UsualGroup name="GroupAdditionalAttributes" id="98">
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ThroughAlign>Use</ThroughAlign>
+							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="99"/>
+						</UsualGroup>
+						<InputField name="Comment" id="22">
+							<DataPath>Object.Comment</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="CommentContextMenu" id="23"/>
+							<ExtendedTooltip name="CommentExtendedTooltip" id="24"/>
+						</InputField>
+						<LabelField name="Author" id="25">
+							<DataPath>Object.Author</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="AuthorContextMenu" id="26"/>
+							<ExtendedTooltip name="AuthorExtendedTooltip" id="27"/>
+						</LabelField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.SupplierInvoice</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Object.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="PresentationCurrency" id="2">
+			<Type>
+				<v8:Type>cfg:CatalogRef.Currencies</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>

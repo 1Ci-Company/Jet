@@ -61,15 +61,15 @@
 			<AdditionalFullTextSearchDictionaries/>
 			<CommonSettingsStorage/>
 			<ReportsUserSettingsStorage/>
-			<ReportsVariantsStorage/>
+			<ReportsVariantsStorage>SettingsStorage.ReportsVariantsStorage</ReportsVariantsStorage>
 			<FormDataSettingsStorage/>
 			<DynamicListsUserSettingsStorage/>
 			<URLExternalDataStorage/>
 			<Content/>
-			<DefaultReportForm/>
-			<DefaultReportVariantForm/>
-			<DefaultReportSettingsForm/>
-			<DefaultReportAppearanceTemplate/>
+			<DefaultReportForm>CommonForm.ReportForm</DefaultReportForm>
+			<DefaultReportVariantForm>CommonForm.ReportVariantForm</DefaultReportVariantForm>
+			<DefaultReportSettingsForm>CommonForm.ReportSettingsForm</DefaultReportSettingsForm>
+			<DefaultReportAppearanceTemplate>Green</DefaultReportAppearanceTemplate>
 			<DefaultDynamicListSettingsForm/>
 			<DefaultSearchForm/>
 			<DefaultDataHistoryChangeHistoryForm/>
@@ -240,7 +240,12 @@
 					<v8:content>1C:Jet</v8:content>
 				</v8:item>
 			</BriefInformation>
-			<DetailedInformation/>
+			<DetailedInformation>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>1C:Jet</v8:content>
+				</v8:item>
+			</DetailedInformation>
 			<Copyright>
 				<v8:item>
 					<v8:lang>en</v8:lang>
@@ -267,6 +272,9 @@
 			<Language>English</Language>
 			<Subsystem>Administration</Subsystem>
 			<Subsystem>AttachableReportsAndDataProcessors</Subsystem>
+			<Subsystem>Company</Subsystem>
+			<Subsystem>InternalSubsystem</Subsystem>
+			<Subsystem>Purchases</Subsystem>
 			<Subsystem>StandardSubsystems</Subsystem>
 			<StyleItem>ActionInListColumnFont</StyleItem>
 			<StyleItem>AddedAttributeBackground</StyleItem>
@@ -688,6 +696,8 @@
 			<CommonPicture>SaveFileAs</CommonPicture>
 			<CommonPicture>SaveReportOption</CommonPicture>
 			<CommonPicture>Scanning</CommonPicture>
+			<CommonPicture>SectionCompany</CommonPicture>
+			<CommonPicture>SectionPurchases</CommonPicture>
 			<CommonPicture>SelectReportOption</CommonPicture>
 			<CommonPicture>SendEmail</CommonPicture>
 			<CommonPicture>SendReceiveEmail</CommonPicture>
@@ -880,7 +890,9 @@
 			<Role>SystemAdministrator</Role>
 			<Role>TechnicianMode</Role>
 			<Role>UpdateDataBaseConfiguration</Role>
+			<Role>UseCompany</Role>
 			<Role>UseCurrentToDosProcessor</Role>
+			<Role>UsePurchases</Role>
 			<Role>UseUniversalReport</Role>
 			<Role>ViewApplicationChangeLog</Role>
 			<Role>ViewEventLog</Role>
@@ -1050,8 +1062,12 @@
 			<CommonModule>InteractionsLocalization</CommonModule>
 			<CommonModule>InteractionsOverridable</CommonModule>
 			<CommonModule>InteractionsServerCall</CommonModule>
+			<CommonModule>InventoryTabularSectionClient</CommonModule>
 			<CommonModule>ItemOrderSetup</CommonModule>
 			<CommonModule>ItemOrderSetupInternal</CommonModule>
+			<CommonModule>JetCached</CommonModule>
+			<CommonModule>JetServer</CommonModule>
+			<CommonModule>JetServerCall</CommonModule>
 			<CommonModule>MarkedObjectsDeletion</CommonModule>
 			<CommonModule>MarkedObjectsDeletionCached</CommonModule>
 			<CommonModule>MarkedObjectsDeletionClient</CommonModule>
@@ -1072,10 +1088,12 @@
 			<CommonModule>ObjectAttributesLockInternal</CommonModule>
 			<CommonModule>ObjectAttributesLockInternalClient</CommonModule>
 			<CommonModule>ObjectAttributesLockOverridable</CommonModule>
+			<CommonModule>ObjectFillingJet</CommonModule>
 			<CommonModule>ObjectsFilling</CommonModule>
 			<CommonModule>ObjectsFillingOverridable</CommonModule>
 			<CommonModule>PersonsClientServer</CommonModule>
 			<CommonModule>PersonsClientServerLocalization</CommonModule>
+			<CommonModule>PostingManagement</CommonModule>
 			<CommonModule>PrintManagement</CommonModule>
 			<CommonModule>PrintManagementCached</CommonModule>
 			<CommonModule>PrintManagementClient</CommonModule>
@@ -1538,7 +1556,9 @@
 			<Catalog>AdditionalAttributesAndInfoSets</Catalog>
 			<Catalog>AdditionalReportsAndDataProcessors</Catalog>
 			<Catalog>BinaryDataStorage</Catalog>
+			<Catalog>Companies</Catalog>
 			<Catalog>ContactInformationKinds</Catalog>
+			<Catalog>Counterparties</Catalog>
 			<Catalog>Currencies</Catalog>
 			<Catalog>EmailAccounts</Catalog>
 			<Catalog>EmailMessageFolders</Catalog>
@@ -1569,14 +1589,17 @@
 			<Catalog>PredefinedExtensionsReportsOptions</Catalog>
 			<Catalog>PredefinedReportsOptions</Catalog>
 			<Catalog>PrintFormTemplates</Catalog>
+			<Catalog>Products</Catalog>
 			<Catalog>ReportsOptions</Catalog>
 			<Catalog>SetsOfAccessGroups</Catalog>
 			<Catalog>SMSMessageAttachedFiles</Catalog>
 			<Catalog>StringContactInteractions</Catalog>
 			<Catalog>TaskPerformersGroups</Catalog>
+			<Catalog>Units</Catalog>
 			<Catalog>UserGroups</Catalog>
 			<Catalog>UserReportSettings</Catalog>
 			<Catalog>Users</Catalog>
+			<Catalog>VATRates</Catalog>
 			<Catalog>WorldCountries</Catalog>
 			<Document>IncomingEmail</Document>
 			<Document>Meeting</Document>
@@ -1584,6 +1607,7 @@
 			<Document>PhoneCall</Document>
 			<Document>PlannedInteraction</Document>
 			<Document>SMSMessage</Document>
+			<Document>SupplierInvoice</Document>
 			<DocumentJournal>Interactions</DocumentJournal>
 			<Enum>AdditionalAccessValues</Enum>
 			<Enum>AdditionalDataProcessorsCallMethods</Enum>
@@ -1621,6 +1645,7 @@
 			<Enum>PictureRotationOptions</Enum>
 			<Enum>PredefinedEmailsFoldersTypes</Enum>
 			<Enum>ProcessesStatesForStart</Enum>
+			<Enum>ProductTypes</Enum>
 			<Enum>PropertiesColors</Enum>
 			<Enum>PropertiesKinds</Enum>
 			<Enum>RateSources</Enum>
@@ -1648,6 +1673,7 @@
 			<Report>IrrelevantFilesVolume</Report>
 			<Report>Jobs</Report>
 			<Report>OverdueTasks</Report>
+			<Report>Purchases</Report>
 			<Report>RolesRights</Report>
 			<Report>SearchForReferences</Report>
 			<Report>Tasks</Report>
@@ -1759,6 +1785,7 @@
 			<InformationRegister>UsersAccessKeysCurrentJobs</InformationRegister>
 			<InformationRegister>UsersAccessKeysUpdate</InformationRegister>
 			<InformationRegister>UsersInfo</InformationRegister>
+			<AccumulationRegister>Purchases</AccumulationRegister>
 			<ChartOfCharacteristicTypes>AdditionalAttributesAndInfo</ChartOfCharacteristicTypes>
 			<ChartOfCharacteristicTypes>TaskAddressingObjects</ChartOfCharacteristicTypes>
 			<BusinessProcess>Job</BusinessProcess>
