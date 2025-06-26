@@ -1,0 +1,1999 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>None</CommandBarLocation>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">MoreCommandBar</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">Language</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="OnSaveDataInSettingsAtServer">OnSaveDataInSettingsAtServer</Event>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupCommandBar" id="116" DisplayImportance="VeryHigh">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupCommandBarExtendedTooltip" id="143"/>
+			<ChildItems>
+				<CommandBar name="CommandBarLeftPart" id="114">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print and preview</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ExtendedTooltip name="CommandBarLeftPartExtendedTooltip" id="144"/>
+					<ChildItems>
+						<Button name="PrintButtonCommandBar" id="38">
+							<Type>CommandBarButton</Type>
+							<DefaultButton>true</DefaultButton>
+							<SkipOnInput>false</SkipOnInput>
+							<CommandName>Form.Command.Print</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Print</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="PrintButtonCommandBarExtendedTooltip" id="145"/>
+						</Button>
+						<Button name="PreviewButton" id="214">
+							<Type>CommandBarButton</Type>
+							<Representation>Picture</Representation>
+							<CommandName>Form.Item.CurrentPrintForm.StandardCommand.Preview</CommandName>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="PreviewButtonExtendedTooltip" id="215"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<UsualGroup name="CopiesCountSetup" id="275" DisplayImportance="VeryHigh">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Number of copies settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CopiesCountSetupExtendedTooltip" id="276"/>
+					<ChildItems>
+						<InputField name="Copies" id="117" DisplayImportance="VeryHigh">
+							<DataPath>Copies</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Copies</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Number of copies</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Width>4</Width>
+							<SpinButton>true</SpinButton>
+							<MinValue xsi:type="xs:decimal">1</MinValue>
+							<MaxValue xsi:type="xs:decimal">999</MaxValue>
+							<ContextMenu name="CopiesContextMenu" id="118"/>
+							<ExtendedTooltip name="CopiesExtendedTooltip" id="146"/>
+							<Events>
+								<Event name="OnChange">CopiesOnChange</Event>
+							</Events>
+						</InputField>
+						<CheckBoxField name="SignedAndSealedFlag" id="281" DisplayImportance="VeryHigh">
+							<DataPath>SignatureAndSeal</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Insert signature and stamp</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="SignedAndSealedFlagContextMenu" id="282"/>
+							<ExtendedTooltip name="SignedAndSealedFlagExtendedTooltip" id="283">
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Add facsimile signature and stamp to the print form.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">SignedAndSealedFlagOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="CommandBarRightPart" id="115">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Set customization and more</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ExtendedTooltip name="CommandBarRightPartExtendedTooltip" id="147"/>
+					<ChildItems>
+						<Button name="ShowHideSetSettingsButton" id="101">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ShowHideSetSettingsButton</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Toggle print form set customization</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ShowHideSetSettingsButtonExtendedTooltip" id="149"/>
+						</Button>
+						<ButtonGroup name="EditPrintFormGroup" id="142">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edit print form</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="EditPrintFormGroupExtendedTooltip" id="156"/>
+							<ChildItems>
+								<Button name="EditButton" id="141">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.ToggleEditing</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Edit print form</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="EditButtonExtendedTooltip" id="157"/>
+								</Button>
+								<Popup name="Language" id="284">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Language</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="LanguageExtendedTooltip" id="285"/>
+								</Popup>
+							</ChildItems>
+						</ButtonGroup>
+						<ButtonGroup name="SaveSendGroup" id="108">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Save and send</v8:content>
+								</v8:item>
+							</Title>
+							<Representation>Usual</Representation>
+							<ExtendedTooltip name="SaveSendGroupExtendedTooltip" id="158"/>
+							<ChildItems>
+								<Button name="SaveButton" id="102">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Save</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Save…</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SaveButtonExtendedTooltip" id="159"/>
+								</Button>
+								<Popup name="SubmenuSend" id="293">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Send</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.SendMessage</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<ExtendedTooltip name="SubmenuSendExtendedTooltip" id="294"/>
+									<ChildItems>
+										<Button name="SendButton" id="103">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.Send</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Email</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="SendButtonExtendedTooltip" id="160"/>
+										</Button>
+									</ChildItems>
+								</Popup>
+							</ChildItems>
+						</ButtonGroup>
+						<ButtonGroup name="NavigationGroup" id="109">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Navigation</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="NavigationGroupExtendedTooltip" id="161"/>
+							<ChildItems>
+								<Button name="GoToDocumentButton" id="64">
+									<Type>CommandBarButton</Type>
+									<SkipOnInput>false</SkipOnInput>
+									<CommandName>Form.Command.GoToDocument</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Go to document…</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="GoToDocumentButtonExtendedTooltip" id="162"/>
+								</Button>
+							</ChildItems>
+						</ButtonGroup>
+					</ChildItems>
+				</CommandBar>
+				<UsualGroup name="IndicatorGroup" id="252">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Functions</v8:content>
+						</v8:item>
+					</Title>
+					<Shortcut>F5</Shortcut>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="IndicatorGroupExtendedTooltip" id="253"/>
+					<ChildItems>
+						<InputField name="Factor" id="254">
+							<DataPath>Factor</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Function</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="FactorContextMenu" id="255"/>
+							<ExtendedTooltip name="FactorExtendedTooltip" id="256"/>
+						</InputField>
+						<CommandBar name="IndicatorsCommands" id="257">
+							<EnableContentChange>true</EnableContentChange>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Function commands</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="IndicatorsCommandsExtendedTooltip" id="258"/>
+							<ChildItems>
+								<Popup name="IndicatorsKindsCommands" id="259">
+									<EnableContentChange>true</EnableContentChange>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Function types</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>CommonPicture.Sum</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<Representation>Picture</Representation>
+									<ExtendedTooltip name="IndicatorsKindsCommandsExtendedTooltip" id="260"/>
+									<ChildItems>
+										<Button name="CalculateAmount" id="261">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CalculateAmount</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Sum</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CalculateAmountExtendedTooltip" id="262"/>
+										</Button>
+										<Button name="CalculateCount" id="263">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CalculateCount</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Number of cells</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CalculateCountExtendedTooltip" id="264"/>
+										</Button>
+										<Button name="CalculateAverage" id="265">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CalculateAverage</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Range average</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CalculateAverageExtendedTooltip" id="266"/>
+										</Button>
+										<Button name="CalculateMin" id="267">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CalculateMin</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Range minimum</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CalculateMinExtendedTooltip" id="268"/>
+										</Button>
+										<Button name="CalculateMax" id="269">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CalculateMax</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Range maximum</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CalculateMaxExtendedTooltip" id="270"/>
+										</Button>
+										<ButtonGroup name="AllIndicators" id="271">
+											<EnableContentChange>true</EnableContentChange>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>All functions</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="AllIndicatorsExtendedTooltip" id="272"/>
+											<ChildItems>
+												<Button name="CalculateAllIndicators" id="273">
+													<Type>CommandBarButton</Type>
+													<CommandName>Form.Command.CalculateAllIndicators</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>All functions</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="CalculateAllIndicatorsExtendedTooltip" id="274"/>
+												</Button>
+											</ChildItems>
+										</ButtonGroup>
+									</ChildItems>
+								</Popup>
+							</ChildItems>
+						</CommandBar>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="MoreCommandBar" id="192">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>More</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="MoreCommandBarExtendedTooltip" id="193"/>
+					<ChildItems>
+						<Button name="PrintButtonAllActions" id="120">
+							<Type>CommandBarButton</Type>
+							<SkipOnInput>false</SkipOnInput>
+							<CommandName>Form.Command.Print</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Print</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="PrintButtonAllActionsExtendedTooltip" id="148"/>
+						</Button>
+						<Button name="PreviewButtonAllActions" id="216">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.CurrentPrintForm.StandardCommand.Preview</CommandName>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="PreviewButtonAllActionsExtendedTooltip" id="217"/>
+						</Button>
+						<Button name="ButtonGoToDocumentAllActions" id="301">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.GoToDocument</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Go to document…</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ButtonGoToDocumentAllActionsExtendedTooltip" id="302"/>
+						</Button>
+						<Button name="AllActionsPageParametersButton" id="218">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.CurrentPrintForm.StandardCommand.PageSetup</CommandName>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="AllActionsPageParametersButtonExtendedTooltip" id="219"/>
+						</Button>
+						<ButtonGroup name="SaveSendGroupAllActions" id="194">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Save and send</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="SaveSendGroupAllActionsExtendedTooltip" id="195"/>
+							<ChildItems>
+								<Button name="SaveButtonAllActions" id="196">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.Save</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Save…</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="SaveButtonAllActionsExtendedTooltip" id="197"/>
+								</Button>
+								<Popup name="SubmenuSendAllActions" id="309">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Send</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.SendMessage</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<ExtendedTooltip name="SubmenuSendAllActionsExtendedTooltip" id="310"/>
+									<ChildItems>
+										<Button name="SendButtonAllActions" id="198">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.Send</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Send…</v8:content>
+												</v8:item>
+											</Title>
+											<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+											<ExtendedTooltip name="SendButtonAllActionsExtendedTooltip" id="199"/>
+										</Button>
+									</ChildItems>
+								</Popup>
+							</ChildItems>
+						</ButtonGroup>
+						<Button name="ButtonToggleEditingAllActions" id="297">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ToggleEditing</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edit print form</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ButtonToggleEditingAllActionsExtendedTooltip" id="298"/>
+						</Button>
+						<ButtonGroup name="EditTemplateGroup" id="137">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edit template</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="EditTemplateGroupExtendedTooltip" id="163"/>
+							<ChildItems>
+								<Button name="ChangeTemplateButton" id="138">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.ChangeTemplate</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Edit template…</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="ChangeTemplateButtonExtendedTooltip" id="164"/>
+								</Button>
+								<Button name="GoToTemplateManagementButton" id="81">
+									<Type>CommandBarButton</Type>
+									<SkipOnInput>false</SkipOnInput>
+									<CommandName>Form.Command.GoToTemplatesManagement</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Go to print form templates</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="GoToTemplateManagementButtonExtendedTooltip" id="165"/>
+								</Button>
+								<Popup name="LanguageAllActions" id="307">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Language</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="LanguageAllActionsExtendedTooltip" id="308"/>
+								</Popup>
+							</ChildItems>
+						</ButtonGroup>
+						<ButtonGroup name="GroupAppearance" id="305">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Interface</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="GroupAppearanceExtendedTooltip" id="306"/>
+							<ChildItems>
+								<Button name="ButtonShowHideSetSettingsAllActions" id="295">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.ShowHideSetSettingsButton</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Toggle print form set customization</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="ButtonShowHideSetSettingsAllActionsExtendedTooltip" id="296"/>
+								</Button>
+								<Button name="ButtonCalculateAllIndicators" id="303">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.CalculateAllIndicators</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Toggle functions</v8:content>
+										</v8:item>
+									</Title>
+									<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+									<ExtendedTooltip name="ButtonCalculateAllIndicatorsExtendedTooltip" id="304"/>
+								</Button>
+							</ChildItems>
+						</ButtonGroup>
+						<Button name="ButtonChangeFormAllActions" id="299">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ButtonChangeFormAllActionsExtendedTooltip" id="300"/>
+						</Button>
+						<Button name="Help" id="277">
+							<Type>CommandBarButton</Type>
+							<Representation>Picture</Representation>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="278"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="AdditionalInformationGroup" id="226">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional information</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="AdditionalInformationGroupExtendedTooltip" id="227"/>
+			<ChildItems>
+				<PictureDecoration name="PictureOfInformation" id="223">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Information picture</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Information</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="PictureOfInformationContextMenu" id="224"/>
+					<ExtendedTooltip name="PictureOfInformationExtendedTooltip" id="225"/>
+				</PictureDecoration>
+				<LabelDecoration name="AdditionalInformation" id="220">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Title formatted="true">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>This counterparty supports Electronic Document Exchange. &lt;link GoToElectronicDocumentManagementSettings&gt;View settings&lt;/&gt;.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Center</VerticalAlign>
+					<ContextMenu name="AdditionalInformationContextMenu" id="221"/>
+					<ExtendedTooltip name="AdditionalInformationExtendedTooltip" id="222"/>
+					<Events>
+						<Event name="URLProcessing">AdditionalInformationURLProcessing</Event>
+					</Events>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="PrintFormsGroup" id="119">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Print forms</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ChildItemsWidth>LeftNarrowest</ChildItemsWidth>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="PrintFormsGroupExtendedTooltip" id="166"/>
+			<ChildItems>
+				<Table name="PrintFormsSettings" id="86" DisplayImportance="VeryLow">
+					<Representation>List</Representation>
+					<ChangeRowSet>false</ChangeRowSet>
+					<Width>30</Width>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>50</MaxWidth>
+					<FooterHeight>3</FooterHeight>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>PrintFormsSettings</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print form settings</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>Add</ExcludedCommand>
+						<ExcludedCommand>CancelSearch</ExcludedCommand>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Delete</ExcludedCommand>
+						<ExcludedCommand>EndEdit</ExcludedCommand>
+						<ExcludedCommand>Find</ExcludedCommand>
+						<ExcludedCommand>OutputList</ExcludedCommand>
+						<ExcludedCommand>SelectAll</ExcludedCommand>
+						<ExcludedCommand>SortListAsc</ExcludedCommand>
+						<ExcludedCommand>SortListDesc</ExcludedCommand>
+					</CommandSet>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="PrintFormsSettingsContextMenu" id="87">
+						<ChildItems>
+							<ButtonGroup name="SetSettingsGroupContextMenu" id="107">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Print set context menu</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="SetSettingsGroupContextMenuExtendedTooltip" id="167"/>
+								<ChildItems>
+									<Button name="SelectAllButtonContextMenu" id="99">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.CheckAll</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Select all</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="SelectAllButtonContextMenuExtendedTooltip" id="168"/>
+									</Button>
+									<Button name="ClearAllButtonContextMenu" id="100">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.UncheckAll</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Clear all</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ClearAllButtonContextMenuExtendedTooltip" id="169"/>
+									</Button>
+									<Button name="MoveUpButtonContextMenu" id="110">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.PrintFormsSettings.StandardCommand.MoveUp</CommandName>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="MoveUpButtonContextMenuExtendedTooltip" id="170"/>
+									</Button>
+									<Button name="MoveDownButtonContextMenu" id="111">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.PrintFormsSettings.StandardCommand.MoveDown</CommandName>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="MoveDownButtonContextMenuExtendedTooltip" id="171"/>
+									</Button>
+									<Button name="ClearSettingsButtonContextMenu" id="128">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ResetSettings</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Reset to default settings</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="ClearSettingsButtonContextMenuExtendedTooltip" id="172"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<Button name="PrintFormsSettingsContextMenuCopyToClipboard" id="127">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.PrintFormsSettings.StandardCommand.CopyToClipboard</CommandName>
+								<ExtendedTooltip name="PrintFormsSettingsContextMenuCopyToClipboardExtendedTooltip" id="173"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="PrintFormsSettingsCommandBar" id="88">
+						<Autofill>false</Autofill>
+						<ChildItems>
+							<ButtonGroup name="SetSettingsGroupCommandBar" id="121">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Customize set</v8:content>
+									</v8:item>
+								</Title>
+								<Representation>Compact</Representation>
+								<ExtendedTooltip name="SetSettingsGroupCommandBarExtendedTooltip" id="150"/>
+								<ChildItems>
+									<ButtonGroup name="FlagsManagement" id="286">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Manage check boxes</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="FlagsManagementExtendedTooltip" id="287"/>
+										<ChildItems>
+											<Button name="SelectAllButtonSubmenu" id="122">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.CheckAll</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Select all</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="SelectAllButtonSubmenuExtendedTooltip" id="151"/>
+											</Button>
+											<Button name="ClearAllButtonSubmenu" id="123">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.UncheckAll</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Clear all</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="ClearAllButtonSubmenuExtendedTooltip" id="152"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<ButtonGroup name="LineManagement" id="288">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>String management</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="LineManagementExtendedTooltip" id="289"/>
+										<ChildItems>
+											<Button name="MoveUpButtonSubmenu" id="124">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.PrintFormsSettings.StandardCommand.MoveUp</CommandName>
+												<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="MoveUpButtonSubmenuExtendedTooltip" id="153"/>
+											</Button>
+											<Button name="MoveDownButtonSubmenu" id="125">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.PrintFormsSettings.StandardCommand.MoveDown</CommandName>
+												<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="MoveDownButtonSubmenuExtendedTooltip" id="154"/>
+											</Button>
+										</ChildItems>
+									</ButtonGroup>
+									<Button name="ClearSettingsButtonSubmenu" id="126">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ResetSettings</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Reset to default settings</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ClearSettingsButtonSubmenuExtendedTooltip" id="155"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<SearchStringAddition name="SearchString_" id="290">
+								<AdditionSource>
+									<Item>PrintFormsSettings</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Search</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="SearchString_ContextMenu" id="291"/>
+								<ExtendedTooltip name="SearchString_ExtendedTooltip" id="292"/>
+							</SearchStringAddition>
+						</ChildItems>
+					</AutoCommandBar>
+					<ExtendedTooltip name="PrintFormsSettingsExtendedTooltip" id="174"/>
+					<SearchStringAddition name="PrintFormsSettingsSearchString" id="200">
+						<AdditionSource>
+							<Item>PrintFormsSettings</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="PrintFormsSettingsSearchStringContextMenu" id="201"/>
+						<ExtendedTooltip name="PrintFormsSettingsSearchStringExtendedTooltip" id="202"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="PrintFormsSettingsViewStatus" id="203">
+						<AdditionSource>
+							<Item>PrintFormsSettings</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="PrintFormsSettingsViewStatusContextMenu" id="204"/>
+						<ExtendedTooltip name="PrintFormsSettingsViewStatusExtendedTooltip" id="205"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="PrintFormsSettingsSearchControl" id="206">
+						<AdditionSource>
+							<Item>PrintFormsSettings</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="PrintFormsSettingsSearchControlContextMenu" id="207"/>
+						<ExtendedTooltip name="PrintFormsSettingsSearchControlExtendedTooltip" id="208"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="BeforeAddRow">PrintFormsSettingsBeforeAddRow</Event>
+						<Event name="OnActivateRow">PrintFormsSettingsOnActivateRow</Event>
+						<Event name="OnChange">PrintFormsSettingsOnChange</Event>
+					</Events>
+					<ChildItems>
+						<CheckBoxField name="PrintFormsSettingsPrint" id="93">
+							<DataPath>PrintFormsSettings.Print</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Print</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<EditMode>EnterOnInput</EditMode>
+							<HeaderPicture>
+								<xr:Ref>StdPicture.Print</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</HeaderPicture>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="PrintFormsSettingsPrintContextMenu" id="94"/>
+							<ExtendedTooltip name="PrintFormsSettingsPrintExtendedTooltip" id="175"/>
+							<Events>
+								<Event name="OnChange">PrintFormsSettingsPrintOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<InputField name="PrintFormsSettingsPresentation" id="89">
+							<DataPath>PrintFormsSettings.Presentation</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Print form</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="PrintFormsSettingsPresentationContextMenu" id="90"/>
+							<ExtendedTooltip name="PrintFormsSettingsPresentationExtendedTooltip" id="176"/>
+						</InputField>
+						<InputField name="PrintFormsSettingsCount" id="91">
+							<DataPath>PrintFormsSettings.Count</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Copies</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>Directly</EditMode>
+							<Width>6</Width>
+							<SpinButton>true</SpinButton>
+							<MinValue xsi:type="xs:decimal">0</MinValue>
+							<ContextMenu name="PrintFormsSettingsCountContextMenu" id="92"/>
+							<ExtendedTooltip name="PrintFormsSettingsCountExtendedTooltip" id="177"/>
+							<Events>
+								<Event name="Tuning">PrintFormsSettingsCountTuning</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</Table>
+				<Pages name="Pages" id="9" DisplayImportance="VeryHigh">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Pages</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="PagesExtendedTooltip" id="178"/>
+					<ChildItems>
+						<Page name="CurrentPrintFormPage" id="209">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Current print form page</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CurrentPrintFormPageExtendedTooltip" id="210"/>
+							<ChildItems>
+								<SpreadSheetDocumentField name="CurrentPrintForm" id="211">
+									<DataPath>CurrentPrintForm</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Current print form</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>30</Width>
+									<Height>15</Height>
+									<VerticalScrollBar>true</VerticalScrollBar>
+									<HorizontalScrollBar>true</HorizontalScrollBar>
+									<ContextMenu name="CurrentPrintFormContextMenu" id="212"/>
+									<ExtendedTooltip name="CurrentPrintFormExtendedTooltip" id="213"/>
+									<Events>
+										<Event name="OnActivate">CurrentPrintFormOnActivate</Event>
+										<Event name="Selection">CurrentPrintFormSelection</Event>
+									</Events>
+								</SpreadSheetDocumentField>
+							</ChildItems>
+						</Page>
+						<Page name="PrintFormUnavailablePage" id="129">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Print form not available page</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="PrintFormUnavailablePageExtendedTooltip" id="181"/>
+							<ChildItems>
+								<UsualGroup name="PrintFormUnavailableGroup" id="132">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Print form not available</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="PrintFormUnavailableGroupExtendedTooltip" id="182"/>
+									<ChildItems>
+										<PictureDecoration name="PrintFormUnavailablePicture" id="130">
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Print form not available picture</v8:content>
+												</v8:item>
+											</Title>
+											<Picture>
+												<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+												<xr:LoadTransparent>true</xr:LoadTransparent>
+											</Picture>
+											<FileDragMode>AsFile</FileDragMode>
+											<ContextMenu name="PrintFormUnavailablePictureContextMenu" id="131"/>
+											<ExtendedTooltip name="PrintFormUnavailablePictureExtendedTooltip" id="183"/>
+										</PictureDecoration>
+										<LabelDecoration name="PrintFormUnavailableLabel" id="133">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Print form not available.</v8:content>
+												</v8:item>
+											</Title>
+											<GroupVerticalAlign>Center</GroupVerticalAlign>
+											<ContextMenu name="PrintFormUnavailableLabelContextMenu" id="134"/>
+											<ExtendedTooltip name="PrintFormUnavailableLabelExtendedTooltip" id="184"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="IndicatorsArea" id="228">
+			<Visible>false</Visible>
+			<EnableContentChange>true</EnableContentChange>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Functions</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Selected cell range functions.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<HorizontalStretch>true</HorizontalStretch>
+			<Group>AlwaysHorizontal</Group>
+			<HorizontalAlign>Right</HorizontalAlign>
+			<Behavior>Usual</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="IndicatorsAreaExtendedTooltip" id="229"/>
+			<ChildItems>
+				<LabelDecoration name="IndicatorsIndent" id="230">
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="IndicatorsIndentContextMenu" id="231"/>
+					<ExtendedTooltip name="IndicatorsIndentExtendedTooltip" id="232"/>
+				</LabelDecoration>
+				<UsualGroup name="IndicatorsKinds" id="233">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Function types</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<BackColor>style:TotalsGroupBackground</BackColor>
+					<ExtendedTooltip name="IndicatorsKindsExtendedTooltip" id="234"/>
+					<ChildItems>
+						<InputField name="Sum" id="235">
+							<DataPath>Sum</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Sum</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="SumContextMenu" id="236"/>
+							<ExtendedTooltip name="SumExtendedTooltip" id="237"/>
+						</InputField>
+						<InputField name="Count" id="238">
+							<DataPath>Count</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Quantity</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="CountContextMenu" id="239"/>
+							<ExtendedTooltip name="CountExtendedTooltip" id="240"/>
+						</InputField>
+						<InputField name="Mean" id="241">
+							<DataPath>Mean</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Average</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="MeanContextMenu" id="242"/>
+							<ExtendedTooltip name="MeanExtendedTooltip" id="243"/>
+						</InputField>
+						<InputField name="Minimum" id="244">
+							<DataPath>Minimum</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Minimum</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="MinimumContextMenu" id="245"/>
+							<ExtendedTooltip name="MinimumExtendedTooltip" id="246"/>
+						</InputField>
+						<InputField name="Maximum" id="247">
+							<DataPath>Maximum</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Maximum</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<Width>10</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="MaximumContextMenu" id="248"/>
+							<ExtendedTooltip name="MaximumExtendedTooltip" id="249"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<Button name="CollapseIndicators" id="250">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.CollapseIndicators</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Collapse</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CollapseIndicatorsExtendedTooltip" id="251"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="PrintObjects" id="14">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="SettingsKey" id="17">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PrintFormsSettings" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Print form settings</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Presentation" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print form</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Count" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Copies</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>3</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Print" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PageName" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AttributeName" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="TemplateName" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="DefaultPosition" id="7">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Name1" id="8">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="TemplatePath" id="9">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PrintFormFileName" id="10">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="OfficeDocuments" id="11">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="SignatureAndSeal" id="12">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="OutputInOtherLanguagesAvailable" id="13">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="CurrentLanguage" id="14">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AvailableLanguages" id="15">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="GenerationErrorText" id="32">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="PrintFormSample" id="19">
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="OutputParameters" id="1">
+			<Type/>
+		</Attribute>
+		<Attribute name="DefaultSetSettings" id="2">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="TemplateName" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Count" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="DefaultPosition" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SetSettingsAvailable" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Copies" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Copies</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SaveFormatSettings" id="5">
+			<Type/>
+		</Attribute>
+		<Attribute name="Sum" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sum</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>25</v8:Digits>
+					<v8:FractionDigits>5</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentPrintForm" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Current print form</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Count" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number of cells</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>25</v8:Digits>
+					<v8:FractionDigits>5</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Mean" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Range average</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>25</v8:Digits>
+					<v8:FractionDigits>5</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Factor" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Function</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>25</v8:Digits>
+					<v8:FractionDigits>5</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Maximum" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Range maximum</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>25</v8:Digits>
+					<v8:FractionDigits>5</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Minimum" id="25">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Range minimum</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>25</v8:Digits>
+					<v8:FractionDigits>5</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SignatureAndSeal" id="26">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Signature and stamp</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>SignatureAndSeal</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="StorageUUID" id="27">
+			<Type>
+				<v8:Type>v8:UUID</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DrawingsStorageAddress" id="7">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MainIndicator" id="8">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>MainIndicator</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ExpandIndicatorsArea" id="9">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ExpandIndicatorsArea</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="CurrentLanguage" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FileOperationsExtensionAttached" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TempDirectoryName" id="28">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplatesNames" id="30">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Send" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Email</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Send by email</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SendEmail</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>Send</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Print" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Print</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Printer:</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>Ctrl+Shift+P</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.PrintImmediately</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Print</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GoToDocument" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to document…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to document…</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F7</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.FindInList</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>GoToDocument</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GoToTemplatesManagement" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to print form templates</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to template management</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GoToTemplatesManagement</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CheckAll" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>CheckAll</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="UncheckAll" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.UncheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>UncheckAll</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ShowHideSetSettingsButton" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle print form set customization</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Toggle print form set customization</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.HierarchicalList</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ShowHideSetSettingsButton</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Save" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save to a local folder or attach to the object</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.SaveFile</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Save</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ResetSettings" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reset to default settings</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reset settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ResetSettings</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeTemplate" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit template…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open template for editing.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.EditTemplate</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ChangeTemplate</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ToggleEditing" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit print form</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow/Forbid print form editing</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.SpreadsheetReadOnly</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ToggleEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CalculateAmount" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sum</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate the sum of the selected cell range.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateAmount</Action>
+		</Command>
+		<Command name="CalculateCount" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Number of cells</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate the number of cells in the range.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateCount</Action>
+		</Command>
+		<Command name="CalculateAverage" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Range average</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate the average for the selected cell range.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateAverage</Action>
+		</Command>
+		<Command name="CalculateMax" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Range maximum</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate the maximum value for the selected cell range.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateMax</Action>
+		</Command>
+		<Command name="CalculateMin" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Range minimum</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculates the minimum value for the selected cell range.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateMin</Action>
+		</Command>
+		<Command name="CalculateAllIndicators" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>All functions</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate all functions for the selected cell range.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateAllIndicators</Action>
+		</Command>
+		<Command name="CollapseIndicators" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse list of functions.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.GreenDownArrow</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>CollapseIndicators</Action>
+			<Representation>Picture</Representation>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="PrintManagerName">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="TemplatesNames">
+			<Type/>
+		</Parameter>
+		<Parameter name="CommandParameter">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="PrintParameters">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="DataSource">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="SourceParameters">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="PrintFormsCollection">
+			<Type/>
+		</Parameter>
+		<Parameter name="PrintObjects">
+			<Type/>
+		</Parameter>
+		<Parameter name="OutputParameters">
+			<Type/>
+		</Parameter>
+		<Parameter name="Messages">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

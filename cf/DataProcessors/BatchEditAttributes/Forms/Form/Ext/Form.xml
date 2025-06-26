@@ -1,0 +1,1700 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="Pages" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="74"/>
+			<ChildItems>
+				<Page name="ChangesSetting" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Edit settings</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ChangesSettingExtendedTooltip" id="75"/>
+					<ChildItems>
+						<UsualGroup name="FilterObjects_" id="110">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Select items to edit</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="FilterObjects_ExtendedTooltip" id="111"/>
+							<ChildItems>
+								<InputField name="PresentationOfObjectsToChange" id="167">
+									<DataPath>PresentationOfObjectsToChange</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Edit</v8:content>
+										</v8:item>
+									</Title>
+									<Width>50</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ChoiceButton>true</ChoiceButton>
+									<InputHint>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Enter first letters of the catalog or document</v8:content>
+										</v8:item>
+									</InputHint>
+									<ContextMenu name="PresentationOfObjectsToChangeContextMenu" id="168"/>
+									<ExtendedTooltip name="PresentationOfObjectsToChangeExtendedTooltip" id="169"/>
+									<Events>
+										<Event name="OnChange">PresentationOfObjectsToChangeOnChange</Event>
+										<Event name="AutoComplete">PresentationOfObjectsToChangeAutoComplete</Event>
+										<Event name="StartChoice">KindOfObjectsToChangeStartChoice</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="FilterSettings" id="107">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>All items</v8:content>
+										</v8:item>
+									</Title>
+									<Hyperlink>true</Hyperlink>
+									<ContextMenu name="FilterSettingsContextMenu" id="108"/>
+									<ExtendedTooltip name="FilterSettingsExtendedTooltip" id="109"/>
+									<Events>
+										<Event name="Click">FilterSettingsClick</Event>
+									</Events>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupOperationType" id="355">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Operation type</v8:content>
+								</v8:item>
+							</Title>
+							<HorizontalStretch>true</HorizontalStretch>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupOperationTypeExtendedTooltip" id="356"/>
+							<ChildItems>
+								<RadioButtonField name="OperationType" id="268">
+									<DataPath>Object.OperationType</DataPath>
+									<TitleLocation>None</TitleLocation>
+									<RadioButtonType>Tumbler</RadioButtonType>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Manually</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">EnterValues</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Custom algorithm</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ExecuteAlgorithm</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="OperationTypeContextMenu" id="269"/>
+									<ExtendedTooltip name="OperationTypeExtendedTooltip" id="270"/>
+									<Events>
+										<Event name="OnChange">OperationKindOnChange</Event>
+									</Events>
+								</RadioButtonField>
+								<SearchStringAddition name="AttributesSearchString" id="357">
+									<AdditionSource>
+										<Item>ObjectAttributes</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+									<Width>30</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="AttributesSearchStringContextMenu" id="358"/>
+									<ExtendedTooltip name="AttributesSearchStringExtendedTooltip" id="359"/>
+								</SearchStringAddition>
+							</ChildItems>
+						</UsualGroup>
+						<Pages name="OperationKindPages" id="271">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Operation type pages</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="OperationKindPagesExtendedTooltip" id="272"/>
+							<ChildItems>
+								<Page name="AttributesToChange" id="183">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Editable attributes</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="AttributesToChangeExtendedTooltip" id="184"/>
+									<ChildItems>
+										<Pages name="ObjectComposition" id="112">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Object content</v8:content>
+												</v8:item>
+											</Title>
+											<PagesRepresentation>TabsOnTop</PagesRepresentation>
+											<ExtendedTooltip name="ObjectCompositionExtendedTooltip" id="113"/>
+											<Events>
+												<Event name="OnCurrentPageChange">ObjectCompositionOnCurrentPageChange</Event>
+											</Events>
+											<ChildItems>
+												<Page name="Attributes" id="114">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Attributes</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="AttributesExtendedTooltip" id="115"/>
+													<ChildItems>
+														<Table name="ObjectAttributes" id="116">
+															<Representation>List</Representation>
+															<ChangeRowSet>false</ChangeRowSet>
+															<ChangeRowOrder>false</ChangeRowOrder>
+															<Height>5</Height>
+															<AutoInsertNewRow>true</AutoInsertNewRow>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>ObjectAttributes</DataPath>
+															<RowPictureDataPath>ObjectAttributes.OperationKind</RowPictureDataPath>
+															<RowsPicture>
+																<xr:Ref>CommonPicture.OperationKinds</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</RowsPicture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Attributes</v8:content>
+																</v8:item>
+															</Title>
+															<RowFilter xsi:nil="true"/>
+															<ContextMenu name="ObjectAttributesContextMenu" id="117"/>
+															<AutoCommandBar name="ObjectAttributesCommandBar" id="118">
+																<Autofill>false</Autofill>
+															</AutoCommandBar>
+															<ExtendedTooltip name="ObjectAttributesExtendedTooltip" id="119"/>
+															<SearchStringAddition name="ObjectAttributesSearchString" id="240">
+																<AdditionSource>
+																	<Item>ObjectAttributes</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ObjectAttributesSearchStringContextMenu" id="241"/>
+																<ExtendedTooltip name="ObjectAttributesSearchStringExtendedTooltip" id="242"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="ObjectAttributesViewStatus" id="243">
+																<AdditionSource>
+																	<Item>ObjectAttributes</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ObjectAttributesViewStatusContextMenu" id="244"/>
+																<ExtendedTooltip name="ObjectAttributesViewStatusExtendedTooltip" id="245"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="ObjectAttributesSearchControl" id="246">
+																<AdditionSource>
+																	<Item>ObjectAttributes</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="ObjectAttributesSearchControlContextMenu" id="247"/>
+																<ExtendedTooltip name="ObjectAttributesSearchControlExtendedTooltip" id="248"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="DragCheck">ObjectAttributesDragCheck</Event>
+																<Event name="Drag">ObjectAttributesDrag</Event>
+																<Event name="BeforeRowChange">Attachable_BeforeRowChange</Event>
+															</Events>
+															<ChildItems>
+																<InputField name="ObjectAttributesPresentation" id="126">
+																	<DataPath>ObjectAttributes.Presentation</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Attribute</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="ObjectAttributesPresentationContextMenu" id="127"/>
+																	<ExtendedTooltip name="ObjectAttributesPresentationExtendedTooltip" id="128"/>
+																</InputField>
+																<CheckBoxField name="ObjectAttributesChange" id="123">
+																	<DataPath>ObjectAttributes.Change</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Edit</v8:content>
+																		</v8:item>
+																	</Title>
+																	<TitleLocation>None</TitleLocation>
+																	<EditMode>EnterOnInput</EditMode>
+																	<HeaderPicture>
+																		<xr:Ref>StdPicture.Change</xr:Ref>
+																		<xr:LoadTransparent>true</xr:LoadTransparent>
+																	</HeaderPicture>
+																	<CheckBoxType>Auto</CheckBoxType>
+																	<ContextMenu name="ObjectAttributesChangeContextMenu" id="124"/>
+																	<ExtendedTooltip name="ObjectAttributesChangeExtendedTooltip" id="125"/>
+																	<Events>
+																		<Event name="OnChange">Attachable_OnCheckChange</Event>
+																	</Events>
+																</CheckBoxField>
+																<InputField name="ObjectAttributesValue" id="129">
+																	<DataPath>ObjectAttributes.Value</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>New value</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="ObjectAttributesValueContextMenu" id="130"/>
+																	<ExtendedTooltip name="ObjectAttributesValueExtendedTooltip" id="131"/>
+																	<Events>
+																		<Event name="OnChange">Attachable_ValueOnChange</Event>
+																		<Event name="StartChoice">ObjectAttributesValueStartChoice</Event>
+																	</Events>
+																</InputField>
+															</ChildItems>
+														</Table>
+														<UsualGroup name="NoAttributesGroup" id="261">
+															<Visible>false</Visible>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>No attributes</v8:content>
+																</v8:item>
+															</Title>
+															<Behavior>Usual</Behavior>
+															<Representation>NormalSeparation</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="NoAttributesGroupExtendedTooltip" id="262"/>
+															<ChildItems>
+																<PictureDecoration name="Decoration2" id="263">
+																	<Picture>
+																		<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+																		<xr:LoadTransparent>true</xr:LoadTransparent>
+																	</Picture>
+																	<FileDragMode>AsFile</FileDragMode>
+																	<ContextMenu name="Decoration2ContextMenu" id="264"/>
+																	<ExtendedTooltip name="Decoration2ExtendedTooltip" id="265"/>
+																</PictureDecoration>
+																<LabelDecoration name="Decoration1" id="258">
+																	<AutoMaxWidth>false</AutoMaxWidth>
+																	<Height>3</Height>
+																	<Title formatted="false">
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Selected objects have no common attributes.</v8:content>
+																		</v8:item>
+																	</Title>
+																	<VerticalAlign>Center</VerticalAlign>
+																	<ContextMenu name="Decoration1ContextMenu" id="259"/>
+																	<ExtendedTooltip name="Decoration1ExtendedTooltip" id="260"/>
+																</LabelDecoration>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+									</ChildItems>
+								</Page>
+								<Page name="ArbitraryAlgorithm" id="273">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Custom algorithm</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ArbitraryAlgorithmExtendedTooltip" id="274"/>
+									<ChildItems>
+										<UsualGroup name="GroupArbitraryAlgorithm" id="281">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Custom algorithm</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupArbitraryAlgorithmExtendedTooltip" id="282"/>
+											<ChildItems>
+												<UsualGroup name="AlgorithmGroup" id="283">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Algorithm</v8:content>
+														</v8:item>
+													</Title>
+													<Group>Vertical</Group>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="AlgorithmGroupExtendedTooltip" id="284"/>
+													<ChildItems>
+														<InputField name="Algorithm" id="278">
+															<DataPath>Algorithm</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Algorithm</v8:content>
+																</v8:item>
+															</Title>
+															<InputHint>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Algorithm name</v8:content>
+																</v8:item>
+															</InputHint>
+															<ContextMenu name="AlgorithmContextMenu" id="279"/>
+															<ExtendedTooltip name="AlgorithmExtendedTooltip" id="280"/>
+														</InputField>
+														<TextDocumentField name="AlgorithmCode" id="275">
+															<DataPath>AlgorithmCode</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Algorithm code</v8:content>
+																</v8:item>
+															</Title>
+															<TitleLocation>None</TitleLocation>
+															<Width>20</Width>
+															<Height>5</Height>
+															<ContextMenu name="AlgorithmCodeContextMenu" id="276"/>
+															<ExtendedTooltip name="AlgorithmCodeExtendedTooltip" id="277"/>
+														</TextDocumentField>
+													</ChildItems>
+												</UsualGroup>
+												<UsualGroup name="AttributesForAlgorithmGroup" id="285">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Algorithm attributes</v8:content>
+														</v8:item>
+													</Title>
+													<Group>Vertical</Group>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="AttributesForAlgorithmGroupExtendedTooltip" id="286"/>
+													<ChildItems>
+														<Pages name="PagesForAlignmentGroup" id="309">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Align left pages</v8:content>
+																</v8:item>
+															</Title>
+															<PagesRepresentation>None</PagesRepresentation>
+															<ExtendedTooltip name="PagesForAlignmentGroupExtendedTooltip" id="310"/>
+															<ChildItems>
+																<Page name="AttributesLabelPage" id="311">
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Attributes:</v8:content>
+																		</v8:item>
+																	</Title>
+																	<HorizontalStretch>true</HorizontalStretch>
+																	<VerticalStretch>true</VerticalStretch>
+																	<Group>HorizontalIfPossible</Group>
+																	<VerticalAlign>Center</VerticalAlign>
+																	<ExtendedTooltip name="AttributesLabelPageExtendedTooltip" id="312"/>
+																	<ChildItems>
+																		<LabelDecoration name="AttributesLabel" id="303">
+																			<Title formatted="false">
+																				<v8:item>
+																					<v8:lang>en</v8:lang>
+																					<v8:content>Attributes:</v8:content>
+																				</v8:item>
+																			</Title>
+																			<ContextMenu name="AttributesLabelContextMenu" id="304"/>
+																			<ExtendedTooltip name="AttributesLabelExtendedTooltip" id="305"/>
+																		</LabelDecoration>
+																		<SearchStringAddition name="AttributesAlgorithmSearchString" id="352">
+																			<AdditionSource>
+																				<Item>ObjectAttributesAlgorithm</Item>
+																				<Type>SearchStringRepresentation</Type>
+																			</AdditionSource>
+																			<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+																			<Width>20</Width>
+																			<HorizontalStretch>false</HorizontalStretch>
+																			<ContextMenu name="AttributesAlgorithmSearchStringContextMenu" id="353"/>
+																			<ExtendedTooltip name="AttributesAlgorithmSearchStringExtendedTooltip" id="354"/>
+																		</SearchStringAddition>
+																	</ChildItems>
+																</Page>
+																<Page name="InvisiblePage" id="313">
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Invisible page</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ExtendedTooltip name="InvisiblePageExtendedTooltip" id="314"/>
+																	<ChildItems>
+																		<InputField name="InvisibleFieldForAlignment" id="349">
+																			<DataPath>Algorithm</DataPath>
+																			<Title>
+																				<v8:item>
+																					<v8:lang>en</v8:lang>
+																					<v8:content>Algorithm</v8:content>
+																				</v8:item>
+																			</Title>
+																			<ContextMenu name="InvisibleFieldForAlignmentContextMenu" id="350"/>
+																			<ExtendedTooltip name="InvisibleFieldForAlignmentExtendedTooltip" id="351"/>
+																		</InputField>
+																	</ChildItems>
+																</Page>
+															</ChildItems>
+														</Pages>
+														<Table name="ObjectAttributesAlgorithm" id="315">
+															<Representation>List</Representation>
+															<Height>3</Height>
+															<SelectionMode>SingleRow</SelectionMode>
+															<Header>false</Header>
+															<HorizontalLines>false</HorizontalLines>
+															<VerticalLines>false</VerticalLines>
+															<AutoInsertNewRow>true</AutoInsertNewRow>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>ObjectAttributes</DataPath>
+															<RowPictureDataPath>ObjectAttributes.OperationKind</RowPictureDataPath>
+															<RowsPicture>
+																<xr:Ref>CommonPicture.OperationKinds</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</RowsPicture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Algorithm object attributes</v8:content>
+																</v8:item>
+															</Title>
+															<RowFilter xsi:nil="true"/>
+															<ContextMenu name="ObjectAttributesAlgorithmContextMenu" id="316"/>
+															<AutoCommandBar name="ObjectAttributesAlgorithmCommandBar" id="317">
+																<Autofill>false</Autofill>
+															</AutoCommandBar>
+															<ExtendedTooltip name="ObjectAttributesAlgorithmExtendedTooltip" id="318"/>
+															<SearchStringAddition name="ObjectAttributesAlgorithmSearchString" id="319">
+																<AdditionSource>
+																	<Item>ObjectAttributesAlgorithm</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ObjectAttributesAlgorithmSearchStringContextMenu" id="320"/>
+																<ExtendedTooltip name="ObjectAttributesAlgorithmSearchStringExtendedTooltip" id="321"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="ObjectAttributesAlgorithmViewStatus" id="322">
+																<AdditionSource>
+																	<Item>ObjectAttributesAlgorithm</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ObjectAttributesAlgorithmViewStatusContextMenu" id="323"/>
+																<ExtendedTooltip name="ObjectAttributesAlgorithmViewStatusExtendedTooltip" id="324"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="ObjectAttributesAlgorithmSearchControl" id="325">
+																<AdditionSource>
+																	<Item>ObjectAttributesAlgorithm</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="ObjectAttributesAlgorithmSearchControlContextMenu" id="326"/>
+																<ExtendedTooltip name="ObjectAttributesAlgorithmSearchControlExtendedTooltip" id="327"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="DragStart">Object1AttributesStartDrag</Event>
+															</Events>
+															<ChildItems>
+																<InputField name="ObjectAttributesAlgorithmPresentation" id="334">
+																	<DataPath>ObjectAttributes.Presentation</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="ObjectAttributesAlgorithmPresentationContextMenu" id="335"/>
+																	<ExtendedTooltip name="ObjectAttributesAlgorithmPresentationExtendedTooltip" id="336"/>
+																</InputField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</UsualGroup>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="AlgorithmExecutionParameters" id="341">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Algorithm parameters</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ThroughAlign>DontUse</ThroughAlign>
+											<ExtendedTooltip name="AlgorithmExecutionParametersExtendedTooltip" id="342"/>
+											<ChildItems>
+												<InputField name="ObjectWriteMode" id="343">
+													<DataPath>Object.ObjectWriteOption</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Save object</v8:content>
+														</v8:item>
+													</Title>
+													<TitleHeight>1</TitleHeight>
+													<ToolTipRepresentation>Button</ToolTipRepresentation>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<MaxWidth>20</MaxWidth>
+													<ListChoiceMode>true</ListChoiceMode>
+													<TextEdit>false</TextEdit>
+													<ChoiceList>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Automatically</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:string">Write</Value>
+															</xr:Value>
+														</xr:Item>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>In algorithm code</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:string">NotWrite</Value>
+															</xr:Value>
+														</xr:Item>
+													</ChoiceList>
+													<ContextMenu name="ObjectWriteModeContextMenu" id="344"/>
+													<ExtendedTooltip name="ObjectWriteModeExtendedTooltip" id="345">
+														<Title formatted="true">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Define object save mode:
+• If Automatically, object is saved after algorithm has been executed.
+• If In algorithm code, developer specifies when to save object.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+												</InputField>
+												<InputField name="ExecutionMode" id="346">
+													<DataPath>Object.ExecutionMode</DataPath>
+													<ToolTipRepresentation>Button</ToolTipRepresentation>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<MaxWidth>12</MaxWidth>
+													<ListChoiceMode>true</ListChoiceMode>
+													<TextEdit>false</TextEdit>
+													<ChoiceList>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Safe</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:decimal">0</Value>
+															</xr:Value>
+														</xr:Item>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Unsafe</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:decimal">1</Value>
+															</xr:Value>
+														</xr:Item>
+													</ChoiceList>
+													<ContextMenu name="ExecutionModeContextMenu" id="347"/>
+													<ExtendedTooltip name="ExecutionModeExtendedTooltip" id="348">
+														<Title formatted="true">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Define safety mode. It is recommended that you run algorithms in safe mode. For more information, see 1C:Enterprise documentation.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+						<CommandBar name="SettingsPanel" id="187">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Setting panel</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="SettingsPanelExtendedTooltip" id="188"/>
+							<ChildItems>
+								<Popup name="Algorithms" id="337">
+									<Visible>false</Visible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Algorithms</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="AlgorithmsExtendedTooltip" id="338"/>
+									<ChildItems>
+										<Button name="StubAlgorythms" id="339">
+											<Type>CommandBarButton</Type>
+											<Enabled>false</Enabled>
+											<CommandName>Form.Command.StubAlgorythms</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&lt;No&gt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="StubAlgorythmsExtendedTooltip" id="340"/>
+										</Button>
+									</ChildItems>
+								</Popup>
+								<Popup name="PreviouslyChangedAttributes" id="189">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Change history</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="PreviouslyChangedAttributesExtendedTooltip" id="190"/>
+									<ChildItems>
+										<Button name="Stub" id="201">
+											<Type>CommandBarButton</Type>
+											<Enabled>false</Enabled>
+											<CommandName>Form.Command.Stub</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>&lt;No&gt;</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="StubExtendedTooltip" id="202"/>
+										</Button>
+									</ChildItems>
+								</Popup>
+								<Button name="ConfigureChangesParameters" id="44">
+									<Type>CommandBarButton</Type>
+									<Width>21</Width>
+									<CommandName>Form.Command.ConfigureChangeParameters</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional parameters…</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ConfigureChangesParametersExtendedTooltip" id="79"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+						<LabelDecoration name="NoteOnConfiguredChanges" id="196">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>2</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Change the Products attribute in the Goods table for those lines that meet the filter criteria.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="NoteOnConfiguredChangesContextMenu" id="197"/>
+							<ExtendedTooltip name="NoteOnConfiguredChangesExtendedTooltip" id="198"/>
+							<Events>
+								<Event name="URLProcessing">NoteOnConfiguredChangesURLProcessing</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="ObjectsChange" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Edit objects</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ObjectsChangeExtendedTooltip" id="86"/>
+					<ChildItems>
+						<LabelDecoration name="ProcessingResultsLabel" id="139">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edited: 0
+Edit failed: 0</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ProcessingResultsLabelContextMenu" id="140"/>
+							<ExtendedTooltip name="ProcessingResultsLabelExtendedTooltip" id="141"/>
+						</LabelDecoration>
+						<UsualGroup name="ObjectsThatCouldNotBeChangedGroup" id="158">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Objects that were not edited</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ObjectsThatCouldNotBeChangedGroupExtendedTooltip" id="159"/>
+							<ChildItems>
+								<Table name="ObjectsThatCouldNotBeChanged" id="145">
+									<Representation>List</Representation>
+									<TitleLocation>Top</TitleLocation>
+									<ChangeRowSet>false</ChangeRowSet>
+									<ChangeRowOrder>false</ChangeRowOrder>
+									<Height>3</Height>
+									<UseAlternationRowColor>true</UseAlternationRowColor>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<FileDragMode>AsFile</FileDragMode>
+									<DataPath>ObjectsThatCouldNotBeChanged</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Items that were not edited</v8:content>
+										</v8:item>
+									</Title>
+									<CommandSet>
+										<ExcludedCommand>Add</ExcludedCommand>
+										<ExcludedCommand>CancelSearch</ExcludedCommand>
+										<ExcludedCommand>Copy</ExcludedCommand>
+										<ExcludedCommand>Delete</ExcludedCommand>
+										<ExcludedCommand>EndEdit</ExcludedCommand>
+										<ExcludedCommand>Find</ExcludedCommand>
+										<ExcludedCommand>MoveDown</ExcludedCommand>
+										<ExcludedCommand>MoveUp</ExcludedCommand>
+										<ExcludedCommand>SortListAsc</ExcludedCommand>
+										<ExcludedCommand>SortListDesc</ExcludedCommand>
+									</CommandSet>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="ObjectsThatCouldNotBeChangedContextMenu" id="146"/>
+									<AutoCommandBar name="ObjectsThatCouldNotBeChangedCommandBar" id="147">
+										<ChildItems>
+											<Button name="ObjectsThatCouldNotBeChangedChange" id="165">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Item.ObjectsThatCouldNotBeChanged.StandardCommand.Change</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Open</v8:content>
+													</v8:item>
+												</Title>
+												<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+												<ExtendedTooltip name="ObjectsThatCouldNotBeChangedChangeExtendedTooltip" id="166"/>
+											</Button>
+										</ChildItems>
+									</AutoCommandBar>
+									<ExtendedTooltip name="ObjectsThatCouldNotBeChangedExtendedTooltip" id="148"/>
+									<SearchStringAddition name="ObjectsThatCouldNotBeChangedSearchString" id="249">
+										<AdditionSource>
+											<Item>ObjectsThatCouldNotBeChanged</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ObjectsThatCouldNotBeChangedSearchStringContextMenu" id="250"/>
+										<ExtendedTooltip name="ObjectsThatCouldNotBeChangedSearchStringExtendedTooltip" id="251"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="ObjectsThatCouldNotBeChangedViewStatus" id="252">
+										<AdditionSource>
+											<Item>ObjectsThatCouldNotBeChanged</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ObjectsThatCouldNotBeChangedViewStatusContextMenu" id="253"/>
+										<ExtendedTooltip name="ObjectsThatCouldNotBeChangedViewStatusExtendedTooltip" id="254"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="ObjectsThatCouldNotBeChangedSearchControl" id="255">
+										<AdditionSource>
+											<Item>ObjectsThatCouldNotBeChanged</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="ObjectsThatCouldNotBeChangedSearchControlContextMenu" id="256"/>
+										<ExtendedTooltip name="ObjectsThatCouldNotBeChangedSearchControlExtendedTooltip" id="257"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="OnActivateRow">ObjectsThatCouldNotBeChangedOnActivateRow</Event>
+										<Event name="BeforeRowChange">ObjectsThatCouldNotBeChangedBeforeRowChange</Event>
+									</Events>
+									<ChildItems>
+										<InputField name="ObjectsThatCouldNotBeChangedObject" id="155">
+											<DataPath>ObjectsThatCouldNotBeChanged.Object</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Item</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="ObjectsThatCouldNotBeChangedObjectContextMenu" id="156"/>
+											<ExtendedTooltip name="ObjectsThatCouldNotBeChangedObjectExtendedTooltip" id="157"/>
+										</InputField>
+										<InputField name="ObjectsThatCouldNotBeChangedCause" id="162">
+											<DataPath>ObjectsThatCouldNotBeChanged.Cause</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Reason</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<AutoCellHeight>true</AutoCellHeight>
+											<MultiLine>true</MultiLine>
+											<TextEdit>false</TextEdit>
+											<ContextMenu name="ObjectsThatCouldNotBeChangedCauseContextMenu" id="163"/>
+											<ExtendedTooltip name="ObjectsThatCouldNotBeChangedCauseExtendedTooltip" id="164"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+								<UsualGroup name="GroupReason" id="376">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reason</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalStretch>true</VerticalStretch>
+									<Group>Vertical</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupReasonExtendedTooltip" id="377"/>
+									<ChildItems>
+										<UsualGroup name="GroupGenerateErrorReport" id="369">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Generate error report</v8:content>
+												</v8:item>
+											</Title>
+											<HorizontalStretch>true</HorizontalStretch>
+											<Group>AlwaysHorizontal</Group>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupGenerateErrorReportExtendedTooltip" id="370"/>
+											<ChildItems>
+												<LabelDecoration name="ReasonInscription" id="371">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Reason:</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="ReasonInscriptionContextMenu" id="372"/>
+													<ExtendedTooltip name="ReasonInscriptionExtendedTooltip" id="373"/>
+												</LabelDecoration>
+												<LabelDecoration name="GenerateErrorReport" id="362">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Generate error report</v8:content>
+														</v8:item>
+													</Title>
+													<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+													<Hyperlink>true</Hyperlink>
+													<HorizontalAlign>Auto</HorizontalAlign>
+													<ContextMenu name="GenerateErrorReportContextMenu" id="363"/>
+													<ExtendedTooltip name="GenerateErrorReportExtendedTooltip" id="364"/>
+													<Events>
+														<Event name="Click">GenerateErrorReportClick</Event>
+													</Events>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<InputField name="Cause" id="142">
+											<DataPath>Cause</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Reason</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<MultiLine>true</MultiLine>
+											<ChoiceListHeight>1</ChoiceListHeight>
+											<ContextMenu name="CauseContextMenu" id="143"/>
+											<ExtendedTooltip name="CauseExtendedTooltip" id="144"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="WaitingForProcessing" id="64">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Processing</v8:content>
+						</v8:item>
+					</Title>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="WaitingForProcessingExtendedTooltip" id="101"/>
+					<ChildItems>
+						<UsualGroup name="TimeConsumingOperationPictureAndText" id="266">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Long-running operation picture and text</v8:content>
+								</v8:item>
+							</Title>
+							<VerticalAlign>Center</VerticalAlign>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="TimeConsumingOperationPictureAndTextExtendedTooltip" id="267"/>
+							<ChildItems>
+								<PictureDecoration name="TimeConsumingOperationDecoration" id="65">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Long-running operation</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="TimeConsumingOperationDecorationContextMenu" id="66"/>
+									<ExtendedTooltip name="TimeConsumingOperationDecorationExtendedTooltip" id="102"/>
+								</PictureDecoration>
+								<LabelDecoration name="TimeConsumingOperationNoteTextDecoration" id="67">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Edition in progress…</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalAlign>Center</VerticalAlign>
+									<ContextMenu name="TimeConsumingOperationNoteTextDecorationContextMenu" id="68"/>
+									<ExtendedTooltip name="TimeConsumingOperationNoteTextDecorationExtendedTooltip" id="103"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="AllDone" id="215">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data processor completed</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AllDoneExtendedTooltip" id="216"/>
+					<ChildItems>
+						<UsualGroup name="DoneSuccessfullyGroup" id="217">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Completed successfully</v8:content>
+								</v8:item>
+							</Title>
+							<VerticalAlign>Center</VerticalAlign>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="DoneSuccessfullyGroupExtendedTooltip" id="218"/>
+							<ChildItems>
+								<PictureDecoration name="DonePicture" id="219">
+									<Picture>
+										<xr:Ref>CommonPicture.Success32</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="DonePictureContextMenu" id="220"/>
+									<ExtendedTooltip name="DonePictureExtendedTooltip" id="221"/>
+								</PictureDecoration>
+								<LabelDecoration name="DoneLabel" id="222">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Attributes of selected items edited.
+Total items edited: %1.</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalAlign>Center</VerticalAlign>
+									<ContextMenu name="DoneLabelContextMenu" id="223"/>
+									<ExtendedTooltip name="DoneLabelExtendedTooltip" id="224"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="CommandBar" id="213">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="214"/>
+			<ChildItems>
+				<CommandBar name="ButtonsOnTheLeft" id="209">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Left-side buttons</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ButtonsOnTheLeftExtendedTooltip" id="210"/>
+					<ChildItems>
+						<Button name="FormBack" id="203">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Back</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt; Back</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FormBackExtendedTooltip" id="204"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<CommandBar name="ButtonsOnTheRight" id="211">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Right-side buttons</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="ButtonsOnTheRightExtendedTooltip" id="212"/>
+					<ChildItems>
+						<Button name="FormChange" id="22">
+							<Type>CommandBarButton</Type>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.Change</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Edit attributes</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FormChangeExtendedTooltip" id="71"/>
+						</Button>
+						<Button name="FormHelp" id="63">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="FormHelpExtendedTooltip" id="73"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.BatchEditAttributes</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Save>
+				<Field>Object.ChangeInTransaction</Field>
+				<Field>Object.InterruptOnError</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="FullNameOfUnlockAttributesForm" id="7">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentChangeStatus" id="9">
+			<Type/>
+		</Attribute>
+		<Attribute name="IncludeHierarchy" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="OperationsHistoryList" id="11">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="InvalidDataProcessorCall" id="12">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ProcessRecursively" id="13">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FullName" id="14">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ChangeObjectsTable" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="EditProhibitionIntegrated" id="16">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FolderHierarchy" id="17">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PropertiesIntegrated" id="18">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TimeConsumingOperation" id="19">
+			<Type/>
+		</Attribute>
+		<Attribute name="ProcessingInProgress" id="21">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SettingsComposer" id="23">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ObjectAttributes" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Object attributes</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>ObjectAttributes</Field>
+			</Save>
+			<Columns>
+				<Column name="Name" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Change" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Edit</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Value" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>New value</v8:content>
+						</v8:item>
+					</Title>
+					<Type/>
+				</Column>
+				<Column name="AllowedTypes" id="5">
+					<Type>
+						<v8:Type>v8:TypeDescription</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ChoiceParameterLinks" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ChoiceFoldersAndItems" id="7">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>15</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="LockedAttribute" id="8">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="OperationKind" id="9">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Property" id="10">
+					<Type>
+						<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ChoiceParameters" id="11">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="IsStandardAttribute" id="12">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ChoiceParameterLinksPresentation" id="13">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ObjectTabularSections" id="25">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="Cause" id="27">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reason</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ObjectsThatCouldNotBeChanged" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Failed to edit the following objects</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Object" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Cause" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reason</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ErrorReport" id="46">
+					<Type/>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="PresentationOfObjectsToChange" id="29">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedItemsListAddress" id="30">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ContextCall" id="31">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedObjectsInContext" id="26">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="ProcessingCompleted" id="32">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsExternalDataProcessor" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="StartTimeOfChange" id="8">
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AdditionalDataProcessorRef" id="33">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalReportsAndDataProcessors</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="KindsOfObjectsToChange" id="34">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>KindsOfObjectsToChange</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="DeveloperMode" id="35">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DisableSelectionParameterConnections" id="36">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="NoteOnAutonumbering" id="37">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="OperatorsTreeStorageAddress" id="38">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Algorithm" id="40">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Algorithm</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AlgorithmCode" id="41">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Algorithm code</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AlgorithmsHistoryList" id="45">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="ExternalProcessorFilePathAtClient" id="3">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ObjectCountInBatch" id="5">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SSLVersionMatchesRequirements" id="49">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Back" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt; Back</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Back</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Back</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Change" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Change</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ConfigureChangeParameters" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure edit parameters</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ConfigureChangeParameters</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Stub" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt;No&gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Stub</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="StubAlgorythms" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt;No&gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Algorithms stub</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ObjectsArray">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="SettingsComposer">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="AdditionalDataProcessorRef">
+			<Type>
+				<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

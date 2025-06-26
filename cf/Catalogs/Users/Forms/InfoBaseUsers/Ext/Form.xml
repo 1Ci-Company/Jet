@@ -1,0 +1,849 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<CheckBoxField name="ShowOnlyItemsProcessedInDesigner" id="91">
+			<DataPath>ShowOnlyItemsProcessedInDesigner</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show only users added, modified, or deleted in Designer</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ShowOnlyItemsProcessedInDesignerContextMenu" id="92"/>
+			<ExtendedTooltip name="ShowOnlyItemsProcessedInDesignerExtendedTooltip" id="93"/>
+			<Events>
+				<Event name="OnChange">ShowOnlyItemsProcessedInDesignerOnChange</Event>
+			</Events>
+		</CheckBoxField>
+		<CommandBar name="CommandBar" id="49">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="55"/>
+			<ChildItems>
+				<Button name="MapUser" id="94">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.MapUser</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Map</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="MapUserExtendedTooltip" id="95"/>
+				</Button>
+				<Button name="MapToNewUser" id="98">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.MapToNewUser</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Map to new user</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="MapToNewUserExtendedTooltip" id="99"/>
+				</Button>
+				<Button name="CancelMapping" id="102">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.CancelMapping</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Clear mapping</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="CancelMappingExtendedTooltip" id="103"/>
+				</Button>
+				<Button name="Find" id="20">
+					<Type>CommandBarButton</Type>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.Item.IBUsers.StandardCommand.Find</CommandName>
+					<ExtendedTooltip name="FindExtendedTooltip" id="59"/>
+				</Button>
+				<Button name="CancelSearch" id="21">
+					<Type>CommandBarButton</Type>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.Item.IBUsers.StandardCommand.CancelSearch</CommandName>
+					<ExtendedTooltip name="CancelSearchExtendedTooltip" id="60"/>
+				</Button>
+				<Button name="Refresh" id="31">
+					<Type>CommandBarButton</Type>
+					<SkipOnInput>false</SkipOnInput>
+					<CommandName>Form.Command.Refresh</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Refresh</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="RefreshExtendedTooltip" id="58"/>
+				</Button>
+				<Button name="Delete" id="40">
+					<Type>CommandBarButton</Type>
+					<Representation>PictureAndText</Representation>
+					<SkipOnInput>false</SkipOnInput>
+					<Enabled>false</Enabled>
+					<CommandName>Form.Item.IBUsers.StandardCommand.Delete</CommandName>
+					<ExtendedTooltip name="DeleteExtendedTooltip" id="57"/>
+				</Button>
+				<Button name="GoToUser" id="96">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.GoToUser</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Go to user</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GoToUserExtendedTooltip" id="97"/>
+				</Button>
+				<Button name="OutputList" id="120">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Item.IBUsers.StandardCommand.OutputList</CommandName>
+					<ExtendedTooltip name="OutputListExtendedTooltip" id="121"/>
+				</Button>
+				<SearchStringAddition name="SearchString_" id="137">
+					<AdditionSource>
+						<Item>IBUsers</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SearchString_ContextMenu" id="138"/>
+					<ExtendedTooltip name="SearchString_ExtendedTooltip" id="139"/>
+				</SearchStringAddition>
+			</ChildItems>
+		</CommandBar>
+		<Table name="IBUsers" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<SkipOnInput>false</SkipOnInput>
+			<DefaultItem>true</DefaultItem>
+			<SelectionMode>SingleRow</SelectionMode>
+			<RowSelectionMode>Row</RowSelectionMode>
+			<HeaderHeight>2</HeaderHeight>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>IBUsers</DataPath>
+			<RowPictureDataPath>IBUsers.Picture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Infobase users</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>EndEdit</ExcludedCommand>
+				<ExcludedCommand>MoveDown</ExcludedCommand>
+				<ExcludedCommand>MoveUp</ExcludedCommand>
+				<ExcludedCommand>SortListAsc</ExcludedCommand>
+				<ExcludedCommand>SortListDesc</ExcludedCommand>
+			</CommandSet>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="IBUsersContextMenu" id="2">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<Button name="ContextMenuNavigateToUser" id="104">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.GoToUser</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Go to user</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ContextMenuNavigateToUserExtendedTooltip" id="105"/>
+					</Button>
+					<Button name="ContextMenuRefresh" id="39">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Command.Refresh</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Refresh</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ContextMenuRefreshExtendedTooltip" id="64"/>
+					</Button>
+					<Button name="ContextMenuOutputList" id="118">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.IBUsers.StandardCommand.OutputList</CommandName>
+						<ExtendedTooltip name="ContextMenuOutputListExtendedTooltip" id="119"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="IBUsersCommandBar" id="3"/>
+			<ExtendedTooltip name="IBUsersExtendedTooltip" id="66"/>
+			<SearchStringAddition name="IBUsersSearchString" id="122">
+				<AdditionSource>
+					<Item>IBUsers</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="IBUsersSearchStringContextMenu" id="123"/>
+				<ExtendedTooltip name="IBUsersSearchStringExtendedTooltip" id="124"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="IBUsersViewStatus" id="125">
+				<AdditionSource>
+					<Item>IBUsers</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="IBUsersViewStatusContextMenu" id="126"/>
+				<ExtendedTooltip name="IBUsersViewStatusExtendedTooltip" id="127"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="IBUsersSearchControl" id="128">
+				<AdditionSource>
+					<Item>IBUsers</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="IBUsersSearchControlContextMenu" id="129"/>
+				<ExtendedTooltip name="IBUsersSearchControlExtendedTooltip" id="130"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="BeforeDeleteRow">IBUsersBeforeDeleteRow</Event>
+				<Event name="OnActivateRow">IBUsersOnActivateRow</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="FullName" id="6">
+					<DataPath>IBUsers.FullName</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Full name</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The full name of the infobase user.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="FullNameContextMenu" id="7"/>
+					<ExtendedTooltip name="FullNameExtendedTooltip" id="67"/>
+				</InputField>
+				<InputField name="Name" id="8">
+					<DataPath>IBUsers.Name</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Username</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The name of the infobase user.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="NameContextMenu" id="9"/>
+					<ExtendedTooltip name="NameExtendedTooltip" id="68"/>
+				</InputField>
+				<LabelField name="StandardAuthentication" id="10">
+					<DataPath>IBUsers.StandardAuthentication</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>1C authentication</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Authentication with 1C:Enterprise
+username and password.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="StandardAuthenticationContextMenu" id="11"/>
+					<ExtendedTooltip name="StandardAuthenticationExtendedTooltip" id="69"/>
+				</LabelField>
+				<LabelField name="OpenIDAuthentication" id="88">
+					<DataPath>IBUsers.OpenIDAuthentication</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>OpenID
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Authentication with the name assigned to the 1C:Enterprise user,
+which is sent to the authentication service over OpenID protocol.
+Only for a web server connection (the service address must be configured)</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="OpenIDAuthenticationContextMenu" id="89"/>
+					<ExtendedTooltip name="OpenIDAuthenticationExtendedTooltip" id="90"/>
+				</LabelField>
+				<LabelField name="OpenIDConnectAuthentication" id="131">
+					<DataPath>IBUsers.OpenIDConnectAuthentication</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>OpenID-Connect
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Authentication with identity verification over OpenID-Connect protocol,
+mapping a name the same way as upon OpenID authentication.
+Only for a web server connection (service address must be configured)</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="OpenIDConnectAuthenticationContextMenu" id="132"/>
+					<ExtendedTooltip name="OpenIDConnectAuthenticationExtendedTooltip" id="133"/>
+				</LabelField>
+				<LabelField name="AccessTokenAuthentication" id="134">
+					<DataPath>IBUsers.AccessTokenAuthentication</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access token
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>JWT token authentication (RFC 7519).
+This is a more advanced form of authentication than OpenID and OpenID Connect.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="AccessTokenAuthenticationContextMenu" id="135"/>
+					<ExtendedTooltip name="AccessTokenAuthenticationExtendedTooltip" id="136"/>
+				</LabelField>
+				<ColumnGroup name="OSAuthenticationSettings" id="50">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings OS authentication</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="OSAuthenticationSettingsExtendedTooltip" id="70"/>
+					<ChildItems>
+						<LabelField name="OSAuthentication" id="12">
+							<DataPath>IBUsers.OSAuthentication</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>OS authentication</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Authentication with username and password
+of the operating system user
+associated with the 1C:Enterprise user.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="OSAuthenticationContextMenu" id="13"/>
+							<ExtendedTooltip name="OSAuthenticationExtendedTooltip" id="71"/>
+						</LabelField>
+						<LabelField name="OSUser" id="14">
+							<DataPath>IBUsers.OSUser</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>OS user</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>An operating system user.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<EditMode>EnterOnInput</EditMode>
+							<ShowInHeader>false</ShowInHeader>
+							<ContextMenu name="OSUserContextMenu" id="15"/>
+							<ExtendedTooltip name="OSUserExtendedTooltip" id="72"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+				<LabelField name="MappedToExternalUser" id="115">
+					<DataPath>IBUsers.MappedToExternalUser</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Mapped to
+external user</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="MappedToExternalUserContextMenu" id="116"/>
+					<ExtendedTooltip name="MappedToExternalUserExtendedTooltip" id="117"/>
+				</LabelField>
+				<LabelField name="AddedInDesigner" id="106">
+					<DataPath>IBUsers.AddedInDesigner</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Added
+in Designer</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="AddedInDesignerContextMenu" id="107"/>
+					<ExtendedTooltip name="AddedInDesignerExtendedTooltip" id="108"/>
+				</LabelField>
+				<LabelField name="ModifiedInDesigner" id="109">
+					<DataPath>IBUsers.ModifiedInDesigner</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Modified
+in Designer</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="ModifiedInDesignerContextMenu" id="110"/>
+					<ExtendedTooltip name="ModifiedInDesignerExtendedTooltip" id="111"/>
+				</LabelField>
+				<LabelField name="DeletedInDesigner" id="112">
+					<DataPath>IBUsers.DeletedInDesigner</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deleted
+in Designer</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<EditMode>EnterOnInput</EditMode>
+					<Format>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+					</Format>
+					<ContextMenu name="DeletedInDesignerContextMenu" id="113"/>
+					<ExtendedTooltip name="DeletedInDesignerExtendedTooltip" id="114"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="IBUsers" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Infobase users</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Picture" id="1">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>2</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="FullName" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Full name</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Name" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Username</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="StandardAuthentication" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>1C
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="OSAuthentication" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>OS
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="OSUser" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>OS user</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="IBUserID" id="7">
+					<Type>
+						<v8:Type>v8:UUID</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Ref" id="9">
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+						<v8:Type>cfg:CatalogRef.Users</v8:Type>
+					</Type>
+				</Column>
+				<Column name="MappedToExternalUser" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Mapped to
+external user</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="OpenIDAuthentication" id="14">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>OpenID
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="AddedInDesigner" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Added
+in Designer</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ModifiedInDesigner" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Modified
+in Designer</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DeletedInDesigner" id="12">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deleted
+in Designer</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="OpenIDConnectAuthentication" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>OpenID-Connect
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="AccessTokenAuthentication" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access token
+authentication</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="UsersTypes" id="5">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="NonExistingIBUsersIDs" id="6">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="ShowOnlyItemsProcessedInDesigner" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show only users added, modified, or deleted in Designer</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Refresh" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Refresh</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="MapUser" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Map</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Map to a user listed in the catalog.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>MapUser</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="MapToNewUser" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Map to new user</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Map to a new catalog user.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>MapToNewUser</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GoToUser" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to user</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to a mapped user listed in the catalog.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.UserState02</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>GoToUser</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CancelMapping" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear mapping</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear mapping to a user listed in the catalog.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CancelMapping</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="Filter">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

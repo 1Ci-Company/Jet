@@ -1,0 +1,1259 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Customizable>false</Customizable>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="1631">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="1638"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="1563">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Turn on and set up email and text services, notes, reminders, tasks, and others.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Top</VerticalAlign>
+					<ContextMenu name="SectionDetailsContextMenu" id="1564"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="1639"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="1634">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="1641"/>
+					<ChildItems>
+						<Button name="Help" id="1635">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="1642"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="MailGroup" id="1788">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Email and business interactions</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="MailGroupExtendedTooltip" id="1789"/>
+			<ChildItems>
+				<UsualGroup name="Group1" id="1709">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Group1ExtendedTooltip" id="1710"/>
+					<ChildItems>
+						<UsualGroup name="Group8" id="1592">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ChildItemsWidth>Equal</ChildItemsWidth>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="Group8ExtendedTooltip" id="1643"/>
+							<ChildItems>
+								<UsualGroup name="UseMailClientGroup" id="1297">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Use email client</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="UseMailClientGroupExtendedTooltip" id="1644"/>
+									<ChildItems>
+										<CheckBoxField name="UseEmailClient" id="707">
+											<DataPath>ConstantsSet.UseEmailClient</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>System Email Client</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="UseEmailClientContextMenu" id="708"/>
+											<ExtendedTooltip name="UseEmailClientExtendedTooltip" id="1645">
+												<AutoMaxWidth>false</AutoMaxWidth>
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Use an email client to interact with people via email. Business interactions require an email client.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">UseEmailClientOnChange</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="SendEmailsInHTMLFormatGroup" id="1310">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>HTML email</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="SendEmailsInHTMLFormatGroupExtendedTooltip" id="1647"/>
+									<ChildItems>
+										<CheckBoxField name="SendEmailsInHTMLFormat" id="776">
+											<DataPath>ConstantsSet.SendEmailsInHTMLFormat</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>HTML format by default</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="SendEmailsInHTMLFormatContextMenu" id="777"/>
+											<ExtendedTooltip name="SendEmailsInHTMLFormatExtendedTooltip" id="1648">
+												<AutoMaxWidth>false</AutoMaxWidth>
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Compose messages in HTML by default.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">SendEmailsInHTMLFormatOnChange</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="Group7" id="1608">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ChildItemsWidth>Equal</ChildItemsWidth>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="Group7ExtendedTooltip" id="1650"/>
+							<ChildItems>
+								<UsualGroup name="UseOtherInteractionsGroup" id="1313">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Use other interactions</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="UseOtherInteractionsGroupExtendedTooltip" id="1651"/>
+									<ChildItems>
+										<CheckBoxField name="UseOtherInteractions" id="705">
+											<DataPath>ConstantsSet.UseOtherInteractions</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Business interactions</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="UseOtherInteractionsContextMenu" id="706"/>
+											<ExtendedTooltip name="UseOtherInteractionsExtendedTooltip" id="1652">
+												<AutoMaxWidth>false</AutoMaxWidth>
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Create business interactions to keep track of all your phone calls, text messages, and appointments.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">UseOtherInteractionsOnChange</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="UseReviewedFlagGroup" id="1316">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Use the Reviewed flag</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="UseReviewedFlagGroupExtendedTooltip" id="1654"/>
+									<ChildItems>
+										<CheckBoxField name="UseReviewedFlag" id="780">
+											<DataPath>ConstantsSet.UseReviewedFlag</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>"Reviewed" and "Follow up" statuses</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="UseReviewedFlagContextMenu" id="781"/>
+											<ExtendedTooltip name="UseReviewedFlagExtendedTooltip" id="1655">
+												<AutoMaxWidth>false</AutoMaxWidth>
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Set the statuses to messages and interactions: 
+"Reviewed" means the interaction requires no further action. "Follow up" highlights important messages and interactions.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">UseReviewedFlagOnChange</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="MailSecurity" id="1805">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Mail security</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="MailSecurityExtendedTooltip" id="1806"/>
+							<ChildItems>
+								<CheckBoxField name="DenyDisplayingUnsafeContentInEmails" id="1807">
+									<DataPath>ConstantsSet.DenyDisplayingUnsafeContentInEmails</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="DenyDisplayingUnsafeContentInEmailsContextMenu" id="1808"/>
+									<ExtendedTooltip name="DenyDisplayingUnsafeContentInEmailsExtendedTooltip" id="1809">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Hide potentially harmful content and don't ask users if they want to view it.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">DenyDisplayingUnsafeContentInEmailsOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Group6" id="1591">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Group6ExtendedTooltip" id="1657"/>
+					<ChildItems>
+						<UsualGroup name="OpenSystemEmailAccountSettingsGroup" id="1303">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open system email account settings</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="OpenSystemEmailAccountSettingsGroupExtendedTooltip" id="1658"/>
+							<ChildItems>
+								<Button name="OpenSystemEmailAccountSettings" id="1302">
+									<Type>Hyperlink</Type>
+									<CommandName>CommonCommand.SystemEmailAccountSetup</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenSystemEmailAccountSettingsExtendedTooltip" id="1659">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Set up an account to send out service notifications.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="OpenEmailAccountsGroup" id="1307">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Email account list</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="OpenEmailAccountsGroupExtendedTooltip" id="1661"/>
+							<ChildItems>
+								<Button name="OpenEmailAccounts" id="1306">
+									<Type>Hyperlink</Type>
+									<CommandName>Catalog.EmailAccounts.StandardCommand.OpenList</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenEmailAccountsExtendedTooltip" id="1662">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Create and manage email accounts.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="SendSMSGroup" id="1618">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Text messaging</v8:content>
+				</v8:item>
+			</Title>
+			<Width>43</Width>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="SendSMSGroupExtendedTooltip" id="1664"/>
+			<ChildItems>
+				<Button name="SMSSendingSettingsCommonForm" id="1619">
+					<Type>Hyperlink</Type>
+					<CommandName>CommonForm.OutboundSMSSettings.StandardCommand.Open</CommandName>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<ExtendedTooltip name="SMSSendingSettingsCommonFormExtendedTooltip" id="1665">
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Configure SMS gateway to send text messages from the application.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="NotesRemindersQuestionnaireTemplatesGroup" id="1790">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notes, reminders, surveys, and message templates</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="NotesRemindersQuestionnaireTemplatesGroupExtendedTooltip" id="1791"/>
+			<ChildItems>
+				<UsualGroup name="NotesRemindersGroup" id="1291">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Notes reminders</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="NotesRemindersGroupExtendedTooltip" id="1667"/>
+					<ChildItems>
+						<UsualGroup name="UseNotesGroup" id="1328">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use notes</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseNotesGroupExtendedTooltip" id="1668"/>
+							<ChildItems>
+								<CheckBoxField name="UseNotes" id="677">
+									<DataPath>ConstantsSet.UseNotes</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Notes</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseNotesContextMenu" id="678"/>
+									<ExtendedTooltip name="UseNotesExtendedTooltip" id="1669">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Add notes to application objects.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">UseNotesOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="UseUserRemindersGroup" id="1325">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use reminders</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseUserRemindersGroupExtendedTooltip" id="1671"/>
+							<ChildItems>
+								<CheckBoxField name="UseUserReminders" id="679">
+									<DataPath>ConstantsSet.UseUserReminders</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Reminders</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseUserRemindersContextMenu" id="680"/>
+									<ExtendedTooltip name="UseUserRemindersExtendedTooltip" id="1672">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Set reminders and associate them to application objects.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">UseUserRemindersOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="UseQuestionnaireGroup" id="1622">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use surveys</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="UseQuestionnaireGroupExtendedTooltip" id="1674"/>
+					<ChildItems>
+						<CheckBoxField name="UseSurvey" id="1623">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Surveys</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UseSurveyContextMenu" id="1624"/>
+							<ExtendedTooltip name="UseSurveyExtendedTooltip" id="1675">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Create questionnaires, conduct surveys, and analyze the results.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">UseSurveyOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="MessageTemplatesGroup" id="1794">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Message templates</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="MessageTemplatesGroupExtendedTooltip" id="1795"/>
+					<ChildItems>
+						<UsualGroup name="UseMessageTemplatesGroup" id="1796">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use message templates</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseMessageTemplatesGroupExtendedTooltip" id="1797"/>
+							<ChildItems>
+								<CheckBoxField name="UseMessageTemplates" id="1798">
+									<DataPath>ConstantsSet.UseMessageTemplates</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Message templates</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseMessageTemplatesContextMenu" id="1799"/>
+									<ExtendedTooltip name="UseMessageTemplatesExtendedTooltip" id="1800">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Create templates of email and text messages.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">UseMessageTemplatesOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="MessageTemplatesSettingsGroup" id="1801">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure message templates</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="MessageTemplatesSettingsGroupExtendedTooltip" id="1802"/>
+							<ChildItems>
+								<Button name="MessageTemplatesCatalogOpenList" id="1810">
+									<Type>Hyperlink</Type>
+									<CommandName>Catalog.MessageTemplates.StandardCommand.OpenList</CommandName>
+									<ExtendedTooltip name="MessageTemplatesCatalogOpenListExtendedTooltip" id="1811"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="BusinessProcessesAndTasksGroup" id="1697">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business processes and tasks</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="BusinessProcessesAndTasksGroupExtendedTooltip" id="1698"/>
+			<ChildItems>
+				<UsualGroup name="Group2" id="1786">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Group2ExtendedTooltip" id="1787"/>
+					<ChildItems>
+						<UsualGroup name="UseBusinessProcessesAndTasksGroup" id="1339">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use business processes and tasks</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseBusinessProcessesAndTasksGroupExtendedTooltip" id="1678"/>
+							<ChildItems>
+								<CheckBoxField name="UseBusinessProcessesAndTasks" id="750">
+									<DataPath>ConstantsSet.UseBusinessProcessesAndTasks</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Business processes and tasks</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseBusinessProcessesAndTasksContextMenu" id="751"/>
+									<ExtendedTooltip name="UseBusinessProcessesAndTasksExtendedTooltip" id="1679">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Manage business processes and assign tasks to users.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">UseBusinessProcessesAndTasksOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="OpenRolesAndPerformersForBusinessProcessesGroup" id="1357">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open roles and assignees of business processes</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="OpenRolesAndPerformersForBusinessProcessesGroupExtendedTooltip" id="1681"/>
+							<ChildItems>
+								<Button name="OpenRolesAndPerformersForBusinessProcesses" id="1792">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.RolesAndTaskPerformers</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Business roles and assignees</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenRolesAndPerformersForBusinessProcessesExtendedTooltip" id="1793">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure roles to assign tasks to user groups.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Group12" id="1769">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Group12ExtendedTooltip" id="1770"/>
+					<ChildItems>
+						<UsualGroup name="UseSubordinateBusinessProcessesGroup" id="1603">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use subordinate business processes</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseSubordinateBusinessProcessesGroupExtendedTooltip" id="1684"/>
+							<ChildItems>
+								<LabelDecoration name="Indent" id="1699">
+									<Width>1</Width>
+									<ContextMenu name="IndentContextMenu" id="1700"/>
+									<ExtendedTooltip name="IndentExtendedTooltip" id="1701"/>
+								</LabelDecoration>
+								<CheckBoxField name="UseSubordinateBusinessProcesses" id="1601">
+									<DataPath>ConstantsSet.UseSubordinateBusinessProcesses</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Business subprocesses and subtasks</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Start business subprocesses (for hierarchical workflows).</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseSubordinateBusinessProcessesContextMenu" id="1602"/>
+									<ExtendedTooltip name="UseSubordinateBusinessProcessesExtendedTooltip" id="1685"/>
+									<Events>
+										<Event name="OnChange">UseSubordinateBusinessProcessesOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ChangeJobsBackdatedGroup" id="1353">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Post-adjust duties</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ChangeJobsBackdatedGroupExtendedTooltip" id="1687"/>
+							<ChildItems>
+								<CheckBoxField name="ChangeJobsBackdated" id="766">
+									<DataPath>ConstantsSet.ChangeJobsBackdated</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Edit ongoing business processes</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ChangeJobsBackdatedContextMenu" id="767"/>
+									<ExtendedTooltip name="ChangeJobsBackdatedExtendedTooltip" id="1688">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Users can edit tasks in the business processes that have already been started.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">ChangeJobsBackdatedOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Group4" id="1598">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Group4ExtendedTooltip" id="1690"/>
+					<ChildItems>
+						<UsualGroup name="UseTasksStartDateGroup" id="1350">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use task start date</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseTasksStartDateGroupExtendedTooltip" id="1691"/>
+							<ChildItems>
+								<LabelDecoration name="Indent1" id="1775">
+									<Width>1</Width>
+									<ContextMenu name="Indent1ContextMenu" id="1776"/>
+									<ExtendedTooltip name="Indent1ExtendedTooltip" id="1777"/>
+								</LabelDecoration>
+								<CheckBoxField name="UseTaskStartDate" id="761">
+									<DataPath>ConstantsSet.UseTaskStartDate</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Task start date</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allow assignees to fill in the "Start date" field 
+and sort the task list by this field.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseTaskStartDateContextMenu" id="762"/>
+									<ExtendedTooltip name="UseTaskStartDateExtendedTooltip" id="1692"/>
+									<Events>
+										<Event name="OnChange">UseTaskStartDateOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="UseDateAndTimeInTasksDeadlinesGroup" id="1347">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use date and time in due dates</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UseDateAndTimeInTasksDeadlinesGroupExtendedTooltip" id="1694"/>
+							<ChildItems>
+								<CheckBoxField name="UseDateAndTimeInTaskDeadlines" id="757">
+									<DataPath>ConstantsSet.UseDateAndTimeInTaskDeadlines</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Minute-accurate deadline tracking</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseDateAndTimeInTaskDeadlinesContextMenu" id="758"/>
+									<ExtendedTooltip name="UseDateAndTimeInTaskDeadlinesExtendedTooltip" id="1695">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Along with the due date, set the due time accurate to the minute.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">UseDateAndTimeInTaskDeadlinesOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="TasksMonitoringGroup" id="1711">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Task monitoring</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="TasksMonitoringGroupExtendedTooltip" id="1712"/>
+					<ChildItems>
+						<UsualGroup name="TasksMonitoringGroupUsage" id="1734">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use task monitoring</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="TasksMonitoringGroupUsageExtendedTooltip" id="1735"/>
+							<ChildItems>
+								<LabelDecoration name="Indent2" id="1780">
+									<Width>1</Width>
+									<ContextMenu name="Indent2ContextMenu" id="1781"/>
+									<ExtendedTooltip name="Indent2ExtendedTooltip" id="1782"/>
+								</LabelDecoration>
+								<UsualGroup name="Group10" id="1778">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Group</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="Group10ExtendedTooltip" id="1779"/>
+									<ChildItems>
+										<CheckBoxField name="TasksMonitoringUsage" id="1729">
+											<DataPath>TasksMonitoringUsage</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Notify users about overdue tasks by email</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="TasksMonitoringUsageContextMenu" id="1730"/>
+											<ExtendedTooltip name="TasksMonitoringUsageExtendedTooltip" id="1731"/>
+											<Events>
+												<Event name="OnChange">TasksMonitoringUsageOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<LabelDecoration name="TasksMonitoringNote" id="1718">
+											<TextColor>style:NoteText</TextColor>
+											<VerticalAlign>Top</VerticalAlign>
+											<ContextMenu name="TasksMonitoringNoteContextMenu" id="1719"/>
+											<ExtendedTooltip name="TasksMonitoringNoteExtendedTooltip" id="1720"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<Button name="TasksMonitoringConfigureSchedule" id="1732">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.TasksMonitoringConfigureSchedule</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Set schedule</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="TasksMonitoringConfigureScheduleExtendedTooltip" id="1733"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="NotifyPerformersAboutNewTasksGroup" id="1736">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Notify assignees about new tasks</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="NotifyPerformersAboutNewTasksGroupExtendedTooltip" id="1737"/>
+					<ChildItems>
+						<UsualGroup name="NotifyPerformersAboutNewTasksGroupUsage" id="1740">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Notify assignees about new tasks</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="NotifyPerformersAboutNewTasksGroupUsageExtendedTooltip" id="1741"/>
+							<ChildItems>
+								<LabelDecoration name="Indent3" id="1783">
+									<Width>1</Width>
+									<ContextMenu name="Indent3ContextMenu" id="1784"/>
+									<ExtendedTooltip name="Indent3ExtendedTooltip" id="1785"/>
+								</LabelDecoration>
+								<UsualGroup name="Group9" id="1763">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Group</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="Group9ExtendedTooltip" id="1764"/>
+									<ChildItems>
+										<CheckBoxField name="NotifyPerformersAboutNewTasksUsage" id="1742">
+											<DataPath>NotifyPerformersAboutNewTasksUsage</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Notify users about new tasks by email</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="NotifyPerformersAboutNewTasksUsageContextMenu" id="1743"/>
+											<ExtendedTooltip name="NotifyPerformersAboutNewTasksUsageExtendedTooltip" id="1744"/>
+											<Events>
+												<Event name="OnChange">NotifyPerformersAboutNewTasksUsageOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<LabelDecoration name="NotifyPerformersAboutNewTasksNote" id="1747">
+											<TextColor>style:NoteText</TextColor>
+											<VerticalAlign>Top</VerticalAlign>
+											<ContextMenu name="NotifyPerformersAboutNewTasksNoteContextMenu" id="1748"/>
+											<ExtendedTooltip name="NotifyPerformersAboutNewTasksNoteExtendedTooltip" id="1749"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<Button name="NotifyPerformersAboutNewTasksConfigureSchedule" id="1745">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.NotifyPerformersAboutNewTasksConfigureSchedule</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Set schedule</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="NotifyPerformersAboutNewTasksConfigureScheduleExtendedTooltip" id="1746"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ConstantsSet" id="1">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.InfobasePublicationURL</Field>
+				<Field>ConstantsSet.SystemTitle</Field>
+				<Field>ConstantsSet.UseExternalUsers</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="MaxFileSizeForTransfer" id="9">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<FillCheck>ShowError</FillCheck>
+		</Attribute>
+		<Attribute name="UserDocumentManagement" id="11">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TasksMonitoringUsage" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notify users about overdue tasks by email</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TaskMonitoringSchedule" id="17">
+			<Type/>
+		</Attribute>
+		<Attribute name="NotifyPerformersAboutNewTasksUsage" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notify users about new tasks by email</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="NewPerformerTaskNotificationsSchedule" id="19">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="TasksMonitoringConfigureSchedule" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set schedule</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set schedule</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>TasksMonitoringConfigureSchedule</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="NotifyPerformersAboutNewTasksConfigureSchedule" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set schedule</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set schedule</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>NotifyPerformersAboutNewTasksConfigureSchedule</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RolesAndTaskPerformers" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business roles and assignees</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business roles and assignees</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>RolesAndTaskPerformers</Action>
+		</Command>
+	</Commands>
+</Form>

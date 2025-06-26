@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockWholeInterface</WindowOpeningMode>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="WarningGroup" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Warning</v8:content>
+				</v8:item>
+			</Title>
+			<Height>2</Height>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="WarningGroupExtendedTooltip" id="5"/>
+			<ChildItems>
+				<PictureDecoration name="WarningIcon" id="1">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Warning icon</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="WarningIconContextMenu" id="2"/>
+					<ExtendedTooltip name="WarningIconExtendedTooltip" id="3"/>
+				</PictureDecoration>
+				<LabelDecoration name="WarningText" id="6">
+					<Width>46</Width>
+					<Height>2</Height>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>The infobase is detached from master node "%1" of the distributed infobase.</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<ContextMenu name="WarningTextContextMenu" id="7"/>
+					<ExtendedTooltip name="WarningTextExtendedTooltip" id="8"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="Explanation" id="30">
+			<Width>50</Width>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>- To attach the infobase back to the master node, click "Attach".
+- To confirm the detachment and run the application as a standalone infobase, click "Detach".
+</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ExplanationContextMenu" id="31"/>
+			<ExtendedTooltip name="ExplanationExtendedTooltip" id="32"/>
+		</LabelDecoration>
+		<CommandBar name="Commands" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Commands</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalLocation>Right</HorizontalLocation>
+			<ExtendedTooltip name="CommandsExtendedTooltip" id="13"/>
+			<ChildItems>
+				<Button name="Refresh" id="16">
+					<Type>CommandBarButton</Type>
+					<DefaultItem>true</DefaultItem>
+					<CommandName>Form.Command.Refresh</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reconnect</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="RefreshExtendedTooltip" id="17"/>
+				</Button>
+				<Button name="Disconnect" id="18">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Disconnect</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Disconnect</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="DisconnectExtendedTooltip" id="19"/>
+				</Button>
+				<Button name="ExitApplication" id="22">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ExitApplication</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Exit</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ExitApplicationExtendedTooltip" id="23"/>
+				</Button>
+				<Button name="Help" id="14">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="HelpExtendedTooltip" id="15"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="MasterNode" id="1">
+			<Type>
+				<v8:TypeSet>cfg:ExchangePlanRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Refresh" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reconnect</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Refresh</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Disconnect" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Disable</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Disconnect</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ExitApplication" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exit the application and decide later.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ExitApplication</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

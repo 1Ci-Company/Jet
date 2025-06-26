@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>More</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<Group>HorizontalIfPossible</Group>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="Close" id="37">
+				<Type>CommandBarButton</Type>
+				<Representation>Text</Representation>
+				<DefaultButton>true</DefaultButton>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.StandardCommand.Close</CommandName>
+				<ExtendedTooltip name="CloseExtendedTooltip" id="73"/>
+			</Button>
+			<Button name="Help" id="70">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="HelpExtendedTooltip" id="74"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Document" id="99">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Document</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="DocumentExtendedTooltip" id="100"/>
+			<ChildItems>
+				<InputField name="Description" id="41">
+					<DataPath>Object.Description</DataPath>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>50</MaxWidth>
+					<Wrap>false</Wrap>
+					<ContextMenu name="DescriptionContextMenu" id="42"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="76"/>
+				</InputField>
+				<UsualGroup name="ResultGroup" id="63">
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Completion details</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ExtendedTooltip name="ResultGroupExtendedTooltip" id="89"/>
+					<ChildItems>
+						<CheckBoxField name="Executed" id="64">
+							<DataPath>Object.Executed</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ExecutedContextMenu" id="65"/>
+							<ExtendedTooltip name="ExecutedExtendedTooltip" id="90"/>
+						</CheckBoxField>
+						<InputField name="CompletionDate" id="66">
+							<DataPath>Object.CompletionDate</DataPath>
+							<Wrap>false</Wrap>
+							<ContextMenu name="CompletionDateContextMenu" id="67"/>
+							<ExtendedTooltip name="CompletionDateExtendedTooltip" id="91"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="BusinessProcessGroup" id="51">
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Business process</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ThroughAlign>Use</ThroughAlign>
+					<ExtendedTooltip name="BusinessProcessGroupExtendedTooltip" id="86"/>
+					<ChildItems>
+						<InputField name="BusinessProcess" id="52">
+							<DataPath>Object.BusinessProcess</DataPath>
+							<Width>40</Width>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>50</MaxWidth>
+							<OpenButton>true</OpenButton>
+							<ContextMenu name="BusinessProcessContextMenu" id="53"/>
+							<ExtendedTooltip name="BusinessProcessExtendedTooltip" id="87"/>
+						</InputField>
+						<InputField name="RoutePoint" id="54">
+							<DataPath>Object.RoutePoint</DataPath>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>50</MaxWidth>
+							<Wrap>false</Wrap>
+							<ContextMenu name="RoutePointContextMenu" id="55"/>
+							<ExtendedTooltip name="RoutePointExtendedTooltip" id="88"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupAddressing" id="69">
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assignment details</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ThroughAlign>Use</ThroughAlign>
+					<ExtendedTooltip name="GroupAddressingExtendedTooltip" id="81"/>
+					<ChildItems>
+						<InputField name="Performer" id="27">
+							<DataPath>Object.Performer</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>50</MaxWidth>
+							<ContextMenu name="PerformerContextMenu" id="28"/>
+							<ExtendedTooltip name="PerformerExtendedTooltip" id="82"/>
+						</InputField>
+						<InputField name="PerformerRole" id="29">
+							<DataPath>Object.PerformerRole</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>50</MaxWidth>
+							<ContextMenu name="PerformerRoleContextMenu" id="30"/>
+							<ExtendedTooltip name="PerformerRoleExtendedTooltip" id="83"/>
+						</InputField>
+						<UsualGroup name="GroupRoleOptions" id="92">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Refinement</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupRoleOptionsExtendedTooltip" id="93"/>
+							<ChildItems>
+								<LabelDecoration name="Indent" id="96">
+									<ContextMenu name="IndentContextMenu" id="97"/>
+									<ExtendedTooltip name="IndentExtendedTooltip" id="98"/>
+								</LabelDecoration>
+								<UsualGroup name="AddressingObjectsGroup" id="94">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Business objects</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AddressingObjectsGroupExtendedTooltip" id="95"/>
+									<ChildItems>
+										<InputField name="MainAddressingObject" id="31">
+											<DataPath>Object.MainAddressingObject</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<TitleHeight>2</TitleHeight>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<OpenButton>true</OpenButton>
+											<ContextMenu name="MainAddressingObjectContextMenu" id="32"/>
+											<ExtendedTooltip name="MainAddressingObjectExtendedTooltip" id="84"/>
+										</InputField>
+										<InputField name="AdditionalAddressingObject" id="33">
+											<DataPath>Object.AdditionalAddressingObject</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<TitleHeight>2</TitleHeight>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<OpenButton>true</OpenButton>
+											<ContextMenu name="AdditionalAddressingObjectContextMenu" id="34"/>
+											<ExtendedTooltip name="AdditionalAddressingObjectExtendedTooltip" id="85"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupIncoming" id="56">
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Incoming</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ThroughAlign>DontUse</ThroughAlign>
+					<ExtendedTooltip name="GroupIncomingExtendedTooltip" id="78"/>
+					<ChildItems>
+						<InputField name="Date" id="57">
+							<DataPath>Object.Date</DataPath>
+							<Wrap>false</Wrap>
+							<ContextMenu name="DateContextMenu" id="58"/>
+							<ExtendedTooltip name="DateExtendedTooltip" id="79"/>
+						</InputField>
+						<InputField name="TaskDueDate" id="71">
+							<DataPath>Object.TaskDueDate</DataPath>
+							<ContextMenu name="TaskDueDateContextMenu" id="72"/>
+							<ExtendedTooltip name="TaskDueDateExtendedTooltip" id="80"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupRight" id="45">
+			<ReadOnly>true</ReadOnly>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Right</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<United>false</United>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupRightExtendedTooltip" id="75"/>
+			<ChildItems>
+				<InputField name="Number" id="43">
+					<DataPath>Object.Number</DataPath>
+					<Width>14</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ContextMenu name="NumberContextMenu" id="44"/>
+					<ExtendedTooltip name="NumberExtendedTooltip" id="77"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:TaskObject.PerformerTask</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="Key">
+			<Type>
+				<v8:Type>cfg:TaskRef.PerformerTask</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

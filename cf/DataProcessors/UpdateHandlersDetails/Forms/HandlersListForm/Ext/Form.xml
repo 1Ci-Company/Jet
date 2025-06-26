@@ -1,0 +1,1657 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="ImportHandlers" id="98">
+				<Type>CommandBarButton</Type>
+				<Representation>PictureAndText</Representation>
+				<CommandName>Form.Command.ImportHandlers</CommandName>
+				<Picture>
+					<xr:Ref>StdPicture.RestoreValues</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Import details</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="ImportHandlersExtendedTooltip" id="99"/>
+			</Button>
+			<Button name="CheckConflicts" id="86">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>Form.Command.CheckConflicts</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Check conflicts</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="CheckConflictsExtendedTooltip" id="87"/>
+			</Button>
+			<Button name="BuildQueue" id="88">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.BuildQueue</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Queue building control</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="BuildQueueExtendedTooltip" id="89"/>
+			</Button>
+			<Button name="SaveToRepository" id="80">
+				<Type>CommandBarButton</Type>
+				<Representation>PictureAndText</Representation>
+				<CommandName>Form.Command.SaveToRepository</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save to repository</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="SaveToRepositoryExtendedTooltip" id="81"/>
+			</Button>
+			<Button name="ShowERPSettings" id="177">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ShowSettingsTemplate</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Show template file for code generator customization</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="ShowERPSettingsExtendedTooltip" id="178"/>
+			</Button>
+			<Button name="SwitchFormMode" id="246">
+				<Type>CommandBarHyperlink</Type>
+				<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+				<CommandName>Form.Command.SwitchFormMode</CommandName>
+				<TextColor>style:AccentColor</TextColor>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Go to simplified mode</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="SwitchFormModeExtendedTooltip" id="247"/>
+			</Button>
+			<Button name="WriteTechnicalDesignHandlersList" id="226">
+				<Type>CommandBarButton</Type>
+				<UserVisible>
+					<xr:Common>false</xr:Common>
+				</UserVisible>
+				<CommandName>Form.Command.WriteTechnicalDesignHandlersList</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save list of handlers of technical design</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="WriteTechnicalDesignHandlersListExtendedTooltip" id="227"/>
+			</Button>
+			<Button name="SaveAllHandlersToRepository" id="207">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.SaveAllHandlersToRepository</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save all handlers to repository</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="SaveAllHandlersToRepositoryExtendedTooltip" id="208"/>
+			</Button>
+			<Button name="SaveToFile" id="253">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.SaveToFile</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save to file</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="SaveToFileExtendedTooltip" id="254"/>
+			</Button>
+			<Button name="LoadFromFile" id="255">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.LoadFromFile</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Import from file</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="LoadFromFileExtendedTooltip" id="256"/>
+			</Button>
+			<Button name="ShowSelectedHandlersCode" id="230">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ShowModulesText</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Show code of selected handlers</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="ShowSelectedHandlersCodeExtendedTooltip" id="231"/>
+			</Button>
+			<Button name="ShowUpdateHandlersDetailsCode" id="242">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ShowUpdateHandlersDetailsCode</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Show update handler details code</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="ShowUpdateHandlersDetailsCodeExtendedTooltip" id="243"/>
+			</Button>
+			<Popup name="DebuggingGroup" id="205">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Debug</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="DebuggingGroupExtendedTooltip" id="206"/>
+				<ChildItems>
+					<Button name="ShowPrioritiesHandlerConflicts" id="218">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowPrioritiesHandlerConflicts</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show handler priorities and conflicts</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ShowPrioritiesHandlerConflictsExtendedTooltip" id="219"/>
+					</Button>
+					<Button name="ShowHandlerObjects" id="251">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowHandlerObjects</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show handler objects</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ShowHandlerObjectsExtendedTooltip" id="252"/>
+					</Button>
+					<Button name="ShowTabularSections" id="192">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowTabularSections</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show all handler details tables</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ShowTabularSectionsExtendedTooltip" id="193"/>
+					</Button>
+					<Button name="ShowAllHandlersCalls" id="203">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowAllHandlersCalls</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show all handler calls</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ShowAllHandlersCallsExtendedTooltip" id="204"/>
+					</Button>
+					<Button name="ShowAllHandlersDetails" id="90">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowAllHandlersDetails</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show all handler details</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ShowAllHandlersDetailsExtendedTooltip" id="91"/>
+					</Button>
+					<Button name="ExecuteQueueBuildingTest" id="172">
+						<Type>CommandBarButton</Type>
+						<Visible>false</Visible>
+						<CommandName>Form.Command.ExecuteQueueBuildingTest</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Test queue building</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ExecuteQueueBuildingTestExtendedTooltip" id="173"/>
+					</Button>
+					<Button name="CalculateQueue" id="201">
+						<Type>CommandBarButton</Type>
+						<Visible>false</Visible>
+						<CommandName>Form.Command.CalculateQueue</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Calculate queue</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="CalculateQueueExtendedTooltip" id="202"/>
+					</Button>
+					<Button name="SetAutoOrder" id="257">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.SetAutoOrder</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Set auto order</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="SetAutoOrderExtendedTooltip" id="258"/>
+					</Button>
+					<Button name="ShowAllModulesTexts" id="209">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowAllModulesTexts</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show texts of all modules</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ShowAllModulesTextsExtendedTooltip" id="210"/>
+					</Button>
+				</ChildItems>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeLoadDataFromSettingsAtServer">BeforeLoadDataFromSettingsAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ImportExportSettingsGroup" id="119">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Handler details export settings</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Settings of update handler import, export, or grouping parameters.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Width>150</Width>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<CollapsedRepresentationTitle>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import handler details from &lt;?&gt;; Save to &lt;?&gt;;</v8:content>
+				</v8:item>
+			</CollapsedRepresentationTitle>
+			<Collapsed>true</Collapsed>
+			<Representation>None</Representation>
+			<ExtendedTooltip name="ImportExportSettingsGroupExtendedTooltip" id="120"/>
+			<ChildItems>
+				<UsualGroup name="XMLExportGroup" id="78">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Export parameters</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="XMLExportGroupExtendedTooltip" id="79"/>
+					<ChildItems>
+						<InputField name="SRCDirectory" id="75">
+							<DataPath>Object.SRCDirectory</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Save to repository</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>41</MaxWidth>
+							<ChoiceButton>true</ChoiceButton>
+							<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+							<AutoMarkIncomplete>true</AutoMarkIncomplete>
+							<InputHint>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>SRC directory path</v8:content>
+								</v8:item>
+							</InputHint>
+							<ContextMenu name="SRCDirectoryContextMenu" id="76"/>
+							<ExtendedTooltip name="SRCDirectoryExtendedTooltip" id="77"/>
+							<Events>
+								<Event name="StartChoice">SRCDirectoryStartChoice</Event>
+								<Event name="TextEditEnd">SRCDirectoryTextEditEnd</Event>
+							</Events>
+						</InputField>
+						<InputField name="ErrorFileDirectory" id="174">
+							<DataPath>ErrorFileDirectory</DataPath>
+							<Visible>false</Visible>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Error files directory</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>41</MaxWidth>
+							<ChoiceButton>true</ChoiceButton>
+							<AutoChoiceIncomplete>true</AutoChoiceIncomplete>
+							<AutoMarkIncomplete>true</AutoMarkIncomplete>
+							<ContextMenu name="ErrorFileDirectoryContextMenu" id="175"/>
+							<ExtendedTooltip name="ErrorFileDirectoryExtendedTooltip" id="176"/>
+							<Events>
+								<Event name="StartChoice">ErrorFileDirectoryStartChoice</Event>
+								<Event name="TextEditEnd">ErrorFileDirectoryTextEditEnd</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupFilters" id="123">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update handler filters</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupFiltersExtendedTooltip" id="124"/>
+			<ChildItems>
+				<InputField name="CurrentLibrary" id="125">
+					<DataPath>CurrentLibrary</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Library</v8:content>
+						</v8:item>
+					</Title>
+					<Width>15</Width>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ContextMenu name="CurrentLibraryContextMenu" id="126"/>
+					<ExtendedTooltip name="CurrentLibraryExtendedTooltip" id="127"/>
+					<Events>
+						<Event name="ChoiceProcessing">SubsystemChoiceProcessing</Event>
+					</Events>
+				</InputField>
+				<InputField name="ObjectToChange" id="134">
+					<DataPath>ObjectToChange</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object to change</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="ObjectToChangeContextMenu" id="135"/>
+					<ExtendedTooltip name="ObjectToChangeExtendedTooltip" id="136"/>
+					<Events>
+						<Event name="OnChange">ObjectToChangeOnChange</Event>
+						<Event name="Clearing">ObjectToChangeClearing</Event>
+					</Events>
+				</InputField>
+				<InputField name="ObjectToRead" id="131">
+					<DataPath>ObjectToRead</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object to read</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="ObjectToReadContextMenu" id="132"/>
+					<ExtendedTooltip name="ObjectToReadExtendedTooltip" id="133"/>
+					<Events>
+						<Event name="OnChange">ObjectToReadOnChange</Event>
+						<Event name="Clearing">ObjectToReadClearing</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="TableCommandsGroup" id="156">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update handler commands</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TableCommandsGroupExtendedTooltip" id="157"/>
+			<ChildItems>
+				<Button name="UpdateHandlersAdd" id="158">
+					<Type>UsualButton</Type>
+					<Width>9</Width>
+					<CommandName>Form.Item.UpdateHandlers.StandardCommand.Add</CommandName>
+					<ExtendedTooltip name="UpdateHandlersAddExtendedTooltip" id="159"/>
+				</Button>
+				<Button name="UpdateHandlersCopy" id="154">
+					<Type>UsualButton</Type>
+					<Representation>Picture</Representation>
+					<Width>3</Width>
+					<CommandName>Form.Item.UpdateHandlers.StandardCommand.Copy</CommandName>
+					<Picture>
+						<xr:Ref>StdPicture.CloneObject</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="UpdateHandlersCopyExtendedTooltip" id="155"/>
+				</Button>
+				<Button name="SetBuildNumberForHandlers" id="216">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.SetBuildNumberForHandlers</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Set assembly number</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SetBuildNumberForHandlersExtendedTooltip" id="217"/>
+				</Button>
+				<LabelDecoration name="Decoration1" id="169">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Quick filters:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="Decoration1ContextMenu" id="170"/>
+					<ExtendedTooltip name="Decoration1ExtendedTooltip" id="171"/>
+				</LabelDecoration>
+				<LabelDecoration name="QuickFilters" id="160">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="true"/>
+					<ContextMenu name="QuickFiltersContextMenu" id="161"/>
+					<ExtendedTooltip name="QuickFiltersExtendedTooltip" id="162"/>
+					<Events>
+						<Event name="URLProcessing">QuickFiltersURLProcessing</Event>
+					</Events>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="268">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="269"/>
+			<ChildItems>
+				<Page name="PageLoadingList" id="272">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List refresh page</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<ExtendedTooltip name="PageLoadingListExtendedTooltip" id="273"/>
+					<ChildItems>
+						<PictureDecoration name="TimeConsumingOperationIndicator" id="274">
+							<Picture>
+								<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<ContextMenu name="TimeConsumingOperationIndicatorContextMenu" id="275"/>
+							<ExtendedTooltip name="TimeConsumingOperationIndicatorExtendedTooltip" id="276"/>
+						</PictureDecoration>
+						<LabelDecoration name="LabelClarification" id="277">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Refreshing handlers.
+Please wait…</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="LabelClarificationContextMenu" id="278"/>
+							<ExtendedTooltip name="LabelClarificationExtendedTooltip" id="279"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="HandlersPage" id="270">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Handlers page</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HandlersPageExtendedTooltip" id="271"/>
+					<ChildItems>
+						<Table name="UpdateHandlers" id="1">
+							<Representation>List</Representation>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Object.UpdateHandlers</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update handlers</v8:content>
+								</v8:item>
+							</Title>
+							<ViewStatusLocation>Top</ViewStatusLocation>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="UpdateHandlersContextMenu" id="2">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="UpdateHandlersSelectedHandlersCode" id="244">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ShowModulesText</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Show code of selected handlers</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="UpdateHandlersSelectedHandlersCodeExtendedTooltip" id="245"/>
+									</Button>
+									<ButtonGroup name="StandardUpdateHandlers" id="232">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Standard update handlers</v8:content>
+											</v8:item>
+										</Title>
+										<CommandSource>Item.UpdateHandlers</CommandSource>
+										<ExtendedTooltip name="StandardUpdateHandlersExtendedTooltip" id="233"/>
+									</ButtonGroup>
+									<Button name="UpdateHandlersFind" id="185">
+										<Type>CommandBarButton</Type>
+										<Representation>Picture</Representation>
+										<Width>3</Width>
+										<CommandName>Form.Item.UpdateHandlers.StandardCommand.Find</CommandName>
+										<ExtendedTooltip name="UpdateHandlersFindExtendedTooltip" id="186"/>
+									</Button>
+									<Button name="UpdateHandlersCancelSearch" id="187">
+										<Type>CommandBarButton</Type>
+										<Representation>Picture</Representation>
+										<Width>3</Width>
+										<CommandName>Form.Item.UpdateHandlers.StandardCommand.CancelSearch</CommandName>
+										<ExtendedTooltip name="UpdateHandlersCancelSearchExtendedTooltip" id="188"/>
+									</Button>
+									<Button name="UpdateHandlersAscending" id="181">
+										<Type>CommandBarButton</Type>
+										<Representation>Picture</Representation>
+										<Width>3</Width>
+										<CommandName>Form.Item.UpdateHandlers.StandardCommand.SortListAsc</CommandName>
+										<ExtendedTooltip name="UpdateHandlersAscendingExtendedTooltip" id="182"/>
+									</Button>
+									<Button name="UpdateHandlersDescending" id="183">
+										<Type>CommandBarButton</Type>
+										<Representation>Picture</Representation>
+										<Width>3</Width>
+										<CommandName>Form.Item.UpdateHandlers.StandardCommand.SortListDesc</CommandName>
+										<ExtendedTooltip name="UpdateHandlersDescendingExtendedTooltip" id="184"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="UpdateHandlersCommandBar" id="3">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="UpdateHandlersExtendedTooltip" id="4"/>
+							<SearchStringAddition name="UpdateHandlersSearchString" id="5">
+								<AdditionSource>
+									<Item>UpdateHandlers</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="UpdateHandlersSearchStringContextMenu" id="6"/>
+								<ExtendedTooltip name="UpdateHandlersSearchStringExtendedTooltip" id="7"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="UpdateHandlersViewStatus" id="8">
+								<AdditionSource>
+									<Item>UpdateHandlers</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="UpdateHandlersViewStatusContextMenu" id="9"/>
+								<ExtendedTooltip name="UpdateHandlersViewStatusExtendedTooltip" id="10"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="UpdateHandlersSearchControl" id="11">
+								<AdditionSource>
+									<Item>UpdateHandlers</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="UpdateHandlersSearchControlContextMenu" id="12"/>
+								<ExtendedTooltip name="UpdateHandlersSearchControlExtendedTooltip" id="13"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">UpdateHandlersSelection</Event>
+								<Event name="BeforeAddRow">UpdateHandlersBeforeAddRow</Event>
+								<Event name="BeforeDeleteRow">UpdateHandlersBeforeDeleteRow</Event>
+								<Event name="OnStartEdit">UpdateHandlersOnStartEdit</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="LineNumber" id="14">
+									<DataPath>Object.UpdateHandlers.LineNumber</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="LineNumberContextMenu" id="15"/>
+									<ExtendedTooltip name="LineNumberExtendedTooltip" id="16"/>
+								</LabelField>
+								<LabelField name="UpdateHandlersRef" id="100">
+									<DataPath>Object.UpdateHandlers.Ref</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersRefContextMenu" id="101"/>
+									<ExtendedTooltip name="UpdateHandlersRefExtendedTooltip" id="102"/>
+								</LabelField>
+								<InputField name="UpdateHandlersSubsystem" id="17">
+									<DataPath>Object.UpdateHandlers.Subsystem</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>30</Width>
+									<ContextMenu name="UpdateHandlersSubsystemContextMenu" id="18"/>
+									<ExtendedTooltip name="UpdateHandlersSubsystemExtendedTooltip" id="19"/>
+								</InputField>
+								<InputField name="UpdateHandlersVersion" id="26">
+									<DataPath>Object.UpdateHandlers.Version</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>7</Width>
+									<ContextMenu name="UpdateHandlersVersionContextMenu" id="27"/>
+									<ExtendedTooltip name="UpdateHandlersVersionExtendedTooltip" id="28"/>
+								</InputField>
+								<InputField name="UpdateHandlersUpdateModule" id="20">
+									<DataPath>Object.UpdateHandlers.MainServerModuleName</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersUpdateModuleContextMenu" id="21"/>
+									<ExtendedTooltip name="UpdateHandlersUpdateModuleExtendedTooltip" id="22"/>
+								</InputField>
+								<InputField name="UpdateHandlersDeferredHandlersExecutionMode" id="166">
+									<DataPath>Object.UpdateHandlers.DeferredHandlersExecutionMode</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersDeferredHandlersExecutionModeContextMenu" id="167"/>
+									<ExtendedTooltip name="UpdateHandlersDeferredHandlersExecutionModeExtendedTooltip" id="168"/>
+								</InputField>
+								<LabelField name="UpdateHandlersIssueStatus" id="140">
+									<DataPath>Object.UpdateHandlers.IssueStatus</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CellHyperlink>true</CellHyperlink>
+									<Width>17</Width>
+									<ContextMenu name="UpdateHandlersIssueStatusContextMenu" id="141"/>
+									<ExtendedTooltip name="UpdateHandlersIssueStatusExtendedTooltip" id="142"/>
+								</LabelField>
+								<InputField name="UpdateHandlersProcedure" id="29">
+									<DataPath>Object.UpdateHandlers.Procedure</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersProcedureContextMenu" id="30"/>
+									<ExtendedTooltip name="UpdateHandlersProcedureExtendedTooltip" id="31"/>
+								</InputField>
+								<InputField name="UpdateHandlersUpdateDataFillingProcedure" id="56">
+									<DataPath>Object.UpdateHandlers.UpdateDataFillingProcedure</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersUpdateDataFillingProcedureContextMenu" id="57"/>
+									<ExtendedTooltip name="UpdateHandlersUpdateDataFillingProcedureExtendedTooltip" id="58"/>
+								</InputField>
+								<InputField name="UpdateHandlersCheckProcedure" id="53">
+									<DataPath>Object.UpdateHandlers.CheckProcedure</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersCheckProcedureContextMenu" id="54"/>
+									<ExtendedTooltip name="UpdateHandlersCheckProcedureExtendedTooltip" id="55"/>
+								</InputField>
+								<InputField name="UpdateHandlersDeferredProcessingQueue" id="59">
+									<DataPath>Object.UpdateHandlers.DeferredProcessingQueue</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="UpdateHandlersDeferredProcessingQueueContextMenu" id="60"/>
+									<ExtendedTooltip name="UpdateHandlersDeferredProcessingQueueExtendedTooltip" id="61"/>
+								</InputField>
+								<InputField name="UpdateHandlersNewQueue" id="163">
+									<DataPath>Object.UpdateHandlers.NewQueue</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>1</Width>
+									<ContextMenu name="UpdateHandlersNewQueueContextMenu" id="164"/>
+									<ExtendedTooltip name="UpdateHandlersNewQueueExtendedTooltip" id="165"/>
+								</InputField>
+								<InputField name="UpdateHandlersExecutionMode" id="32">
+									<DataPath>Object.UpdateHandlers.ExecutionMode</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>13</Width>
+									<ContextMenu name="UpdateHandlersExecutionModeContextMenu" id="33"/>
+									<ExtendedTooltip name="UpdateHandlersExecutionModeExtendedTooltip" id="34"/>
+								</InputField>
+								<CheckBoxField name="UpdateHandlersInitialFilling" id="23">
+									<DataPath>Object.UpdateHandlers.InitialFilling</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Initial population</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersInitialFillingContextMenu" id="24"/>
+									<ExtendedTooltip name="UpdateHandlersInitialFillingExtendedTooltip" id="25"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersExecuteInMandatoryGroup" id="35">
+									<DataPath>Object.UpdateHandlers.ExecuteInMandatoryGroup</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Required</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.AddToFavorites</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersExecuteInMandatoryGroupContextMenu" id="36"/>
+									<ExtendedTooltip name="UpdateHandlersExecuteInMandatoryGroupExtendedTooltip" id="37"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersMultithreaded" id="68">
+									<DataPath>Object.UpdateHandlers.Multithreaded</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Multi-threaded</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersMultithreadedContextMenu" id="69"/>
+									<ExtendedTooltip name="UpdateHandlersMultithreadedExtendedTooltip" id="70"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersExecuteInMasterNodeOnly" id="62">
+									<DataPath>Object.UpdateHandlers.ExecuteInMasterNodeOnly</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersExecuteInMasterNodeOnlyContextMenu" id="63"/>
+									<ExtendedTooltip name="UpdateHandlersExecuteInMasterNodeOnlyExtendedTooltip" id="64"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersRunAlsoInSubordinateDIBNodeWithFilters" id="65">
+									<DataPath>Object.UpdateHandlers.RunAlsoInSubordinateDIBNodeWithFilters</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersRunAlsoInSubordinateDIBNodeWithFiltersContextMenu" id="66"/>
+									<ExtendedTooltip name="UpdateHandlersRunAlsoInSubordinateDIBNodeWithFiltersExtendedTooltip" id="67"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersSharedData" id="41">
+									<DataPath>Object.UpdateHandlers.SharedData</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersSharedDataContextMenu" id="42"/>
+									<ExtendedTooltip name="UpdateHandlersSharedDataExtendedTooltip" id="43"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersHandlerManagement" id="44">
+									<DataPath>Object.UpdateHandlers.HandlerManagement</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersHandlerManagementContextMenu" id="45"/>
+									<ExtendedTooltip name="UpdateHandlersHandlerManagementExtendedTooltip" id="46"/>
+								</CheckBoxField>
+								<InputField name="UpdateHandlersComment" id="47">
+									<DataPath>Object.UpdateHandlers.Comment</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersCommentContextMenu" id="48"/>
+									<ExtendedTooltip name="UpdateHandlersCommentExtendedTooltip" id="49"/>
+								</InputField>
+								<InputField name="UpdateHandlersId" id="50">
+									<DataPath>Object.UpdateHandlers.Id</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>15</Width>
+									<ContextMenu name="UpdateHandlersIdContextMenu" id="51"/>
+									<ExtendedTooltip name="UpdateHandlersIdExtendedTooltip" id="52"/>
+								</InputField>
+								<CheckBoxField name="UpdateHandlersDataToReadWriter" id="143">
+									<DataPath>Object.UpdateHandlers.DataToReadWriter</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Either this handler modifies objects readable by other handlers
+or other handlers modify objects readable by this handler.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.AppearanceExclamationMark</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersDataToReadWriterContextMenu" id="144"/>
+									<ExtendedTooltip name="UpdateHandlersDataToReadWriterExtendedTooltip" id="145"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersWriteAgain" id="146">
+									<DataPath>Object.UpdateHandlers.WriteAgain</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Rewriting objects that are modified by other handlers.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>CommonPicture.Warning</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersWriteAgainContextMenu" id="147"/>
+									<ExtendedTooltip name="UpdateHandlersWriteAgainExtendedTooltip" id="148"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersExecutionOrderSpecified" id="149">
+									<DataPath>Object.UpdateHandlers.ExecutionOrderSpecified</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Execution order set</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.WriteAndClose</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersExecutionOrderSpecifiedContextMenu" id="150"/>
+									<ExtendedTooltip name="UpdateHandlersExecutionOrderSpecifiedExtendedTooltip" id="151"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersChangedCheckProcedure" id="262">
+									<DataPath>Object.UpdateHandlers.ChangedCheckProcedure</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Check procedure is changed</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.AppearanceFlagRed</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersChangedCheckProcedureContextMenu" id="263"/>
+									<ExtendedTooltip name="UpdateHandlersChangedCheckProcedureExtendedTooltip" id="264"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersLowPriorityReading" id="265">
+									<DataPath>Object.UpdateHandlers.LowPriorityReading</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>CommonPicture.StopSign</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersLowPriorityReadingContextMenu" id="266"/>
+									<ExtendedTooltip name="UpdateHandlersLowPriorityReadingExtendedTooltip" id="267"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersChanged" id="198">
+									<DataPath>Object.UpdateHandlers.Changed</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<TitleLocation>None</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Changed</v8:content>
+										</v8:item>
+									</ToolTip>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.Change</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersChangedContextMenu" id="199"/>
+									<ExtendedTooltip name="UpdateHandlersChangedExtendedTooltip" id="200"/>
+								</CheckBoxField>
+								<CheckBoxField name="UpdateHandlersTechDesign" id="211">
+									<DataPath>Object.UpdateHandlers.TechnicalDesign</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<HeaderPicture>
+										<xr:Ref>StdPicture.InputFieldChooseType</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</HeaderPicture>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UpdateHandlersTechDesignContextMenu" id="212"/>
+									<ExtendedTooltip name="UpdateHandlersTechDesignExtendedTooltip" id="213"/>
+									<Events>
+										<Event name="OnChange">UpdateHandlersTechDesignOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="UpdateHandlersLibraryName" id="236">
+									<DataPath>Object.UpdateHandlers.LibraryName</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>3</MaxWidth>
+									<ContextMenu name="UpdateHandlersLibraryNameContextMenu" id="237"/>
+									<ExtendedTooltip name="UpdateHandlersLibraryNameExtendedTooltip" id="238"/>
+								</InputField>
+								<InputField name="UpdateHandlersLibraryOrder" id="248">
+									<DataPath>Object.UpdateHandlers.LibraryOrder</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersLibraryOrderContextMenu" id="249"/>
+									<ExtendedTooltip name="UpdateHandlersLibraryOrderExtendedTooltip" id="250"/>
+								</InputField>
+								<InputField name="UpdateHandlersOrder" id="259">
+									<DataPath>Object.UpdateHandlers.Order</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersOrderContextMenu" id="260"/>
+									<ExtendedTooltip name="UpdateHandlersOrderExtendedTooltip" id="261"/>
+								</InputField>
+								<InputField name="UpdateHandlersObjectName" id="239">
+									<DataPath>Object.UpdateHandlers.ObjectName</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UpdateHandlersObjectNameContextMenu" id="240"/>
+									<ExtendedTooltip name="UpdateHandlersObjectNameExtendedTooltip" id="241"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.UpdateHandlersDetails</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<Save>
+				<Field>Object.SRCDirectory</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="StartupParameters" id="2">
+			<Type/>
+		</Attribute>
+		<Attribute name="SubsystemsModules" id="3">
+			<Type/>
+		</Attribute>
+		<Attribute name="IBUser" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>IBUser</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="CurrentLibrary" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Current library</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ObjectToRead" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Object to read</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>300</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ObjectToChange" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Object to change</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>300</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ExecutionOrder" id="12">
+			<Type/>
+		</Attribute>
+		<Attribute name="SourceCurrentRow" id="13">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AnalysisRequiredStatus" id="15">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>30</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="OtherQuickFilters" id="16">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="PluralForm" id="17">
+			<Type/>
+		</Attribute>
+		<Attribute name="SingularForm" id="18">
+			<Type/>
+		</Attribute>
+		<Attribute name="ErrorFileDirectory" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Error files directory</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>ErrorFileDirectory</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ErrorTextAddition" id="20">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ErrorDetectionDate" id="21">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="RepositoryAddress" id="22">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="HandlersDetailsDebugMode" id="7">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="EnglishNames" id="6">
+			<Type/>
+		</Attribute>
+		<Attribute name="ConfigurationVersion" id="11">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="NewConfigurationVersion" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SubsystemsToDevelop" id="23">
+			<Type/>
+		</Attribute>
+		<Attribute name="NewConfigurationBuildNumber" id="24">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="StartFromConfiguration" id="25">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ExtendedFormMode" id="26">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ExtendedFormMode</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="StatusChangedCheckProcedure" id="27">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>30</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="LowPriorityReadingStatus" id="28">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>30</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ImportHandlers" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import details</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import details of update handlers</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.OpenFile</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ImportHandlers</Action>
+		</Command>
+		<Command name="SaveToRepository" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save to repository</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save to the repository</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SaveFileAs</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SaveToRepository</Action>
+		</Command>
+		<Command name="CheckConflicts" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Check conflicts</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Looking for handlers' collisions: modifiable and rewritable objects.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CheckConflicts</Action>
+		</Command>
+		<Command name="BuildQueue" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Queue building control</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Build the queue</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>BuildQueue</Action>
+		</Command>
+		<Command name="ShowAllHandlersDetails" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show all handler details</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Text of the OnAddUpdateHandlers procedure with the list of all handler details</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OnAddUpdateHandlers_Details</Action>
+		</Command>
+		<Command name="ExecuteQueueBuildingTest" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Test queue building</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Test queue building</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ExecuteQueueBuildingTest</Action>
+		</Command>
+		<Command name="ShowSettingsTemplate" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show template file for code generator customization</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Shows a template of ERP tag settings file used to generate the update handler details code (the cut_tags.yml file)</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowSettings</Action>
+		</Command>
+		<Command name="ShowTabularSections" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show all handler details tables</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show tables</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowTabularSections</Action>
+		</Command>
+		<Command name="CalculateQueue" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate queue</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Calculate queue</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CalculateQueue</Action>
+		</Command>
+		<Command name="ShowAllHandlersCalls" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show all handler calls</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Text of the OnAddUpdateHandlers procedure with the list of all handler details procedure calls</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OnAddUpdateHandlers_Calls</Action>
+		</Command>
+		<Command name="SaveAllHandlersToRepository" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save all handlers to repository</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Totally overwrites all handler details procedures.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SaveAllHandlersToRepository</Action>
+		</Command>
+		<Command name="ShowAllModulesTexts" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show texts of all modules</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show texts of all modules</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowAllModulesTexts</Action>
+		</Command>
+		<Command name="SetBuildNumberForHandlers" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>for selected handlers</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>The maximum assembly of handlers will be installed to the configuration root and update modules</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SetBuildNumberForHandlers</Action>
+		</Command>
+		<Command name="ShowPrioritiesHandlerConflicts" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show handler priorities and conflicts</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show handler priorities and conflicts</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowPrioritiesHandlerConflicts</Action>
+		</Command>
+		<Command name="WriteTechnicalDesignHandlersList" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save list of handlers of technical design</v8:content>
+				</v8:item>
+			</Title>
+			<Action>WriteTechnicalDesignHandlersList</Action>
+		</Command>
+		<Command name="ShowModulesText" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show code of selected handlers</v8:content>
+				</v8:item>
+			</Title>
+			<Shortcut>Ctrl+1</Shortcut>
+			<Action>ShowModulesText</Action>
+			<AssociatedTableElementId xsi:type="xs:string">UpdateHandlers</AssociatedTableElementId>
+		</Command>
+		<Command name="GenerateTexts" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Generate texts</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Generate texts</v8:content>
+				</v8:item>
+			</ToolTip>
+		</Command>
+		<Command name="ShowUpdateHandlersDetailsCode" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show update handler details code</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show update handler details code</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowUpdateHandlersDetailsCode</Action>
+		</Command>
+		<Command name="SwitchFormMode" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to simplified mode</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Switch the form mode</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SwitchFormMode</Action>
+		</Command>
+		<Command name="ShowHandlerObjects" id="21">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show handler objects</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show handler objects</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowHandlerObjects</Action>
+		</Command>
+		<Command name="SaveToFile" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save to file</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save to file</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SaveToFile</Action>
+		</Command>
+		<Command name="LoadFromFile" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import from file</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import from file</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>LoadFromFile</Action>
+		</Command>
+		<Command name="SetAutoOrder" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set auto order</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set auto order</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SetAutoOrder</Action>
+		</Command>
+	</Commands>
+</Form>

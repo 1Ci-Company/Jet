@@ -1,0 +1,1184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Customizable>false</Customizable>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="2022">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="2037"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="2023">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>78</MaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Manage users, configure access groups, grant access to external users, and manage user settings.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Top</VerticalAlign>
+					<ContextMenu name="SectionDetailsContextMenu" id="2024"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="2038"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="2025">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="2040"/>
+					<ChildItems>
+						<Button name="Help" id="2026">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="2041"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="UsersGroup2" id="830">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Users</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="UsersGroup2ExtendedTooltip" id="2042"/>
+			<ChildItems>
+				<UsualGroup name="GroupUsersColumns" id="2279">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User columns</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupUsersColumnsExtendedTooltip" id="2280"/>
+					<ChildItems>
+						<UsualGroup name="GroupUsersLeftColumn" id="1876">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Left user column</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupUsersLeftColumnExtendedTooltip" id="2043"/>
+							<ChildItems>
+								<Button name="OpenUsers" id="831">
+									<Type>Hyperlink</Type>
+									<CommandName>Catalog.Users.StandardCommand.OpenList</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenUsersExtendedTooltip" id="2044">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Manage app users.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<CheckBoxField name="UseUserGroups" id="697">
+									<DataPath>ConstantsSet.UseUserGroups</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User groups</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Combine users into groups.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseUserGroupsContextMenu" id="698"/>
+									<ExtendedTooltip name="UseUserGroupsExtendedTooltip" id="2047"/>
+									<Events>
+										<Event name="OnChange">UseUserGroupsOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupUsersRightColumn" id="2241">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Right user column</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupUsersRightColumnExtendedTooltip" id="2242"/>
+							<ChildItems>
+								<UsualGroup name="UsersAuthorizationSettingsGroup" id="2142">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User login settings</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="UsersAuthorizationSettingsGroupExtendedTooltip" id="2143"/>
+									<ChildItems>
+										<Button name="LogonSettings" id="2196">
+											<Type>Hyperlink</Type>
+											<CommandName>CommonForm.UserAuthorizationSettings.StandardCommand.Open</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Login settings</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<ExtendedTooltip name="LogonSettingsExtendedTooltip" id="2197">
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Set passwords, configure password complexity, and deny access for inactive users.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+								<Button name="PasswordsRecovery" id="2243">
+									<Type>Hyperlink</Type>
+									<CommandName>CommonForm.PasswordsRecovery.StandardCommand.Open</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="PasswordsRecoveryExtendedTooltip" id="2244">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Login assistance and password recovery.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupUserMonitoring" id="2290">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User monitoring</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupUserMonitoringExtendedTooltip" id="2291"/>
+					<ChildItems>
+						<UsualGroup name="GroupUserMonitoringLeftColumn" id="2292">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User monitoring: left column</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupUserMonitoringLeftColumnExtendedTooltip" id="2293"/>
+							<ChildItems>
+								<CheckBoxField name="ShouldRegisterChangesInAccessRights" id="2272">
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShouldRegisterChangesInAccessRightsContextMenu" id="2273"/>
+									<ExtendedTooltip name="ShouldRegisterChangesInAccessRightsExtendedTooltip" id="2274">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Records the following events to the event log: changes in access group values, profiles roles, access role rights, and user group membership.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">ShouldRegisterChangesInAccessRightsOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<PictureDecoration name="GroupUserMonitoringLeftColumnVerticalIndent" id="2316">
+									<Visible>false</Visible>
+									<Height>1</Height>
+									<ContextMenu name="GroupUserMonitoringLeftColumnVerticalIndentContextMenu" id="2317"/>
+									<ExtendedTooltip name="GroupUserMonitoringLeftColumnVerticalIndentExtendedTooltip" id="2318"/>
+								</PictureDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupUserMonitoringRightColumn" id="2294">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User monitoring: right column</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupUserMonitoringRightColumnExtendedTooltip" id="2295"/>
+							<ChildItems>
+								<Button name="UserMonitoring" id="2277">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.UserMonitoring</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User monitoring</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="UserMonitoringExtendedTooltip" id="2278">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>"User monitoring" administrator reports, which contain data on user rights, activities, and settings.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupExternalUsers" id="2296">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>External users</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ExtendedTooltip name="GroupExternalUsersExtendedTooltip" id="2297"/>
+					<ChildItems>
+						<UsualGroup name="GroupExternalUsersLeftColumn" id="2298">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>External users: left column</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupExternalUsersLeftColumnExtendedTooltip" id="2299"/>
+							<ChildItems>
+								<CheckBoxField name="UseExternalUsers" id="699">
+									<DataPath>ConstantsSet.UseExternalUsers</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allow external user access</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Provides your partners with remote access to the app.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseExternalUsersContextMenu" id="700"/>
+									<ExtendedTooltip name="UseExternalUsersExtendedTooltip" id="2072"/>
+									<Events>
+										<Event name="OnChange">UseExternalUsersOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupExternalUsersRightColumn" id="2314">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>External users: right column</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupExternalUsersRightColumnExtendedTooltip" id="2315"/>
+							<ChildItems>
+								<Button name="OpenExternalUsers" id="2031">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ExternalUsers</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>External users</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenExternalUsersExtendedTooltip" id="2075">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Manage the list of external users who have remote access to the app.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="AccessGroupsGroup" id="2174">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access groups</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="AccessGroupsGroupExtendedTooltip" id="2175"/>
+			<ChildItems>
+				<UsualGroup name="AccessGroupsProfilesAndRecordLevelRestrictionGroup" id="838">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access groups, profiles, and record-level restrictions</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AccessGroupsProfilesAndRecordLevelRestrictionGroupExtendedTooltip" id="2049"/>
+					<ChildItems>
+						<UsualGroup name="AccessGroupsAndRecordLevelRestrictionGroup" id="2176">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access groups and record-level restrictions</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AccessGroupsAndRecordLevelRestrictionGroupExtendedTooltip" id="2177"/>
+							<ChildItems>
+								<Button name="OpenAccessGroups" id="849">
+									<Type>Hyperlink</Type>
+									<CommandName>Catalog.AccessGroups.StandardCommand.OpenList</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenAccessGroupsExtendedTooltip" id="2052">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure access rights for groups.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<CheckBoxField name="LimitAccessAtRecordLevel" id="701">
+									<DataPath>ConstantsSet.LimitAccessAtRecordLevel</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Fine-tune access rights to catalogs, documents, and other data.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="LimitAccessAtRecordLevelContextMenu" id="702"/>
+									<ExtendedTooltip name="LimitAccessAtRecordLevelExtendedTooltip" id="2058">
+										<AutoMaxWidth>false</AutoMaxWidth>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">LimitAccessAtRecordLevelOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="AccessGroupsProfilesGroup" id="844">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access group profiles</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AccessGroupsProfilesGroupExtendedTooltip" id="2054"/>
+							<ChildItems>
+								<Button name="OpenAccessGroupsProfiles" id="845">
+									<Type>Hyperlink</Type>
+									<CommandName>Catalog.AccessGroupProfiles.StandardCommand.OpenList</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenAccessGroupsProfilesExtendedTooltip" id="2055">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>User access rights templates.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<InputField name="LimitAccessAtRecordLevelUniversally" id="2236">
+									<DataPath>ConstantsSet.LimitAccessAtRecordLevelUniversally</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Operation mode</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<Width>24</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ListChoiceMode>true</ListChoiceMode>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Standard</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:boolean">false</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>High-performance</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:boolean">true</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="LimitAccessAtRecordLevelUniversallyContextMenu" id="2237"/>
+									<ExtendedTooltip name="LimitAccessAtRecordLevelUniversallyExtendedTooltip" id="2238">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>High-performance mode is recommended for the client/server infobase,
+where it is much more efficient than the standard mode. 
+
+In a multiuser file infobase, it might restrict the performance
+of concurrent users, so the standard mode would be preferable.
+
+If there is only one user in the file infobase or data is entered by multiple users
+not intensively, the high-performance mode imposes no further restrictions and
+will speed up viewing lists and generating reports compared to the standard mode.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<Events>
+										<Event name="OnChange">LimitAccessAtRecordLevelUniversallyOnChange</Event>
+									</Events>
+								</InputField>
+								<Button name="AccessUpdateOnRecordsLevel" id="2219">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.AccessUpdateOnRecordsLevel</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>RLS access update progress</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="AccessUpdateOnRecordsLevelExtendedTooltip" id="2220"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="UsersPersonalSettingsGroup" id="2194">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Personal user settings</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="UsersPersonalSettingsGroupExtendedTooltip" id="2195"/>
+			<ChildItems>
+				<UsualGroup name="OperationsWithUsersSettingsGroup" id="859">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Manage user settings</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="OperationsWithUsersSettingsGroupExtendedTooltip" id="2060"/>
+					<ChildItems>
+						<UsualGroup name="CopyUsersSettingsGroup" id="1999">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Copy user settings</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="CopyUsersSettingsGroupExtendedTooltip" id="2061"/>
+							<ChildItems>
+								<Button name="CopyUsersSettings" id="2008">
+									<Type>Hyperlink</Type>
+									<CommandName>DataProcessor.UsersSettings.Command.CopyUsersSettings</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="CopyUsersSettingsExtendedTooltip" id="2062">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Copy settings between user accounts.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="UsersSettingsGroup" id="2000">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>User settings</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UsersSettingsGroupExtendedTooltip" id="2064"/>
+							<ChildItems>
+								<Button name="UsersSettings" id="2010">
+									<Type>Hyperlink</Type>
+									<CommandName>DataProcessor.UsersSettings.StandardCommand.Open</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="UsersSettingsExtendedTooltip" id="2065">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Manage user settings for reports, user interface, and other features.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ClearUsersSettingsGroup" id="2017">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Clear user settings</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ClearUsersSettingsGroupExtendedTooltip" id="2067"/>
+					<ChildItems>
+						<Button name="ClearUsersSettings" id="2009">
+							<Type>Hyperlink</Type>
+							<CommandName>DataProcessor.UsersSettings.Command.ClearUsersSettings</CommandName>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="ClearUsersSettingsExtendedTooltip" id="2068">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Clear settings for all or selected users.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="PeriodClosingDatesGroup" id="2198">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Period-end closing dates</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="PeriodClosingDatesGroupExtendedTooltip" id="2199"/>
+			<ChildItems>
+				<UsualGroup name="PeriodClosingDatesUsageGroup" id="2200">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use period-end closing dates</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Period-end closing for previous periods.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="PeriodClosingDatesUsageGroupExtendedTooltip" id="2201"/>
+					<ChildItems>
+						<CheckBoxField name="UsePeriodClosingDates" id="2202">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Period-end closing dates</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Period-end closing for previous periods.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>None</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UsePeriodClosingDatesContextMenu" id="2203"/>
+							<ExtendedTooltip name="UsePeriodClosingDatesExtendedTooltip" id="2204"/>
+							<Events>
+								<Event name="OnChange">Attachable_OnChangeAttribute</Event>
+							</Events>
+						</CheckBoxField>
+						<Button name="ConfigurePeriodClosingDates" id="2207">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.ConfigurePeriodClosingDates</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ConfigurePeriodClosingDatesExtendedTooltip" id="2208">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Configure period-end closing dates.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="PersonalDataProtectionGroup" id="2209">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Personal data protection</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="PersonalDataProtectionGroupExtendedTooltip" id="2210"/>
+			<ChildItems>
+				<UsualGroup name="PersonalDataProtectionSettingGroup" id="2221">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Personal data protection settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="PersonalDataProtectionSettingGroupExtendedTooltip" id="2222"/>
+					<ChildItems>
+						<UsualGroup name="GroupPersonalDataAccessEventRegistrationSettings" id="2211">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Personal data access logging settings</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupPersonalDataAccessEventRegistrationSettingsExtendedTooltip" id="2212"/>
+							<ChildItems>
+								<Button name="PersonalDataAccessEventsRegistrationSettings" id="2213">
+									<Type>Hyperlink</Type>
+									<CommandName>0</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="PersonalDataAccessEventsRegistrationSettingsExtendedTooltip" id="2214">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Logging of access events according to Federal Law No. 152-FZ "On personal data" issued on July 27, 2006.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupPersonalDataDestructionUsage" id="2223">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Personal data destruction usage</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupPersonalDataDestructionUsageExtendedTooltip" id="2224"/>
+							<ChildItems>
+								<UsualGroup name="GroupDaysBeforeDestruction" id="2225">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Days before destruction</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Possible reasons for data destruction: the subject's consent expired or the consent is missing.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Horizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupDaysBeforeDestructionExtendedTooltip" id="2226"/>
+									<ChildItems>
+										<CheckBoxField name="UsePersonalDataDestruction" id="2227">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Destroy personal data</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="UsePersonalDataDestructionContextMenu" id="2228"/>
+											<ExtendedTooltip name="UsePersonalDataDestructionExtendedTooltip" id="2229"/>
+											<Events>
+												<Event name="OnChange">Attachable_PDDestructionSettingsOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<PictureDecoration name="DecorationWaitForPDDestructionUsageChange" id="2233">
+											<Visible>false</Visible>
+											<Width>2</Width>
+											<Height>1</Height>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Decoration Wait for personal data destruction settings to change</v8:content>
+												</v8:item>
+											</Title>
+											<Picture>
+												<xr:Ref>CommonPicture.CheckInProgress</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</Picture>
+											<FileDragMode>AsFile</FileDragMode>
+											<ContextMenu name="DecorationWaitForPDDestructionUsageChangeContextMenu" id="2234"/>
+											<ExtendedTooltip name="DecorationWaitForPDDestructionUsageChangeExtendedTooltip" id="2235"/>
+										</PictureDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="PersonalDataProtectionDataProcessorGroup" id="2215">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Personal data access log</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="PersonalDataProtectionDataProcessorGroupExtendedTooltip" id="2216"/>
+					<ChildItems>
+						<Button name="PersonalDataProtectionDataProcessor" id="2217">
+							<Type>Hyperlink</Type>
+							<CommandName>0</CommandName>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="PersonalDataProtectionDataProcessorExtendedTooltip" id="2218">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>View events of access to personal data (object-wise).</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupDataAccessAudit" id="2245">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Data access audit</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="GroupDataAccessAuditExtendedTooltip" id="2246"/>
+			<ChildItems>
+				<UsualGroup name="GroupDataAccessManagementSettings" id="2247">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data access control settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupDataAccessManagementSettingsExtendedTooltip" id="2248"/>
+					<ChildItems>
+						<UsualGroup name="GroupRegisterDataAccess" id="2267">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Log data access</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupRegisterDataAccessExtendedTooltip" id="2268"/>
+						</UsualGroup>
+						<UsualGroup name="GroupRegistrationSettingsForDataAccessEvents" id="2249">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Data access logging settings</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupRegistrationSettingsForDataAccessEventsExtendedTooltip" id="2250">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Event logging for data access auditing.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<ChildItems>
+								<CheckBoxField name="ShouldRegisterDataAccess" id="2269">
+									<DataPath>ShouldRegisterDataAccess</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Enable data access logging</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShouldRegisterDataAccessContextMenu" id="2270"/>
+									<ExtendedTooltip name="ShouldRegisterDataAccessExtendedTooltip" id="2271"/>
+									<Events>
+										<Event name="OnChange">ShouldRegisterDataAccessOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<Button name="RegistrationSettingsForDataAccessEvents" id="2251">
+									<Type>Hyperlink</Type>
+									<CommandName>0</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Settings</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="RegistrationSettingsForDataAccessEventsExtendedTooltip" id="2252"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupDataAccessLog" id="2263">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data access log</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupDataAccessLogExtendedTooltip" id="2264"/>
+					<ChildItems>
+						<Button name="DataAccessLog" id="2265">
+							<Type>Hyperlink</Type>
+							<CommandName>DataProcessor.EventLog.Command.DataAccessLog</CommandName>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="DataAccessLogExtendedTooltip" id="2266">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>View data access log.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ConstantsSet" id="1">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.ChangeJobsBackdated</Field>
+				<Field>ConstantsSet.DeniedDataAreaExtensionsList</Field>
+				<Field>ConstantsSet.DenyUploadFilesByExtension</Field>
+				<Field>ConstantsSet.FilesExtensionsListDocumentDataAreas</Field>
+				<Field>ConstantsSet.LimitAccessAtRecordLevel</Field>
+				<Field>ConstantsSet.LimitAccessAtRecordLevelUniversally</Field>
+				<Field>ConstantsSet.MaxDataAreaFileSize</Field>
+				<Field>ConstantsSet.NewTasksNotificationDate</Field>
+				<Field>ConstantsSet.SendEmailsInHTMLFormat</Field>
+				<Field>ConstantsSet.StoreFilesInVolumesOnHardDrive</Field>
+				<Field>ConstantsSet.SystemTitle</Field>
+				<Field>ConstantsSet.TextFilesExtensionsList</Field>
+				<Field>ConstantsSet.UseAdditionalAttributesAndInfo</Field>
+				<Field>ConstantsSet.UseBusinessProcessesAndTasks</Field>
+				<Field>ConstantsSet.UseDateAndTimeInTaskDeadlines</Field>
+				<Field>ConstantsSet.UseEmailClient</Field>
+				<Field>ConstantsSet.UseExternalUsers</Field>
+				<Field>ConstantsSet.UseNotes</Field>
+				<Field>ConstantsSet.UseOtherInteractions</Field>
+				<Field>ConstantsSet.UseReviewedFlag</Field>
+				<Field>ConstantsSet.UseTaskStartDate</Field>
+				<Field>ConstantsSet.UseUserGroups</Field>
+				<Field>ConstantsSet.UseUserReminders</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="ShouldRegisterDataAccess" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Register data access</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ExternalUsers" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>External users</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>External users</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CatalogExternalUsers</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AccessUpdateOnRecordsLevel" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>RLS access update progress</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View the access rights update progress. If any issues occur, you can perform the following actions manually:
+- Update access rights for a single object.
+- Schedule access rights update for specific lists.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AccessUpdateOnRecordsLevel</Action>
+		</Command>
+		<Command name="ConfigurePeriodClosingDates" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure period-end closing dates.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ConfigurePeriodClosingDates</Action>
+		</Command>
+		<Command name="UserMonitoring" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User monitoring</v8:content>
+				</v8:item>
+			</Title>
+			<Action>UserMonitoring</Action>
+		</Command>
+	</Commands>
+</Form>

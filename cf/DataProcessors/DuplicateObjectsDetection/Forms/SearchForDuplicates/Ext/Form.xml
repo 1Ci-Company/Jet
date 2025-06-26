@@ -1,0 +1,2802 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Duplicate cleaner</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>None</CommandBarLocation>
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">WizardActionPanelRight</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">CommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Header" id="406" DisplayImportance="VeryHigh">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HeaderExtendedTooltip" id="407"/>
+			<ChildItems>
+				<InputField name="DuplicatesSearchArea" id="9">
+					<DataPath>DuplicatesSearchArea</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search in</v8:content>
+						</v8:item>
+					</Title>
+					<DropListButton>false</DropListButton>
+					<ChoiceButton>true</ChoiceButton>
+					<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+					<OpenButton>true</OpenButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<QuickChoice>false</QuickChoice>
+					<ContextMenu name="DuplicatesSearchAreaContextMenu" id="10"/>
+					<ExtendedTooltip name="DuplicatesSearchAreaExtendedTooltip" id="11"/>
+					<Events>
+						<Event name="OnChange">DuplicatesSearchAreaOnChange</Event>
+						<Event name="StartChoice">DuplicatesSearchAreaStartChoice</Event>
+						<Event name="Opening">DuplicatesSearchAreaOpening</Event>
+						<Event name="Clearing">DuplicatesSearchAreaClearing</Event>
+					</Events>
+				</InputField>
+				<InputField name="FilterRulesPresentation" id="413">
+					<DataPath>FilterRulesPresentation</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filter</v8:content>
+						</v8:item>
+					</Title>
+					<ChoiceButton>true</ChoiceButton>
+					<ClearButton>true</ClearButton>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="FilterRulesPresentationContextMenu" id="414"/>
+					<ExtendedTooltip name="FilterRulesPresentationExtendedTooltip" id="415"/>
+					<Events>
+						<Event name="StartChoice">FilterRulesPresentationStartChoice</Event>
+						<Event name="Clearing">FilterRulesPresentationClearing</Event>
+					</Events>
+				</InputField>
+				<LabelField name="SearchRulesPresentation" id="408">
+					<DataPath>SearchRulesPresentation</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Compare</v8:content>
+						</v8:item>
+					</Title>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>2</Height>
+					<VerticalStretch>true</VerticalStretch>
+					<Hiperlink>true</Hiperlink>
+					<ContextMenu name="SearchRulesPresentationContextMenu" id="409"/>
+					<ExtendedTooltip name="SearchRulesPresentationExtendedTooltip" id="410"/>
+					<Events>
+						<Event name="Click">SearchRulesPresentationClick</Event>
+					</Events>
+				</LabelField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="WizardSteps" id="58">
+			<EnableContentChange>true</EnableContentChange>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Wizard steps</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="WizardStepsExtendedTooltip" id="59"/>
+			<ChildItems>
+				<Page name="NoSearchPerformedStep" id="62">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search not performed step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="NoSearchPerformedStepExtendedTooltip" id="63"/>
+					<ChildItems>
+						<SpreadSheetDocumentField name="NoSearchPerformed" id="64">
+							<DataPath>NoSearchPerformed</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Search was not performed</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<Width>1</Width>
+							<Height>1</Height>
+							<VerticalScrollBar>false</VerticalScrollBar>
+							<HorizontalScrollBar>false</HorizontalScrollBar>
+							<ContextMenu name="NoSearchPerformedContextMenu" id="65"/>
+							<ExtendedTooltip name="NoSearchPerformedExtendedTooltip" id="66"/>
+						</SpreadSheetDocumentField>
+					</ChildItems>
+				</Page>
+				<Page name="PerformSearchStep" id="186">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search not performed step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="PerformSearchStepExtendedTooltip" id="187"/>
+					<ChildItems>
+						<SpreadSheetDocumentField name="Searching" id="188">
+							<DataPath>NoSearchPerformed</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Search was not performed</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<Width>1</Width>
+							<Height>1</Height>
+							<VerticalScrollBar>false</VerticalScrollBar>
+							<HorizontalScrollBar>false</HorizontalScrollBar>
+							<ContextMenu name="SearchingContextMenu" id="189"/>
+							<ExtendedTooltip name="SearchingExtendedTooltip" id="190"/>
+						</SpreadSheetDocumentField>
+					</ChildItems>
+				</Page>
+				<Page name="MainItemSelectionStep" id="98">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main item selection step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="MainItemSelectionStepExtendedTooltip" id="99"/>
+					<ChildItems>
+						<CommandBar name="CommandBar" id="96">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Command bar</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CommandBarExtendedTooltip" id="97"/>
+							<ChildItems>
+								<Button name="MarkAsOriginal" id="88">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.MarkAsOriginal</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Mark as original item</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MarkAsOriginalExtendedTooltip" id="89"/>
+								</Button>
+								<ButtonGroup name="SelectAndClearCheckBoxesGroup" id="461">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Select clear checkboxes</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>Compact</Representation>
+									<ExtendedTooltip name="SelectAndClearCheckBoxesGroupExtendedTooltip" id="462"/>
+									<ChildItems>
+										<Button name="SelectAllCheckBoxes" id="463">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.SelectAllCheckBoxes</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Select all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="SelectAllCheckBoxesExtendedTooltip" id="464"/>
+										</Button>
+										<Button name="ClearAllCheckBoxes" id="465">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ClearAllCheckBoxes</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Clear all</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ClearAllCheckBoxesExtendedTooltip" id="466"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<ButtonGroup name="CollapseExpandGroup" id="459">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Collapse expand</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>Compact</Representation>
+									<ExtendedTooltip name="CollapseExpandGroupExtendedTooltip" id="460"/>
+									<ChildItems>
+										<Button name="ExpandDuplicatesGroup" id="92">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.ExpandDuplicatesGroups</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Expand</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ExpandDuplicatesGroupExtendedTooltip" id="93"/>
+										</Button>
+										<Button name="CollapseDuplicatesGroup" id="94">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.CollapseDuplicatesGroups</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Collapse</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CollapseDuplicatesGroupExtendedTooltip" id="95"/>
+										</Button>
+									</ChildItems>
+								</ButtonGroup>
+								<Button name="RetrySearch" id="326">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.RetrySearch</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Search again</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="RetrySearchExtendedTooltip" id="327"/>
+								</Button>
+								<Button name="OpenProbableDuplicate" id="90">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.OpenProbableDuplicate</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Open</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="OpenProbableDuplicateExtendedTooltip" id="91"/>
+								</Button>
+								<Button name="MoreDetails" id="469">
+									<Type>CommandBarButton</Type>
+									<CommandName>Form.Command.MoreDetails</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Details &gt;&gt;</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="MoreDetailsExtendedTooltip" id="470"/>
+								</Button>
+							</ChildItems>
+						</CommandBar>
+						<UsualGroup name="FoundDuplicatesGroup" id="155">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Duplicates found</v8:content>
+								</v8:item>
+							</Title>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="FoundDuplicatesGroupExtendedTooltip" id="156"/>
+							<ChildItems>
+								<Table name="FoundDuplicates" id="67">
+									<Representation>Tree</Representation>
+									<ChangeRowSet>false</ChangeRowSet>
+									<ChangeRowOrder>false</ChangeRowOrder>
+									<Height>10</Height>
+									<SelectionMode>SingleRow</SelectionMode>
+									<RowSelectionMode>Row</RowSelectionMode>
+									<UseAlternationRowColor>true</UseAlternationRowColor>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<FileDragMode>AsFile</FileDragMode>
+									<DataPath>FoundDuplicates</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Duplicates found</v8:content>
+										</v8:item>
+									</Title>
+									<CommandSet>
+										<ExcludedCommand>Change</ExcludedCommand>
+									</CommandSet>
+									<SearchStringLocation>Top</SearchStringLocation>
+									<ContextMenu name="FoundDuplicatesContextMenu" id="68">
+										<ChildItems>
+											<Button name="FoundDuplicatesContextMenuSelectMainItem" id="117">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.MarkAsOriginal</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Mark as original item</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="FoundDuplicatesContextMenuSelectMainItemExtendedTooltip" id="118"/>
+											</Button>
+											<ButtonGroup name="FoundDuplicatesContextMenuCustomizeGroup" id="422">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Duplicates found context menu group edit</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="FoundDuplicatesContextMenuCustomizeGroupExtendedTooltip" id="423"/>
+												<ChildItems>
+													<Button name="FoundDuplicatesContextMenuOpenProbableDuplicates1" id="430">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Command.OpenProbableDuplicate</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Open</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="FoundDuplicatesContextMenuOpenProbableDuplicates1ExtendedTooltip" id="431"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<Button name="FoundDuplicatesContextMenuCopyToClipboard" id="418">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.FoundDuplicates.StandardCommand.CopyToClipboard</CommandName>
+												<ExtendedTooltip name="FoundDuplicatesContextMenuCopyToClipboardExtendedTooltip" id="419"/>
+											</Button>
+											<Button name="FoundDuplicatesContextMenuOutputList" id="416">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.FoundDuplicates.StandardCommand.OutputList</CommandName>
+												<ExtendedTooltip name="FoundDuplicatesContextMenuOutputListExtendedTooltip" id="417"/>
+											</Button>
+											<ButtonGroup name="FoundDuplicatesContextMenuCustomizeFormGroup" id="426">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Duplicates found context menu group edit form</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="FoundDuplicatesContextMenuCustomizeFormGroupExtendedTooltip" id="427"/>
+												<ChildItems>
+													<Button name="FoundDuplicatesContextMenuCustomizeForm" id="424">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+														<ExtendedTooltip name="FoundDuplicatesContextMenuCustomizeFormExtendedTooltip" id="425"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<Button name="FoundDuplicatesContextMenuSortListDesc" id="519">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.FoundDuplicates.StandardCommand.SortListDesc</CommandName>
+												<ExtendedTooltip name="FoundDuplicatesContextMenuSortListDescExtendedTooltip" id="520"/>
+											</Button>
+										</ChildItems>
+									</ContextMenu>
+									<AutoCommandBar name="FoundDuplicatesCommandBar" id="69">
+										<Autofill>false</Autofill>
+									</AutoCommandBar>
+									<ExtendedTooltip name="FoundDuplicatesExtendedTooltip" id="70"/>
+									<SearchStringAddition name="FoundDuplicatesSearchString" id="364">
+										<AdditionSource>
+											<Item>FoundDuplicates</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="FoundDuplicatesSearchStringContextMenu" id="365"/>
+										<ExtendedTooltip name="FoundDuplicatesSearchStringExtendedTooltip" id="366"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="FoundDuplicatesViewStatus" id="367">
+										<AdditionSource>
+											<Item>FoundDuplicates</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="FoundDuplicatesViewStatusContextMenu" id="368"/>
+										<ExtendedTooltip name="FoundDuplicatesViewStatusExtendedTooltip" id="369"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="FoundDuplicatesSearchControl" id="370">
+										<AdditionSource>
+											<Item>FoundDuplicates</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="FoundDuplicatesSearchControlContextMenu" id="371"/>
+										<ExtendedTooltip name="FoundDuplicatesSearchControlExtendedTooltip" id="372"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="Selection">FoundDuplicatesSelection</Event>
+										<Event name="OnActivateRow">FoundDuplicatesOnActivateRow</Event>
+									</Events>
+									<ChildItems>
+										<PictureField name="FoundDuplicatesDeletionMark" id="516">
+											<DataPath>FoundDuplicates.PictureNumber</DataPath>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Deletion mark</v8:content>
+												</v8:item>
+											</ToolTip>
+											<EditMode>EnterOnInput</EditMode>
+											<HeaderPicture>
+												<xr:Ref>CommonPicture.MetadataAttributes</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</HeaderPicture>
+											<ValuesPicture>
+												<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</ValuesPicture>
+											<ContextMenu name="FoundDuplicatesDeletionMarkContextMenu" id="517"/>
+											<ExtendedTooltip name="FoundDuplicatesDeletionMarkExtendedTooltip" id="518"/>
+										</PictureField>
+										<ColumnGroup name="UseDescription" id="109">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Use item description</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="UseDescriptionExtendedTooltip" id="110"/>
+											<ChildItems>
+												<CheckBoxField name="FoundDuplicatesCheck" id="103">
+													<DataPath>FoundDuplicates.Check</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Checkmark</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<EditMode>EnterOnInput</EditMode>
+													<ThreeState>true</ThreeState>
+													<ContextMenu name="FoundDuplicatesCheckContextMenu" id="104"/>
+													<ExtendedTooltip name="FoundDuplicatesCheckExtendedTooltip" id="105"/>
+													<Events>
+														<Event name="OnChange">FoundDuplicatesCheckOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<PictureField name="FoundDuplicatesMain" id="114">
+													<DataPath>FoundDuplicates.Main</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Main</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>The arrow marks the original items that will not be deleted.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<EditMode>EnterOnInput</EditMode>
+													<ValuesPicture>
+														<xr:Ref>StdPicture.MoveRight</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</ValuesPicture>
+													<FileDragMode>AsFile</FileDragMode>
+													<ContextMenu name="FoundDuplicatesMainContextMenu" id="115"/>
+													<ExtendedTooltip name="FoundDuplicatesMainExtendedTooltip" id="116"/>
+												</PictureField>
+												<InputField name="FoundDuplicatesDescription" id="100">
+													<DataPath>FoundDuplicates.Description</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Description</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>5</Width>
+													<ContextMenu name="FoundDuplicatesDescriptionContextMenu" id="101"/>
+													<ExtendedTooltip name="FoundDuplicatesDescriptionExtendedTooltip" id="102"/>
+												</InputField>
+											</ChildItems>
+										</ColumnGroup>
+										<InputField name="FoundDuplicatesCode" id="111">
+											<DataPath>FoundDuplicates.Code</DataPath>
+											<UserVisible>
+												<xr:Common>false</xr:Common>
+											</UserVisible>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Code</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>10</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ContextMenu name="FoundDuplicatesCodeContextMenu" id="112"/>
+											<ExtendedTooltip name="FoundDuplicatesCodeExtendedTooltip" id="113"/>
+										</InputField>
+										<InputField name="FoundDuplicatesCount" id="119">
+											<DataPath>FoundDuplicates.Count</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Occurrences</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Occurrences</v8:content>
+												</v8:item>
+											</ToolTip>
+											<HorizontalAlign>Left</HorizontalAlign>
+											<EditMode>EnterOnInput</EditMode>
+											<HeaderPicture>
+												<xr:Ref>StdPicture.Information</xr:Ref>
+												<xr:LoadTransparent>true</xr:LoadTransparent>
+											</HeaderPicture>
+											<Width>4</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ContextMenu name="FoundDuplicatesCountContextMenu" id="120"/>
+											<ExtendedTooltip name="FoundDuplicatesCountExtendedTooltip" id="121"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+								<UsualGroup name="DetailsGroup1" id="467">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Details:</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<CollapsedRepresentationTitle>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>...</v8:content>
+										</v8:item>
+									</CollapsedRepresentationTitle>
+									<Collapsed>true</Collapsed>
+									<ControlRepresentation>Picture</ControlRepresentation>
+									<Representation>None</Representation>
+									<ShowLeftMargin>false</ShowLeftMargin>
+									<ExtendedTooltip name="DetailsGroup1ExtendedTooltip" id="468"/>
+									<ChildItems>
+										<Pages name="UsageInstancesPages" id="147">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Occurrences pages</v8:content>
+												</v8:item>
+											</Title>
+											<PagesRepresentation>None</PagesRepresentation>
+											<ExtendedTooltip name="UsageInstancesPagesExtendedTooltip" id="148"/>
+											<ChildItems>
+												<Page name="UsageInstances" id="149">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Occurrences</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="UsageInstancesExtendedTooltip" id="150"/>
+													<ChildItems>
+														<Table name="ProbableDuplicateUsageInstances" id="137">
+															<Representation>List</Representation>
+															<CommandBarLocation>None</CommandBarLocation>
+															<ReadOnly>true</ReadOnly>
+															<ChangeRowSet>false</ChangeRowSet>
+															<ChangeRowOrder>false</ChangeRowOrder>
+															<HeightInTableRows>1</HeightInTableRows>
+															<Header>false</Header>
+															<HorizontalLines>false</HorizontalLines>
+															<VerticalLines>false</VerticalLines>
+															<AutoInsertNewRow>true</AutoInsertNewRow>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>ProbableDuplicateUsageInstances</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Candidate occurrences</v8:content>
+																</v8:item>
+															</Title>
+															<SearchStringLocation>Top</SearchStringLocation>
+															<RowFilter xsi:nil="true"/>
+															<ContextMenu name="ProbableDuplicateUsageInstancesContextMenu" id="138">
+																<ChildItems>
+																	<Button name="ProbableDuplicateUsageInstancesContextMenuOutputList" id="446">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.ProbableDuplicateUsageInstances.StandardCommand.OutputList</CommandName>
+																		<ExtendedTooltip name="ProbableDuplicateUsageInstancesContextMenuOutputListExtendedTooltip" id="447"/>
+																	</Button>
+																</ChildItems>
+															</ContextMenu>
+															<AutoCommandBar name="ProbableDuplicateUsageInstancesCommandBar" id="139"/>
+															<ExtendedTooltip name="ProbableDuplicateUsageInstancesExtendedTooltip" id="140"/>
+															<SearchStringAddition name="ProbableDuplicateUsageInstancesSearchString" id="373">
+																<AdditionSource>
+																	<Item>ProbableDuplicateUsageInstances</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ProbableDuplicateUsageInstancesSearchStringContextMenu" id="374"/>
+																<ExtendedTooltip name="ProbableDuplicateUsageInstancesSearchStringExtendedTooltip" id="375"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="ProbableDuplicateUsageInstancesViewStatus" id="376">
+																<AdditionSource>
+																	<Item>ProbableDuplicateUsageInstances</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="ProbableDuplicateUsageInstancesViewStatusContextMenu" id="377"/>
+																<ExtendedTooltip name="ProbableDuplicateUsageInstancesViewStatusExtendedTooltip" id="378"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="ProbableDuplicateUsageInstancesSearchControl" id="379">
+																<AdditionSource>
+																	<Item>ProbableDuplicateUsageInstances</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="ProbableDuplicateUsageInstancesSearchControlContextMenu" id="380"/>
+																<ExtendedTooltip name="ProbableDuplicateUsageInstancesSearchControlExtendedTooltip" id="381"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="Selection">ProbableDuplicateUsageInstancesSelection</Event>
+															</Events>
+															<ChildItems>
+																<InputField name="ProbableDuplicateUsageInstancesDataPresentation" id="144">
+																	<DataPath>ProbableDuplicateUsageInstances.DataPresentation</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Data presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<AutoCellHeight>true</AutoCellHeight>
+																	<MultiLine>true</MultiLine>
+																	<ContextMenu name="ProbableDuplicateUsageInstancesDataPresentationContextMenu" id="145"/>
+																	<ExtendedTooltip name="ProbableDuplicateUsageInstancesDataPresentationExtendedTooltip" id="146"/>
+																</InputField>
+															</ChildItems>
+														</Table>
+													</ChildItems>
+												</Page>
+												<Page name="GroupDetails" id="151">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Group details</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="GroupDetailsExtendedTooltip" id="152"/>
+													<ChildItems>
+														<LabelDecoration name="CurrentDuplicatesGroupDetails" id="134">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<HorizontalStretch>true</HorizontalStretch>
+															<VerticalStretch>true</VerticalStretch>
+															<VerticalAlign>Top</VerticalAlign>
+															<Border width="1">
+																<v8ui:style xsi:type="v8ui:ControlBorderType">Single</v8ui:style>
+															</Border>
+															<ContextMenu name="CurrentDuplicatesGroupDetailsContextMenu" id="135"/>
+															<ExtendedTooltip name="CurrentDuplicatesGroupDetailsExtendedTooltip" id="136"/>
+														</LabelDecoration>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="StateGroup" id="157">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>State</v8:content>
+								</v8:item>
+							</Title>
+							<Height>2</Height>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="StateGroupExtendedTooltip" id="158"/>
+							<ChildItems>
+								<LabelField name="FoundDuplicatesStateDetails" id="202">
+									<DataPath>FoundDuplicatesStateDetails</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>State of found duplicates</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Height>3</Height>
+									<AutoMaxHeight>false</AutoMaxHeight>
+									<MaxHeight>3</MaxHeight>
+									<VerticalStretch>false</VerticalStretch>
+									<TextColor>style:NoteText</TextColor>
+									<ContextMenu name="FoundDuplicatesStateDetailsContextMenu" id="203"/>
+									<ExtendedTooltip name="FoundDuplicatesStateDetailsExtendedTooltip" id="204"/>
+									<Events>
+										<Event name="URLProcessing">FoundDuplicatesStateDetailsURLProcessing</Event>
+									</Events>
+								</LabelField>
+								<LabelDecoration name="AllUsageInstances" id="328">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>All occurrences</v8:content>
+										</v8:item>
+									</Title>
+									<Hyperlink>true</Hyperlink>
+									<HorizontalAlign>Right</HorizontalAlign>
+									<ContextMenu name="AllUsageInstancesContextMenu" id="329"/>
+									<ExtendedTooltip name="AllUsageInstancesExtendedTooltip" id="330"/>
+									<Events>
+										<Event name="Click">AllUsageInstancesClick</Event>
+									</Events>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="DeletionStep" id="205">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Delete step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="DeletionStepExtendedTooltip" id="206"/>
+					<ChildItems>
+						<SpreadSheetDocumentField name="Deletion" id="207">
+							<DataPath>NoSearchPerformed</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Search was not performed</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<Width>1</Width>
+							<Height>1</Height>
+							<VerticalScrollBar>false</VerticalScrollBar>
+							<HorizontalScrollBar>false</HorizontalScrollBar>
+							<ContextMenu name="DeletionContextMenu" id="208"/>
+							<ExtendedTooltip name="DeletionExtendedTooltip" id="209"/>
+						</SpreadSheetDocumentField>
+					</ChildItems>
+				</Page>
+				<Page name="SuccessfulDeletionStep" id="212">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Delete succeeded step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SuccessfulDeletionStepExtendedTooltip" id="213"/>
+					<ChildItems>
+						<UsualGroup name="SuccessfulDeletionInformationGroup" id="471">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Successful deletion information</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="SuccessfulDeletionInformationGroupExtendedTooltip" id="472"/>
+							<ChildItems>
+								<PictureDecoration name="Decoration5" id="352">
+									<GroupVerticalAlign>Center</GroupVerticalAlign>
+									<Picture>
+										<xr:Ref>CommonPicture.Success32</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="Decoration5ContextMenu" id="353"/>
+									<ExtendedTooltip name="Decoration5ExtendedTooltip" id="354"/>
+								</PictureDecoration>
+								<LabelField name="FoundDuplicatesStateDetails1" id="344">
+									<DataPath>FoundDuplicatesStateDetails</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>State of found duplicates</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<HorizontalAlign>Left</HorizontalAlign>
+									<VerticalAlign>Center</VerticalAlign>
+									<GroupVerticalAlign>Center</GroupVerticalAlign>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Height>5</Height>
+									<VerticalStretch>false</VerticalStretch>
+									<ContextMenu name="FoundDuplicatesStateDetails1ContextMenu" id="345"/>
+									<ExtendedTooltip name="FoundDuplicatesStateDetails1ExtendedTooltip" id="346"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupPossibleDuplicates" id="495" DisplayImportance="Low">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The replacement of duplicates might have generated duplicates in other lists</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>For example, when replacing counterparty duplicates, duplicates of contracts or bank accounts can appear.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>Balloon</ToolTipRepresentation>
+							<Group>Vertical</Group>
+							<ChildrenAlign>ItemsLeftTitlesLeft</ChildrenAlign>
+							<Behavior>Collapsible</Behavior>
+							<Collapsed>true</Collapsed>
+							<ControlRepresentation>Picture</ControlRepresentation>
+							<Representation>None</Representation>
+							<ExtendedTooltip name="GroupPossibleDuplicatesExtendedTooltip" id="496"/>
+							<ChildItems>
+								<UsualGroup name="PossibleDuplicatesActionsGroup" id="502">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Possible duplicates actions</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="PossibleDuplicatesActionsGroupExtendedTooltip" id="503"/>
+									<ChildItems>
+										<LabelDecoration name="PossibleDuplicatesTooltipDecoration" id="504">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<HorizontalStretch>true</HorizontalStretch>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>To continue searching, select a list and click "New search."</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="PossibleDuplicatesTooltipDecorationContextMenu" id="505"/>
+											<ExtendedTooltip name="PossibleDuplicatesTooltipDecorationExtendedTooltip" id="506"/>
+										</LabelDecoration>
+										<RadioButtonField name="DisplayedRelationship" id="507">
+											<DataPath>DisplayedRelationship</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Show</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Important items are replaced items with a high chance for new duplicates.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+											<RadioButtonType>Tumbler</RadioButtonType>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Important items</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:decimal">2</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>All</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:decimal">1</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="DisplayedRelationshipContextMenu" id="508"/>
+											<ExtendedTooltip name="DisplayedRelationshipExtendedTooltip" id="509"/>
+											<Events>
+												<Event name="OnChange">DisplayedRelationshipOnChange</Event>
+											</Events>
+										</RadioButtonField>
+									</ChildItems>
+								</UsualGroup>
+								<Table name="PossibleDuplicates" id="473">
+									<Representation>List</Representation>
+									<ChangeRowSet>false</ChangeRowSet>
+									<ChangeRowOrder>false</ChangeRowOrder>
+									<SelectionMode>SingleRow</SelectionMode>
+									<HorizontalLines>false</HorizontalLines>
+									<VerticalLines>false</VerticalLines>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<DataPath>PossibleDuplicates</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Possible duplicates</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowTop</ToolTipRepresentation>
+									<SearchStringLocation>Top</SearchStringLocation>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="PossibleDuplicatesContextMenu" id="474"/>
+									<AutoCommandBar name="PossibleDuplicatesCommandBar" id="475">
+										<Autofill>false</Autofill>
+									</AutoCommandBar>
+									<ExtendedTooltip name="PossibleDuplicatesExtendedTooltip" id="476"/>
+									<SearchStringAddition name="PossibleDuplicatesSearchString" id="477">
+										<AdditionSource>
+											<Item>PossibleDuplicates</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="PossibleDuplicatesSearchStringContextMenu" id="478"/>
+										<ExtendedTooltip name="PossibleDuplicatesSearchStringExtendedTooltip" id="479"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="PossibleDuplicatesViewStatus" id="480">
+										<AdditionSource>
+											<Item>PossibleDuplicates</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="PossibleDuplicatesViewStatusContextMenu" id="481"/>
+										<ExtendedTooltip name="PossibleDuplicatesViewStatusExtendedTooltip" id="482"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="PossibleDuplicatesSearchControl" id="483">
+										<AdditionSource>
+											<Item>PossibleDuplicates</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="PossibleDuplicatesSearchControlContextMenu" id="484"/>
+										<ExtendedTooltip name="PossibleDuplicatesSearchControlExtendedTooltip" id="485"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<ColumnGroup name="PossibleDuplicatesGroup" id="510">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Possible duplicates group</v8:content>
+												</v8:item>
+											</Title>
+											<Group>InCell</Group>
+											<ExtendedTooltip name="PossibleDuplicatesGroupExtendedTooltip" id="511"/>
+											<ChildItems>
+												<CheckBoxField name="PossibleDuplicatesSelected" id="497">
+													<DataPath>PossibleDuplicates.Selected</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Selected</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="PossibleDuplicatesSelectedContextMenu" id="498"/>
+													<ExtendedTooltip name="PossibleDuplicatesSelectedExtendedTooltip" id="499"/>
+													<Events>
+														<Event name="OnChange">PossibleDuplicatesSelectedOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="PossibleDuplicatesMetadataObjectName" id="486">
+													<DataPath>PossibleDuplicates.MetadataObjectName</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Duplicates might have appeared in</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>Directly</EditMode>
+													<TextEdit>false</TextEdit>
+													<ContextMenu name="PossibleDuplicatesMetadataObjectNameContextMenu" id="487"/>
+													<ExtendedTooltip name="PossibleDuplicatesMetadataObjectNameExtendedTooltip" id="488"/>
+												</InputField>
+											</ChildItems>
+										</ColumnGroup>
+										<InputField name="PossibleDuplicatesSources" id="492">
+											<DataPath>PossibleDuplicates.SourcesPresentation</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>upon replacement in</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="PossibleDuplicatesSourcesContextMenu" id="493"/>
+											<ExtendedTooltip name="PossibleDuplicatesSourcesExtendedTooltip" id="494"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="UnsuccessfulReplacementsStep" id="210">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unsuccessful replacements step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="UnsuccessfulReplacementsStepExtendedTooltip" id="211"/>
+					<ChildItems>
+						<UsualGroup name="UnprocessedDuplicatesVerticalGroup" id="238">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Vertical pending duplicates</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Main item vertical group</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="UnprocessedDuplicatesVerticalGroupExtendedTooltip" id="239"/>
+							<ChildItems>
+								<LabelDecoration name="UnsuccessfulReplacementsPageHeader" id="331">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Cannot replace some duplicates:</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="UnsuccessfulReplacementsPageHeaderContextMenu" id="332"/>
+									<ExtendedTooltip name="UnsuccessfulReplacementsPageHeaderExtendedTooltip" id="333"/>
+								</LabelDecoration>
+								<UsualGroup name="UnprocessedDuplicatesHorizontalGroup" id="240">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Horizontal pending duplicates</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Duplicates found horizontal group</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="UnprocessedDuplicatesHorizontalGroupExtendedTooltip" id="241"/>
+									<ChildItems>
+										<Table name="UnprocessedDuplicates" id="242">
+											<Representation>Tree</Representation>
+											<ChangeRowSet>false</ChangeRowSet>
+											<ChangeRowOrder>false</ChangeRowOrder>
+											<Height>7</Height>
+											<SelectionMode>SingleRow</SelectionMode>
+											<RowSelectionMode>Row</RowSelectionMode>
+											<UseAlternationRowColor>true</UseAlternationRowColor>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<InitialTreeView>ExpandAllLevels</InitialTreeView>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<DataPath>UnprocessedDuplicates</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Pending duplicates</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSet>
+												<ExcludedCommand>Change</ExcludedCommand>
+											</CommandSet>
+											<SearchStringLocation>Top</SearchStringLocation>
+											<ContextMenu name="UnprocessedDuplicatesContextMenu" id="243">
+												<ChildItems>
+													<ButtonGroup name="UnprocessedDuplicatesContextMenuOpenGroup" id="442">
+														<Title>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Pending duplicates context menu group open</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="UnprocessedDuplicatesContextMenuOpenGroupExtendedTooltip" id="443"/>
+														<ChildItems>
+															<Button name="UnprocessedDuplicatesContextMenuOpenUnprocessedDuplicate" id="432">
+																<Type>CommandBarButton</Type>
+																<CommandName>Form.Command.OpenUnprocessedDuplicate</CommandName>
+																<Title>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Open</v8:content>
+																	</v8:item>
+																</Title>
+																<ExtendedTooltip name="UnprocessedDuplicatesContextMenuOpenUnprocessedDuplicateExtendedTooltip" id="433"/>
+															</Button>
+														</ChildItems>
+													</ButtonGroup>
+													<Button name="UnprocessedDuplicatesContextMenuCopyToClipboard" id="434">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.UnprocessedDuplicates.StandardCommand.CopyToClipboard</CommandName>
+														<ExtendedTooltip name="UnprocessedDuplicatesContextMenuCopyToClipboardExtendedTooltip" id="435"/>
+													</Button>
+													<Button name="UnprocessedDuplicatesContextMenuOutputList" id="436">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.UnprocessedDuplicates.StandardCommand.OutputList</CommandName>
+														<ExtendedTooltip name="UnprocessedDuplicatesContextMenuOutputListExtendedTooltip" id="437"/>
+													</Button>
+													<Button name="UnprocessedDuplicatesContextMenuCustomizeForm" id="521">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+														<ExtendedTooltip name="UnprocessedDuplicatesContextMenuCustomizeFormExtendedTooltip" id="522"/>
+													</Button>
+												</ChildItems>
+											</ContextMenu>
+											<AutoCommandBar name="UnprocessedDuplicatesCommandBar" id="244">
+												<Autofill>false</Autofill>
+											</AutoCommandBar>
+											<ExtendedTooltip name="UnprocessedDuplicatesExtendedTooltip" id="245"/>
+											<SearchStringAddition name="UnprocessedDuplicatesSearchString" id="382">
+												<AdditionSource>
+													<Item>UnprocessedDuplicates</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="UnprocessedDuplicatesSearchStringContextMenu" id="383"/>
+												<ExtendedTooltip name="UnprocessedDuplicatesSearchStringExtendedTooltip" id="384"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="UnprocessedDuplicatesViewStatus" id="385">
+												<AdditionSource>
+													<Item>UnprocessedDuplicates</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="UnprocessedDuplicatesViewStatusContextMenu" id="386"/>
+												<ExtendedTooltip name="UnprocessedDuplicatesViewStatusExtendedTooltip" id="387"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="UnprocessedDuplicatesSearchControl" id="388">
+												<AdditionSource>
+													<Item>UnprocessedDuplicates</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="UnprocessedDuplicatesSearchControlContextMenu" id="389"/>
+												<ExtendedTooltip name="UnprocessedDuplicatesSearchControlExtendedTooltip" id="390"/>
+											</SearchControlAddition>
+											<Events>
+												<Event name="Selection">UnprocessedDuplicatesSelection</Event>
+												<Event name="OnActivateRow">UnprocessedDuplicatesOnActivateRow</Event>
+											</Events>
+											<ChildItems>
+												<ColumnGroup name="MainDescription" id="246">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Main description</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Use item description</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Group>InCell</Group>
+													<ExtendedTooltip name="MainDescriptionExtendedTooltip" id="247"/>
+													<ChildItems>
+														<PictureField name="UnprocessedDuplicatesMain" id="305">
+															<DataPath>UnprocessedDuplicates.Main</DataPath>
+															<ReadOnly>true</ReadOnly>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Main</v8:content>
+																</v8:item>
+															</Title>
+															<TitleLocation>None</TitleLocation>
+															<EditMode>EnterOnInput</EditMode>
+															<ValuesPicture>
+																<xr:Ref>StdPicture.MoveRight</xr:Ref>
+																<xr:LoadTransparent>true</xr:LoadTransparent>
+															</ValuesPicture>
+															<FileDragMode>AsFile</FileDragMode>
+															<ContextMenu name="UnprocessedDuplicatesMainContextMenu" id="306"/>
+															<ExtendedTooltip name="UnprocessedDuplicatesMainExtendedTooltip" id="307"/>
+														</PictureField>
+														<InputField name="UnprocessedDuplicatesDescription" id="296">
+															<DataPath>UnprocessedDuplicates.Description</DataPath>
+															<ReadOnly>true</ReadOnly>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Description</v8:content>
+																</v8:item>
+															</Title>
+															<EditMode>EnterOnInput</EditMode>
+															<Width>17</Width>
+															<ContextMenu name="UnprocessedDuplicatesDescriptionContextMenu" id="297"/>
+															<ExtendedTooltip name="UnprocessedDuplicatesDescriptionExtendedTooltip" id="298"/>
+														</InputField>
+													</ChildItems>
+												</ColumnGroup>
+												<InputField name="UnprocessedDuplicatesCode" id="293">
+													<DataPath>UnprocessedDuplicates.Code</DataPath>
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Code</v8:content>
+														</v8:item>
+													</Title>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>10</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ContextMenu name="UnprocessedDuplicatesCodeContextMenu" id="294"/>
+													<ExtendedTooltip name="UnprocessedDuplicatesCodeExtendedTooltip" id="295"/>
+												</InputField>
+												<InputField name="UnprocessedDuplicatesCount" id="299">
+													<DataPath>UnprocessedDuplicates.Count</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Occurrences</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Unsuccessful replacement count</v8:content>
+														</v8:item>
+													</ToolTip>
+													<EditMode>EnterOnInput</EditMode>
+													<HeaderPicture>
+														<xr:Ref>CommonPicture.Warning</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</HeaderPicture>
+													<Width>4</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ContextMenu name="UnprocessedDuplicatesCountContextMenu" id="300"/>
+													<ExtendedTooltip name="UnprocessedDuplicatesCountExtendedTooltip" id="301"/>
+												</InputField>
+											</ChildItems>
+										</Table>
+										<Pages name="UnprocessedItemsUsageInstancesPages" id="265">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Pending duplicate occurrences pages</v8:content>
+												</v8:item>
+											</Title>
+											<Width>24</Width>
+											<PagesRepresentation>None</PagesRepresentation>
+											<ExtendedTooltip name="UnprocessedItemsUsageInstancesPagesExtendedTooltip" id="266"/>
+											<ChildItems>
+												<Page name="UnprocessedItemsUsageInstanceDetails" id="267">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Pending item occurrence details</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="UnprocessedItemsUsageInstanceDetailsExtendedTooltip" id="268"/>
+													<ChildItems>
+														<Table name="UnprocessedItemsUsageInstances" id="269">
+															<Representation>List</Representation>
+															<TitleLocation>Top</TitleLocation>
+															<CommandBarLocation>None</CommandBarLocation>
+															<ReadOnly>true</ReadOnly>
+															<ChangeRowSet>false</ChangeRowSet>
+															<ChangeRowOrder>false</ChangeRowOrder>
+															<Height>2</Height>
+															<RowSelectionMode>Row</RowSelectionMode>
+															<Header>false</Header>
+															<HorizontalLines>false</HorizontalLines>
+															<VerticalLines>false</VerticalLines>
+															<AutoInsertNewRow>true</AutoInsertNewRow>
+															<EnableStartDrag>true</EnableStartDrag>
+															<EnableDrag>true</EnableDrag>
+															<FileDragMode>AsFile</FileDragMode>
+															<DataPath>UnprocessedItemsUsageInstances</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Item occurrences</v8:content>
+																</v8:item>
+															</Title>
+															<SearchStringLocation>Top</SearchStringLocation>
+															<RowFilter xsi:nil="true"/>
+															<ContextMenu name="UnprocessedItemsUsageInstancesContextMenu" id="270">
+																<ChildItems>
+																	<Button name="UnprocessedItemsUsageInstancesContextMenuOutputList" id="444">
+																		<Type>CommandBarButton</Type>
+																		<CommandName>Form.Item.UnprocessedItemsUsageInstances.StandardCommand.OutputList</CommandName>
+																		<ExtendedTooltip name="UnprocessedItemsUsageInstancesContextMenuOutputListExtendedTooltip" id="445"/>
+																	</Button>
+																</ChildItems>
+															</ContextMenu>
+															<AutoCommandBar name="UnprocessedItemsUsageInstancesCommandBar" id="271"/>
+															<ExtendedTooltip name="UnprocessedItemsUsageInstancesExtendedTooltip" id="272"/>
+															<SearchStringAddition name="UnprocessedItemsUsageInstancesSearchString" id="391">
+																<AdditionSource>
+																	<Item>UnprocessedItemsUsageInstances</Item>
+																	<Type>SearchStringRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="UnprocessedItemsUsageInstancesSearchStringContextMenu" id="392"/>
+																<ExtendedTooltip name="UnprocessedItemsUsageInstancesSearchStringExtendedTooltip" id="393"/>
+															</SearchStringAddition>
+															<ViewStatusAddition name="UnprocessedItemsUsageInstancesViewStatus" id="394">
+																<AdditionSource>
+																	<Item>UnprocessedItemsUsageInstances</Item>
+																	<Type>ViewStatusRepresentation</Type>
+																</AdditionSource>
+																<ContextMenu name="UnprocessedItemsUsageInstancesViewStatusContextMenu" id="395"/>
+																<ExtendedTooltip name="UnprocessedItemsUsageInstancesViewStatusExtendedTooltip" id="396"/>
+															</ViewStatusAddition>
+															<SearchControlAddition name="UnprocessedItemsUsageInstancesSearchControl" id="397">
+																<AdditionSource>
+																	<Item>UnprocessedItemsUsageInstances</Item>
+																	<Type>SearchControl</Type>
+																</AdditionSource>
+																<ContextMenu name="UnprocessedItemsUsageInstancesSearchControlContextMenu" id="398"/>
+																<ExtendedTooltip name="UnprocessedItemsUsageInstancesSearchControlExtendedTooltip" id="399"/>
+															</SearchControlAddition>
+															<Events>
+																<Event name="Selection">UnprocessedItemsUsageInstancesSelection</Event>
+																<Event name="OnActivateRow">UnprocessedItemsUsageInstancesOnActivateRow</Event>
+															</Events>
+															<ChildItems>
+																<PictureField name="UnprocessedItemsUsageInstancesPictogram" id="320">
+																	<DataPath>UnprocessedItemsUsageInstances.Pictogram</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Icon</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<Width>1</Width>
+																	<HorizontalStretch>false</HorizontalStretch>
+																	<ValuesPicture>
+																		<xr:Abs>ValuesPicture.png</xr:Abs>
+																		<xr:LoadTransparent>false</xr:LoadTransparent>
+																	</ValuesPicture>
+																	<FileDragMode>AsFile</FileDragMode>
+																	<ContextMenu name="UnprocessedItemsUsageInstancesPictogramContextMenu" id="321"/>
+																	<ExtendedTooltip name="UnprocessedItemsUsageInstancesPictogramExtendedTooltip" id="322"/>
+																</PictureField>
+																<InputField name="UnprocessedItemsUsageInstancesDataPresentation" id="311">
+																	<DataPath>UnprocessedItemsUsageInstances.ErrorObjectPresentation</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Error object presentation</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="UnprocessedItemsUsageInstancesDataPresentationContextMenu" id="312"/>
+																	<ExtendedTooltip name="UnprocessedItemsUsageInstancesDataPresentationExtendedTooltip" id="313"/>
+																</InputField>
+															</ChildItems>
+														</Table>
+														<InputField name="ErrorDetailedInfo" id="285">
+															<DataPath>UnprocessedItemsErrorDescription</DataPath>
+															<ReadOnly>true</ReadOnly>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Error details</v8:content>
+																</v8:item>
+															</Title>
+															<TitleLocation>None</TitleLocation>
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<Height>2</Height>
+															<AutoMaxHeight>false</AutoMaxHeight>
+															<MaxHeight>5</MaxHeight>
+															<HorizontalStretch>true</HorizontalStretch>
+															<VerticalStretch>true</VerticalStretch>
+															<MultiLine>true</MultiLine>
+															<ContextMenu name="ErrorDetailedInfoContextMenu" id="286"/>
+															<ExtendedTooltip name="ErrorDetailedInfoExtendedTooltip" id="287"/>
+														</InputField>
+														<LabelDecoration name="DecorationSendErrorReport" id="523">
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Send error report</v8:content>
+																</v8:item>
+															</Title>
+															<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+															<Hyperlink>true</Hyperlink>
+															<ContextMenu name="DecorationSendErrorReportContextMenu" id="524"/>
+															<ExtendedTooltip name="DecorationSendErrorReportExtendedTooltip" id="525"/>
+															<Events>
+																<Event name="Click">DecorationSendErrorReportClick</Event>
+															</Events>
+														</LabelDecoration>
+													</ChildItems>
+												</Page>
+												<Page name="UnprocessedItemsGroupDetails" id="276">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Pending items group details</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Group details</v8:content>
+														</v8:item>
+													</ToolTip>
+													<ExtendedTooltip name="UnprocessedItemsGroupDetailsExtendedTooltip" id="277"/>
+													<ChildItems>
+														<LabelDecoration name="CurrentDuplicatesGroupDetails1" id="280">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<HorizontalStretch>true</HorizontalStretch>
+															<VerticalStretch>true</VerticalStretch>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Current duplicates group details</v8:content>
+																</v8:item>
+															</Title>
+															<HorizontalAlign>Center</HorizontalAlign>
+															<VerticalAlign>Center</VerticalAlign>
+															<Border width="1">
+																<v8ui:style xsi:type="v8ui:ControlBorderType">Single</v8ui:style>
+															</Border>
+															<ContextMenu name="CurrentDuplicatesGroupDetails1ContextMenu" id="281"/>
+															<ExtendedTooltip name="CurrentDuplicatesGroupDetails1ExtendedTooltip" id="282"/>
+														</LabelDecoration>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="NoteForUnprocessedGroup" id="283">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Note to pending duplicates</v8:content>
+										</v8:item>
+									</Title>
+									<Shortcut>Ctrl+S</Shortcut>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="NoteForUnprocessedGroupExtendedTooltip" id="284"/>
+									<ChildItems>
+										<LabelDecoration name="Decoration3" id="334">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<HorizontalStretch>true</HorizontalStretch>
+											<VerticalStretch>false</VerticalStretch>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Select an item to view all of its unsuccessful replacements.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="Decoration3ContextMenu" id="335"/>
+											<ExtendedTooltip name="Decoration3ExtendedTooltip" id="336"/>
+										</LabelDecoration>
+										<LabelDecoration name="AllUnprocessedItemsUsageInstances" id="323">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>All occurrences</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Open the report to view all the duplicates.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<Hyperlink>true</Hyperlink>
+											<HorizontalAlign>Right</HorizontalAlign>
+											<ContextMenu name="AllUnprocessedItemsUsageInstancesContextMenu" id="324"/>
+											<ExtendedTooltip name="AllUnprocessedItemsUsageInstancesExtendedTooltip" id="325"/>
+											<Events>
+												<Event name="Click">AllUnprocessedItemsUsageInstancesClick</Event>
+											</Events>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="DuplicatesNotFoundStep" id="227">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Duplicates not found step</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="DuplicatesNotFoundStepExtendedTooltip" id="228"/>
+					<ChildItems>
+						<SpreadSheetDocumentField name="DuplicatesNotFound" id="229">
+							<DataPath>NoSearchPerformed</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Search was not performed</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<Width>1</Width>
+							<Height>1</Height>
+							<VerticalScrollBar>false</VerticalScrollBar>
+							<HorizontalScrollBar>false</HorizontalScrollBar>
+							<ContextMenu name="DuplicatesNotFoundContextMenu" id="230"/>
+							<ExtendedTooltip name="DuplicatesNotFoundExtendedTooltip" id="231"/>
+						</SpreadSheetDocumentField>
+					</ChildItems>
+				</Page>
+				<Page name="ErrorOccurredStep" id="448">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Error occurred</v8:content>
+						</v8:item>
+					</Title>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="ErrorOccurredStepExtendedTooltip" id="449"/>
+					<ChildItems>
+						<PictureDecoration name="WarningPicture32" id="450">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Picture warning32</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Picture>
+								<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="WarningPicture32ContextMenu" id="451"/>
+							<ExtendedTooltip name="WarningPicture32ExtendedTooltip" id="452"/>
+						</PictureDecoration>
+						<LabelDecoration name="ErrorTextLabel" id="453">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>5</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Error text label</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="ErrorTextLabelContextMenu" id="454"/>
+							<ExtendedTooltip name="ErrorTextLabelExtendedTooltip" id="455"/>
+						</LabelDecoration>
+						<LabelDecoration name="DetailsRef" id="456">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Details</v8:content>
+								</v8:item>
+							</Title>
+							<GroupVerticalAlign>Center</GroupVerticalAlign>
+							<Hyperlink>true</Hyperlink>
+							<VerticalAlign>Center</VerticalAlign>
+							<ContextMenu name="DetailsRefContextMenu" id="457"/>
+							<ExtendedTooltip name="DetailsRefExtendedTooltip" id="458"/>
+							<Events>
+								<Event name="Click">DetailsRefClick</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="WizardActionsPanel" id="167">
+			<EnableContentChange>true</EnableContentChange>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Wizard actions panel</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="WizardActionsPanelExtendedTooltip" id="168"/>
+			<ChildItems>
+				<CommandBar name="WizardActionPanelLeft" id="512">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Wizard actions panel left</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="WizardActionPanelLeftExtendedTooltip" id="513"/>
+					<ChildItems>
+						<Button name="WizardStepBack" id="171">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.WizardStepBack</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>&lt; Back</v8:content>
+								</v8:item>
+							</Title>
+							<RepresentationInContextMenu>AdditionalInContextMenu</RepresentationInContextMenu>
+							<ExtendedTooltip name="WizardStepBackExtendedTooltip" id="172"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<CommandBar name="WizardActionPanelRight" id="514">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Wizard actions panel right</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="WizardActionPanelRightExtendedTooltip" id="515"/>
+					<ChildItems>
+						<Button name="WizardStepNext" id="175">
+							<Type>CommandBarButton</Type>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.WizardStepNext</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Delete duplicates</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="WizardStepNextExtendedTooltip" id="176"/>
+						</Button>
+						<Button name="WizardStepCancel" id="177">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.WizardStepCancel</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cancel</v8:content>
+								</v8:item>
+							</Title>
+							<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="WizardStepCancelExtendedTooltip" id="178"/>
+						</Button>
+						<Button name="Help" id="179">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="180"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupPictures" id="75">
+			<Visible>false</Visible>
+			<Enabled>false</Enabled>
+			<EnableContentChange>true</EnableContentChange>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pictures</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupPicturesExtendedTooltip" id="76"/>
+			<ChildItems>
+				<PictureDecoration name="Warning32" id="83">
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="Warning32ContextMenu" id="84"/>
+					<ExtendedTooltip name="Warning32ExtendedTooltip" id="85"/>
+				</PictureDecoration>
+				<PictureDecoration name="TimeConsumingOperation48" id="77">
+					<Picture>
+						<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="TimeConsumingOperation48ContextMenu" id="78"/>
+					<ExtendedTooltip name="TimeConsumingOperation48ExtendedTooltip" id="79"/>
+				</PictureDecoration>
+				<PictureDecoration name="Information32" id="181">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Information32</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="Information32ContextMenu" id="182"/>
+					<ExtendedTooltip name="Information32ExtendedTooltip" id="183"/>
+				</PictureDecoration>
+				<PictureDecoration name="Attention16" id="196">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attention16</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>CommonPicture.Warning</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="Attention16ContextMenu" id="197"/>
+					<ExtendedTooltip name="Attention16ExtendedTooltip" id="198"/>
+				</PictureDecoration>
+				<PictureDecoration name="Information16" id="214">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Information16</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Information</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="Information16ContextMenu" id="215"/>
+					<ExtendedTooltip name="Information16ExtendedTooltip" id="216"/>
+				</PictureDecoration>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.DuplicateObjectsDetection</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="CompositionSchemaAddress" id="2">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DuplicatesSearchArea" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search in</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PrefilterComposer" id="6">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AppliedRuleDetails" id="7">
+			<Type/>
+		</Attribute>
+		<Attribute name="SearchRules" id="8">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Attribute" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Rule" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ComparisonOptions" id="3">
+					<Type>
+						<v8:Type>v8:ValueListType</v8:Type>
+					</Type>
+				</Column>
+				<Column name="AttributeRepresentation" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="TakeAppliedRulesIntoAccount" id="9">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AllComparisonOptions" id="10">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="NoSearchPerformed" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search not performed</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FoundDuplicates" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Duplicates found</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type/>
+				</Column>
+				<Column name="Code" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code</v8:content>
+						</v8:item>
+					</Title>
+					<Type/>
+				</Column>
+				<Column name="Description" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Count" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Occurrences</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>12</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Check" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check mark</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Main" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="5">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="UsageInstancesAddress" id="13">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ProbableDuplicateUsageInstances" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Candidate occurrences</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Data" id="1">
+					<Type/>
+				</Column>
+				<Column name="DataPresentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="FoundDuplicatesStateDetails" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>State of found duplicates</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8ui:FormattedString</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsExternalDataProcessor" id="16">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DataProcessorName" id="17">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ReplacementResultAddress" id="20">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="InformationTextColor" id="19">
+			<Type>
+				<v8:Type>v8ui:Color</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ErrorInformationTextColor" id="21">
+			<Type>
+				<v8:Type>v8ui:Color</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UnavailableDataColor" id="22">
+			<Type>
+				<v8:Type>v8ui:Color</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UnprocessedDuplicates" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pending duplicates</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type/>
+				</Column>
+				<Column name="Code" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Code</v8:content>
+						</v8:item>
+					</Title>
+					<Type/>
+				</Column>
+				<Column name="Description" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Count" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Occurrences</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>12</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Check" id="6">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Main" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="UnprocessedItemsUsageInstances" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Occurrences</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ErrorObject" id="1">
+					<Type/>
+				</Column>
+				<Column name="ErrorObjectPresentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Error object presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Pictogram" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Icon</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ErrorText" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ErrorInfo" id="5">
+					<Type/>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="UnprocessedItemsErrorDescription" id="25">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pending items error description</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="WizardSettings" id="27">
+			<Type/>
+		</Attribute>
+		<Attribute name="SearchRulesPresentation" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Compare</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FilterRulesPresentation" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FuzzySearch1" id="29">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TotalFoundDuplicates" id="30">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SettingsAddress" id="32">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentRowID" id="33">
+			<Type/>
+		</Attribute>
+		<Attribute name="DuplicatesSearchErrorDescription" id="34">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TotalItems" id="35">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeletionMethod" id="3">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+			<Save>
+				<Field>DeletionMethod</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="PossibleDuplicates" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Possible duplicates</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="MetadataObjectName" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Duplicates might have appeared in</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="MetadataObjectType" id="2">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="SourcesPresentation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>upon replacement in</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Order" id="4">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Processed" id="5">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Sources" id="6">
+					<Type/>
+				</Column>
+				<Column name="Selected" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Selected</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="RelationDegree" id="8">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="FilterAddress" id="9">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="PossibleDuplicateSelected" id="26">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PossibleDuplicateSelectedType" id="31">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="HideInsignificantDuplicates" id="36">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DisplayedRelationship" id="37">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Displayed relationship</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedUsageInstancesAddress" id="38">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FoundDuplicatesAddress" id="39">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ProcessedObjectsTypes" id="40">
+			<Type>
+				<v8:Type>v8:TypeDescription</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DuplicatesSearchAreaID" id="41">
+			<Type>
+				<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ReturnedLessThanFound" id="42">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="BatchesCount" id="43">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedCountTotal" id="44">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ProcessedTotalCount" id="45">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeletionProgress" id="46">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="SessionNumber" id="1">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ProcessedItemsCount" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="DeletedItemsCount" id="3">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="DeletedTotalCount" id="47">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="MarkAsOriginal" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mark as original item</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>The original item will replace duplicates.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.MoveRight</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>MarkAsOriginal</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenProbableDuplicate" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open the selected item.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>OpenProbableDuplicate</Action>
+			<Representation>Text</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ExpandDuplicatesGroups" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Expand</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Expand duplicate groups.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ExpandAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ExpandDuplicatesGroups</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CollapseDuplicatesGroups" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Collapse duplicate groups.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CollapseAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>CollapseDuplicatesGroups</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="WizardStepNext" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Next &gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Proceed to the next step.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WizardButtonHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="WizardStepBack" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>&lt; Back</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Return to the previous step.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WizardButtonHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="WizardStepCancel" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</Title>
+			<Action>WizardButtonHandler</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RetrySearch" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search again</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search again</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Reread</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>RetrySearch</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenUnprocessedDuplicate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open the item.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>OpenUnprocessedDuplicate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SelectAllCheckBoxes" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SelectAllCheckBoxes</Action>
+		</Command>
+		<Command name="ClearAllCheckBoxes" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.UncheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ClearAllCheckBoxes</Action>
+		</Command>
+		<Command name="MoreDetails" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Details &gt;&gt;</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show or hide details.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>More</Action>
+		</Command>
+	</Commands>
+</Form>

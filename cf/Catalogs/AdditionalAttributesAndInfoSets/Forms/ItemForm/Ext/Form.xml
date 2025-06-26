@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+		<ExcludedCommand>Delete</ExcludedCommand>
+	</CommandSet>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Description" id="1">
+			<DataPath>Object.Description</DataPath>
+			<Wrap>false</Wrap>
+			<ContextMenu name="DescriptionContextMenu" id="2"/>
+			<ExtendedTooltip name="DescriptionExtendedTooltip" id="96"/>
+		</InputField>
+		<InputField name="Parent" id="94">
+			<DataPath>Object.Parent</DataPath>
+			<ContextMenu name="ParentContextMenu" id="95"/>
+			<ExtendedTooltip name="ParentExtendedTooltip" id="97"/>
+		</InputField>
+		<Table name="AdditionalAttributes" id="72">
+			<CommandBarLocation>None</CommandBarLocation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Object.AdditionalAttributes</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional attributes</v8:content>
+				</v8:item>
+			</Title>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="AdditionalAttributesContextMenu" id="73"/>
+			<AutoCommandBar name="AdditionalAttributesCommandBar" id="74"/>
+			<ExtendedTooltip name="AdditionalAttributesExtendedTooltip" id="98"/>
+			<SearchStringAddition name="AdditionalAttributesSearchString" id="104">
+				<AdditionSource>
+					<Item>AdditionalAttributes</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="AdditionalAttributesSearchStringContextMenu" id="105"/>
+				<ExtendedTooltip name="AdditionalAttributesSearchStringExtendedTooltip" id="106"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="AdditionalAttributesViewStatus" id="107">
+				<AdditionSource>
+					<Item>AdditionalAttributes</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="AdditionalAttributesViewStatusContextMenu" id="108"/>
+				<ExtendedTooltip name="AdditionalAttributesViewStatusExtendedTooltip" id="109"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="AdditionalAttributesSearchControl" id="110">
+				<AdditionSource>
+					<Item>AdditionalAttributes</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="AdditionalAttributesSearchControlContextMenu" id="111"/>
+				<ExtendedTooltip name="AdditionalAttributesSearchControlExtendedTooltip" id="112"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="AdditionalAttributesProperty" id="77">
+					<DataPath>Object.AdditionalAttributes.Property</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="AdditionalAttributesPropertyContextMenu" id="78"/>
+					<ExtendedTooltip name="AdditionalAttributesPropertyExtendedTooltip" id="99"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<Table name="AdditionalInfo" id="85">
+			<CommandBarLocation>None</CommandBarLocation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Object.AdditionalInfo</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional information records</v8:content>
+				</v8:item>
+			</Title>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="AdditionalInfoContextMenu" id="86"/>
+			<AutoCommandBar name="AdditionalInfoCommandBar" id="87"/>
+			<ExtendedTooltip name="AdditionalInfoExtendedTooltip" id="101"/>
+			<SearchStringAddition name="AdditionalInfoSearchString" id="113">
+				<AdditionSource>
+					<Item>AdditionalInfo</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="AdditionalInfoSearchStringContextMenu" id="114"/>
+				<ExtendedTooltip name="AdditionalInfoSearchStringExtendedTooltip" id="115"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="AdditionalInfoViewStatus" id="116">
+				<AdditionSource>
+					<Item>AdditionalInfo</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="AdditionalInfoViewStatusContextMenu" id="117"/>
+				<ExtendedTooltip name="AdditionalInfoViewStatusExtendedTooltip" id="118"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="AdditionalInfoSearchControl" id="119">
+				<AdditionSource>
+					<Item>AdditionalInfo</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="AdditionalInfoSearchControlContextMenu" id="120"/>
+				<ExtendedTooltip name="AdditionalInfoSearchControlExtendedTooltip" id="121"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="AdditionalInfoProperty" id="90">
+					<DataPath>Object.AdditionalInfo.Property</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="AdditionalInfoPropertyContextMenu" id="91"/>
+					<ExtendedTooltip name="AdditionalInfoPropertyExtendedTooltip" id="102"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Parameters>
+		<Parameter name="HideAdditionalAttributes">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="HideAdditionalInfo">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

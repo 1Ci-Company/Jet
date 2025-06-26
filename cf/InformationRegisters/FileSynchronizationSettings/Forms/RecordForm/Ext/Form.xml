@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<Customizable>false</Customizable>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<ButtonGroup name="GroupCommandBar" id="34">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Command bar</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="GroupCommandBarExtendedTooltip" id="35"/>
+				<ChildItems>
+					<Button name="WriteAndClose" id="36">
+						<Type>CommandBarButton</Type>
+						<DefaultButton>true</DefaultButton>
+						<CommandName>Form.StandardCommand.WriteAndClose</CommandName>
+						<ExtendedTooltip name="WriteAndCloseExtendedTooltip" id="37"/>
+					</Button>
+					<Button name="Write" id="38">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.StandardCommand.Write</CommandName>
+						<ExtendedTooltip name="WriteExtendedTooltip" id="39"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<Button name="FormHelp" id="48">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="49"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWrite">BeforeWrite</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="MainParameters" id="161">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Main parameters</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="MainParametersExtendedTooltip" id="162"/>
+			<ChildItems>
+				<CheckBoxField name="Synchronize" id="138">
+					<DataPath>Record.Synchronize</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Synchronize files with cloud service:</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>CheckBox</CheckBoxType>
+					<ContextMenu name="SynchronizeContextMenu" id="139"/>
+					<ExtendedTooltip name="SynchronizeExtendedTooltip" id="140"/>
+				</CheckBoxField>
+				<InputField name="Account" id="118">
+					<DataPath>Record.Account</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<Width>40</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select from the list</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="AccountContextMenu" id="119"/>
+					<ExtendedTooltip name="AccountExtendedTooltip" id="120">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Specify the cloud service account.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="SynchObjectGroup" id="67" DisplayImportance="VeryHigh">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Synchronize:</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTipRepresentation>None</ToolTipRepresentation>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ExtendedTooltip name="SynchObjectGroupExtendedTooltip" id="68"/>
+			<ChildItems>
+				<UsualGroup name="ObjectFileSyncGroup" id="72">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Synchronize object files</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ObjectFileSyncGroupExtendedTooltip" id="73"/>
+					<ChildItems>
+						<RadioButtonField name="SyncObjectItemFiles" id="74">
+							<DataPath>SynchronizationObject</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Files attached to</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>Auto</RadioButtonType>
+							<ColumnsCount>1</ColumnsCount>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>All files attached to:</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:string">OnlyItemFiles</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="SyncObjectItemFilesContextMenu" id="75"/>
+							<ExtendedTooltip name="SyncObjectItemFilesExtendedTooltip" id="76"/>
+							<Events>
+								<Event name="OnChange">SyncObjectItemFilesOnChange</Event>
+							</Events>
+						</RadioButtonField>
+						<InputField name="CatalogItem" id="115">
+							<DataPath>CatalogItem</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Catalog item</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<Width>35</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<DropListButton>false</DropListButton>
+							<ContextMenu name="CatalogItemContextMenu" id="116"/>
+							<ExtendedTooltip name="CatalogItemExtendedTooltip" id="117"/>
+							<Events>
+								<Event name="StartChoice">CatalogItemStartChoice</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<RadioButtonField name="SyncObjectAllFiles" id="69">
+					<DataPath>SynchronizationObject</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Synchronization object</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<RadioButtonType>Auto</RadioButtonType>
+					<ColumnsCount>1</ColumnsCount>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Files attached to "%1" by the following synchronization rules:</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">AllFiles</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="SyncObjectAllFilesContextMenu" id="70"/>
+					<ExtendedTooltip name="SyncObjectAllFilesExtendedTooltip" id="71"/>
+					<Events>
+						<Event name="OnChange">SynchronizationObjectOnChange</Event>
+					</Events>
+				</RadioButtonField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="SyncRuleGroup" id="86">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Synchronization rule group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="SyncRuleGroupExtendedTooltip" id="87"/>
+			<ChildItems>
+				<Table name="SetupRuleFilter" id="10" DisplayImportance="VeryLow">
+					<Representation>Tree</Representation>
+					<Autofill>true</Autofill>
+					<InitialTreeView>ExpandAllLevels</InitialTreeView>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>Rule.Settings.Filter</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filter rules</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>AddFilterItemGroup</ExcludedCommand>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Detailed</ExcludedCommand>
+						<ExcludedCommand>EndEdit</ExcludedCommand>
+						<ExcludedCommand>HierarchicalList</ExcludedCommand>
+						<ExcludedCommand>List</ExcludedCommand>
+						<ExcludedCommand>MoveDown</ExcludedCommand>
+						<ExcludedCommand>MoveUp</ExcludedCommand>
+						<ExcludedCommand>SetPresentation</ExcludedCommand>
+						<ExcludedCommand>Tree</ExcludedCommand>
+						<ExcludedCommand>UseFieldAsValue</ExcludedCommand>
+						<ExcludedCommand>UserSettingItemProperties</ExcludedCommand>
+					</CommandSet>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<CurrentRowUse>SelectionPresentationAndChoice</CurrentRowUse>
+					<ViewMode>All</ViewMode>
+					<SettingsNamedItemDetailedRepresentation>false</SettingsNamedItemDetailedRepresentation>
+					<ContextMenu name="SetupRuleFilterContextMenu" id="11">
+						<ChildItems>
+							<ButtonGroup name="ContextMenuAdd" id="151">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Context menu "Add"</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ContextMenuAddExtendedTooltip" id="152"/>
+								<ChildItems>
+									<Button name="SetupRuleFilterContextMenuAddFilterItem" id="149">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.SetupRuleFilter.StandardCommand.AddFilterItem</CommandName>
+										<ExtendedTooltip name="SetupRuleFilterContextMenuAddFilterItemExtendedTooltip" id="150"/>
+									</Button>
+									<Button name="SetupRuleFilterContextMenuAddConditionByDate" id="147">
+										<Type>CommandBarButton</Type>
+										<Enabled>false</Enabled>
+										<CommandName>Form.Command.AddConditionByDate</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Add date-based condition</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="SetupRuleFilterContextMenuAddConditionByDateExtendedTooltip" id="148"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<ButtonGroup name="ContextMenuGroup" id="153">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Context menu "Group"</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ContextMenuGroupExtendedTooltip" id="154"/>
+								<ChildItems>
+									<Button name="SetupRuleFilterContextMenuGroupFilterItems" id="155">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.SetupRuleFilter.StandardCommand.GroupFilterItems</CommandName>
+										<ExtendedTooltip name="SetupRuleFilterContextMenuGroupFilterItemsExtendedTooltip" id="156"/>
+									</Button>
+									<Button name="SetupRuleFilterContextMenuUngroup" id="157">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.SetupRuleFilter.StandardCommand.Ungroup</CommandName>
+										<ExtendedTooltip name="SetupRuleFilterContextMenuUngroupExtendedTooltip" id="158"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<Button name="SetupRuleFilterContextMenuDelete" id="159">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.SetupRuleFilter.StandardCommand.Delete</CommandName>
+								<ExtendedTooltip name="SetupRuleFilterContextMenuDeleteExtendedTooltip" id="160"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="SetupRuleFilterCommandBar" id="12">
+						<Autofill>false</Autofill>
+						<ChildItems>
+							<Popup name="MenuAdd" id="44">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Add</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="MenuAddExtendedTooltip" id="45"/>
+								<ChildItems>
+									<Button name="AddFilterItem" id="40">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.SetupRuleFilter.StandardCommand.AddFilterItem</CommandName>
+										<ExtendedTooltip name="AddFilterItemExtendedTooltip" id="41"/>
+									</Button>
+									<Button name="AddConditionByDate" id="46">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.AddConditionByDate</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Add date-based condition</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AddConditionByDateExtendedTooltip" id="47"/>
+									</Button>
+								</ChildItems>
+							</Popup>
+							<ButtonGroup name="MenuGroup" id="145">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Menu "Group"</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="MenuGroupExtendedTooltip" id="146"/>
+								<ChildItems>
+									<Button name="GroupFilterItems" id="42">
+										<Type>CommandBarButton</Type>
+										<Representation>Text</Representation>
+										<CommandName>Form.Item.SetupRuleFilter.StandardCommand.GroupFilterItems</CommandName>
+										<ExtendedTooltip name="GroupFilterItemsExtendedTooltip" id="43"/>
+									</Button>
+									<Button name="UngroupFilterItems" id="143">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Item.SetupRuleFilter.StandardCommand.Ungroup</CommandName>
+										<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="UngroupFilterItemsExtendedTooltip" id="144"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<Button name="SetupRuleFilterDelete" id="141">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.SetupRuleFilter.StandardCommand.Delete</CommandName>
+								<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="SetupRuleFilterDeleteExtendedTooltip" id="142"/>
+							</Button>
+							<SearchStringAddition name="SearchString" id="163">
+								<AdditionSource>
+									<Item>SetupRuleFilter</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Search</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="SearchStringContextMenu" id="164"/>
+								<ExtendedTooltip name="SearchStringExtendedTooltip" id="165"/>
+							</SearchStringAddition>
+						</ChildItems>
+					</AutoCommandBar>
+					<ExtendedTooltip name="SetupRuleFilterExtendedTooltip" id="13">
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>You can leave the filter conditions blank to synchronize all files attached to "%1."
+Alternatively, you can set the file synchronization files.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<SearchStringAddition name="SetupRuleFilterSearchString" id="14">
+						<AdditionSource>
+							<Item>SetupRuleFilter</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="SetupRuleFilterSearchStringContextMenu" id="17"/>
+						<ExtendedTooltip name="SetupRuleFilterSearchStringExtendedTooltip" id="18"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="SetupRuleFilterViewStatus" id="19">
+						<AdditionSource>
+							<Item>SetupRuleFilter</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="SetupRuleFilterViewStatusContextMenu" id="22"/>
+						<ExtendedTooltip name="SetupRuleFilterViewStatusExtendedTooltip" id="23"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="SetupRuleFilterSearchControl" id="24">
+						<AdditionSource>
+							<Item>SetupRuleFilter</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="SetupRuleFilterSearchControlContextMenu" id="27"/>
+						<ExtendedTooltip name="SetupRuleFilterSearchControlExtendedTooltip" id="28"/>
+					</SearchControlAddition>
+				</Table>
+				<InputField name="Description" id="88" DisplayImportance="VeryHigh">
+					<DataPath>Record.Description</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Brief rule description</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Example: only files of North Start, LLC</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="DescriptionContextMenu" id="89"/>
+					<ExtendedTooltip name="DescriptionExtendedTooltip" id="90"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.FileSynchronizationSettings</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="Rule" id="2">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AttributesArrayWithDateType" id="3">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="SynchronizationObject" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Synchronization object</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CatalogItem" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Catalog item</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:TypeSet>cfg:BusinessProcessRef</v8:TypeSet>
+				<v8:TypeSet>cfg:DocumentRef</v8:TypeSet>
+				<v8:TypeSet>cfg:TaskRef</v8:TypeSet>
+				<v8:TypeSet>cfg:CatalogRef</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="ExistingSettingsList" id="6">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="FilesOwnerID" id="7">
+			<Type>
+				<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="NewSetting" id="8">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ReturnValue" id="9">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="AddConditionByDate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add date-based condition</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add date-based condition</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AddConditionByDate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ForbidChangeAccount">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="FileOwner">
+			<Type>
+				<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+			</Type>
+		</Parameter>
+		<Parameter name="FileOwnerType">
+			<Type>
+				<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="IsFile">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="NewSetting">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,1363 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandBarLocation>Top</CommandBarLocation>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">Select</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">View</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">Change</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">PlaceInSections</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">Help</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string"/>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">ListCommands</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">ResetAssignmentSettings</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">ResetUserSettings</xr:Value>
+		</xr:Item>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">SetDeletionMark</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+		<ExcludedCommand>Create</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="QuickFilters" id="44">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Quick filters</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="QuickFiltersExtendedTooltip" id="98"/>
+			<ChildItems>
+				<InputField name="SearchString" id="60">
+					<DataPath>SearchString</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search in report name, description, and settings.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Width>30</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<DropListButton>true</DropListButton>
+					<ChoiceButton>false</ChoiceButton>
+					<ClearButton>true</ClearButton>
+					<SpinButton>false</SpinButton>
+					<OpenButton>false</OpenButton>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Report description, field, or author</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="SearchStringContextMenu" id="61"/>
+					<ExtendedTooltip name="SearchStringExtendedTooltip" id="99"/>
+					<Events>
+						<Event name="OnChange">SearchStringOnChange</Event>
+					</Events>
+				</InputField>
+				<Button name="ExecuteSearch" id="132">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ExecuteSearch</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Find</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ExecuteSearchExtendedTooltip" id="133"/>
+				</Button>
+				<InputField name="FilterReportType" id="45">
+					<DataPath>FilterReportType</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Type</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filter by report type: Internal, Additional, or External.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalStretch>false</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<DropListButton>true</DropListButton>
+					<ChoiceButton>false</ChoiceButton>
+					<ClearButton>true</ClearButton>
+					<SpinButton>false</SpinButton>
+					<OpenButton>false</OpenButton>
+					<CreateButton>false</CreateButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<QuickChoice>false</QuickChoice>
+					<ChooseType>false</ChooseType>
+					<TextEdit>false</TextEdit>
+					<ChoiceListButton>false</ChoiceListButton>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>All</v8:content>
+						</v8:item>
+					</InputHint>
+					<ChoiceHistoryOnInput>DontUse</ChoiceHistoryOnInput>
+					<ContextMenu name="FilterReportTypeContextMenu" id="46"/>
+					<ExtendedTooltip name="FilterReportTypeExtendedTooltip" id="101"/>
+					<Events>
+						<Event name="OnChange">FilterReportTypeOnChange</Event>
+						<Event name="Clearing">FilterReportTypeClearing</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="CustomSettingsFolder" id="168">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="169"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="35">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="102"/>
+			<ChildItems>
+				<Button name="Select" id="84">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Item.List.StandardCommand.Choose</CommandName>
+					<ExtendedTooltip name="SelectExtendedTooltip" id="103"/>
+				</Button>
+				<Button name="View" id="22">
+					<Type>CommandBarButton</Type>
+					<CommandName>Catalog.ReportsOptions.Command.Open</CommandName>
+					<DataPath>Items.List.CurrentData.Ref</DataPath>
+					<ExtendedTooltip name="ViewExtendedTooltip" id="104"/>
+				</Button>
+				<Button name="Change" id="164">
+					<Type>CommandBarButton</Type>
+					<CommandName>Catalog.ReportsOptions.Command.Change</CommandName>
+					<DataPath>Items.List.CurrentData.Ref</DataPath>
+					<ExtendedTooltip name="ChangeExtendedTooltip" id="165"/>
+				</Button>
+				<Button name="PlaceInSections" id="36">
+					<Type>CommandBarButton</Type>
+					<CommandName>Catalog.ReportsOptions.Command.PlaceInSections</CommandName>
+					<DataPath>Items.List.CurrentData.Ref</DataPath>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="PlaceInSectionsExtendedTooltip" id="106"/>
+				</Button>
+				<Button name="CustomizeForm" id="15">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+					<ExtendedTooltip name="CustomizeFormExtendedTooltip" id="107"/>
+				</Button>
+				<Button name="Help" id="14">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="HelpExtendedTooltip" id="108"/>
+				</Button>
+				<ButtonGroup name="ListGroupSearch" id="188">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ListGroupSearchExtendedTooltip" id="189"/>
+					<ChildItems>
+						<Button name="ListFind" id="190">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.List.StandardCommand.Find</CommandName>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ListFindExtendedTooltip" id="191"/>
+						</Button>
+						<Button name="ListFindByCurrentValue" id="194">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.List.StandardCommand.FindByCurrentValue</CommandName>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ListFindByCurrentValueExtendedTooltip" id="195"/>
+						</Button>
+						<Button name="ListCancelSearch" id="192">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Item.List.StandardCommand.CancelSearch</CommandName>
+							<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+							<ExtendedTooltip name="ListCancelSearchExtendedTooltip" id="193"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<ButtonGroup name="ListCommands" id="64">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>List commands</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Item.List</CommandSource>
+					<ExtendedTooltip name="ListCommandsExtendedTooltip" id="109"/>
+				</ButtonGroup>
+				<Button name="ResetAssignmentSettings" id="95">
+					<Type>CommandBarButton</Type>
+					<CommandName>Catalog.ReportsOptions.Command.ResetAssignmentSettings</CommandName>
+					<DataPath>Items.List.CurrentData.Ref</DataPath>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="ResetAssignmentSettingsExtendedTooltip" id="110"/>
+				</Button>
+				<Button name="ResetUserSettings" id="70">
+					<Type>CommandBarButton</Type>
+					<CommandName>Catalog.ReportsOptions.Command.ResetUserSettings</CommandName>
+					<DataPath>Items.List.CurrentData.Ref</DataPath>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="ResetUserSettingsExtendedTooltip" id="111"/>
+				</Button>
+				<Button name="SetDeletionMark" id="83">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Item.List.StandardCommand.SetDeletionMark</CommandName>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="SetDeletionMarkExtendedTooltip" id="112"/>
+				</Button>
+				<ButtonGroup name="ReportsOptionsExchangeGroup" id="200">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Exchange report options</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ReportsOptionsExchangeGroupExtendedTooltip" id="201"/>
+					<ChildItems>
+						<Button name="UpdateReportOptionFromFile" id="196">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.UpdateReportOptionFromFile</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Update from file…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="UpdateReportOptionFromFileExtendedTooltip" id="197"/>
+						</Button>
+						<Button name="SaveReportOptionToFile" id="198">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.SaveReportOptionToFile</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Save to file…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="SaveReportOptionToFileExtendedTooltip" id="199"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+			</ChildItems>
+		</CommandBar>
+		<UsualGroup name="GroupHorizontal" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Horizontal</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupHorizontalExtendedTooltip" id="113"/>
+			<ChildItems>
+				<UsualGroup name="SectionsGroup" id="92">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>All sections</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SectionsGroupExtendedTooltip" id="114"/>
+					<ChildItems>
+						<Table name="SubsystemsTree" id="65">
+							<Representation>Tree</Representation>
+							<Width>30</Width>
+							<SelectionMode>SingleRow</SelectionMode>
+							<Header>false</Header>
+							<HorizontalLines>false</HorizontalLines>
+							<VerticalLines>false</VerticalLines>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<InitialTreeView>ExpandTopLevel</InitialTreeView>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>SubsystemsTree</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Sections</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>Delete</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>List</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+							</CommandSet>
+							<ContextMenu name="SubsystemsTreeContextMenu" id="66"/>
+							<AutoCommandBar name="SubsystemsTreeCommandBar" id="67">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="SubsystemsTreeExtendedTooltip" id="115"/>
+							<SearchStringAddition name="SubsystemsTreeSearchString" id="170">
+								<AdditionSource>
+									<Item>SubsystemsTree</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="SubsystemsTreeSearchStringContextMenu" id="171"/>
+								<ExtendedTooltip name="SubsystemsTreeSearchStringExtendedTooltip" id="172"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="SubsystemsTreeViewStatus" id="173">
+								<AdditionSource>
+									<Item>SubsystemsTree</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="SubsystemsTreeViewStatusContextMenu" id="174"/>
+								<ExtendedTooltip name="SubsystemsTreeViewStatusExtendedTooltip" id="175"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="SubsystemsTreeSearchControl" id="176">
+								<AdditionSource>
+									<Item>SubsystemsTree</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="SubsystemsTreeSearchControlContextMenu" id="177"/>
+								<ExtendedTooltip name="SubsystemsTreeSearchControlExtendedTooltip" id="178"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="BeforeAddRow">SubsystemsTreeBeforeAddRow</Event>
+								<Event name="BeforeDeleteRow">SubsystemsTreeBeforeDeleteRow</Event>
+								<Event name="OnActivateRow">SubsystemsTreeOnActivateRow</Event>
+								<Event name="Drag">SubsystemsTreeDrag</Event>
+								<Event name="BeforeRowChange">SubsystemsTreeBeforeRowChange</Event>
+							</Events>
+							<ChildItems>
+								<InputField name="SubsystemsTreePresentation" id="68">
+									<DataPath>SubsystemsTree.Presentation</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Section, Group</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<TextEdit>false</TextEdit>
+									<ContextMenu name="SubsystemsTreePresentationContextMenu" id="69"/>
+									<ExtendedTooltip name="SubsystemsTreePresentationExtendedTooltip" id="116"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<CheckBoxField name="IncludingSubordinates" id="93">
+							<DataPath>IncludingSubordinates</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show nested reports</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="IncludingSubordinatesContextMenu" id="94"/>
+							<ExtendedTooltip name="IncludingSubordinatesExtendedTooltip" id="117"/>
+							<Events>
+								<Event name="OnChange">IncludingSubordinatesOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<Table name="List" id="1">
+					<Representation>Tree</Representation>
+					<CommandBarLocation>None</CommandBarLocation>
+					<Width>60</Width>
+					<ChoiceMode>true</ChoiceMode>
+					<UseAlternationRowColor>true</UseAlternationRowColor>
+					<EnableStartDrag>true</EnableStartDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>List</DataPath>
+					<RowPictureDataPath>List.PictureIndex</RowPictureDataPath>
+					<RowsPicture>
+						<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</RowsPicture>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Report options</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Create</ExcludedCommand>
+						<ExcludedCommand>LevelDown</ExcludedCommand>
+						<ExcludedCommand>LevelUp</ExcludedCommand>
+						<ExcludedCommand>MoveItem</ExcludedCommand>
+					</CommandSet>
+					<AutoRefresh>false</AutoRefresh>
+					<AutoRefreshPeriod>60</AutoRefreshPeriod>
+					<Period>
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</Period>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<RestoreCurrentRow>false</RestoreCurrentRow>
+					<TopLevelParent xsi:nil="true"/>
+					<ShowRoot>false</ShowRoot>
+					<AllowRootChoice>false</AllowRootChoice>
+					<UpdateOnDataChange>Auto</UpdateOnDataChange>
+					<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+					<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+					<ContextMenu name="ListContextMenu" id="2">
+						<Autofill>false</Autofill>
+						<ChildItems>
+							<Button name="ViewList" id="43">
+								<Type>CommandBarButton</Type>
+								<CommandName>Catalog.ReportsOptions.Command.Open</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<ExtendedTooltip name="ViewListExtendedTooltip" id="118"/>
+							</Button>
+							<Button name="ChangeContextMenu" id="166">
+								<Type>CommandBarButton</Type>
+								<CommandName>Catalog.ReportsOptions.Command.Change</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<ExtendedTooltip name="ChangeContextMenuExtendedTooltip" id="167"/>
+							</Button>
+							<Button name="AssignToSectionsList" id="62">
+								<Type>CommandBarButton</Type>
+								<CommandName>Catalog.ReportsOptions.Command.PlaceInSections</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<ExtendedTooltip name="AssignToSectionsListExtendedTooltip" id="120"/>
+							</Button>
+							<ButtonGroup name="ListCommandsList" id="89">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>List commands</v8:content>
+									</v8:item>
+								</Title>
+								<CommandSource>Item.List</CommandSource>
+								<ExtendedTooltip name="ListCommandsListExtendedTooltip" id="121"/>
+							</ButtonGroup>
+							<Button name="SetDeletionMarkList" id="91">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.List.StandardCommand.SetDeletionMark</CommandName>
+								<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="SetDeletionMarkListExtendedTooltip" id="122"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="ListCommandBar" id="3"/>
+					<ExtendedTooltip name="ListExtendedTooltip" id="123"/>
+					<SearchStringAddition name="ListSearchString" id="179">
+						<AdditionSource>
+							<Item>List</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ListSearchStringContextMenu" id="180"/>
+						<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="181"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ListViewStatus" id="182">
+						<AdditionSource>
+							<Item>List</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ListViewStatusContextMenu" id="183"/>
+						<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="184"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ListSearchControl" id="185">
+						<AdditionSource>
+							<Item>List</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ListSearchControlContextMenu" id="186"/>
+						<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="187"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="Selection">ListSelection</Event>
+						<Event name="BeforeRowChange">ListBeforeRowChange</Event>
+					</Events>
+					<ChildItems>
+						<ColumnGroup name="Rows" id="137">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Rows</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="RowsExtendedTooltip" id="138"/>
+							<ChildItems>
+								<ColumnGroup name="FirstRowColumns" id="139">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>First row columns</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<ExtendedTooltip name="FirstRowColumnsExtendedTooltip" id="140"/>
+									<ChildItems>
+										<LabelField name="Description" id="4" DisplayImportance="VeryHigh">
+											<DataPath>List.Description</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Description</v8:content>
+												</v8:item>
+											</Title>
+											<Width>40</Width>
+											<ContextMenu name="DescriptionContextMenu" id="5"/>
+											<ExtendedTooltip name="DescriptionExtendedTooltip" id="124"/>
+										</LabelField>
+										<LabelField name="Author" id="12" DisplayImportance="Low">
+											<DataPath>List.Author</DataPath>
+											<ContextMenu name="AuthorContextMenu" id="13"/>
+											<ExtendedTooltip name="AuthorExtendedTooltip" id="125"/>
+										</LabelField>
+										<LabelField name="Purpose" id="202">
+											<DataPath>List.Purpose</DataPath>
+											<ContextMenu name="PurposeContextMenu" id="203"/>
+											<ExtendedTooltip name="PurposeExtendedTooltip" id="204"/>
+										</LabelField>
+										<PictureField name="AvailableToAllUsers" id="96">
+											<DataPath>List.AvailableToAllUsers</DataPath>
+											<UserVisible>
+												<xr:Common>false</xr:Common>
+											</UserVisible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Available to all users</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Available to all users.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ValuesPicture>
+												<xr:Ref>CommonPicture.ReportsOptionsAvailableForAllUsers</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</ValuesPicture>
+											<FileDragMode>AsFile</FileDragMode>
+											<ContextMenu name="AvailableToAllUsersContextMenu" id="97"/>
+											<ExtendedTooltip name="AvailableToAllUsersExtendedTooltip" id="126"/>
+										</PictureField>
+										<CheckBoxField name="DefaultVisibility" id="71">
+											<UserVisible>
+												<xr:Common>false</xr:Common>
+											</UserVisible>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Default visibility in report panel</v8:content>
+												</v8:item>
+											</ToolTip>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="DefaultVisibilityContextMenu" id="72"/>
+											<ExtendedTooltip name="DefaultVisibilityExtendedTooltip" id="127"/>
+										</CheckBoxField>
+									</ChildItems>
+								</ColumnGroup>
+								<ColumnGroup name="SecondRowColumns" id="141">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Second row columns</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<ExtendedTooltip name="SecondRowColumnsExtendedTooltip" id="142"/>
+									<ChildItems>
+										<LabelField name="LongDesc" id="143" DisplayImportance="Low">
+											<DataPath>List.LongDesc</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Details</v8:content>
+												</v8:item>
+											</Title>
+											<AutoCellHeight>true</AutoCellHeight>
+											<ContextMenu name="LongDescContextMenu" id="144"/>
+											<ExtendedTooltip name="LongDescExtendedTooltip" id="145"/>
+										</LabelField>
+									</ChildItems>
+								</ColumnGroup>
+							</ChildItems>
+						</ColumnGroup>
+						<ColumnGroup name="TechnicalInformation" id="148">
+							<UserVisible>
+								<xr:Common>false</xr:Common>
+							</UserVisible>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Technical details</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<ShowInHeader>true</ShowInHeader>
+							<ExtendedTooltip name="TechnicalInformationExtendedTooltip" id="149"/>
+							<ChildItems>
+								<LabelField name="ReportName" id="73">
+									<DataPath>List.ReportName</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Report name</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ReportNameContextMenu" id="74"/>
+									<ExtendedTooltip name="ReportNameExtendedTooltip" id="128"/>
+								</LabelField>
+								<LabelField name="Report" id="77">
+									<DataPath>List.Report</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="ReportContextMenu" id="78"/>
+									<ExtendedTooltip name="ReportExtendedTooltip" id="129"/>
+								</LabelField>
+								<LabelField name="ReportType" id="81">
+									<DataPath>List.ReportType</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="ReportTypeContextMenu" id="82"/>
+									<ExtendedTooltip name="ReportTypeExtendedTooltip" id="130"/>
+								</LabelField>
+								<LabelField name="VariantKey" id="75">
+									<DataPath>List.VariantKey</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="VariantKeyContextMenu" id="76"/>
+									<ExtendedTooltip name="VariantKeyExtendedTooltip" id="131"/>
+								</LabelField>
+							</ChildItems>
+						</ColumnGroup>
+						<LabelField name="Ref" id="134">
+							<DataPath>List.Ref</DataPath>
+							<UserVisible>
+								<xr:Common>false</xr:Common>
+							</UserVisible>
+							<ContextMenu name="RefContextMenu" id="135"/>
+							<ExtendedTooltip name="RefExtendedTooltip" id="136"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.Author</Field>
+				<Field>List.Description</Field>
+				<Field>List.FullReportName</Field>
+				<Field>List.MeasurementsKey</Field>
+				<Field>List.Ref</Field>
+				<Field>List.Report</Field>
+				<Field>List.ReportName</Field>
+				<Field>List.ReportType</Field>
+				<Field>List.VariantKey</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>SELECT ALLOWED
+	ReportsOptionsOverridable.Ref,
+	ReportsOptionsOverridable.DeletionMark,
+	ISNULL(ConfigurationOptionsOverridable.MeasurementsKey, ExtensionOptionsOverridable.MeasurementsKey) AS
+		MeasurementsKey,
+	ReportsOptionsOverridable.Custom,
+	NOT ReportsOptionsOverridable.Custom AS Predefined,
+	CASE
+		WHEN &amp;IsMainLanguage
+		AND (ReportsOptionsOverridable.Custom
+		OR ReportsOptionsOverridable.PredefinedOption IN (UNDEFINED,
+			VALUE(Catalog.PredefinedReportsOptions.EmptyRef),
+			VALUE(Catalog.PredefinedExtensionsReportsOptions.EmptyRef)))
+			THEN ReportsOptionsOverridable.Description
+		WHEN NOT &amp;IsMainLanguage
+		AND (ReportsOptionsOverridable.Custom
+		OR ReportsOptionsOverridable.PredefinedOption IN (UNDEFINED,
+			VALUE(Catalog.PredefinedReportsOptions.EmptyRef),
+			VALUE(Catalog.PredefinedExtensionsReportsOptions.EmptyRef)))
+			THEN CAST(ReportsOptionsOverridable.Description AS STRING(150))
+		WHEN &amp;IsMainLanguage
+			THEN CAST(ISNULL(ISNULL(ConfigurationOptionsOverridable.Description,
+				ExtensionOptionsOverridable.Description), ReportsOptionsOverridable.Description) AS STRING(150))
+		ELSE CAST(ReportsOptionsOverridable.Description AS STRING(150))
+	END AS Description,
+	NOT ReportsOptionsOverridable.AuthorOnly AS AvailableToAllUsers,
+	ReportsOptionsOverridable.Report,
+	ReportsOptionsOverridable.VariantKey,
+	ReportsOptionsOverridable.ReportType,
+	ReportsOptionsOverridable.Author,
+	ReportsOptionsOverridable.Purpose,
+	CASE
+		WHEN SUBSTRING(ReportsOptionsOverridable.LongDesc, 1, 1) &lt;&gt; ""
+			THEN CAST(ReportsOptionsOverridable.LongDesc AS STRING(1000))
+		WHEN SUBSTRING(ReportsOptionsOverridable.LongDesc, 1, 1) = ""
+			THEN CAST(ISNULL(ConfigurationOptionsOverridable.LongDesc, ExtensionOptionsOverridable.LongDesc)
+				AS STRING(1000))
+		ELSE CAST(ReportsOptionsOverridable.LongDesc AS STRING(1000))
+	END AS LongDesc,
+	&amp;ReportName AS ReportName,
+	ExtensionsInfoOverridable.FullObjectName AS FullReportName,
+	CASE
+		WHEN ReportsOptionsOverridable.DeletionMark = TRUE
+			THEN 4
+		WHEN ReportsOptionsOverridable.Custom = FALSE
+			THEN 5
+		ELSE 3
+	END AS PictureIndex
+FROM
+	Catalog.ReportsOptions AS ReportsOptionsOverridable
+		LEFT JOIN Catalog.PredefinedReportsOptions AS ConfigurationOptionsOverridable
+		ON ReportsOptionsOverridable.PredefinedOption = ConfigurationOptionsOverridable.Ref
+		LEFT JOIN Catalog.PredefinedExtensionsReportsOptions AS ExtensionOptionsOverridable
+		ON ReportsOptionsOverridable.PredefinedOption = ExtensionOptionsOverridable.Ref
+		LEFT JOIN InformationRegister.ExtensionVersionObjectIDs AS ExtensionsInfoOverridable
+		ON ExtensionsInfoOverridable.ExtensionsVersion = &amp;ExtensionsVersion
+		AND ExtensionsInfoOverridable.Id = ReportsOptionsOverridable.Report
+WHERE
+	ReportsOptionsOverridable.Report IN (&amp;AvailableReports)
+	AND CASE
+			WHEN &amp;HasFilterByOptions
+				THEN ReportsOptionsOverridable.Ref IN (&amp;UserOptions)
+			WHEN NOT ReportsOptionsOverridable.PredefinedOption IN (&amp;DIsabledApplicationOptions)
+				THEN TRUE
+			ELSE ReportsOptionsOverridable.Ref IN
+					(SELECT
+						ParentsOverridable.Parent
+					FROM
+						Catalog.ReportsOptions AS ParentsOverridable
+					WHERE
+						ParentsOverridable.Report IN (&amp;AvailableReports)
+						AND NOT ParentsOverridable.Ref IN (&amp;UserOptions))
+		END</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Description</dcssch:dataPath>
+					<dcssch:field>Description</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DefaultVisibility</dcssch:dataPath>
+					<dcssch:field>DefaultVisibility</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DefaultVisibilityOverridden</dcssch:dataPath>
+					<dcssch:field>DefaultVisibilityOverridden</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>InteractiveDeletionMark</dcssch:dataPath>
+					<dcssch:field>InteractiveDeletionMark</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Keywords</dcssch:dataPath>
+					<dcssch:field>Keywords</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Context</dcssch:dataPath>
+					<dcssch:field>Context</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>FilterParameterDescriptions</dcssch:dataPath>
+					<dcssch:field>FilterParameterDescriptions</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>FieldDescriptions</dcssch:dataPath>
+					<dcssch:field>FieldDescriptions</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Settings</dcssch:dataPath>
+					<dcssch:field>Settings</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>LongDesc</dcssch:dataPath>
+					<dcssch:field>LongDesc</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Details</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>LongDescLanguage1</dcssch:dataPath>
+					<dcssch:field>LongDescLanguage1</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>LongDescLanguage2</dcssch:dataPath>
+					<dcssch:field>LongDescLanguage2</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PredefinedOption</dcssch:dataPath>
+					<dcssch:field>PredefinedOption</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AuthorOnly</dcssch:dataPath>
+					<dcssch:field>AuthorOnly</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>SettingsHash</dcssch:dataPath>
+					<dcssch:field>SettingsHash</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Location</dcssch:dataPath>
+					<dcssch:field>Location</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Presentations</dcssch:dataPath>
+					<dcssch:field>Presentations</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Predefined</dcssch:dataPath>
+					<dcssch:field>Predefined</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PredefinedDataName</dcssch:dataPath>
+					<dcssch:field>PredefinedDataName</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DescriptionLanguage2</dcssch:dataPath>
+					<dcssch:field>DescriptionLanguage2</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DescriptionLanguage1</dcssch:dataPath>
+					<dcssch:field>DescriptionLanguage1</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ref</dcssch:dataPath>
+					<dcssch:field>Ref</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>DeletionMark</dcssch:dataPath>
+					<dcssch:field>DeletionMark</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>MeasurementsKey</dcssch:dataPath>
+					<dcssch:field>MeasurementsKey</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Sample key</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Custom</dcssch:dataPath>
+					<dcssch:field>Custom</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>AvailableToAllUsers</dcssch:dataPath>
+					<dcssch:field>AvailableToAllUsers</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Available to all users</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Report</dcssch:dataPath>
+					<dcssch:field>Report</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>VariantKey</dcssch:dataPath>
+					<dcssch:field>VariantKey</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ReportType</dcssch:dataPath>
+					<dcssch:field>ReportType</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Author</dcssch:dataPath>
+					<dcssch:field>Author</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Purpose</dcssch:dataPath>
+					<dcssch:field>Purpose</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ReportName</dcssch:dataPath>
+					<dcssch:field>ReportName</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Report name</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>FullReportName</dcssch:dataPath>
+					<dcssch:field>FullReportName</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Full report name</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>PictureIndex</dcssch:dataPath>
+					<dcssch:field>PictureIndex</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture index</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Parent</dcssch:dataPath>
+					<dcssch:field>Parent</dcssch:field>
+				</Field>
+				<Parameter>
+					<dcssch:name>UserOptions</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User's report options</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+					<dcssch:valueListAllowed>true</dcssch:valueListAllowed>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>IsMainLanguage</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>This is default language</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ExtensionsVersion</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Extension version</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.ExtensionsVersions</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ReportName</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Report name</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>HasFilterByOptions</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Has filter by option</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>DIsabledApplicationOptions</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Disabled report options</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+					<dcssch:valueListAllowed>true</dcssch:valueListAllowed>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>AvailableReports</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Available reports</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+					<dcssch:valueListAllowed>true</dcssch:valueListAllowed>
+				</Parameter>
+				<MainTable>Catalog.ReportsOptions</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="FilterReportType" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Type</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:Type>cfg:EnumRef.ReportsTypes</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<Save>
+				<Field>FilterReportType</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="SearchString" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>SearchString</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="SubsystemsTree" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Section, group</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Ref" id="1">
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExtensionObjectIDs</v8:Type>
+						<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Section, Group</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Name" id="3">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="FullName" id="4">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Priority" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="FullPresentation" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SubsystemsTreeCurrentRow" id="6">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FormOperationMode" id="9">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="IncludingSubordinates" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show nested reports</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>IncludingSubordinates</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ClientParameters" id="12">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ExecuteSearch" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Find</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Find</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ExecuteSearch</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Change" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit report settings.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Change</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SaveReportOptionToFile" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save to file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save a report option to a file.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.SaveFileAs</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SaveReportOptionToFile</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="UpdateReportOptionFromFile" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update from file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update a report option from a file.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.UpdateFileFromFileOnHardDrive</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>UpdateReportOptionFromFile</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="OptionsOnly">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="SearchString">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="SectionReference">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExtensionObjectIDs</v8:Type>
+				<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

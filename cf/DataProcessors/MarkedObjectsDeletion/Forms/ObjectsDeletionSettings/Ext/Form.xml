@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<ConversationsRepresentation>DontShow</ConversationsRepresentation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormSelect" id="49">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.Select</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Apply</v8:content>
+					</v8:item>
+				</Title>
+				<RepresentationInContextMenu>None</RepresentationInContextMenu>
+				<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormSelectExtendedTooltip" id="50"/>
+			</Button>
+			<Button name="FormAddSetting" id="56">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.AddSetting</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Add setting...</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormAddSettingExtendedTooltip" id="57"/>
+			</Button>
+			<Button name="FormAddSettingsField" id="66">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.AddSettingsField</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Add an attribute to be displayed...</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormAddSettingsFieldExtendedTooltip" id="67"/>
+			</Button>
+			<ButtonGroup name="ShapeGroupRemovableObjects" id="83">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Objects to delete</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="ShapeGroupRemovableObjectsExtendedTooltip" id="84"/>
+				<ChildItems>
+					<Button name="ObjectsToDelete" id="81">
+						<Type>CommandBarButton</Type>
+						<Representation>Picture</Representation>
+						<Enabled>false</Enabled>
+						<HorizontalStretch>true</HorizontalStretch>
+						<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+						<CommandName>Form.Command.ObjectsToDelete</CommandName>
+						<Picture>
+							<xr:Ref>CommonPicture.TimeConsumingOperation16</xr:Ref>
+							<xr:LoadTransparent>false</xr:LoadTransparent>
+						</Picture>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Locked objects</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ObjectsToDeleteExtendedTooltip" id="82"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<SearchStringAddition name="SearchString" id="85">
+				<AdditionSource>
+					<Item>ObjectsViewSettings</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SearchStringContextMenu" id="86"/>
+				<ExtendedTooltip name="SearchStringExtendedTooltip" id="87"/>
+			</SearchStringAddition>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="ObjectsViewSettings" id="19" DisplayImportance="Usual">
+			<Representation>Tree</Representation>
+			<TitleLocation>Auto</TitleLocation>
+			<ChangeRowOrder>false</ChangeRowOrder>
+			<RowSelectionMode>Row</RowSelectionMode>
+			<DataPath>ObjectsViewSettings</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Display attributes in the list with objects marked for deletion</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ObjectsViewSettingsContextMenu" id="21">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<Button name="ContextMenuAddSetting" id="75">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.AddSetting</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Add setting...</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ContextMenuAddSettingExtendedTooltip" id="76"/>
+					</Button>
+					<Button name="ContextMenuAddSettingsField" id="77">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.AddSettingsField</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Add an attribute to be displayed...</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ContextMenuAddSettingsFieldExtendedTooltip" id="78"/>
+					</Button>
+					<Button name="ContextMenuDelete" id="73">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.ObjectsViewSettings.StandardCommand.Delete</CommandName>
+						<ExtendedTooltip name="ContextMenuDeleteExtendedTooltip" id="74"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="ObjectsViewSettingsCommandBar" id="20">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ObjectsViewSettingsExtendedTooltip" id="22"/>
+			<SearchStringAddition name="Addition" id="23">
+				<AdditionSource>
+					<Item>ObjectsViewSettings</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ContextMenu" id="24"/>
+				<ExtendedTooltip name="ExtendedTooltip" id="25"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="Addition" id="29">
+				<AdditionSource>
+					<Item>ObjectsViewSettings</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ContextMenu" id="30"/>
+				<ExtendedTooltip name="ExtendedTooltip" id="31"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="Addition" id="26">
+				<AdditionSource>
+					<Item>ObjectsViewSettings</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ContextMenu" id="27"/>
+				<ExtendedTooltip name="ExtendedTooltip" id="28"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<ColumnGroup name="ObjectsViewSettingsGroup" id="40">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Object view settings group</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="ObjectsViewSettingsGroupExtendedTooltip" id="41"/>
+					<ChildItems>
+						<InputField name="ObjectsViewSettingsDisplayedAttribute" id="32">
+							<DataPath>ObjectsViewSettings.SearchLocationAttributePresentation</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Search location / Attributes to display</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ObjectsViewSettingsDisplayedAttributeContextMenu" id="33"/>
+							<ExtendedTooltip name="ObjectsViewSettingsDisplayedAttributeExtendedTooltip" id="34"/>
+						</InputField>
+						<PictureField name="ObjectsViewSettingsPicture" id="37">
+							<DataPath>ObjectsViewSettings.Picture</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>PIcture</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<ContextMenu name="ObjectsViewSettingsPictureContextMenu" id="38"/>
+							<ExtendedTooltip name="ObjectsViewSettingsPictureExtendedTooltip" id="39"/>
+						</PictureField>
+					</ChildItems>
+				</ColumnGroup>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="DeletionModeSetupGroup" id="58" DisplayImportance="Usual">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deletion method</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="DeletionModeSetupGroupExtendedTooltip" id="59"/>
+			<ChildItems>
+				<RadioButtonField name="StandardDeletion" id="63">
+					<DataPath>StandardDeletion</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Standard deletion</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
+					<RadioButtonType>Auto</RadioButtonType>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Standard</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">1</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="StandardDeletionContextMenu" id="64"/>
+					<ExtendedTooltip name="StandardDeletionExtendedTooltip" id="65">
+						<Height>4</Height>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Check whether objects can be deleted and do not delete objects that have occurrences.
+Use it to delete single objects.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<Events>
+						<Event name="OnChange">StandardDeletionOnChange</Event>
+					</Events>
+				</RadioButtonField>
+				<RadioButtonField name="SafeDeletion" id="60">
+					<DataPath>SafeDeletion</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Safe deletion</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
+					<RadioButtonType>Auto</RadioButtonType>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Simplified</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">1</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="SafeDeletionContextMenu" id="61"/>
+					<ExtendedTooltip name="SafeDeletionExtendedTooltip" id="62">
+						<Height>3</Height>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Allow clearing of fields in objects marked for deletion.
+Use it to clear linked objects.
+</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<Events>
+						<Event name="OnChange">SafeDeletionOnChange</Event>
+					</Events>
+				</RadioButtonField>
+				<RadioButtonField name="ExclusiveDeletion" id="42">
+					<DataPath>ExclusiveDeletion</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Exclusive deletion</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
+					<RadioButtonType>RadioButtons</RadioButtonType>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Accelerated</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:decimal">1</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="ExclusiveDeletionContextMenu" id="43"/>
+					<ExtendedTooltip name="ExclusiveDeletionExtendedTooltip" id="44">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Block users from logging in.
+Use it to promptly delete large data volumes.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<Events>
+						<Event name="OnChange">ExclusiveDeletionOnChange</Event>
+					</Events>
+				</RadioButtonField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ScheduledDeletionSetup" id="47" DisplayImportance="Usual">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Automatically delete marked objects on schedule</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ScheduledDeletionSetupExtendedTooltip" id="48"/>
+			<ChildItems>
+				<UsualGroup name="ScheduledJobSetupGroup" id="68">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings of scheduled job</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ScheduledJobSetupGroupExtendedTooltip" id="69"/>
+					<ChildItems>
+						<CheckBoxField name="UseScheduledDeletion" id="51">
+							<DataPath>AutomaticallyDeleteMarkedObjects</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Automatically delete marked objects on schedule</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UseScheduledDeletionContextMenu" id="52"/>
+							<ExtendedTooltip name="UseScheduledDeletionExtendedTooltip" id="53"/>
+							<Events>
+								<Event name="OnChange">UseScheduledDeletionOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<Button name="DeleteMarkedObjectsConfigureSchedule" id="54">
+							<Type>Hyperlink</Type>
+							<Enabled>false</Enabled>
+							<CommandName>Form.Command.ScheduledJobSettings</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Set schedule</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="DeleteMarkedObjectsConfigureScheduleExtendedTooltip" id="55"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<LabelDecoration name="DeleteMarkedObjectsSchedulePresentation" id="70">
+					<TextColor>style:NoteText</TextColor>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Delete marked objects schedule presentation</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="DeleteMarkedObjectsSchedulePresentationContextMenu" id="71"/>
+					<ExtendedTooltip name="DeleteMarkedObjectsSchedulePresentationExtendedTooltip" id="72"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ObjectsViewSettings" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Object view settings</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="SearchLocationAttributePresentation" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search location attribute presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Picture" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>v8ui:Picture</v8:Type>
+					</Type>
+				</Column>
+				<Column name="SearchLocationAttribute" id="9">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ExclusiveDeletion" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exclusive deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AutomaticallyDeleteMarkedObjects" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Automatically delete marked objects on schedule</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SafeDeletion" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Safe deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="StandardDeletion" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Standard deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteMarkedObjectsID" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteMarkedObjectsSchedule" id="11">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Select" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Select</Action>
+		</Command>
+		<Command name="ScheduledJobSettings" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Settings of scheduled job</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ScheduledJobSettings</Action>
+		</Command>
+		<Command name="AddSetting" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add setting...</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add setting for attributes to be displayed</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CreateFolder</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>AddSetting</Action>
+		</Command>
+		<Command name="AddSettingsField" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add an attribute to be displayed...</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add an attribute to be displayed</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>AddSettingsField</Action>
+		</Command>
+		<Command name="ObjectsToDelete" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Locked objects</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Objects marked for deletion.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ObjectsToDelete</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="SettingsAddress">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.17">
+	<setForNewObjects>false</setForNewObjects>
+	<setForAttributesByDefault>true</setForAttributesByDefault>
+	<independentRightsOfChildObjects>false</independentRightsOfChildObjects>
+	<object>
+		<name>CommonCommand.Remind</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.UserReminders</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForRegister("MetadataObjectIDs.InformationRegisterUserReminders", "User", "", "", "", "")
+#Else
+WHERE User = &amp;CurrentUser
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>#If &amp;RecordLevelAccessRestrictionIsUniversal #Then
+#ForRegister("MetadataObjectIDs.InformationRegisterUserReminders", "User", "", "", "", "")
+#Else
+WHERE User = &amp;CurrentUser
+#EndIf</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>TotalsControl</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Configuration.Jet</name>
+		<right>
+			<name>MainWindowModeNormal</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeEmbeddedWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeFullscreenWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeKiosk</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>AnalyticsSystemClient</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.UserReminders.Command.MyReminders</name>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<restrictionTemplate>
+		<name>ForRegister(Register, Field1, Field2, Field3, Field4, Field5)</name>
+		<condition>#If &amp;ListsWithReadRestrictionDisabled = "Undefined" #Then
+  WHERE FALSE
+
+#ElseIf Not StrContains(&amp;AccessRestrictionTemplatesVersions, ",ForRegister9,") #Then
+  Error: Required2 Refresh Template to1 actual version, supplied IN Roles EditAccessGroupMembers BY reason: Used deprecated Version 9 template Restrictions access ForRegister. Object: #CurrentTableName, Right: #CurrentAccessRightName.
+
+#ElseIf &amp;ListsWithReadRestrictionDisabled = "All" #Then
+  WHERE TRUE
+
+#ElseIf StrContains(&amp;ListsWithReadRestrictionDisabled, #CurrentTableName + ";") #Then
+  WHERE TRUE
+
+#ElseIf StrContains(&amp;AccessRestrictionTemplatesVersions, ",SessionRestartRequired1,") #Then
+  Error: Version Applications Updated1, Required2 Restart session. Object: #CurrentTableName, Right: #CurrentAccessRightName.
+
+#ElseIf #CurrentAccessRightName &lt;&gt; "Read" #Then
+  WHERE TRUE
+
+#ElseIf StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ";0") #Then
+  WHERE FALSE
+
+#ElseIf StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ";1") #Then
+  Error: External users are disabled.
+
+#ElseIf Not StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction,  #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;")
+         And Not StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;") #Then
+
+  Error: Required2 actual Restriction access BY reason: NOT ManagedTo define Variant Restrictions access IN parameters sessions FOR template ForRegister with values parameters "#Register", "#Field1", "#Field2", "#Field3", "#Field4", "#Field5". Object: #CurrentTableName, Right: #CurrentAccessRightName.
+#Else
+
+CurrentTable WHERE TRUE IN
+ (
+  SELECT TOP 1 TRUE
+#If Not StrContains("#Register", "AccessKeysToRegister") #Then
+  FROM InformationRegister.AccessKeysForRegisters AS AccessKeysForRegisters
+#Else
+  FROM InformationRegister.#Register AS AccessKeysForRegisters
+#EndIf
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction,  #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;") #Then
+      LEFT JOIN InformationRegister.AccessGroupSetsAccessKeys AS AccessGroupSetsAccessKeys
+      ON
+          AccessGroupSetsAccessKeys.AccessKey = AccessKeysForRegisters.AccessKey
+        AND AccessGroupSetsAccessKeys.AccessGroupsSet = &amp;AllowedAccessGroupsSet
+  #EndIf
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction,  #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;*") #Then
+      
+      LEFT JOIN InformationRegister.AccessGroupSetsAccessKeys AS AccessKeysAllowedSetAccessGroups
+      ON
+          AccessKeysAllowedSetAccessGroups.AccessKey = AccessKeysForRegisters.AccessKey
+        AND AccessKeysAllowedSetAccessGroups.AccessGroupsSet = &amp;AllowedBlankAccessGroupsSet
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;") #Then
+      
+    #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then
+      LEFT JOIN InformationRegister.UsersAccessKeys AS UsersAccessKeys
+      ON
+          UsersAccessKeys.AccessKey = AccessKeysForRegisters.AccessKey
+        AND UsersAccessKeys.User = &amp;AllowedUser
+    #Else
+      LEFT JOIN InformationRegister.ExternalUsersAccessKeys AS UsersAccessKeys
+      ON
+          UsersAccessKeys.AccessKey = AccessKeysForRegisters.AccessKey
+        AND UsersAccessKeys.ExternalUser = &amp;AllowedUser
+    #EndIf
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;+") #Then
+      
+    #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then
+      LEFT JOIN InformationRegister.UsersAccessKeys AS SetsAccessKeysAccessGroups
+      ON
+          SetsAccessKeysAccessGroups.AccessKey = AccessKeysForRegisters.AccessKey
+        AND SetsAccessKeysAccessGroups.User = &amp;AllowedUserGroupsSet
+    #Else
+      LEFT JOIN InformationRegister.ExternalUsersAccessKeys AS SetsAccessKeysAccessGroups
+      ON
+          SetsAccessKeysAccessGroups.AccessKey = AccessKeysForRegisters.AccessKey
+        AND SetsAccessKeysAccessGroups.ExternalUser = &amp;AllowedUserGroupsSet
+    #EndIf
+  #EndIf
+  WHERE
+  #If Not StrContains("#Register", "AccessKeysToRegister") #Then
+      AccessKeysForRegisters.Register = VALUE(Catalog.#Register)
+  #Else
+      TRUE
+  #EndIf
+    AND
+  (
+      AccessKeysForRegisters.AccessOption =
+    (
+  #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then 0 #Else 1 #EndIf
+  #If Not StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Version1=0") #Then
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field1=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field2=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field3=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field4=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field5=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version1Bit0=1")      #Then +  64 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version1Bit1=1")      #Then + 128 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version1Bit2=1")      #Then + 256 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version1Bit3=1")      #Then + 512 #EndIf
+  #EndIf
+    )
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field1=Field1;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field1
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field1=Field2;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field2
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field1=Field3;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field1=Field4;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field1=Field5;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field2=Field2;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field2
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field2=Field3;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field2=Field4;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field2=Field5;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field3=Field3;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field3=Field4;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field3=Field5;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field4=Field4;") #Then
+    AND AccessKeysForRegisters.Field4 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field4=Field5;") #Then
+    AND AccessKeysForRegisters.Field4 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant1Field5=Field5;") #Then
+    AND AccessKeysForRegisters.Field5 = CurrentTable.#Field5
+  #EndIf
+ 
+ #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2") #Then
+ 
+  OR
+      AccessKeysForRegisters.AccessOption =
+    (
+  #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then 0 #Else 1 #EndIf
+  #If Not StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Version2=0") #Then
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field1=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field2=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field3=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field4=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field5=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version2Bit0=1")      #Then +  64 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version2Bit1=1")      #Then + 128 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version2Bit2=1")      #Then + 256 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version2Bit3=1")      #Then + 512 #EndIf
+  #EndIf
+    )
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field1=Field1;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field1
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field1=Field2;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field2
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field1=Field3;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field1=Field4;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field1=Field5;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field2=Field2;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field2
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field2=Field3;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field2=Field4;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field2=Field5;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field3=Field3;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field3=Field4;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field3=Field5;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field4=Field4;") #Then
+    AND AccessKeysForRegisters.Field4 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field4=Field5;") #Then
+    AND AccessKeysForRegisters.Field4 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant2Field5=Field5;") #Then
+    AND AccessKeysForRegisters.Field5 = CurrentTable.#Field5
+  #EndIf
+ 
+ #EndIf
+ #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3") #Then
+ 
+  OR
+      AccessKeysForRegisters.AccessOption =
+    (
+  #If &amp;CurrentExternalUser = Value(Catalog.ExternalUsers.EmptyRef) #Then 0 #Else 1 #EndIf
+  #If Not StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Version3=0") #Then
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field1=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field2=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field3=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field4=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field5=Field") #Then +   2 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version3Bit0=1")      #Then +  64 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version3Bit1=1")      #Then + 128 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version3Bit2=1")      #Then + 256 #EndIf
+     #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Version3Bit3=1")      #Then + 512 #EndIf
+  #EndIf
+    )
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field1=Field1;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field1
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field1=Field2;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field2
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field1=Field3;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field1=Field4;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field1=Field5;") #Then
+    AND AccessKeysForRegisters.Field1 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field2=Field2;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field2
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field2=Field3;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field2=Field4;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field2=Field5;") #Then
+    AND AccessKeysForRegisters.Field2 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field3=Field3;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field3
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field3=Field4;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field3=Field5;") #Then
+    AND AccessKeysForRegisters.Field3 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field4=Field4;") #Then
+    AND AccessKeysForRegisters.Field4 = CurrentTable.#Field4
+  #ElseIf StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field4=Field5;") #Then
+    AND AccessKeysForRegisters.Field4 = CurrentTable.#Field5
+  #EndIf
+  
+  #If StrContains(&amp;ListsWithRestrictionByFields, #CurrentTableName + ":Variant3Field5=Field5;") #Then
+    AND AccessKeysForRegisters.Field5 = CurrentTable.#Field5
+  #EndIf
+ 
+ #EndIf
+  )
+    AND (
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;") #Then
+          NOT AccessGroupSetsAccessKeys.AccessKey IS NULL
+  #Else
+          FALSE
+  #EndIf
+  #If StrContains(&amp;ListsWithAccessGroupsAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;*") #Then
+      OR NOT AccessKeysAllowedSetAccessGroups.AccessKey IS NULL
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;") #Then
+      OR NOT UsersAccessKeys.AccessKey IS NULL
+  #EndIf
+  #If StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;+") #Then
+      OR NOT SetsAccessKeysAccessGroups.AccessKey IS NULL
+  #EndIf
+      )
+ )
+
+ #If Not StrContains(&amp;CommonAccessRestrictionTemplateParameters, #CurrentTableName + ":Skip;")
+   And (    StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";ClarifyForAll;")
+      Or StrContains(&amp;CommonAccessRestrictionTemplateParameters, #CurrentTableName + ":Specify;") ) #Then
+  
+  #If Not StrContains(&amp;ListsWithUsersAccessKeysRestriction, #CurrentTableName + ":[#Register]:#Field1:#Field2:#Field3:#Field4:#Field5;") #Then
+  AND TRUE IN (TRUE
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";31;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";30;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";29;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";28;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";27;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";26;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";25;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";24;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";23;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";22;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";21;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";20;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";19;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";18;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";17;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";16;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";15;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";14;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";13;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";12;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";11;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";10;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";09;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";08;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";07;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";06;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";05;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";04;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";03;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";02;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";01;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";00;") #Then ,TRUE #Else ,FALSE #EndIf
+	)
+  #Else
+  AND TRUE IN (TRUE
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";31^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";30^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";29^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";28^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";27^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";26^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";25^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";24^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";23^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";22^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";21^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";20^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";19^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";18^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";17^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";16^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";15^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";14^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";13^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";12^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";11^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";10^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";09^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";08^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";07^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";06^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";05^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";04^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";03^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";02^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";01^;") #Then ,TRUE #Else ,FALSE #EndIf
+	#If StrContains(&amp;CommonAccessRestrictionTemplateParameters, ";00^;") #Then ,TRUE #Else ,FALSE #EndIf
+	)
+  #EndIf
+ #EndIf
+
+#EndIf</condition>
+	</restrictionTemplate>
+</Rights>

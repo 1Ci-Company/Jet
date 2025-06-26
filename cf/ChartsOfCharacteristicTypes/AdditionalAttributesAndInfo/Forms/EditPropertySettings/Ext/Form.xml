@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Additional attribute dependency settings</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormWriteAndClose" id="41">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.WriteAndClose</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="60"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="PropertyTypes" id="40">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Property types</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="PropertyTypesExtendedTooltip" id="61"/>
+			<ChildItems>
+				<Page name="AdditionalAttribute" id="17">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional attribute</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AdditionalAttributeExtendedTooltip" id="62"/>
+					<ChildItems>
+						<UsualGroup name="AttributeWarning" id="52">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Attribute Warning</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AttributeWarningExtendedTooltip" id="63"/>
+							<ChildItems>
+								<PictureDecoration name="AttributeWarningPicture" id="48">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Attribute Warning picture</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="AttributeWarningPictureContextMenu" id="49"/>
+									<ExtendedTooltip name="AttributeWarningPictureExtendedTooltip" id="64"/>
+								</PictureDecoration>
+								<LabelDecoration name="AttributeWarningComment" id="50">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>80</MaxWidth>
+									<TextColor>style:NoteText</TextColor>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Please note that changing attribute dependency cannot be undone and might take some time depending on the number of documents that use the attribute.
+Alternatively, you can add a new independent attribute with exclusive list of values. Then, manually replace old values in the documents where the attribute is used with the new attribute values.</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalAlign>Top</VerticalAlign>
+									<ContextMenu name="AttributeWarningCommentContextMenu" id="51"/>
+									<ExtendedTooltip name="AttributeWarningCommentExtendedTooltip" id="65"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<RadioButtonField name="IndependentAttributeValues" id="8">
+							<DataPath>IndependentPropertyWithIndependentValuesList</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Exclusive property with exclusive values</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>Auto</RadioButtonType>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Attribute with exclusive list of values</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:decimal">1</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="IndependentAttributeValuesContextMenu" id="9"/>
+							<ExtendedTooltip name="IndependentAttributeValuesExtendedTooltip" id="66"/>
+							<Events>
+								<Event name="OnChange">KindOnChange</Event>
+							</Events>
+						</RadioButtonField>
+						<LabelDecoration name="IndependentAttributeValuesComment" id="14">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>80</MaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The attribute belongs to one set: %1. Its value list is exclusive.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="IndependentAttributeValuesCommentContextMenu" id="15"/>
+							<ExtendedTooltip name="IndependentAttributeValuesCommentExtendedTooltip" id="67"/>
+						</LabelDecoration>
+						<Pages name="AttributeKinds" id="30">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Attribute type</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="AttributeKindsExtendedTooltip" id="68"/>
+							<ChildItems>
+								<Page name="SharedAttributesValuesKind" id="32">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Attribute with shared values type</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SharedAttributesValuesKindExtendedTooltip" id="69"/>
+									<ChildItems>
+										<RadioButtonField name="SharedAttributesValues" id="6">
+											<DataPath>IndependentPropertyWithSharedValuesList</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Exclusive property with shared values</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<RadioButtonType>Auto</RadioButtonType>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Attribute with shared values</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:decimal">1</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="SharedAttributesValuesContextMenu" id="7"/>
+											<ExtendedTooltip name="SharedAttributesValuesExtendedTooltip" id="70"/>
+											<Events>
+												<Event name="OnChange">KindOnChange</Event>
+											</Events>
+										</RadioButtonField>
+										<LabelDecoration name="SharedAttributesValuesComment" id="12">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<MaxWidth>80</MaxWidth>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The attribute shares a list of values with other attributes based on the same master attribute. This option is recommended for bulk editing of the list of values. For example "Dress color" and "Shoes color" attributes might share a list of values.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="SharedAttributesValuesCommentContextMenu" id="13"/>
+											<ExtendedTooltip name="SharedAttributesValuesCommentExtendedTooltip" id="71"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="SharedAttributeKind" id="31">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Shared attribute type</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SharedAttributeKindExtendedTooltip" id="72"/>
+									<ChildItems>
+										<RadioButtonField name="CommonAttribute" id="4">
+											<DataPath>CommonProperty</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Shared property</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<RadioButtonType>Auto</RadioButtonType>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Shared attribute</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:decimal">1</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="CommonAttributeContextMenu" id="5"/>
+											<ExtendedTooltip name="CommonAttributeExtendedTooltip" id="73"/>
+											<Events>
+												<Event name="OnChange">KindOnChange</Event>
+											</Events>
+										</RadioButtonField>
+										<LabelDecoration name="SharedAttributeComment" id="10">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<MaxWidth>80</MaxWidth>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The attribute belongs to a number of sets.
+This option is recommended if you need to share both attribute and its list of values.
+In lists and reports, such attributes are merged in a single attribute and displayed in a single column or field.
+For example, with attribute "Color" you can filter all yellow shoes and dresses.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="SharedAttributeCommentContextMenu" id="11"/>
+											<ExtendedTooltip name="SharedAttributeCommentExtendedTooltip" id="74"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+					</ChildItems>
+				</Page>
+				<Page name="AdditionalInfoItem" id="16">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional information record</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AdditionalInfoItemExtendedTooltip" id="75"/>
+					<ChildItems>
+						<UsualGroup name="InfoItemWarning" id="54">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Information record Warning</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="InfoItemWarningExtendedTooltip" id="76"/>
+							<ChildItems>
+								<PictureDecoration name="InfoItemWarningPicture" id="56">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Information record Warning picture</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="InfoItemWarningPictureContextMenu" id="57"/>
+									<ExtendedTooltip name="InfoItemWarningPictureExtendedTooltip" id="77"/>
+								</PictureDecoration>
+								<LabelDecoration name="InfoItemWarningComment" id="58">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>80</MaxWidth>
+									<TextColor>style:NoteText</TextColor>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Please note that changing information record dependency cannot be undone and might take some time depending on the number of documents that use the record.
+Alternatively, you can add a new independent information record with exclusive list of values. Then, manually replace old values in the documents where the information record is used with the new record values.</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalAlign>Top</VerticalAlign>
+									<ContextMenu name="InfoItemWarningCommentContextMenu" id="59"/>
+									<ExtendedTooltip name="InfoItemWarningCommentExtendedTooltip" id="78"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<RadioButtonField name="IndependentInfoItemValues" id="26">
+							<DataPath>IndependentPropertyWithIndependentValuesList</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Exclusive property with exclusive values</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<RadioButtonType>Auto</RadioButtonType>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Information record with exclusive list of values</v8:content>
+											</v8:item>
+										</Presentation>
+										<Value xsi:type="xs:decimal">1</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="IndependentInfoItemValuesContextMenu" id="27"/>
+							<ExtendedTooltip name="IndependentInfoItemValuesExtendedTooltip" id="79"/>
+							<Events>
+								<Event name="OnChange">KindOnChange</Event>
+							</Events>
+						</RadioButtonField>
+						<LabelDecoration name="IndependentInfoItemValuesComment" id="28">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>80</MaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The information record belongs to one set: %1. Its value list is exclusive.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="IndependentInfoItemValuesCommentContextMenu" id="29"/>
+							<ExtendedTooltip name="IndependentInfoItemValuesCommentExtendedTooltip" id="80"/>
+						</LabelDecoration>
+						<Pages name="InfoKinds" id="33">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Information record type</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="InfoKindsExtendedTooltip" id="81"/>
+							<ChildItems>
+								<Page name="SharedInfoValuesKind" id="39">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Information record with shared values type</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SharedInfoValuesKindExtendedTooltip" id="82"/>
+									<ChildItems>
+										<RadioButtonField name="SharedInfoValues" id="22">
+											<DataPath>IndependentPropertyWithSharedValuesList</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Exclusive property with shared values</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<RadioButtonType>Auto</RadioButtonType>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Information record with shared values</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:decimal">1</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="SharedInfoValuesContextMenu" id="23"/>
+											<ExtendedTooltip name="SharedInfoValuesExtendedTooltip" id="83"/>
+											<Events>
+												<Event name="OnChange">KindOnChange</Event>
+											</Events>
+										</RadioButtonField>
+										<LabelDecoration name="SharedInfoValuesComment" id="24">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<MaxWidth>80</MaxWidth>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The information record shares a list of values with other records based on the same master record. This option is recommended for bulk editing of the list of values. For example "Dress color" and "Shoes color" information records might share a list of values.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="SharedInfoValuesCommentContextMenu" id="25"/>
+											<ExtendedTooltip name="SharedInfoValuesCommentExtendedTooltip" id="84"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+								<Page name="SharedInfoKind" id="34">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Shared information record type</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SharedInfoKindExtendedTooltip" id="85"/>
+									<ChildItems>
+										<RadioButtonField name="SharedInfo" id="18">
+											<DataPath>CommonProperty</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Shared property</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<RadioButtonType>Auto</RadioButtonType>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Shared information record</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:decimal">1</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="SharedInfoContextMenu" id="19"/>
+											<ExtendedTooltip name="SharedInfoExtendedTooltip" id="86"/>
+											<Events>
+												<Event name="OnChange">KindOnChange</Event>
+											</Events>
+										</RadioButtonField>
+										<LabelDecoration name="SharedInfoComment" id="20">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<MaxWidth>80</MaxWidth>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The information record belongs to a number of sets.
+This option is recommended if you need to share both record and its list of values.
+In lists and reports, such information records are merged in a single record and displayed in a single column or field.
+For example, with information record "Color" you can filter all yellow shoes and dresses.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="SharedInfoCommentContextMenu" id="21"/>
+											<ExtendedTooltip name="SharedInfoCommentExtendedTooltip" id="87"/>
+										</LabelDecoration>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="CommonProperty" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Shared property</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IndependentPropertyWithSharedValuesList" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exclusive property with shared values</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="IndependentPropertyWithIndependentValuesList" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exclusive property with exclusive values</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="Property" id="4">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsAdditionalInfo" id="5">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentPropertiesSet" id="6">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="WriteAndClose" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WriteAndClose</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="IsAdditionalInfo">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="AdditionalValuesOwner">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="PropertiesSet">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="Property">
+			<Type>
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.AdditionalAttributesAndInfo</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="CurrentPropertiesSet">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AdditionalAttributesAndInfoSets</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

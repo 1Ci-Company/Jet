@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<Group>HorizontalIfPossible</Group>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormAddToGroup" id="108">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>Form.Command.AddToGroup</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Add to group</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormAddToGroupExtendedTooltip" id="109"/>
+			</Button>
+			<Button name="FormRemoveFromGroup" id="107">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>Form.Command.RemoveFromGroup</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Remove from group</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormRemoveFromGroupExtendedTooltip" id="110"/>
+			</Button>
+			<Button name="FormChangeGroup" id="50">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>Form.Command.ChangeGroup</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Change group</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormChangeGroupExtendedTooltip" id="111"/>
+			</Button>
+			<Button name="FormReportUserRights" id="158">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ReportUserRights</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>User rights report</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormReportUserRightsExtendedTooltip" id="159"/>
+			</Button>
+			<Button name="FormRefresh" id="57">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Refresh</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Refresh</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormRefreshExtendedTooltip" id="115"/>
+			</Button>
+			<Button name="FormAccessRightsReport" id="76">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.AccessRightsReport</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Access rights report (the old one)</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormAccessRightsReportExtendedTooltip" id="112"/>
+			</Button>
+			<ButtonGroup name="FormPanel" id="28">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Form panel</v8:content>
+					</v8:item>
+				</Title>
+				<CommandSource>Form</CommandSource>
+				<ExtendedTooltip name="FormPanelExtendedTooltip" id="113"/>
+			</ButtonGroup>
+			<Button name="FormHelp" id="29">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="114"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+	</Events>
+	<ChildItems>
+		<LabelDecoration name="InsufficientViewRights" id="61">
+			<Visible>false</Visible>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insufficient access rights.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="InsufficientViewRightsContextMenu" id="62"/>
+			<ExtendedTooltip name="InsufficientViewRightsExtendedTooltip" id="116"/>
+		</LabelDecoration>
+		<LabelDecoration name="UtilityUserRights" id="166">
+			<Visible>false</Visible>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Rights (roles) of utility users cannot be changed interactively.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="UtilityUserRightsContextMenu" id="167"/>
+			<ExtendedTooltip name="UtilityUserRightsExtendedTooltip" id="168"/>
+		</LabelDecoration>
+		<Pages name="AccessGroupsAndRoles" id="83">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access groups and roles</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="AccessGroupsAndRolesExtendedTooltip" id="117"/>
+			<ChildItems>
+				<Page name="UserAccessGroups" id="63">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access groups</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="UserAccessGroupsExtendedTooltip" id="118"/>
+					<ChildItems>
+						<Table name="AccessGroups" id="1">
+							<Representation>List</Representation>
+							<ReadOnly>true</ReadOnly>
+							<DefaultItem>true</DefaultItem>
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<InitialTreeView>ExpandTopLevel</InitialTreeView>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>AccessGroups</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Access groups</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>Delete</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+								<ExcludedCommand>SortListAsc</ExcludedCommand>
+								<ExcludedCommand>SortListDesc</ExcludedCommand>
+							</CommandSet>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="AccessGroupsContextMenu" id="2">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="AccessGroupsContextMenuChangeGroup" id="51">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ChangeGroup</CommandName>
+										<Picture>
+											<xr:Ref>StdPicture.Change</xr:Ref>
+											<xr:LoadTransparent>true</xr:LoadTransparent>
+										</Picture>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Change group</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AccessGroupsContextMenuChangeGroupExtendedTooltip" id="119"/>
+									</Button>
+									<ButtonGroup name="AccessGroupsContextAutoMenu" id="52">
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Access groups auto context menu</v8:content>
+											</v8:item>
+										</Title>
+										<CommandSource>Item.AccessGroups</CommandSource>
+										<ExtendedTooltip name="AccessGroupsContextAutoMenuExtendedTooltip" id="120"/>
+									</ButtonGroup>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="AccessGroupsCommandBar" id="3">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="AccessGroupsAddToGroup" id="101">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.AddToGroup</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Add to group</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AccessGroupsAddToGroupExtendedTooltip" id="121"/>
+									</Button>
+									<Button name="AccessGroupsRemoveFromGroup" id="103">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.RemoveFromGroup</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Remove from group</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AccessGroupsRemoveFromGroupExtendedTooltip" id="122"/>
+									</Button>
+									<Button name="AccessGroupsChangeGroup" id="102">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ChangeGroup</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Change group</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="AccessGroupsChangeGroupExtendedTooltip" id="123"/>
+									</Button>
+									<SearchStringAddition name="AccessGroupsStringSearch" id="160">
+										<AdditionSource>
+											<Item>AccessGroups</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Search</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="AccessGroupsStringSearchContextMenu" id="161"/>
+										<ExtendedTooltip name="AccessGroupsStringSearchExtendedTooltip" id="162"/>
+									</SearchStringAddition>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="AccessGroupsExtendedTooltip" id="124"/>
+							<SearchStringAddition name="AccessGroupsSearchString" id="138">
+								<AdditionSource>
+									<Item>AccessGroups</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AccessGroupsSearchStringContextMenu" id="139"/>
+								<ExtendedTooltip name="AccessGroupsSearchStringExtendedTooltip" id="140"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="AccessGroupsViewStatus" id="141">
+								<AdditionSource>
+									<Item>AccessGroups</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AccessGroupsViewStatusContextMenu" id="142"/>
+								<ExtendedTooltip name="AccessGroupsViewStatusExtendedTooltip" id="143"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="AccessGroupsSearchControl" id="144">
+								<AdditionSource>
+									<Item>AccessGroups</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="AccessGroupsSearchControlContextMenu" id="145"/>
+								<ExtendedTooltip name="AccessGroupsSearchControlExtendedTooltip" id="146"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">AccessGroupsSelection</Event>
+								<Event name="OnActivateRow">AccessGroupsOnActivateRow</Event>
+							</Events>
+							<ChildItems>
+								<InputField name="AccessGroupsDescription" id="30">
+									<DataPath>AccessGroups.Description</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Description</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AccessGroupsDescriptionContextMenu" id="31"/>
+									<ExtendedTooltip name="AccessGroupsDescriptionExtendedTooltip" id="125"/>
+								</InputField>
+								<InputField name="AccessGroupsProfilePresentation" id="77">
+									<DataPath>AccessGroups.ProfileDescription</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Profile</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AccessGroupsProfilePresentationContextMenu" id="78"/>
+									<ExtendedTooltip name="AccessGroupsProfilePresentationExtendedTooltip" id="126"/>
+								</InputField>
+								<InputField name="AccessGroupsEmployeeResponsible" id="79">
+									<DataPath>AccessGroups.EmployeeResponsible</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Person responsible</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AccessGroupsEmployeeResponsibleContextMenu" id="80"/>
+									<ExtendedTooltip name="AccessGroupsEmployeeResponsibleExtendedTooltip" id="127"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<InputField name="AccessGroupsCommentPresentation" id="81">
+							<DataPath>Items.AccessGroups.CurrentData.Comment</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>Left</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>The description of the selected access group.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>2</Height>
+							<MultiLine>true</MultiLine>
+							<ContextMenu name="AccessGroupsCommentPresentationContextMenu" id="82"/>
+							<ExtendedTooltip name="AccessGroupsCommentPresentationExtendedTooltip" id="128"/>
+						</InputField>
+						<UsualGroup name="HasHiddenAccessGroupsWarning" id="66">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Warning hidden access groups available</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="HasHiddenAccessGroupsWarningExtendedTooltip" id="129"/>
+							<ChildItems>
+								<PictureDecoration name="HasProhibitedGroupsPicture" id="67">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Denied groups available picture</v8:content>
+										</v8:item>
+									</Title>
+									<Picture>
+										<xr:Ref>StdPicture.DialogInformation</xr:Ref>
+										<xr:LoadTransparent>true</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="HasProhibitedGroupsPictureContextMenu" id="68"/>
+									<ExtendedTooltip name="HasProhibitedGroupsPictureExtendedTooltip" id="130"/>
+								</PictureDecoration>
+								<LabelDecoration name="HasProhibitedGroupsText" id="64">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Some of the access groups are hidden
+due to insufficient access rights.
+</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalAlign>Center</VerticalAlign>
+									<ContextMenu name="HasProhibitedGroupsTextContextMenu" id="65"/>
+									<ExtendedTooltip name="HasProhibitedGroupsTextExtendedTooltip" id="131"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="RolesRepresentation" id="84">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allowed actions (roles)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="RolesRepresentationExtendedTooltip" id="132"/>
+					<ChildItems>
+						<Table name="Roles" id="85">
+							<Representation>Tree</Representation>
+							<SkipOnInput>false</SkipOnInput>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<SelectionMode>SingleRow</SelectionMode>
+							<Header>false</Header>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<InitialTreeView>ExpandAllLevels</InitialTreeView>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Roles</DataPath>
+							<RowPictureDataPath>Roles.PictureNumber</RowPictureDataPath>
+							<RowsPicture>
+								<xr:Ref>CommonPicture.ItemIcons</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</RowsPicture>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Roles</v8:content>
+								</v8:item>
+							</Title>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+								<ExcludedCommand>Delete</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>HierarchicalList</ExcludedCommand>
+								<ExcludedCommand>List</ExcludedCommand>
+								<ExcludedCommand>MoveDown</ExcludedCommand>
+								<ExcludedCommand>MoveUp</ExcludedCommand>
+								<ExcludedCommand>OutputList</ExcludedCommand>
+								<ExcludedCommand>SortListAsc</ExcludedCommand>
+								<ExcludedCommand>SortListDesc</ExcludedCommand>
+								<ExcludedCommand>Tree</ExcludedCommand>
+							</CommandSet>
+							<ContextMenu name="RolesContextMenu" id="86">
+								<Autofill>false</Autofill>
+							</ContextMenu>
+							<AutoCommandBar name="RolesCommandBar" id="87">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="RolesShowRolesSubsystems" id="96">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.RolesBySubsystemsGroup</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Group by subsystem</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="RolesShowRolesSubsystemsExtendedTooltip" id="133"/>
+									</Button>
+									<SearchStringAddition name="RolesStringSearch" id="163">
+										<AdditionSource>
+											<Item>Roles</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Search</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="RolesStringSearchContextMenu" id="164"/>
+										<ExtendedTooltip name="RolesStringSearchExtendedTooltip" id="165"/>
+									</SearchStringAddition>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="RolesExtendedTooltip" id="134"/>
+							<SearchStringAddition name="RolesSearchString" id="147">
+								<AdditionSource>
+									<Item>Roles</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="RolesSearchStringContextMenu" id="148"/>
+								<ExtendedTooltip name="RolesSearchStringExtendedTooltip" id="149"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="RolesViewStatus" id="150">
+								<AdditionSource>
+									<Item>Roles</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="RolesViewStatusContextMenu" id="151"/>
+								<ExtendedTooltip name="RolesViewStatusExtendedTooltip" id="152"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="RolesSearchControl" id="153">
+								<AdditionSource>
+									<Item>Roles</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="RolesSearchControlContextMenu" id="154"/>
+								<ExtendedTooltip name="RolesSearchControlExtendedTooltip" id="155"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<ColumnGroup name="ColumnsRoles" id="88">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Role columns</v8:content>
+										</v8:item>
+									</Title>
+									<Group>InCell</Group>
+									<ExtendedTooltip name="ColumnsRolesExtendedTooltip" id="135"/>
+									<ChildItems>
+										<CheckBoxField name="RolesCheck" id="105">
+											<DataPath>Roles.Check</DataPath>
+											<Visible>false</Visible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Checkmark</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>Directly</EditMode>
+											<ShowInHeader>false</ShowInHeader>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="RolesCheckContextMenu" id="106"/>
+											<ExtendedTooltip name="RolesCheckExtendedTooltip" id="136"/>
+										</CheckBoxField>
+										<InputField name="RolesSynonym" id="99">
+											<DataPath>Roles.Synonym</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Allowed action (role)</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="RolesSynonymContextMenu" id="100"/>
+											<ExtendedTooltip name="RolesSynonymExtendedTooltip" id="137"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="CurrentAccessGroup" id="4">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AccessGroups</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AccessGroups" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access groups</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Description" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AccessGroup" id="4">
+					<Type>
+						<v8:Type>cfg:CatalogRef.AccessGroups</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ProfileDescription" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Profile</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Comment" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Comment</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="EmployeeResponsible" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Person responsible</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Users</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="IBUserFull" id="9">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IBUserEmployeeResponsible" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="OwnAccess" id="17">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowRoleSubsystems" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowRoleSubsystems</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Roles" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Roles</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Check" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check box</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Synonym" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allowed action (role)</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="4">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>1</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Name" id="5">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="IsRole" id="3">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ReadRoles" id="5">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Role" id="1">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ServiceUserPassword" id="3">
+			<Type/>
+		</Attribute>
+		<Attribute name="AdministratorsAccessGroup" id="7">
+			<Type>
+				<v8:Type>cfg:CatalogRef.AccessGroups</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsInternalUser" id="8">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="AddToGroup" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to group</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add to access group.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AddToGroup</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RemoveFromGroup" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove from group</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove from access group.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>RemoveFromGroup</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeGroup" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit group</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit access group.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F2</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ChangeGroup</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Refresh" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</Title>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Refresh</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AccessRightsReport" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access rights report (the old one)</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.Report</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>AccessRightsReport</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RolesBySubsystemsGroup" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by subsystem</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group roles by subsystem.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Subsystem</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>RolesBySubsystemsGroup</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ReportUserRights" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User rights report</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.Report</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ReportUserRights</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="User">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsersGroups</v8:Type>
+				<v8:Type>cfg:CatalogRef.UserGroups</v8:Type>
+				<v8:Type>cfg:CatalogRef.Users</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

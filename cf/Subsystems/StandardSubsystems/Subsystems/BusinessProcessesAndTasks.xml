@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Subsystem uuid="1098786f-dd24-4cce-b212-be0cb5f01735">
+		<Properties>
+			<Name>BusinessProcessesAndTasks</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business processes and tasks</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeInCommandInterface>false</IncludeInCommandInterface>
+			<UseOneCommand>false</UseOneCommand>
+			<Explanation/>
+			<Picture/>
+			<Content>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksClient</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksOverridable</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksServer</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.WriteToBusinessProcessesList</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">ScheduledJob.TaskMonitoring</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">ScheduledJob.NewPerformerTaskNotifications</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.NewTasksNotificationDate</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.UseBusinessProcessesAndTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.PerformerRoles</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.TaskImportanceOptions</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.ExpiringTasksOnDate</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.OverdueTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.Tasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.HungTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.BusinessProcessFlowchart</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.TaskPerformers</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.BusinessProcessesData</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">ChartOfCharacteristicTypes.TaskAddressingObjects</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.TasksBySubject</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.RolesAndTaskPerformers</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">BusinessProcess.Job</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Task.PerformerTask</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Subsystem.StandardSubsystems.Subsystem.BusinessProcessesAndTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksEvents</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.ChangeJobsBackdated</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">StyleItem.ExecutedTask</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.TasksByBusinessProcess</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.BusinessProcessFlowchart</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.UseDateAndTimeInTaskDeadlines</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.AddEditPerformersRoles</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.UseTaskStartDate</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">StyleItem.CompletedBusinessProcess</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">StyleItem.NotStartedBusinessProcess</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.BusinessProcesses</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Report.Jobs</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.MarkTasksForDeletion</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.TaskPerformersGroups</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.AddEditJobs</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.ReadJobs</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.EditCompleteTask</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">StyleItem.RoleWithoutPerformers</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.ReadTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.BusinessProcessStates</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.StopSignBW</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.UseSubordinateBusinessProcesses</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.UpdateBusinessProcessState</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.TaskAndBusinessProcessCollection</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">StyleItem.NotAcceptedForExecutionTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksServerCall</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.SelectPerformerRole</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.SelectBusinessProcessPerformer</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksClientOverridable</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">FunctionalOption.ChangeJobsBackdated</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">FunctionalOption.UseBusinessProcessesAndTasks</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">FunctionalOption.UseDateAndTimeInTaskDeadlines</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">FunctionalOption.UseTaskStartDate</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">FunctionalOption.UseSubordinateBusinessProcesses</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.BusinessProcessesAndTasksClientServer</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.GetBusinessProcessPresentationFields</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.GetBusinessProcessPresentation</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DefinedType.BusinessProcess</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DefinedType.AddressingObject</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DefinedType.TaskSubject</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DefinedType.DeferredBusinessProcess</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.ProcessesToStart</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.ProcessPostponed</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">ScheduledJob.StartDeferredProcesses</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.ProcessesStatesForStart</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.ProcessesStates</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DefinedType.BusinessProcessObject</xr:Item>
+			</Content>
+		</Properties>
+		<ChildObjects/>
+	</Subsystem>
+</MetaDataObject>

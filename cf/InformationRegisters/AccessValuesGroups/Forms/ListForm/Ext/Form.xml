@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="CustomSettingsFolder" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="44"/>
+		</UsualGroup>
+		<CommandBar name="CommandBar" id="45">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="46"/>
+			<ChildItems>
+				<Button name="FormUpdateRegisterData" id="25">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.UpdateRegisterData</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Update register data</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormUpdateRegisterDataExtendedTooltip" id="28"/>
+				</Button>
+				<Button name="FormEnableEditing" id="24">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.EnableEditing</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Allow editing</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="29"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="List" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Copy</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>CustomSettingsFolder</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="2"/>
+			<AutoCommandBar name="ListCommandBar" id="3">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ListExtendedTooltip" id="30"/>
+			<SearchStringAddition name="ListSearchString" id="47">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="48"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="49"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="50">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="51"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="52"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="53">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="54"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="55"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ListDataGroup" id="26">
+					<DataPath>List.DataGroup</DataPath>
+					<HorizontalAlign>Left</HorizontalAlign>
+					<Width>30</Width>
+					<ContextMenu name="ListDataGroupContextMenu" id="27"/>
+					<ExtendedTooltip name="ListDataGroupExtendedTooltip" id="42"/>
+				</LabelField>
+				<LabelField name="AccessValueType" id="56">
+					<DataPath>List.AccessValueType</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access value type</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="AccessValueTypeContextMenu" id="57"/>
+					<ExtendedTooltip name="AccessValueTypeExtendedTooltip" id="58"/>
+				</LabelField>
+				<ColumnGroup name="ListGroupAccessValueWithPicture" id="22">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group access value with picture</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="ListGroupAccessValueWithPictureExtendedTooltip" id="32"/>
+					<ChildItems>
+						<PictureField name="ListPictureNumberAccessValues" id="18">
+							<DataPath>List.PictureNumberAccessValues</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<ValuesPicture>
+								<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</ValuesPicture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ListPictureNumberAccessValuesContextMenu" id="19"/>
+							<ExtendedTooltip name="ListPictureNumberAccessValuesExtendedTooltip" id="33"/>
+						</PictureField>
+						<LabelField name="ListAccessValue" id="6">
+							<DataPath>List.AccessValue</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ListAccessValueContextMenu" id="7"/>
+							<ExtendedTooltip name="ListAccessValueExtendedTooltip" id="34"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+				<ColumnGroup name="ListAccessGroupWithPicture" id="23">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Access group with picture</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="ListAccessGroupWithPictureExtendedTooltip" id="36"/>
+					<ChildItems>
+						<PictureField name="ListPictureNumberAccessValuesGroups" id="20">
+							<DataPath>List.PictureNumberAccessValuesGroups</DataPath>
+							<TitleLocation>None</TitleLocation>
+							<ValuesPicture>
+								<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</ValuesPicture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ListPictureNumberAccessValuesGroupsContextMenu" id="21"/>
+							<ExtendedTooltip name="ListPictureNumberAccessValuesGroupsExtendedTooltip" id="37"/>
+						</PictureField>
+						<LabelField name="ListAccessValuesGroup" id="10">
+							<DataPath>List.AccessValuesGroup</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ListAccessValuesGroupContextMenu" id="11"/>
+							<ExtendedTooltip name="ListAccessValuesGroupExtendedTooltip" id="38"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.AccessValue</Field>
+				<Field>List.DataGroup</Field>
+				<Field>List.DefaultPicture</Field>
+				<Field>List.PictureNumberAccessValues</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>SELECT
+	CASE
+		WHEN VALUETYPE(AccessValuesGroups.AccessValue) = TYPE(Catalog.Users)
+			THEN ISNULL(InfoRecordAccessVal.NumberOfStatePicture, 0) - 1
+		WHEN VALUETYPE(AccessValuesGroups.AccessValue) = TYPE(Catalog.UserGroups)
+			THEN CASE
+					WHEN CAST(AccessValuesGroups.AccessValue AS Catalog.UserGroups).DeletionMark
+						THEN 2
+					ELSE 3
+				END
+		WHEN VALUETYPE(AccessValuesGroups.AccessValue) = TYPE(Catalog.ExternalUsers)
+			THEN ISNULL(InfoRecordAccessVal.NumberOfStatePicture, 0) - 1
+		WHEN VALUETYPE(AccessValuesGroups.AccessValue) = TYPE(Catalog.ExternalUsersGroups)
+			THEN CASE
+					WHEN CAST(AccessValuesGroups.AccessValue AS Catalog.ExternalUsersGroups).DeletionMark
+						THEN 8
+					ELSE 9
+				END
+		ELSE -1
+	END AS PictureNumberAccessValues,
+	VALUETYPE(AccessValuesGroups.AccessValue) AS AccessValueType,
+	AccessValuesGroups.AccessValue AS AccessValue,
+	CASE
+		WHEN VALUETYPE(AccessValuesGroups.AccessValuesGroup) = TYPE(Catalog.Users)
+			THEN ISNULL(GroupAccessValuesInfoRecrods.NumberOfStatePicture, 0) - 1
+		WHEN VALUETYPE(AccessValuesGroups.AccessValuesGroup) = TYPE(Catalog.UserGroups)
+			THEN CASE
+					WHEN CAST(AccessValuesGroups.AccessValuesGroup AS Catalog.UserGroups).DeletionMark
+						THEN 2
+					ELSE 3
+				END
+		WHEN VALUETYPE(AccessValuesGroups.AccessValuesGroup) = TYPE(Catalog.ExternalUsers)
+			THEN ISNULL(GroupAccessValuesInfoRecrods.NumberOfStatePicture, 0) - 1
+		WHEN VALUETYPE(AccessValuesGroups.AccessValuesGroup) = TYPE(Catalog.ExternalUsersGroups)
+			THEN CASE
+					WHEN CAST(AccessValuesGroups.AccessValuesGroup AS Catalog.ExternalUsersGroups).DeletionMark
+						THEN 8
+					ELSE 9
+				END
+		ELSE -1
+	END AS PictureNumberAccessValuesGroups,
+	AccessValuesGroups.AccessValuesGroup AS AccessValuesGroup,
+	AccessValuesGroups.DataGroup AS DataGroup
+FROM
+	InformationRegister.AccessValuesGroups AS AccessValuesGroups
+		LEFT JOIN InformationRegister.UsersInfo AS InfoRecordAccessVal
+		ON (InfoRecordAccessVal.User = AccessValuesGroups.AccessValue)
+		LEFT JOIN InformationRegister.UsersInfo AS GroupAccessValuesInfoRecrods
+		ON (GroupAccessValuesInfoRecrods.User = AccessValuesGroups.AccessValuesGroup)</QueryText>
+				<MainTable>InformationRegister.AccessValuesGroups</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>DataGroup</dcsset:field>
+							<dcsset:orderType>Desc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="UpdateRegisterData" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update register data</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update register data</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>UpdateRegisterData</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

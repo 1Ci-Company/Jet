@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoTitle>false</AutoTitle>
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="HeaderGroup" id="85">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ThroughAlign>DontUse</ThroughAlign>
+			<ExtendedTooltip name="HeaderGroupExtendedTooltip" id="86"/>
+			<ChildItems>
+				<InputField name="HandlerName" id="4">
+					<DataPath>Record.HandlerName</DataPath>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<ContextMenu name="HandlerNameContextMenu" id="5"/>
+					<ExtendedTooltip name="HandlerNameExtendedTooltip" id="6"/>
+				</InputField>
+				<InputField name="UpdateDataFillingProcedure" id="43">
+					<DataPath>Record.UpdateDataFillingProcedure</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filling procedure</v8:content>
+						</v8:item>
+					</Title>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<ContextMenu name="UpdateDataFillingProcedureContextMenu" id="44"/>
+					<ExtendedTooltip name="UpdateDataFillingProcedureExtendedTooltip" id="45"/>
+				</InputField>
+				<UsualGroup name="GroupBasicProperties" id="73">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main properties</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupBasicPropertiesExtendedTooltip" id="74"/>
+					<ChildItems>
+						<UsualGroup name="GroupStatusVersion" id="75">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Status version</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupStatusVersionExtendedTooltip" id="76"/>
+							<ChildItems>
+								<InputField name="Status" id="7">
+									<DataPath>Record.Status</DataPath>
+									<ContextMenu name="StatusContextMenu" id="8"/>
+									<ExtendedTooltip name="StatusExtendedTooltip" id="9"/>
+								</InputField>
+								<InputField name="Version" id="10">
+									<DataPath>Record.Version</DataPath>
+									<ContextMenu name="VersionContextMenu" id="11"/>
+									<ExtendedTooltip name="VersionExtendedTooltip" id="12"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupModeLibrary" id="77">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Mode library</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupModeLibraryExtendedTooltip" id="78"/>
+							<ChildItems>
+								<InputField name="ExecutionMode" id="19">
+									<DataPath>Record.ExecutionMode</DataPath>
+									<ContextMenu name="ExecutionModeContextMenu" id="20"/>
+									<ExtendedTooltip name="ExecutionModeExtendedTooltip" id="21"/>
+								</InputField>
+								<InputField name="LibraryName" id="13">
+									<DataPath>Record.LibraryName</DataPath>
+									<ContextMenu name="LibraryNameContextMenu" id="14"/>
+									<ExtendedTooltip name="LibraryNameExtendedTooltip" id="15"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupQueueTriesMultithreading" id="79">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Attempt priority multithreaded</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupQueueTriesMultithreadingExtendedTooltip" id="80"/>
+					<ChildItems>
+						<InputField name="DeferredProcessingQueue" id="46">
+							<DataPath>Record.DeferredProcessingQueue</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Queue</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="DeferredProcessingQueueContextMenu" id="47"/>
+							<ExtendedTooltip name="DeferredProcessingQueueExtendedTooltip" id="48"/>
+						</InputField>
+						<InputField name="AttemptCount" id="28">
+							<DataPath>Record.AttemptCount</DataPath>
+							<ContextMenu name="AttemptCountContextMenu" id="29"/>
+							<ExtendedTooltip name="AttemptCountExtendedTooltip" id="30"/>
+						</InputField>
+						<CheckBoxField name="Multithreaded" id="55">
+							<DataPath>Record.Multithreaded</DataPath>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="MultithreadedContextMenu" id="56"/>
+							<ExtendedTooltip name="MultithreadedExtendedTooltip" id="57"/>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<LabelField name="DataToProcess" id="97">
+					<DataPath>DataToProcess</DataPath>
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Data to process</v8:content>
+						</v8:item>
+					</Title>
+					<Hiperlink>true</Hiperlink>
+					<ContextMenu name="DataToProcessContextMenu" id="98"/>
+					<ExtendedTooltip name="DataToProcessExtendedTooltip" id="99"/>
+				</LabelField>
+				<InputField name="Order" id="100">
+					<DataPath>Record.Order</DataPath>
+					<ContextMenu name="OrderContextMenu" id="101"/>
+					<ExtendedTooltip name="OrderExtendedTooltip" id="102"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupComment" id="81">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Comment</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="GroupCommentExtendedTooltip" id="82"/>
+			<ChildItems>
+				<InputField name="Comment" id="34">
+					<DataPath>Record.Comment</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>5</Height>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="CommentContextMenu" id="35"/>
+					<ExtendedTooltip name="CommentExtendedTooltip" id="36"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupErrorInfo" id="83">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Error details</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="GroupErrorInfoExtendedTooltip" id="84"/>
+			<ChildItems>
+				<InputField name="ErrorInfo" id="31">
+					<DataPath>Record.ErrorInfo</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>5</Height>
+					<MultiLine>true</MultiLine>
+					<ContextMenu name="ErrorInfoContextMenu" id="32"/>
+					<ExtendedTooltip name="ErrorInfoExtendedTooltip" id="33"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupAdditionalProperties" id="87">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional properties</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="GroupAdditionalPropertiesExtendedTooltip" id="88"/>
+			<ChildItems>
+				<UsualGroup name="GroupPropertiesBoolean" id="95">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties boolean</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ThroughAlign>DontUse</ThroughAlign>
+					<ExtendedTooltip name="GroupPropertiesBooleanExtendedTooltip" id="96"/>
+					<ChildItems>
+						<CheckBoxField name="BatchProcessingCompleted" id="58">
+							<DataPath>Record.BatchProcessingCompleted</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="BatchProcessingCompletedContextMenu" id="59"/>
+							<ExtendedTooltip name="BatchProcessingCompletedExtendedTooltip" id="60"/>
+						</CheckBoxField>
+						<CheckBoxField name="ExecuteInMasterNodeOnly" id="49">
+							<DataPath>Record.ExecuteInMasterNodeOnly</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ExecuteInMasterNodeOnlyContextMenu" id="50"/>
+							<ExtendedTooltip name="ExecuteInMasterNodeOnlyExtendedTooltip" id="51"/>
+						</CheckBoxField>
+						<CheckBoxField name="RunAlsoInSubordinateDIBNodeWithFilters" id="52">
+							<DataPath>Record.RunAlsoInSubordinateDIBNodeWithFilters</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Start in DIB with filters</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="RunAlsoInSubordinateDIBNodeWithFiltersContextMenu" id="53"/>
+							<ExtendedTooltip name="RunAlsoInSubordinateDIBNodeWithFiltersExtendedTooltip" id="54"/>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupPropertiesByColumns" id="89">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties by columns</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ThroughAlign>Use</ThroughAlign>
+					<ExtendedTooltip name="GroupPropertiesByColumnsExtendedTooltip" id="90"/>
+					<ChildItems>
+						<UsualGroup name="GroupLeftColumn" id="91">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Left column</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupLeftColumnExtendedTooltip" id="92"/>
+							<ChildItems>
+								<InputField name="ProcessingDuration" id="16">
+									<DataPath>Record.ProcessingDuration</DataPath>
+									<ContextMenu name="ProcessingDurationContextMenu" id="17"/>
+									<ExtendedTooltip name="ProcessingDurationExtendedTooltip" id="18"/>
+								</InputField>
+								<InputField name="UpdateGroup" id="61">
+									<DataPath>Record.UpdateGroup</DataPath>
+									<ContextMenu name="UpdateGroupContextMenu" id="62"/>
+									<ExtendedTooltip name="UpdateGroupExtendedTooltip" id="63"/>
+								</InputField>
+								<InputField name="StartIteration" id="64">
+									<DataPath>Record.StartIteration</DataPath>
+									<ContextMenu name="StartIterationContextMenu" id="65"/>
+									<ExtendedTooltip name="StartIterationExtendedTooltip" id="66"/>
+								</InputField>
+								<InputField name="VersionOrder" id="25">
+									<DataPath>Record.VersionOrder</DataPath>
+									<ContextMenu name="VersionOrderContextMenu" id="26"/>
+									<ExtendedTooltip name="VersionOrderExtendedTooltip" id="27"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupRightColumn" id="93">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Right column</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupRightColumnExtendedTooltip" id="94"/>
+							<ChildItems>
+								<InputField name="RegistrationVersion" id="22">
+									<DataPath>Record.RegistrationVersion</DataPath>
+									<ContextMenu name="RegistrationVersionContextMenu" id="23"/>
+									<ExtendedTooltip name="RegistrationVersionExtendedTooltip" id="24"/>
+								</InputField>
+								<InputField name="Priority" id="37">
+									<DataPath>Record.Priority</DataPath>
+									<ContextMenu name="PriorityContextMenu" id="38"/>
+									<ExtendedTooltip name="PriorityExtendedTooltip" id="39"/>
+								</InputField>
+								<InputField name="ObjectsToChange" id="70">
+									<DataPath>Record.ObjectsToChange</DataPath>
+									<ContextMenu name="ObjectsToChangeContextMenu" id="71"/>
+									<ExtendedTooltip name="ObjectsToChangeExtendedTooltip" id="72"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<InputField name="CheckProcedure" id="40">
+					<DataPath>Record.CheckProcedure</DataPath>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<ContextMenu name="CheckProcedureContextMenu" id="41"/>
+					<ExtendedTooltip name="CheckProcedureExtendedTooltip" id="42"/>
+				</InputField>
+				<InputField name="DeferredHandlerExecutionMode" id="67">
+					<DataPath>Record.DeferredHandlerExecutionMode</DataPath>
+					<ContextMenu name="DeferredHandlerExecutionModeContextMenu" id="68"/>
+					<ExtendedTooltip name="DeferredHandlerExecutionModeExtendedTooltip" id="69"/>
+				</InputField>
+				<InputField name="DataRegistrationDuration" id="103">
+					<DataPath>Record.DataRegistrationDuration</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Registration duration, seconds</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="DataRegistrationDurationContextMenu" id="104"/>
+					<ExtendedTooltip name="DataRegistrationDurationExtendedTooltip" id="105"/>
+				</InputField>
+				<CheckBoxField name="IsSeveritySeparationUsed" id="106">
+					<DataPath>Record.IsSeveritySeparationUsed</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="IsSeveritySeparationUsedContextMenu" id="107"/>
+					<ExtendedTooltip name="IsSeveritySeparationUsedExtendedTooltip" id="108"/>
+				</CheckBoxField>
+				<CheckBoxField name="IsUpToDateDataProcessed" id="109">
+					<DataPath>Record.IsUpToDateDataProcessed</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="IsUpToDateDataProcessedContextMenu" id="110"/>
+					<ExtendedTooltip name="IsUpToDateDataProcessedExtendedTooltip" id="111"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.UpdateHandlers</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="DataToProcess" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Data to process</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ProcessedDataStorage" id="3">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>

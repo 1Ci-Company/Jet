@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>DataSource1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>MainDataSet</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Ref</dataPath>
+			<field>Ref</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Mail message</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Subject</dataPath>
+			<field>Subject</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Subject</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SenderEmailAddress</dataPath>
+			<field>SenderEmailAddress</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sender email address</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SenderContact</dataPath>
+			<field>SenderContact</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>SubjectOf</dataPath>
+			<field>SubjectOf</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>EmailType</dataPath>
+			<field>EmailType</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Email type</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Reviewed</dataPath>
+			<field>Reviewed</field>
+		</field>
+		<dataSource>DataSource1</dataSource>
+		<query>SELECT ALLOWED
+	NestedQuery.Ref,
+	NestedQuery.Subject,
+	NestedQuery.SenderContact,
+	NestedQuery.SenderEmailAddress,
+	NestedQuery.SubjectOf,
+	NestedQuery.EmailType,
+	NestedQuery.Reviewed
+FROM
+	(SELECT DISTINCT
+		IncomingEmail.Ref AS Ref,
+		CAST(IncomingEmail.Subject AS STRING(1024)) AS Subject,
+		IncomingEmail.SenderContact AS SenderContact,
+		IncomingEmail.SenderAddress AS SenderEmailAddress,
+		InteractionsFolderSubjects.SubjectOf AS SubjectOf,
+		VALUETYPE(IncomingEmail.Ref) AS EmailType,
+		InteractionsFolderSubjects.Reviewed AS Reviewed
+	FROM
+		Document.IncomingEmail AS IncomingEmail
+			{LEFT JOIN InformationRegister.InteractionsFolderSubjects AS InteractionsFolderSubjects
+			ON (InteractionsFolderSubjects.Interaction = IncomingEmail.Ref)}
+	
+	UNION ALL
+	
+	SELECT
+		OutgoingEmail.Ref,
+		CAST(OutgoingEmail.Subject AS STRING(1024)),
+		VALUE(Catalog.Users.EmptyRef),
+		EmailAccounts.Email,
+		InteractionsFolderSubjects.SubjectOf,
+		VALUETYPE(OutgoingEmail.Ref),
+		InteractionsFolderSubjects.Reviewed
+	FROM
+		Document.OutgoingEmail AS OutgoingEmail
+			{LEFT JOIN Catalog.EmailAccounts AS EmailAccounts
+			ON OutgoingEmail.Account = EmailAccounts.Ref
+			LEFT JOIN InformationRegister.InteractionsFolderSubjects AS InteractionsFolderSubjects
+			ON (InteractionsFolderSubjects.Interaction = OutgoingEmail.Ref)}) AS NestedQuery</query>
+	</dataSet>
+	<settingsVariant>
+		<dcsset:name>Main</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Ref</dcsset:field>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:filter>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Subject</dcsset:left>
+					<dcsset:comparisonType>Contains</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:string"/>
+				</dcsset:item>
+			</dcsset:filter>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

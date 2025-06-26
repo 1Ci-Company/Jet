@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Close</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Title</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="9"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="10">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Configure how to handle, store, and import files.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SectionDetailsContextMenu" id="11"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="12"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="14"/>
+					<ChildItems>
+						<Button name="Help" id="15">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="16"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupIndent1" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Indent 1</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupIndent1ExtendedTooltip" id="18"/>
+			<ChildItems>
+				<UsualGroup name="CommonParametersForAllDataAreas" id="19">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Parameters common for all data areas</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<ExtendedTooltip name="CommonParametersForAllDataAreasExtendedTooltip" id="20"/>
+					<ChildItems>
+						<LabelDecoration name="CommonParametersForAllDataAreasNote" id="21">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>These restrictions apply to all data areas and override administrator settings.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="CommonParametersForAllDataAreasNoteContextMenu" id="22"/>
+							<ExtendedTooltip name="CommonParametersForAllDataAreasNoteExtendedTooltip" id="23"/>
+						</LabelDecoration>
+						<UsualGroup name="MaxFileSizeGroup" id="24">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>File size limit</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="MaxFileSizeGroupExtendedTooltip" id="25"/>
+							<ChildItems>
+								<UsualGroup name="SizeGroup1" id="26">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Size 1</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="SizeGroup1ExtendedTooltip" id="27">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Deny uploading files that exceed the size limit.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+									<ChildItems>
+										<InputField name="MaxFileSize" id="28">
+											<DataPath>MaxFileSize</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>File size limit</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<Width>5</Width>
+											<Wrap>false</Wrap>
+											<SpinButton>true</SpinButton>
+											<ContextMenu name="MaxFileSizeContextMenu" id="29"/>
+											<ExtendedTooltip name="MaxFileSizeExtendedTooltip" id="30"/>
+											<Events>
+												<Event name="OnChange">MaxFileSizeOnChange</Event>
+											</Events>
+										</InputField>
+										<LabelDecoration name="MBDecoration1" id="31">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<SkipOnInput>false</SkipOnInput>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>MB</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="MBDecoration1ContextMenu" id="32"/>
+											<ExtendedTooltip name="MBDecoration1ExtendedTooltip" id="33"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ExtensionsListGroup" id="34">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Extensions</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ExtensionsListGroupExtendedTooltip" id="35"/>
+							<ChildItems>
+								<UsualGroup name="ProhibitedExtensionsListGroup" id="36">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Blocked file extensions</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ProhibitedExtensionsListGroupExtendedTooltip" id="37"/>
+									<ChildItems>
+										<InputField name="DeniedExtensionsList" id="38">
+											<DataPath>ConstantsSet.DeniedExtensionsList</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>File type blacklist</v8:content>
+												</v8:item>
+											</Title>
+											<HorizontalStretch>true</HorizontalStretch>
+											<ContextMenu name="DeniedExtensionsListContextMenu" id="39"/>
+											<ExtendedTooltip name="DeniedExtensionsListExtendedTooltip" id="40"/>
+											<Events>
+												<Event name="OnChange">DeniedExtensionsListOnChange</Event>
+											</Events>
+										</InputField>
+										<LabelDecoration name="ClarificationRestrictFilesImportByExtension" id="41">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Specify a blacklist of space-delimited file extension types.
+Users will not be able to import these files into the application.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ClarificationRestrictFilesImportByExtensionContextMenu" id="42"/>
+											<ExtendedTooltip name="ClarificationRestrictFilesImportByExtensionExtendedTooltip" id="43"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="FilesExtensionsListOpenDocumentGroup" id="44">
+									<Visible>false</Visible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>OpenDocument file extensions</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="FilesExtensionsListOpenDocumentGroupExtendedTooltip" id="45"/>
+									<ChildItems>
+										<InputField name="FilesExtensionsListOpenDocument" id="46">
+											<DataPath>ConstantsSet.FilesExtensionsListOpenDocument</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>ODF file extensions</v8:content>
+												</v8:item>
+											</Title>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<ContextMenu name="FilesExtensionsListOpenDocumentContextMenu" id="47"/>
+											<ExtendedTooltip name="FilesExtensionsListOpenDocumentExtendedTooltip" id="48"/>
+											<Events>
+												<Event name="OnChange">FilesExtensionsListOpenDocumentOnChange</Event>
+											</Events>
+										</InputField>
+										<LabelDecoration name="FilesExtensionsListOpenDocumentNote" id="49">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<TextColor>style:NoteText</TextColor>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Specify a list of space-delimited Open Document Format extension types.
+You will be able to search for text within such files.</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="FilesExtensionsListOpenDocumentNoteContextMenu" id="50"/>
+											<ExtendedTooltip name="FilesExtensionsListOpenDocumentNoteExtendedTooltip" id="51"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupDeduplication" id="52">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>File deduplication</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="GroupDeduplicationExtendedTooltip" id="53"/>
+			<ChildItems>
+				<Button name="StartDeduplication" id="54">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.StartDeduplication</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Deduplicate</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<ExtendedTooltip name="StartDeduplicationExtendedTooltip" id="55"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ConstantsSet" id="1">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.DeniedExtensionsList</Field>
+				<Field>ConstantsSet.MaxFileSize</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="MaxFileSize" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>File size limit</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<FillCheck>ShowError</FillCheck>
+		</Attribute>
+		<Attribute name="DeleteFilesBinaryDataTableSize" id="3">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>2</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="StartDeduplication" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deduplicate</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove duplicate files to save space in the infobase.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>StartDeduplication</Action>
+		</Command>
+	</Commands>
+</Form>

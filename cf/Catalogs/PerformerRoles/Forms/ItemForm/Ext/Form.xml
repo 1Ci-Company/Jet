@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="HeaderGroup" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="HeaderGroupExtendedTooltip" id="39"/>
+			<ChildItems>
+				<UsualGroup name="DescriptionAndShortForm" id="35">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Description and short form</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DescriptionAndShortFormExtendedTooltip" id="40"/>
+					<ChildItems>
+						<InputField name="Description" id="3">
+							<DataPath>Object.Description</DataPath>
+							<Wrap>false</Wrap>
+							<ContextMenu name="DescriptionContextMenu" id="4"/>
+							<ExtendedTooltip name="DescriptionExtendedTooltip" id="41"/>
+						</InputField>
+						<InputField name="BriefPresentation" id="33">
+							<DataPath>Object.BriefPresentation</DataPath>
+							<TitleHeight>2</TitleHeight>
+							<ContextMenu name="BriefPresentationContextMenu" id="34"/>
+							<ExtendedTooltip name="BriefPresentationExtendedTooltip" id="42"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<InputField name="Code" id="1">
+					<DataPath>Object.Code</DataPath>
+					<Width>8</Width>
+					<Wrap>false</Wrap>
+					<ContextMenu name="CodeContextMenu" id="2"/>
+					<ExtendedTooltip name="CodeExtendedTooltip" id="43"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="AssignmentGroup" id="57">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assignment</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="AssignmentGroupExtendedTooltip" id="58"/>
+			<ChildItems>
+				<LabelDecoration name="DecorationAssignment" id="59">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assignment:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="DecorationAssignmentContextMenu" id="60"/>
+					<ExtendedTooltip name="DecorationAssignmentExtendedTooltip" id="61"/>
+				</LabelDecoration>
+				<Button name="SelectPurpose" id="62">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.SelectPurpose</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SelectPurposeExtendedTooltip" id="63"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupOfAddressing" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Task assignment</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="GroupOfAddressingExtendedTooltip" id="47"/>
+			<ChildItems>
+				<CheckBoxField name="UsedWithoutOtherAddressingDimensionsContext" id="5">
+					<DataPath>Object.UsedWithoutAddressingObjects</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assign the role without business objects</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assigning the role to users does not require specifying business objects (main or additional).</v8:content>
+						</v8:item>
+					</ToolTip>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="UsedWithoutOtherAddressingDimensionsContextContextMenu" id="6"/>
+					<ExtendedTooltip name="UsedWithoutOtherAddressingDimensionsContextExtendedTooltip" id="48"/>
+				</CheckBoxField>
+				<CheckBoxField name="UsedInOtherAddressingDimensionsContext" id="7">
+					<DataPath>Object.UsedByAddressingObjects</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Refine the role with business objects</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Assigning the role to users requires specifying business objects.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="UsedInOtherAddressingDimensionsContextContextMenu" id="8"/>
+					<ExtendedTooltip name="UsedInOtherAddressingDimensionsContextExtendedTooltip" id="50">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Sometimes, a business role is not enough to precisely define the task assignees.
+To refine the role, you can specify main and additional business objects.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<Events>
+						<Event name="OnChange">UsedInOtherAddressingDimensionsContextOnChange</Event>
+					</Events>
+				</CheckBoxField>
+				<UsualGroup name="AddressingGroupAdvanced" id="38">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Task assignment (more)</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AddressingGroupAdvancedExtendedTooltip" id="49"/>
+					<ChildItems>
+						<LabelDecoration name="Explanation" id="36">
+							<TextColor>style:NoteText</TextColor>
+							<ContextMenu name="ExplanationContextMenu" id="37"/>
+							<ExtendedTooltip name="ExplanationExtendedTooltip" id="54"/>
+						</LabelDecoration>
+						<UsualGroup name="AddressingObjectsTypesGroup" id="22">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Business object types</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AddressingObjectsTypesGroupExtendedTooltip" id="51"/>
+							<ChildItems>
+								<InputField name="MainAddressingObjectTypes" id="18">
+									<DataPath>Object.MainAddressingObjectTypes</DataPath>
+									<Wrap>false</Wrap>
+									<OpenButton>false</OpenButton>
+									<ContextMenu name="MainAddressingObjectTypesContextMenu" id="19"/>
+									<ExtendedTooltip name="MainAddressingObjectTypesExtendedTooltip" id="52"/>
+								</InputField>
+								<InputField name="AdditionalAddressingObjectTypes" id="20">
+									<DataPath>Object.AdditionalAddressingObjectTypes</DataPath>
+									<Wrap>false</Wrap>
+									<OpenButton>false</OpenButton>
+									<ContextMenu name="AdditionalAddressingObjectTypesContextMenu" id="21"/>
+									<ExtendedTooltip name="AdditionalAddressingObjectTypesExtendedTooltip" id="53"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupComment" id="27">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Comment</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupCommentExtendedTooltip" id="55"/>
+			<ChildItems>
+				<InputField name="Comment" id="25">
+					<DataPath>Object.Comment</DataPath>
+					<TitleLocation>Left</TitleLocation>
+					<Height>2</Height>
+					<ChoiceButton>true</ChoiceButton>
+					<ContextMenu name="CommentContextMenu" id="26"/>
+					<ExtendedTooltip name="CommentExtendedTooltip" id="56"/>
+					<Events>
+						<Event name="StartChoice">CommentStartChoice</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.PerformerRoles</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="MultilanguageAttributesParameters" id="2">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="SelectPurpose" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SelectPurpose</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

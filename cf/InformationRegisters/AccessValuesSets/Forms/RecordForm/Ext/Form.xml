@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<CommandSet>
+		<ExcludedCommand>Copy</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormEnableEditing" id="38">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.EnableEditing</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Allow editing</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="39"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Object" id="1">
+			<DataPath>Record.Object</DataPath>
+			<ContextMenu name="ObjectContextMenu" id="2"/>
+			<ExtendedTooltip name="ObjectExtendedTooltip" id="42"/>
+		</InputField>
+		<InputField name="SetNumber" id="3">
+			<DataPath>Record.SetNumber</DataPath>
+			<ContextMenu name="SetNumberContextMenu" id="4"/>
+			<ExtendedTooltip name="SetNumberExtendedTooltip" id="45"/>
+		</InputField>
+		<InputField name="AccessValue" id="7">
+			<DataPath>Record.AccessValue</DataPath>
+			<ContextMenu name="AccessValueContextMenu" id="8"/>
+			<ExtendedTooltip name="AccessValueExtendedTooltip" id="47"/>
+		</InputField>
+		<InputField name="Refinement" id="51">
+			<DataPath>Record.Refinement</DataPath>
+			<ContextMenu name="RefinementContextMenu" id="52"/>
+			<ExtendedTooltip name="RefinementExtendedTooltip" id="53"/>
+		</InputField>
+		<CheckBoxField name="Read" id="9">
+			<DataPath>Record.Read</DataPath>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ReadContextMenu" id="10"/>
+			<ExtendedTooltip name="ReadExtendedTooltip" id="48"/>
+		</CheckBoxField>
+		<CheckBoxField name="Update" id="13">
+			<DataPath>Record.Update</DataPath>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="UpdateContextMenu" id="14"/>
+			<ExtendedTooltip name="UpdateExtendedTooltip" id="50"/>
+		</CheckBoxField>
+		<UsualGroup name="CacheAttributes" id="63">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cache attributes</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ExtendedTooltip name="CacheAttributesExtendedTooltip" id="64"/>
+			<ChildItems>
+				<UsualGroup name="HorizontalGroup" id="65">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Horizontal group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="HorizontalGroupExtendedTooltip" id="66"/>
+					<ChildItems>
+						<CheckBoxField name="StandardValue" id="57">
+							<DataPath>Record.StandardValue</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="StandardValueContextMenu" id="58"/>
+							<ExtendedTooltip name="StandardValueExtendedTooltip" id="59"/>
+						</CheckBoxField>
+						<CheckBoxField name="ValueWithoutGroups" id="60">
+							<DataPath>Record.ValueWithoutGroups</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ValueWithoutGroupsContextMenu" id="61"/>
+							<ExtendedTooltip name="ValueWithoutGroupsExtendedTooltip" id="62"/>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.AccessValuesSets</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

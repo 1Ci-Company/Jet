@@ -1,0 +1,1183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupFilters" id="46">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filters</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupFiltersExtendedTooltip" id="81"/>
+			<ChildItems>
+				<InputField name="FilterByTemplateUsage" id="52">
+					<DataPath>FilterByTemplateUsage</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Show</v8:content>
+						</v8:item>
+					</Title>
+					<Width>37</Width>
+					<ClearButton>true</ClearButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<TextEdit>false</TextEdit>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All templates</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">AllMakets</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Standard templates (not edited)</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">NotModified1</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Edited used templates</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">UsedModifiedItems</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Edited unused templates</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">NotUsedModifiedItems</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>All edited templates</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Modified1</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="FilterByTemplateUsageContextMenu" id="53"/>
+					<ExtendedTooltip name="FilterByTemplateUsageExtendedTooltip" id="83"/>
+					<Events>
+						<Event name="OnChange">FilterByUsedTemplateKindOnChange</Event>
+						<Event name="Clearing">FilterByTemplateUsageClearing</Event>
+					</Events>
+				</InputField>
+				<InputField name="FilterByLanguage" id="111">
+					<DataPath>FilterByLanguage</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Language</v8:content>
+						</v8:item>
+					</Title>
+					<ClearButton>true</ClearButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="FilterByLanguageContextMenu" id="112"/>
+					<ExtendedTooltip name="FilterByLanguageExtendedTooltip" id="113"/>
+					<Events>
+						<Event name="OnChange">FilterByLanguageOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="SearchString" id="47">
+					<DataPath>SearchString</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search bar</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<Width>31</Width>
+					<DropListButton>true</DropListButton>
+					<ClearButton>true</ClearButton>
+					<EditTextUpdate>DontUse</EditTextUpdate>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Find</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="SearchStringContextMenu" id="48"/>
+					<ExtendedTooltip name="SearchStringExtendedTooltip" id="82"/>
+					<Events>
+						<Event name="OnChange">SearchStringOnChange</Event>
+						<Event name="EditTextChange">SearchStringEditTextChange</Event>
+						<Event name="Clearing">SearchStringClearing</Event>
+					</Events>
+				</InputField>
+				<PictureDecoration name="IsSearchRunning" id="237">
+					<Visible>false</Visible>
+					<Width>2</Width>
+					<Height>1</Height>
+					<HorizontalStretch>false</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<Picture>
+						<xr:Ref>CommonPicture.TimeConsumingOperation16</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</Picture>
+					<ContextMenu name="IsSearchRunningContextMenu" id="238"/>
+					<ExtendedTooltip name="IsSearchRunningExtendedTooltip" id="239"/>
+				</PictureDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="Templates" id="122">
+			<Representation>Tree</Representation>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChangeRowOrder>false</ChangeRowOrder>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Templates</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Templates</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>EndEdit</ExcludedCommand>
+				<ExcludedCommand>HierarchicalList</ExcludedCommand>
+				<ExcludedCommand>List</ExcludedCommand>
+				<ExcludedCommand>MoveDown</ExcludedCommand>
+				<ExcludedCommand>MoveUp</ExcludedCommand>
+				<ExcludedCommand>OutputList</ExcludedCommand>
+				<ExcludedCommand>SelectAll</ExcludedCommand>
+				<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+				<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+				<ExcludedCommand>SortListAsc</ExcludedCommand>
+				<ExcludedCommand>SortListDesc</ExcludedCommand>
+				<ExcludedCommand>Tree</ExcludedCommand>
+			</CommandSet>
+			<ContextMenu name="TemplatesContextMenu" id="123">
+				<ChildItems>
+					<Button name="TemplatesContextMenuDeleteModifiedTemplate" id="196">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.DeleteModifiedTemplate</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Delete edited template</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TemplatesContextMenuDeleteModifiedTemplateExtendedTooltip" id="197"/>
+					</Button>
+					<Button name="TemplatesContextMenuDeleteTemplate" id="198">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.DeleteTemplate</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Delete template</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TemplatesContextMenuDeleteTemplateExtendedTooltip" id="199"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="TemplatesCommandBar" id="124">
+				<ChildItems>
+					<Popup name="TemplatesGroupAddTemplate" id="200">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Create</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TemplatesGroupAddTemplateExtendedTooltip" id="201"/>
+						<ChildItems>
+							<Button name="TemplatesAddTemplate" id="162">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.AddTemplate</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Create spreadsheet document template</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="TemplatesAddTemplateExtendedTooltip" id="163"/>
+							</Button>
+							<Button name="TemplatesAddOfficeOpenXMLTemplate" id="202">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.AddOfficeOpenXMLTemplate</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Create Office Open XML template</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="TemplatesAddOfficeOpenXMLTemplateExtendedTooltip" id="203"/>
+							</Button>
+						</ChildItems>
+					</Popup>
+					<Button name="TemplatesCopy" id="170">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.Copy</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Copy</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TemplatesCopyExtendedTooltip" id="171"/>
+					</Button>
+					<Button name="TemplatesChangeTemplate" id="152">
+						<Type>CommandBarButton</Type>
+						<Representation>Picture</Representation>
+						<CommandName>Form.Command.ChangeTemplate</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Edit</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TemplatesChangeTemplateExtendedTooltip" id="153"/>
+					</Button>
+					<ButtonGroup name="PrintFormsTemplatesSwitchUsedTemplateGroup" id="154">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Print form template switching used template group</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Switch between templates</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Representation>Compact</Representation>
+						<ExtendedTooltip name="PrintFormsTemplatesSwitchUsedTemplateGroupExtendedTooltip" id="155"/>
+						<ChildItems>
+							<Button name="PrintFormsTemplatesUseModifiedTemplate" id="156">
+								<Type>CommandBarButton</Type>
+								<Representation>PictureAndText</Representation>
+								<CommandName>Form.Command.UseModifiedTemplate</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Use edited template</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="PrintFormsTemplatesUseModifiedTemplateExtendedTooltip" id="157"/>
+							</Button>
+							<Button name="PrintFormsTemplatesUseStandardTemplate" id="158">
+								<Type>CommandBarButton</Type>
+								<Representation>PictureAndText</Representation>
+								<CommandName>Form.Command.UseStandardTemplate</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Use standard template</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="PrintFormsTemplatesUseStandardTemplateExtendedTooltip" id="159"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Button name="FormShowInList" id="204">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ShowInList</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Show in list</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormShowInListExtendedTooltip" id="205"/>
+					</Button>
+					<Button name="PrintFormsTemplatesDeleteModifiedTemplate" id="160">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.DeleteModifiedTemplate</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Delete edited template</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="PrintFormsTemplatesDeleteModifiedTemplateExtendedTooltip" id="161"/>
+					</Button>
+					<ButtonGroup name="PrintFormsTemplatesAllActionsGroup" id="164">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Print form templates all actions group</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>All actions</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ExtendedTooltip name="PrintFormsTemplatesAllActionsGroupExtendedTooltip" id="165"/>
+						<ChildItems>
+							<Button name="PrintFormsTemplatesChangeForm" id="168">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+								<ExtendedTooltip name="PrintFormsTemplatesChangeFormExtendedTooltip" id="169"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Button name="TemplatesAvailabilityConditions" id="191">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.AvailabilityConditions</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Visibility in the Print submenu…</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="TemplatesAvailabilityConditionsExtendedTooltip" id="192"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="TemplatesExtendedTooltip" id="125"/>
+			<SearchStringAddition name="TemplatesSearchString" id="126">
+				<AdditionSource>
+					<Item>Templates</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="TemplatesSearchStringContextMenu" id="127"/>
+				<ExtendedTooltip name="TemplatesSearchStringExtendedTooltip" id="128"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="TemplatesViewStatus" id="129">
+				<AdditionSource>
+					<Item>Templates</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="TemplatesViewStatusContextMenu" id="130"/>
+				<ExtendedTooltip name="TemplatesViewStatusExtendedTooltip" id="131"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="TemplatesSearchControl" id="132">
+				<AdditionSource>
+					<Item>Templates</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="TemplatesSearchControlContextMenu" id="133"/>
+				<ExtendedTooltip name="TemplatesSearchControlExtendedTooltip" id="134"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">TemplatesSelection</Event>
+				<Event name="OnActivateRow">TemplatesOnActivateRow</Event>
+				<Event name="BeforeExpand">TemplatesBeforeExpand</Event>
+				<Event name="OnChange">TemplatesOnChange</Event>
+			</Events>
+			<ChildItems>
+				<ColumnGroup name="GroupPictureAndTemplate" id="144">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture and template</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="GroupPictureAndTemplateExtendedTooltip" id="145"/>
+					<ChildItems>
+						<PictureField name="TemplatesPictureGroup" id="240">
+							<DataPath>Templates.PictureGroup</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group picture</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ShowInHeader>false</ShowInHeader>
+							<ContextMenu name="TemplatesPictureGroupContextMenu" id="241"/>
+							<ExtendedTooltip name="TemplatesPictureGroupExtendedTooltip" id="242"/>
+						</PictureField>
+						<InputField name="TemplatesPresentation" id="138">
+							<DataPath>Templates.Presentation</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Template</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>40</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="TemplatesPresentationContextMenu" id="139"/>
+							<ExtendedTooltip name="TemplatesPresentationExtendedTooltip" id="140"/>
+						</InputField>
+					</ChildItems>
+				</ColumnGroup>
+				<CheckBoxField name="TemplatesUsed" id="188">
+					<DataPath>Templates.Used</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>In use</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Show in the Print submenu</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<HeaderPicture>
+						<xr:Ref>CommonPicture.CharsBeingTypedShown</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</HeaderPicture>
+					<ShowInFooter>false</ShowInFooter>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="TemplatesUsedContextMenu" id="189"/>
+					<ExtendedTooltip name="TemplatesUsedExtendedTooltip" id="190"/>
+				</CheckBoxField>
+				<PictureField name="TemplatesUsagePicture" id="146">
+					<DataPath>Templates.UsagePicture</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Usage picture</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Edited template is used</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<HeaderPicture>
+						<xr:Ref>CommonPicture.EditTemplate</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</HeaderPicture>
+					<ShowInFooter>false</ShowInFooter>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ValuesPicture>
+						<xr:Ref>CommonPicture.TemplateUsage</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</ValuesPicture>
+					<ContextMenu name="TemplatesUsagePictureContextMenu" id="147"/>
+					<ExtendedTooltip name="TemplatesUsagePictureExtendedTooltip" id="148"/>
+				</PictureField>
+				<PictureField name="LayoutsButtonSettingsAccessibility" id="182">
+					<DataPath>Templates.AvailableSettingVisibility</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Visibility settings available</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Visibility conditions</v8:content>
+						</v8:item>
+					</ToolTip>
+					<EditMode>EnterOnInput</EditMode>
+					<CellHyperlink>true</CellHyperlink>
+					<HeaderPicture>
+						<xr:Ref>StdPicture.DataCompositionOutputParameters</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</HeaderPicture>
+					<ShowInFooter>false</ShowInFooter>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ValuesPicture>
+						<xr:Ref>StdPicture.DataCompositionOutputParameters</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</ValuesPicture>
+					<ContextMenu name="LayoutsButtonSettingsAccessibilityContextMenu" id="183"/>
+					<ExtendedTooltip name="LayoutsButtonSettingsAccessibilityExtendedTooltip" id="184"/>
+				</PictureField>
+				<CheckBoxField name="TemplatesAvailableSettingVisibility" id="185">
+					<DataPath>Templates.AvailableSettingVisibility</DataPath>
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Visibility settings available</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="TemplatesAvailableSettingVisibilityContextMenu" id="186"/>
+					<ExtendedTooltip name="TemplatesAvailableSettingVisibilityExtendedTooltip" id="187"/>
+				</CheckBoxField>
+				<PictureField name="TemplatesAvailableTranslation" id="176">
+					<DataPath>Templates.AvailableTranslation</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Translation is available</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Translation into other languages is available</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Balloon</ToolTipRepresentation>
+					<EditMode>EnterOnInput</EditMode>
+					<ShowInFooter>false</ShowInFooter>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="TemplatesAvailableTranslationContextMenu" id="177"/>
+					<ExtendedTooltip name="TemplatesAvailableTranslationExtendedTooltip" id="178"/>
+				</PictureField>
+				<InputField name="TemplatesAvailableLanguages" id="141">
+					<DataPath>Templates.AvailableLanguages</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional languages</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>30</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="TemplatesAvailableLanguagesContextMenu" id="142"/>
+					<ExtendedTooltip name="TemplatesAvailableLanguagesExtendedTooltip" id="143"/>
+				</InputField>
+				<InputField name="TemplatesIndent" id="193">
+					<DataPath>Templates.Indent</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Indent</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="TemplatesIndentContextMenu" id="194"/>
+					<ExtendedTooltip name="TemplatesIndentExtendedTooltip" id="195"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="AdditionalInformationGroup" id="114">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional information</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="AdditionalInformationGroupExtendedTooltip" id="115"/>
+			<ChildItems>
+				<PictureDecoration name="PictureOfInformation" id="116">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Information picture</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Information</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="PictureOfInformationContextMenu" id="117"/>
+					<ExtendedTooltip name="PictureOfInformationExtendedTooltip" id="118"/>
+				</PictureDecoration>
+				<LabelDecoration name="AdditionalInformation" id="119">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Title formatted="true">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Your print forms now support &lt;link GoToTheLanguagesOfPrintedForms&gt;more languages&lt;/&gt;.
+Start editing a template, change its language, and translate the fields.
+The newly translated template is ready to go!</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Center</VerticalAlign>
+					<ContextMenu name="AdditionalInformationContextMenu" id="120"/>
+					<ExtendedTooltip name="AdditionalInformationExtendedTooltip" id="121"/>
+					<Events>
+						<Event name="URLProcessing">AdditionalInformationURLProcessing</Event>
+					</Events>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="TemplateOpeningModeView" id="5">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SearchString" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search bar</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FilterByTemplateUsage" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="FilterByLanguage" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter by language</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Templates" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Templates</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="PictureGroup" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group picture</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>v8ui:Picture</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Presentation" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Presentation</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AvailableLanguages" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional languages</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Picture" id="4">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="UsagePicture" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Usage picture</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="AvailableTranslation" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Translation is available</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="AvailabilityConditions" id="7">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="AvailableSettingVisibility" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Visibility setup is available</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Used" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Used</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsFolder" id="10">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="TemplateMetadataObjectName" id="11">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="TemplateType" id="12">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Changed" id="13">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ChangedTemplateUsed" id="14">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Indent" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Indent</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Owner" id="16">
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExtensionObjectIDs</v8:Type>
+						<v8:Type>cfg:CatalogRef.MetadataObjectIDs</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Ref" id="17">
+					<Type>
+						<v8:Type>cfg:CatalogRef.PrintFormTemplates</v8:Type>
+					</Type>
+				</Column>
+				<Column name="SearchString" id="18">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Id" id="19">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Supplied" id="20">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsPrintForm" id="22">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="AvailableCreate" id="27">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="IsSubsection" id="28">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="MatchesFilter" id="30">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="SourceOfTemplate" id="36">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="HasItemsMatchingFilter" id="38">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="DataSources" id="42">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ShowChanged" id="23">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowUnmodified" id="24">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowUsed" id="25">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowUnused" id="26">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ObjectsWithPrintCommands" id="32">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="PositionInTree" id="34">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>PositionInTree</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ExpandableBranches" id="37">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="IsDataImportInProgress" id="43">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="UseModifiedTemplate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use edited template</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use edited template</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.UseUserTemplate</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>UseModifiedTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="UseStandardTemplate" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use standard template</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use standard template</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.UseSuppliedTemplate</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>UseStandardTemplate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ChangeTemplate" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit template</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F2</Shortcut>
+			<Picture>
+				<xr:Ref>CommonPicture.EditTemplate</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>ChangeTemplate</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DeleteModifiedTemplate" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete edited template</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete edited template.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.UserTemplateDelete</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>DeleteSelectedModifiedTemplates</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AddTemplate" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add template</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AddTemplate</Action>
+			<Representation>Text</Representation>
+		</Command>
+		<Command name="Copy" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Copy</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Copy.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F9</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.CloneListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Copy</Action>
+		</Command>
+		<Command name="AvailabilityConditions" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Visibility in the Print submenu…</v8:content>
+				</v8:item>
+			</Title>
+			<Action>AvailabilityConditions</Action>
+		</Command>
+		<Command name="DeleteTemplate" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete template</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.MarkToDelete</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>DeleteTemplate</Action>
+		</Command>
+		<Command name="AddOfficeOpenXMLTemplate" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Create Office Open XML template</v8:content>
+				</v8:item>
+			</Title>
+			<Action>AddOfficeOpenXMLTemplate</Action>
+		</Command>
+		<Command name="ShowInList" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show in list</v8:content>
+				</v8:item>
+			</Title>
+			<Action>GoInList</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="TemplatePath">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

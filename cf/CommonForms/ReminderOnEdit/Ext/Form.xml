@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Get file to view or edit</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormContinue" id="8">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.Continue</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Continue</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormContinueExtendedTooltip" id="19"/>
+			</Button>
+			<Button name="FormCancel" id="28">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Cancel</CommandName>
+				<ExtendedTooltip name="FormCancelExtendedTooltip" id="29"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<LabelDecoration name="ReminderText" id="9">
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>You will be prompted to open or save the file.
+
+1. Click Save.
+
+2. Select a directory to save the file and remember its name 
+   (you will need it to edit and put the file back to the storage).
+
+3. To edit the file, open the previously selected directory,
+   find the saved file, and open it.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ReminderTextContextMenu" id="10"/>
+			<ExtendedTooltip name="ReminderTextExtendedTooltip" id="20"/>
+		</LabelDecoration>
+		<Pages name="Additions" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additions</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="AdditionsExtendedTooltip" id="21"/>
+			<ChildItems>
+				<Page name="MozillaFireFox" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Mozilla fire fox</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="MozillaFireFoxExtendedTooltip" id="24"/>
+					<ChildItems>
+						<LabelDecoration name="MozillaFirefoxExtension" id="14">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>(By default Mozilla Firefox saves files to "My Documents" directory.)</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="MozillaFirefoxExtensionContextMenu" id="15"/>
+							<ExtendedTooltip name="MozillaFirefoxExtensionExtendedTooltip" id="25"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="IsEmpty" id="16">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Blank</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="IsEmptyExtendedTooltip" id="22"/>
+					<ChildItems>
+						<LabelDecoration name="EmptyLabel" id="17">
+							<ContextMenu name="EmptyLabelContextMenu" id="18"/>
+							<ExtendedTooltip name="EmptyLabelExtendedTooltip" id="23"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="Indent" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Indent</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="IndentExtendedTooltip" id="26"/>
+			<ChildItems>
+				<CheckBoxField name="ShowReminderOnEdit" id="2">
+					<DataPath>DontShowAgain</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Do not show again</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<TitleHeight>1</TitleHeight>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ShowReminderOnEditContextMenu" id="3"/>
+					<ExtendedTooltip name="ShowReminderOnEditExtendedTooltip" id="27"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="DontShowAgain" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Do not show again</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ReminderText" id="2">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Continue" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Continue</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Continue</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ContinueExecute</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

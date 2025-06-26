@@ -1,0 +1,909 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>My tasks</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">MainCommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<ButtonGroup name="MainCommandBar" id="163">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Main command bar</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="MainCommandBarExtendedTooltip" id="164"/>
+				<ChildItems>
+					<Button name="Change" id="165">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.List.StandardCommand.Change</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Open</v8:content>
+							</v8:item>
+						</Title>
+						<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="ChangeExtendedTooltip" id="166"/>
+					</Button>
+					<Button name="RefreshTasksList" id="167">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.RefreshTasksList</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Refresh</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="RefreshTasksListExtendedTooltip" id="168"/>
+					</Button>
+					<Popup name="GroupBy" id="169">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Group by</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Group by column</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ExtendedTooltip name="GroupByExtendedTooltip" id="170"/>
+						<ChildItems>
+							<Button name="ListGroupByDueDate" id="171">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.GroupByDueDate</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Due date</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ListGroupByDueDateExtendedTooltip" id="172"/>
+							</Button>
+							<Button name="ListGroupByImportance" id="173">
+								<Type>CommandBarButton</Type>
+								<SkipOnInput>false</SkipOnInput>
+								<CommandName>Form.Command.GroupByImportance</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Priority</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="ListGroupByImportanceExtendedTooltip" id="174"/>
+							</Button>
+							<Button name="ListGroupByRoutePoint" id="175">
+								<Type>CommandBarButton</Type>
+								<SkipOnInput>false</SkipOnInput>
+								<CommandName>Form.Command.GroupByRoutePoint</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Route point</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="ListGroupByRoutePointExtendedTooltip" id="176"/>
+							</Button>
+							<Button name="ListGroupByAuthor" id="177">
+								<Type>CommandBarButton</Type>
+								<SkipOnInput>false</SkipOnInput>
+								<CommandName>Form.Command.GroupByAuthor</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Author</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="ListGroupByAuthorExtendedTooltip" id="178"/>
+							</Button>
+							<Button name="ListGroupBySubject" id="179">
+								<Type>CommandBarButton</Type>
+								<SkipOnInput>false</SkipOnInput>
+								<CommandName>Form.Command.GroupBySubject</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Topic</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="ListGroupBySubjectExtendedTooltip" id="180"/>
+							</Button>
+							<ButtonGroup name="GroupSubgroup" id="181">
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Group subgroup</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="GroupSubgroupExtendedTooltip" id="182"/>
+								<ChildItems>
+									<Button name="ListGroupGroupByNoGroup" id="183">
+										<Type>CommandBarButton</Type>
+										<SkipOnInput>false</SkipOnInput>
+										<CommandName>Form.Command.GroupByNoGroup</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>No grouping</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ListGroupGroupByNoGroupExtendedTooltip" id="184"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+						</ChildItems>
+					</Popup>
+					<ButtonGroup name="CommandBarForm" id="185">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Form command bar</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="CommandBarFormExtendedTooltip" id="186"/>
+						<ChildItems>
+							<Button name="AcceptForExecution" id="187">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.AcceptForExecution</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Accept</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="AcceptForExecutionExtendedTooltip" id="188"/>
+							</Button>
+							<Button name="TaskPerformerTaskExecuted" id="189">
+								<Type>CommandBarButton</Type>
+								<Representation>Picture</Representation>
+								<SkipOnInput>false</SkipOnInput>
+								<CommandName>Task.PerformerTask.Command.Completed2</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="TaskPerformerTaskExecutedExtendedTooltip" id="190"/>
+							</Button>
+							<Button name="TaskPerformerTaskForward" id="191">
+								<Type>CommandBarButton</Type>
+								<SkipOnInput>false</SkipOnInput>
+								<CommandName>Task.PerformerTask.Command.Forward</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="TaskPerformerTaskForwardExtendedTooltip" id="192"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+				</ChildItems>
+			</ButtonGroup>
+			<SearchStringAddition name="SearchString" id="193">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="SearchStringContextMenu" id="194"/>
+				<ExtendedTooltip name="SearchStringExtendedTooltip" id="195"/>
+			</SearchStringAddition>
+			<SearchControlAddition name="SearchControl" id="196">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="SearchControlContextMenu" id="197"/>
+				<ExtendedTooltip name="SearchControlExtendedTooltip" id="198"/>
+			</SearchControlAddition>
+			<Popup name="CustomSettingsFolder" id="140">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>User settings group</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="CustomSettingsFolderExtendedTooltip" id="141"/>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="List" id="9">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<SkipOnInput>false</SkipOnInput>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChangeRowOrder>false</ChangeRowOrder>
+			<RowSelectionMode>Row</RowSelectionMode>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>List</DataPath>
+			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
+			<BorderColor>style:BorderColor</BorderColor>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>CancelSearch</ExcludedCommand>
+				<ExcludedCommand>Find</ExcludedCommand>
+				<ExcludedCommand>Refresh</ExcludedCommand>
+				<ExcludedCommand>SetDateInterval</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>true</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>true</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>false</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ListContextMenu" id="10">
+				<ChildItems>
+					<Button name="ContextMenuListChange" id="71">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.List.StandardCommand.Change</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Open task</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ContextMenuListChangeExtendedTooltip" id="99"/>
+					</Button>
+					<Button name="ListContextMenuOpenTaskSubject" id="123">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.OpenTaskSubject</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Open task subject</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuOpenTaskSubjectExtendedTooltip" id="124"/>
+					</Button>
+					<Button name="ListContextMenuOpenBusinessProcess" id="121">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.OpenBusinessProcess</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Open business process</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuOpenBusinessProcessExtendedTooltip" id="122"/>
+					</Button>
+					<ButtonGroup name="ListContextMenuGroup" id="81">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Context menu group</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuGroupExtendedTooltip" id="100"/>
+						<ChildItems>
+							<Button name="ListContextMenuAcceptForExecution" id="76">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.AcceptForExecution</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Accept</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ListContextMenuAcceptForExecutionExtendedTooltip" id="101"/>
+							</Button>
+							<Button name="ListContextMenuCancelAcceptForExecution" id="78">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.CancelAcceptForExecution</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Decline</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ListContextMenuCancelAcceptForExecutionExtendedTooltip" id="102"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<ButtonGroup name="ListContextMenuActionsGroup" id="83">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Context menu group actions</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuActionsGroupExtendedTooltip" id="103"/>
+						<ChildItems>
+							<Button name="ListContextMenuTaskPerformerTaskExecuted" id="84">
+								<Type>CommandBarButton</Type>
+								<CommandName>Task.PerformerTask.Command.Completed2</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Mark task as completed</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ListContextMenuTaskPerformerTaskExecutedExtendedTooltip" id="104"/>
+							</Button>
+							<Button name="ListContextMenuTaskPerformerTaskForward" id="85">
+								<Type>CommandBarButton</Type>
+								<CommandName>Task.PerformerTask.Command.Forward</CommandName>
+								<DataPath>Items.List.CurrentData.Ref</DataPath>
+								<ExtendedTooltip name="ListContextMenuTaskPerformerTaskForwardExtendedTooltip" id="105"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Button name="ContextMenuListRefresh" id="72">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Command.RefreshTasksList</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Refresh</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ContextMenuListRefreshExtendedTooltip" id="106"/>
+					</Button>
+					<Button name="ListContextMenuCopyToClipboard" id="80">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.List.StandardCommand.CopyToClipboard</CommandName>
+						<ExtendedTooltip name="ListContextMenuCopyToClipboardExtendedTooltip" id="108"/>
+					</Button>
+					<Button name="ContextMenuListOutputList" id="74">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.StandardCommand.OutputList</CommandName>
+						<ExtendedTooltip name="ContextMenuListOutputListExtendedTooltip" id="107"/>
+					</Button>
+					<ButtonGroup name="ListContextMenuGroupSettings" id="133">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Setting</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ListContextMenuGroupSettingsExtendedTooltip" id="134"/>
+						<ChildItems>
+							<Button name="ListContextMenuListSettings" id="82">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.List.StandardCommand.ListSettings</CommandName>
+								<ExtendedTooltip name="ListContextMenuListSettingsExtendedTooltip" id="109"/>
+							</Button>
+							<Button name="ListContextMenuCustomizeForm" id="125">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+								<ExtendedTooltip name="ListContextMenuCustomizeFormExtendedTooltip" id="126"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Button name="ContextMenuListHelp" id="73">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.StandardCommand.Help</CommandName>
+						<ExtendedTooltip name="ContextMenuListHelpExtendedTooltip" id="110"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="ListCommandBar" id="11"/>
+			<ExtendedTooltip name="ListExtendedTooltip" id="111"/>
+			<SearchStringAddition name="ListSearchString" id="144">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchStringContextMenu" id="145"/>
+				<ExtendedTooltip name="ListSearchStringExtendedTooltip" id="146"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ListViewStatus" id="147">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ListViewStatusContextMenu" id="148"/>
+				<ExtendedTooltip name="ListViewStatusExtendedTooltip" id="149"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ListSearchControl" id="150">
+				<AdditionSource>
+					<Item>List</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ListSearchControlContextMenu" id="151"/>
+				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="152"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="BeforeAddRow">ListBeforeAddRow</Event>
+				<Event name="OnActivateRow">ListOnActivateRow</Event>
+			</Events>
+			<ChildItems>
+				<ColumnGroup name="ColumnsGroup" id="161">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Columns</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Horizontal</Group>
+					<ExtendedTooltip name="ColumnsGroupExtendedTooltip" id="162"/>
+					<ChildItems>
+						<ColumnGroup name="LeftGroup3" id="155">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Left group</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="LeftGroup3ExtendedTooltip" id="156"/>
+							<ChildItems>
+								<InputField name="Description" id="16" DisplayImportance="VeryHigh">
+									<DataPath>List.Description</DataPath>
+									<Width>40</Width>
+									<Wrap>false</Wrap>
+									<BorderColor>style:BorderColor</BorderColor>
+									<ContextMenu name="DescriptionContextMenu" id="17"/>
+									<ExtendedTooltip name="DescriptionExtendedTooltip" id="114"/>
+								</InputField>
+								<ColumnGroup name="ImportanceAndAuthor" id="153">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Priority and author</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<ExtendedTooltip name="ImportanceAndAuthorExtendedTooltip" id="154"/>
+									<ChildItems>
+										<PictureField name="Importance" id="24">
+											<DataPath>List.ImportancePicture</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Priority</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The task priority.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ShowInHeader>false</ShowInHeader>
+											<HeaderPicture>
+												<xr:Ref>CommonPicture.ExclamationMarkGray</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</HeaderPicture>
+											<Width>2</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ValuesPicture>
+												<xr:Ref>CommonPicture.SeverityOptionsCollection</xr:Ref>
+												<xr:LoadTransparent>false</xr:LoadTransparent>
+											</ValuesPicture>
+											<FileDragMode>AsFile</FileDragMode>
+											<ContextMenu name="ImportanceContextMenu" id="25"/>
+											<ExtendedTooltip name="ImportanceExtendedTooltip" id="112"/>
+										</PictureField>
+										<InputField name="Author" id="40">
+											<DataPath>List.Author</DataPath>
+											<ShowInHeader>false</ShowInHeader>
+											<Width>40</Width>
+											<Wrap>false</Wrap>
+											<ContextMenu name="AuthorContextMenu" id="41"/>
+											<ExtendedTooltip name="AuthorExtendedTooltip" id="117"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
+							</ChildItems>
+						</ColumnGroup>
+						<ColumnGroup name="RightGroup" id="157">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Right group</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="RightGroupExtendedTooltip" id="158"/>
+							<ChildItems>
+								<LabelField name="Date" id="65">
+									<DataPath>List.Date</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Date created/Due date</v8:content>
+										</v8:item>
+									</Title>
+									<Width>12</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="DateContextMenu" id="66"/>
+									<ExtendedTooltip name="DateExtendedTooltip" id="118"/>
+								</LabelField>
+								<InputField name="TaskDueDate" id="36">
+									<DataPath>List.TaskDueDate</DataPath>
+									<ShowInHeader>false</ShowInHeader>
+									<Width>12</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Wrap>false</Wrap>
+									<BorderColor>style:BorderColor</BorderColor>
+									<ContextMenu name="TaskDueDateContextMenu" id="37"/>
+									<ExtendedTooltip name="TaskDueDateExtendedTooltip" id="116"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+						<ColumnGroup name="OthersGroup" id="159">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Other</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="OthersGroupExtendedTooltip" id="160"/>
+							<ChildItems>
+								<InputField name="StartDate" id="46">
+									<DataPath>List.StartDate</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Start date</v8:content>
+										</v8:item>
+									</Title>
+									<Width>10</Width>
+									<Wrap>false</Wrap>
+									<ContextMenu name="StartDateContextMenu" id="47"/>
+									<ExtendedTooltip name="StartDateExtendedTooltip" id="115"/>
+								</InputField>
+								<LabelField name="Number" id="57">
+									<DataPath>List.Number</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ShowInHeader>false</ShowInHeader>
+									<ContextMenu name="NumberContextMenu" id="58"/>
+									<ExtendedTooltip name="NumberExtendedTooltip" id="113"/>
+								</LabelField>
+							</ChildItems>
+						</ColumnGroup>
+						<LabelField name="Ref" id="137">
+							<DataPath>List.Ref</DataPath>
+							<UserVisible>
+								<xr:Common>false</xr:Common>
+							</UserVisible>
+							<ContextMenu name="RefContextMenu" id="138"/>
+							<ExtendedTooltip name="RefExtendedTooltip" id="139"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="List" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>List.AcceptedForExecution</Field>
+				<Field>List.BusinessProcess</Field>
+				<Field>List.Ref</Field>
+				<Field>List.SubjectOf</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>SELECT
+	TasksByExecutive.Ref,
+	TasksByExecutive.DeletionMark,
+	TasksByExecutive.Number,
+	TasksByExecutive.Date,
+	TasksByExecutive.BusinessProcess,
+	TasksByExecutive.RoutePoint,
+	TasksByExecutive.Description,
+	TasksByExecutive.Executed,
+	TasksByExecutive.TaskDueDate,
+	CASE
+		WHEN TasksByExecutive.StartDate = &amp;BlankDate
+			THEN &amp;BegOfDay
+		ELSE TasksByExecutive.StartDate
+	END AS StartDate,
+	TasksByExecutive.CompletionDate,
+	TasksByExecutive.Importance,
+	TasksByExecutive.LongDesc,
+	TasksByExecutive.PerformerRole,
+	TasksByExecutive.Performer,
+	TasksByExecutive.Presentation,
+	TasksByExecutive.SubjectString,
+	TasksByExecutive.Author,
+	TasksByExecutive.AcceptedForExecution,
+	CASE
+		WHEN TasksByExecutive.Importance = VALUE(Enum.TaskImportanceOptions.Low)
+			THEN 0
+		WHEN TasksByExecutive.Importance = VALUE(Enum.TaskImportanceOptions.High)
+			THEN 2
+		ELSE 1
+	END AS ImportancePicture,
+	TasksByExecutive.SubjectOf,
+	CASE
+		WHEN TasksByExecutive.TaskDueDate &lt;= &amp;CurrentDate
+			THEN &amp;Overdue
+		WHEN TasksByExecutive.TaskDueDate &gt; &amp;CurrentDate AND TasksByExecutive.TaskDueDate &lt;= &amp;EndOfDay
+			THEN &amp;Today
+		WHEN TasksByExecutive.TaskDueDate &gt; &amp;EndOfDay AND TasksByExecutive.TaskDueDate &lt;= &amp;EndOfWeek
+			THEN &amp;ThisWeek
+		WHEN TasksByExecutive.TaskDueDate &gt; &amp;EndOfWeek AND TasksByExecutive.TaskDueDate &lt;= &amp;EndOfNextWeek
+			THEN &amp;NextWeek
+		ELSE &amp;Later
+	END AS GroupDueDate
+FROM
+	Task.PerformerTask.TasksByExecutive AS TasksByExecutive
+WHERE
+	TasksByExecutive.BusinessProcessState = VALUE(Enum.BusinessProcessStates.Running)</QueryText>
+				<MainTable>Task.PerformerTask.TasksByExecutive</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>TaskDueDate</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Importance</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>StartDate</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ShowExecuted" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowExecuted</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="GroupingMode" id="3">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>GroupingMode</Field>
+			</Save>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="GroupByImportance" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Priority</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by priority</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GroupByImportance</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GroupByRoutePoint" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Route point</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by route point</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GroupByRoutePoint</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GroupByNoGroup" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>No grouping</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Ungroup</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GroupByNoGroup</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GroupByAuthor" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Author</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by author</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GroupByAuthor</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GroupBySubject" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Subject</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by subject</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GroupBySubject</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AcceptForExecution" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Accept</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Accept</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AcceptForExecution</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CancelAcceptForExecution" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Decline</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Decline</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CancelAcceptForExecution</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RefreshTasksList" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Update task list</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Shortcut>F5</Shortcut>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>RefreshTasksList</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenBusinessProcess" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open business process</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open business process</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OpenBusinessProcess</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="OpenTaskSubject" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open task subject</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open task subject</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>OpenTaskSubject</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GroupByDueDate" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Due date</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by due date</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GroupByDueDate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

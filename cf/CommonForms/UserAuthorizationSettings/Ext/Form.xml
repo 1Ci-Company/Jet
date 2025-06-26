@@ -1,0 +1,2883 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Login settings</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormWriteAndClose" id="10">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.WriteAndClose</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="11"/>
+			</Button>
+			<Button name="FormHelp" id="110">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="111"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="WarningConfigurationInService" id="120">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>SaaS settings warning</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="WarningConfigurationInServiceExtendedTooltip" id="121"/>
+			<ChildItems>
+				<PictureDecoration name="WarningSettingInServicePicture" id="122">
+					<SkipOnInput>false</SkipOnInput>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Warning configure in the service picture</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="WarningSettingInServicePictureContextMenu" id="123"/>
+					<ExtendedTooltip name="WarningSettingInServicePictureExtendedTooltip" id="124"/>
+				</PictureDecoration>
+				<LabelDecoration name="WarningSettingInServiceExplanation" id="125">
+					<SkipOnInput>false</SkipOnInput>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>For SaaS apps, these settings are configured in the
+Service Manager by the service administrator.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Center</VerticalAlign>
+					<ContextMenu name="WarningSettingInServiceExplanationContextMenu" id="126"/>
+					<ExtendedTooltip name="WarningSettingInServiceExplanationExtendedTooltip" id="127"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="130">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="131"/>
+			<ChildItems>
+				<Page name="ForUsers" id="132">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>For users</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ForUsersExtendedTooltip" id="133"/>
+					<ChildItems>
+						<UsualGroup name="SettingsGroup1" id="128">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Settings</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="SettingsGroup1ExtendedTooltip" id="129"/>
+							<ChildItems>
+								<UsualGroup name="PasswordComplexityGroup" id="33">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Password complexity</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<BackColor>style:FormBackColor</BackColor>
+									<ExtendedTooltip name="PasswordComplexityGroupExtendedTooltip" id="34"/>
+									<ChildItems>
+										<CheckBoxField name="PasswordMustMeetComplexityRequirements" id="4">
+											<DataPath>PasswordMustMeetComplexityRequirements</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Passwords must meet complexity requirements</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The new password must:
+- contain at least 7 characters
+- contain any 3 out of 4 character types: uppercase letters, 
+lowercase letters, numbers, and special characters
+- differ from the username</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="PasswordMustMeetComplexityRequirementsContextMenu" id="5"/>
+											<ExtendedTooltip name="PasswordMustMeetComplexityRequirementsExtendedTooltip" id="6"/>
+											<Events>
+												<Event name="OnChange">PasswordMustMeetComplexityRequirementsOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<UsualGroup name="MinPasswordLengthGroup" id="43">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Minimum password length</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MinPasswordLengthGroupExtendedTooltip" id="44"/>
+											<ChildItems>
+												<CheckBoxField name="MinPasswordLengthEnable" id="86">
+													<DataPath>MinPasswordLengthEnable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password length:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MinPasswordLengthEnableContextMenu" id="87"/>
+													<ExtendedTooltip name="MinPasswordLengthEnableExtendedTooltip" id="88"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="MinPasswordLength" id="1">
+													<DataPath>MinPasswordLength</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password length</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="MinPasswordLengthContextMenu" id="2"/>
+													<ExtendedTooltip name="MinPasswordLengthExtendedTooltip" id="3"/>
+													<Events>
+														<Event name="OnChange">MinPasswordLengthOnChange</Event>
+													</Events>
+												</InputField>
+												<LabelDecoration name="MinPasswordLengthNote" id="45">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>chars</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MinPasswordLengthNoteContextMenu" id="46"/>
+													<ExtendedTooltip name="MinPasswordLengthNoteExtendedTooltip" id="47"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<CheckBoxField name="ShouldBeExcludedFromBannedPasswordList" id="302">
+											<DataPath>ShouldBeExcludedFromBannedPasswordList</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Deny banned passwords</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>See the "Banned passwords" tab</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ShouldBeExcludedFromBannedPasswordListContextMenu" id="303"/>
+											<ExtendedTooltip name="ShouldBeExcludedFromBannedPasswordListExtendedTooltip" id="304"/>
+										</CheckBoxField>
+										<CheckBoxField name="ActionUponLoginIfRequirementNotMetEnable" id="338">
+											<DataPath>ActionUponLoginIfRequirementNotMetEnable</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Do this if either of the requirements is not met:</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ActionUponLoginIfRequirementNotMetEnableContextMenu" id="339"/>
+											<ExtendedTooltip name="ActionUponLoginIfRequirementNotMetEnableExtendedTooltip" id="340"/>
+											<Events>
+												<Event name="OnChange">SettingEnableOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<UsualGroup name="GroupActionUponLoginIfRequirementNotMet" id="341">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Action if requirement not met</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupActionUponLoginIfRequirementNotMetExtendedTooltip" id="342"/>
+											<ChildItems>
+												<LabelDecoration name="IndentActionUponLoginIfRequirementNotMet" id="343">
+													<Width>1</Width>
+													<ContextMenu name="IndentActionUponLoginIfRequirementNotMetContextMenu" id="344"/>
+													<ExtendedTooltip name="IndentActionUponLoginIfRequirementNotMetExtendedTooltip" id="345"/>
+												</LabelDecoration>
+												<InputField name="ActionUponLoginIfRequirementNotMet" id="305">
+													<DataPath>ActionUponLoginIfRequirementNotMet</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Action if requirement not met</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<Width>28</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ListChoiceMode>true</ListChoiceMode>
+													<ChoiceList>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Prompt password change</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:string">SuggestPasswordChange</Value>
+															</xr:Value>
+														</xr:Item>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Demand password change</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:string">RequirePasswordChange</Value>
+															</xr:Value>
+														</xr:Item>
+													</ChoiceList>
+													<ContextMenu name="ActionUponLoginIfRequirementNotMetContextMenu" id="306"/>
+													<ExtendedTooltip name="ActionUponLoginIfRequirementNotMetExtendedTooltip" id="307"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="ChangePasswordGroup" id="108">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Change password</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<BackColor>style:FormBackColor</BackColor>
+									<ExtendedTooltip name="ChangePasswordGroupExtendedTooltip" id="109"/>
+									<ChildItems>
+										<UsualGroup name="MaxPasswordLifetimeGroup" id="53">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Maximum password lifetime</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MaxPasswordLifetimeGroupExtendedTooltip" id="54"/>
+											<ChildItems>
+												<CheckBoxField name="MaxPasswordLifetimeEnable" id="92">
+													<DataPath>MaxPasswordLifetimeEnable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Maximum password lifetime:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MaxPasswordLifetimeEnableContextMenu" id="93"/>
+													<ExtendedTooltip name="MaxPasswordLifetimeEnableExtendedTooltip" id="94"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="MaxPasswordLifetime" id="12">
+													<DataPath>MaxPasswordLifetime</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Maximum password lifetime</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>The period from the first use of the password
+to the moment the password expires.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Width>2</Width>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="MaxPasswordLifetimeContextMenu" id="13"/>
+													<ExtendedTooltip name="MaxPasswordLifetimeExtendedTooltip" id="14"/>
+												</InputField>
+												<LabelDecoration name="MaxPasswordLifetimeNote" id="55">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>days</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MaxPasswordLifetimeNoteContextMenu" id="56"/>
+													<ExtendedTooltip name="MaxPasswordLifetimeNoteExtendedTooltip" id="57"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="MinPasswordValidityPeriodGroup" id="48">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Minimum password lifetime</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MinPasswordValidityPeriodGroupExtendedTooltip" id="49"/>
+											<ChildItems>
+												<CheckBoxField name="MinPasswordLifetimeEnable" id="89">
+													<DataPath>MinPasswordLifetimeEnable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password lifetime:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MinPasswordLifetimeEnableContextMenu" id="90"/>
+													<ExtendedTooltip name="MinPasswordLifetimeEnableExtendedTooltip" id="91"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="MinPasswordLifetime" id="25">
+													<DataPath>MinPasswordLifetime</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password lifetime</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>The period from the first use of the password
+when the user cannot change the password.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="MinPasswordLifetimeContextMenu" id="26"/>
+													<ExtendedTooltip name="MinPasswordLifetimeExtendedTooltip" id="27"/>
+												</InputField>
+												<LabelDecoration name="MinPasswordValidityPeriodNote" id="50">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>days</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MinPasswordValidityPeriodNoteContextMenu" id="51"/>
+													<ExtendedTooltip name="MinPasswordValidityPeriodNoteExtendedTooltip" id="52"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="DenyReusingRecentPasswordsGroup" id="38">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Prevent re-use of recent passwords</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="DenyReusingRecentPasswordsGroupExtendedTooltip" id="39"/>
+											<ChildItems>
+												<CheckBoxField name="DenyReusingRecentPasswordsEnable" id="83">
+													<DataPath>DenyReusingRecentPasswordsEnable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Prevent re-use of this many recent passwords:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="DenyReusingRecentPasswordsEnableContextMenu" id="84"/>
+													<ExtendedTooltip name="DenyReusingRecentPasswordsEnableExtendedTooltip" id="85"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="DenyReusingRecentPasswords" id="7">
+													<DataPath>DenyReusingRecentPasswords</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Prevent re-use of recent passwords</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="DenyReusingRecentPasswordsContextMenu" id="8"/>
+													<ExtendedTooltip name="DenyReusingRecentPasswordsExtendedTooltip" id="9"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="GroupWarnAboutPasswordExpiration" id="229">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Notify users on password expiration</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupWarnAboutPasswordExpirationExtendedTooltip" id="230"/>
+											<ChildItems>
+												<CheckBoxField name="WarnAboutPasswordExpirationEnable" id="231">
+													<DataPath>WarnAboutPasswordExpirationEnable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Notification lead time before password expires:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="WarnAboutPasswordExpirationEnableContextMenu" id="232"/>
+													<ExtendedTooltip name="WarnAboutPasswordExpirationEnableExtendedTooltip" id="233"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="WarnAboutPasswordExpiration" id="234">
+													<DataPath>WarnAboutPasswordExpiration</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Notify users on password expiration</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="WarnAboutPasswordExpirationContextMenu" id="235"/>
+													<ExtendedTooltip name="WarnAboutPasswordExpirationExtendedTooltip" id="236"/>
+												</InputField>
+												<LabelDecoration name="NoteWarnAboutPasswordExpiration" id="237">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>days</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="NoteWarnAboutPasswordExpirationContextMenu" id="238"/>
+													<ExtendedTooltip name="NoteWarnAboutPasswordExpirationExtendedTooltip" id="239"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="InactivityPeriodBeforeDenyingAuthorizationGroup" id="75">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User inactivity timeout</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationGroupExtendedTooltip" id="76"/>
+									<ChildItems>
+										<CheckBoxField name="InactivityPeriodBeforeDenyingAuthorizationEnable" id="95">
+											<DataPath>InactivityPeriodBeforeDenyingAuthorizationEnable</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User inactivity timeout:</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<TitleHeight>2</TitleHeight>
+											<VerticalAlign>Top</VerticalAlign>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="InactivityPeriodBeforeDenyingAuthorizationEnableContextMenu" id="96"/>
+											<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationEnableExtendedTooltip" id="97"/>
+											<Events>
+												<Event name="OnChange">SettingEnableOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<InputField name="InactivityPeriodBeforeDenyingAuthorization" id="77">
+											<DataPath>InactivityPeriodBeforeDenyingAuthorization</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User inactivity timeout</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Maximum number of inactive days
+before the user is locked out.
+
+Not applicable to administrators.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<MinValue xsi:type="xs:decimal">1</MinValue>
+											<ContextMenu name="InactivityPeriodBeforeDenyingAuthorizationContextMenu" id="78"/>
+											<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationExtendedTooltip" id="79"/>
+										</InputField>
+										<LabelDecoration name="InactivityPeriodBeforeDenyingAuthorizationNote" id="80">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>days</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="InactivityPeriodBeforeDenyingAuthorizationNoteContextMenu" id="81"/>
+											<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationNoteExtendedTooltip" id="82"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="ForExternalUsers" id="163">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>For external users</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ForExternalUsersExtendedTooltip" id="164"/>
+					<ChildItems>
+						<UsualGroup name="SettingsGroup12" id="165">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Settings</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="SettingsGroup12ExtendedTooltip" id="166"/>
+							<ChildItems>
+								<UsualGroup name="PasswordComplexityGroup2" id="167">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Password complexity</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<BackColor>style:FormBackColor</BackColor>
+									<ExtendedTooltip name="PasswordComplexityGroup2ExtendedTooltip" id="168"/>
+									<ChildItems>
+										<CheckBoxField name="PasswordMustMeetComplexityRequirements2" id="169">
+											<DataPath>PasswordMustMeetComplexityRequirements2</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Passwords must meet complexity requirements</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>The new password must:
+- contain at least 7 characters
+- contain any 3 out of 4 character types: uppercase letters, 
+lowercase letters, numbers, and special characters
+- differ from the username</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="PasswordMustMeetComplexityRequirements2ContextMenu" id="170"/>
+											<ExtendedTooltip name="PasswordMustMeetComplexityRequirements2ExtendedTooltip" id="171"/>
+											<Events>
+												<Event name="OnChange">PasswordMustMeetComplexityRequirementsOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<UsualGroup name="MinPasswordLengthGroup2" id="172">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Minimum password length</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MinPasswordLengthGroup2ExtendedTooltip" id="173"/>
+											<ChildItems>
+												<CheckBoxField name="MinPasswordLength2Enable" id="174">
+													<DataPath>MinPasswordLength2Enable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password length:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MinPasswordLength2EnableContextMenu" id="175"/>
+													<ExtendedTooltip name="MinPasswordLength2EnableExtendedTooltip" id="176"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="MinPasswordLength2" id="177">
+													<DataPath>MinPasswordLength2</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password length</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="MinPasswordLength2ContextMenu" id="178"/>
+													<ExtendedTooltip name="MinPasswordLength2ExtendedTooltip" id="179"/>
+													<Events>
+														<Event name="OnChange">MinPasswordLengthOnChange</Event>
+													</Events>
+												</InputField>
+												<LabelDecoration name="MinPasswordLengthNote2" id="180">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>chars</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MinPasswordLengthNote2ContextMenu" id="181"/>
+													<ExtendedTooltip name="MinPasswordLengthNote2ExtendedTooltip" id="182"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<CheckBoxField name="ShouldBeExcludedFromBannedPasswordList2" id="308">
+											<DataPath>ShouldBeExcludedFromBannedPasswordList2</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Deny banned passwords</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>See the "Banned passwords" tab</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ShouldBeExcludedFromBannedPasswordList2ContextMenu" id="309"/>
+											<ExtendedTooltip name="ShouldBeExcludedFromBannedPasswordList2ExtendedTooltip" id="310"/>
+										</CheckBoxField>
+										<CheckBoxField name="ActionUponLoginIfRequirementNotMet2Enable" id="372">
+											<DataPath>ActionUponLoginIfRequirementNotMet2Enable</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Do this if either of the requirements is not met:</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ActionUponLoginIfRequirementNotMet2EnableContextMenu" id="373"/>
+											<ExtendedTooltip name="ActionUponLoginIfRequirementNotMet2EnableExtendedTooltip" id="374"/>
+											<Events>
+												<Event name="OnChange">SettingEnableOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<UsualGroup name="GroupActionUponLoginIfRequirementNotMet2" id="375">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Action if requirement not met</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupActionUponLoginIfRequirementNotMet2ExtendedTooltip" id="376"/>
+											<ChildItems>
+												<LabelDecoration name="IndentActionUponLoginIfRequirementNotMet2" id="377">
+													<Width>1</Width>
+													<ContextMenu name="IndentActionUponLoginIfRequirementNotMet2ContextMenu" id="378"/>
+													<ExtendedTooltip name="IndentActionUponLoginIfRequirementNotMet2ExtendedTooltip" id="379"/>
+												</LabelDecoration>
+												<InputField name="ActionUponLoginIfRequirementNotMet2" id="380">
+													<DataPath>ActionUponLoginIfRequirementNotMet2</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Action if requirement not met</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<Width>28</Width>
+													<HorizontalStretch>false</HorizontalStretch>
+													<ListChoiceMode>true</ListChoiceMode>
+													<ChoiceList>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Prompt password change</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:string">SuggestPasswordChange</Value>
+															</xr:Value>
+														</xr:Item>
+														<xr:Item>
+															<xr:Presentation/>
+															<xr:CheckState>0</xr:CheckState>
+															<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																<Presentation>
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>Demand password change</v8:content>
+																	</v8:item>
+																</Presentation>
+																<Value xsi:type="xs:string">RequirePasswordChange</Value>
+															</xr:Value>
+														</xr:Item>
+													</ChoiceList>
+													<ContextMenu name="ActionUponLoginIfRequirementNotMet2ContextMenu" id="381"/>
+													<ExtendedTooltip name="ActionUponLoginIfRequirementNotMet2ExtendedTooltip" id="382"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="ChangePasswordGroup2" id="183">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Change password</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<BackColor>style:FormBackColor</BackColor>
+									<ExtendedTooltip name="ChangePasswordGroup2ExtendedTooltip" id="184"/>
+									<ChildItems>
+										<UsualGroup name="MaxPasswordLifetimeGroup2" id="185">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Maximum password lifetime</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MaxPasswordLifetimeGroup2ExtendedTooltip" id="186"/>
+											<ChildItems>
+												<CheckBoxField name="MaxPasswordLifetime2Enable" id="187">
+													<DataPath>MaxPasswordLifetime2Enable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Maximum password lifetime:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MaxPasswordLifetime2EnableContextMenu" id="188"/>
+													<ExtendedTooltip name="MaxPasswordLifetime2EnableExtendedTooltip" id="189"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="MaxPasswordLifetime2" id="190">
+													<DataPath>MaxPasswordLifetime2</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Maximum password lifetime</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>The period from the first use of the password
+to the moment the password expires.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Width>2</Width>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="MaxPasswordLifetime2ContextMenu" id="191"/>
+													<ExtendedTooltip name="MaxPasswordLifetime2ExtendedTooltip" id="192"/>
+												</InputField>
+												<LabelDecoration name="MaxPasswordLifetimeNote2" id="193">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>days</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MaxPasswordLifetimeNote2ContextMenu" id="194"/>
+													<ExtendedTooltip name="MaxPasswordLifetimeNote2ExtendedTooltip" id="195"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="MinPasswordValidityPeriodGroup2" id="196">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Minimum password lifetime</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MinPasswordValidityPeriodGroup2ExtendedTooltip" id="197"/>
+											<ChildItems>
+												<CheckBoxField name="MinPasswordLifetime2Enable" id="198">
+													<DataPath>MinPasswordLifetime2Enable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password lifetime:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="MinPasswordLifetime2EnableContextMenu" id="199"/>
+													<ExtendedTooltip name="MinPasswordLifetime2EnableExtendedTooltip" id="200"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="MinPasswordLifetime2" id="201">
+													<DataPath>MinPasswordLifetime2</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Minimum password lifetime</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>The period from the first use of the password
+when the user cannot change the password.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="MinPasswordLifetime2ContextMenu" id="202"/>
+													<ExtendedTooltip name="MinPasswordLifetime2ExtendedTooltip" id="203"/>
+												</InputField>
+												<LabelDecoration name="MinPasswordValidityPeriodNote2" id="204">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>days</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="MinPasswordValidityPeriodNote2ContextMenu" id="205"/>
+													<ExtendedTooltip name="MinPasswordValidityPeriodNote2ExtendedTooltip" id="206"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="DenyReusingRecentPasswordsGroup2" id="207">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Prevent re-use of recent passwords</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="DenyReusingRecentPasswordsGroup2ExtendedTooltip" id="208"/>
+											<ChildItems>
+												<CheckBoxField name="DenyReusingRecentPasswords2Enable" id="209">
+													<DataPath>DenyReusingRecentPasswords2Enable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Prevent re-use of this many recent passwords:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="DenyReusingRecentPasswords2EnableContextMenu" id="210"/>
+													<ExtendedTooltip name="DenyReusingRecentPasswords2EnableExtendedTooltip" id="211"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="DenyReusingRecentPasswords2" id="212">
+													<DataPath>DenyReusingRecentPasswords2</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Prevent re-use of recent passwords</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="DenyReusingRecentPasswords2ContextMenu" id="213"/>
+													<ExtendedTooltip name="DenyReusingRecentPasswords2ExtendedTooltip" id="214"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="GroupWarnAboutPasswordExpiration2" id="240">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Notify users on password expiration</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<United>false</United>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupWarnAboutPasswordExpiration2ExtendedTooltip" id="241"/>
+											<ChildItems>
+												<CheckBoxField name="WarnAboutPasswordExpiration2Enable" id="242">
+													<DataPath>WarnAboutPasswordExpiration2Enable</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Notification lead time before password expires:</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="WarnAboutPasswordExpiration2EnableContextMenu" id="243"/>
+													<ExtendedTooltip name="WarnAboutPasswordExpiration2EnableExtendedTooltip" id="244"/>
+													<Events>
+														<Event name="OnChange">SettingEnableOnChange</Event>
+													</Events>
+												</CheckBoxField>
+												<InputField name="WarnAboutPasswordExpiration2" id="245">
+													<DataPath>WarnAboutPasswordExpiration2</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Notify users on password expiration</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>None</TitleLocation>
+													<MinValue xsi:type="xs:decimal">1</MinValue>
+													<ContextMenu name="WarnAboutPasswordExpiration2ContextMenu" id="246"/>
+													<ExtendedTooltip name="WarnAboutPasswordExpiration2ExtendedTooltip" id="247"/>
+												</InputField>
+												<LabelDecoration name="NoteWarnAboutPasswordExpiration2" id="248">
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>days</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="NoteWarnAboutPasswordExpiration2ContextMenu" id="249"/>
+													<ExtendedTooltip name="NoteWarnAboutPasswordExpiration2ExtendedTooltip" id="250"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="InactivityPeriodBeforeDenyingAuthorizationGroup2" id="215">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User inactivity timeout</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<United>false</United>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationGroup2ExtendedTooltip" id="216"/>
+									<ChildItems>
+										<CheckBoxField name="InactivityPeriodBeforeDenyingAuthorization2Enable" id="217">
+											<DataPath>InactivityPeriodBeforeDenyingAuthorization2Enable</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User inactivity timeout:</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<TitleHeight>2</TitleHeight>
+											<VerticalAlign>Top</VerticalAlign>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="InactivityPeriodBeforeDenyingAuthorization2EnableContextMenu" id="218"/>
+											<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorization2EnableExtendedTooltip" id="219"/>
+											<Events>
+												<Event name="OnChange">SettingEnableOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<InputField name="InactivityPeriodBeforeDenyingAuthorization2" id="220">
+											<DataPath>InactivityPeriodBeforeDenyingAuthorization2</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>User inactivity timeout</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Maximum number of inactive days
+before the user is locked out.
+
+Not applicable to administrators.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<MinValue xsi:type="xs:decimal">1</MinValue>
+											<ContextMenu name="InactivityPeriodBeforeDenyingAuthorization2ContextMenu" id="221"/>
+											<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorization2ExtendedTooltip" id="222"/>
+										</InputField>
+										<LabelDecoration name="InactivityPeriodBeforeDenyingAuthorizationNote2" id="223">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>days</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="InactivityPeriodBeforeDenyingAuthorizationNote2ContextMenu" id="224"/>
+											<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationNote2ExtendedTooltip" id="225"/>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="Additional" id="140">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="AdditionalExtendedTooltip" id="141"/>
+					<ChildItems>
+						<UsualGroup name="GroupNotificationLeadTimeBeforeAccessExpire" id="289">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Notify users on access expiration</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNotificationLeadTimeBeforeAccessExpireExtendedTooltip" id="290"/>
+							<ChildItems>
+								<CheckBoxField name="ShouldNotifyUserBeforeAccessExpire" id="291">
+									<DataPath>ShouldNotifyUserBeforeAccessExpire</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Notify user this many days before access expires:</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShouldNotifyUserBeforeAccessExpireContextMenu" id="292"/>
+									<ExtendedTooltip name="ShouldNotifyUserBeforeAccessExpireExtendedTooltip" id="293"/>
+									<Events>
+										<Event name="OnChange">CommonSettingEnableOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="NotificationLeadTimeBeforeAccessExpire" id="294">
+									<DataPath>NotificationLeadTimeBeforeAccessExpire</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Notify users on access expiration</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>3</Width>
+									<ContextMenu name="NotificationLeadTimeBeforeAccessExpireContextMenu" id="295"/>
+									<ExtendedTooltip name="NotificationLeadTimeBeforeAccessExpireExtendedTooltip" id="296"/>
+									<Events>
+										<Event name="OnChange">SettingValueOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="NoteNotificationLeadTimeBeforeAccessExpire" id="297">
+									<Height>1</Height>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>days</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>A user will receive a warning if either the login time restriction is enabled in the user card or the "User inactivity timeout" checkbox is selected in the common settings.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<ContextMenu name="NoteNotificationLeadTimeBeforeAccessExpireContextMenu" id="298"/>
+									<ExtendedTooltip name="NoteNotificationLeadTimeBeforeAccessExpireExtendedTooltip" id="299"/>
+								</LabelDecoration>
+								<LabelDecoration name="Vspace1" id="402">
+									<Height>2</Height>
+									<ContextMenu name="Vspace1ContextMenu" id="403"/>
+									<ExtendedTooltip name="Vspace1ExtendedTooltip" id="404"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupInactivityTimeoutBeforeTerminateSession" id="257">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Session inactivity before termination</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupInactivityTimeoutBeforeTerminateSessionExtendedTooltip" id="258"/>
+							<ChildItems>
+								<CheckBoxField name="ShouldTerminateSessionAfterInactivityTimeout" id="268">
+									<DataPath>ShouldTerminateSessionAfterInactivityTimeout</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Terminate session if user inactive for:</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShouldTerminateSessionAfterInactivityTimeoutContextMenu" id="269"/>
+									<ExtendedTooltip name="ShouldTerminateSessionAfterInactivityTimeoutExtendedTooltip" id="270"/>
+									<Events>
+										<Event name="OnChange">CommonSettingEnableOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="InactivityTimeoutBeforeTerminateSession" id="262">
+									<DataPath>InactivityTimeoutBeforeTerminateSession</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Session inactivity before termination</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>3</Width>
+									<ContextMenu name="InactivityTimeoutBeforeTerminateSessionContextMenu" id="263"/>
+									<ExtendedTooltip name="InactivityTimeoutBeforeTerminateSessionExtendedTooltip" id="264"/>
+									<Events>
+										<Event name="OnChange">InactivityTimeoutBeforeTerminateSessionOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="NoteInactivityTimeoutBeforeTerminateSession" id="265">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>min.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="NoteInactivityTimeoutBeforeTerminateSessionContextMenu" id="266"/>
+									<ExtendedTooltip name="NoteInactivityTimeoutBeforeTerminateSessionExtendedTooltip" id="267"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupNotificationLeadTimeBeforeTerminateInactiveSession" id="383">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Notify about inactive session termination</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNotificationLeadTimeBeforeTerminateInactiveSessionExtendedTooltip" id="384"/>
+							<ChildItems>
+								<UsualGroup name="GroupShouldNotifyUserBeforeTerminateInactiveSession" id="440">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Notify about inactive session termination</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupShouldNotifyUserBeforeTerminateInactiveSessionExtendedTooltip" id="441"/>
+									<ChildItems>
+										<LabelDecoration name="IndentShouldNotifyUserBeforeTerminateInactiveSession" id="442">
+											<Width>1</Width>
+											<ContextMenu name="IndentShouldNotifyUserBeforeTerminateInactiveSessionContextMenu" id="443"/>
+											<ExtendedTooltip name="IndentShouldNotifyUserBeforeTerminateInactiveSessionExtendedTooltip" id="444"/>
+										</LabelDecoration>
+										<LabelField name="ShouldNotifyUserBeforeTerminateInactiveSession" id="385">
+											<DataPath>IsBlankString</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Notification lead time</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ShouldNotifyUserBeforeTerminateInactiveSessionContextMenu" id="386"/>
+											<ExtendedTooltip name="ShouldNotifyUserBeforeTerminateInactiveSessionExtendedTooltip" id="387"/>
+										</LabelField>
+									</ChildItems>
+								</UsualGroup>
+								<InputField name="NotificationLeadTimeBeforeTerminateInactiveSession" id="388">
+									<DataPath>NotificationLeadTimeBeforeTerminateInactiveSession</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Session inactivity before termination</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>3</Width>
+									<ContextMenu name="NotificationLeadTimeBeforeTerminateInactiveSessionContextMenu" id="389"/>
+									<ExtendedTooltip name="NotificationLeadTimeBeforeTerminateInactiveSessionExtendedTooltip" id="390"/>
+									<Events>
+										<Event name="OnChange">NotificationLeadTimeBeforeTerminateInactiveSessionOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="NoteNotificationLeadTimeBeforeTerminateInactiveSession" id="391">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>min.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="NoteNotificationLeadTimeBeforeTerminateInactiveSessionContextMenu" id="392"/>
+									<ExtendedTooltip name="NoteNotificationLeadTimeBeforeTerminateInactiveSessionExtendedTooltip" id="393"/>
+								</LabelDecoration>
+								<LabelDecoration name="Vspace2" id="405">
+									<Height>2</Height>
+									<ContextMenu name="Vspace2ContextMenu" id="406"/>
+									<ExtendedTooltip name="Vspace2ExtendedTooltip" id="407"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupPasswordSaveOptionUponLogin" id="411">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Save password on login</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupPasswordSaveOptionUponLoginExtendedTooltip" id="412"/>
+							<ChildItems>
+								<CheckBoxField name="CanSavePasswordUponLogin" id="413">
+									<DataPath>CanSavePasswordUponLogin</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allow users to save password on login:</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="CanSavePasswordUponLoginContextMenu" id="414"/>
+									<ExtendedTooltip name="CanSavePasswordUponLoginExtendedTooltip" id="415"/>
+									<Events>
+										<Event name="OnChange">CommonSettingEnableOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<UsualGroup name="GroupPasswordSaveOptionUponLoginIndent" id="435">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Save password on login (indent)</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupPasswordSaveOptionUponLoginIndentExtendedTooltip" id="436"/>
+									<ChildItems>
+										<LabelDecoration name="IndentPasswordSaveOptionUponLogin" id="437">
+											<Width>1</Width>
+											<ContextMenu name="IndentPasswordSaveOptionUponLoginContextMenu" id="438"/>
+											<ExtendedTooltip name="IndentPasswordSaveOptionUponLoginExtendedTooltip" id="439"/>
+										</LabelDecoration>
+										<InputField name="PasswordSaveOptionUponLogin" id="416">
+											<DataPath>PasswordSaveOptionUponLogin</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Save password on login</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>None</TitleLocation>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Select the checkbox to let the users seamlessly access
+the app without requiring manual password entry each time.</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<Width>30</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ListChoiceMode>true</ListChoiceMode>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Save flag cleared by default</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">AllowedAndDisabled</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Save flag selected by default</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xs:string">AllowedAndEnabled</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="PasswordSaveOptionUponLoginContextMenu" id="417"/>
+											<ExtendedTooltip name="PasswordSaveOptionUponLoginExtendedTooltip" id="418"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupPasswordRemembranceDuration" id="419">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Enable remember passwords</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupPasswordRemembranceDurationExtendedTooltip" id="420"/>
+							<ChildItems>
+								<UsualGroup name="GroupShouldTempRememberPassword" id="450">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Enable remember passwords</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupShouldTempRememberPasswordExtendedTooltip" id="451"/>
+									<ChildItems>
+										<LabelDecoration name="IndentShouldTempRememberPassword" id="452">
+											<Width>1</Width>
+											<ContextMenu name="IndentShouldTempRememberPasswordContextMenu" id="453"/>
+											<ExtendedTooltip name="IndentShouldTempRememberPasswordExtendedTooltip" id="454"/>
+										</LabelDecoration>
+										<LabelField name="ShouldTemporarilyRememberPassword" id="421">
+											<DataPath>IsBlankString</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Remember password for</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ShouldTemporarilyRememberPasswordContextMenu" id="422"/>
+											<ExtendedTooltip name="ShouldTemporarilyRememberPasswordExtendedTooltip" id="423"/>
+											<Events>
+												<Event name="OnChange">CommonSettingEnableOnChange</Event>
+											</Events>
+										</LabelField>
+									</ChildItems>
+								</UsualGroup>
+								<InputField name="PasswordRemembranceDuration" id="424">
+									<DataPath>PasswordRemembranceDuration</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Remember password for</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>3</Width>
+									<ContextMenu name="PasswordRemembranceDurationContextMenu" id="425"/>
+									<ExtendedTooltip name="PasswordRemembranceDurationExtendedTooltip" id="426"/>
+									<Events>
+										<Event name="OnChange">SettingValueOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="NotePasswordRemembranceDuration" id="427">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>min.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="NotePasswordRemembranceDurationContextMenu" id="428"/>
+									<ExtendedTooltip name="NotePasswordRemembranceDurationExtendedTooltip" id="429"/>
+								</LabelDecoration>
+								<LabelDecoration name="Vspace4" id="430">
+									<Height>2</Height>
+									<ContextMenu name="Vspace4ContextMenu" id="431"/>
+									<ExtendedTooltip name="Vspace4ExtendedTooltip" id="432"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupPasswordAttemptsCountBeforeLockout" id="142">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Password attempts before lockout</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupPasswordAttemptsCountBeforeLockoutExtendedTooltip" id="143"/>
+							<ChildItems>
+								<CheckBoxField name="PasswordAttemptsCountBeforeLockoutEnable" id="144">
+									<DataPath>PasswordAttemptsCountBeforeLockoutEnable</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Password attempts before lockout:</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="PasswordAttemptsCountBeforeLockoutEnableContextMenu" id="145"/>
+									<ExtendedTooltip name="PasswordAttemptsCountBeforeLockoutEnableExtendedTooltip" id="146"/>
+									<Events>
+										<Event name="OnChange">CommonSettingEnableOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="PasswordAttemptsCountBeforeLockout" id="134">
+									<DataPath>PasswordAttemptsCountBeforeLockout</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Password attempts before lockout</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>3</Width>
+									<ContextMenu name="PasswordAttemptsCountBeforeLockoutContextMenu" id="135"/>
+									<ExtendedTooltip name="PasswordAttemptsCountBeforeLockoutExtendedTooltip" id="136"/>
+									<Events>
+										<Event name="OnChange">SettingValueOnChange</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupPasswordLockoutDuration" id="150">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Password lockout duration</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<United>false</United>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupPasswordLockoutDurationExtendedTooltip" id="151"/>
+							<ChildItems>
+								<UsualGroup name="GroupPasswordLockoutDurationEnable" id="445">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Enable password lockout</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupPasswordLockoutDurationEnableExtendedTooltip" id="446"/>
+									<ChildItems>
+										<LabelDecoration name="IndentPasswordLockoutDurationEnable" id="447">
+											<Width>1</Width>
+											<ContextMenu name="IndentPasswordLockoutDurationEnableContextMenu" id="448"/>
+											<ExtendedTooltip name="IndentPasswordLockoutDurationEnableExtendedTooltip" id="449"/>
+										</LabelDecoration>
+										<LabelField name="PasswordLockoutDurationEnable" id="147">
+											<DataPath>IsBlankString</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Password lockout duration</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="PasswordLockoutDurationEnableContextMenu" id="148"/>
+											<ExtendedTooltip name="PasswordLockoutDurationEnableExtendedTooltip" id="149"/>
+											<Events>
+												<Event name="OnChange">CommonSettingEnableOnChange</Event>
+											</Events>
+										</LabelField>
+									</ChildItems>
+								</UsualGroup>
+								<InputField name="PasswordLockoutDuration" id="137">
+									<DataPath>PasswordLockoutDuration</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Password lockout duration</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>3</Width>
+									<ContextMenu name="PasswordLockoutDurationContextMenu" id="138"/>
+									<ExtendedTooltip name="PasswordLockoutDurationExtendedTooltip" id="139"/>
+									<Events>
+										<Event name="OnChange">SettingValueOnChange</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="NotePasswordLockoutDuration" id="152">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>min.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="NotePasswordLockoutDurationContextMenu" id="153"/>
+									<ExtendedTooltip name="NotePasswordLockoutDurationExtendedTooltip" id="154"/>
+								</LabelDecoration>
+								<LabelDecoration name="Vspace3" id="408">
+									<Height>2</Height>
+									<ContextMenu name="Vspace3ContextMenu" id="409"/>
+									<ExtendedTooltip name="Vspace3ExtendedTooltip" id="410"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupShowInList" id="158">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show in list</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupShowInListExtendedTooltip" id="159"/>
+							<ChildItems>
+								<InputField name="ShowInList" id="155">
+									<DataPath>ShowInList</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Setting "Show in choice list" in user card</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Top</TitleLocation>
+									<ListChoiceMode>true</ListChoiceMode>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Enable for new users</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">EnabledForNewUsers</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Disable for new users</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">DisabledForNewUsers</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Enable and hide for all users</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">HiddenAndEnabledForAllUsers</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Disable and hide for all users</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">HiddenAndDisabledForAllUsers</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="ShowInListContextMenu" id="156"/>
+									<ExtendedTooltip name="ShowInListExtendedTooltip" id="157"/>
+									<Events>
+										<Event name="Clearing">ShowInListClearing</Event>
+										<Event name="ChoiceProcessing">ShowInListChoiceProcessing</Event>
+									</Events>
+								</InputField>
+								<PictureDecoration name="NoteShowInListExternalUsers" id="160">
+									<Visible>false</Visible>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Note to locking the setting of the Show in list checkbox (external users)</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Access is granted for external users, therefore the user list is disabled for security reasons.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
+									<Picture>
+										<xr:Ref>CommonPicture.UnavailableFieldsInformation</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="NoteShowInListExternalUsersContextMenu" id="161"/>
+									<ExtendedTooltip name="NoteShowInListExternalUsersExtendedTooltip" id="162"/>
+								</PictureDecoration>
+								<PictureDecoration name="NoteShowInListDataSeparationEnabled" id="251">
+									<Visible>false</Visible>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Note to locking the setting of the Show in list checkbox (separation is enabled)</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>The user list is disabled for security reasons.</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
+									<Picture>
+										<xr:Ref>CommonPicture.UnavailableFieldsInformation</xr:Ref>
+										<xr:LoadTransparent>false</xr:LoadTransparent>
+									</Picture>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="NoteShowInListDataSeparationEnabledContextMenu" id="252"/>
+									<ExtendedTooltip name="NoteShowInListDataSeparationEnabledExtendedTooltip" id="253"/>
+								</PictureDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="BannedPasswords" id="314">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Banned passwords</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BannedPasswordsExtendedTooltip" id="315"/>
+					<ChildItems>
+						<CheckBoxField name="ShouldUseStandardBannedPasswordList" id="316">
+							<DataPath>ShouldUseStandardBannedPasswordList</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Standard list</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>1C:Enterprise built-in password base</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ShouldUseStandardBannedPasswordListContextMenu" id="317"/>
+							<ExtendedTooltip name="ShouldUseStandardBannedPasswordListExtendedTooltip" id="318"/>
+						</CheckBoxField>
+						<UsualGroup name="GroupAdditionalBannedPasswordList" id="271">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Additional list of banned passwords</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupAdditionalBannedPasswordListExtendedTooltip" id="272"/>
+							<ChildItems>
+								<CheckBoxField name="ShouldUseAdditionalBannedPasswordList" id="319">
+									<DataPath>ShouldUseAdditionalBannedPasswordList</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional list</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShouldUseAdditionalBannedPasswordListContextMenu" id="320"/>
+									<ExtendedTooltip name="ShouldUseAdditionalBannedPasswordListExtendedTooltip" id="321"/>
+								</CheckBoxField>
+								<Button name="ShowBannedPasswordList" id="287">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ShowBannedPasswordList</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>View</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ShowBannedPasswordListExtendedTooltip" id="288"/>
+								</Button>
+								<Button name="ClearBannedPasswordList" id="433">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ClearBannedPasswordList</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Clear</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="ClearBannedPasswordListExtendedTooltip" id="434"/>
+								</Button>
+								<Button name="ImportBannedPasswordList" id="282">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ImportBannedPasswordList</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Import…</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<ExtendedTooltip name="ImportBannedPasswordListExtendedTooltip" id="283"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupUseBannedPasswordService" id="400">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use leaked passwords service</v8:content>
+								</v8:item>
+							</Title>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupUseBannedPasswordServiceExtendedTooltip" id="401"/>
+							<ChildItems>
+								<CheckBoxField name="ShouldUseBannedPasswordService" id="322">
+									<DataPath>ShouldUseBannedPasswordService</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Leaked passwords service:</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ShouldUseBannedPasswordServiceContextMenu" id="323"/>
+									<ExtendedTooltip name="ShouldUseBannedPasswordServiceExtendedTooltip" id="324"/>
+									<Events>
+										<Event name="OnChange">ShouldUseBannedPasswordServiceOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="BannedPasswordServiceAddress" id="327">
+									<DataPath>BannedPasswordServiceAddress</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Service address</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<InputHint>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>https://&lt;address&gt;</v8:content>
+										</v8:item>
+									</InputHint>
+									<ContextMenu name="BannedPasswordServiceAddressContextMenu" id="328"/>
+									<ExtendedTooltip name="BannedPasswordServiceAddressExtendedTooltip" id="329"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupBannedPasswordService" id="325">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Leaked passwords service</v8:content>
+								</v8:item>
+							</Title>
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupBannedPasswordServiceExtendedTooltip" id="326"/>
+							<ChildItems>
+								<LabelDecoration name="Indent" id="369">
+									<Width>2</Width>
+									<ContextMenu name="IndentContextMenu" id="370"/>
+									<ExtendedTooltip name="IndentExtendedTooltip" id="371"/>
+								</LabelDecoration>
+								<UsualGroup name="GroupCheckServiceParameters" id="367">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Leaked passwords service parameters</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupCheckServiceParametersExtendedTooltip" id="368"/>
+									<ChildItems>
+										<UsualGroup name="GroupBannedPasswordServiceMaxTimeout" id="356">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Leaked passwords service timeout</v8:content>
+												</v8:item>
+											</Title>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ThroughAlign>DontUse</ThroughAlign>
+											<ExtendedTooltip name="GroupBannedPasswordServiceMaxTimeoutExtendedTooltip" id="357"/>
+											<ChildItems>
+												<InputField name="BannedPasswordServiceMaxTimeout" id="361">
+													<DataPath>BannedPasswordServiceMaxTimeout</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Service timeout</v8:content>
+														</v8:item>
+													</Title>
+													<Width>3</Width>
+													<ContextMenu name="BannedPasswordServiceMaxTimeoutContextMenu" id="362"/>
+													<ExtendedTooltip name="BannedPasswordServiceMaxTimeoutExtendedTooltip" id="363"/>
+													<Events>
+														<Event name="OnChange">SettingValueOnChange</Event>
+													</Events>
+												</InputField>
+												<LabelDecoration name="NoteBannedPasswordServiceMaxTimeout" id="364">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>sec.</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="NoteBannedPasswordServiceMaxTimeoutContextMenu" id="365"/>
+													<ExtendedTooltip name="NoteBannedPasswordServiceMaxTimeoutExtendedTooltip" id="366"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<CheckBoxField name="ShouldSkipValidationIfBannedPasswordServiceOffline" id="348">
+											<DataPath>ShouldSkipValidationIfBannedPasswordServiceOffline</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Allow login if service unavailable</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ShouldSkipValidationIfBannedPasswordServiceOfflineContextMenu" id="349"/>
+											<ExtendedTooltip name="ShouldSkipValidationIfBannedPasswordServiceOfflineExtendedTooltip" id="350"/>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<CheckBoxField name="AreSeparateSettingsForExternalUsers" id="226">
+			<DataPath>AreSeparateSettingsForExternalUsers</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use different login settings for external users</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="AreSeparateSettingsForExternalUsersContextMenu" id="227"/>
+			<ExtendedTooltip name="AreSeparateSettingsForExternalUsersExtendedTooltip" id="228"/>
+			<Events>
+				<Event name="OnChange">AreSeparateSettingsForExternalUsersOnChange</Event>
+			</Events>
+		</CheckBoxField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="MinPasswordLength" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password length</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordMustMeetComplexityRequirements" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Passwords must meet complexity requirements</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DenyReusingRecentPasswords" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Prevent re-use of recent passwords</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MaxPasswordLifetime" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Maximum password lifetime</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLifetime" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password lifetime</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowExternalUsersSettings" id="9">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InactivityPeriodBeforeDenyingAuthorization" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User inactivity timeout</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DenyReusingRecentPasswordsEnable" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Prevent re-use of this many recent passwords:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLengthEnable" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password length:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLifetimeEnable" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password lifetime:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MaxPasswordLifetimeEnable" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Maximum password lifetime:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InactivityPeriodBeforeDenyingAuthorizationEnable" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User inactivity timeout:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="RecommendedSettingsValues" id="21">
+			<Type/>
+		</Attribute>
+		<Attribute name="PasswordAttemptsCountBeforeLockout" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Password attempts before lockout</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="WarnAboutPasswordExpiration" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notify users on password expiration</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordAttemptsCountBeforeLockoutEnable" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Password attempts before lockout:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordLockoutDurationEnable" id="10">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowInList" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Setting "Show in choice list" in user card</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AreSeparateSettingsForExternalUsers" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use different login settings for external users</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="WarnAboutPasswordExpirationEnable" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notification lead time before password expires:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordLockoutDuration" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Password lockout duration</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordMustMeetComplexityRequirements2" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Passwords must meet complexity requirements</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLength2Enable" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password length:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLength2" id="25">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password length</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MaxPasswordLifetime2Enable" id="26">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Maximum password lifetime:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MaxPasswordLifetime2" id="27">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Maximum password lifetime</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLifetime2Enable" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password lifetime:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="MinPasswordLifetime2" id="29">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Minimum password lifetime</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="WarnAboutPasswordExpiration2Enable" id="30">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notification lead time before password expires:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="WarnAboutPasswordExpiration2" id="31">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notify users on password expiration</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DenyReusingRecentPasswords2Enable" id="32">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Prevent re-use of this many recent passwords:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DenyReusingRecentPasswords2" id="33">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Prevent re-use of recent passwords</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="InactivityPeriodBeforeDenyingAuthorization2Enable" id="34">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User inactivity timeout:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InactivityPeriodBeforeDenyingAuthorization2" id="35">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User inactivity timeout</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="UseExternalUsers" id="36">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="RecommendedCommonSettingsValues" id="37">
+			<Type/>
+		</Attribute>
+		<Attribute name="IsShowInListPropertyBulkChangeConfirmed" id="22">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InactivityTimeoutBeforeTerminateSession" id="38">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Session inactivity before termination</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>4</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldTerminateSessionAfterInactivityTimeout" id="39">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Terminate session if user inactive for:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="NotificationLeadTimeBeforeAccessExpire" id="41">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notify users on access expiration</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldNotifyUserBeforeAccessExpire" id="42">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Notify user this many days before access expires:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldBeExcludedFromBannedPasswordList" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny banned passwords</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ActionUponLoginIfRequirementNotMet" id="44">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Action if requirement not met</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldBeExcludedFromBannedPasswordList2" id="45">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny banned passwords</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ActionUponLoginIfRequirementNotMet2" id="46">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Action if requirement not met</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldUseStandardBannedPasswordList" id="47">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use standard list of banned passwords</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldUseAdditionalBannedPasswordList" id="48">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use additional list of banned passwords</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldUseBannedPasswordService" id="49">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Leaked passwords service</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="BannedPasswordServiceAddress" id="50">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Banned passwords service address</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="BannedPasswordServiceMaxTimeout" id="51">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Service timeout</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ActionUponLoginIfRequirementNotMetEnable" id="53">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Do this if either of the requirements is not met:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldSkipValidationIfBannedPasswordServiceOffline" id="54">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow login if service unavailable</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ActionUponLoginIfRequirementNotMet2Enable" id="56">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Do this if either of the requirements is not met:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldNotifyUserBeforeTerminateInactiveSession" id="57">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="NotificationLeadTimeBeforeTerminateInactiveSession" id="40">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Session inactivity before termination</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>4</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CanSavePasswordUponLogin" id="58">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save password:</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordSaveOptionUponLogin" id="59">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save password on login</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PasswordRemembranceDuration" id="60">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remember password for</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>4</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShouldTemporarilyRememberPassword" id="61">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="NewPasswordListAddressInTempStorage" id="52">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="IsNewListContainsPasswords" id="55">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="IsBlankString" id="62">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>1</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SettingsByItems" id="63">
+			<Type/>
+		</Attribute>
+		<Attribute name="ItemsBySettings" id="64">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="WriteAndClose" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>WriteAndClose</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CheckConfirmationCodeSent" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Check</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Check whether the confirmation code
+was sent to the current user's email.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="CheckAuthorizationInvitationSent" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Check</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Check whether the invitation to log in
+was sent to the current user's email.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ImportBannedPasswordList" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import…</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ImportBannedPasswordList</Action>
+		</Command>
+		<Command name="ShowBannedPasswordList" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ShowBannedPasswordList</Action>
+		</Command>
+		<Command name="ClearBannedPasswordList" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ClearBannedPasswordList</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ShowExternalUsersSettings">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

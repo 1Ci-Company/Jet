@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Edit print form template</v8:content>
+		</v8:item>
+	</Title>
+	<Width>55</Width>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">GroupCommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>CustomizeForm</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="Dialog" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Dialog</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="DialogExtendedTooltip" id="63"/>
+			<ChildItems>
+				<Page name="DownloadToComputerPageWebClient" id="20">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page download to computer web client</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DownloadToComputerPageWebClientExtendedTooltip" id="64"/>
+					<ChildItems>
+						<LabelDecoration name="BeforeDownloadTemplateApplicationWebClientLabel" id="42">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Template file "%1" is ready to be imported and %3 with an external application on your computer.
+
+If you haven't installed the editor yet, we recommend installing %2.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="BeforeDownloadTemplateApplicationWebClientLabelContextMenu" id="43"/>
+							<ExtendedTooltip name="BeforeDownloadTemplateApplicationWebClientLabelExtendedTooltip" id="65"/>
+						</LabelDecoration>
+						<LabelDecoration name="LinkToApplicationPageBeforeDownloadWebClient" id="53">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open %2 installation page</v8:content>
+								</v8:item>
+							</Title>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="LinkToApplicationPageBeforeDownloadWebClientContextMenu" id="54"/>
+							<ExtendedTooltip name="LinkToApplicationPageBeforeDownloadWebClientExtendedTooltip" id="66"/>
+							<Events>
+								<Event name="Click">LinkToApplicationPageClick</Event>
+							</Events>
+						</LabelDecoration>
+						<LabelDecoration name="BeforeDownloadTemplateInstructionWebClientLabel" id="33">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Click Continue to import.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="BeforeDownloadTemplateInstructionWebClientLabelContextMenu" id="34"/>
+							<ExtendedTooltip name="BeforeDownloadTemplateInstructionWebClientLabelExtendedTooltip" id="67"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="DownloadToComputerPageNotWebClient" id="35">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page download to computer not web client</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DownloadToComputerPageNotWebClientExtendedTooltip" id="68"/>
+					<ChildItems>
+						<LabelDecoration name="BeforeDownloadTemplateApplicationNotWebClientLabel" id="40">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Template file "%1" is ready to be edited with an external application. If you haven't installed the editor yet, we recommend installing %2.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="BeforeDownloadTemplateApplicationNotWebClientLabelContextMenu" id="41"/>
+							<ExtendedTooltip name="BeforeDownloadTemplateApplicationNotWebClientLabelExtendedTooltip" id="69"/>
+						</LabelDecoration>
+						<LabelDecoration name="LinkToApplicationPageBeforeDownloadNotWebClient" id="57">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open %2 installation page</v8:content>
+								</v8:item>
+							</Title>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="LinkToApplicationPageBeforeDownloadNotWebClientContextMenu" id="58"/>
+							<ExtendedTooltip name="LinkToApplicationPageBeforeDownloadNotWebClientExtendedTooltip" id="70"/>
+							<Events>
+								<Event name="Click">LinkToApplicationPageClick</Event>
+							</Events>
+						</LabelDecoration>
+						<LabelDecoration name="BeforeDownloadTemplateInstructionNotWebClientLabel" id="38">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Click Continue to open the template in another application. Modify the template, close it, and follow further instructions.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="BeforeDownloadTemplateInstructionNotWebClientLabelContextMenu" id="39"/>
+							<ExtendedTooltip name="BeforeDownloadTemplateInstructionNotWebClientLabelExtendedTooltip" id="71"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="UploadToInfobaseWebClientPage" id="21">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page import to infobase web client</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="UploadToInfobaseWebClientPageExtendedTooltip" id="72"/>
+					<ChildItems>
+						<LabelDecoration name="ApplyChangesLabelWebClient" id="12">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Please wait for the template file to be imported, then open and edit it.
+
+After editing, confirm the changes and close the template file. Then click "Apply changes" and select this file in the next dialog box. 
+
+If you haven't installed the editor yet, we recommend installing %2.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ApplyChangesLabelWebClientContextMenu" id="13"/>
+							<ExtendedTooltip name="ApplyChangesLabelWebClientExtendedTooltip" id="73"/>
+						</LabelDecoration>
+						<LabelDecoration name="LinkToApplyChangesApplicationPageWebClient" id="59">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open %2 installation page</v8:content>
+								</v8:item>
+							</Title>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="LinkToApplyChangesApplicationPageWebClientContextMenu" id="60"/>
+							<ExtendedTooltip name="LinkToApplyChangesApplicationPageWebClientExtendedTooltip" id="74"/>
+							<Events>
+								<Event name="Click">LinkToApplicationPageClick</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="UploadToInfobaseNotWebClientPage" id="44">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page import to infobase not web client</v8:content>
+						</v8:item>
+					</Title>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="UploadToInfobaseNotWebClientPageExtendedTooltip" id="75"/>
+					<ChildItems>
+						<LabelDecoration name="ApplyChangesLabelNotWebClient" id="45">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Please wait for the template to be opened in the editor.
+
+After editing, confirm the changes and close the template. Then click "Apply changes".
+
+If you haven't installed the editor yet, we recommend installing %2.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ApplyChangesLabelNotWebClientContextMenu" id="46"/>
+							<ExtendedTooltip name="ApplyChangesLabelNotWebClientExtendedTooltip" id="76"/>
+						</LabelDecoration>
+						<LabelDecoration name="LinkToApplyChangesApplicationPageNotWebClient" id="61">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open %2 installation page</v8:content>
+								</v8:item>
+							</Title>
+							<Hyperlink>true</Hyperlink>
+							<ContextMenu name="LinkToApplyChangesApplicationPageNotWebClientContextMenu" id="62"/>
+							<ExtendedTooltip name="LinkToApplyChangesApplicationPageNotWebClientExtendedTooltip" id="77"/>
+							<Events>
+								<Event name="Click">LinkToApplicationPageClick</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="GroupCommandBar" id="89">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>true</VerticalStretch>
+			<VerticalAlign>Bottom</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupCommandBarExtendedTooltip" id="90"/>
+			<ChildItems>
+				<Pages name="CommandBar" id="28">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Command bar</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="CommandBarExtendedTooltip" id="78"/>
+					<ChildItems>
+						<Page name="DownloadBar" id="29">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Panel import</v8:content>
+								</v8:item>
+							</Title>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="DownloadBarExtendedTooltip" id="79"/>
+							<ChildItems>
+								<CommandBar name="DownloadButtonsGroup" id="22">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Buttons import</v8:content>
+										</v8:item>
+									</Title>
+									<HorizontalLocation>Right</HorizontalLocation>
+									<ExtendedTooltip name="DownloadButtonsGroupExtendedTooltip" id="80"/>
+									<ChildItems>
+										<Button name="ChangeButton" id="25">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.Change</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Continue</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ChangeButtonExtendedTooltip" id="81"/>
+										</Button>
+										<Button name="CancelDownloadButton" id="27">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.Cancel</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Cancel</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CancelDownloadButtonExtendedTooltip" id="82"/>
+										</Button>
+										<Button name="DownloadHelpButton" id="31">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.StandardCommand.Help</CommandName>
+											<ExtendedTooltip name="DownloadHelpButtonExtendedTooltip" id="83"/>
+										</Button>
+									</ChildItems>
+								</CommandBar>
+							</ChildItems>
+						</Page>
+						<Page name="ApplyChangesPanel" id="30">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Panel completion changes</v8:content>
+								</v8:item>
+							</Title>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ApplyChangesPanelExtendedTooltip" id="84"/>
+							<ChildItems>
+								<CommandBar name="ApplyChangesButtonsGroup" id="23">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Buttons completion changes</v8:content>
+										</v8:item>
+									</Title>
+									<HorizontalLocation>Right</HorizontalLocation>
+									<ExtendedTooltip name="ApplyChangesButtonsGroupExtendedTooltip" id="85"/>
+									<ChildItems>
+										<Button name="ApplyChangesButton" id="9">
+											<Type>CommandBarButton</Type>
+											<DefaultButton>true</DefaultButton>
+											<CommandName>Form.Command.ExitAppUpdate</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Apply changes</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ApplyChangesButtonExtendedTooltip" id="86"/>
+										</Button>
+										<Button name="ApplyChangesHelpButton" id="24">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.StandardCommand.Help</CommandName>
+											<ExtendedTooltip name="ApplyChangesHelpButtonExtendedTooltip" id="87"/>
+										</Button>
+										<Button name="CancelChangesButton" id="32">
+											<Type>CommandBarButton</Type>
+											<CommandName>Form.Command.Cancel</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Cancel</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="CancelChangesButtonExtendedTooltip" id="88"/>
+										</Button>
+									</ChildItems>
+								</CommandBar>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="TemplateMetadataObjectName" id="2">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateFileName" id="3">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateOpeningApplicationAddress" id="4">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateFileAddressInTemporaryStorage" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateName" id="6">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="OwnerName" id="7">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="PathToTemplateFile" id="8">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplatePresentation" id="9">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateType" id="10">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateImported" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="TempDirectoryName" id="12">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="TemplateToChange" id="1">
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ClientType" id="13">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DataSources" id="14">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ExitAppUpdate" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply changes</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply changes</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ExitAppUpdate</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Change" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Continue</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Change</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Cancel" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Cancel</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="TemplateMetadataObjectName">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="TemplateType">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="OpenOnly">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+		<Parameter name="SpreadsheetDocument">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>

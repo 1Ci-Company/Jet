@@ -1,0 +1,1826 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Height>35</Height>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<ShowTitle>false</ShowTitle>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Sort" id="266">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sorting</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="SortExtendedTooltip" id="267"/>
+			<ChildItems>
+				<Button name="SortAsc" id="1">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.SortAsc</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Sort ascending</v8:content>
+						</v8:item>
+					</Title>
+					<ShapeRepresentation>None</ShapeRepresentation>
+					<ExtendedTooltip name="SortAscExtendedTooltip" id="2"/>
+				</Button>
+				<Button name="SortDesc" id="3">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.SortDesc</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Sort descending</v8:content>
+						</v8:item>
+					</Title>
+					<ShapeRepresentation>None</ShapeRepresentation>
+					<ExtendedTooltip name="SortDescExtendedTooltip" id="4"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="FilterByValue" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter by value</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="FilterByValueExtendedTooltip" id="17"/>
+			<ChildItems>
+				<Pages name="FilterByPageValue" id="404">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filter by value</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="FilterByPageValueExtendedTooltip" id="405"/>
+					<ChildItems>
+						<Page name="FilterValues" id="406">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Values</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="FilterValuesExtendedTooltip" id="407"/>
+							<ChildItems>
+								<Table name="Values" id="18">
+									<Representation>List</Representation>
+									<ChangeRowSet>false</ChangeRowSet>
+									<RowSelectionMode>Row</RowSelectionMode>
+									<Header>false</Header>
+									<HorizontalLines>false</HorizontalLines>
+									<VerticalLines>false</VerticalLines>
+									<UseAlternationRowColor>true</UseAlternationRowColor>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<DataPath>Values</DataPath>
+									<RowPictureDataPath>Values.Picture</RowPictureDataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Values</v8:content>
+										</v8:item>
+									</Title>
+									<CommandSet>
+										<ExcludedCommand>Add</ExcludedCommand>
+										<ExcludedCommand>Change</ExcludedCommand>
+										<ExcludedCommand>Copy</ExcludedCommand>
+										<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+										<ExcludedCommand>Delete</ExcludedCommand>
+										<ExcludedCommand>EndEdit</ExcludedCommand>
+										<ExcludedCommand>Pickup</ExcludedCommand>
+										<ExcludedCommand>SelectAll</ExcludedCommand>
+										<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+										<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+									</CommandSet>
+									<SearchStringLocation>CommandBar</SearchStringLocation>
+									<ContextMenu name="ValuesContextMenu" id="19">
+										<ChildItems>
+											<ButtonGroup name="ValuesContextMenuSearch" id="348">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Search</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ValuesContextMenuSearchExtendedTooltip" id="349"/>
+												<ChildItems>
+													<Button name="ValuesContextMenuFindByCurrentValue" id="350">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesContextMenuFindByCurrentValueExtendedTooltip" id="351"/>
+													</Button>
+													<Button name="ValuesContextMenuFind" id="352">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesContextMenuFindExtendedTooltip" id="353"/>
+													</Button>
+													<Button name="ValuesContextMenuCancelSearch" id="354">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesContextMenuCancelSearchExtendedTooltip" id="355"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<ButtonGroup name="ValuesContextMenuSort" id="53">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Sort</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ValuesContextMenuSortExtendedTooltip" id="54"/>
+												<ChildItems>
+													<Button name="ValuesContextMenuSortListAsc" id="55">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.SortListAsc</CommandName>
+														<ExtendedTooltip name="ValuesContextMenuSortListAscExtendedTooltip" id="56"/>
+													</Button>
+													<Button name="ValuesContextMenuSortListDesc" id="57">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesContextMenuSortListDescExtendedTooltip" id="58"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+										</ChildItems>
+									</ContextMenu>
+									<AutoCommandBar name="ValuesCommandBar" id="20">
+										<ChildItems>
+											<ButtonGroup name="ValuesChangeCheckBoxes" id="326">
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Change check boxes</v8:content>
+													</v8:item>
+												</Title>
+												<Representation>Compact</Representation>
+												<ExtendedTooltip name="ValuesChangeCheckBoxesExtendedTooltip" id="327"/>
+												<ChildItems>
+													<Button name="ValuesCheckAll" id="322">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.CheckAll</CommandName>
+														<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+														<ExtendedTooltip name="ValuesCheckAllExtendedTooltip" id="323"/>
+													</Button>
+													<Button name="ValuesUncheckAll" id="324">
+														<Type>CommandBarButton</Type>
+														<CommandName>Form.Item.Values.StandardCommand.UncheckAll</CommandName>
+														<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+														<ExtendedTooltip name="ValuesUncheckAllExtendedTooltip" id="325"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<ButtonGroup name="ValuesSearch" id="328">
+												<Visible>false</Visible>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Search</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ValuesSearchExtendedTooltip" id="329"/>
+												<ChildItems>
+													<Button name="ValuesFindByCurrentValue" id="330">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesFindByCurrentValueExtendedTooltip" id="331"/>
+													</Button>
+													<Button name="ValuesFind" id="332">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesFindExtendedTooltip" id="333"/>
+													</Button>
+													<Button name="ValuesCancelSearch" id="334">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesCancelSearchExtendedTooltip" id="335"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<ButtonGroup name="ValuesSort" id="338">
+												<Visible>false</Visible>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Sort</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ValuesSortExtendedTooltip" id="339"/>
+												<ChildItems>
+													<Button name="ValuesSortListAsc" id="340">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.SortListAsc</CommandName>
+														<ExtendedTooltip name="ValuesSortListAscExtendedTooltip" id="341"/>
+													</Button>
+													<Button name="ValuesSortListDesc" id="342">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.SortListDesc</CommandName>
+														<ExtendedTooltip name="ValuesSortListDescExtendedTooltip" id="343"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<ButtonGroup name="ValuesMove" id="336">
+												<Visible>false</Visible>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Move</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="ValuesMoveExtendedTooltip" id="337"/>
+												<ChildItems>
+													<Button name="ValuesMoveUp" id="344">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.MoveUp</CommandName>
+														<ExtendedTooltip name="ValuesMoveUpExtendedTooltip" id="345"/>
+													</Button>
+													<Button name="ValuesMoveDown" id="346">
+														<Type>CommandBarButton</Type>
+														<Visible>false</Visible>
+														<CommandName>Form.Item.Values.StandardCommand.MoveDown</CommandName>
+														<ExtendedTooltip name="ValuesMoveDownExtendedTooltip" id="347"/>
+													</Button>
+												</ChildItems>
+											</ButtonGroup>
+											<SearchStringAddition name="SearchString" id="463">
+												<AdditionSource>
+													<Item>Values</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="SearchStringContextMenu" id="464"/>
+												<ExtendedTooltip name="SearchStringExtendedTooltip" id="465"/>
+											</SearchStringAddition>
+										</ChildItems>
+									</AutoCommandBar>
+									<ExtendedTooltip name="ValuesExtendedTooltip" id="21"/>
+									<SearchStringAddition name="ValuesSearchString" id="22">
+										<AdditionSource>
+											<Item>Values</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ValuesSearchStringContextMenu" id="23"/>
+										<ExtendedTooltip name="ValuesSearchStringExtendedTooltip" id="24"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="ValuesViewStatus" id="25">
+										<AdditionSource>
+											<Item>Values</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ValuesViewStatusContextMenu" id="26"/>
+										<ExtendedTooltip name="ValuesViewStatusExtendedTooltip" id="27"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="ValuesSearchControl" id="28">
+										<AdditionSource>
+											<Item>Values</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="ValuesSearchControlContextMenu" id="29"/>
+										<ExtendedTooltip name="ValuesSearchControlExtendedTooltip" id="30"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="Selection">ValuesSelection</Event>
+										<Event name="OnChange">ValuesOnChange</Event>
+									</Events>
+									<ChildItems>
+										<CheckBoxField name="ValuesCheck" id="34">
+											<DataPath>Values.Check</DataPath>
+											<SkipOnInput>true</SkipOnInput>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Check box</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ValuesCheckContextMenu" id="35"/>
+											<ExtendedTooltip name="ValuesCheckExtendedTooltip" id="36"/>
+											<Events>
+												<Event name="OnChange">ValuesCheckOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<InputField name="ValuesValue" id="31">
+											<DataPath>Values.Value</DataPath>
+											<DefaultItem>true</DefaultItem>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Value</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="ValuesValueContextMenu" id="32"/>
+											<ExtendedTooltip name="ValuesValueExtendedTooltip" id="33"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+								<UsualGroup name="OptionsToFillInFilterByValue" id="435">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Options for filling in filter by value</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="OptionsToFillInFilterByValueExtendedTooltip" id="436"/>
+									<ChildItems>
+										<LabelDecoration name="FilterByValueStatistics" id="415">
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<ContextMenu name="FilterByValueStatisticsContextMenu" id="416"/>
+											<ExtendedTooltip name="FilterByValueStatisticsExtendedTooltip" id="417"/>
+										</LabelDecoration>
+										<LabelDecoration name="OutputAllReportSectionValues" id="437">
+											<Title formatted="false">
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Display all</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<Hyperlink>true</Hyperlink>
+											<ContextMenu name="OutputAllReportSectionValuesContextMenu" id="438"/>
+											<ExtendedTooltip name="OutputAllReportSectionValuesExtendedTooltip" id="439"/>
+											<Events>
+												<Event name="Click">OutputAllReportSectionValuesClick</Event>
+											</Events>
+										</LabelDecoration>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</Page>
+						<Page name="Waiting" id="408">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Waiting</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="WaitingExtendedTooltip" id="409"/>
+							<ChildItems>
+								<Pages name="WaitingStatuses" id="423">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Waiting statuses</v8:content>
+										</v8:item>
+									</Title>
+									<VerticalStretch>true</VerticalStretch>
+									<PagesRepresentation>None</PagesRepresentation>
+									<ExtendedTooltip name="WaitingStatusesExtendedTooltip" id="424"/>
+									<ChildItems>
+										<Page name="WaitingForFilling" id="421">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Wait for filling</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<ExtendedTooltip name="WaitingForFillingExtendedTooltip" id="422"/>
+											<ChildItems>
+												<PictureDecoration name="TimeConsumingOperationIndicator" id="410">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Long-running operation indicator</v8:content>
+														</v8:item>
+													</Title>
+													<Picture>
+														<xr:Ref>CommonPicture.TimeConsumingOperation48</xr:Ref>
+														<xr:LoadTransparent>false</xr:LoadTransparent>
+													</Picture>
+													<ContextMenu name="TimeConsumingOperationIndicatorContextMenu" id="411"/>
+													<ExtendedTooltip name="TimeConsumingOperationIndicatorExtendedTooltip" id="412"/>
+												</PictureDecoration>
+												<LabelDecoration name="TimeConsumingOperationPresentation" id="418">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Reading field lines</v8:content>
+														</v8:item>
+													</Title>
+													<GroupVerticalAlign>Center</GroupVerticalAlign>
+													<ContextMenu name="TimeConsumingOperationPresentationContextMenu" id="419"/>
+													<ExtendedTooltip name="TimeConsumingOperationPresentationExtendedTooltip" id="420"/>
+												</LabelDecoration>
+											</ChildItems>
+										</Page>
+										<Page name="FillError" id="425">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Filling error</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<ExtendedTooltip name="FillErrorExtendedTooltip" id="426"/>
+											<ChildItems>
+												<PictureDecoration name="ErrorIndicator" id="430">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Error indicator</v8:content>
+														</v8:item>
+													</Title>
+													<Picture>
+														<xr:Ref>StdPicture.DialogExclamation</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</Picture>
+													<ContextMenu name="ErrorIndicatorContextMenu" id="431"/>
+													<ExtendedTooltip name="ErrorIndicatorExtendedTooltip" id="432"/>
+												</PictureDecoration>
+												<LabelDecoration name="FillErrorDescription" id="427">
+													<HorizontalStretch>true</HorizontalStretch>
+													<GroupVerticalAlign>Center</GroupVerticalAlign>
+													<ContextMenu name="FillErrorDescriptionContextMenu" id="428"/>
+													<ExtendedTooltip name="FillErrorDescriptionExtendedTooltip" id="429"/>
+												</LabelDecoration>
+											</ChildItems>
+										</Page>
+									</ChildItems>
+								</Pages>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="FilterByCondition" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter by condition</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="FilterByConditionExtendedTooltip" id="9"/>
+			<ChildItems>
+				<UsualGroup name="FilterPropertiesByLeftCondition" id="376">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties of filter by condition on the left</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="FilterPropertiesByLeftConditionExtendedTooltip" id="377"/>
+					<ChildItems>
+						<CheckBoxField name="Use" id="373">
+							<DataPath>Use</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Use</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UseContextMenu" id="374"/>
+							<ExtendedTooltip name="UseExtendedTooltip" id="375"/>
+							<Events>
+								<Event name="OnChange">UseOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="FilterPropertiesByRightCondition" id="378">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties of filter by condition on the right</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="FilterPropertiesByRightConditionExtendedTooltip" id="379"/>
+					<ChildItems>
+						<InputField name="ComparisonType" id="10">
+							<DataPath>ComparisonType</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Comparison type</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ChoiceButton>false</ChoiceButton>
+							<ListChoiceMode>true</ListChoiceMode>
+							<InputHint>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Condition</v8:content>
+								</v8:item>
+							</InputHint>
+							<ContextMenu name="ComparisonTypeContextMenu" id="11"/>
+							<ExtendedTooltip name="ComparisonTypeExtendedTooltip" id="12"/>
+							<Events>
+								<Event name="OnChange">ComparisonTypeOnChange</Event>
+							</Events>
+						</InputField>
+						<InputField name="RightValue" id="13">
+							<DataPath>RightValue</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Right value</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<HorizontalStretch>true</HorizontalStretch>
+							<InputHint>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Value</v8:content>
+								</v8:item>
+							</InputHint>
+							<ContextMenu name="RightValueContextMenu" id="14"/>
+							<ExtendedTooltip name="RightValueExtendedTooltip" id="15"/>
+							<Events>
+								<Event name="OnChange">RightValueOnChange</Event>
+								<Event name="StartChoice">RightValueStartChoice</Event>
+								<Event name="ChoiceProcessing">RightValueChoiceProcessing</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="CommandBar" id="299">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="300"/>
+			<ChildItems>
+				<UsualGroup name="AdditionalFeatures" id="212">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>More</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>PopUp</Behavior>
+					<ExtendedTooltip name="AdditionalFeaturesExtendedTooltip" id="213"/>
+					<ChildItems>
+						<LabelDecoration name="AdditionalFeaturesIndent" id="294">
+							<ContextMenu name="AdditionalFeaturesIndentContextMenu" id="295"/>
+							<ExtendedTooltip name="AdditionalFeaturesIndentExtendedTooltip" id="296"/>
+						</LabelDecoration>
+						<UsualGroup name="AdditionalFeaturesCommands" id="292">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Commands of additional features</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AdditionalFeaturesCommandsExtendedTooltip" id="293"/>
+							<ChildItems>
+								<Button name="GroupBySelectedField" id="440">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.GroupBySelectedField</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Group by field</v8:content>
+										</v8:item>
+									</Title>
+									<ShapeRepresentation>None</ShapeRepresentation>
+									<ExtendedTooltip name="GroupBySelectedFieldExtendedTooltip" id="441"/>
+								</Button>
+								<LabelDecoration name="GroupGroupBorder" id="442">
+									<HorizontalStretch>true</HorizontalStretch>
+									<Font ref="style:NormalTextFont" height="1" kind="StyleItem" scale="100"/>
+									<Border width="1">
+										<v8ui:style xsi:type="v8ui:ControlBorderType">Underline</v8ui:style>
+									</Border>
+									<ContextMenu name="GroupGroupBorderContextMenu" id="443"/>
+									<ExtendedTooltip name="GroupGroupBorderExtendedTooltip" id="444"/>
+								</LabelDecoration>
+								<UsualGroup name="Field" id="196">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Field</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="FieldExtendedTooltip" id="197"/>
+									<ChildItems>
+										<UsualGroup name="InsertSettings" id="198">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Insert</v8:content>
+												</v8:item>
+											</Title>
+											<HorizontalStretch>true</HorizontalStretch>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="InsertSettingsExtendedTooltip" id="199"/>
+											<ChildItems>
+												<UsualGroup name="InsertColumn" id="445">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Insert column</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="InsertColumnExtendedTooltip" id="446"/>
+													<ChildItems>
+														<UsualGroup name="InsertColumn1" id="447">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Insert column 1</v8:content>
+																</v8:item>
+															</Title>
+															<Width>20</Width>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="InsertColumn1ExtendedTooltip" id="448"/>
+															<ChildItems>
+																<Button name="InsertFieldLeft" id="156">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.InsertFieldLeft</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Insert field to the left</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="InsertFieldLeftExtendedTooltip" id="157"/>
+																</Button>
+																<Button name="InsertGroupAbove" id="160">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.InsertGroupAbove</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Insert grouping above</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="InsertGroupAboveExtendedTooltip" id="161"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+														<UsualGroup name="InsertColumn2" id="449">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Insert column 2</v8:content>
+																</v8:item>
+															</Title>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="InsertColumn2ExtendedTooltip" id="450"/>
+															<ChildItems>
+																<Button name="InsertFieldRight" id="158">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.InsertFieldRight</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Insert field to the right</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="InsertFieldRightExtendedTooltip" id="159"/>
+																</Button>
+																<Button name="InsertGroupBelow" id="162">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.InsertGroupBelow</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Insert grouping below</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="InsertGroupBelowExtendedTooltip" id="163"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</UsualGroup>
+												<LabelDecoration name="InsertGroupBorder" id="356">
+													<HorizontalStretch>true</HorizontalStretch>
+													<Font ref="style:NormalTextFont" height="1" kind="StyleItem" scale="100"/>
+													<Border width="1">
+														<v8ui:style xsi:type="v8ui:ControlBorderType">Underline</v8ui:style>
+													</Border>
+													<ContextMenu name="InsertGroupBorderContextMenu" id="357"/>
+													<ExtendedTooltip name="InsertGroupBorderExtendedTooltip" id="358"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="Move" id="200">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Move</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="MoveExtendedTooltip" id="201"/>
+											<ChildItems>
+												<UsualGroup name="ColumnMove" id="451">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Move column</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="ColumnMoveExtendedTooltip" id="452"/>
+													<ChildItems>
+														<UsualGroup name="MoveColumn1" id="453">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Move column 1</v8:content>
+																</v8:item>
+															</Title>
+															<Width>20</Width>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="MoveColumn1ExtendedTooltip" id="454"/>
+															<ChildItems>
+																<Button name="MoveFieldLeft" id="186">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.MoveFieldLeft</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Move left</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="MoveFieldLeftExtendedTooltip" id="187"/>
+																</Button>
+																<Button name="MoveFieldUp" id="190">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.MoveFieldUp</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Move up</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="MoveFieldUpExtendedTooltip" id="191"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+														<UsualGroup name="MoveColumn2" id="455">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Move column 2</v8:content>
+																</v8:item>
+															</Title>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="MoveColumn2ExtendedTooltip" id="456"/>
+															<ChildItems>
+																<Button name="MoveFieldRight" id="188">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.MoveFieldRight</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Move right</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="MoveFieldRightExtendedTooltip" id="189"/>
+																</Button>
+																<Button name="MoveFieldDown" id="192">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.MoveFieldDown</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Move down</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="MoveFieldDownExtendedTooltip" id="193"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</UsualGroup>
+												<LabelDecoration name="MoveGroupBorder" id="359">
+													<HorizontalStretch>true</HorizontalStretch>
+													<Font ref="style:NormalTextFont" height="1" kind="StyleItem" scale="100"/>
+													<Border width="1">
+														<v8ui:style xsi:type="v8ui:ControlBorderType">Underline</v8ui:style>
+													</Border>
+													<ContextMenu name="MoveGroupBorderContextMenu" id="360"/>
+													<ExtendedTooltip name="MoveGroupBorderExtendedTooltip" id="361"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="HidingRenaming" id="248">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Hide, rename</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="HidingRenamingExtendedTooltip" id="249"/>
+											<ChildItems>
+												<Button name="HideField" id="164">
+													<Type>UsualButton</Type>
+													<CommandName>Form.Command.HideField</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Hide</v8:content>
+														</v8:item>
+													</Title>
+													<ShapeRepresentation>None</ShapeRepresentation>
+													<ExtendedTooltip name="HideFieldExtendedTooltip" id="165"/>
+												</Button>
+												<UsualGroup name="Renaming" id="303">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Renaming</v8:content>
+														</v8:item>
+													</Title>
+													<Group>AlwaysHorizontal</Group>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="RenamingExtendedTooltip" id="304"/>
+													<ChildItems>
+														<Button name="RenameField" id="166">
+															<Type>UsualButton</Type>
+															<Representation>PictureAndText</Representation>
+															<CommandName>Form.Command.RenameField</CommandName>
+															<Picture>
+																<xr:Ref>CommonPicture.IsEmpty</xr:Ref>
+																<xr:LoadTransparent>false</xr:LoadTransparent>
+															</Picture>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Rename</v8:content>
+																</v8:item>
+															</Title>
+															<ShapeRepresentation>None</ShapeRepresentation>
+															<ExtendedTooltip name="RenameFieldExtendedTooltip" id="167"/>
+														</Button>
+														<InputField name="FieldPresentation" id="305">
+															<DataPath>FieldPresentation</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Field presentation</v8:content>
+																</v8:item>
+															</Title>
+															<TitleLocation>None</TitleLocation>
+															<ClearButton>true</ClearButton>
+															<ContextMenu name="FieldPresentationContextMenu" id="306"/>
+															<ExtendedTooltip name="FieldPresentationExtendedTooltip" id="307"/>
+															<Events>
+																<Event name="StartChoice">FieldPresentationStartChoice</Event>
+															</Events>
+														</InputField>
+														<Button name="RenameFieldMore" id="393">
+															<Type>UsualButton</Type>
+															<Representation>Picture</Representation>
+															<CommandName>Form.Command.RenameField</CommandName>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Rename</v8:content>
+																</v8:item>
+															</Title>
+															<ShapeRepresentation>WhenActive</ShapeRepresentation>
+															<ExtendedTooltip name="RenameFieldMoreExtendedTooltip" id="394"/>
+														</Button>
+													</ChildItems>
+												</UsualGroup>
+												<LabelDecoration name="HidingRenamingGroupBorder" id="362">
+													<HorizontalStretch>true</HorizontalStretch>
+													<Font ref="style:NormalTextFont" height="1" kind="StyleItem" scale="100"/>
+													<Border width="1">
+														<v8ui:style xsi:type="v8ui:ControlBorderType">Underline</v8ui:style>
+													</Border>
+													<ContextMenu name="HidingRenamingGroupBorderContextMenu" id="363"/>
+													<ExtendedTooltip name="HidingRenamingGroupBorderExtendedTooltip" id="364"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="Appearance" id="202">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Appearance</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="AppearanceExtendedTooltip" id="203"/>
+									<ChildItems>
+										<UsualGroup name="SetColor" id="204">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Set color</v8:content>
+												</v8:item>
+											</Title>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>NormalSeparation</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="SetColorExtendedTooltip" id="205"/>
+											<ChildItems>
+												<UsualGroup name="SetColumnColor" id="457">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Set column color</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="SetColumnColorExtendedTooltip" id="458"/>
+													<ChildItems>
+														<UsualGroup name="SetColorColumn1" id="459">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Set color column 1</v8:content>
+																</v8:item>
+															</Title>
+															<Width>20</Width>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="SetColorColumn1ExtendedTooltip" id="460"/>
+															<ChildItems>
+																<Button name="FormatNegativeValues" id="172">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.FormatNegativeValues</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Negative in red</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="FormatNegativeValuesExtendedTooltip" id="173"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+														<UsualGroup name="SetColorColumn2" id="461">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Set color column 2</v8:content>
+																</v8:item>
+															</Title>
+															<Group>Vertical</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="SetColorColumn2ExtendedTooltip" id="462"/>
+															<ChildItems>
+																<Button name="FormatPositiveValues" id="174">
+																	<Type>UsualButton</Type>
+																	<CommandName>Form.Command.FormatPositiveValues</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Positive in green</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="FormatPositiveValuesExtendedTooltip" id="175"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</UsualGroup>
+												<LabelDecoration name="SetColorGroupBorder" id="365">
+													<HorizontalStretch>true</HorizontalStretch>
+													<Font ref="style:NormalTextFont" height="1" kind="StyleItem" scale="100"/>
+													<Border width="1">
+														<v8ui:style xsi:type="v8ui:ControlBorderType">Underline</v8ui:style>
+													</Border>
+													<ContextMenu name="SetColorGroupBorderContextMenu" id="366"/>
+													<ExtendedTooltip name="SetColorGroupBorderExtendedTooltip" id="367"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="GroupWidthHeight" id="384">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Width height</v8:content>
+												</v8:item>
+											</Title>
+											<Group>AlwaysHorizontal</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupWidthHeightExtendedTooltip" id="385"/>
+											<ChildItems>
+												<UsualGroup name="SetWidthHeight" id="206">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Set width, height</v8:content>
+														</v8:item>
+													</Title>
+													<Group>Vertical</Group>
+													<Behavior>Usual</Behavior>
+													<Representation>NormalSeparation</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ThroughAlign>DontUse</ThroughAlign>
+													<ExtendedTooltip name="SetWidthHeightExtendedTooltip" id="207"/>
+													<ChildItems>
+														<UsualGroup name="RowHeightSetting" id="308">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Set row height</v8:content>
+																</v8:item>
+															</Title>
+															<Width>50</Width>
+															<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+															<Group>AlwaysHorizontal</Group>
+															<HorizontalAlign>Left</HorizontalAlign>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<United>false</United>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="RowHeightSettingExtendedTooltip" id="309"/>
+															<ChildItems>
+																<Button name="SetRowHeight" id="380">
+																	<Type>UsualButton</Type>
+																	<Representation>PictureAndText</Representation>
+																	<CommandName>Form.Command.SetRowHeight</CommandName>
+																	<Picture>
+																		<xr:Ref>CommonPicture.RowHeight</xr:Ref>
+																		<xr:LoadTransparent>false</xr:LoadTransparent>
+																	</Picture>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Row height</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="SetRowHeightExtendedTooltip" id="381"/>
+																</Button>
+																<InputField name="RowHeight" id="310">
+																	<DataPath>RowHeight</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Row height</v8:content>
+																		</v8:item>
+																	</Title>
+																	<TitleLocation>None</TitleLocation>
+																	<SpinButton>true</SpinButton>
+																	<ContextMenu name="RowHeightContextMenu" id="311"/>
+																	<ExtendedTooltip name="RowHeightExtendedTooltip" id="312"/>
+																</InputField>
+																<Button name="SetRowHeightMore" id="389">
+																	<Type>UsualButton</Type>
+																	<Representation>Picture</Representation>
+																	<CommandName>Form.Command.SetRowHeight</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Row height</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>WhenActive</ShapeRepresentation>
+																	<ExtendedTooltip name="SetRowHeightMoreExtendedTooltip" id="390"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+														<UsualGroup name="ColumnWidthSetting" id="313">
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Set column width</v8:content>
+																</v8:item>
+															</Title>
+															<Width>50</Width>
+															<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+															<Group>AlwaysHorizontal</Group>
+															<HorizontalAlign>Left</HorizontalAlign>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<United>false</United>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="ColumnWidthSettingExtendedTooltip" id="314"/>
+															<ChildItems>
+																<Button name="SetColumnWidth" id="382">
+																	<Type>UsualButton</Type>
+																	<Representation>PictureAndText</Representation>
+																	<CommandName>Form.Command.SetColumnWidth</CommandName>
+																	<Picture>
+																		<xr:Ref>CommonPicture.ColumnWidth</xr:Ref>
+																		<xr:LoadTransparent>false</xr:LoadTransparent>
+																	</Picture>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Column width</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>None</ShapeRepresentation>
+																	<ExtendedTooltip name="SetColumnWidthExtendedTooltip" id="383"/>
+																</Button>
+																<InputField name="ColumnWidth" id="315">
+																	<DataPath>ColumnWidth</DataPath>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Column width</v8:content>
+																		</v8:item>
+																	</Title>
+																	<TitleLocation>None</TitleLocation>
+																	<SpinButton>true</SpinButton>
+																	<ContextMenu name="ColumnWidthContextMenu" id="316"/>
+																	<ExtendedTooltip name="ColumnWidthExtendedTooltip" id="317"/>
+																</InputField>
+																<Button name="SetColumnWidthMore" id="391">
+																	<Type>UsualButton</Type>
+																	<Representation>Picture</Representation>
+																	<CommandName>Form.Command.SetColumnWidth</CommandName>
+																	<Title>
+																		<v8:item>
+																			<v8:lang>en</v8:lang>
+																			<v8:content>Column width</v8:content>
+																		</v8:item>
+																	</Title>
+																	<ShapeRepresentation>WhenActive</ShapeRepresentation>
+																	<ExtendedTooltip name="SetColumnWidthMoreExtendedTooltip" id="392"/>
+																</Button>
+															</ChildItems>
+														</UsualGroup>
+													</ChildItems>
+												</UsualGroup>
+												<LabelDecoration name="Indent" id="386">
+													<HorizontalStretch>true</HorizontalStretch>
+													<ContextMenu name="IndentContextMenu" id="387"/>
+													<ExtendedTooltip name="IndentExtendedTooltip" id="388"/>
+												</LabelDecoration>
+											</ChildItems>
+										</UsualGroup>
+										<LabelDecoration name="SetWidthHeightGroupBorder" id="368">
+											<HorizontalStretch>true</HorizontalStretch>
+											<Font ref="style:NormalTextFont" height="1" kind="StyleItem" scale="100"/>
+											<Border width="1">
+												<v8ui:style xsi:type="v8ui:ControlBorderType">Overline</v8ui:style>
+											</Border>
+											<ContextMenu name="SetWidthHeightGroupBorderContextMenu" id="369"/>
+											<ExtendedTooltip name="SetWidthHeightGroupBorderExtendedTooltip" id="370"/>
+										</LabelDecoration>
+										<Button name="ApplyAppearanceMore" id="182">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.ApplyAppearanceMore</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Appearance…</v8:content>
+												</v8:item>
+											</Title>
+											<ShapeRepresentation>None</ShapeRepresentation>
+											<ExtendedTooltip name="ApplyAppearanceMoreExtendedTooltip" id="183"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="CommandsBasic" id="301">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main commands</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="CommandsBasicExtendedTooltip" id="302"/>
+					<ChildItems>
+						<Button name="ApplyISform" id="318" DisplayImportance="VeryHigh">
+							<Type>CommandBarButton</Type>
+							<Representation>Text</Representation>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.ApplyISform</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Apply and run</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ApplyISformExtendedTooltip" id="319"/>
+						</Button>
+						<Button name="Apply" id="320">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Apply</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Apply</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ApplyExtendedTooltip" id="321"/>
+						</Button>
+						<Button name="Cancel" id="284">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Cancel</CommandName>
+							<ExtendedTooltip name="CancelExtendedTooltip" id="285"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ComparisonType" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Comparison type</v8:content>
+				</v8:item>
+			</Title>
+			<Type/>
+		</Attribute>
+		<Attribute name="RightValue" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Right value</v8:content>
+				</v8:item>
+			</Title>
+			<Type/>
+		</Attribute>
+		<Attribute name="Values" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Values</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="Use" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Usage</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SettingsComposer" id="7">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FieldPresentation" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Field presentation</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>150</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="RowHeight" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Row height</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ColumnWidth" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Column width</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>5</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ReportSettings" id="11">
+			<Type/>
+		</Attribute>
+		<Attribute name="TitleProperties" id="12">
+			<Type/>
+		</Attribute>
+		<Attribute name="SettingsStructureItemID" id="13">
+			<Type/>
+		</Attribute>
+		<Attribute name="AvailableValues" id="5">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="ClearFilterByCondition" id="6">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="GroupsAndItemsIndexes" id="14">
+			<Type/>
+		</Attribute>
+		<Attribute name="LinesInReportSectionCount" id="17">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AllReportSectionValuesDisplayed" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="FirstLinesToReadCount" id="16">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="DetailsDataAddress" id="18">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Document" id="19">
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="SortAsc" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sort ascending</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.SortRowsAsc</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SortAsc</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="SortDesc" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sort descending</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.SortRowsDesc</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>SortDesc</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="InsertGroupAbove" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert grouping above</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.InsertGroupAbove</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>InsertGroupAbove</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="InsertFieldLeft" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert field to the left</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.InsertColumnLeft</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>InsertFieldLeft</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="InsertGroupBelow" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert grouping below</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.InsertGroupBelow</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>InsertGroupBelow</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="InsertFieldRight" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Insert field to the right</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.InsertColumnRight</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>InsertFieldRight</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="HideField" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Hide</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Hide the field</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.IsEmpty</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>HideField</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="RenameField" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Rename</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Rename field</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>RenameField</Action>
+		</Command>
+		<Command name="FormatNegativeValues" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Negative in red</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Highlight negative values in red</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.IsEmpty</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FormatNegativeValues</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="FormatPositiveValues" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Positive in green</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Highlight negative values in green</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.IsEmpty</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>FormatPositiveValues</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="SetRowHeight" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Row height</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set row height</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SetRowHeight</Action>
+		</Command>
+		<Command name="SetColumnWidth" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Column width</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set column width</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SetColumnWidth</Action>
+		</Command>
+		<Command name="ApplyAppearanceMore" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Appearance...</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Custom appearance</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.DataCompositionConditionalAppearance</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ApplyAppearanceMore</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="MoveFieldLeft" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Move left</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.MoveColumnLeft</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>MoveFieldLeft</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="MoveFieldDown" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Move down</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.MoveGroupDown</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>MoveFieldDown</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="MoveFieldRight" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Move right</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.MoveColumnRight</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>MoveFieldRight</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="MoveFieldUp" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Move up</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>CommonPicture.MoveGroupUp</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>MoveFieldUp</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="ApplyISform" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply and run</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.GenerateReport</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ApplyISform</Action>
+		</Command>
+		<Command name="Apply" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Apply</Action>
+		</Command>
+		<Command name="GroupBySelectedField" id="20">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by field</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Group by selected field</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.Group</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>GroupBySelectedField</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ReportSettings">
+			<Type/>
+		</Parameter>
+		<Parameter name="DetailsData">
+			<Type/>
+		</Parameter>
+		<Parameter name="Document">
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="TitleProperties">
+			<Type/>
+		</Parameter>
+		<Parameter name="SettingsComposer">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="FiltersValuesCache">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

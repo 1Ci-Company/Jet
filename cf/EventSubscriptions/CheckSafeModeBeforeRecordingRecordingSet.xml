@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<EventSubscription uuid="667b0f85-b82d-4d8e-9d75-b55a9723dce7">
+		<Properties>
+			<Name>CheckSafeModeBeforeRecordingRecordingSet</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Before you start writing, check if the safe mode is on.</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<Source>
+				<v8:Type>cfg:InformationRegisterRecordSet.UsedAccessKinds</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.UsedAccessKindsByTables</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FileSynchronizationSettings</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.DefaultAccessGroupsValues</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.SafeDataAreaDataStorage</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.SubsystemsVersions</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.DataProcessedInMasterDIBNode</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.AdditionalDataProcessorsPurposes</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.PeriodicServerNotifications</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.SafeDataStorage</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FilesEncoding</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.UsersInfo</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.UpdateHandlers</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.UserGroupsHierarchy</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.TimeConsumingOperations</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.AccessRightsDependencies</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FilesClearingSettings</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.ApplicationRuntimeParameters</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.AccessRestrictionParameters</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.EmailAccountSettings</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.ExtensionVersionParameters</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.SentServerNotifications</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FilesInWorkingDirectory</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FileRepository</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.ObjectsRightsSettings</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.ExtensionVersionObjectIDs</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.AccessGroupsTables</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FileWorkingDirectories</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.RolesRights</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.DataProcessorAccessUserSettings</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.FilesInfo</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.AccessGroupsValues</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.ObjectRightsSettingsInheritance</v8:Type>
+				<v8:Type>cfg:InformationRegisterRecordSet.UserGroupCompositions</v8:Type>
+			</Source>
+			<Event>BeforeWrite</Event>
+			<Handler>CommonModule.StandardSubsystemsServer.CheckSafeModeBeforeRecordingRecordingSet</Handler>
+		</Properties>
+	</EventSubscription>
+</MetaDataObject>

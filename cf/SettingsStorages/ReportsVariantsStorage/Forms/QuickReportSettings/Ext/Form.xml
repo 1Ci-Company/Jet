@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>Bottom</CommandBarLocation>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<HorizontalAlign>Right</HorizontalAlign>
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="QuickSettings" id="1">
+			<Representation>List</Representation>
+			<ChangeRowSet>false</ChangeRowSet>
+			<RowSelectionMode>Row</RowSelectionMode>
+			<Header>false</Header>
+			<HorizontalLines>false</HorizontalLines>
+			<VerticalLines>false</VerticalLines>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>QuickSettings</DataPath>
+			<RowPictureDataPath>QuickSettings.PictureSettings</RowPictureDataPath>
+			<RowsPicture>
+				<xr:Ref>CommonPicture.ReportSettingsIcons</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</RowsPicture>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Quick settings</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>EndEdit</ExcludedCommand>
+				<ExcludedCommand>SelectAll</ExcludedCommand>
+				<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+				<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+			</CommandSet>
+			<SearchStringLocation>CommandBar</SearchStringLocation>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="QuickSettingsContextMenu" id="2">
+				<ChildItems>
+					<ButtonGroup name="QuickSettingsContextMenuSearchGroup" id="59">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Search</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="QuickSettingsContextMenuSearchGroupExtendedTooltip" id="60"/>
+						<ChildItems>
+							<Button name="QuickSettingsContextMenuSearchByCurrentValue" id="61">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.OutputList</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuSearchByCurrentValueExtendedTooltip" id="62"/>
+							</Button>
+							<Button name="QuickSettingsContextMenuFind" id="63">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.Find</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuFindExtendedTooltip" id="64"/>
+							</Button>
+							<Button name="QuickSettingsContextMenuCancelSearch" id="65">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.CancelSearch</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuCancelSearchExtendedTooltip" id="66"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<ButtonGroup name="QuickSettingsContextMenuMoveGroup" id="77">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Move</v8:content>
+							</v8:item>
+						</Title>
+						<Representation>Compact</Representation>
+						<ExtendedTooltip name="QuickSettingsContextMenuMoveGroupExtendedTooltip" id="78"/>
+						<ChildItems>
+							<Button name="QuickSettingsContextMenuMoveUp" id="85">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.MoveUp</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuMoveUpExtendedTooltip" id="86"/>
+							</Button>
+							<Button name="QuickSettingsContextMenuMoveDown" id="87">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.MoveDown</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuMoveDownExtendedTooltip" id="88"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<ButtonGroup name="QuickSettingsContextMenuSortingGroup" id="79">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Sort</v8:content>
+							</v8:item>
+						</Title>
+						<Representation>Compact</Representation>
+						<ExtendedTooltip name="QuickSettingsContextMenuSortingGroupExtendedTooltip" id="80"/>
+						<ChildItems>
+							<Button name="QuickSettingsContextMenuSortListAsc" id="89">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.SortListAsc</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuSortListAscExtendedTooltip" id="90"/>
+							</Button>
+							<Button name="QuickSettingsContextMenuSortListDesc" id="91">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.SortListDesc</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsContextMenuSortListDescExtendedTooltip" id="92"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<Button name="QuickSettingsContextMenuOutputList" id="73">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.QuickSettings.StandardCommand.OutputList</CommandName>
+						<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+						<ExtendedTooltip name="QuickSettingsContextMenuOutputListExtendedTooltip" id="74"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="QuickSettingsCommandBar" id="3">
+				<ChildItems>
+					<ButtonGroup name="QuickSettingsChangeMarksGroup" id="40">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Change marks</v8:content>
+							</v8:item>
+						</Title>
+						<Representation>Compact</Representation>
+						<ExtendedTooltip name="QuickSettingsChangeMarksGroupExtendedTooltip" id="41"/>
+						<ChildItems>
+							<Button name="QuickSettingsSetMark" id="42">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.SetMark</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Set mark</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsSetMarkExtendedTooltip" id="43"/>
+							</Button>
+							<Button name="QuickSettingsClearMark" id="44">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.ClearMark</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Clear mark</v8:content>
+									</v8:item>
+								</Title>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsClearMarkExtendedTooltip" id="45"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+					<ButtonGroup name="QuickSettingsMoveGroup" id="75">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Move</v8:content>
+							</v8:item>
+						</Title>
+						<Representation>Compact</Representation>
+						<ExtendedTooltip name="QuickSettingsMoveGroupExtendedTooltip" id="76"/>
+						<ChildItems>
+							<Button name="QuickSettingsMoveUp" id="81">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.MoveUp</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsMoveUpExtendedTooltip" id="82"/>
+							</Button>
+							<Button name="QuickSettingsMoveDown" id="83">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.QuickSettings.StandardCommand.MoveDown</CommandName>
+								<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+								<ExtendedTooltip name="QuickSettingsMoveDownExtendedTooltip" id="84"/>
+							</Button>
+						</ChildItems>
+					</ButtonGroup>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="QuickSettingsExtendedTooltip" id="4"/>
+			<SearchStringAddition name="QuickSettingsSearchString" id="5">
+				<AdditionSource>
+					<Item>QuickSettings</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="QuickSettingsSearchStringContextMenu" id="6"/>
+				<ExtendedTooltip name="QuickSettingsSearchStringExtendedTooltip" id="7"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="QuickSettingsViewStatus" id="8">
+				<AdditionSource>
+					<Item>QuickSettings</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="QuickSettingsViewStatusContextMenu" id="9"/>
+				<ExtendedTooltip name="QuickSettingsViewStatusExtendedTooltip" id="10"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="QuickSettingsSearchControl" id="11">
+				<AdditionSource>
+					<Item>QuickSettings</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="QuickSettingsSearchControlContextMenu" id="12"/>
+				<ExtendedTooltip name="QuickSettingsSearchControlExtendedTooltip" id="13"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">QuickSettingsSelection</Event>
+				<Event name="OnChange">QuickSettingsOnChange</Event>
+			</Events>
+			<ChildItems>
+				<ColumnGroup name="QuickSettingsSetupGroup" id="38">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="QuickSettingsSetupGroupExtendedTooltip" id="39"/>
+					<ChildItems>
+						<CheckBoxField name="QuickSettingsCheck" id="14">
+							<DataPath>QuickSettings.Check</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Checkmark</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<EditMode>EnterOnInput</EditMode>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="QuickSettingsCheckContextMenu" id="15"/>
+							<ExtendedTooltip name="QuickSettingsCheckExtendedTooltip" id="16"/>
+							<Events>
+								<Event name="OnChange">QuickSettingsCheckOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<PictureField name="QuickSettingsPictureSettings" id="56">
+							<DataPath>QuickSettings.PictureSettings</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Setting picture</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="QuickSettingsPictureSettingsContextMenu" id="57"/>
+							<ExtendedTooltip name="QuickSettingsPictureSettingsExtendedTooltip" id="58"/>
+						</PictureField>
+						<InputField name="QuickSettingsTitle" id="20">
+							<DataPath>QuickSettings.Title</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Settings</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>25</Width>
+							<ContextMenu name="QuickSettingsTitleContextMenu" id="21"/>
+							<ExtendedTooltip name="QuickSettingsTitleExtendedTooltip" id="22"/>
+						</InputField>
+					</ChildItems>
+				</ColumnGroup>
+				<InputField name="QuickSettingsComparisonType" id="93">
+					<DataPath>QuickSettings.ComparisonType</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Condition</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CellHyperlink>true</CellHyperlink>
+					<Width>12</Width>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>12</MaxWidth>
+					<ContextMenu name="QuickSettingsComparisonTypeContextMenu" id="94"/>
+					<ExtendedTooltip name="QuickSettingsComparisonTypeExtendedTooltip" id="95"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<CheckBoxField name="OutputSettingsTitles" id="106">
+			<DataPath>OutputSettingsTitles</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show setting titles</v8:content>
+				</v8:item>
+			</Title>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="OutputSettingsTitlesContextMenu" id="107"/>
+			<ExtendedTooltip name="OutputSettingsTitlesExtendedTooltip" id="108"/>
+		</CheckBoxField>
+		<UsualGroup name="CommandBar" id="96">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="97"/>
+			<ChildItems>
+				<UsualGroup name="AdditionalFeatures" id="109">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional features</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalStretch>true</VerticalStretch>
+					<Group>Vertical</Group>
+					<VerticalAlign>Center</VerticalAlign>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AdditionalFeaturesExtendedTooltip" id="110"/>
+					<ChildItems>
+						<Button name="GoToAdvancedSettings" id="104">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.GoToAdvancedSettings</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>More options…</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="GoToAdvancedSettingsExtendedTooltip" id="105"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<CommandBar name="CommandsBasic" id="98">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main commands</v8:content>
+						</v8:item>
+					</Title>
+					<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+					<HorizontalLocation>Right</HorizontalLocation>
+					<ExtendedTooltip name="CommandsBasicExtendedTooltip" id="99"/>
+					<ChildItems>
+						<Button name="Apply" id="100">
+							<Type>CommandBarButton</Type>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.Apply</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Apply</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ApplyExtendedTooltip" id="101"/>
+						</Button>
+						<Button name="Cancel" id="102">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Cancel</CommandName>
+							<ExtendedTooltip name="CancelExtendedTooltip" id="103"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="QuickSettings" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Quick settings</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Check" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Mark</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Title" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Title</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="UserSettingID" id="7">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ValueType" id="10">
+					<Type>
+						<v8:Type>v8:TypeDescription</v8:Type>
+					</Type>
+				</Column>
+				<Column name="SettingType" id="4">
+					<Type/>
+				</Column>
+				<Column name="PictureSettings" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture settings</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>2</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Order" id="2">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>5</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ComparisonType" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Condition</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>dcsset:DataCompositionComparisonType</v8:Type>
+					</Type>
+				</Column>
+				<Column name="AvailableCompareTypes" id="5">
+					<Type>
+						<v8:Type>v8:ValueListType</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SettingsComposer" id="2">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ReportSettings" id="3">
+			<Type/>
+		</Attribute>
+		<Attribute name="VariantModified" id="4">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="CurrentVariantKey" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="OutputSettingsTitles" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show setting titles</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="SetMark" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set mark</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Include in quick settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SetMark</Action>
+			<Representation>Picture</Representation>
+		</Command>
+		<Command name="ClearMark" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear mark</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Exclude from quick settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.UncheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ClearMark</Action>
+			<Representation>Picture</Representation>
+		</Command>
+		<Command name="Apply" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Apply</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Apply</Action>
+		</Command>
+		<Command name="GoToAdvancedSettings" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>More options…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Go to advanced settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GoToAdvancedSettings</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ReportSettings">
+			<Type/>
+		</Parameter>
+		<Parameter name="SettingsComposer">
+			<Type>
+				<v8:Type>dcsset:SettingsComposer</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

@@ -1,0 +1,2078 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Customizable>false</Customizable>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>WriteAndClose</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnClose">OnClose</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="TitleGroup" id="1762">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="TitleGroupExtendedTooltip" id="1829"/>
+			<ChildItems>
+				<LabelDecoration name="SectionDetails" id="1763">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Change the application name, configure additional attributes, and other general settings.</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalAlign>Top</VerticalAlign>
+					<ContextMenu name="SectionDetailsContextMenu" id="1764"/>
+					<ExtendedTooltip name="SectionDetailsExtendedTooltip" id="1830"/>
+				</LabelDecoration>
+				<CommandBar name="HelpGroup" id="1765">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Help</v8:content>
+						</v8:item>
+					</Title>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<ExtendedTooltip name="HelpGroupExtendedTooltip" id="1832"/>
+					<ChildItems>
+						<Button name="Help" id="1766">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.StandardCommand.Help</CommandName>
+							<ExtendedTooltip name="HelpExtendedTooltip" id="1833"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ApplicationSettingsGroup" id="612">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Application settings</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ApplicationSettingsGroupExtendedTooltip" id="1834"/>
+			<ChildItems>
+				<InputField name="ApplicationTitle" id="1785">
+					<DataPath>ConstantsSet.SystemTitle</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Application title</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Left</TitleLocation>
+					<ContextMenu name="ApplicationTitleContextMenu" id="1786"/>
+					<ExtendedTooltip name="ApplicationTitleExtendedTooltip" id="1835"/>
+					<Events>
+						<Event name="OnChange">ApplicationTitleOnChange</Event>
+					</Events>
+				</InputField>
+				<UsualGroup name="GroupRegionalSettings" id="2276">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Regional settings</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Collapsible</Behavior>
+					<ControlRepresentation>Picture</ControlRepresentation>
+					<Representation>NormalSeparation</Representation>
+					<ExtendedTooltip name="GroupRegionalSettingsExtendedTooltip" id="2277"/>
+					<ChildItems>
+						<UsualGroup name="GroupTimeZoneSetup" id="2267">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group4</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupTimeZoneSetupExtendedTooltip" id="2268"/>
+							<ChildItems>
+								<UsualGroup name="GroupTimeZone" id="2274">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Time zone</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupTimeZoneExtendedTooltip" id="2275"/>
+									<ChildItems>
+										<InputField name="AppTimeZone" id="2264">
+											<DataPath>AppTimeZone</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Application time zone</v8:content>
+												</v8:item>
+											</Title>
+											<Width>20</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<ListChoiceMode>true</ListChoiceMode>
+											<ContextMenu name="AppTimeZoneContextMenu" id="2265"/>
+											<ExtendedTooltip name="AppTimeZoneExtendedTooltip" id="2266"/>
+											<Events>
+												<Event name="OnChange">AppTimeZoneOnChange</Event>
+											</Events>
+										</InputField>
+										<Button name="CommonCommandCurrentSessionTime" id="2269">
+											<Type>Hyperlink</Type>
+											<CommandName>CommonCommand.TimeInApp</CommandName>
+											<ExtendedTooltip name="CommonCommandCurrentSessionTimeExtendedTooltip" id="2270"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<Button name="AccountingLanguages" id="2094">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.RegionalSettings</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Accounting languages</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="AccountingLanguagesExtendedTooltip" id="2095"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="InfobasePublishingGroup" id="2038">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Infobase publishing</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="InfobasePublishingGroupExtendedTooltip" id="2039"/>
+			<ChildItems>
+				<LabelDecoration name="PublishingNote" id="2040">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<TextColor>style:NoteText</TextColor>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use these addresses to generate links to infobase objects if the infobase is published on the Internet or in the local network.</v8:content>
+						</v8:item>
+					</Title>
+					<TitleHeight>2</TitleHeight>
+					<ContextMenu name="PublishingNoteContextMenu" id="2041"/>
+					<ExtendedTooltip name="PublishingNoteExtendedTooltip" id="2042"/>
+				</LabelDecoration>
+				<InputField name="InfobasePublicationURL" id="2043">
+					<DataPath>ConstantsSet.InfobasePublicationURL</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Internet address</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use this address to generate objects links if the infobase is published on the Internet.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ChoiceButton>true</ChoiceButton>
+					<ChoiceButtonPicture>
+						<xr:Ref>StdPicture.MoveLeft</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</ChoiceButtonPicture>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Example: http://myserver.com</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="InfobasePublicationURLContextMenu" id="2044"/>
+					<ExtendedTooltip name="InfobasePublicationURLExtendedTooltip" id="2045"/>
+					<Events>
+						<Event name="OnChange">InfobasePublicationURLOnChange</Event>
+						<Event name="StartChoice">InfobasePublicationURLStartChoice</Event>
+					</Events>
+				</InputField>
+				<InputField name="LocalInfobasePublishingURL" id="2046">
+					<DataPath>ConstantsSet.LocalInfobasePublishingURL</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Local address</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use this address to generate objects links if the infobase is published in the local network.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ChoiceButton>true</ChoiceButton>
+					<ChoiceButtonPicture>
+						<xr:Ref>StdPicture.MoveLeft</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</ChoiceButtonPicture>
+					<InputHint>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Example: http://localnet/mydatabase</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="LocalInfobasePublishingURLContextMenu" id="2047"/>
+					<ExtendedTooltip name="LocalInfobasePublishingURLExtendedTooltip" id="2048"/>
+					<Events>
+						<Event name="OnChange">InfobasePublicationURLOnChange</Event>
+						<Event name="StartChoice">LocalInfobasePublishingURLStartChoice</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ClientServerIBParametersGroup" id="1532">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Server infobase parameters</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="ClientServerIBParametersGroupExtendedTooltip" id="1868"/>
+			<ChildItems>
+				<UsualGroup name="SubgroupParametersClientServerIB" id="2059">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Subgroup parameters server infobase client</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SubgroupParametersClientServerIBExtendedTooltip" id="2060"/>
+					<ChildItems>
+						<UsualGroup name="OpenProxyServerParametersGroup" id="1524">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open proxy server parameters</v8:content>
+								</v8:item>
+							</Title>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="OpenProxyServerParametersGroupExtendedTooltip" id="1869"/>
+							<ChildItems>
+								<Button name="OpenProxyServerParameters" id="1686">
+									<Type>Hyperlink</Type>
+									<CommandName>CommonForm.ProxyServerParameters.StandardCommand.Open</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Internet access parameters</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenProxyServerParametersExtendedTooltip" id="1870">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure proxy server parameters on the 1C:Enterprise server.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ConfigureSecurityProfilesUsageGroup" id="1934">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure security profiles</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Open proxy server parameters group</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ConfigureSecurityProfilesUsageGroupExtendedTooltip" id="1935"/>
+							<ChildItems>
+								<Button name="OpenSecurityProfilesUsageSettings" id="1936">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.SecurityProfilesUsage</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Security profiles</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="OpenSecurityProfilesUsageSettingsExtendedTooltip" id="1937">
+										<AutoMaxWidth>false</AutoMaxWidth>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ConfigureProxyServerAtServerGroupUnavailableWhenUsingSecurityProfiles" id="1941">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Cannot configure proxy server on the server when using security profiles</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ConfigureProxyServerAtServerGroupUnavailableWhenUsingSecurityProfilesExtendedTooltip" id="1942"/>
+					<ChildItems>
+						<PictureDecoration name="ProxyServerSettingsUnavailableAtServerOnUseSecurityProfilesDecoration" id="1943">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cannot configure proxy server on the server when using security profiles decoration</v8:content>
+								</v8:item>
+							</Title>
+							<Picture>
+								<xr:Ref>CommonPicture.UnavailableFieldsInformation</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</Picture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ProxyServerSettingsUnavailableAtServerOnUseSecurityProfilesDecorationContextMenu" id="1944"/>
+							<ExtendedTooltip name="ProxyServerSettingsUnavailableAtServerOnUseSecurityProfilesDecorationExtendedTooltip" id="1945"/>
+						</PictureDecoration>
+						<LabelDecoration name="ProxyServerSettingsUnavailableAtServerOnUseSecurityProfilesNote" id="1946">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Cannot configure Internet access parameters on the 1C:Enterprise server as the infobase uses security profiles. With security profiles enabled, you can configure Internet access parameters on the 1C:Enterprise server only by editing the inetcfg.xml file (for more information, see 1C:Enterprise Administrator Guide).</v8:content>
+								</v8:item>
+							</Title>
+							<TitleHeight>4</TitleHeight>
+							<ContextMenu name="ProxyServerSettingsUnavailableAtServerOnUseSecurityProfilesNoteContextMenu" id="1947"/>
+							<ExtendedTooltip name="ProxyServerSettingsUnavailableAtServerOnUseSecurityProfilesNoteExtendedTooltip" id="1948"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="OpenContactInformationKindsGroup" id="1642">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Contact information</v8:content>
+				</v8:item>
+			</Title>
+			<Width>43</Width>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="OpenContactInformationKindsGroupExtendedTooltip" id="1865"/>
+			<ChildItems>
+				<Button name="OpenContactInformationKinds" id="1640">
+					<Type>Hyperlink</Type>
+					<CommandName>Catalog.ContactInformationKinds.StandardCommand.OpenList</CommandName>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<ExtendedTooltip name="OpenContactInformationKindsExtendedTooltip" id="1866">
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Classify addresses, phones, and other contact information of application objects, such as partners, counterparties, or employees.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="PropertiesGroup" id="1801">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Properties</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="PropertiesGroupExtendedTooltip" id="1846"/>
+			<ChildItems>
+				<UsualGroup name="GroupPropertiesLeft" id="1802">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties left</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupPropertiesLeftExtendedTooltip" id="1847"/>
+					<ChildItems>
+						<CheckBoxField name="UseProperties" id="1803">
+							<DataPath>ConstantsSet.UseAdditionalAttributesAndInfo</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Properties</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Create and configure additional text, numeric, and other properties for your application objects such as catalogs or documents.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UsePropertiesContextMenu" id="1804"/>
+							<ExtendedTooltip name="UsePropertiesExtendedTooltip" id="1848"/>
+							<Events>
+								<Event name="OnChange">UsePropertiesOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<UsualGroup name="AdditionalDataGroup" id="1825">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Additional information records</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="AdditionalDataGroupExtendedTooltip" id="1862"/>
+							<ChildItems>
+								<Button name="AdditionalInfo" id="2053">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.AdditionalInfo</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional information records</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="AdditionalInfoExtendedTooltip" id="2054">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Additional information records are edited in a separate form opened from a catalog or a document. You can set up rights to edit and view the additional information records regardless of the rights to an owner object.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupPropertiesRight" id="1820">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional attributes or information records</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ChildItemsWidth>Equal</ChildItemsWidth>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupPropertiesRightExtendedTooltip" id="1858"/>
+					<ChildItems>
+						<UsualGroup name="GroupAdditionalAttributes" id="1821">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Additional attributes</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="1859"/>
+							<ChildItems>
+								<Button name="AdditionalAttributes" id="2051">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.AdditionalAttributes</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Additional attributes</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="AdditionalAttributesExtendedTooltip" id="2052">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Additional attributes are placed in document and catalog forms as fields. To edit and view the additional attributes, you need to have the required rights to an owner object.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupLabels" id="2258">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Labels</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupLabelsExtendedTooltip" id="2259"/>
+							<ChildItems>
+								<Button name="Labels" id="2260">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.Labels</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Labels</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="LabelsExtendedTooltip" id="2261">
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Use labels to mark catalogs and documents with multi-colored label icons. To edit and view the labels, you need to have the required rights to an owner object.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="VersioningGroup" id="2063">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Change history</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="VersioningGroupExtendedTooltip" id="2064"/>
+			<ChildItems>
+				<UsualGroup name="UseObjectsVersioningGroup" id="2065">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use object versioning</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Store and view document and catalog versions.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<Width>43</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="UseObjectsVersioningGroupExtendedTooltip" id="2066"/>
+					<ChildItems>
+						<CheckBoxField name="StoreChangeHistory" id="2087">
+							<DataPath>StoreChangeHistory</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Store change history</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="StoreChangeHistoryContextMenu" id="2088"/>
+							<ExtendedTooltip name="StoreChangeHistoryExtendedTooltip" id="2089"/>
+							<Events>
+								<Event name="OnChange">StoreChangeHistoryOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<Button name="ConfigureChangesHistoryStorage" id="2090">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.ConfigureChangesHistoryStorage</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ConfigureChangesHistoryStorageExtendedTooltip" id="2091"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="FullTextSearchManagementGroup" id="2074">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Search</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="FullTextSearchManagementGroupExtendedTooltip" id="2075"/>
+			<ChildItems>
+				<UsualGroup name="FullTextSearchGroup" id="2092">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Full-text search</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Configure search in documents, files, and reports.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="FullTextSearchGroupExtendedTooltip" id="2093"/>
+					<ChildItems>
+						<CheckBoxField name="UseFullTextSearch" id="2078">
+							<DataPath>UseFullTextSearch</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Full-text search</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ThreeState>true</ThreeState>
+							<ContextMenu name="UseFullTextSearchContextMenu" id="2079"/>
+							<ExtendedTooltip name="UseFullTextSearchExtendedTooltip" id="2080"/>
+							<Events>
+								<Event name="OnChange">UseFullTextSearchOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<Button name="ConfigureFullTextSearch" id="2085">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.ConfigureFullTextSearch</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Configure</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ConfigureFullTextSearchExtendedTooltip" id="2086"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="DigitalSignatureAndEncryptionGroup" id="1949">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Digital signature and encryption</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ChildItemsWidth>Equal</ChildItemsWidth>
+			<ExtendedTooltip name="DigitalSignatureAndEncryptionGroupExtendedTooltip" id="1950"/>
+			<ChildItems>
+				<UsualGroup name="DigitalSignatureGroup" id="1951">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Digital signature</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="DigitalSignatureGroupExtendedTooltip" id="1952"/>
+					<ChildItems>
+						<UsualGroup name="HorizontalGroup" id="1953">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Horizontal group</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<Width>43</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="HorizontalGroupExtendedTooltip" id="1954">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Allows digital signatures to guarantee that data remains unmodified and data encryption to secure access restrictions.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<ChildItems>
+								<CheckBoxField name="UseDigitalSignature" id="1955">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Digital signature</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseDigitalSignatureContextMenu" id="1956"/>
+									<ExtendedTooltip name="UseDigitalSignatureExtendedTooltip" id="1957"/>
+									<Events>
+										<Event name="OnChange">Attachable_OnChangeAttribute</Event>
+									</Events>
+								</CheckBoxField>
+								<CheckBoxField name="UseEncryption" id="1958">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Encryption</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UseEncryptionContextMenu" id="1959"/>
+									<ExtendedTooltip name="UseEncryptionExtendedTooltip" id="1960"/>
+									<Events>
+										<Event name="OnChange">Attachable_OnChangeAttribute</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<Button name="DigitalSignatureAndEncryptionSettings" id="2049">
+							<Type>Hyperlink</Type>
+							<Width>43</Width>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<CommandName>0</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Certificates and digital signature and encryption applications</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<ExtendedTooltip name="DigitalSignatureAndEncryptionSettingsExtendedTooltip" id="2050">
+								<Width>43</Width>
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Configure certificates and applications used for signing and encryption.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+				<Button name="GeneralFormAllowedNonAccreditedUSOpen" id="2256">
+					<Type>Hyperlink</Type>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="GeneralFormAllowedNonAccreditedUSOpenExtendedTooltip" id="2257"/>
+				</Button>
+				<UsualGroup name="GroupAdvancedSignature" id="2158">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Enhanced signature</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupAdvancedSignatureExtendedTooltip" id="2159"/>
+					<ChildItems>
+						<UsualGroup name="GroupAdvancedSignatureHorizontal" id="2178">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Enhanced signature horizontal</v8:content>
+								</v8:item>
+							</Title>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupAdvancedSignatureHorizontalExtendedTooltip" id="2179"/>
+							<ChildItems>
+								<UsualGroup name="GroupSettingsSignatures" id="2142">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Signature settings</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<Width>43</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupSettingsSignaturesExtendedTooltip" id="2143"/>
+									<ChildItems>
+										<LabelField name="CryptoSignatureTypeDefault1" id="2245">
+											<DataPath>ConstantCryptoSignatureTypeDefault</DataPath>
+											<Visible>false</Visible>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Signature type for documents</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Top</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<ContextMenu name="CryptoSignatureTypeDefault1ContextMenu" id="2246"/>
+											<ExtendedTooltip name="CryptoSignatureTypeDefault1ExtendedTooltip" id="2247">
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>In the web application, you can select types of signatures with timestamps when signing by a certificate installed on the computer that also has a digital signature application installed.</v8:content>
+													</v8:item>
+												</Title>
+												<Events>
+													<Event name="URLProcessing">DefaultCryptoSignatureType1ExtendedTooltipURLProcessing</Event>
+												</Events>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">SignatureTypeOnChange</Event>
+											</Events>
+										</LabelField>
+										<RadioButtonField name="CryptoSignatureTypeDefault" id="2175">
+											<DataPath>ConstantCryptoSignatureTypeDefault</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Signature type for documents</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Top</TitleLocation>
+											<ToolTipRepresentation>None</ToolTipRepresentation>
+											<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+											<RadioButtonType>RadioButtons</RadioButtonType>
+											<ColumnsCount>1</ColumnsCount>
+											<ChoiceList>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Basic electronic signature (CAdES-BES)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xr:DesignTimeRef">102412a6-a3fb-47f1-840c-c7c3b4ad1d4d.d0d90cbf-21fc-47cb-8e1c-549e67a1bf0c</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Electronic signature with time (CAdES-T)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xr:DesignTimeRef">102412a6-a3fb-47f1-840c-c7c3b4ad1d4d.cf48ae02-ecb0-4db9-92da-585f89cddb70</Value>
+													</xr:Value>
+												</xr:Item>
+												<xr:Item>
+													<xr:Presentation/>
+													<xr:CheckState>0</xr:CheckState>
+													<xr:Value xsi:type="FormChoiceListDesTimeValue">
+														<Presentation>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Archival electronic signature (CAdES-A)</v8:content>
+															</v8:item>
+														</Presentation>
+														<Value xsi:type="xr:DesignTimeRef">102412a6-a3fb-47f1-840c-c7c3b4ad1d4d.8bf95fa7-1067-45b3-82ea-286192f97e06</Value>
+													</xr:Value>
+												</xr:Item>
+											</ChoiceList>
+											<ContextMenu name="CryptoSignatureTypeDefaultContextMenu" id="2176"/>
+											<ExtendedTooltip name="CryptoSignatureTypeDefaultExtendedTooltip" id="2177">
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>In SaaS mode, the archival timestamp is unavailable by default. You can select this signature type when signing by a certificate installed by a digital signing app.</v8:content>
+													</v8:item>
+												</Title>
+												<Events>
+													<Event name="URLProcessing">DefaultCryptoSignatureTypeExtendedTooltipURLProcessing</Event>
+												</Events>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">SignatureTypeOnChange</Event>
+											</Events>
+										</RadioButtonField>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="GroupServerAddresses" id="2183">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Server addresses</v8:content>
+										</v8:item>
+									</Title>
+									<Width>43</Width>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupServerAddressesExtendedTooltip" id="2184"/>
+									<ChildItems>
+										<InputField name="TimestampServersAddresses" id="2191">
+											<DataPath>ConstantTimestampServersAddresses</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Timestamp server addresses</v8:content>
+												</v8:item>
+											</Title>
+											<TitleLocation>Top</TitleLocation>
+											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+											<AutoMaxHeight>false</AutoMaxHeight>
+											<MaxHeight>2</MaxHeight>
+											<MultiLine>true</MultiLine>
+											<ChoiceButton>true</ChoiceButton>
+											<ChoiceButtonPicture>
+												<xr:Ref>StdPicture.MoveLeft</xr:Ref>
+												<xr:LoadTransparent>true</xr:LoadTransparent>
+											</ChoiceButtonPicture>
+											<HeightControlVariant>UseHeightInFormRows</HeightControlVariant>
+											<ContextMenu name="TimestampServersAddressesContextMenu" id="2192"/>
+											<ExtendedTooltip name="TimestampServersAddressesExtendedTooltip" id="2193">
+												<Title formatted="false">
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>To create electronic signatures with time, specify timestamp server addresses (on a new line). The addresses can be provided by a service provider, for example, a certificate authority.</v8:content>
+													</v8:item>
+												</Title>
+											</ExtendedTooltip>
+											<Events>
+												<Event name="OnChange">TimestampServersAddressesOnChange</Event>
+												<Event name="StartChoice">TimestampServersAddressesStartChoice</Event>
+											</Events>
+										</InputField>
+										<Button name="TimestampServersDiagnostics" id="2262">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.TimestampServersDiagnostics</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Test connection</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="TimestampServersDiagnosticsExtendedTooltip" id="2263"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupAutomaticProcessingSignatures" id="2150">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Maintain signature validity</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupAutomaticProcessingSignaturesExtendedTooltip" id="2151">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<MaxWidth>88</MaxWidth>
+								<HorizontalStretch>false</HorizontalStretch>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>To ensure that signature validity is maintained automatically using a scheduled job, a &lt;link Programs&gt;digital signature application&lt;/&gt; must be installed on each computer running 1C:Enterprise server or the web server connected to the file infobase.</v8:content>
+									</v8:item>
+								</Title>
+								<Events>
+									<Event name="URLProcessing">GroupAutomaticProcessingSignaturesExtendedTooltipURLProcessing</Event>
+								</Events>
+							</ExtendedTooltip>
+							<ChildItems>
+								<UsualGroup name="GroupAutomaticProcessingSignaturesSettings" id="2185">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Automatic signature processing setup</v8:content>
+										</v8:item>
+									</Title>
+									<Group>AlwaysHorizontal</Group>
+									<Behavior>Usual</Behavior>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupAutomaticProcessingSignaturesSettingsExtendedTooltip" id="2186"/>
+									<ChildItems>
+										<UsualGroup name="GroupImproveSignatures" id="2187">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Enhance signatures</v8:content>
+												</v8:item>
+											</Title>
+											<Width>43</Width>
+											<HorizontalStretch>false</HorizontalStretch>
+											<Behavior>Usual</Behavior>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupImproveSignaturesExtendedTooltip" id="2188"/>
+											<ChildItems>
+												<LabelDecoration name="DecorationImprovement" id="2223">
+													<Title formatted="false">
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Enhance signatures</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+													<ContextMenu name="DecorationImprovementContextMenu" id="2224"/>
+													<ExtendedTooltip name="DecorationImprovementExtendedTooltip" id="2225">
+														<Title formatted="false">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Enhance signatures up to the selected type</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+												</LabelDecoration>
+												<UsualGroup name="GroupUpgradeSignaturesAutomatically" id="2231">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Enhance signatures automatically</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="GroupUpgradeSignaturesAutomaticallyExtendedTooltip" id="2232"/>
+													<ChildItems>
+														<LabelDecoration name="DecorationUpgradeSignaturesAutomatically" id="2233">
+															<Width>1</Width>
+															<ContextMenu name="DecorationUpgradeSignaturesAutomaticallyContextMenu" id="2234"/>
+															<ExtendedTooltip name="DecorationUpgradeSignaturesAutomaticallyExtendedTooltip" id="2235"/>
+														</LabelDecoration>
+														<RadioButtonField name="RefineSignaturesAutomatically" id="2155">
+															<DataPath>ConstantRefineSignaturesAutomatically</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Enhance signatures automatically</v8:content>
+																</v8:item>
+															</Title>
+															<TitleLocation>None</TitleLocation>
+															<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+															<RadioButtonType>Auto</RadioButtonType>
+															<ChoiceList>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Do not enhance</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:decimal">0</Value>
+																	</xr:Value>
+																</xr:Item>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>Automatically (using a scheduled job)</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:decimal">1</Value>
+																	</xr:Value>
+																</xr:Item>
+																<xr:Item>
+																	<xr:Presentation/>
+																	<xr:CheckState>0</xr:CheckState>
+																	<xr:Value xsi:type="FormChoiceListDesTimeValue">
+																		<Presentation>
+																			<v8:item>
+																				<v8:lang>en</v8:lang>
+																				<v8:content>In administrator interface *</v8:content>
+																			</v8:item>
+																		</Presentation>
+																		<Value xsi:type="xs:decimal">2</Value>
+																	</xr:Value>
+																</xr:Item>
+															</ChoiceList>
+															<ContextMenu name="RefineSignaturesAutomaticallyContextMenu" id="2156"/>
+															<ExtendedTooltip name="RefineSignaturesAutomaticallyExtendedTooltip" id="2157">
+																<Title formatted="true">
+																	<v8:item>
+																		<v8:lang>en</v8:lang>
+																		<v8:content>* Using commands in the &lt;link ReportOnRenewalOfSignatures&gt;report&lt;/&gt; and the "To-do list" panel.</v8:content>
+																	</v8:item>
+																</Title>
+																<Events>
+																	<Event name="URLProcessing">RefineSignaturesAutomaticallyExtendedTooltipURLProcessing</Event>
+																</Events>
+															</ExtendedTooltip>
+															<Events>
+																<Event name="OnChange">RefineSignaturesOnChange</Event>
+															</Events>
+														</RadioButtonField>
+													</ChildItems>
+												</UsualGroup>
+												<UsualGroup name="GroupImproveSignaturesDates" id="2226">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Enhance signatures starting from</v8:content>
+														</v8:item>
+													</Title>
+													<Behavior>Usual</Behavior>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="GroupImproveSignaturesDatesExtendedTooltip" id="2227"/>
+													<ChildItems>
+														<LabelDecoration name="DecorationImproveSignaturesDates" id="2228">
+															<Width>1</Width>
+															<ContextMenu name="DecorationImproveSignaturesDatesContextMenu" id="2229"/>
+															<ExtendedTooltip name="DecorationImproveSignaturesDatesExtendedTooltip" id="2230"/>
+														</LabelDecoration>
+														<InputField name="RefineSignaturesDates" id="2220">
+															<DataPath>ConstantRefineSignaturesDates</DataPath>
+															<Title>
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Starting from the signature creation date</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="RefineSignaturesDatesContextMenu" id="2221"/>
+															<ExtendedTooltip name="RefineSignaturesDatesExtendedTooltip" id="2222"/>
+															<Events>
+																<Event name="OnChange">RefineSignaturesDatesOnChange</Event>
+															</Events>
+														</InputField>
+													</ChildItems>
+												</UsualGroup>
+											</ChildItems>
+										</UsualGroup>
+										<UsualGroup name="GroupAddLabelsAutomatically" id="2189">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Add automatically</v8:content>
+												</v8:item>
+											</Title>
+											<Width>43</Width>
+											<Behavior>Usual</Behavior>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="GroupAddLabelsAutomaticallyExtendedTooltip" id="2190"/>
+											<ChildItems>
+												<CheckBoxField name="AddTimestampsAutomatically" id="2152">
+													<DataPath>ConstantAddTimestampsAutomatically</DataPath>
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Renew archival signature automatically</v8:content>
+														</v8:item>
+													</Title>
+													<TitleLocation>Right</TitleLocation>
+													<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="AddTimestampsAutomaticallyContextMenu" id="2153"/>
+													<ExtendedTooltip name="AddTimestampsAutomaticallyExtendedTooltip" id="2154">
+														<Title formatted="false">
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>New timestamps will be added to archival electronic signatures (CAdES-A) a month before timestamp signature certificate expires.</v8:content>
+															</v8:item>
+														</Title>
+													</ExtendedTooltip>
+													<Events>
+														<Event name="OnChange">AddTimestampsAutomaticallyOnChange</Event>
+													</Events>
+												</CheckBoxField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="CheckSignaturesAtServerGroup" id="2212">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Verify signatures on server</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CheckSignaturesAtServerGroupExtendedTooltip" id="2213"/>
+					<ChildItems>
+						<CheckBoxField name="VerifyDigitalSignaturesOnTheServer" id="2239">
+							<DataPath>ConstantVerifyDigitalSignaturesOnTheServer</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Verify digital signatures on server</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="VerifyDigitalSignaturesOnTheServerContextMenu" id="2240"/>
+							<ExtendedTooltip name="VerifyDigitalSignaturesOnTheServerExtendedTooltip" id="2241">
+								<Width>43</Width>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Allows verifying digital signatures and certificates without installing a digital signing app on the user's computer.</v8:content>
+									</v8:item>
+								</Title>
+								<Events>
+									<Event name="URLProcessing">CheckDigitalSignaturesAtServerExtendedTooltipURLProcessing</Event>
+								</Events>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">VerifyDigitalSignaturesOnTheServerOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<CheckBoxField name="GenerateDigitalSignaturesAtServer" id="2242">
+							<DataPath>ConstantGenerateDigitalSignaturesAtServer</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Create digital signatures on server</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="GenerateDigitalSignaturesAtServerContextMenu" id="2243"/>
+							<ExtendedTooltip name="GenerateDigitalSignaturesAtServerExtendedTooltip" id="2244">
+								<Width>43</Width>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Allows encryption decryption, and signing without installing a digital signing app and a certificate on the user's computer.</v8:content>
+									</v8:item>
+								</Title>
+								<Events>
+									<Event name="URLProcessing">CreateDigitalSignaturesAtServerExtendedTooltipURLProcessing</Event>
+								</Events>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">GenerateDigitalSignaturesAtServerOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupCryptoProvidersHint" id="2248">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Cryptographic service provider tooltip</v8:content>
+						</v8:item>
+					</Title>
+					<Width>86</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Behavior>Usual</Behavior>
+					<Representation>NormalSeparation</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupCryptoProvidersHintExtendedTooltip" id="2249"/>
+					<ChildItems>
+						<PictureDecoration name="DecorationInfoCryptoProviders" id="2253">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Decoration information</v8:content>
+								</v8:item>
+							</Title>
+							<Picture>
+								<xr:Ref>StdPicture.Information</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<ContextMenu name="DecorationInfoCryptoProvidersContextMenu" id="2254"/>
+							<ExtendedTooltip name="DecorationInfoCryptoProvidersExtendedTooltip" id="2255"/>
+						</PictureDecoration>
+						<LabelDecoration name="DecorationCheckCryptoProviderInstallation" id="2250">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<TextColor>style:NoteText</TextColor>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>If you expect to use advanced qualified digital signatures, install a certified data encryption tool.
+&lt;link CheckCryptographyAppsInstallation&gt;Click to install&lt;/&gt;</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="DecorationCheckCryptoProviderInstallationContextMenu" id="2251"/>
+							<ExtendedTooltip name="DecorationCheckCryptoProviderInstallationExtendedTooltip" id="2252"/>
+							<Events>
+								<Event name="URLProcessing">DecorationCheckCryptoProviderInstallationURLProcessing</Event>
+							</Events>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="CloudSignatureGroup" id="2113">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>DSS service signature</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="CloudSignatureGroupExtendedTooltip" id="2114"/>
+					<ChildItems>
+						<CheckBoxField name="UseCloudSignatureService" id="2115">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>DSS signature service</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UseCloudSignatureServiceContextMenu" id="2116"/>
+							<ExtendedTooltip name="UseCloudSignatureServiceExtendedTooltip" id="2117">
+								<Events>
+									<Event name="URLProcessing">UseCloudSignatureServiceExtendedTooltipURLProcessing</Event>
+								</Events>
+							</ExtendedTooltip>
+							<Events>
+								<Event name="OnChange">UseCloudSignatureServiceOnChange</Event>
+							</Events>
+						</CheckBoxField>
+						<UsualGroup name="CloudSignatureGroupSettings" id="2118">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>DSS service settings</v8:content>
+								</v8:item>
+							</Title>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="CloudSignatureGroupSettingsExtendedTooltip" id="2119"/>
+							<ChildItems>
+								<Button name="ProcessingDSSConnectionManagementCloudSignatureServers" id="2120">
+									<Type>Hyperlink</Type>
+									<Width>43</Width>
+									<HorizontalStretch>true</HorizontalStretch>
+									<CommandName>0</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="ProcessingDSSConnectionManagementCloudSignatureServersExtendedTooltip" id="2121">
+										<Width>28</Width>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure DSS servers used to establish connection.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+								<Button name="ProcessingDSSConnectionManagementCloudSignatureAccounts" id="2122">
+									<Type>Hyperlink</Type>
+									<CommandName>0</CommandName>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ExtendedTooltip name="ProcessingDSSConnectionManagementCloudSignatureAccountsExtendedTooltip" id="2123">
+										<Title formatted="false">
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Configure accounts used to connect to DSS and to perform operations.</v8:content>
+											</v8:item>
+										</Title>
+									</ExtendedTooltip>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="MarkedObjectsDeletionGroup" id="2096">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Marked object deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<ExtendedTooltip name="MarkedObjectsDeletionGroupExtendedTooltip" id="2097"/>
+			<ChildItems>
+				<UsualGroup name="SubgroupDeleteMarked" id="2111">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Subgroup Delete marked objects</v8:content>
+						</v8:item>
+					</Title>
+					<Width>43</Width>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="SubgroupDeleteMarkedExtendedTooltip" id="2112"/>
+					<ChildItems>
+						<UsualGroup name="ScheduledMarkedObjectsDeletionGroup" id="2101">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Scheduled deletion of marked objects</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ScheduledMarkedObjectsDeletionGroupExtendedTooltip" id="2102">
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Delete marked objects on schedule.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<ChildItems>
+								<CheckBoxField name="DeleteMarkedObjectsUsage" id="2098">
+									<DataPath>DeleteMarkedObjectsUsage</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Automatically delete marked objects</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="DeleteMarkedObjectsUsageContextMenu" id="2099"/>
+									<ExtendedTooltip name="DeleteMarkedObjectsUsageExtendedTooltip" id="2100"/>
+									<Events>
+										<Event name="OnChange">DeleteMarkedObjectsUsageOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<Button name="SetUpSchedule" id="2103">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.SetUpSchedule</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Set schedule</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="SetUpScheduleExtendedTooltip" id="2104"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ViewObjectsMarkedForDeletionGroup" id="2109">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>View objects marked for deletion</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Open workspace for deleting marked objects.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ViewObjectsMarkedForDeletionGroupExtendedTooltip" id="2110"/>
+					<ChildItems>
+						<Button name="ViewObjectsMarkedForDeletion" id="2105">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.ViewObjectsMarkedForDeletion</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>View objects marked for deletion</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ViewObjectsMarkedForDeletionExtendedTooltip" id="2106"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupPerformance" id="2124">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Performance</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="GroupPerformanceExtendedTooltip" id="2125"/>
+			<ChildItems>
+				<UsualGroup name="GroupPerformanceAppearance" id="2236">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupPerformanceAppearanceExtendedTooltip" id="2237"/>
+					<ChildItems>
+						<UsualGroup name="GroupNumberOfThreadsOfLongRunningOperations" id="2144">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNumberOfThreadsOfLongRunningOperationsExtendedTooltip" id="2145">
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>More threads lead to faster execution of long-running operations (such as importing address classifiers). The default value is "4".
+
+</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<ChildItems>
+								<InputField name="LongRunningOperationsThreadCount" id="2126">
+									<DataPath>ConstantsSet.LongRunningOperationsThreadCount</DataPath>
+									<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+									<ContextMenu name="LongRunningOperationsThreadCountContextMenu" id="2127"/>
+									<ExtendedTooltip name="LongRunningOperationsThreadCountExtendedTooltip" id="2128"/>
+									<Events>
+										<Event name="OnChange">LongRunningOperationsThreadCountOnChange</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupIndent" id="2146">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+							<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupIndentExtendedTooltip" id="2147">
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Recommended value:
+• 50%–75% of the cores available cores to the cluster.
+• For faster execution during low user activity periods,  up to 100% of the cores available to the cluster.
+
+</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<ChildItems>
+								<LabelDecoration name="StubDecoration" id="2148">
+									<Width>2</Width>
+									<ContextMenu name="StubDecorationContextMenu" id="2149"/>
+									<ExtendedTooltip name="StubDecorationExtendedTooltip" id="2238"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="TemporaryServerClusterDirectoriesGroup" id="2129">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Temporary file directory of 1C:Enterprise server cluster</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+			<Behavior>Usual</Behavior>
+			<Collapsed>true</Collapsed>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="TemporaryServerClusterDirectoriesGroupExtendedTooltip" id="2130">
+				<AutoMaxWidth>false</AutoMaxWidth>
+			</ExtendedTooltip>
+			<ChildItems>
+				<UsualGroup name="GroupPathsTemporaryClusterServers" id="2137">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Paths of temporary server cluster directories</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupPathsTemporaryClusterServersExtendedTooltip" id="2138">
+						<Width>60</Width>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>For multithreaded long-running operations, a path to a network directory for temporary files of all 1C:Enterprise servers running in a single cluster.</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<ChildItems>
+						<InputField name="WindowsTemporaryFilesDerectory" id="2131">
+							<DataPath>ConstantsSet.WindowsTemporaryFilesDerectory</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Managed by Windows OS</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="WindowsTemporaryFilesDerectoryContextMenu" id="2132"/>
+							<ExtendedTooltip name="WindowsTemporaryFilesDerectoryExtendedTooltip" id="2133"/>
+							<Events>
+								<Event name="OnChange">WindowsTemporaryFilesDerectoryOnChange</Event>
+							</Events>
+						</InputField>
+						<InputField name="LinuxTemporaryFilesDerectory" id="2139">
+							<DataPath>ConstantsSet.LinuxTemporaryFilesDerectory</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Managed by Linux OS</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="LinuxTemporaryFilesDerectoryContextMenu" id="2140"/>
+							<ExtendedTooltip name="LinuxTemporaryFilesDerectoryExtendedTooltip" id="2141"/>
+							<Events>
+								<Event name="OnChange">LinuxTemporaryFilesDerectoryOnChange</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ConstantsSet" id="1">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.ExtractTextFilesOnServer</Field>
+				<Field>ConstantsSet.UseFullTextSearch</Field>
+				<Field>ConstantsSet.UseSeparationByDataAreas</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="UseFullTextSearch" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Full-text search</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>1</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="StoreChangeHistory" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Store change history</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="DeleteMarkedObjectsUsage" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete marked objects usage</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AvailableAdvancedSignature" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantCryptoSignatureTypeDefault" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Signature type for documents</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantTimestampServersAddresses" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Timestamp server addresses</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantRefineSignaturesAutomatically" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Enhance signatures automatically</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>0</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantAddTimestampsAutomatically" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add timestamps automatically</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantVerifyDigitalSignaturesOnTheServer" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Verify digital signatures on server</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantGenerateDigitalSignaturesAtServer" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Create digital signatures on server</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ConstantRefineSignaturesDates" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Starting from the signature creation date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="AppTimeZone" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Application time zone</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="SelectedTimeZoneTime" id="18">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="SecurityProfilesUsage" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Use security profiles</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Security profile options to control how the app uses resources external to the 1C:Enterprise server cluster.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>SecurityProfilesUsage</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ConfigureFullTextSearch" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ConfigureFullTextSearch</Action>
+		</Command>
+		<Command name="ConfigureChangesHistoryStorage" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Configure change history storage options</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ConfigureChangesHistoryStorage</Action>
+		</Command>
+		<Command name="RegionalSettings" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Regional settings</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Regional settings</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>RegionalSettings</Action>
+		</Command>
+		<Command name="AdditionalAttributes" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional attributes</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional attributes</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AdditionalAttributes</Action>
+		</Command>
+		<Command name="AdditionalInfo" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional information records</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional information records</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AdditionalInfo</Action>
+		</Command>
+		<Command name="SetUpSchedule" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Set schedule</v8:content>
+				</v8:item>
+			</Title>
+			<Action>SetUpSchedule</Action>
+		</Command>
+		<Command name="ViewObjectsMarkedForDeletion" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>View objects marked for deletion</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ViewObjectsMarkedForDeletion</Action>
+		</Command>
+		<Command name="Labels" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Labels</v8:content>
+				</v8:item>
+			</Title>
+			<Action>Labels</Action>
+		</Command>
+		<Command name="TimestampServersDiagnostics" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Timestamp server diagnostics</v8:content>
+				</v8:item>
+			</Title>
+			<Action>TimestampServersDiagnostics</Action>
+		</Command>
+	</Commands>
+</Form>

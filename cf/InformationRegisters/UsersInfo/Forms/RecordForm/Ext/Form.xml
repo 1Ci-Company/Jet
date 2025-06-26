@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Button name="FormEnableEditing" id="10">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.EnableEditing</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Allow editing</v8:content>
+					</v8:item>
+				</Title>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormEnableEditingExtendedTooltip" id="11"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="UserGroup" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="UserGroupExtendedTooltip" id="29"/>
+			<ChildItems>
+				<InputField name="User" id="1">
+					<DataPath>Record.User</DataPath>
+					<ContextMenu name="UserContextMenu" id="2"/>
+					<ExtendedTooltip name="UserExtendedTooltip" id="3"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="44">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="45"/>
+			<ChildItems>
+				<Page name="SettingsGroup1" id="26">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SettingsGroup1ExtendedTooltip" id="27"/>
+					<ChildItems>
+						<CheckBoxField name="UserMustChangePasswordOnAuthorization" id="15">
+							<DataPath>Record.UserMustChangePasswordOnAuthorization</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UserMustChangePasswordOnAuthorizationContextMenu" id="16"/>
+							<ExtendedTooltip name="UserMustChangePasswordOnAuthorizationExtendedTooltip" id="17"/>
+						</CheckBoxField>
+						<CheckBoxField name="UnlimitedValidityPeriod" id="35">
+							<DataPath>Record.UnlimitedValidityPeriod</DataPath>
+							<TitleLocation>Right</TitleLocation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="UnlimitedValidityPeriodContextMenu" id="36"/>
+							<ExtendedTooltip name="UnlimitedValidityPeriodExtendedTooltip" id="37"/>
+						</CheckBoxField>
+						<InputField name="ValidityPeriod" id="18">
+							<DataPath>Record.ValidityPeriod</DataPath>
+							<ContextMenu name="ValidityPeriodContextMenu" id="19"/>
+							<ExtendedTooltip name="ValidityPeriodExtendedTooltip" id="20"/>
+						</InputField>
+						<UsualGroup name="TimeoutGroup" id="30">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Inactivity period</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="TimeoutGroupExtendedTooltip" id="31"/>
+							<ChildItems>
+								<InputField name="InactivityPeriodBeforeDenyingAuthorization" id="21">
+									<DataPath>Record.InactivityPeriodBeforeDenyingAuthorization</DataPath>
+									<TitleLocation>Left</TitleLocation>
+									<ContextMenu name="InactivityPeriodBeforeDenyingAuthorizationContextMenu" id="22"/>
+									<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationExtendedTooltip" id="23"/>
+								</InputField>
+								<LabelDecoration name="InactivityPeriodBeforeDenyingAuthorizationNote" id="32">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>days</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="InactivityPeriodBeforeDenyingAuthorizationNoteContextMenu" id="33"/>
+									<ExtendedTooltip name="InactivityPeriodBeforeDenyingAuthorizationNoteExtendedTooltip" id="34"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="GroupActivity" id="24">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Activity</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupActivityExtendedTooltip" id="25"/>
+					<ChildItems>
+						<InputField name="AuthorizationAllowedDate" id="38">
+							<DataPath>Record.AuthorizationAllowedDate</DataPath>
+							<ContextMenu name="AuthorizationAllowedDateContextMenu" id="39"/>
+							<ExtendedTooltip name="AuthorizationAllowedDateExtendedTooltip" id="40"/>
+						</InputField>
+						<InputField name="LastActivityDate" id="4">
+							<DataPath>Record.LastActivityDate</DataPath>
+							<ContextMenu name="LastActivityDateContextMenu" id="5"/>
+							<ExtendedTooltip name="LastActivityDateExtendedTooltip" id="6"/>
+						</InputField>
+						<InputField name="AutomaticAuthorizationProhibitionDate" id="7">
+							<DataPath>Record.AutomaticAuthorizationProhibitionDate</DataPath>
+							<ContextMenu name="AutomaticAuthorizationProhibitionDateContextMenu" id="8"/>
+							<ExtendedTooltip name="AutomaticAuthorizationProhibitionDateExtendedTooltip" id="9"/>
+						</InputField>
+						<InputField name="LastUsedClient" id="46">
+							<DataPath>Record.LastUsedClient</DataPath>
+							<ContextMenu name="LastUsedClientContextMenu" id="47"/>
+							<ExtendedTooltip name="LastUsedClientExtendedTooltip" id="48"/>
+						</InputField>
+						<InputField name="DeletePasswordUsageStartDate" id="116">
+							<DataPath>Record.DeletePasswordUsageStartDate</DataPath>
+							<ContextMenu name="DeletePasswordUsageStartDateContextMenu" id="117"/>
+							<ExtendedTooltip name="DeletePasswordUsageStartDateExtendedTooltip" id="118"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="PropertiesGroup" id="49">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Properties</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<ExtendedTooltip name="PropertiesGroupExtendedTooltip" id="50"/>
+					<ChildItems>
+						<UsualGroup name="RightColumn" id="106">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Right column</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="RightColumnExtendedTooltip" id="107"/>
+							<ChildItems>
+								<CheckBoxField name="CanSignIn" id="51">
+									<DataPath>Record.CanSignIn</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="CanSignInContextMenu" id="52"/>
+									<ExtendedTooltip name="CanSignInExtendedTooltip" id="53"/>
+								</CheckBoxField>
+								<CheckBoxField name="IsAppLogonRestricted" id="54">
+									<DataPath>Record.IsAppLogonRestricted</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="IsAppLogonRestrictedContextMenu" id="55"/>
+									<ExtendedTooltip name="IsAppLogonRestrictedExtendedTooltip" id="56"/>
+								</CheckBoxField>
+								<CheckBoxField name="NoRoles" id="57">
+									<DataPath>Record.HasNoRights</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="NoRolesContextMenu" id="58"/>
+									<ExtendedTooltip name="NoRolesExtendedTooltip" id="59"/>
+								</CheckBoxField>
+								<CheckBoxField name="HasInsufficientRightForLogon" id="60">
+									<DataPath>Record.HasInsufficientRightForLogon</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="HasInsufficientRightForLogonContextMenu" id="61"/>
+									<ExtendedTooltip name="HasInsufficientRightForLogonExtendedTooltip" id="62"/>
+								</CheckBoxField>
+								<InputField name="Name" id="63">
+									<DataPath>Record.Name</DataPath>
+									<ContextMenu name="NameContextMenu" id="64"/>
+									<ExtendedTooltip name="NameExtendedTooltip" id="65"/>
+								</InputField>
+								<InputField name="Email" id="66">
+									<DataPath>Record.Email</DataPath>
+									<ContextMenu name="EmailContextMenu" id="67"/>
+									<ExtendedTooltip name="EmailExtendedTooltip" id="68"/>
+								</InputField>
+								<CheckBoxField name="StandardAuthentication" id="69">
+									<DataPath>Record.StandardAuthentication</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="StandardAuthenticationContextMenu" id="70"/>
+									<ExtendedTooltip name="StandardAuthenticationExtendedTooltip" id="71"/>
+								</CheckBoxField>
+								<UsualGroup name="StandardAuthenticationParameters" id="102">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Standard authentication parameters</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="StandardAuthenticationParametersExtendedTooltip" id="103"/>
+									<ChildItems>
+										<CheckBoxField name="CannotRecoveryPassword" id="75">
+											<DataPath>Record.CannotRecoveryPassword</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="CannotRecoveryPasswordContextMenu" id="76"/>
+											<ExtendedTooltip name="CannotRecoveryPasswordExtendedTooltip" id="77"/>
+										</CheckBoxField>
+										<CheckBoxField name="CannotChangePassword" id="72">
+											<DataPath>Record.CannotChangePassword</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="CannotChangePasswordContextMenu" id="73"/>
+											<ExtendedTooltip name="CannotChangePasswordExtendedTooltip" id="74"/>
+										</CheckBoxField>
+										<CheckBoxField name="ShowInList" id="78">
+											<DataPath>Record.ShowInList</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="ShowInListContextMenu" id="79"/>
+											<ExtendedTooltip name="ShowInListExtendedTooltip" id="80"/>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="LeftColumn" id="108">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Left column</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="LeftColumnExtendedTooltip" id="109"/>
+							<ChildItems>
+								<CheckBoxField name="OpenIDAuthentication" id="81">
+									<DataPath>Record.OpenIDAuthentication</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="OpenIDAuthenticationContextMenu" id="82"/>
+									<ExtendedTooltip name="OpenIDAuthenticationExtendedTooltip" id="83"/>
+								</CheckBoxField>
+								<CheckBoxField name="OpenIDConnectAuthentication" id="84">
+									<DataPath>Record.OpenIDConnectAuthentication</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="OpenIDConnectAuthenticationContextMenu" id="85"/>
+									<ExtendedTooltip name="OpenIDConnectAuthenticationExtendedTooltip" id="86"/>
+								</CheckBoxField>
+								<CheckBoxField name="AccessTokenAuthentication" id="87">
+									<DataPath>Record.AccessTokenAuthentication</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="AccessTokenAuthenticationContextMenu" id="88"/>
+									<ExtendedTooltip name="AccessTokenAuthenticationExtendedTooltip" id="89"/>
+								</CheckBoxField>
+								<UsualGroup name="SettingsOfOSAuthentication" id="104">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>OS authentication settings</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>NormalSeparation</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="SettingsOfOSAuthenticationExtendedTooltip" id="105"/>
+									<ChildItems>
+										<CheckBoxField name="OSAuthentication" id="90">
+											<DataPath>Record.OSAuthentication</DataPath>
+											<TitleLocation>Right</TitleLocation>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="OSAuthenticationContextMenu" id="91"/>
+											<ExtendedTooltip name="OSAuthenticationExtendedTooltip" id="92"/>
+										</CheckBoxField>
+										<CheckBoxField name="OSUser" id="93">
+											<DataPath>Record.OSUser</DataPath>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="OSUserContextMenu" id="94"/>
+											<ExtendedTooltip name="OSUserExtendedTooltip" id="95"/>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+								<InputField name="Language" id="96">
+									<DataPath>Record.Language</DataPath>
+									<ContextMenu name="LanguageContextMenu" id="97"/>
+									<ExtendedTooltip name="LanguageExtendedTooltip" id="98"/>
+								</InputField>
+								<CheckBoxField name="UnsafeActionProtection" id="99">
+									<DataPath>Record.UnsafeActionProtection</DataPath>
+									<TitleLocation>Right</TitleLocation>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UnsafeActionProtectionContextMenu" id="100"/>
+									<ExtendedTooltip name="UnsafeActionProtectionExtendedTooltip" id="101"/>
+								</CheckBoxField>
+								<InputField name="NumberOfStatePicture" id="113">
+									<DataPath>Record.NumberOfStatePicture</DataPath>
+									<ContextMenu name="NumberOfStatePictureContextMenu" id="114"/>
+									<ExtendedTooltip name="NumberOfStatePictureExtendedTooltip" id="115"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Record" id="1">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.UsersInfo</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="EnableEditing" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allow editing for troubleshooting. Recommended for advanced users only.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>EnableEditing</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,964 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Group>HorizontalIfPossible</Group>
+	<ChildItemsWidth>LeftWide</ChildItemsWidth>
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormWriteAndClose" id="176">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.StandardCommand.WriteAndClose</CommandName>
+				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="177"/>
+			</Button>
+			<Button name="FormWrite" id="178">
+				<Type>CommandBarButton</Type>
+				<Representation>Picture</Representation>
+				<CommandName>Form.StandardCommand.Write</CommandName>
+				<Picture>
+					<xr:Ref>StdPicture.Write</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<ExtendedTooltip name="FormWriteExtendedTooltip" id="179"/>
+			</Button>
+			<Button name="FormShowInList" id="172">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>Form.StandardCommand.ShowInList</CommandName>
+				<Parameter xsi:type="xr:MDObjectRef">Document.Meeting</Parameter>
+				<ExtendedTooltip name="FormShowInListExtendedTooltip" id="173"/>
+			</Button>
+			<Button name="FormShowInLog" id="174">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.ShowInList</CommandName>
+				<Parameter xsi:type="xr:MDObjectRef">DocumentJournal.Interactions</Parameter>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Show in list</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormShowInLogExtendedTooltip" id="175"/>
+			</Button>
+			<ButtonGroup name="FormGlobalCommands" id="182">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Global commands form</v8:content>
+					</v8:item>
+				</Title>
+				<CommandSource>FormCommandPanelGlobalCommands</CommandSource>
+				<ExtendedTooltip name="FormGlobalCommandsExtendedTooltip" id="183"/>
+			</ButtonGroup>
+			<Popup name="PrintSubmenu" id="180">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Print</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Form's print commands.</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Picture>
+					<xr:Ref>StdPicture.Print</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="181"/>
+			</Popup>
+			<ButtonGroup name="FormGroupFormCommands" id="202">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Form commands</v8:content>
+					</v8:item>
+				</Title>
+				<CommandSource>Form</CommandSource>
+				<ExtendedTooltip name="FormGroupFormCommandsExtendedTooltip" id="203"/>
+			</ButtonGroup>
+			<Popup name="ReportsSubmenu" id="194">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Reports</v8:content>
+					</v8:item>
+				</Title>
+				<Picture>
+					<xr:Ref>CommonPicture.Reports</xr:Ref>
+					<xr:LoadTransparent>false</xr:LoadTransparent>
+				</Picture>
+				<Representation>PictureAndText</Representation>
+				<ExtendedTooltip name="ReportsSubmenuExtendedTooltip" id="195"/>
+				<ChildItems>
+					<ButtonGroup name="ReportsImportantSubmenu" id="196">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports important</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ReportsImportantSubmenuExtendedTooltip" id="197"/>
+					</ButtonGroup>
+					<ButtonGroup name="ReportsSubmenuGo" id="198">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports navigate</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports important</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ExtendedTooltip name="ReportsSubmenuGoExtendedTooltip" id="199"/>
+					</ButtonGroup>
+					<ButtonGroup name="ReportsSubmenuSeeAlso" id="200">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports see also</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submenu reports important</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ExtendedTooltip name="ReportsSubmenuSeeAlsoExtendedTooltip" id="201"/>
+					</ButtonGroup>
+				</ChildItems>
+			</Popup>
+			<Button name="FormHelp" id="190">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="191"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="ChoiceProcessing">ChoiceProcessing</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="OnWriteAtServer">OnWriteAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="LeftGroup" id="156">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Left group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="LeftGroupExtendedTooltip" id="157"/>
+			<ChildItems>
+				<UsualGroup name="MeetingPeriodGroup" id="43">
+					<EnableContentChange>true</EnableContentChange>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Appointment time</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="MeetingPeriodGroupExtendedTooltip" id="120"/>
+					<ChildItems>
+						<UsualGroup name="StartGroup1" id="63">
+							<EnableContentChange>true</EnableContentChange>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Start time</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="StartGroup1ExtendedTooltip" id="121"/>
+							<ChildItems>
+								<InputField name="StartDate" id="69">
+									<DataPath>StartDate</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Start date</v8:content>
+										</v8:item>
+									</Title>
+									<Width>13</Width>
+									<SpinButton>true</SpinButton>
+									<ContextMenu name="StartDateContextMenu" id="70"/>
+									<ExtendedTooltip name="StartDateExtendedTooltip" id="122"/>
+									<Events>
+										<Event name="OnChange">StartDateOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="BeginTime" id="67">
+									<DataPath>BeginTime</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Start time</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<DropListButton>true</DropListButton>
+									<ChoiceButton>false</ChoiceButton>
+									<ClearButton>false</ClearButton>
+									<SpinButton>true</SpinButton>
+									<OpenButton>false</OpenButton>
+									<CreateButton>false</CreateButton>
+									<EditFormat>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>DF=HH:mm</v8:content>
+										</v8:item>
+									</EditFormat>
+									<ChooseType>false</ChooseType>
+									<ContextMenu name="BeginTimeContextMenu" id="68"/>
+									<ExtendedTooltip name="BeginTimeExtendedTooltip" id="123"/>
+									<Events>
+										<Event name="OnChange">BeginTimeOnChange</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="EndGroup" id="64">
+							<EnableContentChange>true</EnableContentChange>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>End time</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="EndGroupExtendedTooltip" id="124"/>
+							<ChildItems>
+								<InputField name="EndDate" id="71">
+									<DataPath>EndDate</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>End date</v8:content>
+										</v8:item>
+									</Title>
+									<Width>13</Width>
+									<SpinButton>true</SpinButton>
+									<ContextMenu name="EndDateContextMenu" id="72"/>
+									<ExtendedTooltip name="EndDateExtendedTooltip" id="125"/>
+									<Events>
+										<Event name="OnChange">EndDateOnChange</Event>
+									</Events>
+								</InputField>
+								<InputField name="EndTime" id="73">
+									<DataPath>EndTime</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>End time</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<Width>10</Width>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>false</HorizontalStretch>
+									<DropListButton>true</DropListButton>
+									<ChoiceButton>false</ChoiceButton>
+									<ClearButton>false</ClearButton>
+									<SpinButton>true</SpinButton>
+									<OpenButton>false</OpenButton>
+									<CreateButton>false</CreateButton>
+									<EditFormat>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>DF=HH:mm</v8:content>
+										</v8:item>
+									</EditFormat>
+									<ChooseType>false</ChooseType>
+									<ContextMenu name="EndTimeContextMenu" id="74"/>
+									<ExtendedTooltip name="EndTimeExtendedTooltip" id="126"/>
+									<Events>
+										<Event name="OnChange">EndTimeOnChange</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<InputField name="MeetingPlace" id="9">
+					<DataPath>Object.MeetingPlace</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Location</v8:content>
+						</v8:item>
+					</Title>
+					<Width>50</Width>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Wrap>false</Wrap>
+					<ContextMenu name="MeetingPlaceContextMenu" id="10"/>
+					<ExtendedTooltip name="MeetingPlaceExtendedTooltip" id="130"/>
+				</InputField>
+				<InputField name="Subject" id="87">
+					<DataPath>Object.Subject</DataPath>
+					<Width>50</Width>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<ContextMenu name="SubjectContextMenu" id="88"/>
+					<ExtendedTooltip name="SubjectExtendedTooltip" id="131"/>
+				</InputField>
+				<Pages name="ParticipantsDetailsPagesAdditional" id="85">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Pages description participants additionally</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>TabsOnTop</PagesRepresentation>
+					<ExtendedTooltip name="ParticipantsDetailsPagesAdditionalExtendedTooltip" id="132"/>
+					<Events>
+						<Event name="OnCurrentPageChange">ParticipantsDetailsPagesAdditionalOnCurrentPageChange</Event>
+					</Events>
+					<ChildItems>
+						<Page name="DetailsPage" id="75">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Details</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="DetailsPageExtendedTooltip" id="133"/>
+							<ChildItems>
+								<InputField name="LongDesc" id="76">
+									<DataPath>Object.LongDesc</DataPath>
+									<TitleLocation>None</TitleLocation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Height>3</Height>
+									<Wrap>false</Wrap>
+									<ContextMenu name="LongDescContextMenu" id="77"/>
+									<ExtendedTooltip name="LongDescExtendedTooltip" id="134"/>
+								</InputField>
+							</ChildItems>
+						</Page>
+						<Page name="ParticipantsPage" id="38">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Participants</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Participants</v8:content>
+								</v8:item>
+							</ToolTip>
+							<TitleDataPath>Object.Attendees.RowsCount</TitleDataPath>
+							<ExtendedTooltip name="ParticipantsPageExtendedTooltip" id="146"/>
+							<ChildItems>
+								<Table name="Attendees" id="25">
+									<Representation>List</Representation>
+									<SkipOnInput>false</SkipOnInput>
+									<UseAlternationRowColor>true</UseAlternationRowColor>
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<FileDragMode>AsFile</FileDragMode>
+									<DataPath>Object.Attendees</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Participants</v8:content>
+										</v8:item>
+									</Title>
+									<CommandSet>
+										<ExcludedCommand>Change</ExcludedCommand>
+										<ExcludedCommand>Copy</ExcludedCommand>
+										<ExcludedCommand>EndEdit</ExcludedCommand>
+										<ExcludedCommand>SelectAll</ExcludedCommand>
+									</CommandSet>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="AttendeesContextMenu" id="26"/>
+									<AutoCommandBar name="AttendeesCommandBar" id="27">
+										<ChildItems>
+											<Button name="CreateContact" id="46">
+												<Type>CommandBarButton</Type>
+												<SkipOnInput>false</SkipOnInput>
+												<Enabled>false</Enabled>
+												<CommandName>Form.Command.CreateContact</CommandName>
+												<Title>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Create contact</v8:content>
+													</v8:item>
+												</Title>
+												<ExtendedTooltip name="CreateContactExtendedTooltip" id="147"/>
+											</Button>
+										</ChildItems>
+									</AutoCommandBar>
+									<ExtendedTooltip name="AttendeesExtendedTooltip" id="148"/>
+									<SearchStringAddition name="AttendeesSearchString" id="163">
+										<AdditionSource>
+											<Item>Attendees</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="AttendeesSearchStringContextMenu" id="164"/>
+										<ExtendedTooltip name="AttendeesSearchStringExtendedTooltip" id="165"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="AttendeesViewStatus" id="166">
+										<AdditionSource>
+											<Item>Attendees</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="AttendeesViewStatusContextMenu" id="167"/>
+										<ExtendedTooltip name="AttendeesViewStatusExtendedTooltip" id="168"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="AttendeesSearchControl" id="169">
+										<AdditionSource>
+											<Item>Attendees</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="AttendeesSearchControlContextMenu" id="170"/>
+										<ExtendedTooltip name="AttendeesSearchControlExtendedTooltip" id="171"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="OnActivateRow">AttendeesOnActivateRow</Event>
+										<Event name="OnChange">AttendeesOnChange</Event>
+									</Events>
+									<ChildItems>
+										<InputField name="ContactPresentation" id="32">
+											<DataPath>Object.Attendees.ContactPresentation</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Contact</v8:content>
+												</v8:item>
+											</Title>
+											<Width>15</Width>
+											<Wrap>false</Wrap>
+											<ChoiceButton>true</ChoiceButton>
+											<OpenButton>true</OpenButton>
+											<ContextMenu name="ContactPresentationContextMenu" id="33"/>
+											<ExtendedTooltip name="ContactPresentationExtendedTooltip" id="149"/>
+											<Events>
+												<Event name="OnChange">ContactPresentationOnChange</Event>
+												<Event name="AutoComplete">ContactPresentationAutoComplete</Event>
+												<Event name="StartChoice">ContactPresentationStartChoice</Event>
+												<Event name="Opening">ContactPresentationOpening</Event>
+												<Event name="ChoiceProcessing">ContactPresentationChoiceProcessing</Event>
+											</Events>
+										</InputField>
+										<InputField name="HowToContact" id="34">
+											<DataPath>Object.Attendees.HowToContact</DataPath>
+											<AutoCellHeight>true</AutoCellHeight>
+											<Width>15</Width>
+											<ContextMenu name="HowToContactContextMenu" id="35"/>
+											<ExtendedTooltip name="HowToContactExtendedTooltip" id="150"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+								<UsualGroup name="FooterGroup" id="207">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Footer</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="FooterGroupExtendedTooltip" id="208"/>
+									<ChildItems>
+										<Pages name="ContactsSpecifiedPages" id="90">
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Pages contacts filled</v8:content>
+												</v8:item>
+											</Title>
+											<GroupVerticalAlign>Center</GroupVerticalAlign>
+											<PagesRepresentation>None</PagesRepresentation>
+											<ExtendedTooltip name="ContactsSpecifiedPagesExtendedTooltip" id="141"/>
+											<ChildItems>
+												<Page name="ContactsNotFilledPage" id="91">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Page contacts unfilled</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="ContactsNotFilledPageExtendedTooltip" id="142"/>
+													<ChildItems>
+														<LabelDecoration name="ContactsNotFilledDecoration" id="95">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<TextColor>style:FieldSelectionBackColor</TextColor>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Some participants don't have contacts in the Address Book.</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="ContactsNotFilledDecorationContextMenu" id="96"/>
+															<ExtendedTooltip name="ContactsNotFilledDecorationExtendedTooltip" id="143"/>
+														</LabelDecoration>
+													</ChildItems>
+												</Page>
+												<Page name="ContactsFilledPage" id="93">
+													<Title>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Page contacts filled</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="ContactsFilledPageExtendedTooltip" id="144"/>
+													<ChildItems>
+														<LabelDecoration name="ContactsFilledDecoration" id="97">
+															<AutoMaxWidth>false</AutoMaxWidth>
+															<TextColor>style:NoteText</TextColor>
+															<Title formatted="false">
+																<v8:item>
+																	<v8:lang>en</v8:lang>
+																	<v8:content>Select participants from the Address Book.</v8:content>
+																</v8:item>
+															</Title>
+															<ContextMenu name="ContactsFilledDecorationContextMenu" id="98"/>
+															<ExtendedTooltip name="ContactsFilledDecorationExtendedTooltip" id="145"/>
+														</LabelDecoration>
+													</ChildItems>
+												</Page>
+											</ChildItems>
+										</Pages>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</Page>
+						<Page name="AdditionalAttributesPage" id="86">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>More</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="AdditionalAttributesPageExtendedTooltip" id="135"/>
+						</Page>
+						<Page name="CommentPage" id="104">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Comment</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="CommentPageExtendedTooltip" id="136"/>
+							<ChildItems>
+								<InputField name="Comment" id="105">
+									<DataPath>Object.Comment</DataPath>
+									<TitleLocation>None</TitleLocation>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<VerticalStretch>true</VerticalStretch>
+									<Wrap>false</Wrap>
+									<MultiLine>true</MultiLine>
+									<ContextMenu name="CommentContextMenu" id="106"/>
+									<ExtendedTooltip name="CommentExtendedTooltip" id="137"/>
+								</InputField>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="RightGroup1" id="158">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Right group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<VerticalAlign>Bottom</VerticalAlign>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="RightGroup1ExtendedTooltip" id="159"/>
+			<ChildItems>
+				<InputField name="SubjectOf" id="48">
+					<DataPath>SubjectOf</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Topic</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Top</TitleLocation>
+					<Width>30</Width>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<DropListButton>false</DropListButton>
+					<ChoiceButton>true</ChoiceButton>
+					<ClearButton>false</ClearButton>
+					<OpenButton>true</OpenButton>
+					<TextEdit>false</TextEdit>
+					<ContextMenu name="SubjectOfContextMenu" id="49"/>
+					<ExtendedTooltip name="SubjectOfExtendedTooltip" id="117"/>
+					<Events>
+						<Event name="StartChoice">SubjectOfStartChoice</Event>
+					</Events>
+				</InputField>
+				<InputField name="EmployeeResponsible" id="17">
+					<DataPath>Object.EmployeeResponsible</DataPath>
+					<TitleLocation>Top</TitleLocation>
+					<Width>30</Width>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ContextMenu name="EmployeeResponsibleContextMenu" id="18"/>
+					<ExtendedTooltip name="EmployeeResponsibleExtendedTooltip" id="119"/>
+				</InputField>
+				<CheckBoxField name="Reviewed" id="15">
+					<DataPath>Reviewed</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reviewed</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ReviewedContextMenu" id="16"/>
+					<ExtendedTooltip name="ReviewedExtendedTooltip" id="129"/>
+					<Events>
+						<Event name="OnChange">ReviewedOnChange</Event>
+					</Events>
+				</CheckBoxField>
+				<InputField name="ReviewAfter" id="50">
+					<DataPath>ReviewAfter</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Snooze till</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Top</TitleLocation>
+					<Width>16</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<DropListButton>true</DropListButton>
+					<ContextMenu name="ReviewAfterContextMenu" id="51"/>
+					<ExtendedTooltip name="ReviewAfterExtendedTooltip" id="128"/>
+					<Events>
+						<Event name="ChoiceProcessing">ReviewAfterChoiceProcessing</Event>
+					</Events>
+				</InputField>
+				<InputField name="Importance" id="55">
+					<DataPath>Object.Importance</DataPath>
+					<TitleLocation>Top</TitleLocation>
+					<Width>16</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<Wrap>false</Wrap>
+					<ContextMenu name="ImportanceContextMenu" id="56"/>
+					<ExtendedTooltip name="ImportanceExtendedTooltip" id="118"/>
+				</InputField>
+				<UsualGroup name="AuthorRegistrationDateGroup" id="107">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Author, registration date</v8:content>
+						</v8:item>
+					</Title>
+					<VerticalStretch>true</VerticalStretch>
+					<GroupVerticalAlign>Bottom</GroupVerticalAlign>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="AuthorRegistrationDateGroupExtendedTooltip" id="152"/>
+					<ChildItems>
+						<LabelField name="Date" id="110">
+							<DataPath>Object.Date</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Date created</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Left</TitleLocation>
+							<HorizontalAlign>Left</HorizontalAlign>
+							<HorizontalStretch>false</HorizontalStretch>
+							<Format>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>DLF=DT</v8:content>
+								</v8:item>
+							</Format>
+							<ContextMenu name="DateContextMenu" id="111"/>
+							<ExtendedTooltip name="DateExtendedTooltip" id="154"/>
+						</LabelField>
+						<LabelField name="Author" id="112">
+							<DataPath>Object.Author</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>Left</TitleLocation>
+							<HorizontalAlign>Left</HorizontalAlign>
+							<Hiperlink>true</Hiperlink>
+							<ContextMenu name="AuthorContextMenu" id="113"/>
+							<ExtendedTooltip name="AuthorExtendedTooltip" id="155"/>
+						</LabelField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Meeting</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Object.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="NotificationRequired" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="InteractionBasis" id="3">
+			<Type>
+				<v8:Type>cfg:DocumentRef.OutgoingEmail</v8:Type>
+				<v8:Type>cfg:DocumentRef.PlannedInteraction</v8:Type>
+				<v8:Type>cfg:DocumentRef.IncomingEmail</v8:Type>
+				<v8:Type>cfg:DocumentRef.PhoneCall</v8:Type>
+				<v8:Type>cfg:DocumentRef.Meeting</v8:Type>
+				<v8:Type>cfg:DocumentRef.SMSMessage</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="StartDate" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Start date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="EndDate" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>End date</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Date</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="BeginTime" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Start time</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Time</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="EndTime" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>End time</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>Time</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="Duration" id="8">
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ContactsToInteractivelyCreateList" id="9">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="SubjectOf" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Topic</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:TypeSet>cfg:DefinedType.InteractionSubject</v8:TypeSet>
+			</Type>
+		</Attribute>
+		<Attribute name="Reviewed" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reviewed</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="ReviewAfter" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Snooze till</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="ContactsChanged" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PropertiesParameters" id="14">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="CreateContact" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Create contact</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add the appointment participant to the Address Book.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.AddListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>CreateContactExecute</Action>
+			<Representation>Text</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<CommandInterface>
+		<NavigationPanel>
+			<Item>
+				<Command>CommonCommand.AttachedFiles</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelGoTo</CommandGroup>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</NavigationPanel>
+		<CommandBar>
+			<Item>
+				<Command>Document.Meeting.StandardCommand.CreateBasedOn</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>Document.PlannedInteraction.StandardCommand.CreateBasedOn</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>0</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>Document.OutgoingEmail.StandardCommand.CreateBasedOn</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>Document.PhoneCall.StandardCommand.CreateBasedOn</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>Document.SMSMessage.StandardCommand.CreateBasedOn</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</CommandBar>
+	</CommandInterface>
+</Form>

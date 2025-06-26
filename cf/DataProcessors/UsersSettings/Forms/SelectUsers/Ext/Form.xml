@@ -1,0 +1,924 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Select source and destination users</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<MobileDeviceCommandBarContent>
+		<xr:Item>
+			<xr:Presentation/>
+			<xr:CheckState>0</xr:CheckState>
+			<xr:Value xsi:type="xs:string">CommandBar</xr:Value>
+		</xr:Item>
+	</MobileDeviceCommandBarContent>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Close</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnSaveDataInSettingsAtServer">OnSaveDataInSettingsAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="OnLoadDataFromSettingsAtServer">OnLoadDataFromSettingsAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="BeforeLoadDataFromSettingsAtServer">BeforeLoadDataFromSettingsAtServer</Event>
+	</Events>
+	<ChildItems>
+		<CommandBar name="CommandBar" id="50">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="CommandBarExtendedTooltip" id="51"/>
+			<ChildItems>
+				<Button name="Select" id="9">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.Select</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Select</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SelectExtendedTooltip" id="52"/>
+				</Button>
+				<ButtonGroup name="GroupOfCommandsFlags" id="107">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Checkboxes</v8:content>
+						</v8:item>
+					</Title>
+					<Representation>Compact</Representation>
+					<ExtendedTooltip name="GroupOfCommandsFlagsExtendedTooltip" id="108"/>
+					<ChildItems>
+						<Button name="SelectAllItems" id="27">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.SelectAllItems</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Select all</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="SelectAllItemsExtendedTooltip" id="53"/>
+						</Button>
+						<Button name="ClearAllIetms" id="28">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.ClearAllIetms</CommandName>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Clear all</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ClearAllIetmsExtendedTooltip" id="54"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="AddCheckMarksToSelectedUsers" id="21">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.AddCheckMarksToSelectedUsers</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Add check marks to selected users</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="AddCheckMarksToSelectedUsersExtendedTooltip" id="55"/>
+				</Button>
+				<Button name="RemoveCheckMarksFromSelectedUsers" id="22">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.RemoveCheckMarksFromSelectedUsers</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Remove check marks from selected users</v8:content>
+						</v8:item>
+					</Title>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="RemoveCheckMarksFromSelectedUsersExtendedTooltip" id="56"/>
+				</Button>
+				<Button name="FormActiveUsers" id="49">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ActiveUsers</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Active users…</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="FormActiveUsersExtendedTooltip" id="57"/>
+				</Button>
+				<SearchStringAddition name="SearchString_" id="104">
+					<AdditionSource>
+						<Item>UsersList</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Search</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="SearchString_ContextMenu" id="105"/>
+					<ExtendedTooltip name="SearchString_ExtendedTooltip" id="106"/>
+				</SearchStringAddition>
+			</ChildItems>
+		</CommandBar>
+		<LabelDecoration name="Label" id="23">
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select destination users:</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="LabelContextMenu" id="24"/>
+			<ExtendedTooltip name="LabelExtendedTooltip" id="58"/>
+		</LabelDecoration>
+		<UsualGroup name="UserSelection" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select users</v8:content>
+				</v8:item>
+			</Title>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="UserSelectionExtendedTooltip" id="59"/>
+			<ChildItems>
+				<Table name="UserGroups" id="12">
+					<Representation>Tree</Representation>
+					<ReadOnly>true</ReadOnly>
+					<ChangeRowSet>false</ChangeRowSet>
+					<ChangeRowOrder>false</ChangeRowOrder>
+					<Header>false</Header>
+					<HorizontalLines>false</HorizontalLines>
+					<VerticalLines>false</VerticalLines>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<InitialListView>Beginning</InitialListView>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>UserGroups</DataPath>
+					<RowPictureDataPath>UserGroups.Picture</RowPictureDataPath>
+					<RowsPicture>
+						<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</RowsPicture>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User groups</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>Add</ExcludedCommand>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Delete</ExcludedCommand>
+						<ExcludedCommand>EndEdit</ExcludedCommand>
+						<ExcludedCommand>HierarchicalList</ExcludedCommand>
+						<ExcludedCommand>List</ExcludedCommand>
+						<ExcludedCommand>MoveDown</ExcludedCommand>
+						<ExcludedCommand>MoveUp</ExcludedCommand>
+						<ExcludedCommand>SortListAsc</ExcludedCommand>
+						<ExcludedCommand>SortListDesc</ExcludedCommand>
+						<ExcludedCommand>Tree</ExcludedCommand>
+					</CommandSet>
+					<CurrentRowUse>SelectionPresentation</CurrentRowUse>
+					<ContextMenu name="UserGroupsContextMenu" id="13">
+						<Autofill>false</Autofill>
+						<ChildItems>
+							<Button name="UserGroupsContextMenuChange" id="42">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.Change</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Edit</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="UserGroupsContextMenuChangeExtendedTooltip" id="60"/>
+							</Button>
+							<Button name="UserGroupsContextMenuCopyToClipboard" id="41">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.UsersList.StandardCommand.CopyToClipboard</CommandName>
+								<ExtendedTooltip name="UserGroupsContextMenuCopyToClipboardExtendedTooltip" id="61"/>
+							</Button>
+							<Button name="UserGroupsContextMenuSelectAll" id="40">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.UserGroups.StandardCommand.SelectAll</CommandName>
+								<ExtendedTooltip name="UserGroupsContextMenuSelectAllExtendedTooltip" id="62"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="UserGroupsCommandBar" id="14">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="UserGroupsExtendedTooltip" id="63"/>
+					<SearchStringAddition name="UserGroupsSearchString" id="77">
+						<AdditionSource>
+							<Item>UserGroups</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="UserGroupsSearchStringContextMenu" id="78"/>
+						<ExtendedTooltip name="UserGroupsSearchStringExtendedTooltip" id="79"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="UserGroupsViewStatus" id="80">
+						<AdditionSource>
+							<Item>UserGroups</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="UserGroupsViewStatusContextMenu" id="81"/>
+						<ExtendedTooltip name="UserGroupsViewStatusExtendedTooltip" id="82"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="UserGroupsSearchControl" id="83">
+						<AdditionSource>
+							<Item>UserGroups</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="UserGroupsSearchControlContextMenu" id="84"/>
+						<ExtendedTooltip name="UserGroupsSearchControlExtendedTooltip" id="85"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="Selection">UserGroupsSelection</Event>
+						<Event name="OnActivateRow">UserGroupsOnActivateRow</Event>
+					</Events>
+					<ChildItems>
+						<ColumnGroup name="GroupAndPicture" id="20">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>And picture</v8:content>
+								</v8:item>
+							</Title>
+							<Group>InCell</Group>
+							<ExtendedTooltip name="GroupAndPictureExtendedTooltip" id="64"/>
+							<ChildItems>
+								<InputField name="UserGroupsGroup" id="15">
+									<DataPath>UserGroups.Group</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Group</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEdit>false</ExtendedEdit>
+									<ChooseType>false</ChooseType>
+									<TextEdit>false</TextEdit>
+									<ChoiceListButton>false</ChoiceListButton>
+									<ContextMenu name="UserGroupsGroupContextMenu" id="16"/>
+									<ExtendedTooltip name="UserGroupsGroupExtendedTooltip" id="65"/>
+								</InputField>
+								<PictureField name="UserGroupsPicture" id="18">
+									<DataPath>UserGroups.Picture</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Picture</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<FileDragMode>AsFile</FileDragMode>
+									<ContextMenu name="UserGroupsPictureContextMenu" id="19"/>
+									<ExtendedTooltip name="UserGroupsPictureExtendedTooltip" id="66"/>
+								</PictureField>
+							</ChildItems>
+						</ColumnGroup>
+					</ChildItems>
+				</Table>
+				<Table name="UsersList" id="1">
+					<CommandBarLocation>None</CommandBarLocation>
+					<ChangeRowSet>false</ChangeRowSet>
+					<ChangeRowOrder>false</ChangeRowOrder>
+					<Header>false</Header>
+					<HorizontalLines>false</HorizontalLines>
+					<VerticalLines>false</VerticalLines>
+					<FileDragMode>AsFile</FileDragMode>
+					<DataPath>UsersList</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Users</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSet>
+						<ExcludedCommand>Add</ExcludedCommand>
+						<ExcludedCommand>Change</ExcludedCommand>
+						<ExcludedCommand>Copy</ExcludedCommand>
+						<ExcludedCommand>Delete</ExcludedCommand>
+						<ExcludedCommand>EndEdit</ExcludedCommand>
+						<ExcludedCommand>MoveDown</ExcludedCommand>
+						<ExcludedCommand>MoveUp</ExcludedCommand>
+						<ExcludedCommand>SortListAsc</ExcludedCommand>
+						<ExcludedCommand>SortListDesc</ExcludedCommand>
+					</CommandSet>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="UsersListContextMenu" id="2">
+						<Autofill>false</Autofill>
+						<ChildItems>
+							<Button name="UsersListContextMenuChange" id="43">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Command.Change</CommandName>
+								<Title>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Edit</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="UsersListContextMenuChangeExtendedTooltip" id="67"/>
+							</Button>
+							<Button name="UsersListContextMenuCopyToClipboard" id="38">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.UsersList.StandardCommand.CopyToClipboard</CommandName>
+								<ExtendedTooltip name="UsersListContextMenuCopyToClipboardExtendedTooltip" id="68"/>
+							</Button>
+							<Button name="UsersListContextMenuSelectAll" id="39">
+								<Type>CommandBarButton</Type>
+								<CommandName>Form.Item.UsersList.StandardCommand.SelectAll</CommandName>
+								<ExtendedTooltip name="UsersListContextMenuSelectAllExtendedTooltip" id="69"/>
+							</Button>
+						</ChildItems>
+					</ContextMenu>
+					<AutoCommandBar name="UsersListCommandBar" id="3">
+						<HorizontalAlign>Right</HorizontalAlign>
+					</AutoCommandBar>
+					<ExtendedTooltip name="UsersListExtendedTooltip" id="70"/>
+					<SearchStringAddition name="UsersListSearchString" id="86">
+						<AdditionSource>
+							<Item>UsersList</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="UsersListSearchStringContextMenu" id="87"/>
+						<ExtendedTooltip name="UsersListSearchStringExtendedTooltip" id="88"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="UsersListViewStatus" id="89">
+						<AdditionSource>
+							<Item>UsersList</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="UsersListViewStatusContextMenu" id="90"/>
+						<ExtendedTooltip name="UsersListViewStatusExtendedTooltip" id="91"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="UsersListSearchControl" id="92">
+						<AdditionSource>
+							<Item>UsersList</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="UsersListSearchControlContextMenu" id="93"/>
+						<ExtendedTooltip name="UsersListSearchControlExtendedTooltip" id="94"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="Selection">UsersListSelection</Event>
+					</Events>
+					<ChildItems>
+						<ColumnGroup name="UsersGroup2" id="8">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Users</v8:content>
+								</v8:item>
+							</Title>
+							<Group>InCell</Group>
+							<ExtendedTooltip name="UsersGroup2ExtendedTooltip" id="71"/>
+							<ChildItems>
+								<CheckBoxField name="UsersCheckBox" id="6">
+									<DataPath>UsersList.Check</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Checkmark</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="UsersCheckBoxContextMenu" id="7"/>
+									<ExtendedTooltip name="UsersCheckBoxExtendedTooltip" id="72"/>
+									<Events>
+										<Event name="OnChange">UsersCheckBoxOnChange</Event>
+									</Events>
+								</CheckBoxField>
+								<LabelField name="Users" id="4">
+									<DataPath>UsersList.User</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>User</v8:content>
+										</v8:item>
+									</Title>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UsersContextMenu" id="5"/>
+									<ExtendedTooltip name="UsersExtendedTooltip" id="73"/>
+								</LabelField>
+								<InputField name="UsersListDepartment" id="95">
+									<DataPath>UsersList.Department</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Department</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UsersListDepartmentContextMenu" id="96"/>
+									<ExtendedTooltip name="UsersListDepartmentExtendedTooltip" id="97"/>
+								</InputField>
+								<InputField name="UsersListIndividual" id="98">
+									<DataPath>UsersList.Individual</DataPath>
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Individual</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="UsersListIndividualContextMenu" id="99"/>
+									<ExtendedTooltip name="UsersListIndividualExtendedTooltip" id="100"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="ShowUsersFromSubgroupsGroup" id="34">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show users that belong to subgroups</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="ShowUsersFromSubgroupsGroupExtendedTooltip" id="74"/>
+			<ChildItems>
+				<Page name="SetPropertyGroup" id="36">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Apply property</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="SetPropertyGroupExtendedTooltip" id="75"/>
+					<ChildItems>
+						<CheckBoxField name="ShowUsersFromSubgroups" id="25">
+							<DataPath>ShowUsersFromSubgroups</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show users that belong to subgroups</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Right</TitleLocation>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Show users that belong to subgroups in the list of users of the selected group.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ShowUsersFromSubgroupsContextMenu" id="26"/>
+							<ExtendedTooltip name="ShowUsersFromSubgroupsExtendedTooltip" id="76"/>
+							<Events>
+								<Event name="OnChange">ShowUsersFromSubgroupsOnChange</Event>
+							</Events>
+						</CheckBoxField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="UsersList" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select users</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>UsersList.Department</Field>
+				<Field>UsersList.Individual</Field>
+			</UseAlways>
+			<Columns>
+				<Column name="User" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+						<v8:Type>cfg:CatalogRef.Users</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Check" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check box</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Department" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Department</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.Department</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="Individual" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Individual</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.Individual</v8:TypeSet>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Object" id="3">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.UsersSettings</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="UserGroups" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select user group</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseUserGroups</Item>
+			</FunctionalOptions>
+			<Columns>
+				<Column name="Group" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExternalUsersGroups</v8:Type>
+						<v8:Type>cfg:CatalogRef.UserGroups</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Picture" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Picture</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Content" id="3">
+					<Type>
+						<v8:Type>v8:ValueListType</v8:Type>
+					</Type>
+				</Column>
+				<Column name="FullComposition" id="4">
+					<Type>
+						<v8:Type>v8:ValueListType</v8:Type>
+					</Type>
+				</Column>
+				<Column name="MarkedUsersCount" id="5">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="GroupDescriptionAndUserMarkCount" id="6">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="SourceUser" id="6">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+				<v8:Type>cfg:CatalogRef.Users</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AllUsersList" id="7">
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="User" id="1">
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+						<v8:Type>cfg:CatalogRef.Users</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Check" id="2">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Department" id="3">
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.Department</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="Individual" id="4">
+					<Type>
+						<v8:TypeSet>cfg:DefinedType.Individual</v8:TypeSet>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ShowUsersFromSubgroups" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show users that belong to subgroups</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ShowUsersFromSubgroups</Field>
+			</Save>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseUserGroups</Item>
+			</FunctionalOptions>
+		</Attribute>
+		<Attribute name="UseGroups" id="8">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="AllUsersGroup" id="9">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsersGroups</v8:Type>
+				<v8:Type>cfg:CatalogRef.UserGroups</v8:Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="CopyAll" id="12">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="SettingsClearing" id="5">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="PassedUsers" id="10">
+			<Type/>
+		</Attribute>
+		<Attribute name="AddCheckMarksToPassedUsers" id="11">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Source" id="13">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Select" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select users.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.ChooseValue</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Select</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="AddCheckMarksToSelectedUsers" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add check marks to selected users</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add check marks to selected users.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AddCheckMarksToSelectedUsers</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="RemoveCheckMarksFromSelectedUsers" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove check marks from selected users</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Remove check marks from selected users.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>RemoveCheckMarksFromSelectedUsers</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="SelectAllItems" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Select all users.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>SelectAllItems</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ClearAllIetms" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear all users.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.UncheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ClearAllIetms</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Change" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open user or group card</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Change</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ModifyUserOrGroup</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ActiveUsers" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Active users…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Open the list of users logged in to the application.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ActiveUsers</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ActionType">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="User">
+			<Type>
+				<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+				<v8:Type>cfg:CatalogRef.Users</v8:Type>
+			</Type>
+		</Parameter>
+		<Parameter name="Source">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Parameter>
+		<Parameter name="SelectedUsers">
+			<Type/>
+		</Parameter>
+	</Parameters>
+</Form>

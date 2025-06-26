@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Access rights</v8:content>
+		</v8:item>
+	</Title>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoTitle>false</AutoTitle>
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="FormWriteAndClose" id="12">
+				<Type>CommandBarButton</Type>
+				<Representation>Text</Representation>
+				<DefaultButton>true</DefaultButton>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.WriteAndClose</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save and close</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="42"/>
+			</Button>
+			<Button name="FormWrite" id="21">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Command.Write</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Save</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="FormWriteExtendedTooltip" id="43"/>
+			</Button>
+			<Button name="FormAdd" id="31">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Item.RightsGroups.StandardCommand.Add</CommandName>
+				<ExtendedTooltip name="FormAddExtendedTooltip" id="44"/>
+			</Button>
+			<Button name="FormDelete" id="33">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.Item.RightsGroups.StandardCommand.Delete</CommandName>
+				<ExtendedTooltip name="FormDeleteExtendedTooltip" id="45"/>
+			</Button>
+			<ButtonGroup name="MovesButtons" id="113">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Move buttons</v8:content>
+					</v8:item>
+				</Title>
+				<Representation>Compact</Representation>
+				<ExtendedTooltip name="MovesButtonsExtendedTooltip" id="114"/>
+				<ChildItems>
+					<Button name="FormMoveUp" id="37">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.RightsGroups.StandardCommand.MoveUp</CommandName>
+						<ExtendedTooltip name="FormMoveUpExtendedTooltip" id="46"/>
+					</Button>
+					<Button name="FormMoveDown" id="38">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.RightsGroups.StandardCommand.MoveDown</CommandName>
+						<ExtendedTooltip name="FormMoveDownExtendedTooltip" id="47"/>
+					</Button>
+				</ChildItems>
+			</ButtonGroup>
+			<Button name="FormHelp" id="30">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="FormHelpExtendedTooltip" id="48"/>
+			</Button>
+			<Button name="FormCustomizeForm" id="36">
+				<Type>CommandBarButton</Type>
+				<SkipOnInput>false</SkipOnInput>
+				<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+				<ExtendedTooltip name="FormCustomizeFormExtendedTooltip" id="49"/>
+			</Button>
+			<Button name="FormOutputList" id="59">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Item.RightsGroups.StandardCommand.OutputList</CommandName>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="FormOutputListExtendedTooltip" id="60"/>
+			</Button>
+			<SearchStringAddition name="SearchString_" id="115">
+				<AdditionSource>
+					<Item>RightsGroups</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Search</v8:content>
+					</v8:item>
+				</Title>
+				<ContextMenu name="SearchString_ContextMenu" id="116"/>
+				<ExtendedTooltip name="SearchString_ExtendedTooltip" id="117"/>
+			</SearchStringAddition>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="BeforeClose">BeforeClose</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Table name="RightsGroups" id="1">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<SkipOnInput>false</SkipOnInput>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>RightsGroups</DataPath>
+			<RowPictureDataPath>RightsGroups.PictureNumber</RowPictureDataPath>
+			<RowsPicture>
+				<xr:Ref>CommonPicture.UsersStates</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</RowsPicture>
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access rights groups</v8:content>
+				</v8:item>
+			</Title>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="RightsGroupsContextMenu" id="2">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<Button name="RightsGroupsContextMenuAdd" id="23">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.RightsGroups.StandardCommand.Add</CommandName>
+						<ExtendedTooltip name="RightsGroupsContextMenuAddExtendedTooltip" id="50"/>
+					</Button>
+					<Button name="RightsGroupsContextMenuCopy" id="24">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.RightsGroups.StandardCommand.Copy</CommandName>
+						<ExtendedTooltip name="RightsGroupsContextMenuCopyExtendedTooltip" id="51"/>
+					</Button>
+					<Button name="RightsGroupsContextMenuDelete" id="25">
+						<Type>CommandBarButton</Type>
+						<SkipOnInput>false</SkipOnInput>
+						<CommandName>Form.Item.RightsGroups.StandardCommand.Delete</CommandName>
+						<ExtendedTooltip name="RightsGroupsContextMenuDeleteExtendedTooltip" id="52"/>
+					</Button>
+					<Button name="RightsGroupsContextMenuDisableRight" id="39">
+						<Type>CommandBarButton</Type>
+						<Enabled>false</Enabled>
+						<CommandName>Form.Command.DisableRight</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Not assigned ●</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="RightsGroupsContextMenuDisableRightExtendedTooltip" id="53"/>
+					</Button>
+					<Button name="RightsGroupsContextMenuDenyRight" id="40">
+						<Type>CommandBarButton</Type>
+						<Enabled>false</Enabled>
+						<CommandName>Form.Command.DenyRight</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Denied ✘</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="RightsGroupsContextMenuDenyRightExtendedTooltip" id="54"/>
+					</Button>
+					<Button name="RightsGroupsContextMenuGrantRight" id="41">
+						<Type>CommandBarButton</Type>
+						<Enabled>false</Enabled>
+						<CommandName>Form.Command.GrantRight</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Allowed ✔</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="RightsGroupsContextMenuGrantRightExtendedTooltip" id="55"/>
+					</Button>
+				</ChildItems>
+			</ContextMenu>
+			<AutoCommandBar name="RightsGroupsCommandBar" id="3"/>
+			<ExtendedTooltip name="RightsGroupsExtendedTooltip" id="56"/>
+			<SearchStringAddition name="RightsGroupsSearchString" id="61">
+				<AdditionSource>
+					<Item>RightsGroups</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="RightsGroupsSearchStringContextMenu" id="62"/>
+				<ExtendedTooltip name="RightsGroupsSearchStringExtendedTooltip" id="63"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="RightsGroupsViewStatus" id="64">
+				<AdditionSource>
+					<Item>RightsGroups</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="RightsGroupsViewStatusContextMenu" id="65"/>
+				<ExtendedTooltip name="RightsGroupsViewStatusExtendedTooltip" id="66"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="RightsGroupsSearchControl" id="67">
+				<AdditionSource>
+					<Item>RightsGroups</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="RightsGroupsSearchControlContextMenu" id="68"/>
+				<ExtendedTooltip name="RightsGroupsSearchControlExtendedTooltip" id="69"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">RightsGroupsSelection</Event>
+				<Event name="BeforeDeleteRow">RightsGroupsBeforeDeleteRow</Event>
+				<Event name="OnActivateRow">RightsGroupsOnActivateRow</Event>
+				<Event name="OnActivateField">RightsGroupsOnActivateField</Event>
+				<Event name="BeforeRowChange">RightsGroupsBeforeRowChange</Event>
+				<Event name="OnStartEdit">RightsGroupsOnStartEdit</Event>
+				<Event name="OnChange">RightsGroupsOnChange</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="RightsGroupsUser" id="19">
+					<DataPath>RightsGroups.User</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+					<Width>31</Width>
+					<AutoMarkIncomplete>true</AutoMarkIncomplete>
+					<ContextMenu name="RightsGroupsUserContextMenu" id="20"/>
+					<ExtendedTooltip name="RightsGroupsUserExtendedTooltip" id="57"/>
+					<Events>
+						<Event name="OnChange">RightsGroupsUserOnChange</Event>
+						<Event name="AutoComplete">RightsGroupsUserAutoComplete</Event>
+						<Event name="StartChoice">RightsGroupsUserStartChoice</Event>
+						<Event name="Clearing">RightsGroupsUserClearing</Event>
+						<Event name="TextEditEnd">RightsGroupsUserTextEditEnd</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="InheritanceAndLegend" id="70">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Inheritance and legend</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="InheritanceAndLegendExtendedTooltip" id="71"/>
+			<ChildItems>
+				<CheckBoxField name="InheritParentRights" id="15">
+					<DataPath>InheritParentRights</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Inherit access rights</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="InheritParentRightsContextMenu" id="16"/>
+					<ExtendedTooltip name="InheritParentRightsExtendedTooltip" id="58"/>
+					<Events>
+						<Event name="OnChange">InheritParentRightsOnChange</Event>
+					</Events>
+				</CheckBoxField>
+				<LabelDecoration name="Separator" id="75">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="SeparatorContextMenu" id="76"/>
+					<ExtendedTooltip name="SeparatorExtendedTooltip" id="77"/>
+				</LabelDecoration>
+				<UsualGroup name="Legend" id="78">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Legend</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<Group>Horizontal</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="LegendExtendedTooltip" id="79">
+						<Title formatted="true">
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>&lt;fontsize 12&gt;&lt;colorstyle 0:5a83b75a-38b0-4d15-9c6f-c201fa97e485&gt;✔&lt;/&gt;&lt;/&gt;&lt;fontsize 12&gt;&lt;color #008000&gt; &lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;a&lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;llows&lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt; access&lt;/&gt;&lt;/&gt;
+&lt;fontsize 12&gt;&lt;colorstyle 0:0c44fdea-7b81-45be-87f5-d64456a9d379&gt;✘&lt;/&gt;&lt;/&gt;&lt;fontsize 12&gt; &lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;denies&lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt; &lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;access even if other &lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;rows contain a permission &lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;for this user or group &lt;/&gt;&lt;/&gt;
+&lt;fontsize 12&gt;&lt;colorstyle 0:0a83f9ec-eabe-4e8f-9fa9-0067acad6fc4&gt;●&lt;/&gt;&lt;/&gt;&lt;fontsize 12&gt; &lt;/&gt;&lt;fontsize 12&gt; &lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;n&lt;/&gt;&lt;/&gt;&lt;fontsize 10&gt;&lt;colorstyle -3&gt;either allows nor denies access&lt;/&gt;&lt;/&gt;
+
+&lt;fontsize 10&gt;Thus, a&lt;/&gt;&lt;fontsize 10&gt;user &lt;/&gt;&lt;fontsize 10&gt;gets access if at least one permission and no lock is set&lt;/&gt;&lt;fontsize 10&gt;,&lt;/&gt;
+&lt;fontsize 10&gt;for them or their group &lt;/&gt;&lt;fontsize 12&gt;&lt;colorstyle 0:5a83b75a-38b0-4d15-9c6f-c201fa97e485&gt;✔&lt;/&gt;&lt;/&gt;
+&lt;fontsize 10&gt;in the respective column &lt;/&gt;&lt;fontsize 12&gt;&lt;colorstyle 0:0c44fdea-7b81-45be-87f5-d64456a9d379&gt;✘&lt;/&gt;&lt;/&gt;&lt;fontsize 12&gt;&lt;color #000000&gt;.&lt;/&gt;&lt;/&gt;</v8:content>
+							</v8:item>
+						</Title>
+					</ExtendedTooltip>
+					<ChildItems>
+						<UsualGroup name="LegendRightEnabled" id="80">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Legend the right is allowed</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="LegendRightEnabledExtendedTooltip" id="81"/>
+							<ChildItems>
+								<LabelDecoration name="PictureRightAllowed" id="104">
+									<TextColor>style:AllowedAccessRightColor</TextColor>
+									<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="120"/>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>✔</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allows access</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ContextMenu name="PictureRightAllowedContextMenu" id="105"/>
+									<ExtendedTooltip name="PictureRightAllowedExtendedTooltip" id="106"/>
+								</LabelDecoration>
+								<LabelDecoration name="DescriptionPermissionAllowed" id="85">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allowed     </v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Allows access</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ContextMenu name="DescriptionPermissionAllowedContextMenu" id="86"/>
+									<ExtendedTooltip name="DescriptionPermissionAllowedExtendedTooltip" id="87"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="LegendRightForbidden" id="88">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Legend the right is denied</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="LegendRightForbiddenExtendedTooltip" id="89"/>
+							<ChildItems>
+								<LabelDecoration name="ImageRightForbidden" id="107">
+									<TextColor>style:DeniedAccessRightColor</TextColor>
+									<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="120"/>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>✘</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Denies access even if other rows contain a permission for this user/group</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ContextMenu name="ImageRightForbiddenContextMenu" id="108"/>
+									<ExtendedTooltip name="ImageRightForbiddenExtendedTooltip" id="109"/>
+								</LabelDecoration>
+								<LabelDecoration name="DescriptionRightForbidden" id="93">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Denied  </v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Denies access even if other rows contain a permission
+for this user/group</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ContextMenu name="DescriptionRightForbiddenContextMenu" id="94"/>
+									<ExtendedTooltip name="DescriptionRightForbiddenExtendedTooltip" id="95"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="LegendRightNotAssigned" id="96">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Legend the right is not assigned</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="LegendRightNotAssignedExtendedTooltip" id="97"/>
+							<ChildItems>
+								<LabelDecoration name="ImageRightNotAssigned" id="110">
+									<TextColor>style:UnassignedAccessRightColor</TextColor>
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>●</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Neither allows nor denies access</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ContextMenu name="ImageRightNotAssignedContextMenu" id="111"/>
+									<ExtendedTooltip name="ImageRightNotAssignedExtendedTooltip" id="112"/>
+								</LabelDecoration>
+								<LabelDecoration name="DescriptionRightNotAssigned" id="101">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Not assigned </v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Neither allows nor denies access</v8:content>
+										</v8:item>
+									</ToolTip>
+									<ContextMenu name="DescriptionRightNotAssignedContextMenu" id="102"/>
+									<ExtendedTooltip name="DescriptionRightNotAssignedExtendedTooltip" id="103"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="RightsGroups" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access rights groups</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<Columns>
+				<Column name="User" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.ExternalUsers</v8:Type>
+						<v8:Type>cfg:CatalogRef.ExternalUsersGroups</v8:Type>
+						<v8:Type>cfg:CatalogRef.UserGroups</v8:Type>
+						<v8:Type>cfg:CatalogRef.Users</v8:Type>
+					</Type>
+				</Column>
+				<Column name="SettingsOwner" id="3">
+					<Type>
+						<v8:TypeSet>cfg:AnyIBRef</v8:TypeSet>
+					</Type>
+				</Column>
+				<Column name="ParentSetting" id="2">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="InheritanceIsAllowed" id="4">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="PictureNumber" id="5">
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="DirectRightsDependencies" id="5">
+			<Type/>
+		</Attribute>
+		<Attribute name="ReverseRightsDependencies" id="6">
+			<Type/>
+		</Attribute>
+		<Attribute name="AvailableRights" id="7">
+			<Type/>
+		</Attribute>
+		<Attribute name="InheritParentRights" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Inherit access rights</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="ExternalUserOrGroup" id="14">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseExternalUsers" id="15">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UserTypesList" id="16">
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription"/>
+		</Attribute>
+		<Attribute name="AddedAttributes" id="2">
+			<Type/>
+		</Attribute>
+		<Attribute name="ParentFilled" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ConfirmRightsManagementCancellation" id="17">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="WriteAndClose" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save and close</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.WriteAndClose</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>WriteAndClose</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Write" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Save the changes.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Write</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Reread" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Reread</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Reread</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="GrantRight" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Allowed ✔</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Grant the access right.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GrantRight</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DenyRight" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Denied ✘</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Deny the access right.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DenyRight</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="DisableRight" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Not assigned ●</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Clear the access right.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>DisableRight</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ObjectReference">
+			<Type/>
+			<KeyParameter>true</KeyParameter>
+		</Parameter>
+	</Parameters>
+</Form>
