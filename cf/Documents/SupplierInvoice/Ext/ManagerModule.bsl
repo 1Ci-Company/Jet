@@ -17,6 +17,7 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|	SupplierInvoice.Ref AS Ref,
 	|	SupplierInvoice.Date AS Date,
 	|	SupplierInvoice.Supplier AS Supplier,
+	|	SupplierInvoice.Warehouse AS Warehouse,
 	|	SupplierInvoice.ExchangeRate AS ExchangeRate,
 	|	SupplierInvoice.Multiplier AS Multiplier
 	|INTO DocumentHeader
@@ -30,6 +31,7 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|SELECT
 	|	DocumentHeader.Date AS Period,
 	|	DocumentHeader.Supplier AS Counterparty,
+	|	DocumentHeader.Warehouse AS Warehouse,
 	|	DocumentHeader.Ref AS PurchaseDocument,
 	|	SupplierInvoiceInventory.Product AS Product,
 	|	SupplierInvoiceInventory.Quantity AS Quantity,
@@ -58,13 +60,30 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|	DocumentInventory.Product,
 	|	DocumentInventory.Counterparty,
 	|	DocumentInventory.Period,
-	|	DocumentInventory.PurchaseDocument";
+	|	DocumentInventory.PurchaseDocument
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Receipt) AS RecordType,
+	|	DocumentInventory.Period AS Period,
+	|	DocumentInventory.Warehouse AS Warehouse,
+	|	DocumentInventory.Product AS Product,
+	|	SUM(DocumentInventory.Quantity) AS Quantity
+	|FROM
+	|	DocumentInventory AS DocumentInventory
+	|
+	|GROUP BY
+	|	DocumentInventory.Product,
+	|	DocumentInventory.Period,
+	|	DocumentInventory.Warehouse";
 	
 	Query.SetParameter("Ref", SupplierInvoiceRef);
 	
 	QueryResult = Query.ExecuteBatch();
 	
 	AdditionalProperties.TableForRegisterRecords.Insert("TablePurchases", QueryResult[2].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[3].Unload());
 	
 EndProcedure
 

@@ -12,7 +12,13 @@ Procedure InitializeAdditionalPropertiesForPosting(DocumentRef, AdditionalProper
 	// Structure that will contain values table with data for movings execution.
 	AdditionalProperties.Insert("TableForRegisterRecords", New Structure);
 	
-	// Contains the document properties and attributes required for posting.
+	// Contains the properties required for posting.
+	AdditionalProperties.Insert("ForPosting", New Structure);
+	
+	// Stores the value of the temporary table manager
+	AdditionalProperties.ForPosting.Insert("TempTablesManager", New TempTablesManager);
+	
+	// Contains the document metadata.
 	AdditionalProperties.Insert("DocumentMetadata", DocumentRef.Metadata());
 	
 EndProcedure
@@ -44,7 +50,13 @@ EndProcedure
 //
 Procedure WriteRecordSets(DocumentObject) Export
 	
-	DocumentObject.RegisterRecords.Write();
+	For Each RecordSet In DocumentObject.RegisterRecords Do
+		If RecordSet.Write Then
+			RecordSet.AdditionalProperties.Insert("ForPosting", DocumentObject.AdditionalProperties.ForPosting);
+			RecordSet.Write();
+			RecordSet.Write = False;
+		EndIf;
+	EndDo;
 	
 EndProcedure
 
@@ -84,9 +96,30 @@ Procedure ReflectSales(AdditionalProperties, RegisterRecords, Cancel) Export
 		Return;
 	EndIf;
 	
-	PurchaseRecord = RegisterRecords.Sales;
-	PurchaseRecord.Write = True;
-	PurchaseRecord.Load(TableSales);
+	SalesRecord = RegisterRecords.Sales;
+	SalesRecord.Write = True;
+	SalesRecord.Load(TableSales);
+	
+EndProcedure
+
+// Movements on the InventoryInWarehouses register.
+//
+// Parameters:
+//  AdditionalProperties -  Structure - additional properties.
+//  RegisterRecords - RegisterRecordsCollection - collection of document register record recordsets.
+//  Cancel - Boolean - if set True, the document will not be posted.
+//
+Procedure ReflectInventoryInWarehouses(AdditionalProperties, RegisterRecords, Cancel) Export
+	
+	TableInventoryInWarehouses = AdditionalProperties.TableForRegisterRecords.TableInventoryInWarehouses;
+	
+	If Cancel Or TableInventoryInWarehouses.Count() = 0 Then
+		Return;
+	EndIf;
+	
+	InventoryInWarehousesRecord = RegisterRecords.InventoryInWarehouses;
+	InventoryInWarehousesRecord.Write = True;
+	InventoryInWarehousesRecord.Load(TableInventoryInWarehouses);
 	
 EndProcedure
 

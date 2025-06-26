@@ -96,6 +96,10 @@
 			<dataPath>PriceType</dataPath>
 			<field>PriceType</field>
 		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Warehouse</dataPath>
+			<field>Warehouse</field>
+		</field>
 		<dataSource>DataSource1</dataSource>
 		<query>SELECT
 	SalesInvoice.Ref AS Ref,
@@ -103,6 +107,7 @@
 	SalesInvoice.Date AS Date,
 	VALUE(Catalog.Companies.MainCompany) AS Company,
 	SalesInvoice.Customer AS Customer,
+	SalesInvoice.Warehouse AS Warehouse,
 	SalesInvoice.Currency AS Currency,
 	SalesInvoice.ExchangeRate AS ExchangeRate,
 	SalesInvoice.Multiplier AS Multiplier,

@@ -17,6 +17,7 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|	SalesInvoice.Ref AS Ref,
 	|	SalesInvoice.Date AS Date,
 	|	SalesInvoice.Customer AS Customer,
+	|	SalesInvoice.Warehouse AS Warehouse,
 	|	SalesInvoice.ExchangeRate AS ExchangeRate,
 	|	SalesInvoice.Multiplier AS Multiplier
 	|INTO DocumentHeader
@@ -30,6 +31,7 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|SELECT
 	|	DocumentHeader.Date AS Period,
 	|	DocumentHeader.Customer AS Counterparty,
+	|	DocumentHeader.Warehouse AS Warehouse,
 	|	DocumentHeader.Ref AS SalesDocument,
 	|	SalesInvoiceInventory.Product AS Product,
 	|	SalesInvoiceInventory.Quantity AS Quantity,
@@ -58,13 +60,30 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|	DocumentInventory.Product,
 	|	DocumentInventory.Counterparty,
 	|	DocumentInventory.Period,
-	|	DocumentInventory.SalesDocument";
+	|	DocumentInventory.SalesDocument
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Expense) AS RecordType,
+	|	DocumentInventory.Period AS Period,
+	|	DocumentInventory.Warehouse AS Warehouse,
+	|	DocumentInventory.Product AS Product,
+	|	SUM(DocumentInventory.Quantity) AS Quantity
+	|FROM
+	|	DocumentInventory AS DocumentInventory
+	|
+	|GROUP BY
+	|	DocumentInventory.Period,
+	|	DocumentInventory.Warehouse,
+	|	DocumentInventory.Product";
 	
 	Query.SetParameter("Ref", SalesInvoiceRef);
 	
 	QueryResult = Query.ExecuteBatch();
 	
 	AdditionalProperties.TableForRegisterRecords.Insert("TableSales", QueryResult[2].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[3].Unload());
 	
 EndProcedure
 

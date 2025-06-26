@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="NotificationProcessing">NotificationProcessing</Event>
+		<Event name="OnReadAtServer">OnReadAtServer</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupHeader" id="38">
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupHeaderExtendedTooltip" id="39"/>
+			<ChildItems>
+				<UsualGroup name="GroupLeft" id="40">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupLeftExtendedTooltip" id="41"/>
+					<ChildItems>
+						<InputField name="Warehouse" id="7">
+							<DataPath>Object.Warehouse</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="WarehouseContextMenu" id="8"/>
+							<ExtendedTooltip name="WarehouseExtendedTooltip" id="9"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupRight" id="42">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupRightExtendedTooltip" id="43"/>
+					<ChildItems>
+						<UsualGroup name="GroupNumberDate" id="44">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNumberDateExtendedTooltip" id="45"/>
+							<ChildItems>
+								<InputField name="Number" id="1">
+									<DataPath>Object.Number</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="NumberContextMenu" id="2"/>
+									<ExtendedTooltip name="NumberExtendedTooltip" id="3"/>
+								</InputField>
+								<InputField name="Date" id="4">
+									<DataPath>Object.Date</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="DateContextMenu" id="5"/>
+									<ExtendedTooltip name="DateExtendedTooltip" id="6"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="46">
+			<ExtendedTooltip name="PagesExtendedTooltip" id="47"/>
+			<ChildItems>
+				<Page name="GroupInventory" id="48">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Inventory</v8:content>
+						</v8:item>
+					</Title>
+					<ScrollOnCompress>true</ScrollOnCompress>
+					<ExtendedTooltip name="GroupInventoryExtendedTooltip" id="49"/>
+					<ChildItems>
+						<Table name="Inventory" id="16">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.Inventory</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="InventoryContextMenu" id="17"/>
+							<AutoCommandBar name="InventoryCommandBar" id="18"/>
+							<ExtendedTooltip name="InventoryExtendedTooltip" id="19"/>
+							<SearchStringAddition name="InventorySearchString" id="20">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InventorySearchStringContextMenu" id="21"/>
+								<ExtendedTooltip name="InventorySearchStringExtendedTooltip" id="22"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="InventoryViewStatus" id="23">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InventoryViewStatusContextMenu" id="24"/>
+								<ExtendedTooltip name="InventoryViewStatusExtendedTooltip" id="25"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="InventorySearchControl" id="26">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="InventorySearchControlContextMenu" id="27"/>
+								<ExtendedTooltip name="InventorySearchControlExtendedTooltip" id="28"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="InventoryLineNumber" id="29">
+									<DataPath>Object.Inventory.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="InventoryLineNumberContextMenu" id="30"/>
+									<ExtendedTooltip name="InventoryLineNumberExtendedTooltip" id="31"/>
+								</LabelField>
+								<InputField name="InventoryProduct" id="32">
+									<DataPath>Object.Inventory.Product</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryProductContextMenu" id="33"/>
+									<ExtendedTooltip name="InventoryProductExtendedTooltip" id="34"/>
+								</InputField>
+								<InputField name="InventoryQuantity" id="35">
+									<DataPath>Object.Inventory.Quantity</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryQuantityContextMenu" id="36"/>
+									<ExtendedTooltip name="InventoryQuantityExtendedTooltip" id="37"/>
+								</InputField>
+								<LabelField name="InventoryUnit" id="59">
+									<DataPath>Object.Inventory.Product.Unit</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="InventoryUnitContextMenu" id="60"/>
+									<ExtendedTooltip name="InventoryUnitExtendedTooltip" id="61"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="GroupAdditionalInfo" id="55">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional information</v8:content>
+						</v8:item>
+					</Title>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="GroupAdditionalInfoExtendedTooltip" id="56"/>
+					<ChildItems>
+						<UsualGroup name="GroupInfo" id="62">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupInfoExtendedTooltip" id="63"/>
+							<ChildItems>
+								<InputField name="Comment" id="10">
+									<DataPath>Object.Comment</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="CommentContextMenu" id="11"/>
+									<ExtendedTooltip name="CommentExtendedTooltip" id="12"/>
+								</InputField>
+								<LabelField name="Author" id="13">
+									<DataPath>Object.Author</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AuthorContextMenu" id="14"/>
+									<ExtendedTooltip name="AuthorExtendedTooltip" id="15"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupAdditionalAttributes" id="57">
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ThroughAlign>Use</ThroughAlign>
+							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="58"/>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.InventoryWriteOff</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Object.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+</Form>

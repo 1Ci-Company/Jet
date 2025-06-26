@@ -105,6 +105,11 @@
 					<ContextMenu name="SupplierContextMenu" id="26"/>
 					<ExtendedTooltip name="SupplierExtendedTooltip" id="27"/>
 				</LabelField>
+				<LabelField name="Warehouse" id="43">
+					<DataPath>List.Warehouse</DataPath>
+					<ContextMenu name="WarehouseContextMenu" id="44"/>
+					<ExtendedTooltip name="WarehouseExtendedTooltip" id="45"/>
+				</LabelField>
 				<LabelField name="Total" id="37">
 					<DataPath>List.Total</DataPath>
 					<ContextMenu name="TotalContextMenu" id="38"/>
@@ -147,32 +152,30 @@
 				<ManualQuery>true</ManualQuery>
 				<DynamicDataRead>true</DynamicDataRead>
 				<QueryText>SELECT
-	DocumentSupplierInvoice.Ref,
-	DocumentSupplierInvoice.DeletionMark,
-	DocumentSupplierInvoice.Number,
-	DocumentSupplierInvoice.Date,
-	DocumentSupplierInvoice.Posted,
-	DocumentSupplierInvoice.Supplier,
-	DocumentSupplierInvoice.Currency,
-	DocumentSupplierInvoice.ExchangeRate,
-	DocumentSupplierInvoice.Multiplier,
-	DocumentSupplierInvoice.Comment,
-	DocumentSupplierInvoice.Author,
-	DocumentSupplierInvoice.Total,
-	DocumentSupplierInvoice.Inventory,
-	DocumentSupplierInvoice.AdditionalAttributes,
-	DocumentSupplierInvoice.PointInTime,
+	DocumentSupplierInvoice.Ref AS Ref,
+	DocumentSupplierInvoice.DeletionMark AS DeletionMark,
+	DocumentSupplierInvoice.Number AS Number,
+	DocumentSupplierInvoice.Date AS Date,
+	DocumentSupplierInvoice.Posted AS Posted,
+	DocumentSupplierInvoice.Supplier AS Supplier,
+	DocumentSupplierInvoice.Warehouse AS Warehouse,
+	DocumentSupplierInvoice.Currency AS Currency,
+	DocumentSupplierInvoice.ExchangeRate AS ExchangeRate,
+	DocumentSupplierInvoice.Multiplier AS Multiplier,
+	DocumentSupplierInvoice.Comment AS Comment,
+	DocumentSupplierInvoice.Author AS Author,
+	DocumentSupplierInvoice.Total AS Total,
+	DocumentSupplierInvoice.PointInTime AS PointInTime,
 	CASE
-		WHEN FilesExist.HasFiles IS NULL THEN
-			0
-		WHEN FilesExist.HasFiles THEN
-			1
-		ELSE
-			0
+		WHEN FilesExist.HasFiles IS NULL
+			THEN 0
+		WHEN FilesExist.HasFiles
+			THEN 1
+		ELSE 0
 	END AS HasFiles
 FROM
 	Document.SupplierInvoice AS DocumentSupplierInvoice
-	LEFT JOIN InformationRegister.FilesExist AS FilesExist
+		LEFT JOIN InformationRegister.FilesExist AS FilesExist
 		ON DocumentSupplierInvoice.Ref = FilesExist.ObjectWithFiles</QueryText>
 				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>Ref</dcssch:dataPath>
@@ -207,20 +210,8 @@ FROM
 					<dcssch:field>Supplier</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.LineNumber</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.LineNumber</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.Ref</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.Ref</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>Multiplier</dcssch:dataPath>
 					<dcssch:field>Multiplier</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.VATAmount</dcssch:dataPath>
-					<dcssch:field>Inventory.VATAmount</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>Comment</dcssch:dataPath>
@@ -231,56 +222,12 @@ FROM
 					<dcssch:field>Author</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.Amount</dcssch:dataPath>
-					<dcssch:field>Inventory.Amount</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>Total</dcssch:dataPath>
 					<dcssch:field>Total</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.Ref</dcssch:dataPath>
-					<dcssch:field>Inventory.Ref</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.LineNumber</dcssch:dataPath>
-					<dcssch:field>Inventory.LineNumber</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.Product</dcssch:dataPath>
-					<dcssch:field>Inventory.Product</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.Quantity</dcssch:dataPath>
-					<dcssch:field>Inventory.Quantity</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.Price</dcssch:dataPath>
-					<dcssch:field>Inventory.Price</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.VATRate</dcssch:dataPath>
-					<dcssch:field>Inventory.VATRate</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>Inventory.Total</dcssch:dataPath>
-					<dcssch:field>Inventory.Total</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldNestedDataSet">
 					<dcssch:dataPath>Inventory</dcssch:dataPath>
 					<dcssch:field>Inventory</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.Property</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.Property</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.Value</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.Value</dcssch:field>
-				</Field>
-				<Field xsi:type="dcssch:DataSetFieldField">
-					<dcssch:dataPath>AdditionalAttributes.TextString</dcssch:dataPath>
-					<dcssch:field>AdditionalAttributes.TextString</dcssch:field>
 				</Field>
 				<Field xsi:type="dcssch:DataSetFieldField">
 					<dcssch:dataPath>PointInTime</dcssch:dataPath>
@@ -299,6 +246,10 @@ FROM
 							<v8:content>Has files</v8:content>
 						</v8:item>
 					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Warehouse</dcssch:dataPath>
+					<dcssch:field>Warehouse</dcssch:field>
 				</Field>
 				<MainTable>Document.SupplierInvoice</MainTable>
 				<ListSettings>

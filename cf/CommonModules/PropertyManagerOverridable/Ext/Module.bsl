@@ -44,12 +44,28 @@ Procedure OnGetPredefinedPropertiesSets(Sets) Export
 	Set.Id = New UUID("f09c76a3-b080-4305-9c37-f2468234408c");
 	
 	Set = Sets.Rows.Add();
+	Set.Name = "Catalog_Warehouses";
+	Set.Id = New UUID("fe34af13-6305-41d5-ab0c-852e4a229521");
+	
+	Set = Sets.Rows.Add();
 	Set.Name = "Document_SupplierInvoice";
 	Set.Id = New UUID("5c04a609-0f47-4c24-9647-72950a35e35d");
 	
 	Set = Sets.Rows.Add();
 	Set.Name = "Document_SalesInvoice";
 	Set.Id = New UUID("da2de4f6-31be-4b40-b16e-6c1bc2ec1bfc");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_InventoryIncrease";
+	Set.Id = New UUID("6c12938b-e6fb-4fd6-846b-6ca50ce27d6e");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_InventoryTransfer";
+	Set.Id = New UUID("546bad9f-2907-4f16-99a9-058007509ca2");
+	
+	Set = Sets.Rows.Add();
+	Set.Name = "Document_InventoryWriteOff";
+	Set.Id = New UUID("8ff32816-dc89-49b9-b8bb-5278f63f5f5f");
 	
 EndProcedure
 

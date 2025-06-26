@@ -92,6 +92,10 @@
 				</v8:item>
 			</title>
 		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Warehouse</dataPath>
+			<field>Warehouse</field>
+		</field>
 		<dataSource>DataSource1</dataSource>
 		<query>SELECT
 	SupplierInvoice.Ref AS Ref,
@@ -99,6 +103,7 @@
 	SupplierInvoice.Date AS Date,
 	VALUE(Catalog.Companies.MainCompany) AS Company,
 	SupplierInvoice.Supplier AS Supplier,
+	SupplierInvoice.Warehouse AS Warehouse,
 	SupplierInvoice.Currency AS Currency,
 	SupplierInvoice.ExchangeRate AS ExchangeRate,
 	SupplierInvoice.Multiplier AS Multiplier,
