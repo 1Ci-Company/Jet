@@ -11,6 +11,16 @@
 //
 Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	
+	DocumentObject = SalesInvoiceRef.GetObject();
+	
+	DataLock = New DataLock;
+	LockItem = DataLock.Add("AccumulationRegister.InventoryCost");
+	LockItem.Mode = DataLockMode.Exclusive;
+	LockItem.DataSource = DocumentObject.Inventory;
+	LockItem.UseFromDataSource("Product", "Product");
+	LockItem.SetValue("Warehouse", DocumentObject.Warehouse);
+	DataLock.Lock();
+	
 	Query = New Query;
 	Query.Text =
 	"SELECT
@@ -47,6 +57,25 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|
 	|////////////////////////////////////////////////////////////////////////////////
 	|SELECT
+	|	DocumentInventory.Period AS Period,
+	|	DocumentInventory.Warehouse AS Warehouse,
+	|	DocumentInventory.Product AS Product,
+	|	SUM(DocumentInventory.Quantity) AS Quantity
+	|INTO ProductTable
+	|FROM
+	|	DocumentInventory AS DocumentInventory
+	|		INNER JOIN Catalog.Products AS Products
+	|		ON DocumentInventory.Product = Products.Ref
+	|			AND (Products.ProductType = VALUE(Enum.ProductTypes.Inventory))
+	|
+	|GROUP BY
+	|	DocumentInventory.Product,
+	|	DocumentInventory.Period,
+	|	DocumentInventory.Warehouse
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
 	|	DocumentHeader.Date AS Period,
 	|	DocumentHeader.Customer AS Counterparty,
 	|	DocumentHeader.Ref AS InvoiceDocument,
@@ -57,6 +86,51 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|	DocumentHeader AS DocumentHeader
 	|		INNER JOIN Document.SalesInvoice.AdvanceClearing AS AdvanceClearing
 	|		ON DocumentHeader.Ref = AdvanceClearing.Ref
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	InventoryCostBalance.Product AS Product,
+	|	InventoryCostBalance.Warehouse AS Warehouse,
+	|	InventoryCostBalance.QuantityBalance AS Quantity,
+	|	InventoryCostBalance.AmountBalance AS Amount
+	|INTO InventoryCostBalance
+	|FROM
+	|	AccumulationRegister.InventoryCost.Balance(
+	|			&PointInTime,
+	|			(Product, Warehouse) IN
+	|				(SELECT
+	|					ProductTable.Product,
+	|					ProductTable.Warehouse
+	|				FROM
+	|					ProductTable AS ProductTable)) AS InventoryCostBalance
+	|
+	|UNION ALL
+	|
+	|SELECT
+	|	InventoryCost.Product,
+	|	InventoryCost.Warehouse,
+	|	InventoryCost.Quantity,
+	|	InventoryCost.Amount
+	|FROM
+	|	AccumulationRegister.InventoryCost AS InventoryCost
+	|WHERE
+	|	InventoryCost.Recorder = &Ref
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	InventoryCostBalance.Product AS Product,
+	|	InventoryCostBalance.Warehouse AS Warehouse,
+	|	SUM(InventoryCostBalance.Quantity) AS Quantity,
+	|	SUM(InventoryCostBalance.Amount) AS Amount
+	|INTO InventoryCostTable
+	|FROM
+	|	InventoryCostBalance AS InventoryCostBalance
+	|
+	|GROUP BY
+	|	InventoryCostBalance.Product,
+	|	InventoryCostBalance.Warehouse
 	|;
 	|
 	|////////////////////////////////////////////////////////////////////////////////
@@ -81,17 +155,12 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|////////////////////////////////////////////////////////////////////////////////
 	|SELECT
 	|	VALUE(AccumulationRecordType.Expense) AS RecordType,
-	|	DocumentInventory.Period AS Period,
-	|	DocumentInventory.Warehouse AS Warehouse,
-	|	DocumentInventory.Product AS Product,
-	|	SUM(DocumentInventory.Quantity) AS Quantity
+	|	ProductTable.Period AS Period,
+	|	ProductTable.Warehouse AS Warehouse,
+	|	ProductTable.Product AS Product,
+	|	ProductTable.Quantity AS Quantity
 	|FROM
-	|	DocumentInventory AS DocumentInventory
-	|
-	|GROUP BY
-	|	DocumentInventory.Period,
-	|	DocumentInventory.Warehouse,
-	|	DocumentInventory.Product
+	|	ProductTable AS ProductTable
 	|;
 	|
 	|////////////////////////////////////////////////////////////////////////////////
@@ -142,15 +211,38 @@ Procedure InitializeDocumentData(SalesInvoiceRef, AdditionalProperties) Export
 	|GROUP BY
 	|	DocumentAdvanceClearing.Period,
 	|	DocumentAdvanceClearing.InvoiceDocument,
-	|	DocumentAdvanceClearing.Counterparty";
+	|	DocumentAdvanceClearing.Counterparty
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Expense) AS RecordType,
+	|	ProductTable.Period AS Period,
+	|	ProductTable.Product AS Product,
+	|	ProductTable.Warehouse AS Warehouse,
+	|	ProductTable.Quantity AS Quantity,
+	|	CASE
+	|		WHEN ISNULL(InventoryCostTable.Quantity, 0) = 0
+	|			THEN 0
+	|		WHEN ProductTable.Quantity = InventoryCostTable.Quantity
+	|			THEN InventoryCostTable.Amount
+	|		ELSE CAST(InventoryCostTable.Amount * ProductTable.Quantity / InventoryCostTable.Quantity AS NUMBER(15, 2))
+	|	END AS Amount
+	|FROM
+	|	ProductTable AS ProductTable
+	|		LEFT JOIN InventoryCostTable AS InventoryCostTable
+	|		ON ProductTable.Product = InventoryCostTable.Product
+	|			AND ProductTable.Warehouse = InventoryCostTable.Warehouse";
 	
 	Query.SetParameter("Ref", SalesInvoiceRef);
+	Query.SetParameter("PointInTime", New Boundary(DocumentObject.PointInTime(), BoundaryType.Including));
 	
 	QueryResult = Query.ExecuteBatch();
 	
-	AdditionalProperties.TableForRegisterRecords.Insert("TableSales", QueryResult[3].Unload());
-	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[4].Unload());
-	AdditionalProperties.TableForRegisterRecords.Insert("TableCustomerBalance", QueryResult[5].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableSales", QueryResult[6].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[7].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableCustomerBalance", QueryResult[8].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryCost", QueryResult[9].Unload());
 	
 EndProcedure
 

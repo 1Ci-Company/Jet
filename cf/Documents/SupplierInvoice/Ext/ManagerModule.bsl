@@ -47,6 +47,26 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|
 	|////////////////////////////////////////////////////////////////////////////////
 	|SELECT
+	|	DocumentInventory.Period AS Period,
+	|	DocumentInventory.Warehouse AS Warehouse,
+	|	DocumentInventory.Product AS Product,
+	|	SUM(DocumentInventory.Quantity) AS Quantity,
+	|	SUM(DocumentInventory.Amount) AS Amount
+	|INTO ProductTable
+	|FROM
+	|	DocumentInventory AS DocumentInventory
+	|		INNER JOIN Catalog.Products AS Products
+	|		ON DocumentInventory.Product = Products.Ref
+	|			AND (Products.ProductType = VALUE(Enum.ProductTypes.Inventory))
+	|
+	|GROUP BY
+	|	DocumentInventory.Product,
+	|	DocumentInventory.Period,
+	|	DocumentInventory.Warehouse
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
 	|	DocumentHeader.Date AS Period,
 	|	DocumentHeader.Supplier AS Counterparty,
 	|	DocumentHeader.Ref AS InvoiceDocument,
@@ -81,17 +101,12 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|////////////////////////////////////////////////////////////////////////////////
 	|SELECT
 	|	VALUE(AccumulationRecordType.Receipt) AS RecordType,
-	|	DocumentInventory.Period AS Period,
-	|	DocumentInventory.Warehouse AS Warehouse,
-	|	DocumentInventory.Product AS Product,
-	|	SUM(DocumentInventory.Quantity) AS Quantity
+	|	ProductTable.Period AS Period,
+	|	ProductTable.Warehouse AS Warehouse,
+	|	ProductTable.Product AS Product,
+	|	ProductTable.Quantity AS Quantity
 	|FROM
-	|	DocumentInventory AS DocumentInventory
-	|
-	|GROUP BY
-	|	DocumentInventory.Product,
-	|	DocumentInventory.Period,
-	|	DocumentInventory.Warehouse
+	|	ProductTable AS ProductTable
 	|;
 	|
 	|////////////////////////////////////////////////////////////////////////////////
@@ -142,15 +157,28 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|GROUP BY
 	|	DocumentAdvanceClearing.Period,
 	|	DocumentAdvanceClearing.InvoiceDocument,
-	|	DocumentAdvanceClearing.Counterparty";
+	|	DocumentAdvanceClearing.Counterparty
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Receipt) AS RecordType,
+	|	ProductTable.Period AS Period,
+	|	ProductTable.Product AS Product,
+	|	ProductTable.Warehouse AS Warehouse,
+	|	ProductTable.Quantity AS Quantity,
+	|	ProductTable.Amount AS Amount
+	|FROM
+	|	ProductTable AS ProductTable";
 	
 	Query.SetParameter("Ref", SupplierInvoiceRef);
 	
 	QueryResult = Query.ExecuteBatch();
 	
-	AdditionalProperties.TableForRegisterRecords.Insert("TablePurchases", QueryResult[3].Unload());
-	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[4].Unload());
-	AdditionalProperties.TableForRegisterRecords.Insert("TableSupplierBalance", QueryResult[5].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TablePurchases", QueryResult[4].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[5].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableSupplierBalance", QueryResult[6].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryCost", QueryResult[7].Unload());
 	
 EndProcedure
 

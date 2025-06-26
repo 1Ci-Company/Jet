@@ -1,36 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
-	<Subsystem uuid="767beaa8-80d1-480d-97ad-903dd427861b">
+	<Report uuid="31418fa1-b446-4987-8303-ad7be1965fa5">
+		<InternalInfo>
+			<xr:GeneratedType name="ReportObject.StockStatement" category="Object">
+				<xr:TypeId>ec2988e2-e3cc-410a-821b-2408508544ba</xr:TypeId>
+				<xr:ValueId>04571224-5e9d-4fb2-a6d7-58405dfcd5ca</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="ReportManager.StockStatement" category="Manager">
+				<xr:TypeId>83cc1853-e4d6-46ef-a563-44602b104a97</xr:TypeId>
+				<xr:ValueId>f9327c98-e9d4-425a-a2d5-29379d4ad805</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
 		<Properties>
-			<Name>Warehouses</Name>
+			<Name>StockStatement</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>en</v8:lang>
-					<v8:content>Warehouses</v8:content>
+					<v8:content>Stock statement</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
-			<IncludeHelpInContents>true</IncludeHelpInContents>
-			<IncludeInCommandInterface>true</IncludeInCommandInterface>
-			<UseOneCommand>false</UseOneCommand>
+			<UseStandardCommands>true</UseStandardCommands>
+			<DefaultForm/>
+			<AuxiliaryForm/>
+			<MainDataCompositionSchema>Report.StockStatement.Template.MainDataCompositionSchema</MainDataCompositionSchema>
+			<DefaultSettingsForm/>
+			<AuxiliarySettingsForm/>
+			<DefaultVariantForm/>
+			<VariantsStorage/>
+			<SettingsStorage/>
+			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<ExtendedPresentation/>
 			<Explanation/>
-			<Picture>
-				<xr:Ref>CommonPicture.SectionWarehouse</xr:Ref>
-				<xr:LoadTransparent>true</xr:LoadTransparent>
-			</Picture>
-			<Content>
-				<xr:Item xsi:type="xr:MDObjectRef">AccumulationRegister.InventoryInWarehouses</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Report.AvailableStock</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Role.UseWarehouses</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">AccumulationRegister.InventoryCost</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Report.StockStatement</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.InventoryCostRecalculation</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">Sequence.InventoryCostRecalculation</xr:Item>
-			</Content>
 		</Properties>
 		<ChildObjects>
-			<Subsystem>Catalogs</Subsystem>
-			<Subsystem>Warehouse</Subsystem>
+			<Template>MainDataCompositionSchema</Template>
 		</ChildObjects>
-	</Subsystem>
+	</Report>
 </MetaDataObject>
