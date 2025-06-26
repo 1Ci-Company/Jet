@@ -35,6 +35,30 @@
 		</Properties>
 		<ChildObjects>
 			<Template>MainDataCompositionSchema</Template>
+			<Command uuid="aa1d6a0f-dc75-43ab-aaa8-2c120d6bc765">
+				<Properties>
+					<Name>OpenCashStatementReport</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Cash statement</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Group>FormNavigationPanelSeeAlso</Group>
+					<CommandParameterType>
+						<v8:Type>cfg:CatalogRef.CashAccounts</v8:Type>
+						<v8:Type>cfg:CatalogRef.BankAccounts</v8:Type>
+					</CommandParameterType>
+					<ParameterUseMode>Single</ParameterUseMode>
+					<ModifiesData>false</ModifiesData>
+					<Representation>Auto</Representation>
+					<ToolTip/>
+					<Picture/>
+					<Shortcut/>
+					<OnMainServerUnavalableBehavior>Auto</OnMainServerUnavalableBehavior>
+				</Properties>
+			</Command>
 		</ChildObjects>
 	</Report>
 </MetaDataObject>

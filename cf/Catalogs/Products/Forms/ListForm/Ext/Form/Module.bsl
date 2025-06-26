@@ -8,6 +8,19 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	AttachableCommands.OnCreateAtServer(ThisObject);
 	// End StandardSubsystems.AttachableCommands
 	
+	// StandardSubsystems.Properties
+	LabelsDisplayParameters = PropertyManager.LabelsDisplayParameters();
+	LabelsDisplayParameters.LabelsDestinationElementName = Items.GroupLabels.Name;
+	LabelsDisplayParameters.LabelsLegendDestinationElementName = Items.GroupLegendLabels.Name;
+	LabelsDisplayParameters.FilterLabelsCount = True;
+	LabelsDisplayParameters.ObjectsKind = Metadata.Catalogs.Products.FullName();
+	
+	AdditionalParameters = New Structure;
+	AdditionalParameters.Insert("LabelsDisplayParameters", LabelsDisplayParameters);
+	AdditionalParameters.Insert("ArbitraryObject", True);
+	PropertyManager.OnCreateAtServer(ThisObject, AdditionalParameters);
+	// End StandardSubsystems.Properties
+	
 EndProcedure
 
 #EndRegion
@@ -20,6 +33,15 @@ Procedure ListOnActivateRow(Item)
 	// StandardSubsystems.AttachableCommands
 	AttachableCommandsClient.StartCommandUpdate(ThisObject);
 	// End StandardSubsystems.AttachableCommands
+	
+EndProcedure
+
+&AtServerNoContext
+Procedure ListOnGetDataAtServer(ItemName, Settings, Rows)
+	
+	// StandardSubsystems.Properties
+	PropertyManager.OnGetDataAtServer(Settings, Rows);
+	// End StandardSubsystems.Properties
 	
 EndProcedure
 
@@ -49,5 +71,24 @@ Procedure Attachable_UpdateCommands()
 EndProcedure
 
 // End StandardSubsystems.AttachableCommands
+
+// StandardSubsystems.Properties
+
+&AtClient
+Procedure Attachable_SetLabelsLegendVisibility(Command)
+	SetLabelsLegendVisibility();
+EndProcedure
+
+&AtServer
+Procedure SetLabelsLegendVisibility()
+	PropertyManager.SetLabelsLegendVisibility(ThisObject);
+EndProcedure
+
+&AtClient
+Procedure Attachable_FilterByLabelsHandler(Command)
+	PropertyManagerClient.ApplyFilterByLabel(ThisObject, Command.Name);
+EndProcedure
+
+// End StandardSubsystems.Properties
 
 #EndRegion

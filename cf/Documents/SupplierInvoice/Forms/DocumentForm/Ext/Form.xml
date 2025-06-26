@@ -146,7 +146,15 @@
 							<DataPath>Object.Inventory</DataPath>
 							<RowFilter xsi:nil="true"/>
 							<ContextMenu name="InventoryContextMenu" id="33"/>
-							<AutoCommandBar name="InventoryCommandBar" id="34"/>
+							<AutoCommandBar name="InventoryCommandBar" id="34">
+								<ChildItems>
+									<Button name="InventoryImportInventoryFromFile" id="157">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ImportInventoryFromFile</CommandName>
+										<ExtendedTooltip name="InventoryImportInventoryFromFileExtendedTooltip" id="158"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
 							<ExtendedTooltip name="InventoryExtendedTooltip" id="35"/>
 							<SearchStringAddition name="InventorySearchString" id="36">
 								<AdditionSource>
@@ -455,6 +463,23 @@
 				</v8:item>
 			</Title>
 			<Action>SelectAdvances</Action>
+		</Command>
+		<Command name="ImportInventoryFromFile" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import from file…</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Import inventory from file</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ImportInventoryFromFile</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
+			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
 	</Commands>
 </Form>

@@ -311,6 +311,22 @@
 						<xr:MultipleValuesOrderField>-1</xr:MultipleValuesOrderField>
 					</xr:CharacteristicValues>
 				</xr:Characteristic>
+				<xr:Characteristic>
+					<xr:CharacteristicTypes from="Catalog.ContactInformationKinds">
+						<xr:KeyField>Catalog.ContactInformationKinds.StandardAttribute.Ref</xr:KeyField>
+						<xr:TypesFilterField>Catalog.ContactInformationKinds.Attribute.GroupName</xr:TypesFilterField>
+						<xr:TypesFilterValue xsi:type="xs:string">Catalog_Counterparties</xr:TypesFilterValue>
+						<xr:DataPathField>-1</xr:DataPathField>
+						<xr:MultipleValuesUseField>-1</xr:MultipleValuesUseField>
+					</xr:CharacteristicTypes>
+					<xr:CharacteristicValues from="Catalog.Counterparties.TabularSection.ContactInformation">
+						<xr:ObjectField>Catalog.Counterparties.TabularSection.ContactInformation.StandardAttribute.Ref</xr:ObjectField>
+						<xr:TypeField>Catalog.Counterparties.TabularSection.ContactInformation.Attribute.KindForList</xr:TypeField>
+						<xr:ValueField>Catalog.Counterparties.TabularSection.ContactInformation.Attribute.Presentation</xr:ValueField>
+						<xr:MultipleValuesKeyField>-1</xr:MultipleValuesKeyField>
+						<xr:MultipleValuesOrderField>-1</xr:MultipleValuesOrderField>
+					</xr:CharacteristicValues>
+				</xr:Characteristic>
 			</Characteristics>
 			<PredefinedDataUpdate>Auto</PredefinedDataUpdate>
 			<EditType>InDialog</EditType>

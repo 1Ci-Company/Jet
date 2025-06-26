@@ -1,8 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <CommandInterface xmlns="http://v8.1c.ru/8.3/xcf/extrnprops" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandsOrder>
+		<Command name="Report.CustomerBalance.StandardCommand.Open">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+		<Command name="Report.ProfitOnSales.StandardCommand.Open">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+		<Command name="Report.Sales.StandardCommand.Open">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+		<Command name="Report.PriceList.StandardCommand.Open">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+		<Command name="CommonCommand.AdditionalReportsSales">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+	</CommandsOrder>
 	<SubsystemsOrder>
 		<Subsystem>Subsystem.Sales.Subsystem.Catalogs</Subsystem>
 		<Subsystem>Subsystem.Sales.Subsystem.Pricing</Subsystem>
 		<Subsystem>Subsystem.Sales.Subsystem.Sales</Subsystem>
 	</SubsystemsOrder>
+	<GroupsOrder>
+		<Group>ActionsPanelReports</Group>
+	</GroupsOrder>
 </CommandInterface>

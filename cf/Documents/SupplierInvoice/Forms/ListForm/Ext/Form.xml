@@ -24,6 +24,7 @@
 			<UseAlternationRowColor>true</UseAlternationRowColor>
 			<InitialTreeView>ExpandTopLevel</InitialTreeView>
 			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
 			<DataPath>List</DataPath>
 			<RowPictureDataPath>List.DefaultPicture</RowPictureDataPath>
 			<AutoRefresh>false</AutoRefresh>
@@ -71,7 +72,9 @@
 				<ExtendedTooltip name="ListSearchControlExtendedTooltip" id="15"/>
 			</SearchControlAddition>
 			<Events>
+				<Event name="DragCheck">ListDragCheck</Event>
 				<Event name="OnActivateRow">ListOnActivateRow</Event>
+				<Event name="Drag">ListDrag</Event>
 			</Events>
 			<ChildItems>
 				<PictureField name="HasFiles" id="40">

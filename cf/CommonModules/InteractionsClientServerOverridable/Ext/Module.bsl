@@ -19,7 +19,8 @@
 //
 Procedure OnDeterminePossibleSubjects(SubjectsTypes) Export
 	
-	
+	SubjectsTypes.Add("DocumentRef.SalesInvoice");
+	SubjectsTypes.Add("DocumentRef.SupplierInvoice");
 	
 EndProcedure
 
@@ -50,9 +51,14 @@ EndProcedure
 //                                                    If it is not filled in, a default item form is opened.
 //
 Procedure OnDeterminePossibleContacts(ContactsTypes) Export
-
 	
-
+	Contact = InteractionsClientServer.NewContactDescription();
+	Contact.Type = Type("CatalogRef.Counterparties");
+	Contact.Name = "Counterparties";
+	Contact.Presentation = NStr("en = 'Counterparties'");
+	Contact.Hierarchical = True;
+	ContactsTypes.Add(Contact);
+	
 EndProcedure
 
 #EndRegion

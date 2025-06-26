@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<ChildItems>
+		<UsualGroup name="GroupEmail" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Email</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="GroupEmailExtendedTooltip" id="4"/>
+			<ChildItems>
+				<Button name="EmailSettings" id="1">
+					<Type>Hyperlink</Type>
+					<CommandName>DocumentJournal.Interactions.Command.EmailOperationSettings</CommandName>
+					<ExtendedTooltip name="EmailSettingsExtendedTooltip" id="2"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupReminder" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reminder</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="GroupReminderExtendedTooltip" id="12"/>
+			<ChildItems>
+				<Button name="ReminderSettings" id="13">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.ReminderSettings</CommandName>
+					<ExtendedTooltip name="ReminderSettingsExtendedTooltip" id="14"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.PersonalSettings</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ReminderSettings" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Reminder settings</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ReminderSettings</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.UseUserReminders</Item>
+			</FunctionalOptions>
+		</Command>
+	</Commands>
+</Form>

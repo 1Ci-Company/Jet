@@ -69,7 +69,10 @@ EndProcedure
 //
 Procedure DefineSectionsWithReportOptions(Sections) Export
 	
-	
+	Sections.Add(Metadata.Subsystems.Sales, NStr("en = 'Sales reports'"));
+	Sections.Add(Metadata.Subsystems.Purchases, NStr("en = 'Purchases reports'"));
+	Sections.Add(Metadata.Subsystems.Warehouses, NStr("en = 'Warehouses reports'"));
+	Sections.Add(Metadata.Subsystems.CashManagement, NStr("en = 'Cash management reports'"));
 	
 EndProcedure
 
@@ -189,8 +192,67 @@ EndProcedure
 //	ReportsOptions.SetOutputModeInReportPanels(Settings, Report, False);
 //
 Procedure CustomizeReportsOptions(Settings) Export
-
 	
+	// Sales reports
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CustomerBalance, "CustomerBalance");
+	OptionSettings.LongDesc = NStr("en = 'Amounts due from customers and advances paid by customers'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CustomerBalance, "CustomerBalanceContext");
+	OptionSettings.Enabled = False;
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.PriceList, "PriceList");
+	OptionSettings.LongDesc = NStr("en = 'List of product prices by price type'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.ProfitOnSales, "ProfitOnSales");
+	OptionSettings.LongDesc = NStr("en = 'Cost, revenue, and profit from product sales'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "Default");
+	OptionSettings.LongDesc = NStr("en = 'Amount and VAT from product sales by customer'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "SalesContext");
+	OptionSettings.Enabled = False;
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "SalesByDate");
+	OptionSettings.LongDesc = NStr("en = 'Chart of sales amounts by date'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "SalesByProduct");
+	OptionSettings.LongDesc = NStr("en = 'Chart of sales quanitities by product '");
+	
+	// Purchases reports
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.SupplierBalance, "SupplierBalance");
+	OptionSettings.LongDesc = NStr("en = 'Amounts due to suppliers and advances paid to suppliers'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.SupplierBalance, "SupplierBalanceContext");
+	OptionSettings.Enabled = False;
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Purchases, "Default");
+	OptionSettings.LongDesc = NStr("en = 'Amount and VAT from product purchases by supplier'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Purchases, "PurchasesContext");
+	OptionSettings.Enabled = False;
+	
+	// Warehouses reports
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.StockStatement, "StockStatement");
+	OptionSettings.LongDesc = NStr("en = 'Opening balance, receipt, consumption, closing balance by products'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.StockStatement, "StockStatementContext");
+	OptionSettings.Enabled = False;
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.AvailableStock, "Default");
+	OptionSettings.LongDesc = NStr("en = 'Product stock balances by warehouse'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.AvailableStock, "AvailableStockContext");
+	OptionSettings.Enabled = False;
+	
+	// Cash management reports
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CashStatement, "CashStatement");
+	OptionSettings.LongDesc = NStr("en = 'Opening balance, inflow, outflow, closing balance by cash or bank accounts'");
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CashStatement, "CashStatementContext");
+	OptionSettings.Enabled = False;
+	
+	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Dashboard, "Default");
+	OptionSettings.Enabled = False;
 	
 EndProcedure
 

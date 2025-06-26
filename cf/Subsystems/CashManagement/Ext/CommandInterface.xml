@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <CommandInterface xmlns="http://v8.1c.ru/8.3/xcf/extrnprops" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<CommandsOrder>
+		<Command name="Report.CashStatement.StandardCommand.Open">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+		<Command name="CommonCommand.AdditionalReportsCashManagement">
+			<CommandGroup>ActionsPanelReports</CommandGroup>
+		</Command>
+	</CommandsOrder>
 	<SubsystemsOrder>
 		<Subsystem>Subsystem.CashManagement.Subsystem.Bank</Subsystem>
 		<Subsystem>Subsystem.CashManagement.Subsystem.CashInHand</Subsystem>
 		<Subsystem>Subsystem.CashManagement.Subsystem.Catalogs</Subsystem>
 	</SubsystemsOrder>
+	<GroupsOrder>
+		<Group>ActionsPanelReports</Group>
+	</GroupsOrder>
 </CommandInterface>

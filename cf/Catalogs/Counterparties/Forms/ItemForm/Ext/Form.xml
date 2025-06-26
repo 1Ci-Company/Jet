@@ -47,6 +47,32 @@
 								</CheckBoxField>
 							</ChildItems>
 						</UsualGroup>
+						<UsualGroup name="GroupCodeLabels" id="27">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupCodeLabelsExtendedTooltip" id="28"/>
+							<ChildItems>
+								<InputField name="Code" id="1">
+									<DataPath>Object.Code</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="CodeContextMenu" id="2"/>
+									<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
+								</InputField>
+								<UsualGroup name="GroupLabels" id="46">
+									<Visible>false</Visible>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Labels</v8:content>
+										</v8:item>
+									</Title>
+									<Behavior>Usual</Behavior>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupLabelsExtendedTooltip" id="47"/>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
 						<InputField name="Description" id="4">
 							<DataPath>Object.Description</DataPath>
 							<EditMode>EnterOnInput</EditMode>
@@ -61,27 +87,13 @@
 							<ContextMenu name="LegalNameContextMenu" id="17"/>
 							<ExtendedTooltip name="LegalNameExtendedTooltip" id="18"/>
 						</InputField>
-						<UsualGroup name="GroupParentCode" id="27">
-							<Representation>None</Representation>
-							<ShowTitle>false</ShowTitle>
-							<ExtendedTooltip name="GroupParentCodeExtendedTooltip" id="28"/>
-							<ChildItems>
-								<InputField name="Parent" id="7">
-									<DataPath>Object.Parent</DataPath>
-									<EditMode>EnterOnInput</EditMode>
-									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-									<ContextMenu name="ParentContextMenu" id="8"/>
-									<ExtendedTooltip name="ParentExtendedTooltip" id="9"/>
-								</InputField>
-								<InputField name="Code" id="1">
-									<DataPath>Object.Code</DataPath>
-									<EditMode>EnterOnInput</EditMode>
-									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-									<ContextMenu name="CodeContextMenu" id="2"/>
-									<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
-								</InputField>
-							</ChildItems>
-						</UsualGroup>
+						<InputField name="Parent" id="7">
+							<DataPath>Object.Parent</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ParentContextMenu" id="8"/>
+							<ExtendedTooltip name="ParentExtendedTooltip" id="9"/>
+						</InputField>
 						<InputField name="TIN" id="19">
 							<DataPath>Object.TIN</DataPath>
 							<EditMode>EnterOnInput</EditMode>
@@ -123,5 +135,22 @@
 			<MainAttribute>true</MainAttribute>
 			<SavedData>true</SavedData>
 		</Attribute>
+		<Attribute name="NotificationRequired" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="BasisObject" id="4">
+			<Type/>
+		</Attribute>
 	</Attributes>
+	<CommandInterface>
+		<NavigationPanel>
+			<Item>
+				<Command>Report.Sales.Command.OpenSalesReport</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelSeeAlso</CommandGroup>
+			</Item>
+		</NavigationPanel>
+	</CommandInterface>
 </Form>
