@@ -16,6 +16,8 @@ Procedure InitializeDocumentData(BankPaymentRef, AdditionalProperties) Export
 	"SELECT
 	|	BankPayment.Ref AS Ref,
 	|	BankPayment.PaymentDate AS PaymentDate,
+	|	BankPayment.Operation AS Operation,
+	|	BankPayment.Counterparty AS Counterparty,
 	|	BankPayment.BankAccount AS BankAccount
 	|INTO DocumentHeader
 	|FROM
@@ -27,9 +29,14 @@ Procedure InitializeDocumentData(BankPaymentRef, AdditionalProperties) Export
 	|
 	|////////////////////////////////////////////////////////////////////////////////
 	|SELECT
+	|	DocumentHeader.Ref AS Ref,
 	|	DocumentHeader.PaymentDate AS Period,
+	|	DocumentHeader.Operation AS Operation,
+	|	DocumentHeader.Counterparty AS Counterparty,
 	|	DocumentHeader.BankAccount AS BankAccount,
-	|	BankPaymentPaymentDetails.PaymentAmount AS PaymentAmount
+	|	BankPaymentPaymentDetails.Document AS Document,
+	|	BankPaymentPaymentDetails.PaymentAmount AS PaymentAmount,
+	|	BankPaymentPaymentDetails.Amount AS Amount
 	|INTO DocumentPaymentDetails
 	|FROM
 	|	DocumentHeader AS DocumentHeader
@@ -49,13 +56,54 @@ Procedure InitializeDocumentData(BankPaymentRef, AdditionalProperties) Export
 	|
 	|GROUP BY
 	|	DocumentPaymentDetails.Period,
-	|	DocumentPaymentDetails.BankAccount";
+	|	DocumentPaymentDetails.BankAccount
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Expense) AS RecordType,
+	|	DocumentPaymentDetails.Period AS Period,
+	|	CASE
+	|		WHEN DocumentPaymentDetails.Document = VALUE(Document.SupplierInvoice.EmptyRef)
+	|				OR DocumentPaymentDetails.Document = UNDEFINED
+	|			THEN VALUE(Enum.LiabilityTypes.Advance)
+	|		ELSE VALUE(Enum.LiabilityTypes.Liability)
+	|	END AS LiabilityType,
+	|	DocumentPaymentDetails.Counterparty AS Counterparty,
+	|	CASE
+	|		WHEN DocumentPaymentDetails.Document = VALUE(Document.SupplierInvoice.EmptyRef)
+	|				OR DocumentPaymentDetails.Document = UNDEFINED
+	|			THEN DocumentPaymentDetails.Ref
+	|		ELSE DocumentPaymentDetails.Document
+	|	END AS Document,
+	|	SUM(DocumentPaymentDetails.Amount) AS Amount
+	|FROM
+	|	DocumentPaymentDetails AS DocumentPaymentDetails
+	|WHERE
+	|	DocumentPaymentDetails.Operation = VALUE(Enum.BankPaymentOperations.Supplier)
+	|
+	|GROUP BY
+	|	CASE
+	|		WHEN DocumentPaymentDetails.Document = VALUE(Document.SupplierInvoice.EmptyRef)
+	|				OR DocumentPaymentDetails.Document = UNDEFINED
+	|			THEN VALUE(Enum.LiabilityTypes.Advance)
+	|		ELSE VALUE(Enum.LiabilityTypes.Liability)
+	|	END,
+	|	DocumentPaymentDetails.Counterparty,
+	|	CASE
+	|		WHEN DocumentPaymentDetails.Document = VALUE(Document.SupplierInvoice.EmptyRef)
+	|				OR DocumentPaymentDetails.Document = UNDEFINED
+	|			THEN DocumentPaymentDetails.Ref
+	|		ELSE DocumentPaymentDetails.Document
+	|	END,
+	|	DocumentPaymentDetails.Period";
 	
 	Query.SetParameter("Ref", BankPaymentRef);
 	
 	QueryResult = Query.ExecuteBatch();
 	
 	AdditionalProperties.TableForRegisterRecords.Insert("TableCashBalance", QueryResult[2].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableSupplierBalance", QueryResult[3].Unload());
 	
 EndProcedure
 

@@ -70,6 +70,11 @@ EndProcedure
 &AtServer
 Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	
+	If Object.Inventory.Total("Total") < Object.AdvanceClearing.Total("AmountCur") Then
+		MessageText = NStr("en = 'The invoice amount is less than the clearing amount.'");
+		Common.MessageToUser(MessageText,,,, Cancel);
+	EndIf;
+	
 	// StandardSubsystems.Properties
 	PropertyManager.FillCheckProcessing(ThisObject, Cancel, CheckedAttributes);
 	// End StandardSubsystems.Properties
@@ -154,7 +159,65 @@ EndProcedure
 
 #EndRegion
 
+#Region FormTableItemsEventHandlersAdvanceClearing
+
+&AtClient
+Procedure AdvanceClearingAmountOnChange(Item)
+	
+	CurrentData = Items.AdvanceClearing.CurrentData;
+	If CurrentData <> Undefined Then
+		CurrentData.AmountCur = JetClientServer.CalculateFromCurrencyToCurrency(CurrentData.Amount,
+			1,
+			1,
+			Object.ExchangeRate,
+			Object.Multiplier);
+	EndIf;
+	
+EndProcedure
+
+&AtClient
+Procedure AdvanceClearingAmountCurOnChange(Item)
+	
+	CurrentData = Items.AdvanceClearing.CurrentData;
+	If CurrentData <> Undefined Then
+		CurrentData.Amount = JetClientServer.CalculateFromCurrencyToCurrency(CurrentData.AmountCur,
+			Object.ExchangeRate,
+			Object.Multiplier);
+	EndIf;
+	
+EndProcedure
+
+#EndRegion
+
 #Region FormCommandsEventHandlers
+
+&AtClient
+Procedure SelectAdvances(Command)
+	
+	If Not ValueIsFilled(Object.Supplier) Then
+		ShowMessageBox(, NStr("en = 'Please specify the supplier.'"));
+		Return;
+	EndIf;
+	
+	AddressInStorage = PutAdvanceClearingToStorage();
+	
+	FormParameters = New Structure;
+	FormParameters.Insert("AddressInStorage", AddressInStorage);
+	FormParameters.Insert("InvoiceRef", Object.Ref);
+	FormParameters.Insert("Counterparty", Object.Supplier);
+	FormParameters.Insert("Currency", Object.Currency);
+	FormParameters.Insert("ExchangeRate", Object.ExchangeRate);
+	FormParameters.Insert("Multiplier", Object.Multiplier);
+	FormParameters.Insert("InvoiceAmount", Object.Inventory.Total("Total"));
+	FormParameters.Insert("IsCustomerAdvance", False);
+	
+	SelectAdvancesOnClose = New CallbackDescription("SelectAdvancesOnClose",
+		ThisObject,
+		New Structure("AddressInStorage", AddressInStorage));
+	
+	OpenForm("CommonForm.SelectAdvances", FormParameters,,,,, SelectAdvancesOnClose);
+	
+EndProcedure
 
 // StandardSubsystems.AttachableCommands
 &AtClient
@@ -223,10 +286,41 @@ Procedure FormManagement()
 	If Object.Currency = PresentationCurrency Then
 		Items.ExchangeRate.ReadOnly = True;
 		Items.Multiplier.ReadOnly = True;
+		Items.AdvanceClearingAmountCur.Visible = False;
 	Else
 		Items.ExchangeRate.ReadOnly = False;
 		Items.Multiplier.ReadOnly = False;
+		Items.AdvanceClearingAmountCur.Visible = True;
+		Items.AdvanceClearingAmountCur.Title = StringFunctionsClientServer.SubstituteParametersToString(
+				NStr("en = 'Amount (%1)'"),
+				Object.Currency);
 	EndIf;
+	
+EndProcedure
+
+&AtClient
+Procedure SelectAdvancesOnClose(Result, AdditionalParameters) Export
+	
+	If Result = DialogReturnCode.OK Then
+		AddressInStorage = AdditionalParameters.AddressInStorage;
+		GetAdvanceClearingFromStorage(AddressInStorage);
+		Modified = True;
+	EndIf;
+	
+EndProcedure
+
+&AtServer
+Function PutAdvanceClearingToStorage()
+	
+	Return PutToTempStorage(Object.AdvanceClearing.Unload(), UUID);
+	
+EndFunction
+
+&AtServer
+Procedure GetAdvanceClearingFromStorage(AddressInStorage)
+	
+	AdvanceTable = GetFromTempStorage(AddressInStorage);
+	Object.AdvanceClearing.Load(AdvanceTable);
 	
 EndProcedure
 

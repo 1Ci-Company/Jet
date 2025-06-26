@@ -32,11 +32,12 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|	DocumentHeader.Date AS Period,
 	|	DocumentHeader.Supplier AS Counterparty,
 	|	DocumentHeader.Warehouse AS Warehouse,
-	|	DocumentHeader.Ref AS PurchaseDocument,
+	|	DocumentHeader.Ref AS Document,
 	|	SupplierInvoiceInventory.Product AS Product,
 	|	SupplierInvoiceInventory.Quantity AS Quantity,
 	|	SupplierInvoiceInventory.Amount * DocumentHeader.ExchangeRate / DocumentHeader.Multiplier AS Amount,
-	|	SupplierInvoiceInventory.VATAmount * DocumentHeader.ExchangeRate / DocumentHeader.Multiplier AS VATAmount
+	|	SupplierInvoiceInventory.VATAmount * DocumentHeader.ExchangeRate / DocumentHeader.Multiplier AS VATAmount,
+	|	SupplierInvoiceInventory.Total * DocumentHeader.ExchangeRate / DocumentHeader.Multiplier AS Total
 	|INTO DocumentInventory
 	|FROM
 	|	DocumentHeader AS DocumentHeader
@@ -46,9 +47,23 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|
 	|////////////////////////////////////////////////////////////////////////////////
 	|SELECT
+	|	DocumentHeader.Date AS Period,
+	|	DocumentHeader.Supplier AS Counterparty,
+	|	DocumentHeader.Ref AS InvoiceDocument,
+	|	AdvanceClearing.Document AS Document,
+	|	AdvanceClearing.Amount AS Amount
+	|INTO DocumentAdvanceClearing
+	|FROM
+	|	DocumentHeader AS DocumentHeader
+	|		INNER JOIN Document.SupplierInvoice.AdvanceClearing AS AdvanceClearing
+	|		ON DocumentHeader.Ref = AdvanceClearing.Ref
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
 	|	DocumentInventory.Period AS Period,
 	|	DocumentInventory.Counterparty AS Counterparty,
-	|	DocumentInventory.PurchaseDocument AS PurchaseDocument,
+	|	DocumentInventory.Document AS PurchaseDocument,
 	|	DocumentInventory.Product AS Product,
 	|	SUM(DocumentInventory.Quantity) AS Quantity,
 	|	SUM(DocumentInventory.Amount) AS Amount,
@@ -60,7 +75,7 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|	DocumentInventory.Product,
 	|	DocumentInventory.Counterparty,
 	|	DocumentInventory.Period,
-	|	DocumentInventory.PurchaseDocument
+	|	DocumentInventory.Document
 	|;
 	|
 	|////////////////////////////////////////////////////////////////////////////////
@@ -76,14 +91,66 @@ Procedure InitializeDocumentData(SupplierInvoiceRef, AdditionalProperties) Expor
 	|GROUP BY
 	|	DocumentInventory.Product,
 	|	DocumentInventory.Period,
-	|	DocumentInventory.Warehouse";
+	|	DocumentInventory.Warehouse
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	VALUE(AccumulationRecordType.Receipt) AS RecordType,
+	|	DocumentInventory.Period AS Period,
+	|	VALUE(Enum.LiabilityTypes.Liability) AS LiabilityType,
+	|	DocumentInventory.Counterparty AS Counterparty,
+	|	DocumentInventory.Document AS Document,
+	|	SUM(DocumentInventory.Total) AS Amount
+	|FROM
+	|	DocumentInventory AS DocumentInventory
+	|
+	|GROUP BY
+	|	DocumentInventory.Document,
+	|	DocumentInventory.Period,
+	|	DocumentInventory.Counterparty
+	|
+	|UNION ALL
+	|
+	|SELECT
+	|	VALUE(AccumulationRecordType.Receipt),
+	|	DocumentAdvanceClearing.Period,
+	|	VALUE(Enum.LiabilityTypes.Advance),
+	|	DocumentAdvanceClearing.Counterparty,
+	|	DocumentAdvanceClearing.Document,
+	|	SUM(DocumentAdvanceClearing.Amount)
+	|FROM
+	|	DocumentAdvanceClearing AS DocumentAdvanceClearing
+	|
+	|GROUP BY
+	|	DocumentAdvanceClearing.Document,
+	|	DocumentAdvanceClearing.Period,
+	|	DocumentAdvanceClearing.Counterparty
+	|
+	|UNION ALL
+	|
+	|SELECT
+	|	VALUE(AccumulationRecordType.Expense),
+	|	DocumentAdvanceClearing.Period,
+	|	VALUE(Enum.LiabilityTypes.Liability),
+	|	DocumentAdvanceClearing.Counterparty,
+	|	DocumentAdvanceClearing.InvoiceDocument,
+	|	SUM(DocumentAdvanceClearing.Amount)
+	|FROM
+	|	DocumentAdvanceClearing AS DocumentAdvanceClearing
+	|
+	|GROUP BY
+	|	DocumentAdvanceClearing.Period,
+	|	DocumentAdvanceClearing.InvoiceDocument,
+	|	DocumentAdvanceClearing.Counterparty";
 	
 	Query.SetParameter("Ref", SupplierInvoiceRef);
 	
 	QueryResult = Query.ExecuteBatch();
 	
-	AdditionalProperties.TableForRegisterRecords.Insert("TablePurchases", QueryResult[2].Unload());
-	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[3].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TablePurchases", QueryResult[3].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableInventoryInWarehouses", QueryResult[4].Unload());
+	AdditionalProperties.TableForRegisterRecords.Insert("TableSupplierBalance", QueryResult[5].Unload());
 	
 EndProcedure
 
