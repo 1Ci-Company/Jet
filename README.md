@@ -35,25 +35,12 @@ To work with the application, you need the 1C platform. We recommend using versi
 
 You can download a free version of the platform here: [1Ci company website](https://my.1ci.com/).
 
-### Work with 1C:Jet by release installer
+[see how to install platform](https://github.com/1Ci-Company/Jet/wiki/platform-installation)
 
-1. Download the release installer  
-2. Run the `setup.exe` file  
-3. After that, open the 1C platform, and the system will prompt you to create a new database  
-4. In the next step, choose "Create infobase from template" - you can choose whether to create an application with demo data (select **1C:Jet (demo)**) or create a new database that you will fill with your company's data (**1C:Jet**)  
-5. Open the database in **designer mode** if you want to view the source code or modify it  
-6. Open the database in **enterprise mode** for use
+[see how to install Jet using the installer](https://github.com/1Ci-Company/Jet/wiki/jet-installation-release)
 
-### Work with 1C:Jet by repository
+[see how to install Jet using the repository](https://github.com/1Ci-Company/Jet/wiki/jet-installation-repository)
 
-1. Clone repository
-2. Open the 1C platform, and the system will prompt you to create a new database
-3. In the next step, choose "Create an infobase with no configuration"
-4. Open the database in **designer mode**
-5. Click Configuration - Open configuration
-6. Click Configuration - Restore configuration from files. Choose way to cf folder in cloned repository
-7. Wait till loading is finished and click Debug - Start debugging
-   
 ---
 
 ## Usage
@@ -68,15 +55,9 @@ Use the app to manage core accounting processes of a small company:
 
 ---
 
-## Step-by-step implementation
-
-<coming soon>
-
----
-
 ## License
 
-This project is licensed under the MIT License — see the LICENSE file for details.
+This project is licensed under the MIT License — see the [LICENSE](https://github.com/1Ci-Company/Jet/blob/develop/LICENSE) file for details.
 
 ---
 
