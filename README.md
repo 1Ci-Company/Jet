@@ -1,4 +1,7 @@
-<img width="2056" height="690" alt="1C-Jet-GH" src="https://github.com/user-attachments/assets/dc413c38-b74a-4987-b44b-cd3185d3f7bb" />
+<picture align="center">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/eb61278b-be85-4d3a-bbe0-b1c5a99321ca">
+  <img alt="1C:Jet Logo" src="https://github.com/user-attachments/assets/dc413c38-b74a-4987-b44b-cd3185d3f7bb">
+</picture>
 
 [![chat](https://img.shields.io/badge/chat-telegram-blue?logo=telegram)](https://t.me/jet1ci)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/1Ci-Company/test12135436574/blob/main/LICENSE)
