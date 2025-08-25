@@ -2890,21 +2890,21 @@ Procedure FillCommonSettingsFromCommonPasswordPolicy(Settings)
 		Round(Eval("GetInactivityTimeForTerminateSessionNotification()") / 60);
 	
 	SettingsForSaving =
-		Eval("AdditionalAuthenticationSettings.GetCredentialsAutoSaveSettings()");
+		Eval("AdditionalAuthenticationSettings.GetAuthenticationAutoSaveSettings()");
 	
 	Settings.PasswordSaveOptionUponLogin = CurrentPasswordSaveOptionUponLogin(SettingsForSaving);
 	Settings.PasswordRemembranceDuration =
-		Round(SettingsForSaving.SavedCredentialsLifetime / 60);
+		Round(SettingsForSaving.SavedAuthenticationLifeTime / 60);
 	
 	ValidationSettings =
-		Eval("AdditionalAuthenticationSettings.GetCompromisedPasswordsCheckSettings()");
+		Eval("AdditionalAuthenticationSettings.GetPasswordCompromiseCheckSettings()");
 	// ACC:488-on
 	
 	Settings.ShouldUseStandardBannedPasswordList =
 		ValidationSettings.UseStandardPasswordCompromiseCheckList;
 	
 	Settings.ShouldUseAdditionalBannedPasswordList =
-		ValidationSettings.UseSetPasswordCompromiseCheckList;
+		ValidationSettings.UseSpecifiedPasswordCompromiseCheckList;
 	
 	Settings.ShouldUseBannedPasswordService =
 		ValidationSettings.UsePasswordCompromiseCheckService;
@@ -2981,7 +2981,7 @@ Procedure UpdateCommonPasswordPolicy(Settings) Export
 	
 	Write = False;
 	SettingsForSaving =
-		Eval("AdditionalAuthenticationSettings.GetCredentialsAutoSaveSettings()");
+		Eval("AdditionalAuthenticationSettings.GetAuthenticationAutoSaveSettings()");
 
 	If CurrentPasswordSaveOptionUponLogin(SettingsForSaving)
 	  <> Settings.PasswordSaveOptionUponLogin Then
@@ -2994,11 +2994,11 @@ Procedure UpdateCommonPasswordPolicy(Settings) Export
 			Settings.PasswordSaveOptionUponLogin = "AllowedAndEnabled";
 	EndIf;
 	
-	If SettingsForSaving.SavedCredentialsLifetime
+	If SettingsForSaving.SavedAuthenticationLifeTime
 	  <> Settings.PasswordRemembranceDuration * 60 Then
 		
 		Write = True;
-		SettingsForSaving.SavedCredentialsLifetime =
+		SettingsForSaving.SavedAuthenticationLifeTime =
 			Settings.PasswordRemembranceDuration * 60;
 	EndIf;
 	
@@ -3009,7 +3009,7 @@ Procedure UpdateCommonPasswordPolicy(Settings) Export
 	
 	Write = False;
 	ValidationSettings =
-		Eval("AdditionalAuthenticationSettings.GetCompromisedPasswordsCheckSettings()");
+		Eval("AdditionalAuthenticationSettings.GetPasswordCompromiseCheckSettings()");
 	
 	If ValidationSettings.UseStandardPasswordCompromiseCheckList
 	  <> Settings.ShouldUseStandardBannedPasswordList Then
@@ -3019,11 +3019,11 @@ Procedure UpdateCommonPasswordPolicy(Settings) Export
 			Settings.ShouldUseStandardBannedPasswordList;
 	EndIf;
 	
-	If ValidationSettings.UseSetPasswordCompromiseCheckList
+	If ValidationSettings.UseSpecifiedPasswordCompromiseCheckList
 	  <> Settings.ShouldUseAdditionalBannedPasswordList Then
 		
 		Write = True;
-		ValidationSettings.UseSetPasswordCompromiseCheckList =
+		ValidationSettings.UseSpecifiedPasswordCompromiseCheckList =
 			Settings.ShouldUseAdditionalBannedPasswordList;
 	EndIf;
 	
@@ -3376,10 +3376,10 @@ Function CurrentActionUponLoginIfRequirementNotMet(PasswordPolicy = Undefined)
 		Eval("GetActionOnUserPasswordRequirementsViolationOnAuthentication()"),
 		PasswordPolicy.ActionUponAuthenticationIfPasswordsNonCompliant);
 	
-	If CurrentAction1 = Eval("ActionOnPasswordRequirementsViolationOnAuthentication.RequirePasswordChange") Then
+	If CurrentAction1 = Eval("ActionOnThePasswordRequirementsViolationOnAuthentication.RequirePasswordChange") Then
 		Return "RequirePasswordChange";
 		
-	ElsIf CurrentAction1 = Eval("ActionOnPasswordRequirementsViolationOnAuthentication.SuggestPasswordChange") Then
+	ElsIf CurrentAction1 = Eval("ActionOnThePasswordRequirementsViolationOnAuthentication.SuggestPasswordChange") Then
 		Return "SuggestPasswordChange";
 		
 	EndIf;
@@ -3393,13 +3393,13 @@ Function ValueOfActionUponLoginIfRequirementNotMet(ActionName)
 	
 	// ACC:488-off - Support of new 1C:Enterprise methods (the executable code is safe)
 	If ActionName = "RequirePasswordChange" Then
-		Return Eval("ActionOnPasswordRequirementsViolationOnAuthentication.RequirePasswordChange");
+		Return Eval("ActionOnThePasswordRequirementsViolationOnAuthentication.RequirePasswordChange");
 		
 	ElsIf ActionName = "SuggestPasswordChange" Then
-		Return Eval("ActionOnPasswordRequirementsViolationOnAuthentication.SuggestPasswordChange");
+		Return Eval("ActionOnThePasswordRequirementsViolationOnAuthentication.SuggestPasswordChange");
 	EndIf;
 	
-	Return Eval("ActionOnPasswordRequirementsViolationOnAuthentication.None");
+	Return Eval("ActionOnThePasswordRequirementsViolationOnAuthentication.None");
 	// ACC:488-on
 	
 EndFunction

@@ -13,26 +13,51 @@
 		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
 	</Events>
 	<ChildItems>
-		<InputField name="Code" id="1">
-			<DataPath>Object.Code</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="CodeContextMenu" id="2"/>
-			<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
-		</InputField>
-		<InputField name="Description" id="4">
-			<DataPath>Object.Description</DataPath>
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="DescriptionContextMenu" id="5"/>
-			<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
-		</InputField>
-		<UsualGroup name="GroupAdditionalAttributes" id="7">
-			<Group>Vertical</Group>
-			<Representation>None</Representation>
-			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="8"/>
-		</UsualGroup>
+		<Pages name="Pages" id="11">
+			<ExtendedTooltip name="PagesExtendedTooltip" id="12"/>
+			<ChildItems>
+				<Page name="GroupGeneral" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>General</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupGeneralExtendedTooltip" id="14"/>
+					<ChildItems>
+						<InputField name="Code" id="1">
+							<DataPath>Object.Code</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="CodeContextMenu" id="2"/>
+							<ExtendedTooltip name="CodeExtendedTooltip" id="3"/>
+						</InputField>
+						<InputField name="Description" id="4">
+							<DataPath>Object.Description</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="DescriptionContextMenu" id="5"/>
+							<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
+						</InputField>
+						<UsualGroup name="GroupAdditionalAttributes" id="7">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="8"/>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="ContactInformationGroup" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Addresses, phones</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ContactInformationGroupExtendedTooltip" id="16"/>
+				</Page>
+			</ChildItems>
+		</Pages>
 	</ChildItems>
 	<Attributes>
 		<Attribute name="Object" id="1">

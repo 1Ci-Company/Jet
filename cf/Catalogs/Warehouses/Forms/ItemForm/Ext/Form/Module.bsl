@@ -14,6 +14,12 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	PropertyManager.OnCreateAtServer(ThisObject, AdditionalParameters);
 	// End StandardSubsystems.Properties
 	
+	// StandardSubsystems.ContactInformation
+	AdditionalParameters = ContactsManager.ContactInformationParameters();
+	AdditionalParameters.ItemForPlacementName = "ContactInformationGroup";
+	ContactsManager.OnCreateAtServer(ThisObject, Object, AdditionalParameters);
+	// End StandardSubsystems.ContactInformation
+	
 EndProcedure
 
 &AtServer
@@ -26,6 +32,10 @@ Procedure OnReadAtServer(CurrentObject)
 	// StandardSubsystems.Properties
 	PropertyManager.OnReadAtServer(ThisObject, CurrentObject);
 	// End StandardSubsystems.Properties
+	
+	// StandardSubsystems.ContactInformation
+	ContactsManager.OnReadAtServer(ThisObject, CurrentObject);
+	// End StandardSubsystems.ContactInformation
 	
 EndProcedure
 
@@ -70,6 +80,10 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	PropertyManager.FillCheckProcessing(ThisObject, Cancel, CheckedAttributes);
 	// End StandardSubsystems.Properties
 	
+	// StandardSubsystems.ContactInformation
+	ContactsManager.FillCheckProcessingAtServer(ThisObject, Object, Cancel);
+	// End StandardSubsystems.ContactInformation
+	
 EndProcedure
 
 &AtServer
@@ -78,6 +92,10 @@ Procedure BeforeWriteAtServer(Cancel, CurrentObject, WriteParameters)
 	// StandardSubsystems.Properties
 	PropertyManager.BeforeWriteAtServer(ThisObject, CurrentObject);
 	// End StandardSubsystems.Properties
+	
+	// StandardSubsystems.ContactInformation
+	ContactsManager.BeforeWriteAtServer(ThisObject, CurrentObject);
+	// End StandardSubsystems.ContactInformation
 	
 EndProcedure
 
@@ -134,5 +152,57 @@ Procedure UpdateAdditionalAttributesItems()
 	PropertyManager.UpdateAdditionalAttributesItems(ThisObject);
 EndProcedure
 // End StandardSubsystems.Properties
+
+// StandardSubsystems.ContactInformation
+&AtClient
+Procedure Attachable_ContactInformationOnChange(Item)
+	ContactsManagerClient.StartChanging(ThisObject, Item);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationStartChoice(Item, ChoiceData, StandardProcessing)
+	ContactsManagerClient.StartSelection(ThisObject, Item,, StandardProcessing);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationOnClick(Item, StandardProcessing)
+	ContactsManagerClient.StartSelection(ThisObject, Item,, StandardProcessing);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationClearing(Item, StandardProcessing)
+	ContactsManagerClient.StartClearing(ThisObject, Item.Name);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationExecuteCommand(Command)
+	ContactsManagerClient.StartCommandExecution(ThisObject, Command.Name);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationAutoComplete(Item, Text, ChoiceData, DataGetParameters, Waiting, StandardProcessing)
+	ContactsManagerClient.AutoCompleteAddress(Item, Text, ChoiceData, DataGetParameters, Waiting, StandardProcessing);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationChoiceProcessing(Item, ValueSelected, StandardProcessing)
+	ContactsManagerClient.ChoiceProcessing(ThisObject, ValueSelected, Item.Name, StandardProcessing);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContactInformationURLProcessing(Item, FormattedStringURL, StandardProcessing)
+	ContactsManagerClient.StartURLProcessing(ThisObject, Item, FormattedStringURL, StandardProcessing);
+EndProcedure
+
+&AtClient
+Procedure Attachable_ContinueContactInformationUpdate(Result, AdditionalParameters) Export
+	UpdateContactInformation(Result);
+EndProcedure
+
+&AtServer
+Procedure UpdateContactInformation(Result)
+	ContactsManager.UpdateContactInformation(ThisObject, Object, Result);
+EndProcedure
+// End StandardSubsystems.ContactInformation
 
 #EndRegion

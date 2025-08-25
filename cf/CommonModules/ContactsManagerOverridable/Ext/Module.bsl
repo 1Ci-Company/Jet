@@ -127,7 +127,8 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.Parent = "CatalogCompanies";
 	Item.Type = Enums.ContactInformationTypes.Address;
 	Item.IDForFormulas = "ActualAddress";
-	Item.EditingOption = "InputField";
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.CanChangeEditMethod = True;
 	Item.IncludeCountryInPresentation = True;
 	Item.InternationalAddressFormat = True;
 	Item.StoreChangeHistory = False;
@@ -141,7 +142,8 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.Parent = "CatalogCompanies";
 	Item.Type = Enums.ContactInformationTypes.Address;
 	Item.IDForFormulas = "LegalAddress";
-	Item.EditingOption = "InputField";
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.CanChangeEditMethod = True;
 	Item.IncludeCountryInPresentation = True;
 	Item.InternationalAddressFormat = True;
 	Item.StoreChangeHistory = False;
@@ -188,6 +190,16 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.Used = True;
 	Item.Description = NStr("en = 'Email'", Common.DefaultLanguageCode());
 	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyFax";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Fax;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 6;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Fax'", Common.DefaultLanguageCode());
+	
 #EndRegion
 
 #Region Counterparties
@@ -203,7 +215,8 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.Parent = "CatalogCounterparties";
 	Item.Type = Enums.ContactInformationTypes.Address;
 	Item.IDForFormulas = "ActualAddress";
-	Item.EditingOption = "InputField";
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.CanChangeEditMethod = True;
 	Item.IncludeCountryInPresentation = True;
 	Item.InternationalAddressFormat = True;
 	Item.StoreChangeHistory = False;
@@ -217,7 +230,8 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.Parent = "CatalogCounterparties";
 	Item.Type = Enums.ContactInformationTypes.Address;
 	Item.IDForFormulas = "LegalAddress";
-	Item.EditingOption = "InputField";
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.CanChangeEditMethod = True;
 	Item.IncludeCountryInPresentation = True;
 	Item.InternationalAddressFormat = True;
 	Item.StoreChangeHistory = False;
@@ -263,6 +277,41 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
 	Item.Description = NStr("en = 'Email'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyFax";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Fax;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 6;
+	Item.Description = NStr("en = 'Fax'", Common.DefaultLanguageCode());
+	Item.Used = True;
+	
+#EndRegion
+
+#Region Warehouses
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogWarehouses";
+	Item.IsFolder = True;
+	Item.Used = True;
+	Item.Description = NStr("en = 'Contact information of the ""Warehouses"" catalog'", Common.DefaultLanguageCode());
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "WarehouseActualAddress";
+	Item.Parent = "CatalogWarehouses";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.CanChangeEditMethod = True;
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	Item.IsAlwaysDisplayed = True;
+	Item.Used = True;
+	Item.AddlOrderingAttribute = 1;
+	Item.Description = NStr("en = 'Actual address'", Common.DefaultLanguageCode());
 	
 #EndRegion
 
