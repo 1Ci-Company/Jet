@@ -16,7 +16,8 @@ Procedure Filling(FillingData, FillingText, StandardProcessing)
 		|	SalesInvoice.Currency AS Currency,
 		|	SalesInvoice.ExchangeRate AS ExchangeRate,
 		|	SalesInvoice.Multiplier AS Multiplier,
-		|	SalesInvoice.Total AS Total
+		|	SalesInvoice.Total AS Total,
+		|	SalesInvoice.BankAccount AS BankAccount
 		|INTO DocumentHeader
 		|FROM
 		|	Document.SalesInvoice AS SalesInvoice
@@ -28,7 +29,7 @@ Procedure Filling(FillingData, FillingText, StandardProcessing)
 		|SELECT TOP 1
 		|	BankAccounts.Ref AS Ref,
 		|	BankAccounts.Currency AS Currency
-		|INTO BankAccount
+		|INTO FirstBankAccount
 		|FROM
 		|	Catalog.BankAccounts AS BankAccounts
 		|		INNER JOIN DocumentHeader AS DocumentHeader
@@ -41,7 +42,11 @@ Procedure Filling(FillingData, FillingText, StandardProcessing)
 		|SELECT
 		|	VALUE(Enum.BankReceiptOperations.Customer) AS Operation,
 		|	DocumentHeader.Customer AS Counterparty,
-		|	ISNULL(BankAccount.Ref, VALUE(Catalog.BankAccounts.EmptyRef)) AS BankAccount,
+		|	CASE
+		|		WHEN DocumentHeader.BankAccount = VALUE(Catalog.BankAccounts.EmptyRef)
+		|			THEN ISNULL(FirstBankAccount.Ref, VALUE(Catalog.BankAccounts.EmptyRef))
+		|		ELSE DocumentHeader.BankAccount
+		|	END AS BankAccount,
 		|	DocumentHeader.Currency AS Currency,
 		|	DocumentHeader.ExchangeRate AS ExchangeRate,
 		|	DocumentHeader.Multiplier AS Multiplier,
@@ -54,8 +59,8 @@ Procedure Filling(FillingData, FillingText, StandardProcessing)
 		|	END AS Amount
 		|FROM
 		|	DocumentHeader AS DocumentHeader
-		|		LEFT JOIN BankAccount AS BankAccount
-		|		ON DocumentHeader.Currency = BankAccount.Currency";
+		|		LEFT JOIN FirstBankAccount AS FirstBankAccount
+		|		ON DocumentHeader.Currency = FirstBankAccount.Currency";
 		
 		Query.SetParameter("Ref", FillingData);
 		QueryResult = Query.Execute();

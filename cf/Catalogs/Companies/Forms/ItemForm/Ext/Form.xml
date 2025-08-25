@@ -24,19 +24,37 @@
 					</Title>
 					<ExtendedTooltip name="GroupGeneralExtendedTooltip" id="16"/>
 					<ChildItems>
-						<InputField name="LegalName" id="4">
-							<DataPath>Object.LegalName</DataPath>
-							<EditMode>EnterOnInput</EditMode>
-							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="LegalNameContextMenu" id="5"/>
-							<ExtendedTooltip name="LegalNameExtendedTooltip" id="6"/>
-						</InputField>
+						<CheckBoxField name="IsIndividual" id="19">
+							<DataPath>Object.IsIndividual</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Type</v8:content>
+								</v8:item>
+							</Title>
+							<CheckBoxType>Tumbler</CheckBoxType>
+							<EditFormat>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>BF='Legal entity'; BT=Individual</v8:content>
+								</v8:item>
+							</EditFormat>
+							<ContextMenu name="IsIndividualContextMenu" id="20"/>
+							<ExtendedTooltip name="IsIndividualExtendedTooltip" id="21"/>
+						</CheckBoxField>
 						<InputField name="Description" id="1">
 							<DataPath>Object.Description</DataPath>
 							<EditMode>EnterOnInput</EditMode>
 							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 							<ContextMenu name="DescriptionContextMenu" id="2"/>
 							<ExtendedTooltip name="DescriptionExtendedTooltip" id="3"/>
+						</InputField>
+						<InputField name="LegalName" id="4">
+							<DataPath>Object.LegalName</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="LegalNameContextMenu" id="5"/>
+							<ExtendedTooltip name="LegalNameExtendedTooltip" id="6"/>
 						</InputField>
 						<InputField name="TIN" id="7">
 							<DataPath>Object.TIN</DataPath>
@@ -51,6 +69,25 @@
 							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 							<ContextMenu name="PresentationCurrencyContextMenu" id="11"/>
 							<ExtendedTooltip name="PresentationCurrencyExtendedTooltip" id="12"/>
+						</InputField>
+						<InputField name="RegistrationNumber" id="25">
+							<DataPath>Object.RegistrationNumber</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="RegistrationNumberContextMenu" id="26"/>
+							<ExtendedTooltip name="RegistrationNumberExtendedTooltip" id="27"/>
+						</InputField>
+						<InputField name="RegistrationCountry" id="28">
+							<DataPath>Object.RegistrationCountry</DataPath>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="RegistrationCountryContextMenu" id="29"/>
+							<ExtendedTooltip name="RegistrationCountryExtendedTooltip" id="30"/>
+						</InputField>
+						<InputField name="RegistrationDate" id="31">
+							<DataPath>Object.RegistrationDate</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="RegistrationDateContextMenu" id="32"/>
+							<ExtendedTooltip name="RegistrationDateExtendedTooltip" id="33"/>
 						</InputField>
 					</ChildItems>
 				</Page>

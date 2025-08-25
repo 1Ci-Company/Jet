@@ -25,9 +25,19 @@
 	</AutoCommandBar>
 	<Events>
 		<Event name="OnOpen">OnOpen</Event>
-		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
 	</Events>
 	<ChildItems>
+		<InputField name="Period" id="31">
+			<DataPath>Period</DataPath>
+			<GroupHorizontalAlign>Center</GroupHorizontalAlign>
+			<HorizontalStretch>false</HorizontalStretch>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="PeriodContextMenu" id="32"/>
+			<ExtendedTooltip name="PeriodExtendedTooltip" id="33"/>
+			<Events>
+				<Event name="OnChange">PeriodOnChange</Event>
+			</Events>
+		</InputField>
 		<UsualGroup name="GroupReports" id="1">
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
@@ -466,6 +476,17 @@
 				<d4p1:valuesAxis/>
 				<d4p1:pointsAxis/>
 			</Settings>
+		</Attribute>
+		<Attribute name="Period" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Period</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:StandardPeriod</v8:Type>
+			</Type>
 		</Attribute>
 	</Attributes>
 	<Commands>

@@ -1,0 +1,1239 @@
+﻿#Region Public
+
+Procedure SetContactInformationKindProperties(Parameters) Export
+	
+	ContactsManager.SetContactInformationKindProperties(Parameters);
+	
+	If ValueIsFilled(Parameters.Name)
+		And CommonClientServer.StructureProperty(Parameters, "ShowAlways", False) Then
+		ContactInformationKind = ContactsManager.ContactInformationKindByName(Parameters.Name);
+		If ValueIsFilled(ContactInformationKind) Then
+			SetFlagShowInFormAlways(ContactInformationKind);
+		EndIf;
+	EndIf;
+	
+EndProcedure
+
+Function ContactInformationKindParameters(ContactInformationKindOrType = Undefined) Export
+	
+	ContactInformationKindParameters = ContactsManager.ContactInformationKindParameters(ContactInformationKindOrType);
+	ContactInformationKindParameters.Insert("ShowAlways", True);
+	
+	Return ContactInformationKindParameters;
+	
+EndFunction
+
+Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
+	
+	Item = Items.Add();
+	Item.PredefinedDataName = "UserWebpage";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput   = True;
+	Item.Parent = Catalogs.ContactInformationKinds.CatalogUsers;
+	Item.IDForFormulas = "Webpage";
+	Item.Used = True;
+	Item.EditingOption = "InputFieldAndDialog";
+	Item.AddlOrderingAttribute = 1;
+	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
+		ModuleNativeLanguagesSupportServer = Common.CommonModule("NationalLanguageSupportServer");
+		ModuleNativeLanguagesSupportServer.FillMultilanguageAttribute(Item, "Description", 
+		"en = 'Webpage';", LanguagesCodes);
+	Else
+		Item.Description = NStr("en = 'Webpage';", Common.DefaultLanguageCode());
+	EndIf;
+	
+#Region BusinessUnitsContactInformation
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogBusinessUnits";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Business unit"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "BusinessUnitsActualAddress";
+	Item.Parent = "CatalogBusinessUnits";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Actual address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "BusinessUnitsPhone";
+	Item.Parent = "CatalogBusinessUnits";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+	
+#EndRegion
+
+#Region CompanyContactInformation
+
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogCompanies";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Companies"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyActualAddress";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Actual address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyEmail";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 7;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Email'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyFax";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Fax;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 6;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Fax'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyLegalAddress";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "LegalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Legal address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyOtherInformation";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Other;
+	Item.CanChangeEditMethod = True;
+	Item.FieldKindOther = "SingleLineWide";
+	Item.AddlOrderingAttribute = 8;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Other'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyPhone";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyPostalAddress";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "PostalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Postal address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CompanyWebpage";
+	Item.Parent = "CatalogCompanies";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Webpage'", LanguagesCodes);
+	
+#EndRegion
+
+#Region PersonsContactInformation
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogContactPersons";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Contact persons"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "ContactPersonEmail";
+	Item.Parent = "CatalogContactPersons";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 7;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Email'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "ContactPersonMessenger";
+	Item.Parent = "CatalogContactPersons";
+	Item.Type = Enums.ContactInformationTypes.Other;
+	Item.IDForFormulas = "Messenger";
+	Item.CanChangeEditMethod = True;
+	Item.FieldKindOther = "SingleLineWide";
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 8;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Messenger'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "ContactPersonPhone";
+	Item.Parent = "CatalogContactPersons";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "ContactPersonSkype";
+	Item.Parent = "CatalogContactPersons";
+	Item.Type = Enums.ContactInformationTypes.Skype;
+	Item.IDForFormulas = "Skype";
+	Item.CanChangeEditMethod = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Skype'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "ContactPersonSocialNetwork";
+	Item.Parent = "CatalogContactPersons";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Social network'", LanguagesCodes);
+#EndRegion
+
+#Region Counterparties
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogCounterparties";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Counterparties"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyActualAddress";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Actual address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyDeliveryAddress";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "Delivery";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Delivery'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyEmail";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 7;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Email'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyFax";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Fax;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 6;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Fax'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyLegalAddress";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "LegalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Legal address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyOtherInformation";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Other;
+	Item.CanChangeEditMethod = True;
+	Item.FieldKindOther = "SingleLineWide";
+	Item.AddlOrderingAttribute = 8;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Other'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyPhone";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyPostalAddress";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "PostalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Postal address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartySkype";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.Skype;
+	Item.IDForFormulas = "Skype";
+	Item.CanChangeEditMethod = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Skype'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CounterpartyWebpage";
+	Item.Parent = "CatalogCounterparties";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Webpage'", LanguagesCodes);
+	
+#EndRegion
+
+#Region CatalogIndividuals
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogIndividuals";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Individuals"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "IndividualActualAddress";
+	Item.Parent = "CatalogIndividuals";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "ActualAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Actual address'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "IndividualEmail";
+	Item.Parent = "CatalogIndividuals";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 7;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Email'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "IndividualOtherInformation";
+	Item.Parent = "CatalogIndividuals";
+	Item.Type = Enums.ContactInformationTypes.Other;
+	Item.CanChangeEditMethod = True;
+	Item.FieldKindOther = "SingleLineWide";
+	Item.AddlOrderingAttribute = 8;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Other'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "IndividualPhone";
+	Item.Parent = "CatalogIndividuals";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "IndividualPostalAddress";
+	Item.Parent = "CatalogIndividuals";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "PostalAddress";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Postal address'", LanguagesCodes);
+	
+#EndRegion
+
+#Region CatalogLeads
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogLeads";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Leads"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogLeadsContacts";
+	Item.Parent = "CatalogLeads";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Contacts of the lead"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "LeadEmail";
+	Item.Parent = "CatalogLeadsContacts";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 7;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Email'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "LeadMessenger";
+	Item.Parent = "CatalogLeadsContacts";
+	Item.Type = Enums.ContactInformationTypes.Other;
+	Item.IDForFormulas = "Messenger";
+	Item.CanChangeEditMethod = True;
+	Item.FieldKindOther = "SingleLineWide";
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 8;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Messenger'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "LeadPhone";
+	Item.Parent = "CatalogLeadsContacts";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "LeadSkype";
+	Item.Parent = "CatalogLeadsContacts";
+	Item.Type = Enums.ContactInformationTypes.Skype;
+	Item.IDForFormulas = "Skype";
+	Item.CanChangeEditMethod = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Skype'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "LeadSocialNetwork";
+	Item.Parent = "CatalogLeadsContacts";
+	Item.Type = Enums.ContactInformationTypes.WebPage;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Social network'", LanguagesCodes);
+	
+#EndRegion
+
+#Region CatalogShippingAddresses
+	
+	Item = Items.Add(); 
+	Item.PredefinedKindName = "CatalogShippingAddresses";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Shipping addresses"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "ShippingAddress";
+	Item.Parent = "CatalogShippingAddresses";
+	Item.Type = Enums.ContactInformationTypes.Address;
+	Item.IDForFormulas = "Address";
+	Item.EditingOption = "InputField";
+	Item.IncludeCountryInPresentation = True;
+	Item.InternationalAddressFormat = True;
+	Item.StoreChangeHistory = False;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Address'", LanguagesCodes);
+	
+#EndRegion
+
+#Region CandidatesContactInformation
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CatalogCandidates";
+	Item.IsFolder = True;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = '""Candidates"" catalog contact information'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CandidateEmail";
+	Item.Parent = "CatalogCandidates";
+	Item.Type = Enums.ContactInformationTypes.Email;
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.AddlOrderingAttribute = 7;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Email'", LanguagesCodes);
+	
+	Item = Items.Add();
+	Item.PredefinedKindName = "CandidatePhone";
+	Item.Parent = "CatalogCandidates";
+	Item.Type = Enums.ContactInformationTypes.Phone;
+	Item.IDForFormulas = "Phone";
+	Item.CanChangeEditMethod = True;
+	Item.AllowMultipleValueInput = True;
+	Item.PhoneWithExtensionNumber = True;
+	Item.AddlOrderingAttribute = 5;
+	NationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
+		"en = 'Phone'", LanguagesCodes);
+
+#EndRegion
+
+EndProcedure
+
+Procedure OnGetContactInformationKindsDescriptions(Descriptions, LanguageCode) Export
+	
+	Descriptions["CatalogUsers"] = NStr("en = '""Users"" catalog contact information'", LanguageCode);
+	Descriptions["UserEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["UserPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["UserWebpage"] = NStr("en = 'Webpage'", LanguageCode);
+	Descriptions["CatalogBusinessUnits"] = NStr("en = '""Business units"" catalog contact information'", LanguageCode);
+	Descriptions["BusinessUnitsActualAddress"] = NStr("en = 'Actual address'", LanguageCode);
+	Descriptions["BusinessUnitsPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["CatalogCandidates"] = NStr("en = '""Candidates"" catalog contact information'", LanguageCode);
+	Descriptions["CandidateEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["CandidatePhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["CatalogCompanies"] = NStr("en = '""Companies"" catalog contact information'", LanguageCode);
+	Descriptions["CompanyActualAddress"] = NStr("en = 'Actual address'", LanguageCode);
+	Descriptions["CompanyEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["CompanyFax"] = NStr("en = 'Fax'", LanguageCode);
+	Descriptions["CompanyLegalAddress"] = NStr("en = 'Legal address'", LanguageCode);
+	Descriptions["CompanyOtherInformation"] = NStr("en = 'Other'", LanguageCode);
+	Descriptions["CompanyPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["CompanyPostalAddress"] = NStr("en = 'Postal address'", LanguageCode);
+	Descriptions["CompanyWebpage"] = NStr("en = 'Webpage'", LanguageCode);
+	Descriptions["CatalogContactPersons"] = NStr("en = '""Contact persons"" catalog contact information'", LanguageCode);
+	Descriptions["ContactPersonEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["ContactPersonMessenger"] = NStr("en = 'Messenger'", LanguageCode);
+	Descriptions["ContactPersonPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["ContactPersonSkype"] = NStr("en = 'Skype'", LanguageCode);
+	Descriptions["ContactPersonSocialNetwork"] = NStr("en = 'Social network'", LanguageCode);
+	Descriptions["CatalogCounterparties"] = NStr("en = '""Counterparties"" catalog contact information'", LanguageCode);
+	Descriptions["CounterpartyActualAddress"] = NStr("en = 'Actual address'", LanguageCode);
+	Descriptions["CounterpartyDeliveryAddress"] = NStr("en = 'Delivery'", LanguageCode);
+	Descriptions["CounterpartyEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["CounterpartyFax"] = NStr("en = 'Fax'", LanguageCode);
+	Descriptions["CounterpartyLegalAddress"] = NStr("en = 'Legal address'", LanguageCode);
+	Descriptions["CounterpartyOtherInformation"] = NStr("en = 'Other'", LanguageCode);
+	Descriptions["CounterpartyPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["CounterpartyPostalAddress"] = NStr("en = 'Postal address'", LanguageCode);
+	Descriptions["CounterpartySkype"] = NStr("en = 'Skype'", LanguageCode);
+	Descriptions["CounterpartyWebpage"] = NStr("en = 'Webpage'", LanguageCode);
+	Descriptions["CatalogIndividuals"] = NStr("en = '""Individuals"" catalog contact information'", LanguageCode);
+	Descriptions["IndividualActualAddress"] = NStr("en = 'Actual address'", LanguageCode);
+	Descriptions["IndividualEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["IndividualOtherInformation"] = NStr("en = 'Other'", LanguageCode);
+	Descriptions["IndividualPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["IndividualPostalAddress"] = NStr("en = 'Postal address'", LanguageCode);
+	Descriptions["CatalogLeads"] = NStr("en = '""Leads"" catalog contact information'", LanguageCode);
+	Descriptions["CatalogLeadsContacts"] = NStr("en = '""Contacts of the lead"" catalog contact information'", LanguageCode);
+	Descriptions["LeadEmail"] = NStr("en = 'Email'", LanguageCode);
+	Descriptions["LeadMessenger"] = NStr("en = 'Messenger'", LanguageCode);
+	Descriptions["LeadPhone"] = NStr("en = 'Phone'", LanguageCode);
+	Descriptions["LeadSkype"] = NStr("en = 'Skype'", LanguageCode);
+	Descriptions["LeadSocialNetwork"] = NStr("en = 'Social network'", LanguageCode);
+	Descriptions["CatalogShippingAddresses"] = NStr("en = '""Shipping addresses"" catalog contact information'", LanguageCode);
+	Descriptions["ShippingAddress"] = NStr("en = 'Address'", LanguageCode);
+<<<<<<< HEAD
+=======
+	Descriptions["CatalogChecks"] = NStr("en = '""Checks"" catalog contact information'", LanguageCode);
+	Descriptions["ChecksPaymentPlace"] = NStr("en = 'Place of payment'", LanguageCode);
+	Descriptions["CatalogPromissoryNotes"] = NStr("en = '""Promissory notes"" catalog contact information'", LanguageCode);
+	Descriptions["PromissoryNotesPaymentPlace"] = NStr("en = 'Place of payment'", LanguageCode);
+>>>>>>> df7f9a6a8c5 (CI text for local catalog)
+	
+EndProcedure
+
+Function ContactInformationParameters() Export
+	
+	Result = ContactsManager.ContactInformationParameters();
+	Result.Insert("ObjectIndex", 0);
+	Result.Insert("ContactPersonsInfo", ContactsManager.ContactInformationParameters());
+	Result.Insert("IsContactInformationOwner", True);
+	
+	Return Result;
+	
+EndFunction
+
+Procedure OnCreateAtServer(Form, Object, AdditionalParameters = Undefined) Export
+	
+	ContactsManagerInternalDrive.OnCreateAtServer(Form, Object, AdditionalParameters);
+	
+	ContactPersonsInfo = CommonClientServer.StructureProperty(AdditionalParameters, "ContactPersonsInfo", Undefined);
+	HasContactPersonsInfo = (ContactPersonsInfo <> Undefined);
+	If HasContactPersonsInfo Then
+		CreateContactPersonsAttributes(Form);
+		ContactPersonsData = Form["ContactPersonsData"];
+		IsContactInformationOwner = AdditionalParameters.IsContactInformationOwner;
+		
+		SaveContactInformationDataInForm(Form, ContactPersonsInfo, IsContactInformationOwner);
+		FillContactPersonsContactInformation(Form);
+		CreateParentContactPersonsFormItems(Form);
+		CreateContactPersonsFormItems(Form, ContactPersonsData);
+		
+		For Each ContactPersonRow In ContactPersonsData Do
+			ContactPersonRef = ContactPersonRow.ContactPerson;
+			ContactInformationParameters = ContactInformationParameters();
+			ContactInformationParameters.CITitleLocation = FormItemTitleLocation.Left;
+			ContactInformationParameters.ItemForPlacementName = ContactPersonRow.ContactInformationGroup;
+			ContactInformationParameters.ObjectIndex = ContactPersonRow.LineNumber;
+			
+			ContactsManagerInternalDrive.OnCreateAtServer(Form, ContactPersonRef, ContactInformationParameters);
+		EndDo;
+	EndIf;
+	
+EndProcedure
+
+Procedure OnReadAtServer(Form, Object, ItemForPlacementName = "ContactInformationGroup") Export
+	
+	FormAttributeList = Form.GetAttributes();
+	
+	FirstRun = True;
+	For Each Attribute In FormAttributeList Do
+		If Attribute.Name = "ContactInformationParameters" And TypeOf(Form.ContactInformationParameters) = Type("Structure") Then
+			FirstRun = False;
+			Break;
+		EndIf;
+	EndDo;
+	
+	If FirstRun Then
+		Return;
+	EndIf;
+	
+	Parameters = ContactsManagerInternalDrive.FormContactInformationParameters(Form.ContactInformationParameters, ItemForPlacementName);
+	ContactPersonsData = Form["ContactPersonsData"];
+	
+	RemoveContactPersonsFormItems(Form);
+	FillContactPersonsContactInformation(Form);
+	CreateContactPersonsFormItems(Form, ContactPersonsData);
+	
+	For Each ContactPersonRow In ContactPersonsData Do
+		DeleteCommandsAndFormItems(Form, ContactPersonRow.ContactInformationGroup);
+		ContactsManagerInternalDrive.OnReadAtServer(Form, Form[ContactPersonRow.ContactPersonObject],
+			ContactPersonRow.ContactInformationGroup, ContactPersonRow.LineNumber);
+	EndDo;
+	
+	If Form.IsContactInformationOwner Then
+		ContactsManagerInternalDrive.OnReadAtServer(Form, Object, ItemForPlacementName);
+	EndIf;
+	
+EndProcedure
+
+Procedure BeforeWriteAtServer(Form, Object, Cancel = False) Export
+	
+	If Form.IsContactInformationOwner Then
+		ContactsManager.BeforeWriteAtServer(Form, Object, Cancel);
+	EndIf;
+	
+	For Each ContactPersonRow In Form["ContactPersonsData"] Do
+		ContactPersonObject = Form[ContactPersonRow.ContactPersonObject];
+		ContactInformationGroup = ContactPersonRow.ContactInformationGroup;
+		
+		ContactsManagerInternalDrive.BeforeWriteAtServer(Form, ContactPersonObject, Cancel, ContactInformationGroup);
+	EndDo;
+	
+EndProcedure
+
+Procedure OnWriteAtServer(Form, Object, WriteParameters, Cancel = False) Export
+	
+	WriteContactPersonsData(Form, Object);
+	WriteParameters.Insert("ContactPersonsToBeNotified", Object.AdditionalProperties.ContactPersonsToBeNotified);
+	
+EndProcedure
+
+Procedure AfterWriteAtServer(Form, Object) Export
+	
+	If Form.IsContactInformationOwner Then
+		ContactsManager.AfterWriteAtServer(Form, Object);
+	EndIf;
+	
+	ContactPersonsData = Form["ContactPersonsData"];
+	If CommonClientServer.HasAttributeOrObjectProperty(Object, "ContactPerson") Then
+		If Not ValueIsFilled(Object.ContactPerson) And ContactPersonsData.Count() Then
+			For Each RowCP In ContactPersonsData Do
+				If ValueIsFilled(RowCP.ContactPerson) Then
+					Object.ContactPerson = RowCP.ContactPerson;
+					Break;
+				EndIf;
+			EndDo;
+			
+			If ValueIsFilled(Object.ContactPerson) Then
+				Object.Write();
+			EndIf;
+		EndIf;
+	EndIf;
+	
+	For Each ContactPerson In ContactPersonsData Do
+		ContactPersonObject = Form[ContactPerson.ContactPersonObject];
+		ContactsManager.AfterWriteAtServer(Form, ContactPersonObject);
+	EndDo;
+
+EndProcedure
+
+Procedure FillCheckProcessingAtServer(Form, Cancel, CheckedAttributes) Export
+	
+	Object = Form.Object;
+	ContactPersonsData = Form.ContactPersonsData;
+	
+	For Each ContactPerson In ContactPersonsData Do
+		ContactPersonObject= Form[ContactPerson.ContactPersonObject];
+		ContactsManager.FillCheckProcessingAtServer(Form, ContactPersonObject, Cancel);
+		If Cancel Then
+			Break;
+		EndIf;
+	EndDo;
+	
+	If Not Cancel And Form.IsContactInformationOwner Then
+		ContactsManager.FillCheckProcessingAtServer(Form, Object, Cancel);
+	EndIf;
+	
+EndProcedure
+
+Procedure ProcessNotificationsAtServer(Form, ParametersStructure) Export
+	
+	Object = Form.Object;
+	Items = Form.Items;
+	
+	If ParametersStructure.Owner = Object.Ref Then
+		RemoveContactPersonsFormItems(Form);
+		FillContactPersonsContactInformation(Form);
+		CreateContactPersonsFormItems(Form, Form["ContactPersonsData"]);
+		
+		For Each ContactPersonRow In Form["ContactPersonsData"] Do
+			DeleteCommandsAndFormItems(Form, ContactPersonRow.ContactInformationGroup);
+			ContactsManagerInternalDrive.OnReadAtServer(Form,
+				ContactPersonRow.ContactPerson,
+				ContactPersonRow.ContactInformationGroup,
+				ContactPersonRow.LineNumber);
+		EndDo;
+		
+		If Form.IsContactInformationOwner Then
+			ContactsManagerInternalDrive.OnReadAtServer(Form, Object.Ref);
+		EndIf;
+		
+	ElsIf ParametersStructure.PreviousOwner = Object.Ref Then
+		ContactPersonsRows = Form["ContactPersonsData"].FindRows(New Structure("ContactPerson", ParametersStructure.ContactPerson));
+		If ContactPersonsRows.Count() > 0 Then
+			AttributesToDelete = CommonClientServer.ValueInArray(ContactPersonsRows[0].ContactPersonObject);
+			Items.Delete(Items[ContactPersonsRows[0].ContactInformationGroup]);
+			Form["ContactPersonsData"].Delete(ContactPersonsRows[0]);
+			DeleteCommandsAndFormItems(Form, ContactPersonsRows[0].ContactInformationGroup);
+			
+			Form.ChangeAttributes(, AttributesToDelete);
+			Form.Modified = True;
+		EndIf;
+		
+	EndIf;
+	
+EndProcedure
+
+Procedure AddContactPerson(Form) Export
+	
+	ContactPersonsData = Form["ContactPersonsData"];
+	ContactPersonsDataRow = ContactPersonsData.Add();
+	
+	CreateFormAttributesForContactPersons(Form, CommonClientServer.ValueInArray(ContactPersonsDataRow));
+	CreateContactPersonsFormItems(Form, CommonClientServer.ValueInArray(ContactPersonsDataRow));
+	
+	ContactPersonsInfo = GetContactPersonsInfo(Form);
+	ContactPersonsInfo.ObjectIndex = ContactPersonsDataRow.LineNumber;
+	ContactPersonsInfo.ItemForPlacementName = ContactPersonsDataRow.ContactInformationGroup;
+	ContactsManagerInternalDrive.OnCreateAtServer(Form, ContactPersonsDataRow.ContactPerson, ContactPersonsInfo);
+	
+EndProcedure
+
+Function UpdateContactInformation(Form, Object, Result = Undefined) Export
+	
+	ContactsManagerInternalDrive.UpdateContactInformation(Form, Object, Result);
+	
+EndFunction
+
+#EndRegion
+
+#Region Internal
+
+#Region InfobaseUpdate
+
+Procedure OnAddUpdateHandlers(Handlers) Export
+	
+#Region Version_1_6
+	
+	Handler = Handlers.Add();
+	Handler.Version			= "1.6.2.1";
+	Handler.InitialFilling	= False;
+	Handler.ExecutionMode	= "Exclusively";
+	Handler.Procedure		= "ContactsManagerDrive.DisableShowAlwaysAttributeForLeads";
+	
+	Handler = Handlers.Add();
+	Handler.Version			= "1.6.2.3";
+	Handler.InitialFilling	= False;
+	Handler.ExecutionMode	= "Exclusively";
+	Handler.Procedure		= "Catalogs.Leads.MoveContactInformationToContactPersons";
+	
+#EndRegion
+	
+EndProcedure
+
+#Region Version_1_6
+
+Procedure DisableShowAlwaysAttributeForLeads() Export
+	
+	Query = New Query;
+	Query.Text =
+	"SELECT
+	|	ContactInformationKinds.Ref AS Ref
+	|INTO ContactInfoKinds
+	|FROM
+	|	Catalog.ContactInformationKinds AS ContactInformationKinds
+	|WHERE
+	|	ContactInformationKinds.PredefinedKindName LIKE ""%Lead%""
+	|
+	|INDEX BY
+	|	Ref
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	ContactInfoKinds.Ref AS Ref
+	|FROM
+	|	ContactInfoKinds AS ContactInfoKinds
+	|		INNER JOIN InformationRegister.ContactInformationVisibilitySettings AS ContactInformationVisibilitySettings
+	|		ON ContactInfoKinds.Ref = ContactInformationVisibilitySettings.Kind
+	|WHERE
+	|	ContactInformationVisibilitySettings.ShowInFormAlways";
+	
+	Selection = Query.Execute().Select();
+	While Selection.Next() Do
+		Try
+			SetFlagShowInFormAlways(Selection.Ref, False);
+		Except
+			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
+				NStr("en = 'Cannot save catalog ""%1"". Details: %2'", Common.DefaultLanguageCode()),
+				Selection.Ref,
+				BriefErrorDescription(ErrorInfo()));
+			
+			WriteLogEvent(
+				InfobaseUpdate.EventLogEvent(),
+				EventLogLevel.Error,
+				Metadata.Catalogs.ContactInformationKinds,
+				,
+				ErrorDescription);
+		EndTry;
+	EndDo;
+	
+EndProcedure
+
+#EndRegion
+
+#EndRegion
+
+#EndRegion
+
+#Region Private
+
+Procedure SetFlagShowInFormAlways(ContactInformationKind, SwitchOn = True)
+	
+	RecordSet = InformationRegisters.ContactInformationVisibilitySettings.CreateRecordSet();
+	
+	// Read record set.
+	RecordSet.Filter.Kind.Set(ContactInformationKind);
+	RecordSet.Read();
+	
+	If RecordSet.Count() = 0 Then
+		Record = RecordSet.Add();
+	ElsIf RecordSet[0].ShowInFormAlways = SwitchOn Then
+		Return; // Setting already, additional action is not required
+	Else
+		Record = RecordSet[0];
+	EndIf;
+	
+	Record.Kind = ContactInformationKind;
+	Record.ShowInFormAlways = SwitchOn;
+	
+	RecordSet.Write();
+	
+EndProcedure
+
+Procedure CreateContactPersonsAttributes(Form)
+	
+	AddingAttributes = New Array;
+	
+	TableName = "ContactPersonsData";
+	AddingAttributes.Add(New FormAttribute(TableName, New TypeDescription("ValueTable")));
+	AddingAttributes.Add(New FormAttribute("ContactPerson", New TypeDescription("CatalogRef.ContactPersons"), TableName));
+	AddingAttributes.Add(New FormAttribute("ContactInformationGroup", New TypeDescription("String"), TableName));
+	AddingAttributes.Add(New FormAttribute("ContactPersonObject", New TypeDescription("String"), TableName));
+	AddingAttributes.Add(New FormAttribute("LineNumber", New TypeDescription("Number"), TableName));
+	AddingAttributes.Add(New FormAttribute("Description", New TypeDescription("String"), TableName));
+	AddingAttributes.Add(New FormAttribute("Position", New TypeDescription("CatalogRef.Positions"), TableName));
+	
+	If NationalLanguageSupportServer.FirstAdditionalLanguageUsed() Then
+		AddingAttributes.Add(New FormAttribute("DescriptionLanguage1", New TypeDescription("String"), TableName));
+	EndIf;
+	
+	If NationalLanguageSupportServer.SecondAdditionalLanguageUsed() Then
+		AddingAttributes.Add(New FormAttribute("DescriptionLanguage2", New TypeDescription("String"), TableName));
+	EndIf;
+	
+	If NationalLanguageSupportDrive.ThirdAdditionalLanguageUsed() Then
+		AddingAttributes.Add(New FormAttribute("DescriptionLanguage3", New TypeDescription("String"), TableName));
+	EndIf;
+	
+	If NationalLanguageSupportDrive.FourthAdditionalLanguageUsed() Then
+		AddingAttributes.Add(New FormAttribute("DescriptionLanguage4", New TypeDescription("String"), TableName));
+	EndIf;
+	
+	AddingAttributes.Add(New FormAttribute("ContactPersonsInfo", New TypeDescription("")));
+	AddingAttributes.Add(New FormAttribute("IsContactInformationOwner", New TypeDescription("Boolean")));
+	
+	Form.ChangeAttributes(AddingAttributes);
+	
+	AddContactCommand = Form.Commands.Add("AddContactPerson");
+	AddContactCommand.Title = NStr("en = '+ contact'");
+	AddContactCommand.Action = "Attachable_AddContactPerson";
+	
+EndProcedure
+
+Procedure FillContactPersonsContactInformation(Form)
+	
+	RemoveContactPersonsAttributes(Form);
+	
+	ContactPersonsData = Form["ContactPersonsData"];
+	ContactPersonsData.Clear();
+	
+	Query = New Query;
+	Query.Text = 
+	"SELECT ALLOWED
+	|	ContactPersons.Ref AS ContactPerson,
+	|	ContactPersons.Owner AS Owner,
+	|	ContactPersons.Position AS Position,
+	|	ContactPersons.Description AS Description,
+	|	ContactPersons.AddlOrderingAttribute AS AdditionalOrderingAttribute,
+	|	ContactPersons.DescriptionLanguage1 AS DescriptionLanguage1,
+	|	ContactPersons.DescriptionLanguage2 AS DescriptionLanguage2,
+	|	ContactPersons.DescriptionLanguage3 AS DescriptionLanguage3,
+	|	ContactPersons.DescriptionLanguage4 AS DescriptionLanguage4
+	|INTO TT_Contacts
+	|FROM
+	|	Catalog.ContactPersons AS ContactPersons
+	|WHERE
+	|	ContactPersons.Owner = &Owner
+	|	AND ContactPersons.Invalid = FALSE
+	|;
+	|
+	|////////////////////////////////////////////////////////////////////////////////
+	|SELECT
+	|	TT_Contacts.ContactPerson AS ContactPerson,
+	|	TT_Contacts.Description AS Description,
+	|	TT_Contacts.Position AS Position,
+	|	TT_Contacts.DescriptionLanguage1 AS DescriptionLanguage1,
+	|	TT_Contacts.DescriptionLanguage2 AS DescriptionLanguage2,
+	|	TT_Contacts.DescriptionLanguage3 AS DescriptionLanguage3,
+	|	TT_Contacts.DescriptionLanguage4 AS DescriptionLanguage4
+	|FROM
+	|	TT_Contacts AS TT_Contacts
+	|
+	|ORDER BY
+	|	TT_Contacts.AdditionalOrderingAttribute,
+	|	Description";
+	
+	Query.SetParameter("Owner", Form.Object.Ref);
+	QueryResult = Query.Execute();
+	
+	Selection = QueryResult.Select();
+
+	While Selection.Next() Do
+		ContactPersonsRow = ContactPersonsData.Add();
+		FillPropertyValues(ContactPersonsRow, Selection);
+	EndDo;
+	
+	If ContactPersonsData.Count() = 0 Then
+		ContactPersonsRow = ContactPersonsData.Add();
+	EndIf;
+	
+	CreateFormAttributesForContactPersons(Form, ContactPersonsData);
+	
+EndProcedure
+
+Procedure CreateFormAttributesForContactPersons(Form, ContactPersonsRows)
+	
+	AttributesToAdd = New Array;
+	For Each ContactPersonsRow In ContactPersonsRows Do
+		ContactPersonsRow.LineNumber              = Form["ContactPersonsData"].IndexOf(ContactPersonsRow);
+		ContactPersonsRow.ContactInformationGroup = "ContactInformationGroup_" + Form["ContactPersonsData"].IndexOf(ContactPersonsRow);
+		ContactPersonsRow.ContactPersonObject     = "ContactPerson_" + Form["ContactPersonsData"].IndexOf(ContactPersonsRow);
+		
+		AttributesToAdd.Add(New FormAttribute(ContactPersonsRow.ContactPersonObject,
+			New TypeDescription("CatalogObject.ContactPersons"),, True));
+	EndDo;
+	
+	Form.ChangeAttributes(AttributesToAdd);
+	
+	For Each ContactPersonsRow In ContactPersonsRows Do
+		If ValueIsFilled(ContactPersonsRow.ContactPerson) Then
+			Form.ValueToFormAttribute(ContactPersonsRow.ContactPerson.GetObject(), ContactPersonsRow.ContactPersonObject);
+		EndIf;
+	EndDo;
+	
+EndProcedure
+
+Procedure CreateParentContactPersonsFormItems(Form)
+	
+	Items = Form.Items;
+	
+	ContactAndButtonGroup = Items.Add("ContactAndButtonGroup", Type("FormGroup"), Items.Contacts);
+	ContactAndButtonGroup.Type = FormGroupType.UsualGroup;
+	ContactAndButtonGroup.Representation = UsualGroupRepresentation.None;
+	ContactAndButtonGroup.Group = ChildFormItemsGroup.Vertical;
+	ContactAndButtonGroup.EnableContentChange = False;
+	
+	AddContactButton = Items.Add("AddContactPerson", Type("FormButton"), Items.Contacts);
+	AddContactButton.CommandName = "AddContactPerson";
+	AddContactButton.TextColor = StyleColors.ReportsOptionsGroupColor;
+	AddContactButton.ShapeRepresentation = ButtonShapeRepresentation.None;
+	
+EndProcedure
+
+Procedure CreateContactPersonsFormItems(Form, ContactPersonsRows)
+	
+	Items = Form.Items;
+	CurrentLanguageSuffix = Form.CurrentLanguageSuffix;
+	
+	For Each ContactPersonsDataRow In ContactPersonsRows Do
+		ContactIndex = ContactPersonsDataRow.LineNumber;
+		
+		ContactGroup = Items.Add("Contact_" + ContactIndex, Type("FormGroup"), Items["ContactAndButtonGroup"]);
+		ContactGroup.Type = FormGroupType.UsualGroup;
+		ContactGroup.Representation = UsualGroupRepresentation.None;
+		ContactGroup.Group = ChildFormItemsGroup.Vertical;
+		ContactGroup.ShowTitle = False;
+		
+		GroupDescriptionContact = Items.Add("GroupDescriptionContact_" + ContactIndex, Type("FormGroup"), ContactGroup);
+		GroupDescriptionContact.Type = FormGroupType.UsualGroup;
+		GroupDescriptionContact.Representation = UsualGroupRepresentation.None;
+		GroupDescriptionContact.Group = ChildFormItemsGroup.AlwaysHorizontal;
+		GroupDescriptionContact.ShowTitle = False;
+		
+		DescriptionContact = Items.Add("DescriptionContact_" + ContactIndex, Type("FormField"), GroupDescriptionContact);
+		DescriptionContact.Type = FormFieldType.InputField;
+		
+		DataPath = ContactPersonsDataRow.ContactPersonObject + ".Description";
+		If ValueIsFilled(ContactPersonsDataRow.ContactPerson)
+			And ValueIsFilled(ContactPersonsDataRow["Description" + CurrentLanguageSuffix]) Then
+			DataPath = DataPath + CurrentLanguageSuffix;
+		EndIf;
+		
+		DescriptionContact.DataPath = DataPath;
+		DescriptionContact.TitleLocation = FormItemTitleLocation.None;
+		DescriptionContact.InputHint = NStr("en = 'Contact name'");
+		DescriptionContact.AutoMarkIncomplete = False;
+		DescriptionContact.AutoMaxWidth = False;
+		DescriptionContact.MaxWidth = 26;
+		DescriptionContact.OpenButton = True;
+		DescriptionContact.SetAction("Opening", "Attachable_DescriptionContactOpening");
+		
+		PositionContact = Items.Add("PositionContact_" + ContactIndex, Type("FormField"), GroupDescriptionContact);
+		PositionContact.Type = FormFieldType.InputField;
+		PositionContact.DataPath = ContactPersonsDataRow.ContactPersonObject + ".Position";
+		PositionContact.TitleLocation = FormItemTitleLocation.None;
+		PositionContact.InputHint = NStr("en = 'Position'");
+		PositionContact.AutoMaxWidth = False;
+		PositionContact.MaxWidth = 25;
+		PositionContact.OpenButton = True;
+		
+		GroupCI = Items.Add("ContactInformationGroup_" + ContactIndex, Type("FormGroup"), ContactGroup);
+		GroupCI.Type = FormGroupType.UsualGroup;
+		GroupCI.Representation = UsualGroupRepresentation.None;
+		GroupCI.Group = ChildFormItemsGroup.Vertical;
+		GroupCI.ShowTitle = False;
+		
+		GroupAddCommandsContact = Items.Add("AddCommandsContact_" + ContactIndex, Type("FormGroup"), ContactGroup);
+		GroupAddCommandsContact.Type = FormGroupType.UsualGroup;
+		GroupAddCommandsContact.Representation = UsualGroupRepresentation.None;
+		GroupAddCommandsContact.Group = ChildFormItemsGroup.AlwaysHorizontal;
+		GroupAddCommandsContact.HorizontalAlignInGroup = ItemHorizontalLocation.Right;
+		GroupAddCommandsContact.ShowTitle = False;
+	EndDo;
+	
+EndProcedure
+
+Procedure RemoveContactPersonsAttributes(Form)
+	
+	ContactPersonsData = Form["ContactPersonsData"];
+	AttributesToDelete = New Array;
+	For Each ContactPerson In ContactPersonsData Do
+		AttributesToDelete.Add(ContactPerson.ContactPersonObject);
+	EndDo;
+	
+	Form.ChangeAttributes(, AttributesToDelete);
+	
+EndProcedure
+
+Procedure RemoveContactPersonsFormItems(Form)
+	
+	Items = Form.Items;
+	ItemsToDelete = New Array;
+	For Each ChildItem In Items["ContactAndButtonGroup"].ChildItems Do
+		ItemsToDelete.Add(ChildItem);
+	EndDo;
+	
+	For Each Item In ItemsToDelete Do
+		Items.Delete(Item);
+	EndDo;
+	
+EndProcedure
+
+Procedure SaveContactInformationDataInForm(Form, Val ContactPersonsInfo, IsContactInformationOwner)
+	
+	ContactPersonsInfo.CITitleLocation = ContactsManagerInternalDrive.CITitleLocationValue(ContactPersonsInfo.CITitleLocation);
+	Form.ContactPersonsInfo = ContactPersonsInfo;
+	Form.IsContactInformationOwner = IsContactInformationOwner;
+	
+EndProcedure
+
+Function GetContactPersonsInfo(Form)
+	
+	ContactPersonsInfo = Common.CopyRecursive(Form.ContactPersonsInfo);
+	ContactPersonsInfo.ItemForPlacementName = "ContactAndButtonGroup";
+	ContactPersonsInfo.CITitleLocation = PredefinedValue(ContactPersonsInfo.CITitleLocation);
+	
+	Return ContactPersonsInfo;
+	
+EndFunction
+
+Procedure DeleteCommandsAndFormItems(Form, ItemForPlacementName)
+	
+	FormAttributeList = Form.GetAttributes();
+	
+	FirstRun = True;
+	For Each Attribute In FormAttributeList Do
+		If Attribute.Name = "ContactInformationParameters" Then
+			FirstRun = False;
+			Break;
+		EndIf;
+	EndDo;
+	
+	If FirstRun Then
+		Return;
+	EndIf;
+	
+	If Form.ContactInformationParameters.Property(ItemForPlacementName) Then
+		FormContactInformationParameters = Form.ContactInformationParameters[ItemForPlacementName];
+		AddedItems = FormContactInformationParameters.AddedItems;
+		AddedItems.SortByPresentation();
+		
+		For Each ItemToRemove In AddedItems Do
+			If Form.Commands.Find(ItemToRemove.Value) <> Undefined Then
+				Form.Commands.Delete(Form.Commands[ItemToRemove.Value]);
+			EndIf;
+		EndDo;
+		
+		FormContactInformationParameters.AddedItems.Clear();
+	EndIf;
+	
+EndProcedure
+
+Procedure WriteContactPersonsData(Form, CurrentObject)
+	
+	SetPrivilegedMode(True);
+	
+	ContactPersonsToBeNotified = New Array;
+	ContactPersonsData = Form["ContactPersonsData"];
+	
+	For Each ContactPersonRow In ContactPersonsData Do
+		
+		ContactPersonObject = Form[ContactPersonRow.ContactPersonObject];
+		
+		If ValueIsFilled(ContactPersonObject.Description) Then
+			
+			ContactPerson = Form.FormAttributeToValue(ContactPersonRow.ContactPersonObject);
+			ContactPerson.Owner = CurrentObject.Ref;
+			
+			If Not ValueIsFilled(ContactPersonRow.ContactPerson) Then
+				ContactPerson.DescriptionLanguage1 = ContactPersonRow.Description; 
+				ContactPerson.DescriptionLanguage2 = ContactPersonRow.Description; 
+				ContactPerson.DescriptionLanguage3 = ContactPersonRow.Description; 
+				ContactPerson.DescriptionLanguage4 = ContactPersonRow.Description;
+			EndIf;
+			
+			ContactPerson.Write();
+			Form.ValueToFormAttribute(ContactPerson, ContactPersonRow.ContactPersonObject);
+			
+			If ValueIsFilled(ContactPersonRow.ContactPerson) Then
+				ContactPersonsToBeNotified.Add(ContactPerson.Ref);
+			EndIf;
+			
+			ContactPersonRow.ContactPerson = ContactPerson.Ref;
+			
+		EndIf;
+	EndDo;
+	
+	CurrentObject.AdditionalProperties.Insert("ContactPersonsToBeNotified", ContactPersonsToBeNotified);
+	
+EndProcedure
+
+#EndRegion

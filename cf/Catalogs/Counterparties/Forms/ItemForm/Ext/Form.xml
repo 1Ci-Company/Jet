@@ -26,6 +26,24 @@
 					</Title>
 					<ExtendedTooltip name="GroupGeneralExtendedTooltip" id="40"/>
 					<ChildItems>
+						<CheckBoxField name="IsIndividual" id="48">
+							<DataPath>Object.IsIndividual</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Type</v8:content>
+								</v8:item>
+							</Title>
+							<CheckBoxType>Tumbler</CheckBoxType>
+							<EditFormat>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>BF='Legal entity'; BT=Individual</v8:content>
+								</v8:item>
+							</EditFormat>
+							<ContextMenu name="IsIndividualContextMenu" id="49"/>
+							<ExtendedTooltip name="IsIndividualExtendedTooltip" id="50"/>
+						</CheckBoxField>
 						<UsualGroup name="GroupCustomerSupplier" id="25">
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
