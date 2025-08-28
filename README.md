@@ -56,6 +56,12 @@ Use the app to manage core accounting processes of a small company:
 
 ---
 
+## Documentation
+We’ve organized detailed documentation for this project in our [Wiki](https://github.com/1Ci-Company/Jet/wiki).  
+Check it out for guides and examples.
+
+---
+
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](https://github.com/1Ci-Company/Jet/blob/develop/LICENSE) file for details.
