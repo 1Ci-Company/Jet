@@ -3039,7 +3039,14 @@ Function JSONToContactInformationByFields(Val Value, ContactInformationType) Exp
 		ModuleAddressManagerClientServer = Common.CommonModule("AddressManagerClientServer");
 		Result = ModuleAddressManagerClientServer.NewContactInformationDetails(ContactInformationType);
 	Else
-		Result = ContactsManagerClientServer.NewContactInformationDetails(ContactInformationType);
+		// Jet
+		//Result = ContactsManagerClientServer.NewContactInformationDetails(ContactInformationType);
+		If ContactInformationType = Enums.ContactInformationTypes.Address Then
+			Result = JetAddressManagerClientServer.NewAddressDetails();
+		Else
+			Result = ContactsManagerClientServer.NewContactInformationDetails(ContactInformationType);
+		EndIf;
+		// End Jet
 	EndIf;
 	
 	If ContactInformation.Property("area") And ContactsManagerInternalCached.AreAddressManagementModulesAvailable() Then

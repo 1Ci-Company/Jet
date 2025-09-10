@@ -1,0 +1,35 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.v8.1c.ru/ssl/contactinfo">
+	<objectType name="ContactInformation">
+		<property name="Presentation" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="Comment" type="xs:string" lowerBound="0" nillable="true" form="Element"/>
+		<property name="Content"/>
+	</objectType>
+	<objectType name="Address">
+		<property name="Country" type="xs:string" lowerBound="0" form="Attribute"/>
+		<property name="Content" lowerBound="0" nillable="true"/>
+	</objectType>
+	<objectType name="PhoneNumber">
+		<property name="CountryCode" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="CityCode" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="Number" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="Extension" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+	</objectType>
+	<objectType name="FaxNumber">
+		<property name="CountryCode" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="CityCode" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="Number" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+		<property name="Extension" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+	</objectType>
+	<objectType name="Email">
+		<property name="Value" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+	</objectType>
+	<objectType name="Website">
+		<property name="Value" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+	</objectType>
+	<objectType name="Other">
+		<property name="Value" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+	</objectType>
+	<objectType name="Skype">
+		<property name="Value" type="xs:string" lowerBound="0" nillable="true" form="Attribute"/>
+	</objectType>
+</package>

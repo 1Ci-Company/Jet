@@ -53,7 +53,10 @@ Function ContactInformationInputFormName(Val InformationKind)
 	If InformationType = PredefinedValue(AllTypes + "Address") Then
 		
 		If Metadata.DataProcessors.Find("AdvancedContactInformationInput") = Undefined Then
-			Return "DataProcessor.ContactInformationInput.Form.FreeFormAddressInput";
+			// Jet
+			//Return "DataProcessor.ContactInformationInput.Form.FreeFormAddressInput";
+			Return "DataProcessor.ContactInformationInput.Form.JetAddressInput";
+			// End Jet
 		Else
 			Return "DataProcessor.AdvancedContactInformationInput.Form.AddressInput";
 		EndIf;

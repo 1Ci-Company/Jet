@@ -97,6 +97,17 @@ EndProcedure
 
 #EndRegion
 
+#Region FormHeaderItemsEventHandlers
+
+&AtClient
+Procedure VATWithholdingCodeOnChange(Item)
+	
+	Object.VATWithholdingRate = VATWithholdingServerCall.GetVATWithholdingRate(Object.VATWithholdingCode);
+	
+EndProcedure
+
+#EndRegion
+
 #Region FormCommandsEventHandlers
 
 // StandardSubsystems.AttachableCommands

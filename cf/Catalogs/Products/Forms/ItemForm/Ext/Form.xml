@@ -130,6 +130,40 @@
 				</InputField>
 			</ChildItems>
 		</UsualGroup>
+		<UsualGroup name="GroupVATWithholding" id="42">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>VAT withholding</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>KDV tevkifatı</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Collapsible</Behavior>
+			<ControlRepresentation>Picture</ControlRepresentation>
+			<ExtendedTooltip name="GroupVATWithholdingExtendedTooltip" id="43"/>
+			<ChildItems>
+				<InputField name="VATWithholdingCode" id="36">
+					<DataPath>Object.VATWithholdingCode</DataPath>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="VATWithholdingCodeContextMenu" id="37"/>
+					<ExtendedTooltip name="VATWithholdingCodeExtendedTooltip" id="38"/>
+					<Events>
+						<Event name="OnChange">VATWithholdingCodeOnChange</Event>
+					</Events>
+				</InputField>
+				<InputField name="VATWithholdingRate" id="39">
+					<DataPath>Object.VATWithholdingRate</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="VATWithholdingRateContextMenu" id="40"/>
+					<ExtendedTooltip name="VATWithholdingRateExtendedTooltip" id="41"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
 		<UsualGroup name="GroupAdditionalAttributes" id="32">
 			<Group>Vertical</Group>
 			<Representation>None</Representation>

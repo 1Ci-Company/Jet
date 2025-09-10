@@ -46,8 +46,8 @@
 //
 Procedure OnAddSubsystem(LongDesc) Export
 	
-	LongDesc.Name    = "Jet";
-	LongDesc.Version = "1.0.2.1";
+	LongDesc.Name    = "JetTr";
+	LongDesc.Version = "1.0.3.1";
 	LongDesc.DeferredHandlersExecutionMode = "Sequentially";
 	
 	LongDesc.RequiredSubsystems1.Add("StandardSubsystems");
@@ -72,6 +72,12 @@ EndProcedure
 //  Handler.ExecutionMode     = "Seamless";
 //
 Procedure OnAddUpdateHandlers(Handlers) Export
+	
+	Handler = Handlers.Add();
+	Handler.Version			= "";
+	Handler.InitialFilling	= True;
+	Handler.ExecutionMode	= "Exclusively";
+	Handler.Procedure		= "DataProcessors.FirstLaunch.FirstLaunch";
 	
 	Handler = Handlers.Add();
 	Handler.Version			= "1.0.2.1";

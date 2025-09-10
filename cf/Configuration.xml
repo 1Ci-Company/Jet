@@ -32,15 +32,15 @@
 			</xr:ContainedObject>
 		</InternalInfo>
 		<Properties>
-			<Name>Jet</Name>
+			<Name>JetTr</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>en</v8:lang>
-					<v8:content>1C:Jet, version 1.0</v8:content>
+					<v8:content>1C:Jet (Türkçe)</v8:content>
 				</v8:item>
 				<v8:item>
 					<v8:lang>tr</v8:lang>
-					<v8:content>1C:Jet, sürüm 1.0</v8:content>
+					<v8:content>1C:Jet (Türkçe)</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
@@ -57,7 +57,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.InteractiveOpenExtReportsAndDataProcessors</xr:Item>
 			</DefaultRoles>
 			<Vendor>1Ci (1C International)</Vendor>
-			<Version>1.0.2.1</Version>
+			<Version>1.0.3.1</Version>
 			<UpdateCatalogAddress/>
 			<IncludeHelpInContents>false</IncludeHelpInContents>
 			<UseManagedFormInOrdinaryApplication>false</UseManagedFormInOrdinaryApplication>
@@ -241,21 +241,21 @@
 			<BriefInformation>
 				<v8:item>
 					<v8:lang>en</v8:lang>
-					<v8:content>1C:Jet</v8:content>
+					<v8:content>1C:Jet (Türkçe)</v8:content>
 				</v8:item>
 				<v8:item>
 					<v8:lang>tr</v8:lang>
-					<v8:content>1C:Jet</v8:content>
+					<v8:content>1C:Jet (Türkçe)</v8:content>
 				</v8:item>
 			</BriefInformation>
 			<DetailedInformation>
 				<v8:item>
 					<v8:lang>en</v8:lang>
-					<v8:content>1C:Jet</v8:content>
+					<v8:content>1C:Jet (Türkçe)</v8:content>
 				</v8:item>
 				<v8:item>
 					<v8:lang>tr</v8:lang>
-					<v8:content>1C:Jet</v8:content>
+					<v8:content>1C:Jet (Türkçe)</v8:content>
 				</v8:item>
 			</DetailedInformation>
 			<Copyright>
@@ -290,13 +290,12 @@
 		</Properties>
 		<ChildObjects>
 			<Language>English</Language>
-			<Language>Colombian</Language>
-			<Language>Indonesian</Language>
 			<Language>Turkish</Language>
 			<Subsystem>Administration</Subsystem>
 			<Subsystem>AttachableReportsAndDataProcessors</Subsystem>
 			<Subsystem>CashManagement</Subsystem>
 			<Subsystem>Company</Subsystem>
+			<Subsystem>EDI</Subsystem>
 			<Subsystem>InternalSubsystem</Subsystem>
 			<Subsystem>Purchases</Subsystem>
 			<Subsystem>Sales</Subsystem>
@@ -726,6 +725,7 @@
 			<CommonPicture>Scanning</CommonPicture>
 			<CommonPicture>SectionCash</CommonPicture>
 			<CommonPicture>SectionCompany</CommonPicture>
+			<CommonPicture>SectionEDI</CommonPicture>
 			<CommonPicture>SectionPurchases</CommonPicture>
 			<CommonPicture>SectionSales</CommonPicture>
 			<CommonPicture>SectionSettings</CommonPicture>
@@ -926,6 +926,7 @@
 			<Role>UseCashManagement</Role>
 			<Role>UseCompany</Role>
 			<Role>UseCurrentToDosProcessor</Role>
+			<Role>UseEDI</Role>
 			<Role>UsePurchases</Role>
 			<Role>UseSales</Role>
 			<Role>UseUniversalReport</Role>
@@ -1024,6 +1025,11 @@
 			<CommonModule>DuplicateObjectsDetection</CommonModule>
 			<CommonModule>DuplicateObjectsDetectionClient</CommonModule>
 			<CommonModule>DuplicateObjectsDetectionOverridable</CommonModule>
+			<CommonModule>EDIClient</CommonModule>
+			<CommonModule>EDIClientServer</CommonModule>
+			<CommonModule>EDIServer</CommonModule>
+			<CommonModule>EDIServerCall</CommonModule>
+			<CommonModule>EDMServer</CommonModule>
 			<CommonModule>EmailManagement</CommonModule>
 			<CommonModule>EmailManagementClient</CommonModule>
 			<CommonModule>EmailOperations</CommonModule>
@@ -1107,8 +1113,11 @@
 			<CommonModule>InventoryTabularSectionClientServer</CommonModule>
 			<CommonModule>ItemOrderSetup</CommonModule>
 			<CommonModule>ItemOrderSetupInternal</CommonModule>
+			<CommonModule>JetAddressManager</CommonModule>
+			<CommonModule>JetAddressManagerClientServer</CommonModule>
 			<CommonModule>JetCached</CommonModule>
 			<CommonModule>JetClientServer</CommonModule>
+			<CommonModule>JetContactsManagerLocalization</CommonModule>
 			<CommonModule>JetServer</CommonModule>
 			<CommonModule>JetServerCall</CommonModule>
 			<CommonModule>MarkedObjectsDeletion</CommonModule>
@@ -1212,6 +1221,7 @@
 			<CommonModule>ToDoListInternalCached</CommonModule>
 			<CommonModule>ToDoListOverridable</CommonModule>
 			<CommonModule>ToDoListServer</CommonModule>
+			<CommonModule>UBLServer</CommonModule>
 			<CommonModule>UserNotes</CommonModule>
 			<CommonModule>UserNotesInternal</CommonModule>
 			<CommonModule>UserNotesInternalClient</CommonModule>
@@ -1232,11 +1242,13 @@
 			<CommonModule>UsersInternalClient</CommonModule>
 			<CommonModule>UsersInternalClientServer</CommonModule>
 			<CommonModule>UsersOverridable</CommonModule>
+			<CommonModule>VATWithholdingServerCall</CommonModule>
 			<CommonAttribute>EditedPredefinedAttributes</CommonAttribute>
 			<ExchangePlan>InfobaseUpdate</ExchangePlan>
 			<XDTOPackage>ApplicationExtensionsManifest_1_0_0_1</XDTOPackage>
 			<XDTOPackage>ApplicationExtensionsPermissions_1_0_0_1</XDTOPackage>
 			<XDTOPackage>CurrencyRates</XDTOPackage>
+			<XDTOPackage>ContactInformation</XDTOPackage>
 			<WebService>InterfaceVersion</WebService>
 			<EventSubscription>AdditionalAttributesFillCheckProcessing</EventSubscription>
 			<EventSubscription>AdditionalReportsAndDataProcessorsBeforeDeleteMetadataObjectID</EventSubscription>
@@ -1368,6 +1380,7 @@
 			<FunctionalOption>UseTaskStartDate</FunctionalOption>
 			<FunctionalOption>UseUserGroups</FunctionalOption>
 			<FunctionalOption>UseUserReminders</FunctionalOption>
+			<FunctionalOption>UseVATWithholdingFromSales</FunctionalOption>
 			<FunctionalOptionsParameter>AdditionalReportsAndDataProcessorsFormType</FunctionalOptionsParameter>
 			<FunctionalOptionsParameter>AdditionalReportsAndDataProcessorsRelatedObject</FunctionalOptionsParameter>
 			<DefinedType>AccessKeysValuesOwner</DefinedType>
@@ -1467,6 +1480,7 @@
 			<CommonCommand>SystemEmailAccountSetup</CommonCommand>
 			<CommonCommand>TasksByBusinessProcess</CommonCommand>
 			<CommonCommand>TasksBySubject</CommonCommand>
+			<CommonCommand>TaxSettings</CommonCommand>
 			<CommonCommand>TimeInApp</CommonCommand>
 			<CommonCommand>UserInfo</CommonCommand>
 			<CommandGroup>Catalogs</CommandGroup>
@@ -1489,6 +1503,7 @@
 			<Constant>DeniedExtensionsList</Constant>
 			<Constant>DenyDisplayingUnsafeContentInEmails</Constant>
 			<Constant>DenyUploadFilesByExtension</Constant>
+			<Constant>EDIApplicationNameEDM</Constant>
 			<Constant>ExternalResourceAccessLockParameters</Constant>
 			<Constant>ExtractTextFilesOnServer</Constant>
 			<Constant>FilesCleanupMode</Constant>
@@ -1551,6 +1566,7 @@
 			<Constant>UseTaskStartDate</Constant>
 			<Constant>UseUserGroups</Constant>
 			<Constant>UseUserReminders</Constant>
+			<Constant>UseVATWithholdingFromSales</Constant>
 			<Constant>VolumePathIgnoreRegionalSettings</Constant>
 			<Constant>WindowsTemporaryFilesDerectory</Constant>
 			<Constant>WriteIBUpdateDetailsToEventLog</Constant>
@@ -1575,6 +1591,7 @@
 			<CommonForm>EditHyperlink</CommonForm>
 			<CommonForm>EditOfficeOpenDoc</CommonForm>
 			<CommonForm>EditSpreadsheetDocument</CommonForm>
+			<CommonForm>EInvoicePrintForm</CommonForm>
 			<CommonForm>ExitWarnings</CommonForm>
 			<CommonForm>Extensions</CommonForm>
 			<CommonForm>ExternalResourcesOperationsLock</CommonForm>
@@ -1618,6 +1635,7 @@
 			<CommonForm>SelectUsersTypes</CommonForm>
 			<CommonForm>SendMessage</CommonForm>
 			<CommonForm>SendSMSMessage</CommonForm>
+			<CommonForm>TaxSettings</CommonForm>
 			<CommonForm>TimeConsumingOperation</CommonForm>
 			<CommonForm>UserAuthorizationSettings</CommonForm>
 			<CommonForm>UserGroups</CommonForm>
@@ -1641,6 +1659,8 @@
 			<Catalog>Counterparties</Catalog>
 			<Catalog>CounterpartiesAttachedFiles</Catalog>
 			<Catalog>Currencies</Catalog>
+			<Catalog>EDIProfiles</Catalog>
+			<Catalog>EDocumentStatuses</Catalog>
 			<Catalog>EmailAccounts</Catalog>
 			<Catalog>EmailMessageFolders</Catalog>
 			<Catalog>EmailProcessingRules</Catalog>
@@ -1684,14 +1704,18 @@
 			<Catalog>StringContactInteractions</Catalog>
 			<Catalog>SupplierInvoiceAttachedFiles</Catalog>
 			<Catalog>TaskPerformersGroups</Catalog>
+			<Catalog>TaxExemptionReasons</Catalog>
 			<Catalog>Units</Catalog>
 			<Catalog>UserGroups</Catalog>
 			<Catalog>UserReportSettings</Catalog>
 			<Catalog>Users</Catalog>
 			<Catalog>VATRates</Catalog>
+			<Catalog>VATWithholdingCodes</Catalog>
+			<Catalog>VATWithholdingRates</Catalog>
 			<Catalog>Warehouses</Catalog>
 			<Catalog>WarehousesAttachedFiles</Catalog>
 			<Catalog>WorldCountries</Catalog>
+			<Catalog>XSLT</Catalog>
 			<Document>BankPayment</Document>
 			<Document>BankReceipt</Document>
 			<Document>CashReceipt</Document>
@@ -1727,6 +1751,12 @@
 			<Enum>ContactInformationTypes</Enum>
 			<Enum>DeferredHandlersExecutionModes</Enum>
 			<Enum>DoubleClickFileActions</Enum>
+			<Enum>EDIProviders</Enum>
+			<Enum>EDocumentDeliveryType</Enum>
+			<Enum>EDocumentScenario</Enum>
+			<Enum>EDocumentStatus</Enum>
+			<Enum>EDocumentType</Enum>
+			<Enum>EInvoiceTypeCode</Enum>
 			<Enum>EmailEditingMethods</Enum>
 			<Enum>EmailMessagesStatuses</Enum>
 			<Enum>EmailTextTypes</Enum>
@@ -1808,6 +1838,7 @@
 			<DataProcessor>EventLog</DataProcessor>
 			<DataProcessor>FilesOperations</DataProcessor>
 			<DataProcessor>FileTransfer</DataProcessor>
+			<DataProcessor>FirstLaunch</DataProcessor>
 			<DataProcessor>FormulasConstructor</DataProcessor>
 			<DataProcessor>FullTextSearchInData</DataProcessor>
 			<DataProcessor>ImportDataFromFile</DataProcessor>
@@ -1847,6 +1878,8 @@
 			<InformationRegister>DefaultAccessGroupsValues</InformationRegister>
 			<InformationRegister>DeleteFilesBinaryData</InformationRegister>
 			<InformationRegister>DeleteStoredVersionFiles</InformationRegister>
+			<InformationRegister>EDIUUIDs</InformationRegister>
+			<InformationRegister>EDocumentsStatuses</InformationRegister>
 			<InformationRegister>EmailAccountSettings</InformationRegister>
 			<InformationRegister>EmailFolderStates</InformationRegister>
 			<InformationRegister>ExchangeRates</InformationRegister>
@@ -1892,6 +1925,7 @@
 			<InformationRegister>SubsystemsVersions</InformationRegister>
 			<InformationRegister>SuppliedPrintTemplates</InformationRegister>
 			<InformationRegister>TaskPerformers</InformationRegister>
+			<InformationRegister>TaxpayerList</InformationRegister>
 			<InformationRegister>TimeConsumingOperations</InformationRegister>
 			<InformationRegister>UpdateHandlers</InformationRegister>
 			<InformationRegister>UpdateProgress</InformationRegister>

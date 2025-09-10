@@ -7,9 +7,24 @@ Procedure Filling(FillingData, FillingText, StandardProcessing)
 	
 	ObjectFillingJet.FillDocument(ThisObject, FillingData);
 	
+	VATWithholding = GetFunctionalOption("UseVATWithholdingFromSales");
+	
 EndProcedure
 
 Procedure Posting(Cancel, PostingMode)
+	
+	// EDI
+	If EDIServer.DocumentCanceled(Ref) Then
+		MessageText = NStr("en = 'Document has already been canceled on EDI system. It is prohibited to post documents after cancelation.'; tr = 'Belge EDI sisteminde iptal edilmiştir. İptal edildikten sonra belge kaydedilemez.'");
+		Common.MessageToUser(MessageText,,,, Cancel);
+	EndIf;
+	
+	// Check for rejected e-document
+	If EDIServer.DocumentRejected(Ref) = 1 Then
+		MessageText = NStr("en = 'Document is rejected by counterparty on EDI system. It is prohibited to post documents after rejection.'; tr = 'Belge alıcı tarafından EDI sisteminde reddedilmiştir. Reddedildikten sonra belge kaydedilemez.'");
+		Common.MessageToUser(MessageText,,,, Cancel);
+	EndIf;
+	// End EDI
 	
 	// Initialization of additional properties for document posting.
 	PostingManagement.InitializeAdditionalPropertiesForPosting(Ref, AdditionalProperties);
@@ -63,6 +78,14 @@ Procedure BeforeWrite(Cancel, WriteMode, PostingMode)
 	EndIf;
 	
 	Total = Inventory.Total("Total");
+	
+EndProcedure
+
+Procedure OnCopy(CopiedObject)
+	
+	// EDI
+	EDocumentNumber = "";
+	// End EDI
 	
 EndProcedure
 

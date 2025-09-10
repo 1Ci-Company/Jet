@@ -23,13 +23,135 @@
 				<Representation>Picture</Representation>
 				<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="124"/>
 			</Popup>
+			<Popup name="EDISubmenu" id="214">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>EDI</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>EDI</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="EDISubmenuExtendedTooltip" id="215"/>
+				<ChildItems>
+					<Button name="FormEInvoiceCreate" id="216">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoiceCreate</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Create e-document</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>E-belge oluştur</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoiceCreateExtendedTooltip" id="209"/>
+					</Button>
+					<Button name="FormEInvoicePrint" id="210">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoicePrint</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Print</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Yazdır</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoicePrintExtendedTooltip" id="211"/>
+					</Button>
+					<Button name="FormEInvoiceSubmit" id="212">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoiceSubmit</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Submit</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Gönder</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoiceSubmitExtendedTooltip" id="213"/>
+					</Button>
+					<Button name="FormEInvoiceRefreshStatus" id="176">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoiceRefreshStatus</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Refresh status</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Durumu yenile</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoiceRefreshStatusExtendedTooltip" id="177"/>
+					</Button>
+					<Button name="FormEInvoiceDelete" id="170">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoiceDelete</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Delete</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Sil</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoiceDeleteExtendedTooltip" id="171"/>
+					</Button>
+					<Button name="FormEInvoiceCancel" id="172">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoiceCancel</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Cancel</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>İptal et</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoiceCancelExtendedTooltip" id="173"/>
+					</Button>
+					<Button name="FormEInvoiceDownload" id="174">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.EInvoiceDownload</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Download</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>İndir</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="FormEInvoiceDownloadExtendedTooltip" id="175"/>
+					</Button>
+				</ChildItems>
+			</Popup>
 		</ChildItems>
 	</AutoCommandBar>
 	<Events>
 		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="AfterWriteAtServer">AfterWriteAtServer</Event>
 		<Event name="NotificationProcessing">NotificationProcessing</Event>
 		<Event name="OnReadAtServer">OnReadAtServer</Event>
 		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWrite">BeforeWrite</Event>
 		<Event name="BeforeWriteAtServer">BeforeWriteAtServer</Event>
 		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
 		<Event name="FillCheckProcessingAtServer">FillCheckProcessingAtServer</Event>
@@ -93,15 +215,40 @@
 							<ShowTitle>false</ShowTitle>
 							<ExtendedTooltip name="GroupTaxExtendedTooltip" id="166"/>
 							<ChildItems>
-								<CheckBoxField name="ExemptFromVAT" id="167">
-									<DataPath>Object.ExemptFromVAT</DataPath>
-									<CheckBoxType>Switcher</CheckBoxType>
-									<ContextMenu name="ExemptFromVATContextMenu" id="168"/>
-									<ExtendedTooltip name="ExemptFromVATExtendedTooltip" id="169"/>
-									<Events>
-										<Event name="OnChange">ExemptFromVATOnChange</Event>
-									</Events>
-								</CheckBoxField>
+								<UsualGroup name="GroupVAT" id="181">
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupVATExtendedTooltip" id="182"/>
+									<ChildItems>
+										<CheckBoxField name="ExemptFromVAT" id="167">
+											<DataPath>Object.ExemptFromVAT</DataPath>
+											<CheckBoxType>Switcher</CheckBoxType>
+											<ContextMenu name="ExemptFromVATContextMenu" id="168"/>
+											<ExtendedTooltip name="ExemptFromVATExtendedTooltip" id="169"/>
+											<Events>
+												<Event name="OnChange">ExemptFromVATOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="VATWithholding" id="178">
+											<DataPath>Object.VATWithholding</DataPath>
+											<CheckBoxType>Switcher</CheckBoxType>
+											<ContextMenu name="VATWithholdingContextMenu" id="179"/>
+											<ExtendedTooltip name="VATWithholdingExtendedTooltip" id="180"/>
+											<Events>
+												<Event name="OnChange">VATWithholdingOnChange</Event>
+											</Events>
+										</CheckBoxField>
+										<CheckBoxField name="UseTaxExemptionReason" id="223">
+											<DataPath>Object.UseTaxExemptionReason</DataPath>
+											<CheckBoxType>Switcher</CheckBoxType>
+											<ContextMenu name="UseTaxExemptionReasonContextMenu" id="224"/>
+											<ExtendedTooltip name="UseTaxExemptionReasonExtendedTooltip" id="225"/>
+											<Events>
+												<Event name="OnChange">UseTaxExemptionReasonOnChange</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
 							</ChildItems>
 						</UsualGroup>
 					</ChildItems>
@@ -200,6 +347,11 @@
 										<CommandName>Form.Command.ImportInventoryFromFile</CommandName>
 										<ExtendedTooltip name="InventoryImportInventoryFromFileExtendedTooltip" id="161"/>
 									</Button>
+									<Button name="InventoryFillInTaxExemptionReasons" id="226">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.FillInTaxExemptionReasons</CommandName>
+										<ExtendedTooltip name="InventoryFillInTaxExemptionReasonsExtendedTooltip" id="227"/>
+									</Button>
 								</ChildItems>
 							</AutoCommandBar>
 							<ExtendedTooltip name="InventoryExtendedTooltip" id="35"/>
@@ -290,6 +442,87 @@
 										<Event name="OnChange">InventoryVATRateOnChange</Event>
 									</Events>
 								</InputField>
+								<InputField name="InventoryVATTotal" id="183">
+									<DataPath>Object.Inventory.VATTotal</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryVATTotalContextMenu" id="184"/>
+									<ExtendedTooltip name="InventoryVATTotalExtendedTooltip" id="185"/>
+								</InputField>
+								<ColumnGroup name="InventoryVATWithholdingGroup" id="186">
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>VAT withholding</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>KDV tevkifatı</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<ShowInHeader>true</ShowInHeader>
+									<ExtendedTooltip name="InventoryVATWithholdingGroupExtendedTooltip" id="187"/>
+									<ChildItems>
+										<InputField name="InventoryVATWithholdingCode" id="188">
+											<DataPath>Object.Inventory.VATWithholdingCode</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Code</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Kod</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="InventoryVATWithholdingCodeContextMenu" id="189"/>
+											<ExtendedTooltip name="InventoryVATWithholdingCodeExtendedTooltip" id="190"/>
+											<Events>
+												<Event name="OnChange">InventoryVATWithholdingCodeOnChange</Event>
+											</Events>
+										</InputField>
+										<InputField name="InventoryVATWithholdingRate" id="191">
+											<DataPath>Object.Inventory.VATWithholdingRate</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Rate</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Oran</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="InventoryVATWithholdingRateContextMenu" id="192"/>
+											<ExtendedTooltip name="InventoryVATWithholdingRateExtendedTooltip" id="193"/>
+										</InputField>
+										<InputField name="InventoryVATWithholdingAmount" id="194">
+											<DataPath>Object.Inventory.VATWithholdingAmount</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<Title>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Amount</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Tutar</v8:content>
+												</v8:item>
+											</Title>
+											<EditMode>EnterOnInput</EditMode>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="InventoryVATWithholdingAmountContextMenu" id="195"/>
+											<ExtendedTooltip name="InventoryVATWithholdingAmountExtendedTooltip" id="196"/>
+										</InputField>
+									</ChildItems>
+								</ColumnGroup>
 								<InputField name="InventoryVATAmount" id="66">
 									<DataPath>Object.Inventory.VATAmount</DataPath>
 									<ReadOnly>true</ReadOnly>
@@ -297,6 +530,32 @@
 									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 									<ContextMenu name="InventoryVATAmountContextMenu" id="67"/>
 									<ExtendedTooltip name="InventoryVATAmountExtendedTooltip" id="68"/>
+								</InputField>
+								<InputField name="InventoryTaxExemptionReason" id="217">
+									<DataPath>Object.Inventory.TaxExemptionReason</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<DropListButton>false</DropListButton>
+									<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+									<CreateButton>false</CreateButton>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ChooseType>false</ChooseType>
+									<TextEdit>false</TextEdit>
+									<InputHint>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>only for 0% VAT rate</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>sadece %0 KDV için</v8:content>
+										</v8:item>
+									</InputHint>
+									<ChoiceHistoryOnInput>DontUse</ChoiceHistoryOnInput>
+									<ContextMenu name="InventoryTaxExemptionReasonContextMenu" id="218"/>
+									<ExtendedTooltip name="InventoryTaxExemptionReasonExtendedTooltip" id="219"/>
+									<Events>
+										<Event name="StartChoice">InventoryTaxExemptionReasonStartChoice</Event>
+									</Events>
 								</InputField>
 								<InputField name="InventoryTotal" id="69">
 									<DataPath>Object.Inventory.Total</DataPath>
@@ -329,6 +588,21 @@
 									</Title>
 									<ContextMenu name="TotalAmountContextMenu" id="113"/>
 									<ExtendedTooltip name="TotalAmountExtendedTooltip" id="114"/>
+								</LabelField>
+								<LabelField name="TotalVATWithholdingAmount" id="206">
+									<DataPath>Object.Inventory.TotalVATWithholdingAmount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>VAT withholding amount</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>KDV tevkifat tutarı</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalVATWithholdingAmountContextMenu" id="207"/>
+									<ExtendedTooltip name="TotalVATWithholdingAmountExtendedTooltip" id="208"/>
 								</LabelField>
 								<LabelField name="TotalVATAmount" id="115">
 									<DataPath>Object.Inventory.TotalVATAmount</DataPath>
@@ -501,6 +775,121 @@
 						</UsualGroup>
 					</ChildItems>
 				</Page>
+				<Page name="GroupEInvoiceInfo" id="228">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>E-Invoice</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>E-Fatura</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupEInvoiceInfoExtendedTooltip" id="229"/>
+					<ChildItems>
+						<UsualGroup name="GroupEDocumentHeader" id="241">
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupEDocumentHeaderExtendedTooltip" id="242"/>
+							<ChildItems>
+								<LabelField name="EDocumentNumber" id="243">
+									<DataPath>Object.EDocumentNumber</DataPath>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ContextMenu name="EDocumentNumberContextMenu" id="244"/>
+									<ExtendedTooltip name="EDocumentNumberExtendedTooltip" id="245"/>
+								</LabelField>
+								<LabelField name="IsEInvoice" id="261">
+									<DataPath>Object.IsEInvoice</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>E-Invoice type</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>E-fatura türü</v8:content>
+										</v8:item>
+									</Title>
+									<Format>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>BF=E-Archive; BT=E-Invoice</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>BF=E-arşiv; BT=E-fatura</v8:content>
+										</v8:item>
+									</Format>
+									<ContextMenu name="IsEInvoiceContextMenu" id="262"/>
+									<ExtendedTooltip name="IsEInvoiceExtendedTooltip" id="263"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupEInvoice" id="230">
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupEInvoiceExtendedTooltip" id="231"/>
+							<ChildItems>
+								<InputField name="EInvoiceScenario" id="232">
+									<DataPath>Object.EDocumentScenario</DataPath>
+									<ContextMenu name="EInvoiceScenarioContextMenu" id="233"/>
+									<ExtendedTooltip name="EInvoiceScenarioExtendedTooltip" id="234"/>
+								</InputField>
+								<InputField name="Identifier" id="235">
+									<DataPath>Object.Identifier</DataPath>
+									<OpenButton>false</OpenButton>
+									<ListChoiceMode>true</ListChoiceMode>
+									<QuickChoice>true</QuickChoice>
+									<TextEdit>false</TextEdit>
+									<ContextMenu name="IdentifierContextMenu" id="236"/>
+									<ExtendedTooltip name="IdentifierExtendedTooltip" id="237"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<InputField name="EDocumentDeliveryType" id="238">
+							<DataPath>Object.EDocumentDeliveryType</DataPath>
+							<ContextMenu name="EDocumentDeliveryTypeContextMenu" id="239"/>
+							<ExtendedTooltip name="EDocumentDeliveryTypeExtendedTooltip" id="240"/>
+						</InputField>
+						<UsualGroup name="EDIStateGroup" id="251">
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="EDIStateGroupExtendedTooltip" id="252"/>
+							<ChildItems>
+								<LabelDecoration name="EDIStateDecoration" id="253">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Hyperlink>true</Hyperlink>
+									<ContextMenu name="EDIStateDecorationContextMenu" id="254"/>
+									<ExtendedTooltip name="EDIStateDecorationExtendedTooltip" id="255"/>
+									<Events>
+										<Event name="Click">EDIStateDecorationClick</Event>
+									</Events>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="EDIResponseStatusGroup" id="256">
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="EDIResponseStatusGroupExtendedTooltip" id="257"/>
+							<ChildItems>
+								<LabelDecoration name="EDIResponseStatusDecoration" id="258">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Hyperlink>true</Hyperlink>
+									<ContextMenu name="EDIResponseStatusDecorationContextMenu" id="259"/>
+									<ExtendedTooltip name="EDIResponseStatusDecorationExtendedTooltip" id="260"/>
+								</LabelDecoration>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
 			</ChildItems>
 		</Pages>
 	</ChildItems>
@@ -518,6 +907,19 @@
 		<Attribute name="PresentationCurrency" id="2">
 			<Type>
 				<v8:Type>cfg:CatalogRef.Currencies</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="UseEDIExchange" id="3">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="EDIProfile" id="4">
+			<Type/>
+		</Attribute>
+		<Attribute name="Company" id="6">
+			<Type>
+				<v8:Type>cfg:CatalogRef.Companies</v8:Type>
 			</Type>
 		</Attribute>
 	</Attributes>
@@ -559,6 +961,139 @@
 			<Action>ImportInventoryFromFile</Action>
 			<ModifiesSavedData>true</ModifiesSavedData>
 			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="EInvoiceCreate" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Create e-document</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>E-belge oluştur</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoiceCreate</Action>
+		</Command>
+		<Command name="EInvoiceSubmit" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Submit</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Gönder</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.OpenFile</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoiceSubmit</Action>
+		</Command>
+		<Command name="EInvoicePrint" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Print</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Yazdır</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.Print</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoicePrint</Action>
+		</Command>
+		<Command name="EInvoiceDownload" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Download</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>İndir</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.SaveFile</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoiceDownload</Action>
+		</Command>
+		<Command name="EInvoiceDelete" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Delete</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sil</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.Delete</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoiceDelete</Action>
+		</Command>
+		<Command name="EInvoiceCancel" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>İptal et</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.MarkToDelete</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoiceCancel</Action>
+		</Command>
+		<Command name="EInvoiceRefreshStatus" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh status</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Durumu yenile</v8:content>
+				</v8:item>
+			</Title>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>EInvoiceRefreshStatus</Action>
+		</Command>
+		<Command name="FillInTaxExemptionReasons" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fill in tax exemption reasons</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Vergi muafiyeti sebeplerini doldur</v8:content>
+				</v8:item>
+			</Title>
+			<Action>FillInTaxExemptionReasons</Action>
+			<ModifiesSavedData>true</ModifiesSavedData>
 		</Command>
 	</Commands>
 </Form>

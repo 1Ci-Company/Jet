@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<Title>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Tax settings</v8:content>
+		</v8:item>
+		<v8:item>
+			<v8:lang>tr</v8:lang>
+			<v8:content>Vergi ayarları</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<Customizable>false</Customizable>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupVATWithholding" id="4">
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupVATWithholdingExtendedTooltip" id="5"/>
+			<ChildItems>
+				<CheckBoxField name="UseVATWithholdingFromSales" id="1">
+					<DataPath>ConstantsSet.UseVATWithholdingFromSales</DataPath>
+					<TitleTextColor>style:FormTextColor</TitleTextColor>
+					<TitleFont ref="sys:DefaultGUIFont" height="10" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+					<TitleLocation>Right</TitleLocation>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>This option allows you to use VAT withholding in the sales documents. The check box cannot be cleared once VAT withholding is applied to any document.</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Bu seçenek satış belgelerinde KDV tevkifatı kullanmanıza olanak tanır. Herhangi bir belgeye KDV tevkifatı uygulanıyorsa onay kutusu temizlenemez.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="UseVATWithholdingFromSalesContextMenu" id="2"/>
+					<ExtendedTooltip name="UseVATWithholdingFromSalesExtendedTooltip" id="3"/>
+					<Events>
+						<Event name="OnChange">UseVATWithholdingFromSalesOnChange</Event>
+					</Events>
+				</CheckBoxField>
+				<UsualGroup name="GroupVATWithholdingCatalogs" id="6">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupVATWithholdingCatalogsExtendedTooltip" id="7"/>
+					<ChildItems>
+						<Button name="CatalogVATWithholdingCodes" id="8">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.CatalogVATWithholdingCodes</CommandName>
+							<ExtendedTooltip name="CatalogVATWithholdingCodesExtendedTooltip" id="9"/>
+						</Button>
+						<Button name="CatalogVATWithholdingRates" id="10">
+							<Type>Hyperlink</Type>
+							<CommandName>Form.Command.CatalogVATWithholdingRates</CommandName>
+							<ExtendedTooltip name="CatalogVATWithholdingRatesExtendedTooltip" id="11"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupTax" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Tax</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Vergi</v8:content>
+				</v8:item>
+			</Title>
+			<TitleTextColor>style:FormTextColor</TitleTextColor>
+			<TitleFont ref="sys:DefaultGUIFont" height="10" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+			<Group>Vertical</Group>
+			<Representation>NormalSeparation</Representation>
+			<ExtendedTooltip name="GroupTaxExtendedTooltip" id="13"/>
+			<ChildItems>
+				<Button name="CatalogTaxExemptionReasons" id="14">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.CatalogTaxExemptionReasons</CommandName>
+					<ExtendedTooltip name="CatalogTaxExemptionReasonsExtendedTooltip" id="15"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ConstantsSet" id="1">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>ConstantsSet.UseVATWithholdingFromSales</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="CatalogVATWithholdingCodes" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>VAT withholding codes</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>KDV tevkifat kodu</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CatalogVATWithholdingCodes</Action>
+		</Command>
+		<Command name="CatalogVATWithholdingRates" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>VAT withholding rates</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>KDV tevkifat oranları</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CatalogVATWithholdingRates</Action>
+		</Command>
+		<Command name="CatalogTaxExemptionReasons" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Tax exemption reasons</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Vergi muafiyeti sebepleri</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CatalogTaxExemptionReasons</Action>
+		</Command>
+	</Commands>
+</Form>

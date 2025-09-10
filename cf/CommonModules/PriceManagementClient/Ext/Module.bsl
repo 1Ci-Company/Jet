@@ -40,7 +40,7 @@ Procedure RefillTabularSectionPricesByPriceType(Form, TabularSectionName = "Inve
 		RowArray = Object[TabularSectionName].FindRows(FilterStructure);
 		For Each Row In RowArray Do
 			Row.Price = ProductPriceItem.Value;
-			InventoryTabularSectionClientServer.CalculateAmount(Row);
+			InventoryTabularSectionClientServer.CalculateAmount(Row, Object.VATWithholding);
 		EndDo;
 		
 	EndDo;

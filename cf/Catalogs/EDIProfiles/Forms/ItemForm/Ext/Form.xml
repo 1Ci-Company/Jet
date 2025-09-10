@@ -1,0 +1,738 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="FormCommandBar" id="-1"/>
+	<Events>
+		<Event name="AfterWrite">AfterWrite</Event>
+		<Event name="OnOpen">OnOpen</Event>
+		<Event name="BeforeWrite">BeforeWrite</Event>
+		<Event name="OnCreateAtServer">OnCreateAtServer</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="Pages" id="174">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sayfalar</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sayfalar</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="175"/>
+			<ChildItems>
+				<Page name="GroupMain" id="170">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Main</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Genel</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Group main</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Genel grup</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="GroupMainExtendedTooltip" id="171"/>
+					<ChildItems>
+						<InputField name="Description" id="4">
+							<DataPath>Object.Description</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<MaxWidth>33</MaxWidth>
+							<ContextMenu name="DescriptionContextMenu" id="5"/>
+							<ExtendedTooltip name="DescriptionExtendedTooltip" id="6"/>
+						</InputField>
+						<InputField name="Company" id="7">
+							<DataPath>Object.Company</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="CompanyContextMenu" id="8"/>
+							<ExtendedTooltip name="CompanyExtendedTooltip" id="169"/>
+						</InputField>
+						<UsualGroup name="GroupCompany" id="49">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Company info</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>İş yeri bilgisi</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTipRepresentation>ShowTop</ToolTipRepresentation>
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>NormalSeparation</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupCompanyExtendedTooltip" id="50">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Provide the company details exactly as they appear in the EDI system.</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>tr</v8:lang>
+										<v8:content>İş yeri bilgilerini EDI sisteminde göründüğü gibi girin.</v8:content>
+									</v8:item>
+								</Title>
+							</ExtendedTooltip>
+							<ChildItems>
+								<UsualGroup name="GroupUseEDocuments" id="283">
+									<Width>54</Width>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="GroupUseEDocumentsExtendedTooltip" id="284"/>
+									<ChildItems>
+										<CheckBoxField name="UseEInvoice" id="142">
+											<DataPath>Object.UseEInvoice</DataPath>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<CheckBoxType>Switcher</CheckBoxType>
+											<ContextMenu name="UseEInvoiceContextMenu" id="143"/>
+											<ExtendedTooltip name="UseEInvoiceExtendedTooltip" id="144"/>
+											<Events>
+												<Event name="OnChange">UseEInvoiceOnChange</Event>
+											</Events>
+										</CheckBoxField>
+									</ChildItems>
+								</UsualGroup>
+								<InputField name="CompanyEmail" id="32">
+									<DataPath>Object.SenderTagEInvoice</DataPath>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<Width>30</Width>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>30</MaxWidth>
+									<ContextMenu name="CompanyEmailContextMenu" id="33"/>
+									<ExtendedTooltip name="CompanyEmailExtendedTooltip" id="34"/>
+								</InputField>
+								<InputField name="EInvoiceStartDate" id="145">
+									<DataPath>Object.EInvoiceStartDate</DataPath>
+									<ContextMenu name="EInvoiceStartDateContextMenu" id="146"/>
+									<ExtendedTooltip name="EInvoiceStartDateExtendedTooltip" id="147"/>
+								</InputField>
+								<RadioButtonField name="EDocumentScenario" id="148">
+									<DataPath>Object.EDocumentScenario</DataPath>
+									<ToolTipRepresentation>Button</ToolTipRepresentation>
+									<RadioButtonType>Auto</RadioButtonType>
+									<ColumnsCount>2</ColumnsCount>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Basic invoice</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>tr</v8:lang>
+														<v8:content>Temel fatura</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xr:DesignTimeRef">Enum.EDocumentScenario.EnumValue.TEMELFATURA</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Commercial invoice </v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>tr</v8:lang>
+														<v8:content>Ticari fatura </v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xr:DesignTimeRef">Enum.EDocumentScenario.EnumValue.TICARIFATURA</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="EDocumentScenarioContextMenu" id="149"/>
+									<ExtendedTooltip name="EDocumentScenarioExtendedTooltip" id="150"/>
+								</RadioButtonField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="GroupSettings" id="172">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Settings</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Ayarlar</v8:content>
+						</v8:item>
+					</Title>
+					<Group>AlwaysHorizontal</Group>
+					<ExtendedTooltip name="GroupSettingsExtendedTooltip" id="173"/>
+					<ChildItems>
+						<UsualGroup name="GroupHosts" id="88">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Provider</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Entegratör</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Group hosts</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Entegratörler grubu</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>AlwaysHorizontal</Group>
+							<Behavior>Usual</Behavior>
+							<ExtendedTooltip name="GroupHostsExtendedTooltip" id="89"/>
+							<ChildItems>
+								<Table name="Hosts" id="90">
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<DataPath>Object.Hosts</DataPath>
+									<CommandSet>
+										<ExcludedCommand>Add</ExcludedCommand>
+										<ExcludedCommand>Change</ExcludedCommand>
+										<ExcludedCommand>Copy</ExcludedCommand>
+										<ExcludedCommand>MoveDown</ExcludedCommand>
+										<ExcludedCommand>MoveUp</ExcludedCommand>
+									</CommandSet>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="HostsContextMenu" id="91"/>
+									<AutoCommandBar name="HostsCommandBar" id="92">
+										<Autofill>false</Autofill>
+										<ChildItems>
+											<Button name="HostsAddHost" id="276">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Command.AddHost</CommandName>
+												<Picture>
+													<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+													<xr:LoadTransparent>true</xr:LoadTransparent>
+												</Picture>
+												<ExtendedTooltip name="HostsAddHostExtendedTooltip" id="277"/>
+											</Button>
+											<Button name="HostsEditHost" id="297">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Command.EditHost</CommandName>
+												<ExtendedTooltip name="HostsEditHostExtendedTooltip" id="298"/>
+											</Button>
+											<Button name="HostsCheckEDIProfile" id="278">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Command.CheckEDIProfile</CommandName>
+												<ExtendedTooltip name="HostsCheckEDIProfileExtendedTooltip" id="279"/>
+											</Button>
+										</ChildItems>
+									</AutoCommandBar>
+									<ExtendedTooltip name="HostsExtendedTooltip" id="93"/>
+									<SearchStringAddition name="HostsSearchString" id="94">
+										<AdditionSource>
+											<Item>Hosts</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="HostsSearchStringContextMenu" id="95"/>
+										<ExtendedTooltip name="HostsSearchStringExtendedTooltip" id="96"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="HostsViewStatus" id="97">
+										<AdditionSource>
+											<Item>Hosts</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="HostsViewStatusContextMenu" id="98"/>
+										<ExtendedTooltip name="HostsViewStatusExtendedTooltip" id="99"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="HostsSearchControl" id="100">
+										<AdditionSource>
+											<Item>Hosts</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="HostsSearchControlContextMenu" id="101"/>
+										<ExtendedTooltip name="HostsSearchControlExtendedTooltip" id="102"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="Selection">HostsSelection</Event>
+										<Event name="BeforeDeleteRow">HostsBeforeDeleteRow</Event>
+										<Event name="OnActivateRow">HostsOnActivateRow</Event>
+										<Event name="OnStartEdit">HostsOnStartEdit</Event>
+									</Events>
+									<ChildItems>
+										<LabelField name="HostsLineNumber" id="103">
+											<DataPath>Object.Hosts.LineNumber</DataPath>
+											<Visible>false</Visible>
+											<ReadOnly>true</ReadOnly>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="HostsLineNumberContextMenu" id="104"/>
+											<ExtendedTooltip name="HostsLineNumberExtendedTooltip" id="105"/>
+										</LabelField>
+										<InputField name="HostsDescription" id="139">
+											<DataPath>Object.Hosts.Description</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="HostsDescriptionContextMenu" id="140"/>
+											<ExtendedTooltip name="HostsDescriptionExtendedTooltip" id="141"/>
+										</InputField>
+										<InputField name="HostsProvider" id="136">
+											<DataPath>Object.Hosts.Provider</DataPath>
+											<ReadOnly>true</ReadOnly>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="HostsProviderContextMenu" id="137"/>
+											<ExtendedTooltip name="HostsProviderExtendedTooltip" id="138"/>
+										</InputField>
+										<LabelField name="HostsSourceID" id="157">
+											<DataPath>Object.Hosts.LineID</DataPath>
+											<UserVisible>
+												<xr:Common>false</xr:Common>
+											</UserVisible>
+											<ReadOnly>true</ReadOnly>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="HostsSourceIDContextMenu" id="158"/>
+											<ExtendedTooltip name="HostsSourceIDExtendedTooltip" id="159"/>
+										</LabelField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupDocumentsForExchange" id="55">
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Documents</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Belgeler</v8:content>
+								</v8:item>
+							</Title>
+							<Behavior>Usual</Behavior>
+							<ExtendedTooltip name="GroupDocumentsForExchangeExtendedTooltip" id="56"/>
+							<ChildItems>
+								<Table name="DocumentsForExchange" id="63">
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<DataPath>Object.DocumentsForExchange</DataPath>
+									<CommandSet>
+										<ExcludedCommand>Copy</ExcludedCommand>
+									</CommandSet>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="DocumentsForExchangeContextMenu" id="64"/>
+									<AutoCommandBar name="DocumentsForExchangeCommandBar" id="65">
+										<Autofill>false</Autofill>
+										<ChildItems>
+											<Button name="DocumentAdd" id="326">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Item.DocumentsForExchange.StandardCommand.Add</CommandName>
+												<Picture>
+													<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+													<xr:LoadTransparent>true</xr:LoadTransparent>
+												</Picture>
+												<ExtendedTooltip name="DocumentAddExtendedTooltip" id="327"/>
+											</Button>
+											<Button name="ShowAll" id="176">
+												<Type>CommandBarButton</Type>
+												<Representation>PictureAndText</Representation>
+												<CommandName>Form.Command.ShowAll</CommandName>
+												<Picture>
+													<xr:Ref>CommonPicture.MetadataSequences</xr:Ref>
+													<xr:LoadTransparent>true</xr:LoadTransparent>
+												</Picture>
+												<ExtendedTooltip name="ShowAllExtendedTooltip" id="177"/>
+											</Button>
+										</ChildItems>
+									</AutoCommandBar>
+									<ExtendedTooltip name="DocumentsForExchangeExtendedTooltip" id="66"/>
+									<SearchStringAddition name="DocumentsForExchangeSearchString" id="67">
+										<AdditionSource>
+											<Item>DocumentsForExchange</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="DocumentsForExchangeSearchStringContextMenu" id="68"/>
+										<ExtendedTooltip name="DocumentsForExchangeSearchStringExtendedTooltip" id="69"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="DocumentsForExchangeViewStatus" id="70">
+										<AdditionSource>
+											<Item>DocumentsForExchange</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="DocumentsForExchangeViewStatusContextMenu" id="71"/>
+										<ExtendedTooltip name="DocumentsForExchangeViewStatusExtendedTooltip" id="72"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="DocumentsForExchangeSearchControl" id="73">
+										<AdditionSource>
+											<Item>DocumentsForExchange</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="DocumentsForExchangeSearchControlContextMenu" id="74"/>
+										<ExtendedTooltip name="DocumentsForExchangeSearchControlExtendedTooltip" id="75"/>
+									</SearchControlAddition>
+									<Events>
+										<Event name="BeforeAddRow">DocumentsForExchangeBeforeAddRow</Event>
+										<Event name="OnStartEdit">DocumentOnStartEdit</Event>
+									</Events>
+									<ChildItems>
+										<LabelField name="DocumentsForExchangeLineNumber" id="76">
+											<DataPath>Object.DocumentsForExchange.LineNumber</DataPath>
+											<Visible>false</Visible>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="DocumentsForExchangeLineNumberContextMenu" id="77"/>
+											<ExtendedTooltip name="DocumentsForExchangeLineNumberExtendedTooltip" id="78"/>
+										</LabelField>
+										<CheckBoxField name="DocumentsForExchangeUse" id="79">
+											<DataPath>Object.DocumentsForExchange.Use</DataPath>
+											<Visible>false</Visible>
+											<EditMode>EnterOnInput</EditMode>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="DocumentsForExchangeUseContextMenu" id="80"/>
+											<ExtendedTooltip name="DocumentsForExchangeUseExtendedTooltip" id="81"/>
+										</CheckBoxField>
+										<InputField name="DocumentsForExchangeEDocumentType" id="85">
+											<DataPath>Object.DocumentsForExchange.EDocumentType</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<ListChoiceMode>true</ListChoiceMode>
+											<ContextMenu name="DocumentsForExchangeEDocumentTypeContextMenu" id="86"/>
+											<ExtendedTooltip name="DocumentsForExchangeEDocumentTypeExtendedTooltip" id="87"/>
+										</InputField>
+										<InputField name="DocumentsForExchangeDocumentType" id="82">
+											<DataPath>Object.DocumentsForExchange.DocumentType</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<CreateButton>false</CreateButton>
+											<ListChoiceMode>true</ListChoiceMode>
+											<ChooseType>false</ChooseType>
+											<ContextMenu name="DocumentsForExchangeDocumentTypeContextMenu" id="83"/>
+											<ExtendedTooltip name="DocumentsForExchangeDocumentTypeExtendedTooltip" id="84"/>
+										</InputField>
+										<InputField name="DocumentsForExchangeXSLT" id="166">
+											<DataPath>Object.DocumentsForExchange.XSLT</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="DocumentsForExchangeXSLTContextMenu" id="167"/>
+											<ExtendedTooltip name="DocumentsForExchangeXSLTExtendedTooltip" id="168"/>
+										</InputField>
+										<LabelField name="DocumentsForExchangeSourceID" id="154">
+											<DataPath>Object.DocumentsForExchange.SourceID</DataPath>
+											<UserVisible>
+												<xr:Common>false</xr:Common>
+											</UserVisible>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="DocumentsForExchangeSourceIDContextMenu" id="155"/>
+											<ExtendedTooltip name="DocumentsForExchangeSourceIDExtendedTooltip" id="156"/>
+										</LabelField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="GroupBankInfo" id="299">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Bank</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Banka</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>If the scenario and counterparty fields are filled, the bank information will be added to the e-invoice only for that specific scenario and counterparty.</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Senaryo ve cari hesap alanları doldurulursa banka bilgileri e-faturaya sadece o senaryo ve cari hesap için eklenir.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowTop</ToolTipRepresentation>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="GroupBankInfoExtendedTooltip" id="300"/>
+					<ChildItems>
+						<Table name="BankInfo" id="301">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.BankInfo</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="BankInfoContextMenu" id="302"/>
+							<AutoCommandBar name="BankInfoCommandBar" id="303"/>
+							<ExtendedTooltip name="BankInfoExtendedTooltip" id="304"/>
+							<SearchStringAddition name="BankInfoSearchString" id="305">
+								<AdditionSource>
+									<Item>BankInfo</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="BankInfoSearchStringContextMenu" id="306"/>
+								<ExtendedTooltip name="BankInfoSearchStringExtendedTooltip" id="307"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="BankInfoViewStatus" id="308">
+								<AdditionSource>
+									<Item>BankInfo</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="BankInfoViewStatusContextMenu" id="309"/>
+								<ExtendedTooltip name="BankInfoViewStatusExtendedTooltip" id="310"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="BankInfoSearchControl" id="311">
+								<AdditionSource>
+									<Item>BankInfo</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="BankInfoSearchControlContextMenu" id="312"/>
+								<ExtendedTooltip name="BankInfoSearchControlExtendedTooltip" id="313"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="BankInfoLineNumber" id="314">
+									<DataPath>Object.BankInfo.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="BankInfoLineNumberContextMenu" id="315"/>
+									<ExtendedTooltip name="BankInfoLineNumberExtendedTooltip" id="316"/>
+								</LabelField>
+								<InputField name="BankInfoBank" id="317">
+									<DataPath>Object.BankInfo.Bank</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="BankInfoBankContextMenu" id="318"/>
+									<ExtendedTooltip name="BankInfoBankExtendedTooltip" id="319"/>
+								</InputField>
+								<InputField name="BankInfoEDocumentScenario" id="320">
+									<DataPath>Object.BankInfo.EDocumentScenario</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="BankInfoEDocumentScenarioContextMenu" id="321"/>
+									<ExtendedTooltip name="BankInfoEDocumentScenarioExtendedTooltip" id="322"/>
+								</InputField>
+								<InputField name="BankInfoCounterparty" id="323">
+									<DataPath>Object.BankInfo.Counterparty</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="BankInfoCounterpartyContextMenu" id="324"/>
+									<ExtendedTooltip name="BankInfoCounterpartyExtendedTooltip" id="325"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="GroupPrefix" id="178">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Document prefixes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Belge önekleri</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>To use a custom prefix for a specific document type or warehouse, fill the relevant fields. Otherwise, the prefix will be applied to all documents.</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Belirli bir belge türüne veya ambara özel önek kullanmak için ilgili alanları doldurun. Aksi takdirde, önek tüm belgelere uygulanır.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>ShowTop</ToolTipRepresentation>
+					<ExtendedTooltip name="GroupPrefixExtendedTooltip" id="179"/>
+					<ChildItems>
+						<Table name="DocumentPrefixes" id="180">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.DocumentPrefixes</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="DocumentPrefixesContextMenu" id="181"/>
+							<AutoCommandBar name="DocumentPrefixesCommandBar" id="182"/>
+							<ExtendedTooltip name="DocumentPrefixesExtendedTooltip" id="183"/>
+							<SearchStringAddition name="DocumentPrefixesSearchString" id="184">
+								<AdditionSource>
+									<Item>DocumentPrefixes</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="DocumentPrefixesSearchStringContextMenu" id="185"/>
+								<ExtendedTooltip name="DocumentPrefixesSearchStringExtendedTooltip" id="186"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="DocumentPrefixesViewStatus" id="187">
+								<AdditionSource>
+									<Item>DocumentPrefixes</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="DocumentPrefixesViewStatusContextMenu" id="188"/>
+								<ExtendedTooltip name="DocumentPrefixesViewStatusExtendedTooltip" id="189"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="DocumentPrefixesSearchControl" id="190">
+								<AdditionSource>
+									<Item>DocumentPrefixes</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="DocumentPrefixesSearchControlContextMenu" id="191"/>
+								<ExtendedTooltip name="DocumentPrefixesSearchControlExtendedTooltip" id="192"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="DocumentPrefixesLineNumber" id="193">
+									<DataPath>Object.DocumentPrefixes.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="DocumentPrefixesLineNumberContextMenu" id="194"/>
+									<ExtendedTooltip name="DocumentPrefixesLineNumberExtendedTooltip" id="195"/>
+								</LabelField>
+								<InputField name="DocumentPrefixesPrefix" id="196">
+									<DataPath>Object.DocumentPrefixes.Prefix</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="DocumentPrefixesPrefixContextMenu" id="197"/>
+									<ExtendedTooltip name="DocumentPrefixesPrefixExtendedTooltip" id="198"/>
+								</InputField>
+								<InputField name="DocumentPrefixesOwner" id="199">
+									<DataPath>Object.DocumentPrefixes.Owner</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="DocumentPrefixesOwnerContextMenu" id="200"/>
+									<ExtendedTooltip name="DocumentPrefixesOwnerExtendedTooltip" id="201"/>
+								</InputField>
+								<InputField name="DocumentPrefixesEDocumentType" id="202">
+									<DataPath>Object.DocumentPrefixes.EDocumentType</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="DocumentPrefixesEDocumentTypeContextMenu" id="203"/>
+									<ExtendedTooltip name="DocumentPrefixesEDocumentTypeExtendedTooltip" id="204"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Object" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.EDIProfiles</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="MessageWasShown" id="2">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ShowAll" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show all</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Tümünü göster</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show all</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Tümünü göster</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ShowAll</Action>
+		</Command>
+		<Command name="CheckEDIProfile" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Test connection</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Bağlantıyı kontrol et</v8:content>
+				</v8:item>
+			</Title>
+			<Action>CheckEDIProfile</Action>
+		</Command>
+		<Command name="AddHost" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Ekle</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Add host</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Entegratör ekle</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>AddHost</Action>
+		</Command>
+		<Command name="EditHost" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Edit</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Düzenle</v8:content>
+				</v8:item>
+			</Title>
+			<Action>EditHost</Action>
+		</Command>
+	</Commands>
+	<CommandInterface>
+		<CommandBar>
+			<Item>
+				<Command>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</Command>
+				<Type>Added</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<Index>2</Index>
+				<DefaultVisible>false</DefaultVisible>
+			</Item>
+		</CommandBar>
+	</CommandInterface>
+</Form>
