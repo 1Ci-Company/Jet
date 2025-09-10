@@ -138,13 +138,14 @@ Procedure ProcessVersionStoragePath(Parameters) Export
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t process (skipped) some file versions: %1
-				 |%2';"), ObjectsWithIssuesCount, StrConcat(ErrorList, Chars.LF));
+				 |%2';tr = 'Bazı dosya sürümleri işlenemedi (atlandı): %1
+				 |%2'"), ObjectsWithIssuesCount, StrConcat(ErrorList, Chars.LF));
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(),
 			EventLogLevel.Information, Metadata.Catalogs.FilesVersions,, 
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Another batch of file versions is processed: %1';"), 
+				NStr("en = 'Another batch of file versions is processed: %1';tr = 'Başka bir dosya sürümü partisi işlendi: %1'"), 
 				ObjectsProcessed));
 	EndIf;
 EndProcedure
@@ -185,7 +186,7 @@ Function RemoveExtraSeparator(VersionRef)
 		Result.ErrorText = ErrorProcessing.BriefErrorDescription(ErrorInfo);
 
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot process file version %1. Reason: %2';"), VersionRef,
+			NStr("en = 'Cannot process file version %1. Reason: %2';tr = '%1 dosya sürümü işlenemiyor. Nedeni: %2'"), VersionRef,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(),

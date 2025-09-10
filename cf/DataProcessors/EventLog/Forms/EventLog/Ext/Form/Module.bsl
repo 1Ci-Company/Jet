@@ -16,7 +16,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	SetConditionalAppearance();
 	
 	If Parameters.DataAccessLog Then
-		Title = NStr("en = 'Data access log';");
+		Title = NStr("en = 'Data access log';tr = 'Veri erişim günlüğü'");
 		EventLogEvent = New Array;
 		EventLogEvent.Add("_$Access$_.Access");
 		EventLogEvent.Add("_$Access$_.AccessDenied");
@@ -373,7 +373,7 @@ EndProcedure
 Procedure ExportLogForTechnicalSupport(Command)
 	
 	FileSavingParameters = FileSystemClient.FileSavingParameters();
-	FileSavingParameters.Dialog.Filter = NStr("en = 'Event log data';") + "(*.xml)|*.xml";
+	FileSavingParameters.Dialog.Filter = NStr("en = 'Event log data';tr = 'Olay günlüğü verileri'") + "(*.xml)|*.xml";
 	FileSystemClient.SaveFile(Undefined, ExportRegistrationLog(), "EventLog.xml", FileSavingParameters);
 	
 EndProcedure
@@ -398,10 +398,10 @@ Procedure SetSeparationVisibility(Form, SeparationVisibility)
 		SeparationVisibility And Not Form.StandardSeparatorsOnly;
 	
 	If SeparationVisibility And Form.StandardSeparatorsOnly Then
-		GroupTitle = NStr("en = 'App, Session, Area';");
-		GroupTip = NStr("en = 'App, Session, Data area';");
+		GroupTitle = NStr("en = 'App, Session, Area';tr = 'Uygulama, Oturum, Alan'");
+		GroupTip = NStr("en = 'App, Session, Data area';tr = 'Uygulama, Oturum, Veri alanı'");
 	Else
-		GroupTitle = NStr("en = 'App, Session';");
+		GroupTitle = NStr("en = 'App, Session';tr = 'Uygulama, Oturum'");
 		GroupTip = "";
 	EndIf;
 	Items.ApplicationSessionGroup.Title = GroupTitle;
@@ -593,14 +593,15 @@ Function ReadEventLog()
 			Items.TimeConsumingOperationProgressField, "DontUse");
 		Items.Pages.CurrentPage = Items.EventLog;
 		Raise NStr("en = 'Incorrect event log filter settings. 
-			|The start date cannot be later than the end date.';");
+			|The start date cannot be later than the end date.';tr = 'Kayıt defteri filtre koşulları yanlış ayarlanmış.
+			| Başlangıç ​​tarihi, bitiş tarihinden büyük olamaz.'");
 	EndIf;
 	
 	ReportParameters = ReportParameters();
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 	ExecutionParameters.WaitCompletion = 0; // Run immediately.
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Updating event log';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Updating event log';tr = 'Kayıt defteri güncellemesi'");
 	ExecutionParameters.RunNotInBackground1 = ShouldNotRunInBackground;
 	
 	TimeConsumingOperation = TimeConsumingOperations.ExecuteInBackground("EventLog.ReadEventLogEvents",
@@ -710,7 +711,7 @@ Procedure SetConditionalAppearance()
 	
 	Item.Appearance.SetParameterValue("Visible", False);
 	
-	Items.Data.Format  = NStr("en = 'NZ=0; DE=''01.01.0001 00:00:00''';");
+	Items.Data.Format  = NStr("en = 'NZ=0; DE=''01.01.0001 00:00:00''';tr = 'NZ=0; DE=''01.01.0001 00:00:00'''");
 	Items.Data2.Format = Items.Data.Format;
 	
 	// DataPresentation

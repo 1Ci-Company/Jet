@@ -23,7 +23,7 @@ Var StandardCloseAlert;
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
-	MessageText = NStr("en = 'Please wait…';");
+	MessageText = NStr("en = 'Please wait…';tr = 'Lütfen bekleyin...'");
 	If Not IsBlankString(Parameters.MessageText) Then
 		MessageText = Parameters.MessageText + Chars.LF + MessageText;
 		Items.TimeConsumingOperationNoteTextDecoration.Title = MessageText;

@@ -551,7 +551,7 @@ Procedure NotifyReportOptionUsers(Records) Export
 	
 	ReportVariant = Records[0].Variant;
 	Text = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Report %1 is configured';"),
+		NStr("en = 'Report %1 is configured';tr = '%1 raporu yapılandırıldı'"),
 		GetURL(ReportVariant));
 	
 	Message = ModuleConversations.MessageDetails(Text);
@@ -563,7 +563,7 @@ Procedure NotifyReportOptionUsers(Records) Export
 		DefaultLanguageCode = Common.DefaultLanguageCode();
 		ReportOptionPresentation = String(ReportVariant);
 		WriteLogEvent(
-			NStr("en = 'Report options';", DefaultLanguageCode),
+			NStr("en = 'Report options';tr = 'Rapor seçenekleri'", DefaultLanguageCode),
 			EventLogLevel.Error,,
 			ReportOptionPresentation,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -706,7 +706,8 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 			Declined = Declined + 1;
 			
 			CommentTemplate = NStr("en = 'Cannot move the availability settings of the ""%1"" report option to the ""%2"" register.
-				|Reason: %3';");
+				|Reason: %3';tr = '""%1"" rapor varyasonunun erişilebilirliliği ayarları ""%2""
+				|kayıt defterine bu nedenle taşınamadı: %3'");
 				
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(
 				CommentTemplate,
@@ -727,11 +728,11 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 		Parameters.Queue, Metadata.Catalogs.ReportsOptions.FullName());
 	
 	If Processed = 0 And Declined <> 0 Then
-		MessageTemplate = NStr("en = 'Couldn''t process (skipped) some report option settings: %1';");
+		MessageTemplate = NStr("en = 'Couldn''t process (skipped) some report option settings: %1';tr = 'Bazı rapor varyasyonu ayarları işlenemedi: %1'");
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, Declined);
 		Raise MessageText;
 	Else
-		CommentTemplate = NStr("en = 'Yet another batch of report option settings is processed: %1';");
+		CommentTemplate = NStr("en = 'Yet another batch of report option settings is processed: %1';tr = 'Başka bir rapor varyasyonu ayarları paketi işlendi: %1'");
 		Comment = StringFunctionsClientServer.SubstituteParametersToString(CommentTemplate, Processed);
 		WriteLogEvent(
 			InfobaseUpdate.EventLogEvent(),

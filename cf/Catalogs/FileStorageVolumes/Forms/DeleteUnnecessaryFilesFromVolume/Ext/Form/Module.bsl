@@ -97,7 +97,7 @@ EndProcedure
 Procedure DeleteUnnecessaryFiles(Command)
 	
 	If UnnecessaryFilesCount = 0 Then
-		ShowMessageBox(, NStr("en = 'The volume has no unreferenced files';"));
+		ShowMessageBox(, NStr("en = 'The volume has no unreferenced files';tr = 'Birimde referanssız dosya yok'"));
 		Return;
 	EndIf;
 	
@@ -149,7 +149,7 @@ Procedure FillExcessFilesTable()
 		NewRow.FullName        = File.FullName;
 		NewRow.Path             = File.Path;
 		NewRow.Extension       = File.Extension;
-		NewRow.CheckStatus   = NStr("en = 'Unreferenced files (files in the volume that have no entries in the application)';");
+		NewRow.CheckStatus   = NStr("en = 'Unreferenced files (files in the volume that have no entries in the application)';tr = 'Referanssız dosyalar (uygulamada girişi olmayan, birimdeki dosyalar)'");
 		NewRow.Count       = 1;
 		NewRow.Volume              = FileStorageVolume;
 		
@@ -158,7 +158,7 @@ Procedure FillExcessFilesTable()
 	FilesOperationsInVolumesInternal.FillInExtraFiles(FilesTableOnHardDrive, FileStorageVolume);
 	FilesTableOnHardDrive.Indexes.Add("CheckStatus");
 	ExcessFilesArray = FilesTableOnHardDrive.FindRows(
-		New Structure("CheckStatus", NStr("en = 'Unreferenced files (files in the volume that have no entries in the application)';")));
+		New Structure("CheckStatus", NStr("en = 'Unreferenced files (files in the volume that have no entries in the application)';tr = 'Referanssız dosyalar (uygulamada girişi olmayan, birimdeki dosyalar)'")));
 	
 	For Each File In ExcessFilesArray Do
 		NewRow = UnnecessaryFiles.Add();
@@ -221,7 +221,11 @@ Procedure ProcessAccessRightsError(ErrorInfo, SourceNotification)
 		|An account on whose behalf 1C:Enterprise server is running
 		|might have no access rights to the specified folder.
 		|
-		|%1';");
+		|%1';tr = 'Kopyalanacak geçersiz klasör.
+		|Muhtemelen bir hesap, 
+		| 1C:Enterprise sunucusunun adına çalıştığı, belirtilen klasöre erişim haklarına sahip değil.
+		|
+		|%1'");
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate, ErrorProcessing.BriefErrorDescription(ErrorInfo));
 	CommonClient.MessageToUser(ErrorText, , , "PathToFolderToCopy");
@@ -240,7 +244,7 @@ Procedure GenerateErrorsReport(ErrorsReport)
 	TabularTemplate = Catalogs.FileStorageVolumes.GetTemplate("ReportTemplate");
 	
 	HeaderArea_ = TabularTemplate.GetArea("Title");
-	HeaderArea_.Parameters.LongDesc = NStr("en = 'Files with errors:';");
+	HeaderArea_.Parameters.LongDesc = NStr("en = 'Files with errors:';tr = 'Hatalı dosyalar:'");
 	ErrorsReport.Put(HeaderArea_);
 	
 	AreaRow = TabularTemplate.GetArea("String");
@@ -259,7 +263,7 @@ EndProcedure
 Procedure AttachFileSystemExtensionCompletion(ExtensionAttached, AdditionalParameters) Export
 	
 	If Not ExtensionAttached Then
-		ShowMessageBox(, NStr("en = 'Cannot perform the action because 1C:Enterprise Extension is not installed.';"));
+		ShowMessageBox(, NStr("en = 'Cannot perform the action because 1C:Enterprise Extension is not installed.';tr = '1C:Enterprise Extension ile çalışma uzantısı kurulu değil. Eylem mevcut değil.'"));
 		Return;
 	EndIf;
 	
@@ -272,7 +276,7 @@ EndProcedure
 Procedure FolderExistanceCheckCompletion(Exists, AdditionalParameters) Export
 	
 	If Not Exists Then
-		ShowMessageBox(, NStr("en = 'The specified folder does not exist.';"));
+		ShowMessageBox(, NStr("en = 'The specified folder does not exist.';tr = 'Belirtilen klasör mevcut değil.'"));
 	Else
 		RightToWriteToDirectory(New NotifyDescription("AfterCheckWriteToDirectory", ThisObject));
 	EndIf;
@@ -394,17 +398,17 @@ Procedure AfterProcessFiles()
 
 	If NumberOfDeletedFiles <> 0 Then
 		NotificationText1 = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Files deleted: %1';"),
+			NStr("en = 'Files deleted: %1';tr = 'Silinen dosya: %1'"),
 			NumberOfDeletedFiles);
 		ShowUserNotification(
-			NStr("en = 'Unreferenced files are deleted.';"),,
+			NStr("en = 'Unreferenced files are deleted.';tr = 'Referanssız dosyalar silindi.'"),,
 			NotificationText1, PictureLib.DialogInformation);
 	EndIf;
 	
 	If FilesWithErrors.Count() > 0 Then
 		ErrorsReport = New SpreadsheetDocument;
 		GenerateErrorsReport(ErrorsReport);
-		ErrorsReport.Show(NStr("en = 'Delete unreferenced volume files';"));
+		ErrorsReport.Show(NStr("en = 'Delete unreferenced volume files';tr = 'Referanssız birim dosyalarını sil'"));
 	EndIf;
 	
 	Close();

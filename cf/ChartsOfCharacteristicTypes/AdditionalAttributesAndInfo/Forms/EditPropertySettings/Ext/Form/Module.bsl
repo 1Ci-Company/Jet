@@ -15,7 +15,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Parameters.IsAdditionalInfo Then
 		Items.PropertyTypes.CurrentPage = Items.AdditionalInfoItem;
-		Title = NStr("en = 'Change additional information record settings';");
+		Title = NStr("en = 'Change additional information record settings';tr = 'Ek bilgi ayarlarını değiştir'");
 	Else
 		Items.PropertyTypes.CurrentPage = Items.AdditionalAttribute;
 	EndIf;
@@ -161,7 +161,7 @@ EndProcedure
 &AtServer
 Function WriteAtServer()
 	
-	JobDescription = NStr("en = 'Change additional property settings';");
+	JobDescription = NStr("en = 'Change additional property settings';tr = 'Ek özellik ayarlarını değiştir'");
 	
 	ProcedureParameters = New Structure;
 	ProcedureParameters.Insert("Property", Property);

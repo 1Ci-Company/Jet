@@ -74,7 +74,7 @@ Function ResolveIssueInBackground(CheckID)
 	SetCurrentPage(ThisObject, "TroubleshootingInProgress");
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Correction of contact information kinds';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Correction of contact information kinds';tr = 'İletişim bilgileri türlerinin düzeltilmesi'");
 	
 	Return TimeConsumingOperations.ExecuteInBackground("ContactsManagerInternal.CorrectContactInformationKindsInBackground",
 		New Structure("CheckID", CheckID), ExecutionParameters);

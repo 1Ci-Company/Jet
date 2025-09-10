@@ -39,7 +39,8 @@ Procedure FullNameOnChange(Item)
 		Object.FullName = FullName;
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Metadata object is not found by full name:
-			           |%1.';"),
+			           |%1.';tr = 'Metaveri nesnesi tam adı ile bulunamadı: 
+			           |%1'"),
 			FullName));
 	EndIf;
 	

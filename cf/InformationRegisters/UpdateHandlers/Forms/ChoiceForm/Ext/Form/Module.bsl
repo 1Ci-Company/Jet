@@ -12,7 +12,7 @@
 
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
-	Title = NStr("en = 'Select handlers for deferred update restart';");
+	Title = NStr("en = 'Select handlers for deferred update restart';tr = 'Ertelenmiş güncellemenin yeniden başlatılması için işleyicilerin seçilmesi'");
 	
 	SetConditionalAppearance();
 	FillHandlerList(Parameters.SelectedHandlers.UnloadValues());

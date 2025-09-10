@@ -85,11 +85,11 @@ Procedure UpdateTemplatesCheckSum(Parameters) Export
 			RollbackTransaction();
 			ErrorInfo = ErrorInfo();
 			
-			ErrorText = NStr("en = 'Failed to save template info';") + Chars.LF
+			ErrorText = NStr("en = 'Failed to save template info';tr = 'Model bilgileri yazılamadı'") + Chars.LF
 				+ Template.FullName() + Chars.LF
 				+ ErrorProcessing.DetailErrorDescription(ErrorInfo);
 			
-			WriteLogEvent(NStr("en = 'Build-in template edit monitor';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Build-in template edit monitor';tr = 'Tedarik edilen modellerin değişiklik kontrolü'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error, Template, , ErrorText);
 			
 			ErrorList.Add(OwnerName + "." + TemplateName + ": " + ErrorProcessing.BriefErrorDescription(ErrorInfo()));
@@ -98,7 +98,7 @@ Procedure UpdateTemplatesCheckSum(Parameters) Export
 	EndDo;
 	
 	If ValueIsFilled(TemplatesRequiringChecksumUpdate) Then
-		ErrorList.Insert(0, NStr("en = 'Couldn''t save the template details of print forms stored in extensions:';"));
+		ErrorList.Insert(0, NStr("en = 'Couldn''t save the template details of print forms stored in extensions:';tr = 'Uzantıların yazdırılabilir modeli hakkında bilgiler yazılamadı:'"));
 		Parameters.Insert("TemplatesRequiringChecksumUpdate", TemplatesRequiringChecksumUpdate);
 		ErrorText = StrConcat(ErrorList, Chars.LF);
 		Raise ErrorText;

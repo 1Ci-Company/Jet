@@ -28,7 +28,7 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "Main");
 	OptionSettings.Enabled = False;
-	OptionSettings.LongDesc = NStr("en = 'Search for occurrences.';");
+	OptionSettings.LongDesc = NStr("en = 'Search for occurrences.';tr = 'Uygulama nesnelerinin kullanım yerlerini arayın.'");
 EndProcedure
 
 // To be called from ReportsOptionsOverridable.BeforeAddReportCommands.
@@ -44,7 +44,7 @@ Function AddUsageInstanceCommand(ReportsCommands) Export
 		Return Undefined;
 	EndIf;
 	Command = ReportsCommands.Add();
-	Command.Presentation      = NStr("en = 'Occurrences';");
+	Command.Presentation      = NStr("en = 'Occurrences';tr = 'Kullanım yerleri'");
 	Command.MultipleChoice = True;
 	Command.Importance           = "SeeAlso";
 	Command.FormParameterName  = "Filter.RefSet";

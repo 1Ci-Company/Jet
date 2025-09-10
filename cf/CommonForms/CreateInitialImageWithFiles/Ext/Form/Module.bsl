@@ -18,7 +18,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Parameters.Node = Manager.ThisNode() Then
 		Raise
-			NStr("en = 'Cannot create an initial image for this node.';");
+			NStr("en = 'Cannot create an initial image for this node.';tr = 'Bu ünite için ilk resim oluşturulamıyor.'");
 	Else
 		InfobaseKind = 0; // File infobase.
 		DBMSType = "";
@@ -69,7 +69,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 	
 	If Not Common.FileInfobase() Then
-		Items.VolumesFilesArchivePath.InputHint = NStr("en = '\\server name\resource\files.zip';");
+		Items.VolumesFilesArchivePath.InputHint = NStr("en = '\\server name\resource\files.zip';tr = '\\server name\resource\files.zip'");
 		Items.VolumesFilesArchivePath.ChoiceButton = False;
 	EndIf;
 	
@@ -102,7 +102,7 @@ Procedure InfobaseKindOnChange(Item)
 		Items.VolumesFilesArchivePath.InputHint = "";
 		Items.VolumesFilesArchivePath.ChoiceButton = True;
 	Else
-		Items.VolumesFilesArchivePath.InputHint = NStr("en = '\\server name\resource\files.zip';");
+		Items.VolumesFilesArchivePath.InputHint = NStr("en = '\\server name\resource\files.zip';tr = '\\server name\resource\files.zip'");
 		Items.VolumesFilesArchivePath.ChoiceButton = False;
 	EndIf;
 	
@@ -168,7 +168,8 @@ Procedure CreateInitialImage(Command)
 		
 		Raise
 			NStr("en = 'Creation of initial images for file infobases
-			           |is not supported on this platform.';");
+			           |is not supported on this platform.';tr = 'Bu platformda veritabanı dosyasının 
+			           |ilk resminin oluşturulması desteklenmemektedir.'");
 	Else
 		ProgressPercent = 0;
 		ProgressAdditionalInformation = "";
@@ -183,7 +184,7 @@ Procedure CreateInitialImage(Command)
 			JobParameters.Insert("Language", Language);
 			JobParameters.Insert("FullWindowsFileInfobaseName", FullWindowsFileInfobaseName);
 			JobParameters.Insert("FileInfobaseFullNameLinux", FileInfobaseFullNameLinux);
-			JobParameters.Insert("JobDescription", NStr("en = 'Create initial file image';"));
+			JobParameters.Insert("JobDescription", NStr("en = 'Create initial file image';tr = 'Dosya başlangıç görüntüsü oluşturma'"));
 			JobParameters.Insert("ProcedureDescription", "FilesOperationsInternal.CreateFileInitialImageAtServer");
 		Else
 			// Server initial image.
@@ -202,7 +203,7 @@ Procedure CreateInitialImage(Command)
 				+ "SchJobDn=""" + ?(SetScheduledJobLock, "Y", "N") + """;";
 			
 			JobParameters.Insert("ConnectionString", ConnectionString);
-			JobParameters.Insert("JobDescription", NStr("en = 'Create initial server image';"));
+			JobParameters.Insert("JobDescription", NStr("en = 'Create initial server image';tr = 'Sunucu tabanlı ilk görüntü oluşturma'"));
 			JobParameters.Insert("ProcedureDescription", "FilesOperationsInternal.CreateServerInitialImageAtServer");
 		EndIf;
 		Result = PrepareDataToCreateInitialImage(JobParameters, InfobaseKind);
@@ -254,12 +255,13 @@ Function FullFileInfobaseNameCheckAtServer(FullFileInfobaseName, ErrorMessage = 
 		If FindFiles(PathToFile).Count() = 0 Then
 			ErrorMessage = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Folder ""%1"" does not exist or is unavailable.
-				|Make sure that the path is correct.';"),
+				|Make sure that the path is correct.';tr = '""%1"" klasörü mevcut değil ya da kullanılamaz.
+				|Yolun doğruluğundan emin olun.'"),
 				PathToFile);
 			Return False;
 		EndIf;
 	Else
-		ErrorMessage = NStr("en = 'Please specify the full infobase path.';");
+		ErrorMessage = NStr("en = 'Please specify the full infobase path.';tr = 'Infobase dosyasına giden tam yolu belirtin.'");
 		Return False;
 	EndIf;
 	
@@ -285,7 +287,7 @@ Procedure SaveFileHandler(
 	
 	Dialog = New FileDialog(FileDialogMode.Save);
 	
-	Dialog.Title = NStr("en = 'Select file to save';");
+	Dialog.Title = NStr("en = 'Select file to save';tr = 'Kaydedilecek dosyayı seçin'");
 	Dialog.Multiselect = False;
 	Dialog.Preview = False;
 	Dialog.Filter = Context.Filter;
@@ -336,7 +338,7 @@ Function PrepareDataToCreateInitialImage(JobParameters, InfobaseKind)
 				DataExchangeCreationWizard);
 		Except
 			Cancel = True;
-			WriteLogEvent(NStr("en = 'Data exchange';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Data exchange';tr = 'Veri değişimi'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error, , , ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		EndTry;
 		
@@ -422,14 +424,14 @@ Procedure CreateInitialImageAtServerCompletion(Result, AdditionalParameters) Exp
 	
 	If Result = Undefined Then
 		ProgressPercent = 0;
-		Items.StatusError.Title = NStr("en = 'The operation is canceled by administrator.';");
+		Items.StatusError.Title = NStr("en = 'The operation is canceled by administrator.';tr = 'Eylem yönetici tarafından iptal edildi'");
 		ExecuteGoResult();
 		Return;
 	EndIf;
 	
 	If Result.Status = "Error" Then
 		ProgressPercent = 0;
-		Items.StatusError.Title = NStr("en = 'Cannot create an initial image. Reason:';") + "
+		Items.StatusError.Title = NStr("en = 'Cannot create an initial image. Reason:';tr = 'İlk görüntü aşağıdaki nedenle oluşturulamadı:'") + "
 			|" + Result.BriefErrorDescription;
 		ExecuteGoResult();
 		StandardSubsystemsClient.OutputErrorInfo(

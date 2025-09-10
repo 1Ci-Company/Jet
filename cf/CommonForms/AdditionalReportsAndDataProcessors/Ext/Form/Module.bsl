@@ -28,27 +28,27 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	DataProcessorsKind = AdditionalReportsAndDataProcessors.GetDataProcessorKindByKindStringPresentation(Parameters.Kind);
 	If DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.ObjectFilling Then
 		AreAssignableDataProcessors = True;
-		Title = NStr("en = 'Object filling commands';");
+		Title = NStr("en = 'Object filling commands';tr = 'Nesne doldurma komutları'");
 	ElsIf DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.Report Then
 		AreAssignableDataProcessors = True;
 		AreReports = True;
-		Title = NStr("en = 'Reports';");
+		Title = NStr("en = 'Reports';tr = 'Raporlar'");
 	ElsIf DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.PrintForm Then
 		AreAssignableDataProcessors = True;
-		Title = NStr("en = 'Additional print forms';");
+		Title = NStr("en = 'Additional print forms';tr = 'Ek yazdırma formları'");
 	ElsIf DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.RelatedObjectsCreation Then
 		AreAssignableDataProcessors = True;
-		Title = NStr("en = 'Create related objects commands';");
+		Title = NStr("en = 'Create related objects commands';tr = 'Bağlantılı nesne oluşturma için komutlar'");
 	ElsIf DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.AdditionalDataProcessor Then
 		AreGlobalDataProcessors = True;
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Additional data processors (%1)';"), 
+			NStr("en = 'Additional data processors (%1)';tr = 'Ek veri işlemcileri (%1)'"), 
 			AdditionalReportsAndDataProcessors.SectionPresentation(SectionRef));
 	ElsIf DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.AdditionalReport Then
 		AreGlobalDataProcessors = True;
 		AreReports = True;
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Additional reports (%1)';"), 
+			NStr("en = 'Additional reports (%1)';tr = 'Ek raporlar (%1)'"), 
 			AdditionalReportsAndDataProcessors.SectionPresentation(SectionRef));
 	EndIf;
 	
@@ -181,7 +181,7 @@ Procedure RunDataProcessorByParameters()
 		
 		// Change form items.
 		Items.ExplainingDecoration.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Executing command ""%1""…';"),
+			NStr("en = 'Executing command ""%1""…';tr = '""%1"" komutu yürütülüyor...'"),
 			DataProcessorData.Presentation);
 		Items.Pages.CurrentPage = Items.DataProcessorExecutionPage;
 		Items.CustomizeList.Visible = False;
@@ -213,11 +213,11 @@ Function RunBackgroundJob1(Val CommandToExecute, Val UUID)
 	
 	StartSettings1 = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 	StartSettings1.BackgroundJobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Additional reports and data processors: executing command %1.';"),
+		NStr("en = 'Additional reports and data processors: executing command %1.';tr = 'Ek raporlar ve veri işlemcileri: ""%1"" komutu yürütülüyor'"),
 		CommandToExecute.Presentation);
 	
 	StartSettings1.RefinementErrors = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Cannot execute the command. Reason: %1.';"),
+		NStr("en = 'Cannot execute the command. Reason: %1.';tr = 'Komut yürütülemiyor. Nedeni: %1.'"),
 		CommandToExecute.Presentation);
 	
 	MethodParameters = New Structure("AdditionalDataProcessorRef, CommandID, RelatedObjects");
@@ -249,7 +249,7 @@ Procedure ExecuteDataProcessorServerMethodCompletion(Result, AdditionalParameter
 		
 	// Showing a pop-up notification and closing this form.
 	If CommandToExecute.ShouldShowUserNotification Then
-		ShowUserNotification(NStr("en = 'The operation is completed.';"),, CommandToExecute.Presentation);
+		ShowUserNotification(NStr("en = 'The operation is completed.';tr = 'Komut yapıldı'"),, CommandToExecute.Presentation);
 	EndIf;
 	If IsOpen() Then
 		Close();

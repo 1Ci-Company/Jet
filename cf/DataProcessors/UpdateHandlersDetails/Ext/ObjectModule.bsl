@@ -1126,7 +1126,7 @@ Function TempTablesQuery()
 	Query = New Query;
 	Query.TempTablesManager = New TempTablesManager;
 	Query.Text = TempTablesQueryText();
-	Query.SetParameter("NoIssues", NStr("en = 'No issues';"));
+	Query.SetParameter("NoIssues", NStr("en = 'No issues';tr = 'Sorun yok'"));
 	Query.SetParameter("StandardCheckProcedure", "InfobaseUpdate.DataUpdatedForNewApplicationVersion");
 	Query.SetParameter("Before", "Before");
 	Query.SetParameter("After", "After");
@@ -1577,7 +1577,7 @@ Procedure ShiftRecursivelyLinkedHandlers(HandlersQueue, HandlersAvailabilityInQu
 			EndIf;
 			
 		Else
-			ExceptionText = NStr("en = 'An error occurred while building the queue.';");
+			ExceptionText = NStr("en = 'An error occurred while building the queue.';tr = 'Sıra oluşturma hatası.'");
 			Raise ExceptionText;
 		EndIf;
 	
@@ -1639,9 +1639,9 @@ Function HasQueueBuildingErrors(Query, ReportErrors = True)
 	
 	Selection = QueryResult.Select();
 	While Selection.Next() Do
-		MessageText = NStr("en = 'An error occurred in the queue building algorithm: the %Handler1% handler is to be placed in queue 1.';");
+		MessageText = NStr("en = 'An error occurred in the queue building algorithm: the %Handler1% handler is to be placed in queue 1.';tr = 'Sıra oluşturma algoritmasında hata oluştu: %Handler1% istemcisi sıra 1''e ait olmalı.'");
 		If Selection.Issue1 = "IssueInHandlersOrder" Then
-			MessageText = NStr("en = 'An error occurred in the queue building algorithm: the %Handler1% and %Handler2% handlers are placed in the incorrect order.';");
+			MessageText = NStr("en = 'An error occurred in the queue building algorithm: the %Handler1% and %Handler2% handlers are placed in the incorrect order.';tr = 'Sıra oluşturma algoritmasında hata oluştu: %Handler1% ve %Handler2% istemcileri yalnış sıralanmıştır.'");
 			MessageText = StrReplace(MessageText, "%Handler2%", Selection.Handler2);
 		EndIf;
 		MessageText = StrReplace(MessageText, "%Handler1%", Selection.Handler1);
@@ -1688,11 +1688,11 @@ Function CanBuildQueue()
 	EmptyPriorities = Query.Execute().Select();
 	OK1 = EmptyPriorities.Count() = 0;
 	While EmptyPriorities.Next() Do
-		MessageText = NStr("en = 'Operations with the pair of handlers %Handler% - %LinkedHandler% are not completed.';");
-		MessageText = MessageText + Chars.LF + NStr("en = 'Issue status: %QueuingOrder%';");
+		MessageText = NStr("en = 'Operations with the pair of handlers %Handler% - %LinkedHandler% are not completed.';tr = '%Handler% - %LinkedHandler% istemci çifti üzerinde işler tamamlanmadı.'");
+		MessageText = MessageText + Chars.LF + NStr("en = 'Issue status: %QueuingOrder%';tr = 'Sorun durumu: %QueuingOrder%'");
 		MessageText = StrReplace(MessageText, "%Handler%", EmptyPriorities.Handler1);
 		MessageText = StrReplace(MessageText, "%LinkedHandler%", EmptyPriorities.Handler2);
-		MessageText = StrReplace(MessageText, "%QueuingOrder%", NStr("en = 'Execution priority is not set.';"));
+		MessageText = StrReplace(MessageText, "%QueuingOrder%", NStr("en = 'Execution priority is not set.';tr = 'Yürütme önceliği belirtilmedi.'"));
 		AddError(EmptyPriorities.Handler1, MessageText);
 	EndDo;
 	
@@ -1702,7 +1702,9 @@ Function CanBuildQueue()
 	For Each Handler In WrongPriorities Do
 		MessageText = NStr("en = 'Readable objects of the %Handler% handler
 		|include objects that are processed by handlers with a lower priority than the current one.
-		|This will cause the current handler to wait for them to complete. Resolve this mismatch.';");
+		|This will cause the current handler to wait for them to complete. Resolve this mismatch.';tr = '%Handler% işleyicisinin okunabilir nesneleri,
+		|mevcut olandan daha düşük önceliğe sahip işleyiciler tarafından işlenen nesneleri içeriyor.
+		|Bu durumda mevcut işleyici diğerlerinin tamamlanmasını bekliyor. Bu uyuşmazlığı giderin.'");
 		MessageText = StrReplace(MessageText, "%Handler%", Handler.ReaderProcedure);
 		AddError(Handler.ReaderProcedure, MessageText);
 	EndDo;
@@ -1775,7 +1777,7 @@ EndFunction
 Procedure OutputErrorMessage(RaiseException = True)
 	
 	If RaiseException Then
-		EventName = NStr("en = 'Build the update handlers queue';", Common.DefaultLanguageCode());
+		EventName = NStr("en = 'Build the update handlers queue';tr = 'Güncelleme istemcilerinin sırasının oluşturulması'", Common.DefaultLanguageCode());
 		ListOfProblemHandlers = "";
 		For Each Error In Errors Do
 			If Not IsBlankString(Error.Handler) Then
@@ -1802,7 +1804,12 @@ Procedure OutputErrorMessage(RaiseException = True)
 			|To do this, start the application with the ""%1"" startup parameter.
 			|Errors are listed in the event log.
 			|
-			|List of handlers with issues:';");
+			|List of handlers with issues:';tr = 'Ertelenen istemcilerin sırası oluşturulurken hatalar tespit edildi.
+			|Dahili ""Güncelleme istemcilerinin açıklaması"" işlemiyle onları düzeltmek gerekiyor.
+			|Bunun için ""%1"" başlatma parametresiyle konfigürasyon çalıştırılmalıdır.
+			|Hatalar kayıt defterinde listelenmiştir.
+			|
+			|Sorunlu güncelleme işleyicilerin listesi:'");
 		ExceptionText = StrReplace(ExceptionText, "%1", "DisableSystemStartupLogic");
 		Raise ExceptionText + Chars.LF + ListOfProblemHandlers;
 	Else
@@ -1894,7 +1901,7 @@ Function HasHandlersExecutionCycle(TheHandlerBeingChecked = Undefined, Val Handl
 			EndDo;
 			PathText = StrConcat(FullPath, Chars.LF);
 			
-			MessageText = NStr("en = 'An execution order cycle is found:';") + Chars.LF + "%Path%";
+			MessageText = NStr("en = 'An execution order cycle is found:';tr = 'Yürütme sırası döngüsü bulundu:'") + Chars.LF + "%Path%";
 			MessageText = StrReplace(MessageText, "%Path%", PathText);
 			
 			AddError(PathText, MessageText);
@@ -2364,5 +2371,5 @@ FillInMetaDataTypePriorities();
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

@@ -141,10 +141,10 @@ Procedure GenerateInputFieldsInDifferentLanguages(MultiLine, Var_ReadOnly)
 	StringType = New TypeDescription("String");
 	For Each ConfigurationLanguage In Languages Do
 		Add.Add(New FormAttribute(ConfigurationLanguage.Name, StringType, ,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Parameters for spelling out numbers in %1';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Parameters for spelling out numbers in %1';tr = '%1 için sayıları okuma parametreleri'"),
 			ConfigurationLanguage.Presentation)));
 		Add.Add(New FormAttribute("InputHint" + ConfigurationLanguage.Name, StringType, ,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Input tooltip for the %1 language';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Input tooltip for the %1 language';tr = '%1 dili için araç ipucu gir'"),
 			ConfigurationLanguage.Presentation)));
 	EndDo;
 
@@ -198,7 +198,7 @@ Procedure GenerateInputFieldsInDifferentLanguages(MultiLine, Var_ReadOnly)
 			InputHint.BorderColor = StyleColors.FormBackColor;
 
 			If Not ValueIsFilled(ToolTip.Instruction) Then
-				ToolTip.Instruction = NStr("en = 'Cannot set up writing amounts in words for this language.';");
+				ToolTip.Instruction = NStr("en = 'Cannot set up writing amounts in words for this language.';tr = 'Bu dil için tutarların sayıyla yazılışı ayarlanamıyor.'");
 			EndIf;
 			
 			ThisObject["InputHint" + ConfigurationLanguage.Name] = ToolTip.Instruction;
@@ -292,9 +292,16 @@ Function HintForFillingInTheRegistrationParameters(Val LanguageCode)
 		|
 		|""dollar, dollars"" – calculation object singular and plural
 		|""cent, cents"" - fractional part singular and plural (may be missing)
-		|""2"" - the number of decimal places (may be missing; the default value is 2).';"));
+		|""2"" - the number of decimal places (may be missing; the default value is 2).';tr = 'Tutarların yazılışı için virgülle ayrılmış parametreler.
+		|İngilizce (en_US) için doldurma örneği:
+		|
+		|dollar, dollars, cent, cents, 2
+		|
+		|""dollar, dollars"" – tekil ve çoğul hesaplama nesnesi
+		|""cent, cents"" - tekil ve çoğul ondalık kısım (bulunmayabilir)
+		|""2"" - ondalık basamak sayısı (bulunmayabilir; varsayılan değer 2''dir).'"));
 
-		Result.InputHint = NStr("en = 'dollar, dollars, cent, cents, 2';");
+		Result.InputHint = NStr("en = 'dollar, dollars, cent, cents, 2';tr = 'dolar, dolar, cent, cent, 2'");
 
 	ElsIf LanguageCode = "tr" Then
 
@@ -308,9 +315,17 @@ Function HintForFillingInTheRegistrationParameters(Val LanguageCode)
 		|TL - the integral part
 		|Kr - the fractional part (may be missing)
 		|2 - the number of decimal places (may be missing; the default value is 2)
-		|""Separate"" - indicates whether to write words separately, ""Solid"" - indicates whether to write words solid (may be missing; the default value is ""Solid"").';"));
+		|""Separate"" - indicates whether to write words separately, ""Solid"" - indicates whether to write words solid (may be missing; the default value is ""Solid"").';tr = 'Tutarların yazılışı için virgülle ayrılmış parametreler.
+		|Türkçe (tr_TR) için doldurma örneği:
+		|
+		|TL,Kr,2,Ayrı
+		|
+		|TL - tam sayı kısmı
+		|Kr - ondalık kısım (bulunmayabilir)
+		|2 - ondalık basamak sayısı (bulunmayabilir; varsayılan değer 2''dir)
+		|""Ayrı"" - kelimelerin ayrı yazıldığını gösterir, ""Bitişik"" - kelimelerin bitişik yazıldığını gösterir (bulunmayabilir; varsayılan değer ""Bitişik""tir).'"));
 
-		Result.InputHint = NStr("en = 'TL,Kr,2,Separate';");
+		Result.InputHint = NStr("en = 'TL,Kr,2,Separate';tr = 'TL,Kr,2,Ayrı'");
 
 	EndIf;
 

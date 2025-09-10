@@ -275,7 +275,7 @@ EndProcedure
 Procedure BeforeWrite(Cancel, WriteParameters)
 	
 	ClearMessages();
-	QuestionTitle1 = NStr("en = 'Save infobase user';");
+	QuestionTitle1 = NStr("en = 'Save infobase user';tr = 'Veritabanı kullanıcı kayıtları'");
 	
 	// Copying user rights.
 	If ValueIsFilled(CopyingValue)
@@ -288,7 +288,7 @@ Procedure BeforeWrite(Cancel, WriteParameters)
 		ShowQueryBox(
 			New NotifyDescription("AfterAnswerToQuestionAboutCopyingRights", ThisObject, WriteParameters),
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Do you want to copy the rights of the user ""%1""?';"), String(CopyingValue)),
+				NStr("en = 'Do you want to copy the rights of the user ""%1""?';tr = '""%1"" kullanıcısının hakları kopyalansın mı?'"), String(CopyingValue)),
 			QuestionDialogMode.YesNo,
 			,
 			,
@@ -304,11 +304,11 @@ Procedure BeforeWrite(Cancel, WriteParameters)
 			Cancel = True;
 			ShowQueryBox(
 				New NotifyDescription("AfterAnswerToQuestionAboutWritingWithEmptyRoleList", ThisObject, WriteParameters),
-				NStr("en = 'No roles are assigned to the infobase user. Do you want to continue?';"),
+				NStr("en = 'No roles are assigned to the infobase user. Do you want to continue?';tr = 'Veritabanın kullanıcısı için herhangi bir rol atanmadı. Devam etmek istiyor musunuz?'"),
 				QuestionDialogMode.YesNo,
 				,
 				,
-				NStr("en = 'Save infobase user';"));
+				NStr("en = 'Save infobase user';tr = 'Veritabanı kullanıcı kayıtları'"));
 			Return;
 		EndIf;
 	EndIf;
@@ -386,7 +386,7 @@ Procedure BeforeWriteAtServer(Cancel, CurrentObject, WriteParameters)
 							// Password check.
 							If Not ThePasswordIsTheSameAsTheSavedOne Then
 								PasswordToConfirmEmailChange = Undefined;
-								Raise NStr("en = 'Password is incorrect';");
+								Raise NStr("en = 'Password is incorrect';tr = 'Şifre yanlış'");
 							EndIf;
 						EndIf;
 						
@@ -543,7 +543,7 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	   And ValidityPeriod <= BegOfDay(CurrentSessionDate()) Then
 		
 		Common.MessageToUser(
-			NStr("en = 'The expiration date must be tomorrow or later.';"),, "CanSignIn",, Cancel);
+			NStr("en = 'The expiration date must be tomorrow or later.';tr = 'Sona erme tarihi yarın veya daha sonra olmalıdır.'"),, "CanSignIn",, Cancel);
 	EndIf;
 	
 	If IBUserWritingRequired(ThisObject) Then
@@ -569,18 +569,18 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 			If Item.IsNonExistingRole Then
 				CommonClientServer.AddUserError(Errors,
 					"Roles[%1].RolesSynonym",
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" does not exist.';"), Item.Synonym),
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" does not exist.';tr = 'Feshedilmiş rol  ""%1"".'"), Item.Synonym),
 					"Roles",
 					TreeItems.IndexOf(Item),
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Non-existent role ""%1"" in line %2.';"), Item.Synonym, "%1"));
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Non-existent role ""%1"" in line %2.';tr = '%2 satırında var olmayan ""%1"" rolü.'"), Item.Synonym, "%1"));
 			EndIf;
 			If Item.IsUnavailableRole Then
 				CommonClientServer.AddUserError(Errors,
 					"Roles[%1].RolesSynonym",
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" is unavailable to external users.';"), Item.Synonym),
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" is unavailable to external users.';tr = '""%1"" rolü harici kullanıcılar için kullanılamaz.'"), Item.Synonym),
 					"Roles",
 					TreeItems.IndexOf(Item),
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" in line %2 is unavailable to external users.';"), Item.Synonym, "%1"));
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" in line %2 is unavailable to external users.';tr = '%2 satırındaki ""%1"" rolü harici kullanıcılar tarafından kullanılamaz'"), Item.Synonym, "%1"));
 			EndIf;
 		EndDo;
 		CommonClientServer.ReportErrorsToUser(Errors, Cancel);
@@ -657,7 +657,8 @@ Procedure CanSignInOnChange(Item)
 		CanSignIn = False;
 		ShowMessageBox(,
 			NStr("en = 'To allow logging in to the application, clear
-			           |the deletion mark from the external user.';"));
+			           |the deletion mark from the external user.';tr = 'Uygulamaya girişe izin vermek için
+			           |silme işaretini harici kullanıcıdan kaldırın.'"));
 		Return;
 	EndIf;
 	
@@ -688,7 +689,7 @@ Procedure CanSignInOnChange(Item)
 	   And Not CanSignIn Then
 		
 		ShowMessageBox(,
-			NStr("en = 'Once you save the changes, only the administrator can allow login to the application.';"));
+			NStr("en = 'Once you save the changes, only the administrator can allow login to the application.';tr = 'Değişiklikler kaydedildikten sonra, uygulamaya girişe sadece yönetici izin verebilir.'"));
 	EndIf;
 	
 	CanSignInDirectChangeValue = CanSignIn;
@@ -1712,12 +1713,12 @@ Procedure FindUserAndIBUserDifferences(WriteParameters = Undefined)
 		HasDifferencesResolvableWithoutAdministrator = False;
 		
 		If IBUserOSAuthentication <> False Then
-			PropertiesToResolve.Add(NStr("en = 'OS authentication (enabled)';"));
+			PropertiesToResolve.Add(NStr("en = 'OS authentication (enabled)';tr = 'OS kimlik doğrulama (açık)'"));
 		EndIf;
 		
 		If CanSignInOnRead And Object.Invalid Then
 			CanSignIn = False;
-			PropertiesToResolve.Insert(0, NStr("en = 'Login allowed';"));
+			PropertiesToResolve.Insert(0, NStr("en = 'Login allowed';tr = 'Girişe izin verildi'"));
 		EndIf;
 		
 		If ValueIsFilled(PropertiesToResolve) Then
@@ -1729,22 +1730,22 @@ Procedure FindUserAndIBUserDifferences(WriteParameters = Undefined)
 		If IBUserFullName <> Object.Description Then
 			HasDifferencesResolvableWithoutAdministrator = True;
 			
-			PropertiesToResolve.Insert(0, StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Full name: ""%1""';"),
+			PropertiesToResolve.Insert(0, StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Full name: ""%1""';tr = 'Tam isim ""%1""'"),
 				IBUserFullName));
 		EndIf;
 		
 		If IBUserOSUser <> "" Then
-			PropertiesToResolve.Add(NStr("en = 'OS user (specified)';"));
+			PropertiesToResolve.Add(NStr("en = 'OS user (specified)';tr = 'OS kullanıcı (belirlenmiş)'"));
 		EndIf;
 		
 		If IBUserShowInList Then
 			HasDifferencesResolvableWithoutAdministrator = True;
-			PropertiesToResolve.Add(NStr("en = 'Show in choice list (enabled)';"));
+			PropertiesToResolve.Add(NStr("en = 'Show in choice list (enabled)';tr = 'Seçim listesinde göster (açık)'"));
 		EndIf;
 		
 		If IBUserRunMode <> "Auto" Then
 			HasDifferencesResolvableWithoutAdministrator = True;
-			PropertiesToResolve.Add(NStr("en = 'Run mode (not Auto)';"));
+			PropertiesToResolve.Add(NStr("en = 'Run mode (not Auto)';tr = 'Başlatma modu (Oto değil)'"));
 		EndIf;
 		
 		SetPrivilegedMode(True);
@@ -1776,25 +1777,28 @@ Procedure FindUserAndIBUserDifferences(WriteParameters = Undefined)
 			   And ActionsOnForm.ItemProperties = "Edit" Then
 				
 				Recommendation = Chars.LF
-					+ NStr("en = 'To resolve the differences and not to show this message again, click ""Save"".';");
+					+ NStr("en = 'To resolve the differences and not to show this message again, click ""Save"".';tr = 'Farklıları gidermek ve bu uyarıyı tekrar göstermemek için ""Kayıt"" ''a tıklayın.'");
 			
 			ElsIf Not Users.IsFullUser() Then
 				Recommendation = Chars.LF
-					+ NStr("en = 'To resolve the differences, contact your system administrator.';");
+					+ NStr("en = 'To resolve the differences, contact your system administrator.';tr = 'Farklılıkları gidermek için yöneticinize başvurun.'");
 			Else
 				Recommendation = "";
 			EndIf;
 			If ValueIsFilled(PropertiesToResolveString) Then
 				MismatchClarification = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The following infobase user properties differ from the properties specified in the form:
-					           |%1.';"),
+					           |%1.';tr = 'Veritabanı kullanıcısının aşağıdaki özellikleri, bu formda belirtilenlerden farklıdır: 
+					           |%1'"),
 					PropertiesToResolveString) + ?(Not AreSavedInfobaseUserPropertiesMismatch, "", "
 					|" + NStr("en = 'The picture in the list of external users and authorization objects might display an outdated state
-					                |as some other saved properties also differ.';"));
+					                |as some other saved properties also differ.';tr = 'Bazı kayıtlı özellikler farklılık gösterebileceğinden,
+					                |harici kullanıcılar ve kimlik doğrulama nesnelerinin listesindeki resim eski bir durumu gösterebilir.'"));
 			Else
 				MismatchClarification =
 					NStr("en = 'The picture in the list of external users and authorization objects might display an outdated state
-					           |as some infobase user properties differ from the saved ones.';");
+					           |as some infobase user properties differ from the saved ones.';tr = 'Bazı infobase kullanıcı özellikleri kayıtlı olanlardan farklı olabileceğinden
+					           |harici kullanıcılar ve kimlik doğrulama nesnelerinin listesindeki resim eski bir durum gösterebilir.'");
 			EndIf;
 			Items.PropertiesMismatchNote.Title = MismatchClarification + Recommendation;
 		Else
@@ -1829,17 +1833,17 @@ Procedure FindUserAndIBUserDifferences(WriteParameters = Undefined)
 	
 	If ActionsOnForm.ItemProperties = "Edit" Then
 		Recommendation = Chars.LF
-			+ NStr("en = 'To eliminate the issue and not to show this message again, click ""Save"".';");
+			+ NStr("en = 'To eliminate the issue and not to show this message again, click ""Save"".';tr = 'Sorunu ortadan kaldırmak ve bu uyarıyı tekrar göstermemek için ""Kayıt"" ''a tıklayın.'");
 		
 	ElsIf Not Users.IsFullUser() Then
 		Recommendation = Chars.LF
-			+ NStr("en = 'To resolve the differences, contact your system administrator.';");
+			+ NStr("en = 'To resolve the differences, contact your system administrator.';tr = 'Farklılıkları gidermek için yöneticinize başvurun.'");
 	Else
 		Recommendation = "";
 	EndIf;
 	
 	Items.MappingMismatchNote.Title =
-		NStr("en = 'The infobase user does not exist.';") + Recommendation;
+		NStr("en = 'The infobase user does not exist.';tr = 'Var olmayan bilgi bankası kullanıcısı.'") + Recommendation;
 	
 EndProcedure
 

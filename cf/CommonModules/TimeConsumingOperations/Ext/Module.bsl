@@ -598,13 +598,15 @@ Function ExecuteInBackground(Val ProcedureName, Val ProcedureParameters, Val Exe
 	If ExecutionParameters.RunNotInBackground1 And ExecutionParameters.RunInBackground Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Parameters ""%1"" and ""%2""
-			|cannot have value %3 in %4 at the same time.';"),
+			|cannot have value %3 in %4 at the same time.';tr = '""%1"" ve ""%2"" parametreleri
+			|%4''da aynı anda %3 değerini alamaz.'"),
 			"RunNotInBackground1", "RunInBackground", "True", "TimeConsumingOperations.ExecuteInBackground");
 	EndIf;
 	If ExecutionParameters.NoExtensions And ExecutionParameters.WithDatabaseExtensions Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Parameters ""%1"" and ""%2""
-			|cannot have value %3 in %4 at the same time.';"),
+			|cannot have value %3 in %4 at the same time.';tr = '""%1"" ve ""%2"" parametreleri
+			|%4''da aynı anda %3 değerini alamaz.'"),
 			"NoExtensions", "WithDatabaseExtensions", "True", "TimeConsumingOperations.ExecuteInBackground");
 	EndIf;
 	
@@ -613,12 +615,14 @@ Function ExecuteInBackground(Val ProcedureName, Val ProcedureParameters, Val Exe
 	If ExecutionParameters.NoExtensions And FileInfobase Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Cannot start the background job with the ""%1"" parameter
-			|in the external connection with the file infobase in %2.';"),
+			|in the external connection with the file infobase in %2.';tr = '%2 konumundaki dosya infobase''i ile harici bağlantıda 
+			|""%1"" parametreli arka plan işi başlatılamıyor.'"),
 			"NoExtensions", "TimeConsumingOperations.ExecuteInBackground");
 	ElsIf ExecutionParameters.WithDatabaseExtensions And FileInfobase Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Cannot start the background job with the ""%1"" parameter
-			|in the external connection with the file infobase in %2.';"),
+			|in the external connection with the file infobase in %2.';tr = '%2 konumundaki dosya infobase''i ile harici bağlantıda 
+			|""%1"" parametreli arka plan işi başlatılamıyor.'"),
 			"WithDatabaseExtensions", "TimeConsumingOperations.ExecuteInBackground");
 	EndIf;
 #EndIf
@@ -634,12 +638,14 @@ Function ExecuteInBackground(Val ProcedureName, Val ProcedureParameters, Val Exe
 					Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 						"en = 'Form UUID is not specified in the %1 parameter and temporary storage address is not specified
 						|in the %2 parameter in %3.
-						|Make sure that the temporary storage is cleared explicitly with the %4 method on result processing.';"),
+						|Make sure that the temporary storage is cleared explicitly with the %4 method on result processing.';tr = 'Ne %1 parametresinde formun benzersiz kimliği,
+						|ne de %3üzerindeki %2 içinde yer alan geçici depo adresi belirtilmedi.
+						|Sonucu işlerken, geçici depolamanın %4yöntemi ile açıkça temizlendiğinden emin olun.'"),
 						"ExecutionParameters.FormIdentifier", "ExecutionParameters.ResultAddress",
 						"TimeConsumingOperations.ExecuteInBackground", "DeleteFromTempStorage");
 				Except
 					// ACC:154-on Recommendation: Log an a warning, not as an error.
-					WriteLogEvent(NStr("en = 'Long-running operations.Diagnostics';", Common.DefaultLanguageCode()),
+					WriteLogEvent(NStr("en = 'Long-running operations.Diagnostics';tr = 'Uzun işlemler.Tanılama'", Common.DefaultLanguageCode()),
 						EventLogLevel.Warning, , , ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 					// ACC:154-on 
 				EndTry;
@@ -648,7 +654,8 @@ Function ExecuteInBackground(Val ProcedureName, Val ProcedureParameters, Val Exe
 		ElsIf Not IsTempStorageURL(ExecutionParameters.ResultAddress) Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 				"en = 'Temporary storage address is not specified in the %1 parameter
-				|in %2.';"),
+				|in %2.';tr = '%2''da %1
+				| parametrede geçici depo adresi belirtilmedi.'"),
 				"ExecutionParameters.ResultAddress", "TimeConsumingOperations.ExecuteInBackground");
 		EndIf;	
 		Result.Insert("ResultAddress", ExecutionParameters.ResultAddress);
@@ -719,7 +726,7 @@ Function ExecuteInBackground(Val ProcedureName, Val ProcedureParameters, Val Exe
 				EndTry;
 			EndIf;
 			SetErrorProperties(Result, ErrorInfo);
-			WriteLogEvent(NStr("en = 'Long-running operations.Runtime error';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Long-running operations.Runtime error';tr = 'Uzun işlemler.Yürütme hatası'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error, , , Result.DetailErrorDescription);
 		EndTry;
 		Result.Messages = GetUserMessages(True);
@@ -956,7 +963,7 @@ Procedure CancelJobExecution(Val JobID) Export
 		Job.Cancel();
 	Except
 		// The job might have been completed at that moment and no error occurred.
-		WriteLogEvent(NStr("en = 'Long-running operations.Cancel background job';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Long-running operations.Cancel background job';tr = 'Uzun işlemler. Arkaplan iş yürütme iptali'", Common.DefaultLanguageCode()),
 			EventLogLevel.Information, , , ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -1021,7 +1028,7 @@ Function JobCompleted(Val JobID, ExtendedResult = False) Export
 	EndIf;
 	
 	If Result.Status = "Canceled" Then
-		ErrorText = NStr("en = 'Operation canceled';");
+		ErrorText = NStr("en = 'Operation canceled';tr = 'İşlem iptal edildi'");
 		Try
 			Raise ErrorText;
 		Except
@@ -1038,11 +1045,16 @@ Function JobCompleted(Val JobID, ExtendedResult = False) Export
 			           |Technical details:
 			           |%2
 			           |
-			           |See also the event log.';"),
+			           |See also the event log.';tr = '%1
+			           |
+			           |Teknik ayrıntılar:
+			           |%2
+			           |
+			           |Ayrıca bkz. olay günlüğü.'"),
 			Result.BriefErrorDescription,
 			Result.DetailErrorDescription);
 		Refinement = CommonClientServer.ExceptionClarification(Result.ErrorInfo);
-		ForAdministrator = NStr("en = 'Also, see the event log.';");
+		ForAdministrator = NStr("en = 'Also, see the event log.';tr = 'Ayrıca bkz. Olay günlüğü.'");
 		Try
 			Raise(Refinement.Text, Refinement.Category,, ForAdministrator, Result.ErrorInfo);
 		Except
@@ -1059,7 +1071,13 @@ Function JobCompleted(Val JobID, ExtendedResult = False) Export
 			           |An error occurred while executing background job %2 with ID %3. Reason:
 			           |%4
 			           |
-			           |See the Event log for details.';"),
+			           |See the Event log for details.';tr = '%1
+			           |
+			           |Teknik ayrıntılar:
+			           |%3 kimliği ile %2 arka plan görevi yürütülürken hata oluştu. Nedeni:
+			           |%4
+			           |
+			           |Ayrıca olay günlüğüne bakın.'"),
 			Result.BriefErrorDescription,
 			Job.MethodName,
 			String(JobID),
@@ -1067,7 +1085,8 @@ Function JobCompleted(Val JobID, ExtendedResult = False) Export
 		Refinement = CommonClientServer.ExceptionClarification(Result.ErrorInfo);
 		ForAdministrator = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Error executing the background job ""%1"" (id %2).
-			           |See also: Event log.';"),
+			           |See also: Event log.';tr = '""%1"" arka plan işi yürütülürken hata oluştu (id %2).
+			           |Ayrıca bkz.: Olay günlüğü.'"),
 			Job.MethodName,
 			String(JobID));
 		Try
@@ -1239,8 +1258,8 @@ Function ActionCompleted(Val JobID, Job = Undefined) Export
 		If IsThreadOfControlRestarted(JobID, Job) Then
 			Return Result;
 		EndIf;
-		ErrorText = NStr("en = 'Cannot perform the operation due to abnormal termination of a background job.';");
-		ClarificationForAdmin = NStr("en = 'The background job does not exist';") + ": "
+		ErrorText = NStr("en = 'Cannot perform the operation due to abnormal termination of a background job.';tr = 'Arka plan görevinin çökmesi nedeniyle işlem başarısız oldu.'");
+		ClarificationForAdmin = NStr("en = 'The background job does not exist';tr = 'Arka plan işi mevcut değil'") + ": "
 			+ String(LastID_);
 		Try
 			Raise(ErrorText,,, ClarificationForAdmin);
@@ -1248,7 +1267,7 @@ Function ActionCompleted(Val JobID, Job = Undefined) Export
 			ErrorInfo = ErrorInfo();
 		EndTry;
 		SetErrorProperties(Result, ErrorInfo);
-		WriteLogEvent(NStr("en = 'Long-running operations.Background job not found';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Long-running operations.Background job not found';tr = 'Uzunİşlemler.Arkaplan görevi bulunamadı'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error, , , Result.DetailErrorDescription);
 		Result.Status = "Error";
 		Return Result;
@@ -1267,7 +1286,7 @@ Function ActionCompleted(Val JobID, Job = Undefined) Export
 			Result.Status = "Error";
 			If Job.ErrorInfo <> Undefined Then
 				Refinement = CommonClientServer.ExceptionClarification(Job.ErrorInfo,
-					NStr("en = 'Operation canceled by administrator.';"));
+					NStr("en = 'Operation canceled by administrator.';tr = 'İşlem yönetici tarafından iptal edildi.'"));
 				Try
 					Raise(Refinement.Text, Refinement.Category,,, Job.ErrorInfo);
 				Except
@@ -1655,7 +1674,7 @@ Function RunBackgroundJobWithClientContext(ProcedureName,
 	StartupStack = "";
 	If Common.CommonCoreParameters().ShouldIncludeFullStackInLongRunningOperationErrors Then
 		Try
-			Raise NStr("en = 'Starting the background job of a long-running operation:';");
+			Raise NStr("en = 'Starting the background job of a long-running operation:';tr = 'Uzun süreli işlemin arka plan işi başlatılıyor:'");
 		Except
 			StartupStack = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		EndTry;
@@ -1803,7 +1822,7 @@ Procedure ExecuteWithClientContext(AllParameters) Export
 		SystemInfo = New SystemInfo;
 		StartupStack = AllParameters.StartupStack;
 		If CommonClientServer.CompareVersions(SystemInfo.AppVersion, "8.3.22.2009") < 0 Then
-			ErrorStack = NStr("en = 'The stack of the background job error:';") + Chars.LF
+			ErrorStack = NStr("en = 'The stack of the background job error:';tr = 'Arka plan iş yığını hatası:'") + Chars.LF
 				+ ErrorProcessing.DetailErrorDescription(ErrorInfo);
 			StartupStack = ErrorStack + ?(ValueIsFilled(StartupStack),
 				Chars.LF + Chars.LF + StartupStack, "");
@@ -1855,7 +1874,7 @@ Procedure CallProcedure(ProcedureName, CallParameters, ExecutionParameters)
 	EndIf;
 	
 	Raise StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Invalid format of the %2 parameter (passed value: %1).';"), ProcedureName, "ProcedureName");
+		NStr("en = 'Invalid format of the %2 parameter (passed value: %1).';tr = '%2 parametresinin yanlış biçimi (aktarılan değer: %1)'"), ProcedureName, "ProcedureName");
 	
 EndProcedure
 
@@ -1869,7 +1888,8 @@ Function ExternalDataProcessorReportObject(IsExternalReport, ExecutionParameters
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'To call an external report or data processor procedure,
-				           |specify the %1parameter.';"),
+				           |specify the %1parameter.';tr = 'Harici rapor veya veri işlemcisi prosedürü çağırmak için
+				           |%1 parametresini belirtin.'"),
 				"ExternalReportDataProcessor");
 			Raise ErrorText;
 		EndIf;
@@ -1937,7 +1957,7 @@ Procedure CallFunction(FunctionName, ProcedureParameters, ExecutionParameters)
 	EndIf;
 	
 	Raise StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Invalid format of the %2 parameter (passed value: %1).';"), FunctionName, "FunctionName");
+		NStr("en = 'Invalid format of the %2 parameter (passed value: %1).';tr = '%2 parametresinin yanlış biçimi (aktarılan değer: %1)'"), FunctionName, "FunctionName");
 	
 EndProcedure
 
@@ -2171,10 +2191,10 @@ Procedure SendClientNotification(NotificationKind, ValueToPass,
 		AdditionalSendingParameters.Replace = True;
 		AdditionalSendingParameters.DeliveryDeferral = 3;
 		AdditionalSendingParameters.LogEventOnDeliveryDeferral =
-			NStr("en = 'Long-running operations.Deferred progress delivery';",
+			NStr("en = 'Long-running operations.Deferred progress delivery';tr = 'Uzun süreli işlem.Ertelenmiş ilerleme teslimatı'",
 				Common.DefaultLanguageCode());
 		AdditionalSendingParameters.LogCommentOnDeliveryDeferral =
-			NStr("en = 'Send progress more often than every 3 seconds';");
+			NStr("en = 'Send progress more often than every 3 seconds';tr = 'İlerlemeyi 3 saniyeden daha sık gönder'");
 	EndIf;
 	
 	ServerNotifications.SendServerNotificationWithGroupID(NameOfAlert(),
@@ -2199,7 +2219,7 @@ Function NotificationTypeID(NotificationKind)
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Unknown notification type of the long-running operation: ""%1"".';"), NotificationKind);
+		NStr("en = 'Unknown notification type of the long-running operation: ""%1"".';tr = 'Uzun süreli işlemin bilinmeyen bildirim türü: ""%1"".'"), NotificationKind);
 	
 	Raise ErrorText;
 	
@@ -2283,9 +2303,9 @@ Function RunBackgroundJob(ExecutionParameters, MethodName, Parameters, Var_Key, 
 		
 		Session = GetCurrentInfoBaseSession();
 		If ExecutionParameters.WaitCompletion = Undefined And Session.ApplicationName = "BackgroundJob" Then
-			Raise NStr("en = 'In a file infobase, only one background job can run at a time.';");
+			Raise NStr("en = 'In a file infobase, only one background job can run at a time.';tr = 'Dosya Infobase''inde birden fazla arka plan işi aynı anda yürütülemez.'");
 		ElsIf Session.ApplicationName = "COMConnection" Then
-			Raise NStr("en = 'In a file infobase, background jobs can only be started from the client application.';");
+			Raise NStr("en = 'In a file infobase, background jobs can only be started from the client application.';tr = 'Dosya bilgi tabanında, yalnızca istemci uygulamasından bir arka plan görevi çalıştırabilirsiniz'");
 		EndIf;
 		
 	EndIf;
@@ -2736,7 +2756,7 @@ Function FirstIDOfThreadOfControlJob(ProcessID)
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Cannot find a record for the main thread of the %1 multithreaded long-running operation';"),
+		NStr("en = 'Cannot find a record for the main thread of the %1 multithreaded long-running operation';tr = '%1 çok iş parçacıklı uzun süreli işlemin ana iş parçacığı için kayıt bulunamadı'"),
 		String(ProcessID));
 	
 	Raise ErrorText;
@@ -3322,7 +3342,7 @@ Procedure PrepareMultiThreadOperationForStartup(Val MethodName, AddressResults,
 			SetOfOneRecord.Read();
 			If SetOfOneRecord.Count() <> 1 Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot find a record for the main thread of the %1 multithreaded long-running operation';"),
+					NStr("en = 'Cannot find a record for the main thread of the %1 multithreaded long-running operation';tr = '%1 çok iş parçacıklı uzun süreli işlemin ana iş parçacığı için kayıt bulunamadı'"),
 					String(ProcessID));
 				Raise ErrorText;
 			EndIf;
@@ -3346,11 +3366,11 @@ Procedure CheckIfCanRunMultiThreadLongRunningOperation(ExecutionParameters, Para
 	If ParametersSet <> Undefined
 	   And TypeOf(ParametersSet) <> Type("Map")
 	   And TypeOf(ParametersSet) <> Type("Structure") Then
-		Raise NStr("en = 'Invalid type of parameter set is passed';");
+		Raise NStr("en = 'Invalid type of parameter set is passed';tr = 'Geçersiz parametre kümesi türü iletildi'");
 	EndIf;
 	
 	If Common.DataSeparationEnabled() And Not Common.SeparatedDataUsageAvailable() Then
-		Raise NStr("en = 'Multi-threaded long-running operations in a shared session are not supported.';");
+		Raise NStr("en = 'Multi-threaded long-running operations in a shared session are not supported.';tr = 'Ortak oturumda çok iş parçacıklı uzun süreli işlemler desteklenmez.'");
 	EndIf;
 	
 EndProcedure
@@ -3436,13 +3456,13 @@ Function IsThreadOfControlRestarted(JobID, Job)
 			MultithreadProcessMethodName(), OperationParametersList);
 		
 		If Not ValueIsFilled(RunResult.JobID) Then
-			ErrorText = NStr("en = 'An empty background job ID is received';");
+			ErrorText = NStr("en = 'An empty background job ID is received';tr = 'Boş arka plan işi ID''si alındı'");
 			Raise ErrorText;
 		EndIf;
 		NewJob = FindJobByID(RunResult.JobID);
 		If NewJob = Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot find a new background job by the %1 ID';"),
+				NStr("en = 'Cannot find a new background job by the %1 ID';tr = '%1 ID''li yeni arka plan işi bulunamıyor'"),
 				RunResult.JobID);
 			Raise ErrorText;
 		EndIf;
@@ -3462,7 +3482,10 @@ Function IsThreadOfControlRestarted(JobID, Job)
 			NStr("en = 'Error restarting the background job %1
 			           |of the main thread %2:
 			           |
-			           |%3';"),
+			           |%3';tr = '%2 ana iş parçacığının 
+			           |%1 arka plan işi yeniden başlatılırken hata oluştu:
+			           |
+			           |%3'"),
 			String(JobID),
 			String(Stream.ProcessID),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -3547,7 +3570,7 @@ EndProcedure
 //
 Function EventLogEvent() Export
 	
-	Return NStr("en = 'Multithreaded long-running operations';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Multithreaded long-running operations';tr = 'Çoklu kullanımlı uzun işlemler'", Common.DefaultLanguageCode());
 	
 EndFunction
 

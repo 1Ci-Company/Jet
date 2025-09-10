@@ -26,11 +26,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		If Parameters.CloseOnChoice = False Then
 			// Pick mode.
-			Title = NStr("en = 'Pick user groups';");
+			Title = NStr("en = 'Pick user groups';tr = 'Kullanıcı grupları seç'");
 			Items.List.MultipleChoice = True;
 			Items.List.SelectionMode = TableSelectionMode.MultiRow;
 		Else
-			Title = NStr("en = 'Select user group';");
+			Title = NStr("en = 'Select user group';tr = 'Kullanıcı grubunu seçin'");
 		EndIf;
 		
 		AutoTitle = False;

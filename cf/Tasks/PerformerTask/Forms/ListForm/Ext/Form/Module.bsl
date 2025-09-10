@@ -195,11 +195,11 @@ EndProcedure
 &AtClient
 Procedure OpenBusinessProcess(Command)
 	If TypeOf(Items.List.CurrentRow) <> Type("TaskRef.PerformerTask") Then
-		ShowMessageBox(,NStr("en = 'Cannot run the command for the object.';"));
+		ShowMessageBox(,NStr("en = 'Cannot run the command for the object.';tr = 'Komut, belirtilen nesne için yürütülemiyor.'"));
 		Return;
 	EndIf;
 	If Items.List.CurrentData.BusinessProcess = Undefined Then
-		ShowMessageBox(,NStr("en = 'Business process of the selected task is not specified.';"));
+		ShowMessageBox(,NStr("en = 'Business process of the selected task is not specified.';tr = 'Seçilen görevin iş süreci belirtilmedi.'"));
 		Return;
 	EndIf;
 	ShowValue(, Items.List.CurrentData.BusinessProcess);
@@ -208,11 +208,11 @@ EndProcedure
 &AtClient
 Procedure OpenTaskSubject(Command)
 	If TypeOf(Items.List.CurrentRow) <> Type("TaskRef.PerformerTask") Then
-		ShowMessageBox(,NStr("en = 'Cannot run the command for the object.';"));
+		ShowMessageBox(,NStr("en = 'Cannot run the command for the object.';tr = 'Komut, belirtilen nesne için yürütülemiyor.'"));
 		Return;
 	EndIf;
 	If Items.List.CurrentData.SubjectOf = Undefined Then
-		ShowMessageBox(,NStr("en = 'Subject of the selected task is not specified.';"));
+		ShowMessageBox(,NStr("en = 'Subject of the selected task is not specified.';tr = 'Seçilen görevin konusu belirtilmedi.'"));
 		Return;
 	EndIf;
 	ShowValue(, Items.List.CurrentData.SubjectOf);

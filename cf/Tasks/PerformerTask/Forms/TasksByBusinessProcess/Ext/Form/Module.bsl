@@ -28,7 +28,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Items.TasksTree.Visible = False;
 	EndIf;	
 		
-	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Tasks of business process %1';"), String(Parameters.FilterValue));
+	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Tasks of business process %1';tr = 'İş sürecinin görevleri %1'"), String(Parameters.FilterValue));
 		
 	If UseSubordinateBusinessProcesses Then 
 		FillTaskTree();

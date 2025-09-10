@@ -15,7 +15,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Common.IsMobileClient() Then
 		Cancel = True;
-		Raise NStr("en = 'The operation is not available in the mobile client. Use the thin client.';");
+		Raise NStr("en = 'The operation is not available in the mobile client. Use the thin client.';tr = 'İşlem mobil istemcide kullanılamaz, ince istemciyi kullanın.'");
 	EndIf;
 	
 	SpreadsheetDocumentsToCompare = GetFromTempStorage(Parameters.SpreadsheetDocumentsAddress);

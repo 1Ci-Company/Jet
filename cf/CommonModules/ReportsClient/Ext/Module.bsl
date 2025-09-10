@@ -656,7 +656,7 @@ Function IsSelectMetadataObjects(AvailableTypes, Val MarkedValues, Handler) Expo
 		PickingParameters = StandardSubsystemsClientServer.MetadataObjectsSelectionParameters();
 		PickingParameters.SelectedMetadataObjects = MarkedValues;
 		PickingParameters.ChooseRefs = True;
-		PickingParameters.Title = NStr("en = 'Pick tables';");
+		PickingParameters.Title = NStr("en = 'Pick tables';tr = 'Tabloları seç'");
 		
 		StandardSubsystemsClient.ChooseMetadataObjects(PickingParameters, Handler);
 	EndIf;
@@ -778,17 +778,17 @@ Procedure SelectUsersAfterSelectionType(SelectedElement, Context) Export
 		FullChoiceFormName = "Catalog.Users.ChoiceForm";
 		If Context.UsersTypes.ContainsType(Type("CatalogRef.UserGroups")) Then 
 			PickingParameters.Insert("UsersGroupsSelection", True);
-			PickFormHeader = NStr("en = 'Pick groups and users';");
+			PickFormHeader = NStr("en = 'Pick groups and users';tr = 'Grupları ve kullanıcıları seç'");
 		Else
-			PickFormHeader = NStr("en = 'Pick users';");
+			PickFormHeader = NStr("en = 'Pick users';tr = 'Kullanıcıları seç'");
 		EndIf;
 	ElsIf SelectedElement.Value = Type("CatalogRef.ExternalUsers") Then
 		FullChoiceFormName = "Catalog.ExternalUsers.ChoiceForm";
 		If Context.UsersTypes.ContainsType(Type("CatalogRef.UserGroups")) Then 
 			PickingParameters.Insert("SelectExternalUsersGroups", True);
-			PickFormHeader = NStr("en = 'Pick groups and external users';");
+			PickFormHeader = NStr("en = 'Pick groups and external users';tr = 'Grupları ve harici kullanıcıları seç'");
 		Else
-			PickFormHeader = NStr("en = 'Pick external users';");
+			PickFormHeader = NStr("en = 'Pick external users';tr = 'Harici kullanıcıları seç'");
 		EndIf;
 	Else
 		ExecuteNotifyProcessing(Context.FollowUpHandler, SelectedElement);

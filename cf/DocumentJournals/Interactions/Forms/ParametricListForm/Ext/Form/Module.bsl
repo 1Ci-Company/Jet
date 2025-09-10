@@ -26,7 +26,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.CreateEmailSpecialButtonTreeList.Visible = OnlyEmail;
 	Items.CreateTreeGroup.Visible = Not OnlyEmail;
 	If OnlyEmail Then
-		TitleParticipantsMail =  NStr("en = 'To, from';");
+		TitleParticipantsMail =  NStr("en = 'To, from';tr = 'Kime, kimden'");
 		Items.InteractionsTreeAttendees.Title = TitleParticipantsMail;
 		Items.Attendees.Title = TitleParticipantsMail;
 	EndIf;
@@ -35,7 +35,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If TypeOf(Parameters.Filter) = Type("Structure") Then
 		
-		TitleTemplate1 = NStr("en = 'Interactions on: %1';");
+		TitleTemplate1 = NStr("en = 'Interactions on: %1';tr = 'Etkileşimler: %1'");
 		
 		If Parameters.Filter.Property("SubjectOf") Then
 			
@@ -259,9 +259,9 @@ Procedure InteractionsTreeBeforeDeleteRow(Item, Cancel)
 		EndDo;
 		
 		If HasItemsMarkedForDeletion Then
-			QueryText = NStr("en = 'Clear deletion mark from the selected items?';");
+			QueryText = NStr("en = 'Clear deletion mark from the selected items?';tr = 'Seçili öğelerin silme işareti kaldırılsın mı?'");
 		Else
-			QueryText = NStr("en = 'Mark the selected lines for deletion?';");
+			QueryText = NStr("en = 'Mark the selected lines for deletion?';tr = 'Seçili satırlar silinmek üzere işaretlensin mi?'");
 		EndIf;
 		
 		AdditionalParameters = New Structure("HasItemsMarkedForDeletion", HasItemsMarkedForDeletion);
@@ -294,7 +294,7 @@ Procedure InteractionsTreeBeforeAddRow(Item, Cancel, Copy, Parent, Var_Group)
 			If TypeOf(CurrentData.Ref) = Type("DocumentRef.IncomingEmail") 
 				Or TypeOf(CurrentData.Ref) = Type("DocumentRef.OutgoingEmail") Then
 				
-				ShowMessageBox(, NStr("en = 'Copying messages is not allowed';"));
+				ShowMessageBox(, NStr("en = 'Copying messages is not allowed';tr = 'E-posta kopyalamaya izin verilmiyor.'"));
 				
 			ElsIf TypeOf(CurrentData.Ref) = Type("DocumentRef.Meeting") Then
 				
@@ -437,7 +437,7 @@ Procedure DeferReviewExecute(Command)
 	
 	ProcessingDate = CommonClient.SessionDate();
 	OnCloseNotifyHandler = New NotifyDescription("DateInputSubmitAfterFinished", ThisObject);
-	ShowInputDate(OnCloseNotifyHandler, ProcessingDate, NStr("en = 'Snooze till';"));
+	ShowInputDate(OnCloseNotifyHandler, ProcessingDate, NStr("en = 'Snooze till';tr = 'Ertele'"));
 	
 EndProcedure
 
@@ -792,14 +792,14 @@ Procedure PagesManagementServer()
 
 	If InTreeStructure Then
 		Interval = Items.List.Period;
-		Commands.SwitchViewMode.ToolTip = NStr("en = 'Switch to List view';");
+		Commands.SwitchViewMode.ToolTip = NStr("en = 'Switch to List view';tr = 'Liste görünümüne geç'");
 		Items.TreeListPages.CurrentPage = Items.TreePage;
 		FillInteractionsTree();
 	Else
 		
 		DateForFilter = CurrentSessionDate();
 		Items.List.Period = Interval;
-		Commands.SwitchViewMode.ToolTip = NStr("en = 'Switch to Tree view';");
+		Commands.SwitchViewMode.ToolTip = NStr("en = 'Switch to Tree view';tr = 'Ağaç görünümüne geç'");
 		Items.TreeListPages.CurrentPage = Items.ListPage;
 		InteractionsClientServer.QuickFilterListOnChange(ThisObject,"Status", DateForFilter, IsFilterBySubject);
 		InteractionsClientServer.QuickFilterListOnChange(ThisObject,"EmployeeResponsible", DateForFilter, IsFilterBySubject);
@@ -976,7 +976,7 @@ Procedure FillInteractionsTree()
 	
 	ValueToFormAttribute(TreeObject,"InteractionsTree");
 	
-	TitleTemplate1 = NStr("en = 'Interaction category: %1';");
+	TitleTemplate1 = NStr("en = 'Interaction category: %1';tr = 'Etkileşim kategorisi: %1'");
 	TypePresentation = Interactions.FiltersListByInteractionsType(OnlyEmail).FindByValue(InteractionType).Presentation;
 	Items.TreeInteractionType.Title = StringFunctionsClientServer.SubstituteParametersToString(TitleTemplate1, TypePresentation);
 	For Each SubmenuItem In Items.TreeInteractionType.ChildItems Do

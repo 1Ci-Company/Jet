@@ -168,7 +168,7 @@ Procedure DuplicateInNotificationCenter(Command)
 	EndIf;
 	
 	If CurrentData.IsSection Then
-		Message = NStr("en = 'Please select a to-do item.';");
+		Message = NStr("en = 'Please select a to-do item.';tr = 'Lütfen, yapılacak iş seçin.'");
 		ShowMessageBox(, Message);
 		Return;
 	EndIf;

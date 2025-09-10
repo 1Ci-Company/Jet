@@ -32,9 +32,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	SettingsClearing = (Parameters.ActionType = "Clearing");
 	If SettingsClearing Then
 		Title =
-			NStr("en = 'Select users to clear settings';");
+			NStr("en = 'Select users to clear settings';tr = 'Ayarları temizlemek için kullanıcıları seçin'");
 		Items.Label.Title =
-			NStr("en = 'Select the users whose settings you want to clear:';");
+			NStr("en = 'Select the users whose settings you want to clear:';tr = 'Ayarları temizlemek için kimlerin gerekli olduğunu seçin'");
 	EndIf;
 	
 	If Parameters.SelectedUsers <> Undefined Then
@@ -192,7 +192,7 @@ Procedure Select(Command)
 	EndDo;
 	
 	If UsersDestination.Count() = 0 Then
-		ShowMessageBox(,NStr("en = 'Select one or several users.';"));
+		ShowMessageBox(,NStr("en = 'Select one or several users.';tr = 'Bir veya daha fazla kullanıcıyı işaretleyin.'"));
 		Return;
 	EndIf;
 	
@@ -404,7 +404,7 @@ Procedure UpdateGroupTitle(Form, UsersGroup, UserListRow, CheckMarkValue)
 		MarkedUsersCount = UsersGroup.MarkedUsersCount;
 		UsersGroup.MarkedUsersCount = ?(CheckMarkValue, MarkedUsersCount + 1, MarkedUsersCount - 1);
 		UsersGroup.GroupDescriptionAndUserMarkCount = 
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';"), String(UsersGroup.Group), UsersGroup.MarkedUsersCount);
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';tr = '%1 (%2)'"), String(UsersGroup.Group), UsersGroup.MarkedUsersCount);
 	EndIf;
 	
 	// Update the titles of all subgroups recursively.

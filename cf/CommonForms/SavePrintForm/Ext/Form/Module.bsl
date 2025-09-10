@@ -68,7 +68,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.FolderToSaveFiles.Visible = Parameters.FileOperationsExtensionAttached;
 	
 	If Parameters.PrintObjects.Count() > 1 And AttachableItem <> Undefined Then
-		AttachableItem.Presentation = NStr("en = 'Attach to documents';")
+		AttachableItem.Presentation = NStr("en = 'Attach to documents';tr = 'Belgelere ekle'")
 				+ " (" + Format(Parameters.PrintObjects.Count(), "NFD=0;") + ")";
 	EndIf;
 	
@@ -158,7 +158,7 @@ Procedure Save(Command)
 	
 	If Items.FolderToSaveFiles.Visible Then
 		If SavingOption = "SaveToFolder" And IsBlankString(SelectedFolder) Then
-			CommonClient.MessageToUser(NStr("en = 'Select a folder.';"),,"SelectedFolder");
+			CommonClient.MessageToUser(NStr("en = 'Select a folder.';tr = 'Klasörü belirleyin.'"),,"SelectedFolder");
 			Return;
 		EndIf;
 	EndIf;
@@ -172,7 +172,7 @@ Procedure Save(Command)
 	EndDo;
 	
 	If SaveFormats.Count() = 0 Then
-		ShowMessageBox(,NStr("en = 'Specify at least one of the suggested formats.';"));
+		ShowMessageBox(,NStr("en = 'Specify at least one of the suggested formats.';tr = 'Verilen formatların en az birini belirleyin.'"));
 		Return;
 	EndIf;
 	
@@ -201,14 +201,15 @@ Procedure Save(Command)
 			SaveFollowUpNotificationDetails = New NotifyDescription("ResumeSaving", ThisObject, SelectionResult);
 			
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot attach the objects:
-			| %1';"), ErrorString);
+			| %1';tr = 'Nesneler eklenemiyor:
+			| %1'"), ErrorString);
 			
 			Buttons = New ValueList;
-			Buttons.Add("Cancel", NStr("en = 'Cancel';"));
-			Buttons.Add("Continue", NStr("en = 'Continue';"));
+			Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
+			Buttons.Add("Continue", NStr("en = 'Continue';tr = 'Devam'"));
 			
 			QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
-			QuestionParameters.Title = NStr("en = 'Insufficient rights to attach';");
+			QuestionParameters.Title = NStr("en = 'Insufficient rights to attach';tr = 'Ekleme yetkisi yok'");
 			QuestionParameters.LockWholeInterface = True;
 			QuestionParameters.PromptDontAskAgain = False;
 			

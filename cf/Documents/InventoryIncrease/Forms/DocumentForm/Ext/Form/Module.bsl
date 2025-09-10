@@ -122,7 +122,7 @@ Procedure ImportInventoryFromFile(Command)
 	
 	ImportParameters = ImportDataFromFileClient.DataImportParameters();
 	ImportParameters.FullTabularSectionName = "InventoryIncrease.Inventory";
-	ImportParameters.Title = NStr("en = 'Import inventory from file'");
+	ImportParameters.Title = NStr("en = 'Import inventory from file'; tr = 'Stoğu dosyadan içe aktar'");
 	
 	CallbackDescription = New CallbackDescription("ImportInventoryFromFileEnd", ThisObject);
 	

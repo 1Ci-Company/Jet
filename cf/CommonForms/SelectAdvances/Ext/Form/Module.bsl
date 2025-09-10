@@ -29,7 +29,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Items.TotalAmountCur.Visible = True;
 		
 		AmountCurTitle = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Amount (%1)'"),
+			NStr("en = 'Amount (%1)'; tr = 'Tutar (%1)'"),
 			Currency);
 		Items.AdvanceBalanceAmountCur.Title = AmountCurTitle;
 		Items.ClearingAmountCur.Title = AmountCurTitle;

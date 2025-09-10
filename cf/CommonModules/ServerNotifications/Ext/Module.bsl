@@ -113,7 +113,7 @@ EndProcedure
 Procedure HandleError(ErrorInfo) Export
 	
 	WriteLogEvent(
-		NStr("en = 'Server notifications.Error getting or processing notifications';",
+		NStr("en = 'Server notifications.Error getting or processing notifications';tr = 'Sunucu bildirimleri.Bildirim alma veya işleme hatası'",
 			Common.DefaultLanguageCode()),
 		EventLogLevel.Error,,,
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -275,7 +275,8 @@ Procedure SendServerNotificationWithGroupID(NameOfAlert, Result, SMSMessageRecip
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'In procedure %1, you cannot specify value %2 for parameter %3
-			           |when calling from procedures %4.';"),
+			           |when calling from procedures %4.';tr = '%1 prosedüründe, %4 prosedürlerinden çağırırken
+			           | %3 parametresi için %2 değeri belirtilemez.'"),
 			"ServerNotifications.SendServerNotification",
 			"True",
 			"SendImmediately",
@@ -361,7 +362,7 @@ Procedure SendServerNotificationWithGroupID(NameOfAlert, Result, SMSMessageRecip
 		StartDeliverDeferredServerNotifications(Launched);
 		If Launched And ValueIsFilled(AdditionalParameters.LogEventOnDeliveryDeferral) Then
 			Try
-				Raise NStr("en = 'Call stack:';");
+				Raise NStr("en = 'Call stack:';tr = 'Çağrı yığını:'");
 			Except
 				CallStack = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			EndTry;
@@ -932,11 +933,12 @@ Procedure PrepareServerNotifications(SendStatus, MaxIntervalByUser = Undefined)
 			ErrorInfo = ErrorInfo();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot execute the ""%1"" procedure due to:
-				           |%2';"),
+				           |%2';tr = '""%1"" prosedürü şu nedenle yürütülemiyor:
+				           |%2'"),
 				Notification.NotificationSendModuleName + ".OnSendServerNotification",
 				ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			WriteLogEvent(
-				NStr("en = 'Server notifications.Background job error';",
+				NStr("en = 'Server notifications.Background job error';tr = 'Sunucu bildirimleri. Arka plan işi hatası'",
 					Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,, ErrorText);
 		EndTry;
@@ -1559,11 +1561,12 @@ Procedure UpdateSendStatus(NewSendStatus, PropertiesNames)
 		ErrorInfo = ErrorInfo();
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot set constant %1 due to:
-			           |%2';"),
+			           |%2';tr = '%1 sabiti ayarlanamadı. Nedeni:
+			           |%2'"),
 			"ServerNotificationsSendStatus",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.Background job error';",
+			NStr("en = 'Server notifications.Background job error';tr = 'Sunucu bildirimleri. Arka plan işi hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorText);
 	EndTry;
@@ -1608,11 +1611,12 @@ Function SendStatusOnBackgroundJobStart()
 		SendStatus = Undefined;
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot set constant %1 due to:
-			           |%2';"),
+			           |%2';tr = '%1 sabiti ayarlanamadı. Nedeni:
+			           |%2'"),
 			"ServerNotificationsSendStatus",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.Background job startup error';",
+			NStr("en = 'Server notifications.Background job startup error';tr = 'Sunucu bildirimleri. Arka plan işini başlatma hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorText);
 	EndTry;
@@ -1680,10 +1684,10 @@ Procedure StartDeliverDeferredServerNotifications(Launched = False)
 	
 	CurrentSession = GetCurrentInfoBaseSession();
 	JobDescription =
-		NStr("en = 'Autostart';", Common.DefaultLanguageCode()) + ": "
-		+ NStr("en = 'Delayed server notification delivery';", Common.DefaultLanguageCode()) + " ("
+		NStr("en = 'Autostart';tr = 'Otomatik başlatma'", Common.DefaultLanguageCode()) + ": "
+		+ NStr("en = 'Delayed server notification delivery';tr = 'Gecikmiş sunucu bildirim iletimi'", Common.DefaultLanguageCode()) + " ("
 		+ StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'from session %1 started on %2';", Common.DefaultLanguageCode()),
+			NStr("en = 'from session %1 started on %2';tr = '%2 başlangıçlı %1 oturumundan'", Common.DefaultLanguageCode()),
 			Format(CurrentSession.SessionNumber, "NG="),
 			Format(CurrentSession.SessionStarted, "DLF=DT")) + ")";
 	
@@ -1898,7 +1902,10 @@ Function ServerNotificationsParametersThisSession() Export
 				NStr("en = 'In procedure ""%1"",
 				           |the notification name is either unspecified or filled in incorrectly
 				           |%2 = ""%3""
-				           |%4 = ""%5"".';"),
+				           |%4 = ""%5"".';tr = '""%1"" prosedüründe,
+				           |bildirim adı belirtilmedi veya yanlış dolduruldu
+				           |%2 = ""%3""
+				           |%4 = ""%5"".'"),
 					"CommonOverridable.OnAddServerNotifications",
 					"Key", KeyAndValue.Key, "Notification.Name", Notification.Name);
 			Raise ErrorText;
@@ -1907,7 +1914,9 @@ Function ServerNotificationsParametersThisSession() Export
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In procedure ""%1"",
 				           |property ""%3"" of notification ""%2""
-				           |is not filled in.';"),
+				           |is not filled in.';tr = '""%1"" prosedüründe, 
+				           |""%2"" bildiriminin 
+				           |""%3"" özelliği doldurulmadı.'"),
 					"CommonOverridable.OnAddServerNotifications",
 					Notification.Name, "NotificationReceiptModuleName");
 			Raise ErrorText;
@@ -1917,7 +1926,10 @@ Function ServerNotificationsParametersThisSession() Export
 				NStr("en = 'In procedure ""%1"",
 				           |property ""%3"" of notification ""%2""
 				           |has non-existent common module
-				           |""%4"".';"),
+				           |""%4"".';tr = '""%1"" prosedüründe, 
+				           |""%2"" bildiriminin 
+				           |""%3"" özelliği mevcut olmayan 
+				           |""%4"" ortak modülüne sahip.'"),
 					"CommonOverridable.OnAddServerNotifications",
 					Notification.Name, "NotificationReceiptModuleName", Notification.NotificationReceiptModuleName);
 			Raise ErrorText;
@@ -1930,7 +1942,10 @@ Function ServerNotificationsParametersThisSession() Export
 				NStr("en = 'In procedure ""%1"",
 				           |property ""%3"" of notification ""%2""
 				           |has non-existent common module
-				           |""%4"".';"),
+				           |""%4"".';tr = '""%1"" prosedüründe, 
+				           |""%2"" bildiriminin 
+				           |""%3"" özelliği mevcut olmayan 
+				           |""%4"" ortak modülüne sahip.'"),
 					"CommonOverridable.OnAddServerNotifications",
 					Notification.Name, "NotificationSendModuleName", Notification.NotificationSendModuleName);
 			Raise ErrorText;
@@ -2066,11 +2081,13 @@ Procedure ConfigureJobSendServerNotificationsToClients(Enable, RepeatPeriod = 0,
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot set up scheduled job
 			           |""%1"" due to:
-			           |%2';"),
+			           |%2';tr = '""%1""
+			           |programlı işi ayarlanamıyor. Nedeni:
+			           |%2'"),
 			Metadata.ScheduledJobs.SendServerNotificationsToClients.Name,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.Scheduled job setup error';",
+			NStr("en = 'Server notifications.Scheduled job setup error';tr = 'Sunucu bildirimler. Zamanlanmış görevi ayarlarken bir hata oluştu'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorText);
 	EndTry;
@@ -2089,7 +2106,8 @@ Procedure ConfigureJobSendServerNotificationsToClientsNoAttempt(Enable, RepeatPe
 			ErrorInfo = ErrorInfo();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot create utility user ""%1"" due to:
-				           |%2';"),
+				           |%2';tr = '""%1"" yardımcı kullanıcısı şu nedenle oluşturulamıyor:
+				           |%2'"),
 				InternalUsername(),
 				ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			Raise ErrorText;
@@ -2220,11 +2238,13 @@ Procedure SetUsageOfJobSendServerNotificationsToClients(Use)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot change the usage of
 			           |the ""%1"" scheduled job due to:
-			           |%2';"),
+			           |%2';tr = '""%1"" planlı işinin kullanımı 
+			           |şu nedenle değiştirilemiyor:
+			           |%2'"),
 			Metadata.ScheduledJobs.SendServerNotificationsToClients.Name,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.Scheduled job setup error';",
+			NStr("en = 'Server notifications.Scheduled job setup error';tr = 'Sunucu bildirimler. Zamanlanmış görevi ayarlarken bir hata oluştu'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorText);
 	EndTry;
@@ -2323,12 +2343,15 @@ Function IsCurrentUserRegisteredInInteractionSystem(UserIDCollaborationSystem = 
 			NStr("en = 'Cannot register current user
 			           |""%1 (%2)""
 			           |in the collaboration system due to:
-			           |%3';"),
+			           |%3';tr = 'Mevcut kullanıcı
+			           |""%1 (%2)""
+			           |ortak çalışma sistemine kaydedilemiyor. Nedeni:
+			           |%3'"),
 			IBUser.Name,
 			Lower(IBUser.UUID),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.An error occurred when registering the user in the collaboration system';",
+			NStr("en = 'Server notifications.An error occurred when registering the user in the collaboration system';tr = 'Sunucu bildirimleri. Ortak Çalışma Sisteminde kullanıcı kaydı hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogInteractionSystemErrorSeverity(ErrorInfo),,,
 			ErrorText);
@@ -2397,7 +2420,7 @@ Function IsInteractionSystemTemporarilyUnavailable(CheckAvailability = False)
 	
 	If PreviousValue2 = CurrentValue Then
 		WriteLogEvent(
-			NStr("en = 'Server notifications.Collaboration system is unavailable';",
+			NStr("en = 'Server notifications.Collaboration system is unavailable';tr = 'Sunucu bildirimleri. Ortak çalışma sistemi kullanılamıyor'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Warning,,,
 			ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -2708,12 +2731,13 @@ Function PersonalChatID(IBUserID = Undefined,
 		ErrorInfo = ErrorInfo();
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot create a personal conversation for user ""%1 (%2)"" due to:
-			           |%3';"),
+			           |%3';tr = '""%1 (%2)"" kullanıcısı için özel sohbet oluşturulamadı. Nedeni:
+			           |%3'"),
 			InfoBaseUsers.CurrentUser().Name,
 			Lower(IBUserID),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.An error occurred when creating a personal conversation';",
+			NStr("en = 'Server notifications.An error occurred when creating a personal conversation';tr = 'Sunucu bildirimleri. Özel sohbet oluşturma hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogInteractionSystemErrorSeverity(ErrorInfo),,, ErrorText);
 		Return Undefined;
@@ -2760,7 +2784,7 @@ Function GlobalChatID()
 	Except
 		ErrorInfo = ErrorInfo();
 		WriteLogEvent(
-			NStr("en = 'Server notifications.An error occurred when creating a common conversation';",
+			NStr("en = 'Server notifications.An error occurred when creating a common conversation';tr = 'Sunucu bildirimleri. Ortak sohbet oluşturma hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogInteractionSystemErrorSeverity(ErrorInfo),,,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -2800,11 +2824,12 @@ Function SendMessage(Data, ConversationID)
 		ErrorInfo = ErrorInfo();
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot send the message to conversation %1 due to:
-			           |%2';"),
+			           |%2';tr = '%1 sohbetine mesaj gönderilemedi. Nedeni:
+			           |%2'"),
 			Lower(ConversationID),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Server notifications.Send message error';",
+			NStr("en = 'Server notifications.Send message error';tr = 'Sunucu bildirimleri. Mesaj gönderme hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogInteractionSystemErrorSeverity(ErrorInfo),,, ErrorText);
 		Return False;
@@ -2847,7 +2872,7 @@ Procedure CleanUpObsoleteMessages(SendStatus)
 	Except
 		ErrorInfo = ErrorInfo();
 		WriteLogEvent(
-			NStr("en = 'Server notifications.An error occurred when clearing obsolete messages';",
+			NStr("en = 'Server notifications.An error occurred when clearing obsolete messages';tr = 'Sunucu bildirimleri. Eski mesajları temizleme hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogInteractionSystemErrorSeverity(ErrorInfo),,,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));

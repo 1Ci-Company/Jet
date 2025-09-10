@@ -132,7 +132,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		CommandBarLocation = FormCommandBarLabelLocation.Auto;
 		
-		CommonClientServer.SetFormItemProperty(Items, "Presentation", "InputHint", NStr("en = 'Presentation';"));
+		CommonClientServer.SetFormItemProperty(Items, "Presentation", "InputHint", NStr("en = 'Presentation';tr = 'Gösterim'"));
 		CommonClientServer.SetFormItemProperty(Items, "OkCommand", "Picture", PictureLib.WriteAndClose);
 		CommonClientServer.SetFormItemProperty(Items, "OkCommand", "Representation", ButtonRepresentation.Picture);
 		CommonClientServer.SetFormItemProperty(Items, "Cancel", "Visible", False);
@@ -343,7 +343,7 @@ Function SelectionResult()
 	EndIf;
 	
 	Codes = New Structure("CountryCode, CityCode, CityCodesList", CountryCode, CityCode, ChoiceList.UnloadValues());
-	Common.CommonSettingsStorageSave("DataProcessor.ContactInformationInput.Form.PhoneInput", "CountryAndCityCodes", Codes, NStr("en = 'Codes of country and city.';"));
+	Common.CommonSettingsStorageSave("DataProcessor.ContactInformationInput.Form.PhoneInput", "CountryAndCityCodes", Codes, NStr("en = 'Codes of country and city.';tr = 'Ülke ve şehir kodu'"));
 	
 	ContactInformation = ContactInformationByAttributesValues();
 	
@@ -457,7 +457,7 @@ EndProcedure
 Procedure NotifyFillErrors(ErrorList)
 	
 	If ErrorList.Count()=0 Then
-		ShowMessageBox(, NStr("en = 'The phone number is valid.';"));
+		ShowMessageBox(, NStr("en = 'The phone number is valid.';tr = 'Geçerli telefon numarası girildi.'"));
 		Return;
 	EndIf;
 	

@@ -342,7 +342,7 @@ Procedure SetFormStateByScheduledJobSettings(Form)
 		SchedulePresentation = String(Schedule);
 		Presentation = Upper(Left(SchedulePresentation, 1)) + Mid(SchedulePresentation, 2);
 	Else
-		Presentation = NStr("en = '<Disabled>';");
+		Presentation = NStr("en = '<Disabled>';tr = '<Devre dışı>'");
 	EndIf;
 	
 	Form.Items.DeleteMarkedObjectsSchedulePresentation.Title = Presentation;

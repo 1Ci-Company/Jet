@@ -14,7 +14,7 @@
 Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	
 #If WebClient Then
-	ShowMessageBox(, NStr("en = 'Please specify the proxy server parameters in the browser settings.';"));
+	ShowMessageBox(, NStr("en = 'Please specify the proxy server parameters in the browser settings.';tr = 'Tarayıcı ayarlarında web istemcisinin proxy sunucu parametrelerini ayarlayın.'"));
 	Return;
 #EndIf
 	

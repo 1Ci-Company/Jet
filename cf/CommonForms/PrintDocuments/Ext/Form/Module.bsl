@@ -34,7 +34,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			StringFunctionsClientServer.SubstituteParametersToString(NStr(
 				"en = 'Invalid parameter value. %1 parameter, %2 method.
 				|Expected value: %3, %4.
-				|Passed value: %5.';"),
+				|Passed value: %5.';tr = 'Geçersiz parametre değeri. %1 parametresi, %2 yöntemi.
+				|Beklenen değer: %3, %4.
+				|Aktarılan değer: %5 '"),
 				"CommandParameter",
 				"PrintManagementClient.ExecutePrintCommand",
 				"Array",
@@ -83,7 +85,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	SetUpFormItemsVisibility();
 	SetOutputAvailabilityFlagInPrintFormsPresentations(HasOutputAllowed);
 	If Not Common.IsMobileClient() And IsSetPrinting() Then
-		Items.Copies.Title = NStr("en = 'Set copies';");
+		Items.Copies.Title = NStr("en = 'Set copies';tr = 'Küme kopyası'");
 	EndIf;
 	
 	AdditionalInformation = New Structure("Picture, Text", New Picture, "");
@@ -195,7 +197,7 @@ Procedure ChoiceProcessing(ValueSelected, ChoiceSource)
 						ModuleFilesOperationsInternalClient.NotifyOfFilesModification(WrittenObjects);
 					EndIf;
 					
-					ShowUserNotification(, , NStr("en = 'Saved';"), PictureLib.DialogInformation);					
+					ShowUserNotification(, , NStr("en = 'Saved';tr = 'Kaydedildi'"), PictureLib.DialogInformation);					
 				EndIf;
 				
 			EndIf;
@@ -261,8 +263,8 @@ Procedure SIgnFiles(FilesInTempStorage, Context)
 	Map = New Map;
 
 	If FilesInTempStorage.Count() > 1 Then
-		DataDetails.Insert("Operation", NStr("en = 'Sign files';"));
-		DataDetails.Insert("DataTitle", NStr("en = 'Files';"));
+		DataDetails.Insert("Operation", NStr("en = 'Sign files';tr = 'Dosyaları imzala'"));
+		DataDetails.Insert("DataTitle", NStr("en = 'Files';tr = 'Dosyalar'"));
 
 		DataSet = New Array;
 		For Each File In FilesInTempStorage Do
@@ -278,8 +280,8 @@ Procedure SIgnFiles(FilesInTempStorage, Context)
 		DataDetails.Insert("SetPresentation", "Files (%1)");
 	Else
 		File = FilesInTempStorage[0];
-		DataDetails.Insert("Operation", NStr("en = 'Sign a file';"));
-		DataDetails.Insert("DataTitle", NStr("en = 'File';"));
+		DataDetails.Insert("Operation", NStr("en = 'Sign a file';tr = 'Dosya imzala'"));
+		DataDetails.Insert("DataTitle", NStr("en = 'File';tr = 'Dosya'"));
 		DataDetails.Insert("Presentation", File.Presentation);
 		DataDetails.Insert("Data", File.AddressInTempStorage);
 		
@@ -337,7 +339,7 @@ Procedure CompleteSigningSaveToFolder(Result, Context) Export
 		Result, Context.ValueSelected, Context.MapBetweenFilesAndPrintableObjects);
 	
 	SavePrintFormsToDirectory(FilesInTempStorage, Context.ValueSelected.FolderForSaving);
-	ShowUserNotification(, , NStr("en = 'Signed and saved';"), PictureLib.DialogInformation);
+	ShowUserNotification(, , NStr("en = 'Signed and saved';tr = 'İmzalandı ve kaydedildi'"), PictureLib.DialogInformation);
 EndProcedure
 
 &AtClient
@@ -372,7 +374,7 @@ Procedure CompleteSigningFiles(Result, Context) Export
 		ModuleFilesOperationsInternalClient.NotifyOfFilesModification(WrittenObjects);
 	EndIf;
 	
-	ShowUserNotification(, , NStr("en = 'Saved and signed';"), PictureLib.DialogInformation);
+	ShowUserNotification(, , NStr("en = 'Saved and signed';tr = 'İmzalandı ve kaydedildi'"), PictureLib.DialogInformation);
 	
 EndProcedure
 
@@ -524,7 +526,7 @@ Procedure GoToDocument(Command)
 	EndDo;
 	
 	NotifyDescription = New NotifyDescription("GoToDocumentCompletion", ThisObject);
-	ChoiceList.ShowChooseItem(NotifyDescription, NStr("en = 'Go to print form';"));
+	ChoiceList.ShowChooseItem(NotifyDescription, NStr("en = 'Go to print form';tr = 'Yazdırma formuna git'"));
 	
 EndProcedure
 
@@ -737,10 +739,10 @@ Procedure NotifyWhenPrintFormsPrepared(CombinedDocStructure = Undefined)
 		
 	NotifyDescription = New NotifyDescription("OpenOfficeOpenPrintingForm", ThisObject, OpeningParameters);
 	If FilesInTempStorage.Count() = 1 Then
-		NotificationTitle = NStr("en = 'Document is generated';");
+		NotificationTitle = NStr("en = 'Document is generated';tr = 'Belge oluşturuldu'");
 		NotificationText1 = FilesInTempStorage[0].Presentation;
 	ElsIf FilesInTempStorage.Count() > 1 Then
-		NotificationTitle = NStr("en = 'Documents are generated';");
+		NotificationTitle = NStr("en = 'Documents are generated';tr = 'Belgeler oluşturuldu'");
 		NotificationText1 = FilesInTempStorage[0].Presentation+"...";
 	Else
 		Return;
@@ -1022,7 +1024,7 @@ Procedure AddCopiesCountToPrintFormsPresentations()
 	For Each PrintFormSetting In PrintFormsSettings Do
 		If PrintFormSetting.Count <> 1 Then
 			PrintFormSetting.Presentation = PrintFormSetting.Presentation 
-				+ " (" + PrintFormSetting.Count + " " + NStr("en = 'copies';") + ")";
+				+ " (" + PrintFormSetting.Count + " " + NStr("en = 'copies';tr = 'kopyalar'") + ")";
 		EndIf;
 	EndDo;
 EndProcedure
@@ -1033,9 +1035,9 @@ Procedure SetOutputAvailabilityFlagInPrintFormsPresentations(HasOutputAllowed)
 		For Each PrintFormSetting In PrintFormsSettings Do
 			SpreadsheetDocumentField = Items[PrintFormSetting.AttributeName];
 			If SpreadsheetDocumentField.Output = UseOutput.Disable Then
-				PrintFormSetting.Presentation = PrintFormSetting.Presentation + " (" + NStr("en = 'no output';") + ")";
+				PrintFormSetting.Presentation = PrintFormSetting.Presentation + " (" + NStr("en = 'no output';tr = 'çıkış yok'") + ")";
 			ElsIf SpreadsheetDocumentField.Protection Then
-				PrintFormSetting.Presentation = PrintFormSetting.Presentation + " (" + NStr("en = 'print only';") + ")";
+				PrintFormSetting.Presentation = PrintFormSetting.Presentation + " (" + NStr("en = 'print only';tr = 'sadece yazdırma'") + ")";
 			EndIf;
 		EndDo;
 	EndIf;	
@@ -1059,7 +1061,7 @@ Procedure SetPrinterNameInPrintButtonTooltip()
 	If Not IsBlankString(PrinterName) And Not StrFind(ToolTip.Title, PrinterName) Then
 		Items.PrintButtonCommandBar.ExtendedTooltip.Title = 
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Printer (%1)';"), PrinterName);
+			NStr("en = 'Printer (%1)';tr = 'Yazıcıda yazdır (%1)'"), PrinterName);
 	EndIf;
 	
 	AttachIdleHandler("SetPrinterNameInPrintButtonTooltip", 3, True);
@@ -1078,14 +1080,14 @@ Procedure SetFormHeader()
 	
 	If Not ValueIsFilled(FormCaption) Then
 		If IsSetPrinting() Then
-			FormCaption = NStr("en = 'Print set';");
+			FormCaption = NStr("en = 'Print set';tr = 'Küme yazdırma'");
 		ElsIf PrintObjects.Count() > 1 Then
-			FormCaption = NStr("en = 'Print documents';");
+			FormCaption = NStr("en = 'Print documents';tr = 'Belge yazdır'");
 		ElsIf PrintObjects.Count() = 1 And Common.IsReference(TypeOf(PrintObjects[0].Value))
 			And Common.ObjectAttributeValue(PrintObjects[0].Value, "Ref", True) <> Undefined Then
 			FormCaption = String(PrintObjects[0].Value);
 		Else
-			FormCaption = NStr("en = 'Print document';");
+			FormCaption = NStr("en = 'Print document';tr = 'Belgeyi yazdır'");
 		EndIf;
 	EndIf;
 	
@@ -1133,11 +1135,16 @@ Procedure SetCurrentPage()
 				|
 				|See the event log for details.
 				|
-				|You are using a customized template. Do you want to switch to the standard one?';"),
+				|You are using a customized template. Do you want to switch to the standard one?';tr = 'Yazdırma formu oluşturulamıyor. Nedeni:
+				|%1
+				|
+				|Ayrıntılı bilgi için olay günlüğüne başvurun.
+				|
+				|Özel şablon kullanıyorsunuz. Standart şablona geçmek ister misiniz?'"),
 			PrintFormSetting.GenerationErrorText);
 		
 		Buttons = New ValueList;
-		Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Use standard template';"));
+		Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Use standard template';tr = 'Standart şablon kullan'"));
 		Buttons.Add(DialogReturnCode.Cancel);
 	
 		NotifyDescription = New NotifyDescription("OnReceiveAnswer", ThisObject, PrintFormSetting);
@@ -1421,7 +1428,7 @@ Function GetFileNameForArchive(TransliterateFilesNames)
 		If IsBlankString(Result) Then
 			Result = PrintFormSetting.Name1;
 		Else
-			Result = NStr("en = 'Documents';");
+			Result = NStr("en = 'Documents';tr = 'Belgeler'");
 			Break;
 		EndIf;
 	EndDo;
@@ -1462,7 +1469,7 @@ Procedure SavePrintFormToFile()
 		Context.Insert("DialogForPrintingOfficeDocumentsIsAvailable", DialogForPrintingOfficeDocumentsIsAvailable);
 				
 		Notification = New NotifyDescription("OpenOfficeDocsAfterExtensionAttached", ThisObject, Context);
-		MessageText = NStr("en = 'To print the document, install 1C:Enterprise Extension.';");
+		MessageText = NStr("en = 'To print the document, install 1C:Enterprise Extension.';tr = 'Belgeyi yazdırmak için 1C:Enterprise uzantısını yükleyin.'");
 		FileSystemClient.AttachFileOperationsExtension(Notification, MessageText);
 	EndIf;
 	
@@ -1540,7 +1547,7 @@ Procedure OpenCombinedDoc(Result, AdditionalParameters) Export
 	Context.Insert("CompletionHandler", NotificationDetailsCompletion);
 			
 	Notification = New NotifyDescription("OpenOfficeDocsAfterExtensionAttached", ThisObject, Context);
-	MessageText = NStr("en = 'To print the document, install 1C:Enterprise Extension.';");
+	MessageText = NStr("en = 'To print the document, install 1C:Enterprise Extension.';tr = 'Belgeyi yazdırmak için 1C:Enterprise uzantısını yükleyin.'");
 	FileSystemClient.AttachFileOperationsExtension(Notification, MessageText);
 EndProcedure
 
@@ -1560,7 +1567,7 @@ Procedure OpenOfficeDocsAfterExtensionAttached(ExtensionAttached, Context) Expor
 		EndIf;
 	Else
 		SavingParameters = FileSystemClient.FilesSavingParameters();
-		SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print form';");
+		SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print form';tr = 'Yazdırma formunun kaydedileceği klasörü seçin'");
 		
 		ArrayOfFilesToTransfer = New Array;
 		
@@ -1569,7 +1576,7 @@ Procedure OpenOfficeDocsAfterExtensionAttached(ExtensionAttached, Context) Expor
 		EndDo;
 		
 		If ArrayOfFilesToTransfer.Count() > 1 Then
-			SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print forms';");
+			SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print forms';tr = 'Yazdırma formlarının kaydedileceği klasörü seçin'");
 		EndIf;
 		
 		FileSystemClient.SaveFiles(New NotifyDescription, ArrayOfFilesToTransfer, SavingParameters);
@@ -1619,10 +1626,10 @@ Procedure OpenOfficeDocsAfterPermissionGranted(PermissionsGranted, Context) Expo
 		FileSystemClient.SaveFiles(Notification, Context.ArrayOfFilesToTransfer, SavingParameters);
 	Else
 		SavingParameters = FileSystemClient.FilesSavingParameters();
-		SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print form';");
+		SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print form';tr = 'Yazdırma formunun kaydedileceği klasörü seçin'");
 		SavingParameters.Dialog.Directory = TempDirectoryNameClient;
 		If Context.ArrayOfFilesToTransfer.Count() > 1 Then
-			SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print forms';");
+			SavingParameters.Dialog.Title = NStr("en = 'Select a folder to save the print forms';tr = 'Yazdırma formlarının kaydedileceği klasörü seçin'");
 		EndIf;
 		
 		FileSystemClient.SaveFiles(New NotifyDescription, Context.ArrayOfFilesToTransfer, SavingParameters);
@@ -1674,7 +1681,7 @@ EndFunction
 Function IdleParameters()
 	
 	IdleParameters = TimeConsumingOperationsClient.IdleParameters(FormOwner);
-	IdleParameters.MessageText = NStr("en = 'Preparing print forms.';");
+	IdleParameters.MessageText = NStr("en = 'Preparing print forms.';tr = 'Yazdırma formları hazırlanıyor.'");
 	IdleParameters.UserNotification.Show = False;
 	IdleParameters.OutputIdleWindow = True;
 	IdleParameters.Interval = 0;
@@ -1743,8 +1750,8 @@ Procedure WhenPreparingFileNames(FilesListInTempStorage, DirectoryName) Export
 #If Not WebClient Then
 	If ValueIsFilled(DirectoryName) Then
 		NotifyDescription = New NotifyDescription("OpenFolderSaveTo", ThisObject, DirectoryName); 
-		ShowUserNotification(NStr("en = 'Saved successfully.';"), NotifyDescription,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Folder: %1';"), DirectoryName), PictureLib.DialogInformation);
+		ShowUserNotification(NStr("en = 'Saved successfully.';tr = 'Kayıt başarı ile tamamlandı'"), NotifyDescription,
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Folder: %1';tr = '%1 klasörüne'"), DirectoryName), PictureLib.DialogInformation);
 	EndIf;
 #EndIf
 	
@@ -1766,7 +1773,7 @@ Function AttachPrintFormsToObject(FilesInTempStorage)
 				FileParameters.FilesOwner = File["PrintObject"];
 				FileParameters.BaseName = File.Presentation;
 				Result.Add(ModuleFilesOperations.AppendFile(
-					FileParameters, File.AddressInTempStorage, , NStr("en = 'Print form';")));
+					FileParameters, File.AddressInTempStorage, , NStr("en = 'Print form';tr = 'Yazdırma formu'")));
 			EndIf;
 		EndDo;
 	EndIf;
@@ -1865,7 +1872,7 @@ Procedure OpenTemplateForEditing()
 	
 	PrintFormSetting = CurrentPrintFormSetup();
 	
-	DisplayCurrentPrintFormState(NStr("en = 'The template is being edited';"));
+	DisplayCurrentPrintFormState(NStr("en = 'The template is being edited';tr = 'Şablon düzenleniyor'"));
 	
 	FormParameters = StandardSubsystemsClient.SpreadsheetEditorParameters();
 	FormParameters.DocumentName = PrintFormSetting.Presentation;
@@ -1984,7 +1991,7 @@ Function RegeneratePrintForm(TemplateName, Var_AttributeName)
 	Cancel = False;
 	PrintFormsCollection = GeneratePrintForms(TemplateName, Cancel);
 	If Cancel Then
-		Raise NStr("en = 'Print form is not generated.';");
+		Raise NStr("en = 'Print form is not generated.';tr = 'Yazdırma formu oluşturulmadı.'");
 	EndIf;
 	
 	GenerationErrorText = "";

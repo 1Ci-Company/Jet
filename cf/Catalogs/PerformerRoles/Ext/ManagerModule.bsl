@@ -176,16 +176,16 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		ModuleNationalLanguageSupportServer = Common.CommonModule("NationalLanguageSupportServer");
 		ModuleNationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
-			"en = 'Task control manager';", LanguagesCodes); // @NStr-1
+			"en = 'Task control manager';tr = 'Görev kontrolü yöneticisi'", LanguagesCodes); // @NStr-1
 	Else
-		Item.Description = NStr("en = 'Task control manager';", Common.DefaultLanguageCode());
+		Item.Description = NStr("en = 'Task control manager';tr = 'Görev kontrolü yöneticisi'", Common.DefaultLanguageCode());
 	EndIf;
 	
 	Item.UsedWithoutAddressingObjects = True;
 	Item.UsedByAddressingObjects  = True;
 	Item.ExternalRole                      = False;
 	Item.Code                              = "000000001";
-	Item.BriefPresentation             = NStr("en = '000000001';", Common.DefaultLanguageCode());
+	Item.BriefPresentation             = NStr("en = '000000001';tr = '000000001'", Common.DefaultLanguageCode());
 	Item.MainAddressingObjectTypes = ChartsOfCharacteristicTypes.TaskAddressingObjects.AllAddressingObjects;
 	
 	Purpose = TabularSections.Purpose.Copy(); // ValueTable

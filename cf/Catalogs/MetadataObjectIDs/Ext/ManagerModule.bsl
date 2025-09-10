@@ -116,7 +116,7 @@ Procedure CheckForUsage(ExtensionsObjects = False) Export
 	
 	If StandardSubsystemsCached.DisableMetadataObjectsIDs() Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" catalog is not used.';"), CatalogDescription(ExtensionsObjects));
+			NStr("en = 'The ""%1"" catalog is not used.';tr = 'Katalog ""%1"" kullanılmamaktadır.'"), CatalogDescription(ExtensionsObjects));
 		Raise ErrorText;
 	EndIf;
 	
@@ -138,7 +138,14 @@ Procedure CheckForUsage(ExtensionsObjects = False) Export
 					   |Alternatively, set the master node programmatically in the ""MasterNode"" constant.
 			           |
 			           |To confirm the disconnection, run 1C:Enterprise and click ""Disconnect"".
-					   |Alternatively, programmatically clear the value of the ""MasterNode"" constant.';"),
+					   |Alternatively, programmatically clear the value of the ""MasterNode"" constant.';tr = '""%1"" kataloğu, ana düğümü bağlantısının kesildiği
+			           |doğrulanmayan bir infobase''de kullanılamaz.
+			           |
+			           |Ana düğüme tekrar bağlanmak için 1C:Enterprise''ı çalıştırın ve ""Geri yükle""ye tıklayın.
+			           |Alternatif olarak, ""MasterNode"" sabitinde ana düğümü programatik olarak ayarlayın.
+			           |
+			           |Bağlantının kesildiğini doğrulamak için 1C:Enterprise''ı çalıştırıp ""Bağlantıyı kes""e tıklayın.
+			           |Alternatif olarak, ""MasterNode"" sabitinin değerini programatik olarak silin.'"),
 			CatalogDescription(ExtensionsObjects));
 		Raise ErrorText;
 	EndIf;
@@ -249,7 +256,9 @@ Procedure ImportDataToSubordinateNode(Objects) Export
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Could not import the metadata object ids from the master node.
 						           |No reference is specified for the new item:
-						           |""%1"".';"),
+						           |""%1"".';tr = 'Ana düğümden metaveri nesnesi ID''leri içe aktarılamadı.
+						           |Yeni öğe için referans belirtilmedi:
+						           |""%1"".'"),
 						Object.FullName);
 					Raise ErrorText;
 				EndIf;
@@ -338,7 +347,9 @@ Procedure ImportDataToSubordinateNode(Objects) Export
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Could not import the metadata object ids from the master node.
 					           |Two items have identical full names:
-					           |""%1"".';"),
+					           |""%1"".';tr = 'Ana düğümden metaveri nesnesi ID''leri içe aktarılamadı.
+					           |Aynı tam ada sahip iki öğe var:
+					           |""%1"".'"),
 					Object.FullName);
 				Raise ErrorText;
 			EndIf;
@@ -352,7 +363,9 @@ Procedure ImportDataToSubordinateNode(Objects) Export
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Could not import the metadata object ids from the master node.
 						           |Two items have identical metadata object keys:
-						           |""%1"".';"),
+						           |""%1"".';tr = 'Ana düğümden metaveri nesnesi ID''leri içe aktarılamadı.
+						           |Aynı metaveri nesnesi anahtarlarına sahip iki öğe var:
+						           |""%1"".'"),
 						String(MetadataObjectKey));
 					Raise ErrorText;
 				EndIf;
@@ -361,7 +374,8 @@ Procedure ImportDataToSubordinateNode(Objects) Export
 				If ItemToImportProperties.MetadataObjectByKey <> ItemToImportProperties.MetadataObjectByFullName Then
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Could not import the metadata object ids from the master node.
-						           |The metadata key ""%1"" does not correspond to the full name ""%2"".';"),
+						           |The metadata key ""%1"" does not correspond to the full name ""%2"".';tr = 'Metaveri nesne ID''leri ana düğümden içe aktarılamadı.
+						           |""%1"" metaveri anahtarı ""%2"" tam adıyla eşleşmiyor.'"),
 						String(MetadataObjectKey), Object.FullName);
 					Raise ErrorText;
 				EndIf;
@@ -711,7 +725,8 @@ Function MetadataObjectID(MetadataObjectDetails, RaiseException1) Export
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Incorrect value of the %1 parameter in the %2 function.
-				           |Non-existing metadata object is specified: ""%3"".';"),
+				           |Non-existing metadata object is specified: ""%3"".';tr = '%2 işlevinde yanlış %1 parametre değeri.
+				           |Mevcut olmayan metaveri nesnesi belirtildi: ""%3"".'"),
 				"MetadataObjectDetails",
 				"Common.MetadataObjectID",
 				MetadataObjectDetails);
@@ -729,7 +744,8 @@ Function MetadataObjectID(MetadataObjectDetails, RaiseException1) Export
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Incorrect type of the %1 parameter in the %2 function:
-			           |""%3"".';"),
+			           |""%3"".';tr = '%2 işlevinde yanlış %1 parametre tipi:
+			           |""%3"".'"),
 			"MetadataObjectDetails",
 			"Common.MetadataObjectID",
 			MetadataObjectDetailsType);
@@ -773,7 +789,8 @@ Function MetadataObjectIDs(MetadataObjectsDetails, RaiseException1 = True, OneIt
 			Else
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Incorrect value of parameter %1 in function %2.
-					           |Non-existing metadata object is specified: ""%3"".';"),
+					           |Non-existing metadata object is specified: ""%3"".';tr = '%2 işlevinde yanlış %1 parametre değeri:
+					           |Mevcut olmayan metaveri nesnesi belirtildi: ""%3"".'"),
 					"MetadataObjectsDetails",
 					"Common.MetadataObjectIDs",
 					MetadataObjectDetails);
@@ -791,7 +808,8 @@ Function MetadataObjectIDs(MetadataObjectsDetails, RaiseException1 = True, OneIt
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Incorrect type of parameter %1 in function %2:
-				           |""%3"".';"),
+				           |""%3"".';tr = '%2 işlevinde yanlış %1 parametre tipi:
+				           |""%3"".'"),
 				"MetadataObjectsDetails",
 				"Common.MetadataObjectIDs",
 				MetadataObjectDetailsType);
@@ -905,7 +923,7 @@ Procedure AddRenaming(Total, IBVersion, PreviousFullName, NewFullName, LibraryID
 	NewCollectionName  = Upper(CollectionName(NewFullName));
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in procedure %1 of common module %2.';"),
+		NStr("en = 'Error in procedure %1 of common module %2.';tr = '%2 genel modülünün %1 prosedüründe hata oluştu.'"),
 		"OnAddMetadataObjectsRenaming",
 		"CommonOverridable");
 	
@@ -913,7 +931,9 @@ Procedure AddRenaming(Total, IBVersion, PreviousFullName, NewFullName, LibraryID
 		ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Type mismatch in the renamed metadata object.
 			           |Previous type: ""%1"",
-			           |new type: ""%2"".';"),
+			           |new type: ""%2"".';tr = 'Yeniden adlandırılmış metaveri nesnesinin tür adları eşleşmiyor. 
+			           |Önceki tip: ""%1"",
+			           | yeni tip:""%2"".'"),
 			PreviousFullName,
 			NewFullName);
 		Raise ErrorText;
@@ -934,7 +954,11 @@ Procedure AddRenaming(Total, IBVersion, PreviousFullName, NewFullName, LibraryID
 			           |as the details of metadata objects of this type are updated automatically.
 			           |
 			           |It is required only for the following types:
-			           |%2.';"),
+			           |%2.';tr = 'Bu tür metaveri nesnesi hakkında bilgi otomatik olarak güncellendiği için, 
+			           |metaveri nesne türü ""%1"" için yeniden adlandırmanın tanımlanması gerekmez
+			           |
+			           |Yalnızca aşağıdaki türlerde yeniden adlandırmaları tanımlamak gerekir:
+			           |%2.'"),
 			PreviousFullName,
 			AllowedTypesList);
 		Raise ErrorText;
@@ -1160,17 +1184,17 @@ Function MetadataObjectCollectionProperties(ExtensionsObjects = False) Export
 	String = Result.Add();
 	String.Id   = New UUID("627a6fb8-872a-11e3-bb87-005056c00008");
 	String.Name             = "Constants";
-	String.Synonym         = NStr("en = 'Constants';");
+	String.Synonym         = NStr("en = 'Constants';tr = 'Sabitler'");
 	String.SingularName     = "Constant";
-	String.SingularSynonym = NStr("en = 'Constant';");
+	String.SingularSynonym = NStr("en = 'Constant';tr = 'Sabit'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("cdf5ac50-08e8-46af-9a80-4e63fd4a88ff");
 	String.Name             = "Subsystems";
-	String.Synonym         = NStr("en = 'Subsystems';");
+	String.Synonym         = NStr("en = 'Subsystems';tr = 'Alt sistemler'");
 	String.SingularName     = "Subsystem";
-	String.SingularSynonym = NStr("en = 'Subsystem';");
+	String.SingularSynonym = NStr("en = 'Subsystem';tr = 'Alt sistem'");
 	String.NoData       = True;
 	String.NoMetadataObjectKey = True;
 	String.ExtensionsObjects = True;
@@ -1178,9 +1202,9 @@ Function MetadataObjectCollectionProperties(ExtensionsObjects = False) Export
 	String = Result.Add();
 	String.Id   = New UUID("115c4f55-9c20-4e86-a6d0-d0167ec053a1");
 	String.Name             = "Roles";
-	String.Synonym         = NStr("en = 'Roles';");
+	String.Synonym         = NStr("en = 'Roles';tr = 'Roller'");
 	String.SingularName     = "Role";
-	String.SingularSynonym = NStr("en = 'Role';");
+	String.SingularSynonym = NStr("en = 'Role';tr = 'Rol'");
 	String.NoData       = True;
 	String.NoMetadataObjectKey = False;
 	String.ExtensionsObjects = True;
@@ -1188,124 +1212,124 @@ Function MetadataObjectCollectionProperties(ExtensionsObjects = False) Export
 	String = Result.Add();
 	String.Id   = New UUID("269651e0-4b06-4f9d-aaab-a8d2b6bc6077");
 	String.Name             = "ExchangePlans";
-	String.Synonym         = NStr("en = 'Exchange plans';");
+	String.Synonym         = NStr("en = 'Exchange plans';tr = 'Değiştirme planları'");
 	String.SingularName     = "ExchangePlan";
-	String.SingularSynonym = NStr("en = 'Exchange plan';");
+	String.SingularSynonym = NStr("en = 'Exchange plan';tr = 'Değiştirme planı'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("ede89702-30f5-4a2a-8e81-c3a823b7e161");
 	String.Name             = "Catalogs";
-	String.Synonym         = NStr("en = 'Catalogs';");
+	String.Synonym         = NStr("en = 'Catalogs';tr = 'Kataloglar'");
 	String.SingularName     = "Catalog";
-	String.SingularSynonym = NStr("en = 'Catalog';");
+	String.SingularSynonym = NStr("en = 'Catalog';tr = 'Katalog'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("96c6ab56-0375-40d5-99a2-b83efa3dac8b");
 	String.Name             = "Documents";
-	String.Synonym         = NStr("en = 'Documents';");
+	String.Synonym         = NStr("en = 'Documents';tr = 'Belgeler'");
 	String.SingularName     = "Document";
-	String.SingularSynonym = NStr("en = 'Document';");
+	String.SingularSynonym = NStr("en = 'Document';tr = 'Belge'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("07938234-e29b-4cff-961a-9af07a4c6185");
 	String.Name             = "DocumentJournals";
-	String.Synonym         = NStr("en = 'Document journals';");
+	String.Synonym         = NStr("en = 'Document journals';tr = 'Belge günlükleri'");
 	String.SingularName     = "DocumentJournal";
-	String.SingularSynonym = NStr("en = 'Document journal';");
+	String.SingularSynonym = NStr("en = 'Document journal';tr = 'Belge günlüğü'");
 	String.NoData       = True;
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("706cf832-0ae5-45b5-8a4a-1f251d054f3b");
 	String.Name             = "Reports";
-	String.Synonym         = NStr("en = 'Reports';");
+	String.Synonym         = NStr("en = 'Reports';tr = 'Raporlar'");
 	String.SingularName     = "Report";
-	String.SingularSynonym = NStr("en = 'Report';");
+	String.SingularSynonym = NStr("en = 'Report';tr = 'Rapor'");
 	String.NoData       = True;
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("ae480426-487e-40b2-98ba-d207777449f3");
 	String.Name             = "DataProcessors";
-	String.Synonym         = NStr("en = 'Data processors';");
+	String.Synonym         = NStr("en = 'Data processors';tr = 'Veri işlemcileri'");
 	String.SingularName     = "DataProcessor";
-	String.SingularSynonym = NStr("en = 'Data processor';");
+	String.SingularSynonym = NStr("en = 'Data processor';tr = 'Veri işlemcisi'");
 	String.NoData       = True;
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("8b5649b9-cdd1-4698-9aac-12ba146835c4");
 	String.Name             = "ChartsOfCharacteristicTypes";
-	String.Synonym         = NStr("en = 'Charts of characteristic types';");
+	String.Synonym         = NStr("en = 'Charts of characteristic types';tr = 'Özellik türü listeleri'");
 	String.SingularName     = "ChartOfCharacteristicTypes";
-	String.SingularSynonym = NStr("en = 'Chart of characteristic types';");
+	String.SingularSynonym = NStr("en = 'Chart of characteristic types';tr = 'Özellik türü listesi'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("4295af27-543f-4373-bcfc-c0ace9b7620c");
 	String.Name             = "ChartsOfAccounts";
-	String.Synonym         = NStr("en = 'Charts of accounts';");
+	String.Synonym         = NStr("en = 'Charts of accounts';tr = 'Hesap planları'");
 	String.SingularName     = "ChartOfAccounts";
-	String.SingularSynonym = NStr("en = 'Chart of accounts.';");
+	String.SingularSynonym = NStr("en = 'Chart of accounts.';tr = 'Hesap planı'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("fca3e7e1-1bf1-49c8-9921-aafb4e787c75");
 	String.Name             = "ChartsOfCalculationTypes";
-	String.Synonym         = NStr("en = 'Charts of calculation types';");
+	String.Synonym         = NStr("en = 'Charts of calculation types';tr = 'Hesaplama türleri çizelgeleri'");
 	String.SingularName     = "ChartOfCalculationTypes";
-	String.SingularSynonym = NStr("en = 'Chart of calculation types.';");
+	String.SingularSynonym = NStr("en = 'Chart of calculation types.';tr = 'Hesaplama türleri çizelgesi'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("d7ecc1e9-c068-44dd-83c2-1323ec52dbbb");
 	String.Name             = "InformationRegisters";
-	String.Synonym         = NStr("en = 'Information registers';");
+	String.Synonym         = NStr("en = 'Information registers';tr = 'Bilgi kayıtları'");
 	String.SingularName     = "InformationRegister";
-	String.SingularSynonym = NStr("en = 'Information register';");
+	String.SingularSynonym = NStr("en = 'Information register';tr = 'Bilgi kaydı'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("74083488-b01e-4441-84a6-c386ce88cdb5");
 	String.Name             = "AccumulationRegisters";
-	String.Synonym         = NStr("en = 'Accumulation registers';");
+	String.Synonym         = NStr("en = 'Accumulation registers';tr = 'Birikim kayıtları'");
 	String.SingularName     = "AccumulationRegister";
-	String.SingularSynonym = NStr("en = 'Accumulation register';");
+	String.SingularSynonym = NStr("en = 'Accumulation register';tr = 'Birikim kaydı'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("9a0d75ff-0eda-454e-b2b7-d2412ffdff18");
 	String.Name             = "AccountingRegisters";
-	String.Synonym         = NStr("en = 'Accounting registers';");
+	String.Synonym         = NStr("en = 'Accounting registers';tr = 'Muhasebe kayıtları'");
 	String.SingularName     = "AccountingRegister";
-	String.SingularSynonym = NStr("en = 'Accounting register';");
+	String.SingularSynonym = NStr("en = 'Accounting register';tr = 'Muhasebe kaydı'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("f330686a-0acf-4e26-9cda-108f1404687d");
 	String.Name             = "CalculationRegisters";
-	String.Synonym         = NStr("en = 'Calculation registers';");
+	String.Synonym         = NStr("en = 'Calculation registers';tr = 'Hesaplama kayıtları'");
 	String.SingularName     = "CalculationRegister";
-	String.SingularSynonym = NStr("en = 'Calculation register';");
+	String.SingularSynonym = NStr("en = 'Calculation register';tr = 'Hesaplama kaydı'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("a8cdd0e0-c27f-4bf0-9718-10ec054dc468");
 	String.Name             = "BusinessProcesses";
-	String.Synonym         = NStr("en = 'Business processes';");
+	String.Synonym         = NStr("en = 'Business processes';tr = 'İş süreçleri'");
 	String.SingularName     = "BusinessProcess";
-	String.SingularSynonym = NStr("en = 'Business process';");
+	String.SingularSynonym = NStr("en = 'Business process';tr = 'İş süreci'");
 	String.ExtensionsObjects = True;
 	
 	String = Result.Add();
 	String.Id   = New UUID("8d9153ad-7cea-4e25-9542-a557ee59fd16");
 	String.Name             = "Tasks";
-	String.Synonym         = NStr("en = 'Tasks';");
+	String.Synonym         = NStr("en = 'Tasks';tr = 'Görevler'");
 	String.SingularName     = "Task";
-	String.SingularSynonym = NStr("en = 'Task';");
+	String.SingularSynonym = NStr("en = 'Task';tr = 'Görev'");
 	String.ExtensionsObjects = True;
 	
 	For Each String In Result Do
@@ -1428,7 +1452,8 @@ Procedure BeforeDeleteObject(Object) Export
 	If Not Object.DeletionMark Then
 		RaiseByError(ExtensionsObjects,
 			NStr("en = 'Cannot delete IDs of objects that have
-			           |the ""Deletion mark"" attribute set to False.';"));
+			           |the ""Deletion mark"" attribute set to False.';tr = '""Silme işareti"" öznitelik değeri 
+			           |""Yanlış"" olarak ayarlanmış olan metaveri nesnesi kimlik silme işlemi geçersizdir.'"));
 	EndIf;
 	
 EndProcedure
@@ -1577,7 +1602,7 @@ Procedure UpdateData1(HasChanges, HasDeletedItems, IsCheckOnly,
 		ListOfCriticalChanges = "";
 		If ValueIsFilled(MetadataObjectRenamingList) Then
 			ListOfCriticalChanges = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Rename IDs of metadata objects %1->%2:';"),
+				NStr("en = 'Rename IDs of metadata objects %1->%2:';tr = 'Metaveri nesnelerinin kimliklerinin yeniden adlandırılması %1 -> %2:'"),
 				"PreviousFullName",
 				"NewFullName");
 			ListOfCriticalChanges = ListOfCriticalChanges + Chars.LF
@@ -1585,7 +1610,7 @@ Procedure UpdateData1(HasChanges, HasDeletedItems, IsCheckOnly,
 		EndIf;
 		If ValueIsFilled(NewMetadataObjectsList) Then
 			ListOfCriticalChanges = ListOfCriticalChanges
-				+ NStr("en = 'Added metadata object IDs:';")
+				+ NStr("en = 'Added metadata object IDs:';tr = 'Yeni metaveri nesne tanımlayıcıları ekle:'")
 				+ Chars.LF + NewMetadataObjectsList + Chars.LF;
 		EndIf;
 		
@@ -1594,7 +1619,7 @@ Procedure UpdateData1(HasChanges, HasDeletedItems, IsCheckOnly,
 		   And ValueIsFilled(ListOfCriticalChanges)
 		   And Common.IsSubordinateDIBNode() Then
 			
-			EventName = NStr("en = 'Metadata object IDs.Import of critical changes required';",
+			EventName = NStr("en = 'Metadata object IDs.Import of critical changes required';tr = 'Metaveri nesne kimlikleri. Kritik değişiklikleri içe aktar'",
 				Common.DefaultLanguageCode());
 			
 			EventLog.AddMessageForEventLog(EventName, EventLogLevel.Error, , , ListOfCriticalChanges);
@@ -1602,7 +1627,9 @@ Procedure UpdateData1(HasChanges, HasDeletedItems, IsCheckOnly,
 			RaiseByError(ExtensionsObjects,
 				NStr("en = 'Critical changes can only be applied
 				           |to the master node of the distributed infobase.
-				           |For the list of changes, see the event log.';"));
+				           |For the list of changes, see the event log.';tr = 'Önemli değişiklikler yalnızca
+				           |dağıtılmış Infobase''in ana düğümüne uygulanabilir.
+				           |Değişiklik listesi için olay günlüğüne bakın.'"));
 		EndIf;
 		
 		HasCurrentChanges = False;
@@ -1619,9 +1646,9 @@ Procedure UpdateData1(HasChanges, HasDeletedItems, IsCheckOnly,
 			EndIf;
 			If ValueIsFilled(ListOfCriticalChanges) Then
 				EventLog.AddMessageForEventLog(?(ExtensionsObjects,
-						NStr("en = 'Extension object IDs.Critical changes applied';",
+						NStr("en = 'Extension object IDs.Critical changes applied';tr = 'Metaveri nesne kimlikleri. Kritik değişiklikler yapıldı'",
 							Common.DefaultLanguageCode()),
-						NStr("en = 'Metadata object IDs.Critical changes applied';",
+						NStr("en = 'Metadata object IDs.Critical changes applied';tr = 'Metaveri nesne kimlikleri. Kritik değişiklikler yapıldı'",
 							Common.DefaultLanguageCode())),
 					EventLogLevel.Information,,,
 					ListOfCriticalChanges);
@@ -1715,7 +1742,8 @@ Function ExportAllIDs(ExtensionsObjects = False)
 		If Not ValueIsFilled(String.Ref) Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The catalog ""%1"" contains corrupted data.
-				           |Open Designer and select Administration > Verify and repair…';"),
+				           |Open Designer and select Administration > Verify and repair…';tr = '""%1"" kataloğu bozuk veriler içeriyor.
+				           |Designer''ı açıp Yönetim > Doğrula ve tamir et... seçeneklerine tıklayın.'"),
 				?(ExtensionsObjects, "ExtensionObjectIDs", "MetadataObjectIDs"));
 			Raise ErrorText;
 		EndIf;
@@ -2454,7 +2482,7 @@ Function KeyRole(MetadataObjectRole, RaiseException1 = True)
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Cannot receive a key of role %1';"), MetadataObjectRole.Name);
+		NStr("en = 'Cannot receive a key of role %1';tr = '%1 rol anahtarı alınamadı'"), MetadataObjectRole.Name);
 	
 	Raise ErrorText;
 	
@@ -2863,9 +2891,9 @@ EndFunction
 Function CatalogDescription(ExtensionsObjects)
 	
 	If ExtensionsObjects Then
-		CatalogDescription = NStr("en = 'Extension object IDs';");
+		CatalogDescription = NStr("en = 'Extension object IDs';tr = 'Metaveri nesne ID'");
 	Else
-		CatalogDescription = NStr("en = 'Metadata object IDs';");
+		CatalogDescription = NStr("en = 'Metadata object IDs';tr = 'Metaveri nesne ID'");
 	EndIf;
 	
 	Return CatalogDescription;
@@ -2884,7 +2912,7 @@ EndProcedure
 Procedure RaiseByError(ExtensionsObjects, ErrorText)
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '""%1"" catalog error.';"),
+		NStr("en = '""%1"" catalog error.';tr = '""%1"" katalog ile çalışırken bir hata oluştu.'"),
 		CatalogDescription(ExtensionsObjects));
 	
 	ErrorText = ErrorTitle + Chars.LF + Chars.LF + ErrorText;
@@ -2936,14 +2964,17 @@ Procedure CheckObjectBeforeWrite(Object, AutoUpdate = False)
 			
 			RaiseByError(ExtensionsObjects,
 				NStr("en = 'A new object ID can be created only automatically
-				           |when updating catalog data.';"));
+				           |when updating catalog data.';tr = 'Yeni bir metaveri nesnesi 
+				           |kimliğinin oluşturulması, yalnızca dizin verisi güncellenirken otomatik olarak mümkündür.'"));
 				
 		ElsIf CannotChangeFullName(Object) Then
 			
 			RaiseByError(ExtensionsObjects, StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot set the full name ""%1""
 				           |specified when changing the object ID.
-				           |It can be set only automatically when updating catalog data.';"),
+				           |It can be set only automatically when updating catalog data.';tr = 'Nesne kimliği değiştirilirken
+				           |belirtilen ""%1"" tam adı ayarlanamıyor.
+				           |Yalnızca katalog verileri güncellenirken otomatik olarak ayarlanabilir.'"),
 				Object.FullName));
 		Else
 			If FullNameUsed(Object, False) Then
@@ -2958,7 +2989,9 @@ Procedure CheckObjectBeforeWrite(Object, AutoUpdate = False)
 				RaiseByError(ExtensionsObjects, StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot set the full name ""%1""
 					           |specified when changing the object ID.
-					           |It is already in use in the ""%2"" catalog.';"),
+					           |It is already in use in the ""%2"" catalog.';tr = 'Nesne 
+					           |kimliği değiştirildiğinde, dizinde zaten 
+					           |kullanılan ""%1"" tam adı belirtilir.""%2""'"),
 					Object.FullName, CatalogDescription));
 			EndIf;
 		EndIf;
@@ -2973,7 +3006,8 @@ Procedure CheckObjectBeforeWrite(Object, AutoUpdate = False)
 			
 			RaiseByError(ExtensionsObjects,
 				NStr("en = 'Adding items is only allowed
-				           |in the main node of the distributed infobase.';"));
+				           |in the main node of the distributed infobase.';tr = 'Yeni öğeler, 
+				           |sadece dağıtılan bilgi veritabanının ana ünitesinde eklenebilir.'"));
 		EndIf;
 		
 		If Not Object.DeletionMark
@@ -2982,7 +3016,8 @@ Procedure CheckObjectBeforeWrite(Object, AutoUpdate = False)
 			If Upper(Object.FullName) <> Upper(Common.ObjectAttributeValue(Object.Ref, "FullName")) Then
 				RaiseByError(ExtensionsObjects,
 					NStr("en = 'The ""Full name"" attribute can be changed
-					           |only in the main node of the distributed infobase.';"));
+					           |only in the main node of the distributed infobase.';tr = '""Tam
+					           | ad"" niteliği sadece dağıtılan bilgi veritabanının ana ünitesinde değiştirilebilir.'"));
 			EndIf;
 		EndIf;
 	EndIf;
@@ -2994,7 +3029,8 @@ Function ExtensionObjectsIDsUnvailableInSharedModeErrorDescription()
 	
 	Return
 		NStr("en = 'Cannot use the ""Extension object IDs"" catalog
-		           |in shared mode.';");
+		           |in shared mode.';tr = 'Uzantı nesne tanımlayıcıları 
+		           |dizini bölünmemiş modda kullanılamaz.'");
 	
 EndFunction
 
@@ -3226,7 +3262,7 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 					Continue;
 				EndIf;
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The metadata object with the ""%1"" name does not exist.';"),
+					NStr("en = 'The metadata object with the ""%1"" name does not exist.';tr = '""%1"" adlı metaveri nesnesi mevcut değil.'"),
 					FullMetadataObjectName);
 				Errors.Add(ErrorDescription);
 				Continue;
@@ -3258,7 +3294,10 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 					NStr("en = 'The metadata object is not supported:
 					           |""%1"".
 					           |
-					           |Only the metadata object types listed in the comments to the function are allowed.';"),
+					           |Only the metadata object types listed in the comments to the function are allowed.';tr = 'Metaveri nesnesi desteklenmiyor: ""%1""
+					           |. 
+					           |
+					           |Yalnızca işlev yorumunda listelenen metaveri nesne türleri kabul edilebilir.'"),
 					FullMetadataObjectName);
 				Errors.Add(ErrorDescription);
 				Continue;
@@ -3271,7 +3310,9 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Extension metadata object IDs are not supported in shared mode.
 					           |Cannot return the ID of metadata object ""%1""
-					           |in extension ""%2"" version %3.';"),
+					           |in extension ""%2"" version %3.';tr = 'Uzantı metaveri nesne tanımlayıcıları bölünmemiş modda desteklenmez. 
+					           |""%2"" Sürümün "
+" metaveri uzantı nesne tanımlayıcısı ""%1"" geri yüklenemez. %3'"),
 					FullMetadataObjectName, Extension.Name, Extension.Version);
 				Errors.Add(ErrorDescription);
 				Continue;
@@ -3292,9 +3333,11 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 			
 			ErrorTemplate = ?(Extension <> Undefined,
 				NStr("en = 'For metadata object ""%1"",
-				           |no ID is found in the ""Extension version object IDs"" information register.';"),
+				           |no ID is found in the ""Extension version object IDs"" information register.';tr = 'Metaveri nesnesi için ""%1"" uzantı sürüm nesne tanımlayıcıları ""
+				           |kayıt bilgileri kimliği mevcut değil.'"),
 				NStr("en = 'For metadata object ""%1""
-				           |, no ID is found in the ""Metadata object IDs"" catalog.';"));
+				           |, no ID is found in the ""Metadata object IDs"" catalog.';tr = 'Metaveri nesnesi için ""%1""
+				           | Metaveri nesne tanımlayıcıları"" dizininde bir tanımlayıcı bulunamadı.'"));
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate, FullMetadataObjectName);
 			AddApplicationDeveloperParametersErrorClarification = True;
 			Errors.Add(ErrorDescription);
@@ -3305,9 +3348,12 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 			ErrorTemplate = ?(ExtensionObjectIDsAvailable,
 				NStr("en = 'For metadata object ""%1"",
 				           |multiple IDs are found in the ""Metadata object IDs"" catalog
-				           |and the ""Extension version object IDs"" information register.';"),
+				           |and the ""Extension version object IDs"" information register.';tr = '""%1"" metaveri nesnesi için 
+				           |""Metaveri nesnesi ID''leri"" kataloğunda ve 
+				           |""Uzantı sürümü nesne ID''leri"" bilgi kaydında birden fazla ID bulundu.'"),
 				NStr("en = 'For metadata object ""%1"",
-				           |multiple IDs are found in the ""Metadata object IDs"" catalog.';"));
+				           |multiple IDs are found in the ""Metadata object IDs"" catalog.';tr = '""%1"" metaveri nesnesi için
+				           |""Metaveri nesnesi ID''leri"" kataloğunda birden fazla ID bulundu.'"));
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate, FullMetadataObjectName);
 			AddApplicationDeveloperParametersErrorClarification = True;
 			Errors.Add(ErrorDescription);
@@ -3325,13 +3371,17 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'For metadata object ""%1"",
 					           |an ID matching a deleted metadata object 
-					           |is found in the ""%2"" catalog.';"),
+					           |is found in the ""%2"" catalog.';tr = 'Metaveri nesnesi için ""%1""
+					           | uzak metaveri nesnesine karşılık gelen ""%2"" 
+					           |başvurusu kimliği bulundu.'"),
 					FullMetadataObjectName, CatalogDescription);
 			Else
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'For metadata object ""%1"",
 					           |an ID matching another metadata object ""%3""
-					           |is found in the ""%2"" catalog.';"),
+					           |is found in the ""%2"" catalog.';tr = 'Metaveri nesnesi için ""%1""
+					           | başka uzak metaveri nesnesine karşılık gelen ""%2"" 
+					           |başvurusu kimliği bulundu.""%3""'"),
 					FullMetadataObjectName, CatalogDescription, CheckResult.MetadataObject);
 			EndIf;
 			
@@ -3348,16 +3398,16 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 		
 		If OneItem Then
 			ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Error executing function ""%1"".';"),
+				NStr("en = 'Error executing function ""%1"".';tr = '%1işlevin yürütülmesi esnasında hata oluştu.'"),
 				"Common.MetadataObjectID");
 			
 		ElsIf ErrorsCount = 1 Then
 			ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Error executing function ""%1"".';"),
+				NStr("en = 'Error executing function ""%1"".';tr = '%1işlevin yürütülmesi esnasında hata oluştu.'"),
 				"Common.MetadataObjectIDs");
 		Else
 			ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Errors when executing function %1.';"),
+				NStr("en = 'Errors when executing function %1.';tr = '%1işlevin yürütülmesi sırasında hatalar oluştu.'"),
 				"Common.MetadataObjectIDs");
 		EndIf;
 		
@@ -3370,7 +3420,7 @@ Function MetadataObjectIDsWithoutRetryAttempt(FullMetadataObjectsNames,
 			If ErrorNumber = 3 And ErrorsCount > 5 Then
 				
 				ErrorDescription = "... " + StringFunctionsClientServer.StringWithNumberForAnyLanguage(
-					NStr("en = ';and %1 more error;;;;and %1 more errors';"),
+					NStr("en = ';and %1 more error;;;;and %1 more errors';tr = ';ve %1 hata daha;;;;ve %1 hata daha'"),
 					(ErrorsCount - ErrorNumber));
 				
 				AllErrorsText = AllErrorsText + Separator + ErrorDescription;
@@ -3486,7 +3536,9 @@ Function MetadataObjectsByIDsWithRetryAttempt(IDs, RaiseException1)
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Error executing function ""%1"".
 					           |
-					           |Invalid ID: Empty reference of type ""%2"".';"),
+					           |Invalid ID: Empty reference of type ""%2"".';tr = '%1işlevin yürütülmesi sırasında hata oluştu.
+					           |
+					           |Yanlış kimlik: ""%2"" gibi boş bağlantı.'"),
 					"Common.MetadataObjectByID",
 					TypeOf(CurrentID));
 			Else
@@ -3494,7 +3546,10 @@ Function MetadataObjectsByIDsWithRetryAttempt(IDs, RaiseException1)
 					NStr("en = 'Error executing function ""%1"".
 					           |
 					           |Invalid metadata ID type:
-					           |""%2"".';"),
+					           |""%2"".';tr = '%1 işlevi esnasında bir hata oluştu. 
+					           |
+					           | Metaveri nesne tanımlayıcısının türü yanlıştır: 
+					           |""%2"".'"),
 					"Common.MetadataObjectByID",
 					TypeOf(CurrentID));
 			EndIf;
@@ -3609,7 +3664,7 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 	
 	Upload0 = Query.Execute().Unload();
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error executing function ""%1""';"),
+		NStr("en = 'Error executing function ""%1""';tr = '%1işlevin yürütülmesi esnasında hata oluştu.'"),
 		"Common.MetadataObjectByID");
 	
 	IDsMetadataObjects = New Map;
@@ -3631,13 +3686,16 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 			If ExtensionsIDs.Find(Id) = Undefined Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The object ""%1"" was deleted from this app version.
-					           |The related data and settings are no longer available.';"),
+					           |The related data and settings are no longer available.';tr = '""%1"" nesnesi bu uygulama sürümünden silindi.
+					           |İlgili veriler ve ayarlar kullanılamıyor.'"),
 					String(Id));
 			Else
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The object ""%1"" is deleted since either
 					           |its extension was removed or the object was deleted from the extensions version.
-					           |The related data and settings are no longer available.';"),
+					           |The related data and settings are no longer available.';tr = '""%1"" nesnesi silindi:
+					           |Uzantısı kaldırıldı veya nesne, uzantı sürümünden silindi.
+					           |İlgili veriler ve ayarlar artık kullanılamıyor.'"),
 					String(Id));
 			EndIf;
 			Raise ErrorText;
@@ -3686,27 +3744,30 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 						TheExtensionObjectDoesNotExist = True;
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'The object ""%2"" does not exist since its extension ""%1"" was uninstalled.
-							           |The related data and settings are no longer available.';"),
+							           |The related data and settings are no longer available.';tr = '""%1"" uzantısı kaldırıldığı için ""%2"" nesnesi artık mevcut değil.
+							           |İlgili veriler ve ayarlar artık kullanılamıyor.'"),
 							ExtensionName,
 							IDPresentation);
 						
 					ElsIf Not InstalledExtensions[0].Active Then
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'The extension ""%1"" is installed but disabled.
-							           |Enable the extensions and restart the app.';"),
+							           |Enable the extensions and restart the app.';tr = '""%1"" uzantısı yüklendi fakat devre dışı bırakıldı.
+							           |Uzantıları etkinleştirip uygulamayı yeniden başlatın.'"),
 							ExtensionName);
 						
 					ElsIf DetachedExtensions.Count() > 0 And Not DetachedExtensions[0].Active
 					      Or DetachedExtensions.Count() = 0 And ActiveExtensions.Count() = 0 Then
 						
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'The extension ""%1"" is installed but the app requires a restart.%1Restart the app.';"),
+							NStr("en = 'The extension ""%1"" is installed but the app requires a restart.%1Restart the app.';tr = '""%1"" uzantısı yüklendi fakat uygulamanın yeniden başlatılması gerekiyor.%1Uygulamayı yeniden başlatın.'"),
 							ExtensionName);
 						
 					ElsIf DetachedExtensions.Count() > 0 And DetachedExtensions[0].Active Then
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'The extension ""%1"" is installed but it was disabled at the startup.
-							           |This means that an unexpected exception occurred.';"),
+							           |This means that an unexpected exception occurred.';tr = '""%1"" uzantısı yüklendi fakat başlatma sırasında devre dışı bırakıldı.
+							           |Bu nedenle, beklenmeyen bir istisna oluştu.'"),
 							ExtensionName);
 						
 					Else // ActiveExtensions.Count() > 0
@@ -3719,13 +3780,16 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'The id of the ""%2"" metadata object, which is a part of the ""%1"" extension, is marked for deletion.
 								           |Usually, this happens when an extension is uninstalled and then reinstalled (instead of being updated).
-								           |The related data and settings are no longer available.';"),
+								           |The related data and settings are no longer available.';tr = '""%1"" uzantısının parçası olan ""%2"" metaveri nesnesinin ID''si silinmek üzere işaretlendi.
+								           |Bu durum genellikle uzantı güncellenmek yerine, kaldırılıp yeniden yüklendiğinde meydana gelir.
+								           |İlgili veriler ve ayarlar artık kullanılamıyor.'"),
 								ExtensionName,
 								IDPresentation);
 						Else
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'The object ""%2"" was deleted in the current version of the extension ""%1"".
-								           |The related data and settings are no longer available.';"),
+								           |The related data and settings are no longer available.';tr = '""%2"" nesnesi, ""%1"" uzantısının mevcut sürümünde silindi.
+								           |İlgili veriler ve ayarlar artık kullanılamıyor.'"),
 								ExtensionName,
 								IDPresentation);
 						EndIf;
@@ -3762,13 +3826,16 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The id of the ""%2"" metadata object is marked for deletion.
 						           |Usually, this happens when an object is deleted and then re-added.
-						           |The related data and settings are no longer available.';"),
+						           |The related data and settings are no longer available.';tr = '""%2"" metaveri nesnesinin ID''si silinmek üzere işaretlendi.
+						           |Bu durum genellikle nesne silinip yeniden eklendiğinde meydana gelir.
+						           |İlgili veriler ve ayarlar artık kullanılamıyor.'"),
 						IDPresentation);
 					Raise ErrorText;
 				Else
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The object ""%1"" does not exist as it was removed from the current app version.
-						           |The related data and settings are no longer available.';"),
+						           |The related data and settings are no longer available.';tr = '""%1"" nesnesi, uygulamanın mevcut sürümünden kaldırıldığı için mevcut değil.
+						           |İlgili veriler ve ayarlar artık kullanılamıyor.'"),
 						IDPresentation);
 					Raise ErrorText;
 				EndIf;
@@ -3780,7 +3847,9 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 				ErrorDescription =  StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The id ""%1"" from the catalog ""%2""
 					           |corresponds with the metadata object ""%3"", whose full name
-					           |does not match the full name in the id.';"),
+					           |does not match the full name in the id.';tr = '""%2"" kataloğundaki ""%1"" ID''si
+					           |""%3"" metaveri nesnesine karşılık geliyor; 
+					           |tam ad, ID''deki tam ad ile eşleşmiyor.'"),
 					Properties.Presentation,
 					CatalogDescription(Properties.ExtensionObject),
 					CheckResult.MetadataObject.FullName())
@@ -3795,7 +3864,7 @@ Function MetadataObjectsByIDsWithoutRetryAttempt(IDs,
 		
 		If Not Properties.ExtensionObject And Properties.DeletionMark And Not DataBaseConfigurationChangedDynamically Then
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The id ""%1"" from the catalog ""%2"" is marked for deletion.';"),
+				NStr("en = 'The id ""%1"" from the catalog ""%2"" is marked for deletion.';tr = '""%2"" kataloğundaki ""%1"" ID''si silinmek üzere işaretlendi.'"),
 				Properties.Presentation,
 				CatalogDescription(Properties.ExtensionObject));
 			
@@ -3900,7 +3969,7 @@ Function IDPresentation(Ref) Export
 	EndIf;
 	
 	If FullName = Undefined Then
-		Return NStr("en = 'The object does not exist.';");
+		Return NStr("en = 'The object does not exist.';tr = 'Nesne mevcut değil.'");
 	EndIf;
 	
 	If StrStartsWith(FullName, "?") Then
@@ -4007,7 +4076,9 @@ Procedure ReplaceSubordinateNodeDuplicatesFoundOnImport(IsCheckOnly, HasChanges)
 			ErrorText =
 				NStr("en = 'Cannot replace duplicates of metadata object IDs.
 				           |After 10 attempts, there is still data to be replaced.
-				           |Please perform this operation in exclusive mode.';");
+				           |Please perform this operation in exclusive mode.';tr = 'Metaveri nesne kimlikleri çiftleri değiştirilemedi. 
+				           |10 denemeden sonra, değiştirilmesi gereken veriler hala var. 
+				           |Özel modda bir eylem gerçekleştirin.'");
 			Raise ErrorText;
 		EndIf;
 		
@@ -4015,7 +4086,8 @@ Procedure ReplaceSubordinateNodeDuplicatesFoundOnImport(IsCheckOnly, HasChanges)
 		If Not WithoutErrors Then
 			ErrorText =
 				NStr("en = 'Cannot replace duplicate metadata object IDs.
-				           |For more information, see the ID replacement errors in the event log.';");
+				           |For more information, see the ID replacement errors in the event log.';tr = 'Metaveri nesne kimlikleri çiftleri değiştirilemedi. 
+				           |Daha fazla bilgi için olay günlüğündeki ID değişiklik hatalarına bakın.'");
 			Raise ErrorText;
 		EndIf;
 		CurrentAttempt = CurrentAttempt + 1;
@@ -4071,7 +4143,8 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 						ErrorInfo = ErrorInfo();
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'Couldn''t write object ""%1"" due to:
-							           |%2';"),
+							           |%2';tr = '""%1"" nesnesi şu nedenle yazılamadı:
+							           |%2'"),
 							GetURL(Parameters.Object.Ref),
 							ErrorProcessing.DetailErrorDescription(ErrorInfo));
 						If TransactionActive() Then
@@ -4240,7 +4313,8 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 							ErrorInfo = ErrorInfo();
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'Couldn''t add to ""%2"" a record for object ""%1"" due to:
-								           |%3';"),
+								           |%3';tr = '""%2"" konumuna şu nedenle ""%1"" nesnesi için kayıt eklenemedi:
+								           |%3'"),
 								GetURL(Parameters.Object.Ref),
 								RecordSet.Metadata().FullName(),
 								ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -4279,7 +4353,8 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 									ErrorInfo = ErrorInfo();
 									ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 											NStr("en = 'Couldn''t add to ""%2"" data for recorder ""%1"" due to:
-											           |%3';"),
+											           |%3';tr = '""%2"" konumuna şu nedenle ""%1"" kaydedicisi için veri eklenemedi:
+											           |%3'"),
 											GetURL(TableRow.Data),
 											SingleRecordSet.Metadata().FullName(),
 											ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -4393,7 +4468,8 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 						ErrorInfo = ErrorInfo();
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'Record ""%1"" was not deleted due to:
-							           |%2';"),
+							           |%2';tr = '""%1"" kaydı şu nedenle silinemedi:
+							           |%2'"),
 							GetURL(RegisterManager.CreateRecordKey(DimensionStructure)),
 							ErrorProcessing.DetailErrorDescription(ErrorInfo));
 						Raise;
@@ -4422,7 +4498,8 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 						ErrorInfo = ErrorInfo();
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'Record ""%1"" was not added due to:
-							           |%2';"),
+							           |%2';tr = '""%1"" kaydı şu nedenle eklenemedi:
+							           |%2'"),
 							GetURL(RegisterManager.CreateRecordKey(DimensionStructure)),
 							ErrorProcessing.DetailErrorDescription(ErrorInfo));
 						Raise;
@@ -4442,7 +4519,7 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 				EndTry;
 			Else
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot replace the values in data of the following type: %1.';"),
+					NStr("en = 'Cannot replace the values in data of the following type: %1.';tr = 'Değerler şu tip verilerde değiştirilmez: %1'"),
 					String(TableRow.Metadata));
 					
 				ReportError(ErrorText, ExtensionsObjects);
@@ -4462,7 +4539,8 @@ Function ExecuteItemReplacement(Val Replaceable, Val RefsTable, Val DisableWrite
 				ErrorInfo = ErrorInfo();
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t write object ""%1"" due to:
-					           |%2';"),
+					           |%2';tr = '""%1"" nesnesi şu nedenle yazılamadı:
+					           |%2'"),
 					GetURL(Parameters.Object.Ref),
 					ErrorProcessing.DetailErrorDescription(ErrorInfo));
 				If TransactionActive() Then
@@ -4504,9 +4582,9 @@ Procedure ReportError(Val LongDesc, ExtensionsObjects)
 	
 	WriteLogEvent(
 		?(ExtensionsObjects,
-			NStr("en = 'Extension object IDs.ID replacement';",
+			NStr("en = 'Extension object IDs.ID replacement';tr = 'Uzantı nesne tanımlayıcıları. Tanımlayıcı değiştirme'",
 				Common.DefaultLanguageCode()),
-			NStr("en = 'Metadata object IDs.ID replacement';",
+			NStr("en = 'Metadata object IDs.ID replacement';tr = 'Metaveri nesne tanımlayıcıları. Tanımlayıcı değiştirme'",
 				Common.DefaultLanguageCode())),
 		EventLogLevel.Error,
 		,

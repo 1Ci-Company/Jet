@@ -60,13 +60,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Author = CollaborationSystem.GetUser(Message.Author);
 		
 		If BegOfDay(Message.Date) = BegOfDay(CurrentSessionDate()) Then
-			DataAsText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'today %1';"), Format(Message.Date, NStr("en = 'DF=HH:mm';")));
+			DataAsText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'today %1';tr = 'bugün %1'"), Format(Message.Date, NStr("en = 'DF=HH:mm';tr = 'DF=HH:mm'")));
 		Else
-			DataAsText = Format(Message.Date, NStr("en = 'DF=MM/dd/yyyy HH:mm';"));
+			DataAsText = Format(Message.Date, NStr("en = 'DF=MM/dd/yyyy HH:mm';tr = 'DF=MM/dd/yyyy HH:mm'"));
 		EndIf;
 		
 		MessageDetails = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Message from %1 received on %2';"),
+			NStr("en = 'Message from %1 received on %2';tr = '%1 mesajı alındı: %2'"),
 			Author.FullName, DataAsText);
 		
 		Items.MessageDetails.Title = StringFunctions.FormattedString(MessageDetails);
@@ -175,7 +175,7 @@ Procedure OnOpen(Cancel)
 	
 	If Object.ReminderTimeSettingMethod = PredefinedValue("Enum.ReminderTimeSettingMethods.RelativeToCurrentTime") Then
 		ReminderTimeSettingMethod = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'in %1';"), UserRemindersClient.TimePresentation(Object.ReminderInterval));
+			NStr("en = 'in %1';tr = '%1 sonra'"), UserRemindersClient.TimePresentation(Object.ReminderInterval));
 	Else
 		ReminderTimeSettingMethod = SelectedMethod;
 	EndIf;
@@ -238,10 +238,10 @@ Procedure ReminderTimeSettingMethodOnChange(Item)
 	If TimeInterval > 0 Then
 		TimeIntervalString = UserRemindersClient.TimePresentation(TimeInterval);
 		ReminderTimeSettingMethod = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'in %1';"), TimeIntervalString);
+			NStr("en = 'in %1';tr = '%1 sonra'"), TimeIntervalString);
 	Else
 		If Items.ReminderTimeSettingMethod.ChoiceList.FindByValue(ReminderTimeSettingMethod) = Undefined Then
-			CommonClient.MessageToUser(NStr("en = 'Please specify the time interval.';"), , "ReminderTimeSettingMethod");
+			CommonClient.MessageToUser(NStr("en = 'Please specify the time interval.';tr = 'Zaman aralığı belirtilmemiş.'"), , "ReminderTimeSettingMethod");
 		EndIf;
 	EndIf;
 	
@@ -265,7 +265,7 @@ Procedure OnChangeTimeInterval(Item)
 	If Object.ReminderInterval > 0 Then
 		TimeIntervalString = UserRemindersClient.TimePresentation(Object.ReminderInterval);
 	Else
-		CommonClient.MessageToUser(NStr("en = 'Please specify the time interval.';"), , "TimeIntervalString");
+		CommonClient.MessageToUser(NStr("en = 'Please specify the time interval.';tr = 'Zaman aralığı belirtilmemiş.'"), , "TimeIntervalString");
 	EndIf;
 EndProcedure
 
@@ -308,11 +308,11 @@ EndProcedure
 Procedure Delete(Command)
 	
 	DialogButtons = New ValueList;
-	DialogButtons.Add(DialogReturnCode.Yes, NStr("en = 'Dismiss';"));
-	DialogButtons.Add(DialogReturnCode.Cancel, NStr("en = 'Not now';"));
+	DialogButtons.Add(DialogReturnCode.Yes, NStr("en = 'Dismiss';tr = 'Kapat'"));
+	DialogButtons.Add(DialogReturnCode.Cancel, NStr("en = 'Not now';tr = 'Şimdi değil'"));
 	
 	NotifyDescription = New NotifyDescription("DeleteReminder", ThisObject);
-	ShowQueryBox(NotifyDescription, NStr("en = 'Dismiss the reminder?';"), DialogButtons);
+	ShowQueryBox(NotifyDescription, NStr("en = 'Dismiss the reminder?';tr = 'Hatırlatıcı kapatılsın mı?'"), DialogButtons);
 	
 EndProcedure
 
@@ -373,11 +373,11 @@ EndFunction
 &AtClient
 Function GetPredefinedNotificationMethods()
 	Result = New Map;
-	Result.Insert(NStr("en = 'based on subject';"), 
+	Result.Insert(NStr("en = 'based on subject';tr = 'konuya göre'"), 
 		PredefinedValue("Enum.ReminderTimeSettingMethods.RelativeToSubjectTime"));
-	Result.Insert(NStr("en = 'at specified time';"), 
+	Result.Insert(NStr("en = 'at specified time';tr = 'belirli bir zamanda'"), 
 		PredefinedValue("Enum.ReminderTimeSettingMethods.AtSpecifiedTime"));
-	Result.Insert(NStr("en = 'periodically';"), 
+	Result.Insert(NStr("en = 'periodically';tr = 'periyodik olarak'"), 
 		PredefinedValue("Enum.ReminderTimeSettingMethods.Periodically"));
 	Return Result;
 EndFunction
@@ -394,7 +394,7 @@ Procedure FillNotificationMethods()
 	TimeIntervals = SubsystemSettings.StandardIntervals;
 	For Each Interval In TimeIntervals Do
 		NotificationMethods.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'in %1';"), Interval));
+			NStr("en = 'in %1';tr = '%1 sonra'"), Interval));
 		Items.RemindBeforeDueTime.ChoiceList.Add(Interval);
 	EndDo;
 EndProcedure
@@ -459,7 +459,7 @@ Procedure FillPeriodicityOptions()
 		Items.FrequencyOption.ChoiceList.Add(StandardSchedule.Key, StandardSchedule.Key);
 	EndDo;
 	Items.FrequencyOption.ChoiceList.SortByPresentation();
-	Items.FrequencyOption.ChoiceList.Add("", NStr("en = 'custom schedule…';"));	
+	Items.FrequencyOption.ChoiceList.Add("", NStr("en = 'custom schedule…';tr = 'özel program...'"));	
 EndProcedure
 
 &AtClient
@@ -500,7 +500,7 @@ Procedure OpenScheduleSettingDialogCompletion(SelectedSchedule, AdditionalParame
 	EndIf;
 	Schedule = SelectedSchedule;
 	If Not ScheduleMeetsRequirements(Schedule) Then 
-		ShowMessageBox(, NStr("en = 'Repetition during one day is not supported. The settings are cleared.';"));
+		ShowMessageBox(, NStr("en = 'Repetition during one day is not supported. The settings are cleared.';tr = '1 gün boyunca tekrarlama desteklenmiyor. Ayarlar temizlendi.'"));
 	EndIf;
 	NormalizeSchedule(Schedule);
 	DetermineSelectedPeriodicityOption();
@@ -587,7 +587,7 @@ Function EstimatedTimeAsString()
 	OutputDate = Day(EstimatedReminderTime) <> Day(CurrentDate);
 	
 	DateAsString = Format(EstimatedReminderTime, "DLF=DD");
-	TimeAsString = Format(EstimatedReminderTime, NStr("en = 'DF=H:mm';"));
+	TimeAsString = Format(EstimatedReminderTime, NStr("en = 'DF=H:mm';tr = 'DF=H:mm'"));
 	
 	Return "(" + ?(OutputDate, DateAsString + " ", "") +  TimeAsString + ")";
 	

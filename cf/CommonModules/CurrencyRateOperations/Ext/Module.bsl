@@ -32,7 +32,7 @@ Function AddCurrenciesByCode(Val Codes) Export
 				CurrencyObject = Catalogs.Currencies.CreateItem();
 				CurrencyObject.Code = Code;
 				CurrencyObject.Description = Code;
-				CurrencyObject.DescriptionFull = NStr("en = 'Currency';");
+				CurrencyObject.DescriptionFull = NStr("en = 'Currency';tr = 'Para birimi'");
 				CurrencyObject.RateSource = Enums.RateSources.ManualInput;
 				CurrencyObject.Write();
 				CurrencyRef = CurrencyObject.Ref;
@@ -193,7 +193,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = CurrencyID;
 		ToDoItem.HasToDoItems       = Not RatesUpToDate;
-		ToDoItem.Presentation  = NStr("en = 'Outdated exchange rates';");
+		ToDoItem.Presentation  = NStr("en = 'Outdated exchange rates';tr = 'Eski döviz kurları'");
 		ToDoItem.Important         = True;
 		ToDoItem.Form          = "DataProcessor.CurrenciesRatesImport.Form";
 		ToDoItem.FormParameters = New Structure("OpeningFromList", True);
@@ -583,17 +583,17 @@ Function SchemaDataPrintAmountWords()
 		
 		Field = FieldList.Add();
 		Field.Id = "Ref";
-		Field.Presentation = NStr("en = 'Ref';");
+		Field.Presentation = NStr("en = 'Ref';tr = 'Ref'");
 		Field.ValueType = New TypeDescription();	
 	
 		Field = FieldList.Add();
 		Field.Id = "Currency";
-		Field.Presentation = NStr("en = 'Currency';");
+		Field.Presentation = NStr("en = 'Currency';tr = 'Para birimi'");
 		Field.ValueType = New TypeDescription();	
 	
 		Field = FieldList.Add();
 		Field.Id = "NumberInWords";
-		Field.Presentation = NStr("en = 'Amount in words';");
+		Field.Presentation = NStr("en = 'Amount in words';tr = 'Yazılı tutar'");
 		Field.ValueType = New TypeDescription("String");
 		
 		Return ModulePrintManager.SchemaCompositionDataPrint(FieldList);

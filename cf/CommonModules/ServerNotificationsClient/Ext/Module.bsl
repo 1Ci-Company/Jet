@@ -75,7 +75,7 @@ EndFunction
 Procedure HandleError(ErrorInfo) Export
 	
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Server notifications.Error getting or processing notifications';",
+		NStr("en = 'Server notifications.Error getting or processing notifications';tr = 'Sunucu bildirimleri.Bildirim alma veya işleme hatası'",
 			CommonClient.DefaultLanguageCode()),
 		"Error",
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -529,11 +529,12 @@ Procedure ProcessServerNotificationOnClient(DataReceiptStatus, ServerNotificatio
 		ErrorInfo = ErrorInfo();
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot execute the ""%1"" procedure due to:
-			           |%2';"),
+			           |%2';tr = '""%1"" prosedürü şu nedenle yürütülemiyor:
+			           |%2'"),
 			Notification.NotificationReceiptModuleName + ".OnReceiptServerNotification",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Server notifications.An error occurred when processing the received message';",
+			NStr("en = 'Server notifications.An error occurred when processing the received message';tr = 'Sunucu bildirimleri. Alınan bildirimi işleme hatası'",
 				CommonClient.DefaultLanguageCode()),
 			"Error",
 			ErrorText);
@@ -702,7 +703,7 @@ Procedure AfterNewPersonalMessageHandlerAttachError(ErrorInfo, StandardProcessin
 	StandardProcessing = False;
 	
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Server notifications.An error occurred when connecting the handler of new personal messages';",
+		NStr("en = 'Server notifications.An error occurred when connecting the handler of new personal messages';tr = 'Sunucu bildirimleri. Yeni özel mesaj işleyici bağlantı hatası'",
 			CommonClient.DefaultLanguageCode()),
 		"Error",
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -720,7 +721,7 @@ Procedure OnInteractionSystemNewPersonalMessageReceiptError(ErrorInfo, StandardP
 	StandardProcessing = False;
 	
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Server notifications.An error occurred when receiving a new personal message';",
+		NStr("en = 'Server notifications.An error occurred when receiving a new personal message';tr = 'Sunucu bildirimleri. Yeni özel mesaj alma hatası'",
 			CommonClient.DefaultLanguageCode()),
 		"Error",
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -738,7 +739,7 @@ Procedure AfterNewGlobalMessageHandlerAttachError(ErrorInfo, StandardProcessing,
 	StandardProcessing = False;
 	
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Server notifications.An error occurred when connecting the handler of new common messages';",
+		NStr("en = 'Server notifications.An error occurred when connecting the handler of new common messages';tr = 'Sunucu bildirimleri. Yeni paylaşımlı mesaj işleyici bağlantı hatası'",
 			CommonClient.DefaultLanguageCode()),
 		"Error",
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -756,7 +757,7 @@ Procedure OnInteractionSystemNewGlobalMessageReceiptError(ErrorInfo, StandardPro
 	StandardProcessing = False;
 	
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Server notifications.An error occurred when receiving a new common message';",
+		NStr("en = 'Server notifications.An error occurred when receiving a new common message';tr = 'Sunucu bildirimleri. Yeni paylaşımlı mesaj alma hatası'",
 			CommonClient.DefaultLanguageCode()),
 		"Error",
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));

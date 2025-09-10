@@ -13,21 +13,21 @@
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
-	Title = NStr("en = 'Update handler';") + " " + Record.HandlerName;
+	Title = NStr("en = 'Update handler';tr = 'Güncelleme işleyicisi'") + " " + Record.HandlerName;
 	
 	If ValueIsFilled(Record.Comment) Then
-		Items.GroupComment.Title = NStr("en = 'Comment';") + " *";
+		Items.GroupComment.Title = NStr("en = 'Comment';tr = 'Yorum'") + " *";
 	Else
-		Items.GroupComment.Title = NStr("en = 'Comment';");
+		Items.GroupComment.Title = NStr("en = 'Comment';tr = 'Yorum'");
 	EndIf;
 	
 	If ValueIsFilled(Record.ErrorInfo) Then
-		Items.GroupErrorInfo.Title = NStr("en = 'Error details';") + " *";
+		Items.GroupErrorInfo.Title = NStr("en = 'Error details';tr = 'Hata bilgisi'") + " *";
 	Else
-		Items.GroupErrorInfo.Title = NStr("en = 'Error details';");
+		Items.GroupErrorInfo.Title = NStr("en = 'Error details';tr = 'Hata bilgisi'");
 	EndIf;
 	
-	DataToProcess = NStr("en = 'Open';");
+	DataToProcess = NStr("en = 'Open';tr = 'Aç'");
 	
 	Data = FormAttributeToValue("Record").DataToProcess;
 	ProcessedDataStorage = PutToTempStorage(Data, UUID);

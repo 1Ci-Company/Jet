@@ -27,15 +27,15 @@ Procedure OnCreateAtServer(Form, Cancel, StandardProcessing) Export
 		
 		Command = Form.Commands.Add("ProgressDelayUpdateDependencies");
 		Command.Action  = "Attachable_Command";
-		Command.Title = NStr("en = 'Handler dependences';");
-		Command.ToolTip = NStr("en = 'View dependencies for selected handler';");
+		Command.Title = NStr("en = 'Handler dependences';tr = 'İşleyici bağımlılıkları'");
+		Command.ToolTip = NStr("en = 'View dependencies for selected handler';tr = 'Seçilen işleyicinin bağımlılıklarını görüntüle'");
 		Command.Picture  = PictureLib.GrayedAll;
 		ModuleReportsServer.OutputCommand(Form, Command, "Settings");
 		
 		Command = Form.Commands.Add("ProgressDeferredUpdateErrors");
 		Command.Action  = "Attachable_Command";
-		Command.Title = NStr("en = 'View errors';");
-		Command.ToolTip = NStr("en = 'View errors in Event log';");
+		Command.Title = NStr("en = 'View errors';tr = 'Hatalara bak'");
+		Command.ToolTip = NStr("en = 'View errors in Event log';tr = 'Kayıt defterinde hatalara bak'");
 		Command.Picture  = PictureLib.EventLog;
 		ModuleReportsServer.OutputCommand(Form, Command, "Settings");
 	EndIf;
@@ -131,7 +131,7 @@ EndProcedure
 Procedure OnDefineSelectionParameters(Form, SettingProperties) Export
 	
 	If SettingProperties.DCField = New DataCompositionField("DataParameters.ProgressProcessing") Then
-		SettingProperties.ValuesForSelection.Add(Format(BegOfDay(CurrentSessionDate()), "DLF=D") + " " + "00:00:00", NStr("en = 'Over whole period';"));
+		SettingProperties.ValuesForSelection.Add(Format(BegOfDay(CurrentSessionDate()), "DLF=D") + " " + "00:00:00", NStr("en = 'Over whole period';tr = 'Tüm dönem için'"));
 		AvailablePeriods(SettingProperties.ValuesForSelection);
 	ElsIf SettingProperties.DCField = New DataCompositionField("DataParameters.Cache_Result") Then
 		SettingProperties.OutputFlagOnly = True;
@@ -446,18 +446,18 @@ EndFunction
 Function MetadataTypePresentation(MetadataType)
 	
 	Map = New Map;
-	Map.Insert("Constant", NStr("en = 'Constants';"));
-	Map.Insert("Catalog", NStr("en = 'Catalogs';"));
-	Map.Insert("Document", NStr("en = 'Documents';"));
-	Map.Insert("ChartOfCharacteristicTypes", NStr("en = 'Charts of characteristic types';"));
-	Map.Insert("ChartOfAccounts", NStr("en = 'Charts of accounts';"));
-	Map.Insert("ChartOfCalculationTypes", NStr("en = 'Charts of calculation types';"));
-	Map.Insert("InformationRegister", NStr("en = 'Information registers';"));
-	Map.Insert("AccumulationRegister", NStr("en = 'Accumulation registers';"));
-	Map.Insert("AccountingRegister", NStr("en = 'Accounting registers';"));
-	Map.Insert("CalculationRegister", NStr("en = 'Calculation registers';"));
-	Map.Insert("BusinessProcess", NStr("en = 'Business processes';"));
-	Map.Insert("Task", NStr("en = 'Tasks';"));
+	Map.Insert("Constant", NStr("en = 'Constants';tr = 'Sabitler'"));
+	Map.Insert("Catalog", NStr("en = 'Catalogs';tr = 'Kataloglar'"));
+	Map.Insert("Document", NStr("en = 'Documents';tr = 'Belgeler'"));
+	Map.Insert("ChartOfCharacteristicTypes", NStr("en = 'Charts of characteristic types';tr = 'Özellik türü listeleri'"));
+	Map.Insert("ChartOfAccounts", NStr("en = 'Charts of accounts';tr = 'Hesap planları'"));
+	Map.Insert("ChartOfCalculationTypes", NStr("en = 'Charts of calculation types';tr = 'Hesaplama türleri çizelgeleri'"));
+	Map.Insert("InformationRegister", NStr("en = 'Information registers';tr = 'Bilgi kayıtları'"));
+	Map.Insert("AccumulationRegister", NStr("en = 'Accumulation registers';tr = 'Birikim kayıtları'"));
+	Map.Insert("AccountingRegister", NStr("en = 'Accounting registers';tr = 'Muhasebe kayıtları'"));
+	Map.Insert("CalculationRegister", NStr("en = 'Calculation registers';tr = 'Hesaplama kayıtları'"));
+	Map.Insert("BusinessProcess", NStr("en = 'Business processes';tr = 'İş süreçleri'"));
+	Map.Insert("Task", NStr("en = 'Tasks';tr = 'Görevler'"));
 	
 	Return Map[MetadataType];
 	
@@ -466,5 +466,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

@@ -48,7 +48,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot open the password change form. Reason:
 					           |
-					           |%1';"),
+					           |%1';tr = 'Parola değiştirme formu açılamadı. Nedeni:
+					           |
+					           |%1'"),
 					ErrorProcessing.BriefErrorDescription(ErrorInfo));
 				Return;
 			EndIf;
@@ -57,11 +59,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not OnAuthorization Then
 		Items.AuthorizationNote.Visible = False;
-		Items.FormCloseForm.Title = NStr("en = 'Cancel';");
+		Items.FormCloseForm.Title = NStr("en = 'Cancel';tr = 'İptal'");
 		
 	ElsIf Not PasswordIsSet Then
 		Items.AuthorizationNote.Title =
-			NStr("en = 'To log in, set a password.';")
+			NStr("en = 'To log in, set a password.';tr = 'Giriş yapmak için şifre belirleyin.'")
 	EndIf;
 	
 	StandardSubsystemsServer.ResetWindowLocationAndSize(ThisObject);
@@ -71,7 +73,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		Items.PreviousPassword.Visible = False;
 		AutoTitle = False;
-		Title = NStr("en = 'Set password';");
+		Title = NStr("en = 'Set password';tr = 'Parola belirle'");
 		
 	ElsIf Parameters.PreviousPassword <> Undefined Then
 		CurrentItem = Items.NewPassword;
@@ -154,7 +156,7 @@ Procedure SetPassword(Command)
 	If Not ShowNewPassword And NewPassword <> Confirmation Then
 		CurrentItem = Items.Confirmation;
 		Items.Confirmation.SelectedText = Items.Confirmation.EditText;
-		ShowMessageBox(, NStr("en = 'The passwords do not match.';"));
+		ShowMessageBox(, NStr("en = 'The passwords do not match.';tr = 'Şifre yanlış doğrulanmış.'"));
 		Return;
 	EndIf;
 	

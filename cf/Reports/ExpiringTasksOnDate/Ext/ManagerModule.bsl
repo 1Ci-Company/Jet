@@ -23,10 +23,10 @@
 //
 Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	ModuleReportsOptions = Common.CommonModule("ReportsOptions");
-	ReportSettings.LongDesc = NStr("en = 'Tasks that must be completed by the specified due date.';");
+	ReportSettings.LongDesc = NStr("en = 'Tasks that must be completed by the specified due date.';tr = 'Belirtilen bitiş tarihine kadar tamamlanması gereken görevler.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "ExpiringTasksOnDate");
-	OptionSettings.LongDesc = NStr("en = 'Tasks that must be completed by the specified due date.';");
+	OptionSettings.LongDesc = NStr("en = 'Tasks that must be completed by the specified due date.';tr = 'Belirtilen bitiş tarihine kadar tamamlanması gereken görevler.'");
 EndProcedure
 
 // End StandardSubsystems.ReportsOptions

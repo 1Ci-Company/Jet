@@ -533,7 +533,7 @@ Procedure SetObjectsContactInformation(ContactInformation, Replace = True) Expor
 		If ContactInformationParameters = Undefined Then
 			If Not ContainsContactInformation(ContactInformationRow.Object) Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString( 
-					NStr("en = 'Object %1 is not attached to the ""Contact information"" subsystem';"), String(ContactInformationRow.Object));
+					NStr("en = 'Object %1 is not attached to the ""Contact information"" subsystem';tr = '%1 nesnesi ""İletişim bilgileri"" alt sistemine bağlı değil'"), String(ContactInformationRow.Object));
 				Raise ErrorText;
 			EndIf;
 			
@@ -601,7 +601,7 @@ Procedure SetObjectContactInformation(ReferenceOrObject, Val ContactInformation,
 	
 	If Not ContainsContactInformation(ReferenceOrObject.Ref) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString( 
-			NStr("en = 'Object %1 is not attached to the ""Contact information"" subsystem';"), MetadataObject.Presentation());
+			NStr("en = 'Object %1 is not attached to the ""Contact information"" subsystem';tr = '%1 nesnesi ""İletişim bilgileri"" alt sistemine bağlı değil'"), MetadataObject.Presentation());
 		Raise ErrorText;
 	EndIf;
 	
@@ -689,7 +689,7 @@ Function ContactInformationPhoneNumber(Val ContactInformation) Export
 		
 	EndIf;
 	
-	Raise NStr("en = 'Cannot recognize number. Phone number or fax expected.';");
+	Raise NStr("en = 'Cannot recognize number. Phone number or fax expected.';tr = 'Numara belirlenemiyor, telefon veya faks numarası bekleniyor.'");
 	
 EndFunction
 
@@ -1037,7 +1037,7 @@ Function ContactInformationAddressCountry(Val Address) Export
 		
 	ElsIf TypeOf(Address) <> Type("Structure") Then
 		
-		Raise NStr("en = 'Cannot recognize country. Address expected.';");
+		Raise NStr("en = 'Cannot recognize country. Address expected.';tr = 'Ülke belirlenemiyor; adres bekleniyor.'");
 		
 	EndIf;
 	
@@ -1088,7 +1088,7 @@ Function ContactInformationAddressDomain(Val ContactInformation) Export
 		
 	EndIf;
 	
-	Raise NStr("en = 'Cannot recognize domain. Email address or URL expected.';");
+	Raise NStr("en = 'Cannot recognize domain. Email address or URL expected.';tr = 'Alan adı belirlenemiyor. E-posta adresi veya URL bekleniyor.'");
 EndFunction
 
 // Compares two instances of contact information.
@@ -1160,7 +1160,7 @@ EndFunction
 Procedure CreateContactInformationTemporaryTable(TempTablesManager, ObjectsArray, ContactInformationTypes = Undefined, ContactInformationKinds = Undefined, Date = Undefined) Export
 	
 	If TypeOf(ObjectsArray) <> Type("Array") Or ObjectsArray.Count() = 0 Then
-		Raise NStr("en = 'Invalid value for array of contact information owners.';");
+		Raise NStr("en = 'Invalid value for array of contact information owners.';tr = 'İletişim bilgisi sahiplerinin dizisi için yanlış değer.'");
 	EndIf;
 	
 	ObjectsGroupedByTypes = New Map;
@@ -1183,7 +1183,7 @@ Procedure CreateContactInformationTemporaryTable(TempTablesManager, ObjectsArray
 		
 		If Not ContainsContactInformation(ObjectWithContactInformation.Key) Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 does not contain contact information.';"), String(ObjectWithContactInformation.Key));
+				NStr("en = '%1 does not contain contact information.';tr = '%1 iletişim bilgileri içermemektedir.'"), String(ObjectWithContactInformation.Key));
 		EndIf;
 		
 		ObjectMetadata = Metadata.FindByType(ObjectWithContactInformation.Key);
@@ -1224,7 +1224,8 @@ Procedure CreateContactInformationTemporaryTable(TempTablesManager, ObjectsArray
 		If ObjectMetadata.TabularSections.ContactInformation.Attributes.Find("ValidFrom") <> Undefined Then
 			If TypeOf(Date) <> Type("Date") Then
 				Raise NStr("en = 'To view the contact information history,
-					|specify the start date.';");
+					|specify the start date.';tr = 'Değişiklik geçmişini 
+					|muhafaza eden iletişim bilgilerini almak için iletişim bilgilerinin kaydedildiği tarihi belirtmeniz gerekir.'");
 			EndIf;
 			
 			FilterConditions = ?(ContactInformationKinds = Undefined, "", " ContactInformation.Kind IN (&ContactInformationKinds)"); // @query-part-2
@@ -1934,7 +1935,7 @@ Procedure OnCreateAtServer(Form, Object, Val AdditionalParameters = Undefined, D
 		Parent = Parent(Form, ItemForPlacementName);
 		GroupContactInfoCommandVals = Form.Items.Add(GroupName, Type("FormGroup"), Parent);
 		GroupContactInfoCommandVals.Type = FormGroupType.UsualGroup;
-		GroupContactInfoCommandVals.Title = NStr("en = 'Contact information values';");
+		GroupContactInfoCommandVals.Title = NStr("en = 'Contact information values';tr = 'İletişim bilgisi değerleri'");
 		GroupContactInfoCommandVals.ShowTitle = False;
 		GroupContactInfoCommandVals.EnableContentChange = False;
 		GroupContactInfoCommandVals.Representation = UsualGroupRepresentation.None;
@@ -1950,7 +1951,7 @@ Procedure OnCreateAtServer(Form, Object, Val AdditionalParameters = Undefined, D
 	If GroupOfContactInfoValues = Undefined Then
 		GroupOfContactInfoValues = Form.Items.Add(GroupName, Type("FormGroup"), GroupContactInfoCommandVals);
 		GroupOfContactInfoValues.Type = FormGroupType.UsualGroup;
-		GroupOfContactInfoValues.Title = NStr("en = 'Contact information values and commands';");
+		GroupOfContactInfoValues.Title = NStr("en = 'Contact information values and commands';tr = 'İletişim bilgisi değerleri ve komutları'");
 		GroupOfContactInfoValues.ShowTitle = False;
 		GroupOfContactInfoValues.EnableContentChange = False;
 		GroupOfContactInfoValues.Representation = UsualGroupRepresentation.None;
@@ -2030,7 +2031,7 @@ Procedure OnCreateAtServer(Form, Object, Val AdditionalParameters = Undefined, D
 	
 	If AccessRight("Update",Metadata.Catalogs.ContactInformationKinds) Then
 		ContactInformationParameters.ItemsToAddList.Add(New Structure("Ref",
-			Catalogs.ContactInformationKinds.EmptyRef()), NStr("en = 'Configure…';"));
+			Catalogs.ContactInformationKinds.EmptyRef()), NStr("en = 'Configure…';tr = 'Yapılandır...'"));
 	EndIf;
 	
 	If Not DeferredInitialization And AllowAddingFields
@@ -2248,7 +2249,7 @@ Procedure FillCheckProcessingAtServer(Form, Object, Cancel) Export
 				If Mandatory And IsBlankString(Presentation) And Not InformationKind.DeletionMark Then
 					
 					Common.MessageToUser(
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""%1"" is required.';"), InformationKind.Description),,Field);
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""%1"" is required.';tr = '""%1"" gerekli.'"), InformationKind.Description),,Field);
 					CurrentErrorsLevel = 2;
 					
 				Else
@@ -2287,7 +2288,7 @@ Procedure FillCheckProcessingAtServer(Form, Object, Cancel) Export
 				// And no other strings with data for contact information kinds with multiple values.
 				
 				Common.MessageToUser(
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""%1"" is required.';"), InformationKind.Description),,, AttributeName);
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""%1"" is required.';tr = '""%1"" gerekli.'"), InformationKind.Description),,, AttributeName);
 				CurrentErrorsLevel = 2;
 				
 			Else
@@ -3670,8 +3671,8 @@ Function CommandDetailsByName(CommandName) Export
 	// A command associated with the types "Address", "Phone", and "Fax"
 	If CommandName = "ShowChangeHistory" Then
 		Return CommandProperties(
-				NStr("en = 'Change history…';"),
-				NStr("en = 'View contact information change history.';"),
+				NStr("en = 'Change history…';tr = 'Değişiklik geçmişi...'"),
+				NStr("en = 'View contact information change history.';tr = 'İletişim bilgilerinin değişiklik geçmişini gösterir'"),
 				PictureLib.ChangeHistory,
 				"ContactsManagerClient.BeforeOpenChangeHistoryForm",
 				True);
@@ -3680,21 +3681,21 @@ Function CommandDetailsByName(CommandName) Export
 	// Commands associated with the type "Address"
 	If CommandName = "AddCommentToAddress" Then
 		Return CommandProperties(
-				NStr("en = 'Type comment';"),
-				NStr("en = 'Type comment';"),
+				NStr("en = 'Type comment';tr = 'Yorum girin'"),
+				NStr("en = 'Type comment';tr = 'Yorum girin'"),
 				PictureLib.Comment,
 				"ContactsManagerClient.BeforeEnterComment",
 				True);
 	ElsIf CommandName = "ShowOnYandexMaps" Then
 		Return CommandProperties(
-				NStr("en = 'Address on Yandex.Maps';"),
-				NStr("en = 'Show the address on Yandex.Maps.';"),
+				NStr("en = 'Address on Yandex.Maps';tr = 'Yandex.Maps''te adres'"),
+				NStr("en = 'Show the address on Yandex.Maps.';tr = 'Adresi Yandex.Maps''te göster.'"),
 				PictureLib.YandexMaps,
 				"ContactsManagerClient.BeforeShowAddressOnYandexMaps");
 	ElsIf CommandName = "ShowOnGoogleMap" Then
 		Return CommandProperties(
-				NStr("en = 'Address on Google Maps';"),
-				NStr("en = 'Show the address on Google Maps.';"),
+				NStr("en = 'Address on Google Maps';tr = 'Google Maps''te adres'"),
+				NStr("en = 'Show the address on Google Maps.';tr = 'Google Maps'' ta adresi göster'"),
 				PictureLib.GoogleMaps,
 				"ContactsManagerClient.BeforeShowAddressOnGoogleMaps");
 	ElsIf CommandName = "PlanMeeting" Then
@@ -3704,14 +3705,14 @@ Function CommandDetailsByName(CommandName) Export
 	// Commands associated with the type "Phone"
 	If CommandName = "Telephone" Then
 		Return CommandProperties(
-				NStr("en = 'Make a call';"),
-				NStr("en = 'Make a phone call.';"),
+				NStr("en = 'Make a call';tr = 'Arama yap'"),
+				NStr("en = 'Make a phone call.';tr = 'Telefonla ara'"),
 				PictureLib.Call,
 				"ContactsManagerClient.BeforePhoneCall");
 	ElsIf CommandName = "SendSMS" Then
 		Return CommandProperties(
-				NStr("en = 'Send text message';"),
-				NStr("en = 'Send text message';"),
+				NStr("en = 'Send text message';tr = 'SMS gönder'"),
+				NStr("en = 'Send text message';tr = 'SMS gönder'"),
 				PictureLib.SendSMS,
 				"ContactsManagerClient.BeforeCreateSMS");
 	EndIf;
@@ -3724,8 +3725,8 @@ Function CommandDetailsByName(CommandName) Export
 	// Commands for the type "Email"
 	If CommandName = "WriteEmail2" Then
 		Return CommandProperties(
-				NStr("en = 'Create mail';"),
-				NStr("en = 'Send an email to the specified address';"),
+				NStr("en = 'Create mail';tr = 'E-posta oluştur'"),
+				NStr("en = 'Send an email to the specified address';tr = 'Belirtilen adrese e-posta gönder'"),
 				PictureLib.ContactInformationSendEmail,
 				"ContactsManagerClient.BeforeCreateEmailMessage");
 	EndIf;
@@ -3733,14 +3734,14 @@ Function CommandDetailsByName(CommandName) Export
 	// Commands associated with the type "Skype"
 	If CommandName = "SkypeCall" Then
 		Return CommandProperties(
-				NStr("en = 'Make a call';"),
-				NStr("en = 'Make a Skype call';"),
+				NStr("en = 'Make a call';tr = 'Arama yap'"),
+				NStr("en = 'Make a Skype call';tr = 'Skype araması yap'"),
 				PictureLib.Call,
 				"ContactsManagerClient.BeforeSkypeCall");
 	ElsIf CommandName = "StartSkypeChat" Then
 		Return CommandProperties(
-				NStr("en = 'Start a chat';"),
-				NStr("en = 'Start a Skype chat';"),
+				NStr("en = 'Start a chat';tr = 'Sohbet başlat'"),
+				NStr("en = 'Start a Skype chat';tr = 'Skype sohbeti başlat'"),
 				PictureLib.SendSMS,
 				"ContactsManagerClient.BeforeStartSkypeChat");
 	EndIf;
@@ -3748,8 +3749,8 @@ Function CommandDetailsByName(CommandName) Export
 	// Commands associated with the type "WebPage"
 	If CommandName = "OpenWebPage" Then
 		Return CommandProperties(
-				NStr("en = 'Follow';"),
-				NStr("en = 'Follow the link';"),
+				NStr("en = 'Follow';tr = 'Takip et'"),
+				NStr("en = 'Follow the link';tr = 'Linki izle'"),
 				PictureLib.ContactInformationGoToURL,
 				"ContactsManagerClient.BeforeNavigateWebLink");
 	EndIf;
@@ -3868,7 +3869,7 @@ Procedure ColumnsForDataImport(CatalogMetadata, ColumnsInformation) Export
 			ColumnsInfoRow.ColumnType = New TypeDescription("String");
 			ColumnsInfoRow.IsRequiredInfo = False;
 			ColumnsInfoRow.Position = Position;
-			ColumnsInfoRow.Group = NStr("en = 'Contact information';");
+			ColumnsInfoRow.Group = NStr("en = 'Contact information';tr = 'İletişim bilgileri'");
 			ColumnsInfoRow.Visible = True;
 			ColumnsInfoRow.Width = 30;
 			Position = Position + 1;
@@ -4065,7 +4066,7 @@ Function DefineAnItemWithMailForPasswordRecovery(Form, Email, EditingAvailable, 
 	
 	If ValueIsFilled(AttributeName)
 		And Form.Items.Find(AttributeName) <> Undefined Then
-		Form.Items[AttributeName].Parent.ToolTip = NStr("en = 'Used for password recovery.';");
+		Form.Items[AttributeName].Parent.ToolTip = NStr("en = 'Used for password recovery.';tr = 'Şifre kurtarma için kullanılır.'");
 		Form.Items[AttributeName].Parent.ToolTipRepresentation = ToolTipRepresentation.ShowRight;
 		Form.Items[AttributeName].Parent.Enabled = EditingAvailable;
 	EndIf;
@@ -4318,7 +4319,7 @@ Procedure AddAdditionalContactInformationFieldButton(Val Form, Val ItemForPlacem
 	
 	ItemContactInformationParameters = Form.ContactInformationParameters[ItemForPlacementName]; // See ContactInformationOutputParameters
 	
-	LongDesc = NStr("en = 'Add additional contact information field';");
+	LongDesc = NStr("en = 'Add additional contact information field';tr = 'İletişim kanalı ekle'");
 	CommandGroup             = Group("ContactInformationGroupAddInputField" + ItemForPlacementName, 
 		Form, LongDesc, ItemForPlacementName, "GroupContactInfoCommandVals"+ItemForPlacementName);
 	CommandGroup.Representation = UsualGroupRepresentation.NormalSeparation;
@@ -4343,7 +4344,7 @@ Procedure AddAdditionalContactInformationFieldButton(Val Form, Val ItemForPlacem
 	
 	Button             = Form.Items.Add(CommandName,Type("FormButton"), CommandGroup);
 	Button.Enabled = Not Form.Items[ItemForPlacementName].ReadOnly;
-	Button.Title   = "+ " + NStr("en = 'Phone number, address';");
+	Button.Title   = "+ " + NStr("en = 'Phone number, address';tr = 'Telefon numarası, adres'");
 	Command.ModifiesStoredData     = True;
 	Button.CommandName                     = CommandName;
 	Button.HorizontalAlignInGroup = HorizontalAlignInGroup;
@@ -4379,7 +4380,7 @@ Procedure AddAdditionalContactInformationFieldButton(Val Form, Val ItemForPlacem
 				Decoration = Form.Items.Add("IndentAdd", Type("FormDecoration"), CommandGroup);
 				Decoration.Type       = FormDecorationType.Picture;
 				Decoration.Width    = 3;
-				Decoration.Title = NStr("en = 'Indent';");
+				Decoration.Title = NStr("en = 'Indent';tr = 'Girinti'");
 				Decoration.Height    = 1;		
 			EndIf;
 		EndIf;
@@ -4400,12 +4401,14 @@ Procedure AddNoteOnFormSettingsReset(Val Form, Val ItemForPlacementName, Val Def
 		PageHeader = ?(ValueIsFilled(GroupForPlacement.Title), GroupForPlacement.Title, GroupForPlacement.Name);
 		PageGroupHeader1 = ?(ValueIsFilled(PagesGroup.Title), PagesGroup.Title, PagesGroup.Name);
 		
-		PlacementWarning = NStr("en = 'To view the contact information, display the ""%1"" group under any other item in the ""%2"" group. To do so, click More actions — Change form.';");
+		PlacementWarning = NStr("en = 'To view the contact information, display the ""%1"" group under any other item in the ""%2"" group. To do so, click More actions — Change form.';tr = 'İletişim bilgilerini görüntülemek için ""%1"" grubunu ""%2"" grubundaki herhangi bir öğenin altında gösterin. Bunun için, Daha fazla > Formu değiştir''e tıklayın.'");
 		PlacementWarning = StringFunctionsClientServer.SubstituteParametersToString(PlacementWarning,
 		PageHeader, PageGroupHeader1);
 		ToolTipText = NStr("en = 'To restore a form to the default settings, do the following:
 		| • Select More actions — Change form.
-		| • In the Customize form window that opens, select More actions — Restore default settings.';");
+		| • In the Customize form window that opens, select More actions — Restore default settings.';tr = 'Formu varsayılan ayarlara geri yüklemek için:
+		| • Daha fazla > Formu değiştir''i seçin.
+		| • Açılan Formu özelleştir penceresinde Diğer işlemler > Varsayılan ayarları geri yükle''yi seçin.'");
 		
 		Decoration = Form.Items.Add("ContactInformationStub", Type("FormDecoration"), GroupForPlacement);
 		Decoration.Title              = PlacementWarning;
@@ -4564,7 +4567,7 @@ Procedure AddContactInformationRow(Form, Result, ItemForPlacementName, IsNewCIKi
 		GroupStringsTitle.Representation = UsualGroupRepresentation.NormalSeparation; 
 		GroupLinesTitlesPicture = Group("GroupTitlePicture" + AttributeName, Form, KindToAddDescription, ItemForPlacementName, "TitleGroup" + AttributeName);
 		Decoration = Form.Items.Add("Picture" + AttributeName, Type("FormDecoration"), GroupLinesTitlesPicture);
-		Decoration.Title = NStr("en = 'Picture';");
+		Decoration.Title = NStr("en = 'Picture';tr = 'Resim'");
 		Decoration.Type       = FormDecorationType.Picture;
 		Decoration.Width    = 2;
 		Decoration.Picture = PictureContactInfoType(CIKindInformation.Type);
@@ -4652,21 +4655,21 @@ Procedure AddContactInformationRow(Form, Result, ItemForPlacementName, IsNewCIKi
 	If ContactInformationParameters.ShouldShowIcons And Not Common.IsMobileClient() Then
 		StringGroup1.United = False;
 		Decoration = Form.Items.Add("Picture" + AttributeName, Type("FormDecoration"), StringGroup1);
-		Decoration.Title = NStr("en = 'Picture';");
+		Decoration.Title = NStr("en = 'Picture';tr = 'Resim'");
 		Decoration.Type       = FormDecorationType.Picture;
 		Decoration.Width    = 2;
 		ContactInformationParameters.AddedItems.Add("Picture" + AttributeName, 2, False);
 		If IsNewCIKind Then
 			Decoration.Picture = PictureContactInfoType(CIKindInformation.Type);
 		Else
-			Decoration.Title = NStr("en = 'Indent';");
+			Decoration.Title = NStr("en = 'Indent';tr = 'Girinti'");
 			Decoration.Height    = 1;
 		EndIf;
 	EndIf;
 	
 	If HasCommentField Then
 		GroupFIeldComment  = Group("GroupComment" + AttributeName, Form,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 field, comment';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 field, comment';tr = '%1 alan, yorum'"),
 			KindToAddDescription), ItemForPlacementName, "Group" + AttributeName, 4);
 	Else
 		GroupFIeldComment = StringGroup1;
@@ -4685,11 +4688,11 @@ Procedure AddContactInformationRow(Form, Result, ItemForPlacementName, IsNewCIKi
 	If HasCommentField Then
 		CommentField = Form.Items.Add(AttributeNameComment, Type("FormField"), GroupFIeldComment);
 		CommentField.Type = FormFieldType.InputField;
-		CommentField.Title = NStr("en = 'Comment';");
+		CommentField.Title = NStr("en = 'Comment';tr = 'Yorum'");
 		CommentField.DataPath = AttributeNameComment;
 		CommentField.TitleLocation = FormItemTitleLocation.None;
 		CommentField.SkipOnInput = True;
-		CommentField.InputHint = NStr("en = 'Note';");
+		CommentField.InputHint = NStr("en = 'Note';tr = 'Not'");
 		CommentField.AutoMaxWidth = False;
 		CommentFieldWidth = ?(ContactInformationParameters.HasDestinationGroupWidthLimit, ContactInformationParameters.CommentFieldWidth, 30);
 		CommentField.MaxWidth = CommentFieldWidth;
@@ -4819,7 +4822,7 @@ Function GenerateInputField(Form, Parent, CIKindInformation, AttributeName, Item
 			"FormGroup"), Item.ContextMenu);
 		GroupAddressSubmenu.Type = FormGroupType.Popup;
 		GroupAddressSubmenu.Representation = ButtonRepresentation.Text;
-		GroupAddressSubmenu.Title = NStr("en = 'Fill';");
+		GroupAddressSubmenu.Title = NStr("en = 'Fill';tr = 'Doldur'");
 	EndIf;
 	
 	If Mandatory And IsNewCIKind And Item.Type = FormFieldType.InputField Then
@@ -4943,7 +4946,7 @@ Procedure PrepareStaticItem(Form, CIRow, CreatedItems, CreatedElement, ShouldSho
 					Form.Items.Move(ItemPicture1, GroupLinesTitlesPicture);			
 				Else
 					ItemPicture1 = Form.Items.Add(PictureItemName, Type("FormDecoration"), GroupLinesTitlesPicture);
-					ItemPicture1.Title = NStr("en = 'Picture';");
+					ItemPicture1.Title = NStr("en = 'Picture';tr = 'Resim'");
 					ItemPicture1.Type       = FormDecorationType.Picture;
 					ItemPicture1.Width    = 2;
 					ItemPicture1.Picture = PictureContactInfoType(CIRow.Type);
@@ -4998,7 +5001,7 @@ Procedure PrepareStaticItem(Form, CIRow, CreatedItems, CreatedElement, ShouldSho
 					StringGroup1.United = False;
 				EndIf;
 				Decoration = Form.Items.Add(PictureItemName, Type("FormDecoration"), StringGroup1);
-				Decoration.Title = NStr("en = 'Picture';");
+				Decoration.Title = NStr("en = 'Picture';tr = 'Resim'");
 				Decoration.Type       = FormDecorationType.Picture;
 				Decoration.Width    = 2;
 				Decoration.Picture = PictureContactInfoType(CIRow.Type);
@@ -5090,10 +5093,10 @@ Procedure MoveContextMenuItem(PreviousItem, Form, Direction, ItemForPlacementNam
 	
 	Command.Action = "Attachable_ContactInformationExecuteCommand";
 	If Direction > 0 Then 
-		CommandText = NStr("en = 'Move up';");
+		CommandText = NStr("en = 'Move up';tr = 'Yukarı taşı'");
 		Button.Picture = PictureLib.MoveUp;
 	Else
-		CommandText = NStr("en = 'Move down';");
+		CommandText = NStr("en = 'Move down';tr = 'Aşağı taşı'");
 		Button.Picture = PictureLib.MoveDown;
 	EndIf;
 	Button.Title = CommandText;
@@ -5733,7 +5736,7 @@ Function EmailFIllingErrors(EMAddress, InformationKind, Val AttributeName = "", 
 	Try
 		Result = CommonClientServer.EmailsFromString(Email.Value);
 		If Result.Count() > 1 Then
-			ErrorString = NStr("en = 'Only one email address is allowed';");
+			ErrorString = NStr("en = 'Only one email address is allowed';tr = 'Sadece bir e-posta adresini girebilirsiniz'");
 		ElsIf Result.Count() = 1 Then
 			ErrorString = Result[0].ErrorDescription;
 		EndIf;
@@ -6159,7 +6162,7 @@ Procedure CreateAction(Form, ContactInformationKind, AttributeName, ActionGroup1
 			Decoration = Form.Items.Add("Indent" + AttributeName, Type("FormDecoration"), ActionGroup1);
 			Decoration.Type       = FormDecorationType.Picture;
 			Decoration.Width    = 3;
-			Decoration.Title = NStr("en = 'Indent';");
+			Decoration.Title = NStr("en = 'Indent';tr = 'Girinti'");
 			Decoration.Height    = 1;
 		EndIf;
 		Return;
@@ -6358,7 +6361,7 @@ Procedure UpdateConextMenu(Form, ItemForPlacementName)
 			Command = Form.Commands.Find(CommandName);
 			If Command = Undefined Then
 				Command = Form.Commands.Add(CommandName);
-				Command.ToolTip = NStr("en = 'Copy address';");
+				Command.ToolTip = NStr("en = 'Copy address';tr = 'Adresi kopyala'");
 				Command.Action = "Attachable_ContactInformationExecuteCommand";
 				Command.ModifiesStoredData = True;
 				
@@ -6575,7 +6578,7 @@ Function ParametersFromContactInformationKind(Val ContactInformationKind)
 	QueryResult = Query.Execute().Unload();
 	
 	If QueryResult.Count() = 0 Then
-		ErrorTextTemplate = NStr("en = 'Invalid contact information kind obtained when receiving contact information properties. %1';");
+		ErrorTextTemplate = NStr("en = 'Invalid contact information kind obtained when receiving contact information properties. %1';tr = 'İletişi bilgisi özellikleri alınırken geçersiz iletişim bilgisi türü elde edildi. %1'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTextTemplate , String(ContactInformationKind));
 		Raise ErrorText;
 	EndIf;

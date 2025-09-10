@@ -23,7 +23,7 @@
 Procedure SetDeleteOnScheduleMode(Changes) Export
 
 	If Not Users.IsFullUser(,, False) Then
-		Raise(NStr("en = 'Insufficient rights to perform the operation.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlemi yürütmek için yetersiz yetki.'"), ErrorCategory.AccessViolation);
 	EndIf;
 
 	Parameters = New Structure;

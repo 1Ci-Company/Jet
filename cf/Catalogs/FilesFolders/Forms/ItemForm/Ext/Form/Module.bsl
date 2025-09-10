@@ -217,10 +217,10 @@ Procedure FileSystemExtensionAttachedOwnerWorkingDirectorySelectionStartFollowUp
 	OpenFileDialog = New FileDialog(Mode);
 	OpenFileDialog.Directory = WorkingDirectory;
 	OpenFileDialog.FullFileName = "";
-	Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+	Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 	OpenFileDialog.Filter = Filter;
 	OpenFileDialog.Multiselect = False;
-	OpenFileDialog.Title = NStr("en = 'Select folder';");
+	OpenFileDialog.Title = NStr("en = 'Select folder';tr = 'Klasör seçimi'");
 	If OpenFileDialog.Choose() Then
 		
 		DirectoryName = OpenFileDialog.Directory;
@@ -236,7 +236,7 @@ Procedure FileSystemExtensionAttachedOwnerWorkingDirectorySelectionStartFollowUp
 			// Insufficient rights to create a directory, or this path does not exist.
 			
 			ErrorText =
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Invalid path or insufficient rights to save to folder ""%1""';"), DirectoryName);
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Invalid path or insufficient rights to save to folder ""%1""';tr = 'Dizin yanlış veya ""%1"" klasörüne yazma hakları yok'"), DirectoryName);
 			
 			CommonClient.MessageToUser(ErrorText, , "WorkingDirectory");
 			Return;
@@ -408,7 +408,7 @@ Procedure UpdateCloudServiceNote()
 			NoteVisibility = True;
 			
 			Items.DecorationNote.Title = StringFunctions.FormattedString(
-				NStr("en = 'The files are stored in cloud service <a href=""%1"">%2</a>.';"),
+				NStr("en = 'The files are stored in cloud service <a href=""%1"">%2</a>.';tr = 'Dosyalarla çalışma <a href=""%1"">%2</a> bulut hizmetinde yürütülüyor'"),
 				String(FolderAddressInCloudService), String(SelectionDetailRecords.AccountDescription));
 			
 		EndDo;

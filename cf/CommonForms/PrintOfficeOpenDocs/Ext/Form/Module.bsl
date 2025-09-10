@@ -379,12 +379,12 @@ Procedure SetFormHeader()
 	If Not ValueIsFilled(FormCaption) Then
 		
 		If PrintObjects.Count() > 1 Then
-			FormCaption = NStr("en = 'Print documents';");
+			FormCaption = NStr("en = 'Print documents';tr = 'Belge yazdır'");
 		ElsIf PrintObjects.Count() = 1 And Common.IsReference(TypeOf(PrintObjects[0].Value))
 			And Common.ObjectAttributeValue(PrintObjects[0].Value, "Ref", True) <> Undefined Then
 			FormCaption = String(PrintObjects[0].Value);
 		Else
-			FormCaption = NStr("en = 'Print document';");
+			FormCaption = NStr("en = 'Print document';tr = 'Belgeyi yazdır'");
 		EndIf;
 	EndIf;
 	
@@ -424,7 +424,7 @@ Procedure CustomizeForm(PrintFormCount)
 	MultiplePrintFormsMode = PrintFormCount > 1;
 	
 	If Not MultiplePrintFormsMode Then	
-		Items.Show.Title = NStr("en = 'Show';");
+		Items.Show.Title = NStr("en = 'Show';tr = 'Göster'");
 	EndIf;
 	
 	Items.MergeDocsFlag.Visible = MultiplePrintFormsMode;
@@ -465,9 +465,9 @@ Function GetInstructionText(Presentation = Undefined, PrintFormAddress = Undefin
 	
 	
 	If Presentation = Undefined Then	
-		InstructionText = StringFunctionsClientServer.SubstituteParametersToString(InstructionText, NStr("en = 'The documents are generated and prepared for printing';"), NStr("en = 'You can open the document to view or send it to print.';"));
+		InstructionText = StringFunctionsClientServer.SubstituteParametersToString(InstructionText, NStr("en = 'The documents are generated and prepared for printing';tr = 'Belgeler oluşturuldu ve yazdırmaya hazırlandı'"), NStr("en = 'You can open the document to view or send it to print.';tr = 'Belgeyi açıp görüntüleyebilir veya yazdırabilirsiniz.'"));
 	Else
-		InstructionText = StringFunctionsClientServer.SubstituteParametersToString(InstructionText, NStr("en = 'The document is generated and prepared for printing';"), "<a href=""OpenSinglePrintingForm"">"+Presentation+"</a>");
+		InstructionText = StringFunctionsClientServer.SubstituteParametersToString(InstructionText, NStr("en = 'The document is generated and prepared for printing';tr = 'Belge oluşturuldu ve yazdırmaya hazırlandı'"), "<a href=""OpenSinglePrintingForm"">"+Presentation+"</a>");
 	EndIf;
 
 	Return InstructionText;			
@@ -477,7 +477,7 @@ EndFunction
 Function IdleParameters()
 	
 	IdleParameters = TimeConsumingOperationsClient.IdleParameters(ThisObject);
-	IdleParameters.MessageText = NStr("en = 'The parameters for generating print forms are changed.';");
+	IdleParameters.MessageText = NStr("en = 'The parameters for generating print forms are changed.';tr = 'Yazdırma formu oluşturma parametreleri değiştirildi.'");
 	IdleParameters.UserNotification.Show = False;
 	IdleParameters.OutputIdleWindow = True;
 	IdleParameters.Interval = 1;
@@ -821,8 +821,8 @@ Procedure SIgnFiles(FilesInTempStorage, ChoiceParameters)
 	DataDetails = New Structure;
 	DataDetails.Insert("ShowComment", False);
 	If FilesInTempStorage.Count() > 1 Then
-		DataDetails.Insert("Operation", NStr("en = 'Sign files';"));
-		DataDetails.Insert("DataTitle", NStr("en = 'Files';"));
+		DataDetails.Insert("Operation", NStr("en = 'Sign files';tr = 'Dosyaları imzala'"));
+		DataDetails.Insert("DataTitle", NStr("en = 'Files';tr = 'Dosyalar'"));
 
 		DataSet = New Array;
 		For Each File In FilesInTempStorage Do
@@ -839,8 +839,8 @@ Procedure SIgnFiles(FilesInTempStorage, ChoiceParameters)
 		DataDetails.Insert("SetPresentation", "Files (%1)");
 	Else
 		File = FilesInTempStorage[0];
-		DataDetails.Insert("Operation", NStr("en = 'Sign a file';"));
-		DataDetails.Insert("DataTitle", NStr("en = 'File';"));
+		DataDetails.Insert("Operation", NStr("en = 'Sign a file';tr = 'Dosya imzala'"));
+		DataDetails.Insert("DataTitle", NStr("en = 'File';tr = 'Dosya'"));
 		DataDetails.Insert("Presentation", File.Presentation);
 		DataDetails.Insert("Data", File.AddressInTempStorage);
 		
@@ -895,7 +895,7 @@ Procedure SelectionProcessingCompletion(Result, ChoiceParameters) Export
 				ModuleFilesOperationsInternalClient = CommonClient.CommonModule("FilesOperationsInternalClient");
 				ModuleFilesOperationsInternalClient.NotifyOfFilesModification(WrittenObjects);
 				
-				ShowUserNotification(NStr("en = 'Saved';"), , , PictureLib.DialogInformation);
+				ShowUserNotification(NStr("en = 'Saved';tr = 'Kaydedildi'"), , , PictureLib.DialogInformation);
 			EndIf;
 		EndIf;
 		
@@ -1002,9 +1002,9 @@ EndProcedure
 Procedure ResumePrintingAfterFileManagementExtensionInstalled(ExtensionAttached, AdditionalParameters) Export
 	
 #If WebClient Then
-		Text = NStr("en = 'Print the document using an application designed to manage this file.';");
+		Text = NStr("en = 'Print the document using an application designed to manage this file.';tr = 'Bu dosyayı yönetmek üzere tasarlanmış bir uygulama kullanarak belgeyi yazdırın.'");
 		NotifyDescription = New NotifyDescription("OpenMarkedPrintForms", ThisObject);
-		ShowMessageBox(NotifyDescription, Text,,NStr("en = 'Print a document from the web client';"));
+		ShowMessageBox(NotifyDescription, Text,,NStr("en = 'Print a document from the web client';tr = 'Web istemcisinden belge yazdır'"));
 		Return;
 #EndIf
 	
@@ -1062,7 +1062,7 @@ EndProcedure
 Procedure PrintFileByApplication(FilenameForPrint)
 	
 #If MobileClient Then
-	ShowMessageBox(, NStr("en = 'You can print this type of files only from an application for Windows or Linux.';"));
+	ShowMessageBox(, NStr("en = 'You can print this type of files only from an application for Windows or Linux.';tr = 'Bu dosya türü yalnızca bir Windows veya Linux uygulamasından yazdırılabilir.'"));
 	Return;
 #Else
 		
@@ -1077,7 +1077,8 @@ Procedure PrintFileByApplication(FilenameForPrint)
 	Except
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot print the file. Reason:
-				|%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo())); 
+				|%1';tr = 'Dosya şu sebeple yazdırılamadı:
+				|%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo())); 
 		
 	EndTry;
 #EndIf
@@ -1265,7 +1266,7 @@ Function PutFilesToArchive(DocsPrintForms, PassedSettings)
 			ArchiveName = GetTempFileName("zip");
 			ZipFileWriter = New ZipFileWriter(ArchiveName);
 			
-			Presentation = ?(PrintObject = Undefined, NStr("en = 'Documents';"), CommonClientServer.ReplaceProhibitedCharsInFileName(String(PrintObject)));
+			Presentation = ?(PrintObject = Undefined, NStr("en = 'Documents';tr = 'Belgeler'"), CommonClientServer.ReplaceProhibitedCharsInFileName(String(PrintObject)));
 			If TransliterateFilesNames Then
 				Presentation = StringFunctions.LatinString(Presentation);
 			EndIf;
@@ -1429,7 +1430,7 @@ Function GetFileNameForArchive(TransliterateFilesNames, PrintFormsSettingsTemp =
 		If IsBlankString(Result) Then
 			Result = PrintFormSetting.Name1;
 		Else
-			Result = NStr("en = 'Documents';");
+			Result = NStr("en = 'Documents';tr = 'Belgeler'");
 			Break;
 		EndIf;
 	EndDo;
@@ -1498,8 +1499,8 @@ Procedure WhenPreparingFileNames(FilesListInTempStorage, DirectoryName) Export
 #If Not WebClient Then
 	If ValueIsFilled(DirectoryName) Then
 		NotifyDescription = New NotifyDescription("OpenFolderSaveTo", ThisObject, DirectoryName); 
-		ShowUserNotification(NStr("en = 'Saved successfully.';"), NotifyDescription,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Folder: %1';"), DirectoryName), PictureLib.DialogInformation);
+		ShowUserNotification(NStr("en = 'Saved successfully.';tr = 'Kayıt başarı ile tamamlandı.'"), NotifyDescription,
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Folder: %1';tr = '%1 klasörüne'"), DirectoryName), PictureLib.DialogInformation);
 	EndIf;
 #EndIf
 	
@@ -1521,7 +1522,7 @@ Function AttachPrintFormsToObject(FilesInTempStorage)
 				FileParameters.FilesOwner = File["PrintObject"];
 				FileParameters.BaseName = File.Presentation;
 				Result.Add(ModuleFilesOperations.AppendFile(
-					FileParameters, File.AddressInTempStorage, , NStr("en = 'Print form';")));
+					FileParameters, File.AddressInTempStorage, , NStr("en = 'Print form';tr = 'Yazdırma formu'")));
 			EndIf;
 		EndDo;
 	EndIf;
@@ -1548,7 +1549,7 @@ EndProcedure
 &AtClient
 Procedure PrintCompletion(ArrayOfPrintForms)	
 	Handler = New NotifyDescription("ResumePrintingAfterFileManagementExtensionInstalled", ThisObject, ArrayOfPrintForms);
-	MessageText = NStr("en = 'To continue, install 1C:Enterprise Extension.';");
+	MessageText = NStr("en = 'To continue, install 1C:Enterprise Extension.';tr = 'Devam etmek için 1C:Enterprise uzantısını yükleyin.'");
 	FileSystemClient.AttachFileOperationsExtension(Handler, MessageText);
 EndProcedure
 

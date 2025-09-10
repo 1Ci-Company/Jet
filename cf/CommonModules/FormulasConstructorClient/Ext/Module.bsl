@@ -273,7 +273,7 @@ Procedure StartSearchInFieldsList(Form) Export
 	Filter = Form[Form.NameOfCurrSearchString];
 	FilterStringLength = StrLen(Filter);
 	
-	WaitStringMessage = NStr("en = 'Continue typing…';");
+	WaitStringMessage = NStr("en = 'Continue typing…';tr = 'Girişe devam edin...'");
 	
 	NameOfTheFieldList = AttachedFieldList.NameOfTheFieldList;
 	TreeOnForm = Form[NameOfTheFieldList];
@@ -311,7 +311,7 @@ Procedure StartSearchInFieldsList(Form) Export
 				ExecutionProgressNotification = New NotifyDescription("HandleSearchInFieldsList", ThisObject, Form); 
 				
 				IdleParameters = TimeConsumingOperationsClient.IdleParameters(Form);
-				IdleParameters.MessageText = NStr("en = 'Search for fields';");
+				IdleParameters.MessageText = NStr("en = 'Search for fields';tr = 'Alan arama'");
 				IdleParameters.UserNotification.Show = False;
 				IdleParameters.OutputIdleWindow = False;
 				IdleParameters.OutputMessages = False;

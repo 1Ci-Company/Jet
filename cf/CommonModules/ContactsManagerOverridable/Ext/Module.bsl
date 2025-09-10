@@ -120,7 +120,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.PredefinedKindName = "CatalogCompanies";
 	Item.IsFolder = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Contact information of the ""Companies"" catalog'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Contact information of the ""Companies"" catalog'; tr = '""İş yerleri"" kataloğundaki iletişim bilgileri'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CompanyActualAddress";
@@ -135,7 +135,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
 	Item.AddlOrderingAttribute = 1;
-	Item.Description = NStr("en = 'Actual address'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Actual address'; tr = 'Fiziki adres'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CompanyLegalAddress";
@@ -150,7 +150,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
 	Item.AddlOrderingAttribute = 2;
-	Item.Description = NStr("en = 'Legal address'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Legal address'; tr = 'Yasal adres'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CompanyWebpage";
@@ -162,7 +162,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AddlOrderingAttribute = 3;
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Webpage'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Webpage'; tr = 'Web sayfası'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CompanyPhone";
@@ -176,7 +176,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AddlOrderingAttribute = 4;
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Phone'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Phone'; tr = 'Telefon'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CompanyEmail";
@@ -188,7 +188,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AddlOrderingAttribute = 5;
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Email'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Email'; tr = 'E-posta'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CompanyFax";
@@ -198,7 +198,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AllowMultipleValueInput = True;
 	Item.AddlOrderingAttribute = 6;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Fax'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Fax'; tr = 'Faks'", Common.DefaultLanguageCode());
 	
 #EndRegion
 
@@ -208,7 +208,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.PredefinedKindName = "CatalogCounterparties";
 	Item.IsFolder = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Contact information of the ""Counterparties"" catalog'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Contact information of the ""Counterparties"" catalog'; tr = '""Cari hesaplar"" kataloğundaki iletişim bilgileri'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CounterpartyActualAddress";
@@ -223,7 +223,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
 	Item.AddlOrderingAttribute = 1;
-	Item.Description = NStr("en = 'Actual address'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Actual address'; tr = 'Fiziki adres'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CounterpartyLegalAddress";
@@ -238,7 +238,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
 	Item.AddlOrderingAttribute = 2;
-	Item.Description = NStr("en = 'Legal address'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Legal address'; tr = 'Yasal adres'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CounterpartyWebpage";
@@ -250,7 +250,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AddlOrderingAttribute = 3;
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Webpage'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Webpage'; tr = 'Web sayfası'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CounterpartyPhone";
@@ -264,7 +264,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AddlOrderingAttribute = 4;
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Phone'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Phone'; tr = 'Telefon'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CounterpartyEmail";
@@ -276,7 +276,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.AddlOrderingAttribute = 5;
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Email'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Email'; tr = 'E-posta'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "CounterpartyFax";
@@ -285,7 +285,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.CanChangeEditMethod = True;
 	Item.AllowMultipleValueInput = True;
 	Item.AddlOrderingAttribute = 6;
-	Item.Description = NStr("en = 'Fax'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Fax'; tr = 'Faks'", Common.DefaultLanguageCode());
 	Item.Used = True;
 	
 #EndRegion
@@ -296,7 +296,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.PredefinedKindName = "CatalogWarehouses";
 	Item.IsFolder = True;
 	Item.Used = True;
-	Item.Description = NStr("en = 'Contact information of the ""Warehouses"" catalog'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Contact information of the ""Warehouses"" catalog'; tr = '""Ambarlar"" kataloğunun iletişim bilgileri'", Common.DefaultLanguageCode());
 	
 	Item = Items.Add();
 	Item.PredefinedKindName = "WarehouseActualAddress";
@@ -311,7 +311,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	Item.IsAlwaysDisplayed = True;
 	Item.Used = True;
 	Item.AddlOrderingAttribute = 1;
-	Item.Description = NStr("en = 'Actual address'", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Actual address'; tr = 'Fiziki adres'", Common.DefaultLanguageCode());
 	
 #EndRegion
 

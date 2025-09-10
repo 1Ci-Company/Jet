@@ -26,7 +26,7 @@ Procedure BeforeAddReportCommands(ReportsCommands, Parameters, StandardProcessin
 		Return;
 	EndIf;
 	
-	VariantPresentation = NStr("en = 'User rights';");
+	VariantPresentation = NStr("en = 'User rights';tr = 'Kullanıcı yetkileri'");
 	OnlyInAllActions = False;
 	OptionImportance = "";
 	
@@ -45,11 +45,11 @@ Procedure BeforeAddReportCommands(ReportsCommands, Parameters, StandardProcessin
 			Return;
 		EndIf;
 		VariantKey = "UserRightsToTables";
-		VariantPresentation = NStr("en = 'User rights';");
+		VariantPresentation = NStr("en = 'User rights';tr = 'Kullanıcı yetkileri'");
 		
 	ElsIf Not Users.IsFullUser() Then
 		VariantKey = "UserRightsToTable";
-		VariantPresentation = NStr("en = 'User rights';");
+		VariantPresentation = NStr("en = 'User rights';tr = 'Kullanıcı yetkileri'");
 		OnlyInAllActions = True;
 		OptionImportance = "SeeAlso";
 	Else
@@ -86,37 +86,37 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 		SubsystemForAdministration.Subsystems.Find("UserMonitoring"));
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "AccessRightsAnalysis");
-	OptionSettings.LongDesc = NStr("en = 'Shows user rights to infobase tables (you can enable grouping by reports).';");
+	OptionSettings.LongDesc = NStr("en = 'Shows user rights to infobase tables (you can enable grouping by reports).';tr = 'Infobase tabloları için kullanıcı yetkilerini gösterir (raporlara göre gruplamayı etkinleştirebilirsiniz).'");
 	If SubsystemForMonitoring <> Undefined Then
 		OptionSettings.Location.Insert(SubsystemForMonitoring, "Important");
 	EndIf;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UsersRightsToTables");
-	OptionSettings.LongDesc = NStr("en = 'Shows user rights to infobase tables.';");
+	OptionSettings.LongDesc = NStr("en = 'Shows user rights to infobase tables.';tr = 'Kullanıcının infobase tablolarıyla ilgili yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UserRightsToTables");
-	OptionSettings.LongDesc = NStr("en = 'Shows individual user''s rights to different infobase tables.';");
+	OptionSettings.LongDesc = NStr("en = 'Shows individual user''s rights to different infobase tables.';tr = 'Bir kullanıcının farklı infobase tablolarıyla ilgili yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UsersRightsToTable");
-	OptionSettings.LongDesc = NStr("en = 'Shows different users'' rights to the same infobase table.';");
+	OptionSettings.LongDesc = NStr("en = 'Shows different users'' rights to the same infobase table.';tr = 'Farklı kullanıcıların aynı infobase tablosuyla ilgili yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UserRightsToTable");
-	OptionSettings.LongDesc = NStr("en = 'Shows user''s rights to one infobase table with record-level restriction settings (RLS).';");
+	OptionSettings.LongDesc = NStr("en = 'Shows user''s rights to one infobase table with record-level restriction settings (RLS).';tr = 'Bir kullanıcının kayıt seviyesinde kısıtlama ayarları olan tek bir infobase tablosuyla iligli yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UserRightsToReportTables");
-	OptionSettings.LongDesc = NStr("en = 'Shows individual user''s rights to different infobase tables used in a separate report.';");
+	OptionSettings.LongDesc = NStr("en = 'Shows individual user''s rights to different infobase tables used in a separate report.';tr = 'Bir kullanıcının ayrı bir raporda kullanılan farklı infobase tablolarıyla ilgili yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UsersRightsToReportTables");
-	OptionSettings.LongDesc = NStr("en = 'Shows different users'' rights to different infobase tables used in a separate report.';");
+	OptionSettings.LongDesc = NStr("en = 'Shows different users'' rights to different infobase tables used in a separate report.';tr = 'Farklı kullanıcıların ayrı bir raporda kullanılan farklı infobase tablolarıyla ilgili yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UserRightsToReportsTables");
-	OptionSettings.LongDesc = NStr("en = 'Shows individual user''s rights to different infobase tables grouped by reports.';");
+	OptionSettings.LongDesc = NStr("en = 'Shows individual user''s rights to different infobase tables grouped by reports.';tr = 'Bir kullanıcının raporlara göre gruplanmış farklı infobase tablolarıyla ilgili yetkilerini gösterir.'");
 	OptionSettings.Enabled = False;
 	
 EndProcedure
@@ -522,7 +522,7 @@ Function AccessTypesWithView(AccessKindsValuesTypes, UsedOnly)
 				String.Presentation = RepresentationUnknownAccessType();
 			Else
 				String.Presentation = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Rights settings for %1';"),
+					NStr("en = 'Rights settings for %1';tr = 'Kullanıcı ayarları %1 için ayarla'"),
 					RightsSettingsOwnerMetadata.Presentation());
 			EndIf;
 			
@@ -544,7 +544,7 @@ EndFunction
 // Intended for functions "AccessRestrictionKinds", "AccessKindsWithPresentation".
 Function RepresentationUnknownAccessType()
 	
-	Return NStr("en = 'Unknown access kind';");
+	Return NStr("en = 'Unknown access kind';tr = 'Bilinmeyen erişim türü'");
 	
 EndFunction
 
@@ -610,10 +610,10 @@ Procedure AddTablesWithRestrictionDisabled(TablesWithRestrictionDisabled,
 		NewRow.FullName = FullName;
 		If KeyAndValue.Value.AccessDenied Then
 			NewRow.AccessKind    = Enums.AdditionalAccessValues.AccessDenied;
-			NewRow.Presentation = "<" + NStr("en = 'Access denied';") + ">";
+			NewRow.Presentation = "<" + NStr("en = 'Access denied';tr = 'Erişim reddedildi'") + ">";
 		Else
 			NewRow.AccessKind    = Enums.AdditionalAccessValues.AccessAllowed;
-			NewRow.Presentation = "<" + NStr("en = 'Restriction disabled';") + ">";
+			NewRow.Presentation = "<" + NStr("en = 'Restriction disabled';tr = 'Kısıtlama devre dışı'") + ">";
 		EndIf;
 	EndDo;
 	

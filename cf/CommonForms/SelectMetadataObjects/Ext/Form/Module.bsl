@@ -289,48 +289,48 @@ Procedure MetadataObjectTreeFill()
 	MetadataObjects.Columns.Add("FullName");
 	MetadataObjects.Columns.Add("Parent");
 	
-	CollectionNewRow("Subsystems",                   NStr("en = 'Subsystems';"),                     PictureLib.MetadataSubsystems,                   True, MetadataObjects);
-	CollectionNewRow("CommonModules",                  NStr("en = 'Common modules';"),                   PictureLib.MetadataCommonModules,                  True, MetadataObjects);
-	CollectionNewRow("SessionParameters",              NStr("en = 'Session parameters';"),               PictureLib.MetadataSessionParameters,              True, MetadataObjects);
-	CollectionNewRow("Roles",                         NStr("en = 'Roles';"),                           PictureLib.RoleMetadata,                         True, MetadataObjects);
-	CollectionNewRow("CommonAttributes",               NStr("en = 'Common attributes';"),                PictureLib.MetadataCommonAttributes,               True, MetadataObjects);
-	CollectionNewRow("ExchangePlans",                  NStr("en = 'Exchange plans';"),                   PictureLib.MetadataExchangePlans,                  True, MetadataObjects);
-	CollectionNewRow("FilterCriteria",               NStr("en = 'Filter criteria';"),                PictureLib.MetadataFilterCriteria,               True, MetadataObjects);
-	CollectionNewRow("EventSubscriptions",            NStr("en = 'Event subscriptions';"),            PictureLib.MetadataEventSubscriptions,            True, MetadataObjects);
-	CollectionNewRow("ScheduledJobs",          NStr("en = 'Scheduled jobs';"),           PictureLib.MetadataScheduledJobs,          True, MetadataObjects);
-	CollectionNewRow("FunctionalOptions",          NStr("en = 'Functional options';"),           PictureLib.MetadataFunctionalOptions,          True, MetadataObjects);
-	CollectionNewRow("FunctionalOptionsParameters", NStr("en = 'Functional option parameters';"), PictureLib.MetadataFunctionalOptionsParameters, True, MetadataObjects);
-	CollectionNewRow("SettingsStorages",            NStr("en = 'Settings storages';"),             PictureLib.MetadataSettingsStorage,            True, MetadataObjects);
-	CollectionNewRow("CommonForms",                   NStr("en = 'Common forms';"),                    PictureLib.MetadataCommonForms,                   True, MetadataObjects);
-	CollectionNewRow("CommonCommands",                 NStr("en = 'Common commands';"),                  PictureLib.MetadataCommonCommands,                 True, MetadataObjects);
-	CollectionNewRow("CommandGroups",                 NStr("en = 'Command groups';"),                  PictureLib.MetadataCommandGroups,                 True, MetadataObjects);
-	CollectionNewRow("Interfaces",                   NStr("en = 'Interfaces';"),                     Undefined,                                              True, MetadataObjects);
-	CollectionNewRow("CommonTemplates",                  NStr("en = 'Common templates';"),                   PictureLib.MetadataCommonTemplates,                  True, MetadataObjects);
-	CollectionNewRow("CommonPictures",                NStr("en = 'Common pictures';"),                 PictureLib.MetadataCommonPictures,                True, MetadataObjects);
-	CollectionNewRow("XDTOPackages",                   NStr("en = 'XDTO packages';"),                    PictureLib.MetadataXDTOPackages,                   True, MetadataObjects);
-	CollectionNewRow("WebServices",                   NStr("en = 'Web services';"),                    PictureLib.MetadataWebServices,                   True, MetadataObjects);
-	CollectionNewRow("HTTPServices",                  NStr("en = 'HTTP services';"),                   PictureLib.MetadataHTTPServices,                  True, MetadataObjects);
-	CollectionNewRow("WSReferences",                     NStr("en = 'WS references';"),                      PictureLib.MetadataWSReferences,                     True, MetadataObjects);
-	CollectionNewRow("Styles",                        NStr("en = 'Styles';"),                          PictureLib.MetadataStyles,                        True, MetadataObjects);
-	CollectionNewRow("Languages",                        NStr("en = 'Languages';"),                          PictureLib.MetadataLanguages,                        True, MetadataObjects);
+	CollectionNewRow("Subsystems",                   NStr("en = 'Subsystems';tr = 'Alt sistemler'"),                     PictureLib.MetadataSubsystems,                   True, MetadataObjects);
+	CollectionNewRow("CommonModules",                  NStr("en = 'Common modules';tr = 'Ortak modüller'"),                   PictureLib.MetadataCommonModules,                  True, MetadataObjects);
+	CollectionNewRow("SessionParameters",              NStr("en = 'Session parameters';tr = 'Oturum parametreleri'"),               PictureLib.MetadataSessionParameters,              True, MetadataObjects);
+	CollectionNewRow("Roles",                         NStr("en = 'Roles';tr = 'Roller'"),                           PictureLib.RoleMetadata,                         True, MetadataObjects);
+	CollectionNewRow("CommonAttributes",               NStr("en = 'Common attributes';tr = 'Ortak öznitelikler'"),                PictureLib.MetadataCommonAttributes,               True, MetadataObjects);
+	CollectionNewRow("ExchangePlans",                  NStr("en = 'Exchange plans';tr = 'Değiştirme planları'"),                   PictureLib.MetadataExchangePlans,                  True, MetadataObjects);
+	CollectionNewRow("FilterCriteria",               NStr("en = 'Filter criteria';tr = 'Filtre kriteri'"),                PictureLib.MetadataFilterCriteria,               True, MetadataObjects);
+	CollectionNewRow("EventSubscriptions",            NStr("en = 'Event subscriptions';tr = 'Olay abonelikleri'"),            PictureLib.MetadataEventSubscriptions,            True, MetadataObjects);
+	CollectionNewRow("ScheduledJobs",          NStr("en = 'Scheduled jobs';tr = 'Planlanan işler'"),           PictureLib.MetadataScheduledJobs,          True, MetadataObjects);
+	CollectionNewRow("FunctionalOptions",          NStr("en = 'Functional options';tr = 'İşlevsel opsiyonlar'"),           PictureLib.MetadataFunctionalOptions,          True, MetadataObjects);
+	CollectionNewRow("FunctionalOptionsParameters", NStr("en = 'Functional option parameters';tr = 'İşlevsel opsiyon parametreleri'"), PictureLib.MetadataFunctionalOptionsParameters, True, MetadataObjects);
+	CollectionNewRow("SettingsStorages",            NStr("en = 'Settings storages';tr = 'Depolama alanı ayarı'"),             PictureLib.MetadataSettingsStorage,            True, MetadataObjects);
+	CollectionNewRow("CommonForms",                   NStr("en = 'Common forms';tr = 'Ortak formlar'"),                    PictureLib.MetadataCommonForms,                   True, MetadataObjects);
+	CollectionNewRow("CommonCommands",                 NStr("en = 'Common commands';tr = 'Ortak komutlar'"),                  PictureLib.MetadataCommonCommands,                 True, MetadataObjects);
+	CollectionNewRow("CommandGroups",                 NStr("en = 'Command groups';tr = 'Ortak gruplar'"),                  PictureLib.MetadataCommandGroups,                 True, MetadataObjects);
+	CollectionNewRow("Interfaces",                   NStr("en = 'Interfaces';tr = 'Arayüzler'"),                     Undefined,                                              True, MetadataObjects);
+	CollectionNewRow("CommonTemplates",                  NStr("en = 'Common templates';tr = 'Ortak şablonlar'"),                   PictureLib.MetadataCommonTemplates,                  True, MetadataObjects);
+	CollectionNewRow("CommonPictures",                NStr("en = 'Common pictures';tr = 'Ortak resimler'"),                 PictureLib.MetadataCommonPictures,                True, MetadataObjects);
+	CollectionNewRow("XDTOPackages",                   NStr("en = 'XDTO packages';tr = 'XDTO-paketleri'"),                    PictureLib.MetadataXDTOPackages,                   True, MetadataObjects);
+	CollectionNewRow("WebServices",                   NStr("en = 'Web services';tr = 'Web servisleri'"),                    PictureLib.MetadataWebServices,                   True, MetadataObjects);
+	CollectionNewRow("HTTPServices",                  NStr("en = 'HTTP services';tr = 'HTTP-servisler'"),                   PictureLib.MetadataHTTPServices,                  True, MetadataObjects);
+	CollectionNewRow("WSReferences",                     NStr("en = 'WS references';tr = 'WS referanslar'"),                      PictureLib.MetadataWSReferences,                     True, MetadataObjects);
+	CollectionNewRow("Styles",                        NStr("en = 'Styles';tr = 'Stiller'"),                          PictureLib.MetadataStyles,                        True, MetadataObjects);
+	CollectionNewRow("Languages",                        NStr("en = 'Languages';tr = 'Diller'"),                          PictureLib.MetadataLanguages,                        True, MetadataObjects);
 	
-	CollectionNewRow("Constants",                    NStr("en = 'Constants';"),                      PictureLib.MetadataConstants,               False, MetadataObjects);
-	CollectionNewRow("Catalogs",                  NStr("en = 'Catalogs';"),                    PictureLib.MetadataCatalogs,             False, MetadataObjects);
-	CollectionNewRow("Documents",                    NStr("en = 'Documents';"),                      PictureLib.MetadataDocuments,               False, MetadataObjects);
-	CollectionNewRow("DocumentJournals",            NStr("en = 'Document journals';"),             PictureLib.MetadataDocumentJournals,       False, MetadataObjects);
-	CollectionNewRow("Enums",                 NStr("en = 'Enumerations';"),                   PictureLib.EnumerationMetadata,            False, MetadataObjects);
-	CollectionNewRow("Reports",                       NStr("en = 'Reports';"),                         PictureLib.MetadataReports,                  False, MetadataObjects);
-	CollectionNewRow("DataProcessors",                    NStr("en = 'Data processors';"),                      PictureLib.MetadataDataProcessors,               False, MetadataObjects);
-	CollectionNewRow("ChartsOfCharacteristicTypes",      NStr("en = 'Charts of characteristic types';"),      PictureLib.MetadataChartsOfCharacteristicTypes, False, MetadataObjects);
-	CollectionNewRow("ChartsOfAccounts",                  NStr("en = 'Charts of accounts';"),                   PictureLib.MetadataChartsOfAccounts,             False, MetadataObjects);
-	CollectionNewRow("ChartsOfCalculationTypes",            NStr("en = 'Charts of calculation types';"),            PictureLib.MetadataChartsOfCalculationTypes,       False, MetadataObjects);
-	CollectionNewRow("InformationRegisters",             NStr("en = 'Information registers';"),              PictureLib.MetadataInformationRegisters,        False, MetadataObjects);
-	CollectionNewRow("AccumulationRegisters",           NStr("en = 'Accumulation registers';"),            PictureLib.MetadataAccumulationRegisters,      False, MetadataObjects);
-	CollectionNewRow("AccountingRegisters",          NStr("en = 'Accounting registers';"),           PictureLib.MetadataAccountingRegisters,     False, MetadataObjects);
-	CollectionNewRow("CalculationRegisters",              NStr("en = 'Calculation registers';"),               PictureLib.MetadataCalculationRegisters,         False, MetadataObjects);
-	CollectionNewRow("BusinessProcesses",               NStr("en = 'Business processes';"),                PictureLib.MetadataBusinessProcesses,          False, MetadataObjects);
-	CollectionNewRow("Tasks",                       NStr("en = 'Tasks';"),                         PictureLib.MetadataTasks,                  False, MetadataObjects);
-	CollectionNewRow("ExternalDataSources",       NStr("en = 'External data sources';"),       PictureLib.MetadataExternalDataSources,  False, MetadataObjects);
+	CollectionNewRow("Constants",                    NStr("en = 'Constants';tr = 'Sabitler'"),                      PictureLib.MetadataConstants,               False, MetadataObjects);
+	CollectionNewRow("Catalogs",                  NStr("en = 'Catalogs';tr = 'Kataloglar'"),                    PictureLib.MetadataCatalogs,             False, MetadataObjects);
+	CollectionNewRow("Documents",                    NStr("en = 'Documents';tr = 'Belgeler'"),                      PictureLib.MetadataDocuments,               False, MetadataObjects);
+	CollectionNewRow("DocumentJournals",            NStr("en = 'Document journals';tr = 'Belge günlükleri'"),             PictureLib.MetadataDocumentJournals,       False, MetadataObjects);
+	CollectionNewRow("Enums",                 NStr("en = 'Enumerations';tr = 'Numaralandırmalar'"),                   PictureLib.EnumerationMetadata,            False, MetadataObjects);
+	CollectionNewRow("Reports",                       NStr("en = 'Reports';tr = 'Raporlar'"),                         PictureLib.MetadataReports,                  False, MetadataObjects);
+	CollectionNewRow("DataProcessors",                    NStr("en = 'Data processors';tr = 'Veri işlemcileri'"),                      PictureLib.MetadataDataProcessors,               False, MetadataObjects);
+	CollectionNewRow("ChartsOfCharacteristicTypes",      NStr("en = 'Charts of characteristic types';tr = 'Özellik türü listeleri'"),      PictureLib.MetadataChartsOfCharacteristicTypes, False, MetadataObjects);
+	CollectionNewRow("ChartsOfAccounts",                  NStr("en = 'Charts of accounts';tr = 'Hesap planları'"),                   PictureLib.MetadataChartsOfAccounts,             False, MetadataObjects);
+	CollectionNewRow("ChartsOfCalculationTypes",            NStr("en = 'Charts of calculation types';tr = 'Hesaplama türleri çizelgeleri'"),            PictureLib.MetadataChartsOfCalculationTypes,       False, MetadataObjects);
+	CollectionNewRow("InformationRegisters",             NStr("en = 'Information registers';tr = 'Bilgi kayıtları'"),              PictureLib.MetadataInformationRegisters,        False, MetadataObjects);
+	CollectionNewRow("AccumulationRegisters",           NStr("en = 'Accumulation registers';tr = 'Birikim kayıtları'"),            PictureLib.MetadataAccumulationRegisters,      False, MetadataObjects);
+	CollectionNewRow("AccountingRegisters",          NStr("en = 'Accounting registers';tr = 'Muhasebe kayıtları'"),           PictureLib.MetadataAccountingRegisters,     False, MetadataObjects);
+	CollectionNewRow("CalculationRegisters",              NStr("en = 'Calculation registers';tr = 'Hesaplama kayıtları'"),               PictureLib.MetadataCalculationRegisters,         False, MetadataObjects);
+	CollectionNewRow("BusinessProcesses",               NStr("en = 'Business processes';tr = 'İş süreçleri'"),                PictureLib.MetadataBusinessProcesses,          False, MetadataObjects);
+	CollectionNewRow("Tasks",                       NStr("en = 'Tasks';tr = 'Görevler'"),                         PictureLib.MetadataTasks,                  False, MetadataObjects);
+	CollectionNewRow("ExternalDataSources",       NStr("en = 'External data sources';tr = 'Dış veri kaynakları'"),       PictureLib.MetadataExternalDataSources,  False, MetadataObjects);
 	
 	// Create predefined items.
 	ItemParameters = MetadataObjectTreeItemParameters();
@@ -342,7 +342,7 @@ Procedure MetadataObjectTreeFill()
 	
 	ItemParameters = MetadataObjectTreeItemParameters();
 	ItemParameters.Name = "Overall";
-	ItemParameters.Synonym = NStr("en = 'Common';");
+	ItemParameters.Synonym = NStr("en = 'Common';tr = 'Genel'");
 	ItemParameters.Picture = PictureLib.MetadataCommon;
 	ItemParameters.Parent = ConfigurationItem;
 	ItemCommon = NewTreeRow(ItemParameters);
@@ -1275,7 +1275,7 @@ Procedure UpdateSelectedMetadataObjectsCollection(Branch1 = Undefined)
 			If Item.ThisCollectionObjects Then
 				SelectedMetadataObjects.Add(Item.Name, Item.Presentation, True);
 			Else
-				SelectedMetadataObjects.Add("Configuration", NStr("en = 'Configuration';"), True);
+				SelectedMetadataObjects.Add("Configuration", NStr("en = 'Configuration';tr = 'Konfigürasyon'"), True);
 			EndIf;
 			Continue;
 		EndIf;

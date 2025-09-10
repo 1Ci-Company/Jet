@@ -14,7 +14,7 @@
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Parameters.FolderForAdding = Undefined Then
-		Raise NStr("en = 'The data processor cannot be opened manually.';");
+		Raise NStr("en = 'The data processor cannot be opened manually.';tr = 'Bu veri işlemcisi manuel kullanım için uygun değildir.'");
 	EndIf;
 	
 	FilesGroup = Parameters.FilesGroup;
@@ -68,7 +68,7 @@ Procedure AddExecute()
 	
 	If SelectedFiles.Count() = 0 Then
 		CommonClient.MessageToUser(
-			NStr("en = 'No files to add.';"), , "SelectedFiles");
+			NStr("en = 'No files to add.';tr = 'Eklenecek dosyalar yok.'"), , "SelectedFiles");
 		FieldsNotFilled = True;
 	EndIf;
 	
@@ -180,10 +180,10 @@ Procedure SelectFilesExecuteAfterInstallExtension(ExtensionInstalled, ExecutionP
 	
 	OpenFileDialog = New FileDialog(Mode);
 	OpenFileDialog.FullFileName = "";
-	Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+	Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 	OpenFileDialog.Filter = Filter;
 	OpenFileDialog.Multiselect = True;
-	OpenFileDialog.Title = NStr("en = 'Select files';");
+	OpenFileDialog.Title = NStr("en = 'Select files';tr = 'Dosyaları seçin'");
 	If OpenFileDialog.Choose() Then
 		SelectedFiles.Clear();
 		

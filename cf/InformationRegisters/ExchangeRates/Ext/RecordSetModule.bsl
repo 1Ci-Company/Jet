@@ -190,7 +190,7 @@ Function CurrencyRateByFormula(Currency, Formula, Period)
 			ErrorInRateCalculationByFormula.Insert(Currency, True);
 			ErrorInfo = ErrorInfo();
 			
-			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot calculate the ""%1"" currency exchange rate using the ""%2"" formula for period ""%3"":';",
+			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot calculate the ""%1"" currency exchange rate using the ""%2"" formula for period ""%3"":';tr = '""%3"" dönemi için ""%2"" formülü kullanılarak ""%1"" döviz kuru hesaplanamıyor:'",
 				Common.DefaultLanguageCode()), Currency, Formula, Period);
 				
 			Common.MessageToUser(ErrorText + Chars.LF + ErrorProcessing.BriefErrorDescription(ErrorInfo), 
@@ -200,7 +200,7 @@ Function CurrencyRateByFormula(Currency, Formula, Period)
 				Raise ErrorText + Chars.LF + ErrorProcessing.BriefErrorDescription(ErrorInfo);
 			EndIf;
 			
-			WriteLogEvent(NStr("en = 'Currencies.Import exchange rates';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Currencies.Import exchange rates';tr = 'Para birimleri. Döviz kuru içe aktarımı'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error, Currency.Metadata(), Currency, 
 				ErrorText + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		EndIf;
@@ -226,5 +226,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

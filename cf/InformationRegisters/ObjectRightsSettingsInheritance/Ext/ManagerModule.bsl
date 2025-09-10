@@ -93,14 +93,15 @@ Procedure UpdateOwnerParents(RightsSettingsOwner, HasChanges = False, UpdateHier
 	OwnerType = TypeOf(RightsSettingsOwner);
 	
 	ErrorTitle =
-		NStr("en = 'An error occurred when updating the hierarchy of rights owners by Access Values.';")
+		NStr("en = 'An error occurred when updating the hierarchy of rights owners by Access Values.';tr = 'Yetki sahibi hiyerarşisini erişim değerleriyle güncellerken bir hata oluştu.'")
 		+ Chars.LF
 		+ Chars.LF;
 	
 	If AvailableRights.ByTypes.Get(OwnerType) = Undefined Then
 		Raise ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'No object rights settings are specified
-			           |for the ""%1"" type.';"),
+			           |for the ""%1"" type.';tr = '""%1""
+			           | türü için nesne hakları ayarlarının kullanılması ayarlanmamıştır.'"),
 			String(OwnerType));
 	EndIf;
 	

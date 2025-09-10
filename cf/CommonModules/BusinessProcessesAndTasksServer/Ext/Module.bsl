@@ -45,7 +45,7 @@ Procedure TaskFormOnCreateAtServer(BusinessTaskForm, TaskObject,
 		UseDateAndTimeInTaskDeadlines = GetFunctionalOption("UseDateAndTimeInTaskDeadlines");
 		CompletionDateAsString = ?(UseDateAndTimeInTaskDeadlines, 
 			Format(TaskObject.CompletionDate, "DLF=DT"), Format(TaskObject.CompletionDate, "DLF=D"));
-		Item.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The task is completed on %1 by user %2.';"),
+		Item.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The task is completed on %1 by user %2.';tr = 'Görev %1''de %2 kullanıcısı tarafından tamamlandı.'"),
 			CompletionDateAsString, 
 			PerformerString(TaskObject.Performer, TaskObject.PerformerRole,
 			TaskObject.MainAddressingObject, TaskObject.AdditionalAddressingObject));
@@ -67,7 +67,7 @@ Procedure TaskFormOnCreateAtServer(BusinessTaskForm, TaskObject,
 		If Item = Undefined Then
 			Item = BusinessTaskForm.Items.Add("__HeadTask", Type("FormDecoration"), Parent);
 			Item.Type = FormDecorationType.Label;
-			Item.Title = NStr("en = 'This is a head task for nested business processes. It will be completed automatically upon their completion.';");
+			Item.Title = NStr("en = 'This is a head task for nested business processes. It will be completed automatically upon their completion.';tr = 'Bu iç içe geçmiş iş süreçleri için ana görevdir, o görevler tamamlandığında otomatik olarak tamamlanır.'");
 			Item.Height = 0; // Auto height.
 			Item.AutoMaxWidth = False;
 		EndIf;
@@ -174,7 +174,7 @@ Procedure SetTaskAppearance(Val TaskListOrItsConditionalAppearance) Export
 	AppearanceColorItem.Use = True;
 	
 	AppearanceColorItem = ConditionalAppearanceItem.Appearance.Items.Find("Text");
-	AppearanceColorItem.Value = NStr("en = 'Due date is not specified';");
+	AppearanceColorItem.Value = NStr("en = 'Due date is not specified';tr = 'Bitiş tarihi belirtilmedi'");
 	AppearanceColorItem.Use = True;
 	
 	// Set the appearance for external users. The Author field is empty.
@@ -193,7 +193,7 @@ Procedure SetTaskAppearance(Val TaskListOrItsConditionalAppearance) Export
 			DataFilterItem.Use = True;
 
 			AppearanceColorItem = ConditionalAppearanceItem.Appearance.Items.Find("Text");
-			AppearanceColorItem.Value = NStr("en = 'Company representative';");
+			AppearanceColorItem.Value = NStr("en = 'Company representative';tr = 'Şirket temsilcisi'");
 			AppearanceColorItem.Use = True;
 	EndIf;
 	
@@ -219,7 +219,7 @@ Procedure SetBusinessProcessesAppearance(Val BusinessProcessesConditionalAppeara
 	DataFilterItem.ComparisonType = DataCompositionComparisonType.NotFilled;
 	
 	ConditionalAppearanceItem.Appearance.SetParameterValue("TextColor", StyleColors.InaccessibleCellTextColor);
-	ConditionalAppearanceItem.Appearance.SetParameterValue("Text", NStr("en = 'No details';"));
+	ConditionalAppearanceItem.Appearance.SetParameterValue("Text", NStr("en = 'No details';tr = 'Açıklama yok'"));
 	
 	// Completed business process.
 	ConditionalAppearanceItem = BusinessProcessesConditionalAppearance.Items.Add();
@@ -259,7 +259,7 @@ Function PerformerString(Val Performer, Val PerformerRole,
 	ElsIf Not PerformerRole.IsEmpty() Then
 		Return RoleString(PerformerRole, MainAddressingObject, AdditionalAddressingObject);
 	EndIf;
-	Return NStr("en = 'Not specified';");
+	Return NStr("en = 'Not specified';tr = 'Belirtilmedi'");
 
 EndFunction
 
@@ -503,7 +503,7 @@ Procedure ValidateRightsToChangeBusinessProcessState(BusinessProcessObject) Expo
 		
 		If Not HasRightsToStopBusinessProcess(BusinessProcessObject) Then 
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Insufficient rights to suspend business process ""%1"".';"),
+				NStr("en = 'Insufficient rights to suspend business process ""%1"".';tr = '""%1"" iş sürecini askıya almak için yetersiz yetki.'"),
 				String(BusinessProcessObject));
 			Raise(MessageText, ErrorCategory.AccessViolation);
 		EndIf;
@@ -511,21 +511,21 @@ Procedure ValidateRightsToChangeBusinessProcessState(BusinessProcessObject) Expo
 		If PreviousState = Enums.BusinessProcessStates.Running Then
 			
 			If BusinessProcessObject.Completed Then
-				Raise NStr("en = 'Cannot suspend the completed business processes.';");
+				Raise NStr("en = 'Cannot suspend the completed business processes.';tr = 'Tamamlanmış iş süreçleri askıya alınamaz.'");
 			EndIf;
 				
 			If Not BusinessProcessObject.Started Then
-				Raise NStr("en = 'Cannot suspend the business processes that are not started yet.';");
+				Raise NStr("en = 'Cannot suspend the business processes that are not started yet.';tr = 'Başlamamış olan iş süreçleri askıya alınamaz.'");
 			EndIf;
 			
 		ElsIf PreviousState = Enums.BusinessProcessStates.Suspended Then
 			
 			If BusinessProcessObject.Completed Then
-				Raise NStr("en = 'Cannot activate the completed business processes.';");
+				Raise NStr("en = 'Cannot activate the completed business processes.';tr = 'Tamamlanmış iş süreçleri etkinleştirilemez.'");
 			EndIf;
 				
 			If Not BusinessProcessObject.Started Then
-				Raise NStr("en = 'Cannot activate the business processes that are not started yet.';");
+				Raise NStr("en = 'Cannot activate the business processes that are not started yet.';tr = 'Başlamamış olan iş süreçleri etkinleştirilemez.'");
 			EndIf;
 			
 		EndIf;
@@ -770,7 +770,9 @@ Procedure StartDeferredProcess(BusinessProcess) Export
 		LongDesc = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot delay the process startup due to:
 			|%1
-			|Try to start the process manually.';"),
+			|Try to start the process manually.';tr = 'Sürecin başlatılması şu nedenle geciktirilemiyor:
+			|%1
+			|Süreci manuel olarak başlatmayı deneyin.'"),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		InformationRegisters.ProcessesToStart.RegisterStartCancellation(BusinessProcess, LongDesc);
 			
@@ -864,7 +866,7 @@ Procedure NotifyPerformersOnNewTasks() Export
 	Common.OnStartExecuteScheduledJob(Metadata.ScheduledJobs.NewPerformerTaskNotifications);
 	
 	ErrorDescription = "";
-	MessageKind = NStr("en = 'Business processes and tasks.New task notification';", Common.DefaultLanguageCode());
+	MessageKind = NStr("en = 'Business processes and tasks.New task notification';tr = 'İş süreçleri ve görevler. Yeni görev bildirimi'", Common.DefaultLanguageCode());
 
 	If Not SystemEmailAccountIsSetUp(ErrorDescription) Then
 		WriteLogEvent(MessageKind, EventLogLevel.Error,
@@ -883,7 +885,7 @@ Procedure NotifyPerformersOnNewTasks() Export
 	EndIf;
 	
 	WriteLogEvent(MessageKind, EventLogLevel.Information,,,
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Scheduled notification of new tasks for the period %1–%2 is started';"),
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Scheduled notification of new tasks for the period %1–%2 is started';tr = '%1–%2 dönemi için yeni görevlerin planlanmış bildirimi başladı'"),
 		LatestNotificationDate, NotificationDate3));
 	
 	TasksByPerformers = SelectNewTasksByPerformers(LatestNotificationDate, NotificationDate3);
@@ -898,7 +900,7 @@ Procedure NotifyPerformersOnNewTasks() Export
 	SetPrivilegedMode(False);
 	
 	WriteLogEvent(MessageKind, EventLogLevel.Information,,,
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Scheduled notification of new tasks is completed (notified assignees: %1)';"),
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Scheduled notification of new tasks is completed (notified assignees: %1)';tr = 'Yeni görevlerin planlanmış bildirimi tamamlandı (bildirilen atanan: %1)'"),
 		TasksByPerformers.Rows.Count()));
 	
 EndProcedure
@@ -916,7 +918,7 @@ Procedure CheckTasks() Export
 	ErrorDescription = "";
 	
 	If Not SystemEmailAccountIsSetUp(ErrorDescription) Then
-		MessageKind = NStr("en = 'Business processes and tasks.Task monitoring';", Common.DefaultLanguageCode());
+		MessageKind = NStr("en = 'Business processes and tasks.Task monitoring';tr = 'İş süreçleri ve görevler.Görev izlemesi'", Common.DefaultLanguageCode());
 		WriteLogEvent(MessageKind, EventLogLevel.Error,
 			Metadata.ScheduledJobs.TaskMonitoring,, ErrorDescription);
 			Return;
@@ -1034,14 +1036,14 @@ Procedure FinishUpdateAccessValuesSetsPortions(Parameters) Export
 	Parameters.ExecutionProgress.ProcessedObjectsCount1 = Parameters.ExecutionProgress.ProcessedObjectsCount1 + Parameters.ObjectsProcessed;
 	If Parameters.ObjectsProcessed = 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Procedure ""%1"" cannot update access rights for some objects (skipped): %2';"),
+			NStr("en = 'Procedure ""%1"" cannot update access rights for some objects (skipped): %2';tr = '""%1"" prosedürü bazı nesneler için erişim haklarını güncelleyemiyor (atlandı): %2'"),
 				Parameters.ProcedureName, Parameters.ObjectsWithIssues.Count());
 		Raise MessageText;
 	EndIf;
 	
 	WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 		Parameters.BusinessProcess,, 
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" procedure has updated access rights for objects: %2';"), 
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" procedure has updated access rights for objects: %2';tr = '""%1"" Prosedürü nesneler için erişim haklarını güncelledi: %2'"), 
 			Parameters.ProcedureName, Parameters.ObjectsProcessed));
 	
 	// Clearing temporary parameters which are not required to save between the sessions.
@@ -1087,7 +1089,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Multithreaded = True;
 	Handler.UpdateDataFillingProcedure = "InformationRegisters.BusinessProcessesData.RegisterDataToProcessForMigrationToNewVersion";
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
-	Handler.Comment = NStr("en = 'Populate the State attribute in the ""Business processes"" information register.';");
+	Handler.Comment = NStr("en = 'Populate the State attribute in the ""Business processes"" information register.';tr = '""İş süreçleri"" bilgi kaydında Durum özniteliğini otomatik doldurun.'");
 	Handler.ObjectsToChange = Metadata.InformationRegisters.BusinessProcessesData.FullName();
 	Handler.ObjectsToLock = Metadata.InformationRegisters.BusinessProcessesData.FullName();
 
@@ -1363,7 +1365,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = MyTasksID;
 		ToDoItem.HasToDoItems       = PerformerTaskQuantity.Total > 0;
-		ToDoItem.Presentation  = NStr("en = 'My tasks';");
+		ToDoItem.Presentation  = NStr("en = 'My tasks';tr = 'Görevlerim'");
 		ToDoItem.Count     = PerformerTaskQuantity.Total;
 		ToDoItem.Form          = "Task.PerformerTask.Form.MyTasks";
 		FilterValue		= New Structure("Executed", False);
@@ -1373,7 +1375,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = "PerformerTasksOverdue";
 		ToDoItem.HasToDoItems       = PerformerTaskQuantity.Overdue1 > 0;
-		ToDoItem.Presentation  = NStr("en = 'overdue';");
+		ToDoItem.Presentation  = NStr("en = 'overdue';tr = 'vadesi geçmiş'");
 		ToDoItem.Count     = PerformerTaskQuantity.Overdue1;
 		ToDoItem.Important         = True;
 		ToDoItem.Owner       = MyTasksID; 
@@ -1381,21 +1383,21 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = "PerformerTasksForToday";
 		ToDoItem.HasToDoItems       = PerformerTaskQuantity.ForToday > 0;
-		ToDoItem.Presentation  = NStr("en = 'today';");
+		ToDoItem.Presentation  = NStr("en = 'today';tr = 'bugün'");
 		ToDoItem.Count     = PerformerTaskQuantity.ForToday;
 		ToDoItem.Owner       = MyTasksID; 
 
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = "PerformerTasksForWeek";
 		ToDoItem.HasToDoItems       = PerformerTaskQuantity.ForWeek > 0;
-		ToDoItem.Presentation  = NStr("en = 'this week';");
+		ToDoItem.Presentation  = NStr("en = 'this week';tr = 'bu hafta'");
 		ToDoItem.Count     = PerformerTaskQuantity.ForWeek;
 		ToDoItem.Owner       = MyTasksID; 
 
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = "PerformerTasksForNextWeek";
 		ToDoItem.HasToDoItems       = PerformerTaskQuantity.ForNextWeek > 0;
-		ToDoItem.Presentation  = NStr("en = 'next week';");
+		ToDoItem.Presentation  = NStr("en = 'next week';tr = 'gelecek hafta'");
 		ToDoItem.Count     = PerformerTaskQuantity.ForNextWeek > 0;
 		ToDoItem.Owner       = MyTasksID; 
 	EndDo;
@@ -1730,9 +1732,9 @@ Procedure SendNotifAboutOverdueTask(MailMessage)
 	
 	If IsBlankString(MailMessage.MailAddress) Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The notification is not sent as the email address of the %1 task assignee is not specified.';"), 
+			NStr("en = 'The notification is not sent as the email address of the %1 task assignee is not specified.';tr = '%1 göreve atananın e-posta adresi belirtilmediğinden bildirim gönderilemedi.'"), 
 			Common.SubjectString(MailMessage.Recipient));
-		WriteLogEvent(NStr("en = 'Business processes and tasks.Overdue task notification';", 
+		WriteLogEvent(NStr("en = 'Business processes and tasks.Overdue task notification';tr = 'İş süreçleri ve görevler. Vadesi geçmiş görevler bildirimi'", 
 			Common.DefaultLanguageCode()),
 			EventLogLevel.Information,,, MessageText);
 		Return;
@@ -1743,28 +1745,34 @@ Procedure SendNotifAboutOverdueTask(MailMessage)
 	If MailMessage.EmailType = "ToPerformer" Then
 		MessageBodyText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Overdue tasks:
 			| 
-			|%1';"), MailMessage.EmailText);
+			|%1';tr = 'Vadesi geçmiş görevler:
+			| 
+			|%1'"), MailMessage.EmailText);
 		EmailParameters.Insert("Body", MessageBodyText);
 		
-		EmailSubjectText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Overdue tasks (%1)';"),
+		EmailSubjectText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Overdue tasks (%1)';tr = 'Vadesi geçmiş görevler (%1)'"),
 			String(MailMessage.TaskCount ));
 		EmailParameters.Insert("Subject", EmailSubjectText);
 	ElsIf MailMessage.EmailType = "ToAuthor" Then
 		MessageBodyText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Deadline for the specified tasks expired:
 			| 
-			|%1';"), MailMessage.EmailText);
+			|%1';tr = 'Belirtilen görevlerin bitiş tarihi geçti:
+			| 
+			|%1'"), MailMessage.EmailText);
 		EmailParameters.Insert("Body", MessageBodyText);
 		
-		EmailSubjectText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Task deadline expired (%1)';"),
+		EmailSubjectText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Task deadline expired (%1)';tr = 'Görevin bitiş tarihi geçti (%1)'"),
 			String(MailMessage.TaskCount));
 		EmailParameters.Insert("Subject", EmailSubjectText);
 	ElsIf MailMessage.EmailType = "ToCoordinator" Then
 		MessageBodyText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Task deadline expired:
 			| 
-			|%1';"), MailMessage.EmailText);
+			|%1';tr = 'Görevin süresi doldu:
+			| 
+			|%1'"), MailMessage.EmailText);
 		EmailParameters.Insert("Body", MessageBodyText);
 		
-		EmailSubjectText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Task deadline expired (%1)';"),
+		EmailSubjectText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Task deadline expired (%1)';tr = 'Görevin bitiş tarihi geçti (%1)'"),
 			String(MailMessage.TaskCount));
 		EmailParameters.Insert("Subject", EmailSubjectText);
 	EndIf;
@@ -1780,7 +1788,8 @@ Procedure SendNotifAboutOverdueTask(MailMessage)
 		ErrorDescription = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Overdue task notifications are not sent due to: 
-				|%1.';"),
+				|%1.';tr = 'Vadesi geçmiş görev bildirimleri şu nedenle gönderilemedi: 
+				|%1.'"),
 			ErrorDescription);
 		EventImportanceLevel = EventLogLevel.Error;
 	EndTry;
@@ -1793,11 +1802,11 @@ Procedure SendNotifAboutOverdueTask(MailMessage)
 		EndIf;
 		
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Overdue task notification sent to %1.';"), Whom);
+			NStr("en = 'Overdue task notification sent to %1.';tr = 'Vadesi geçmiş görev bildirimi %1''e gönderildi.'"), Whom);
 		EventImportanceLevel = EventLogLevel.Information;
 	EndIf;
 	
-	WriteLogEvent(NStr("en = 'Business processes and tasks.Overdue task notification';",
+	WriteLogEvent(NStr("en = 'Business processes and tasks.Overdue task notification';tr = 'İş süreçleri ve görevler. Vadesi geçmiş görevler bildirimi'",
 		Common.DefaultLanguageCode()), 
 		EventImportanceLevel,,, MessageText);
 		
@@ -1813,8 +1822,9 @@ Procedure CreateTaskForSettingRoles(TaskRef, EmployeesResponsible)
 		TaskObject.SubjectOf = TaskRef;
 
 		TaskObject.LongDesc = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The task cannot be completed as no assignees are assigned for the role:
-		    |%1';"), String(TaskRef));
-		TaskObject.Description = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Set assignees: task %1 cannot be executed';"), String(TaskRef));
+		    |%1';tr = 'Görev tamamlanamaz çünkü göreve atanan olmadı: 
+		    |%1'"), String(TaskRef));
+		TaskObject.Description = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Set assignees: task %1 cannot be executed';tr = 'Atanan belirle: %1 görevi gerçekleştirilemez'"), String(TaskRef));
 		TaskObject.Write();
 	EndDo;
 	
@@ -1870,10 +1880,10 @@ Function SendNotificationOnNewTasks(Performer, TasksByExecutive, RecipientsAddre
 	
 	RecipientEmailAddress = Email(RecipientsAddresses, Performer);
 	If IsBlankString(RecipientEmailAddress) Then
-		WriteLogEvent(NStr("en = 'Business processes and tasks.New task notification';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Business processes and tasks.New task notification';tr = 'İş süreçleri ve görevler. Yeni görev bildirimi'", Common.DefaultLanguageCode()),
 			EventLogLevel.Information,,,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The notification is not sent as the email address of the %1 task assignee is not specified.';"), 
+				NStr("en = 'The notification is not sent as the email address of the %1 task assignee is not specified.';tr = '%1 göreve atananın e-posta adresi belirtilmediğinden bildirim gönderilemedi.'"), 
 				Common.SubjectString(Performer)));
 		Return False;
 	EndIf;
@@ -1882,7 +1892,7 @@ Function SendNotificationOnNewTasks(Performer, TasksByExecutive, RecipientsAddre
 	For Each Task In TasksByExecutive.Rows Do
 		EmailText = EmailText + GenerateTaskPresentation(Task);
 	EndDo;
-	EmailSubject = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Tasks sent- %1';"), Metadata.BriefInformation);
+	EmailSubject = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Tasks sent- %1';tr = 'Görev gönderildi- %1'"), Metadata.BriefInformation);
 	
 	EmailParameters = New Structure;
 	EmailParameters.Insert("Subject", EmailSubject);
@@ -1895,19 +1905,20 @@ Function SendNotificationOnNewTasks(Performer, TasksByExecutive, RecipientsAddre
 		MailMessage = ModuleEmailOperations.PrepareEmail(Account, EmailParameters);
 		ModuleEmailOperations.SendMail(Account, MailMessage);
 	Except
-		WriteLogEvent(NStr("en = 'Business processes and tasks.New task notification';",
+		WriteLogEvent(NStr("en = 'Business processes and tasks.New task notification';tr = 'İş süreçleri ve görevler. Yeni görev bildirimi'",
 			Common.DefaultLanguageCode()), 
 			EventLogLevel.Error,,,
 			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'New task notifications are not sent due to:
-				|%1';"), 
+				|%1';tr = 'Yeni görev bildirimleri şu nedenle gönderilemedi: 
+				|%1'"), 
 				ErrorProcessing.DetailErrorDescription(ErrorInfo())));
 		Return False;
 	EndTry;
 
-	WriteLogEvent(NStr("en = 'Business processes and tasks.New task notification';",
+	WriteLogEvent(NStr("en = 'Business processes and tasks.New task notification';tr = 'İş süreçleri ve görevler. Yeni görev bildirimi'",
 		Common.DefaultLanguageCode()),
 		EventLogLevel.Information,,,
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Notifications sent to %1.';"), 
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Notifications sent to %1.';tr = '%1''e bildirimler gönderildi.'"), 
 			RecipientEmailAddress));
 	Return True;	
 		
@@ -1917,31 +1928,33 @@ Function GenerateTaskPresentation(TaskStructure)
 	
 	Result = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1
 		|
-		|Deadline: %2';") + Chars.LF,
+		|Deadline: %2';tr = '%1
+		|
+		|Bitiş tarihi: %2'") + Chars.LF,
 		TaskStructure.Ref, 
-		Format(TaskStructure.TaskDueDate, NStr("en = 'DLF=DD; DE=''not specified''';")));
+		Format(TaskStructure.TaskDueDate, NStr("en = 'DLF=DD; DE=''not specified''';tr = 'DLF=DD; DE=''belirtilmedi'''")));
 	If ValueIsFilled(TaskStructure.Performer) Then
-		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Assignee: %1';"), 
+		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Assignee: %1';tr = 'Atanan: %1'"), 
 			TaskStructure.Performer) + Chars.LF;
 	EndIf;
 	If ValueIsFilled(TaskStructure.PerformerRole) Then
-		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role: %1';"), 
+		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role: %1';tr = 'Rol: %1'"), 
 			TaskStructure.PerformerRole) + Chars.LF;
 	EndIf;
 	If ValueIsFilled(TaskStructure.MainAddressingObject) Then
-		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Main business object: %1';"), 
+		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Main business object: %1';tr = 'Ana iş nesnesi: %1'"), 
 			TaskStructure.MainAddressingObject) + Chars.LF;
 	EndIf;
 	If ValueIsFilled(TaskStructure.AdditionalAddressingObject) Then
-		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Additional business object: %1';"), 
+		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Additional business object: %1';tr = 'Ek iş nesnesi: %1'"), 
 			TaskStructure.AdditionalAddressingObject) + Chars.LF;
 	EndIf;
 	If ValueIsFilled(TaskStructure.Author) Then
-		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Author: %1';"), 
+		Result = Result + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Author: %1';tr = 'Oluşturan: %1'"), 
 			TaskStructure.Author) + Chars.LF;
 	EndIf;
 	If ValueIsFilled(TaskStructure.LongDesc) Then
-		Result = Result + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1';"), 
+		Result = Result + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1';tr = '%1'"), 
 			TaskStructure.LongDesc) + Chars.LF;
 	EndIf;
 	Return Result + Chars.LF;
@@ -2122,7 +2135,7 @@ Function SelectHeadTaskBusinessProcesses(TaskRef, ForChange = False) Export
 EndFunction
 
 Function EventLogEvent() Export
-	Return NStr("en = 'Business processes and tasks';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Business processes and tasks';tr = 'İş süreçleri ve görevler'", Common.DefaultLanguageCode());
 EndFunction
 
 // The procedure is called when changing state of a business process. 
@@ -2426,11 +2439,11 @@ Procedure SetMyTasksListParameters(List) Export
 	List.Parameters.SetParameterValue("EndOfDay", Today.EndDate);
 	List.Parameters.SetParameterValue("EndOfWeek", ThisWeek.EndDate);
 	List.Parameters.SetParameterValue("EndOfNextWeek", NextWeek.EndDate);
-	List.Parameters.SetParameterValue("Overdue", " " + NStr("en = 'Overdue';")); // Insert a space for sort purposes.
-	List.Parameters.SetParameterValue("Today", NStr("en = 'Today';"));
-	List.Parameters.SetParameterValue("ThisWeek", NStr("en = 'Till the end of the week';"));
-	List.Parameters.SetParameterValue("NextWeek", NStr("en = 'Next week';"));
-	List.Parameters.SetParameterValue("Later", NStr("en = 'Later';"));
+	List.Parameters.SetParameterValue("Overdue", " " + NStr("en = 'Overdue';tr = 'Vadesi geçmiş'")); // Insert a space for sort purposes.
+	List.Parameters.SetParameterValue("Today", NStr("en = 'Today';tr = 'Bugün'"));
+	List.Parameters.SetParameterValue("ThisWeek", NStr("en = 'Till the end of the week';tr = 'Hafta sonuna kadar'"));
+	List.Parameters.SetParameterValue("NextWeek", NStr("en = 'Next week';tr = 'Gelecek hafta'"));
+	List.Parameters.SetParameterValue("Later", NStr("en = 'Later';tr = 'Sonra'"));
 	List.Parameters.SetParameterValue("BegOfDay", BegOfDay(CurrentSessionDate));
 	List.Parameters.SetParameterValue("BlankDate", Date(1,1,1));
 	
@@ -2591,7 +2604,7 @@ Procedure FillEmployeeResponsibleForCompletionControl() Export
 	
 	RoleObject1 = Catalogs.PerformerRoles.EmployeeResponsibleForTasksManagement.GetObject();
 	LockDataForEdit(RoleObject1.Ref);
-	RoleObject1.Description = NStr("en = 'Task control manager';");
+	RoleObject1.Description = NStr("en = 'Task control manager';tr = 'Görev kontrolü yöneticisi'");
 	RoleObject1.UsedWithoutAddressingObjects = True;
 	RoleObject1.UsedByAddressingObjects = True;
 	RoleObject1.MainAddressingObjectTypes = AllAddressingObjects;
@@ -2676,13 +2689,13 @@ EndFunction
 Function SystemEmailAccountIsSetUp(ErrorDescription)
 	
 	If Not Common.SubsystemExists("StandardSubsystems.EmailOperations") Then
-		ErrorDescription = NStr("en = 'Sending email messages is not supported in the app.';");
+		ErrorDescription = NStr("en = 'Sending email messages is not supported in the app.';tr = 'Uygulama e-posta gönderimini desteklemiyor.'");
 	Else
 		ModuleEmailOperations = Common.CommonModule("EmailOperations");
 		If ModuleEmailOperations.AccountSetUp(ModuleEmailOperations.SystemAccount(), True, False) Then
 			Return True;
 		EndIf;
-		ErrorDescription = NStr("en = 'The service email account is not set up.';");
+		ErrorDescription = NStr("en = 'The service email account is not set up.';tr = 'Servis e-posta hesabı kurulmadı.'");
 	EndIf;
 	
 	Return False;
@@ -2718,7 +2731,7 @@ Procedure FillPredefinedItemDescriptionAllAddressingObjects() Export
 		Block.Lock();
 		
 		AllAddressingObjects = ChartsOfCharacteristicTypes.TaskAddressingObjects.AllAddressingObjects.GetObject();
-		AllAddressingObjects.Description = NStr("en = 'All business objects';");
+		AllAddressingObjects.Description = NStr("en = 'All business objects';tr = 'Tüm iş nesneleri'");
 		InfobaseUpdate.WriteObject(AllAddressingObjects);
 
 		CommitTransaction();

@@ -26,7 +26,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 	If Not AdditionalProperties.Property("SkipBasicFillingCheck") Then
 	
 		If Not SequenceNumberUnique(FillOrder, Ref) Then
-			ErrorText = NStr("en = 'The filling order is not unique. A volume with this order already exists.';");
+			ErrorText = NStr("en = 'The filling order is not unique. A volume with this order already exists.';tr = 'Doldurma sırası benzersiz değil. Sistemde böyle bir düzene sahip disk bölümü zaten var'");
 			Common.MessageToUser(ErrorText, , "FillOrder", "Object", Cancel);
 		EndIf;
 		
@@ -38,13 +38,13 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 			ActualSize = CurrentSizeInBytes / (1024 * 1024);
 			
 			If MaximumSize < ActualSize Then
-				ErrorText = NStr("en = 'The volume size limit is less than the current size.';");
+				ErrorText = NStr("en = 'The volume size limit is less than the current size.';tr = 'Disk bölümün maksimum boyutu geçerli boyuttan daha küçüktür'");
 				Common.MessageToUser(ErrorText, , "MaximumSize", "Object", Cancel);
 			EndIf;
 		EndIf;
 		
 		If IsBlankString(FullPathWindows) And IsBlankString(FullPathLinux) Then
-			ErrorText = NStr("en = 'The full path is required.';");
+			ErrorText = NStr("en = 'The full path is required.';tr = 'Tam yol girilmedi'");
 			Common.MessageToUser(ErrorText, , "FullPathWindows", "Object", Cancel);
 			Common.MessageToUser(ErrorText, , "FullPathLinux",   "Object", Cancel);
 			Return;
@@ -62,7 +62,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 		   And (    Left(FullPathWindows, 2) <> "\\"
 		      Or StrFind(FullPathWindows, ":") <> 0 ) Then
 			
-			ErrorText = NStr("en = 'The volume path must be in the UNC format (\\servername\resource).';");
+			ErrorText = NStr("en = 'The volume path must be in the UNC format (\\servername\resource).';tr = 'Birim yolu UNC formatında olmalıdır (\\servername\resource).'");
 			Common.MessageToUser(ErrorText, , "FullPathWindows", "Object", Cancel);
 			Return;
 		EndIf;
@@ -96,7 +96,13 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 					           |or an account on whose behalf
 					           |1C:Enterprise server is running might have no access rights to the volume directory.
 					           |
-					           |%1';");
+					           |%1';tr = 'Birimin yolu yanlış veya birimin bulunduğu sunucu şu anda kullanılamıyor.
+					           |Paylaşılan klasörün yolunun doğru olduğunu ve sunucunun kullanılabilir olduğunu kontrol edin.
+					           |Güvenlik profillerindeki izinler yapılandırılmamış olabilir,
+					           |veya 
+					           |1C:Enterprise sunucusunun altında çalıştığı hesabın birim dizinine erişim hakları yok.
+					           |
+					           |%1'");
 			Else
 				ErrorTemplate =
 					NStr("en = 'The volume path is invalid or the server with the volume is currently unavailable.
@@ -104,7 +110,12 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 					           |An account on whose behalf 1C:Enterprise server is running
 					           |might have no access rights to the volume directory.
 					           |
-					           |%1';");
+					           |%1';tr = 'Birimin yolu yanlış veya birimin bulunduğu sunucu şu anda kullanılamıyor.
+					           |Paylaşılan klasörün yolunun doğru olduğunu ve sunucunun kullanılabilir olduğunu kontrol edin.
+					           |Muhtemelen bir hesap,
+					           | 1C:Enterprise sunucusunun adına çalıştığı, birim dizinine erişim haklarına sahip değildir.
+					           |
+					           |%1'");
 			EndIf;
 			
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -165,7 +176,7 @@ Procedure CheckTheUniquenessOfThePathToTheVolumes(Cancel)
 	ResultTable2.Indexes.Add("FullPathLinux");
 	ResultTable2.Indexes.Add("FullPathWindows");
 	
-	ErrorTemplate = NStr("en = 'The volume path must be unique. The directory is specified in the %1 volume.';");
+	ErrorTemplate = NStr("en = 'The volume path must be unique. The directory is specified in the %1 volume.';tr = 'Bunun yolu benzersiz olmalıdır.Birimde belirtilen dizin %1.'");
 	If ValueIsFilled(FullPathLinux) Then
 		For Each Volume In ResultTable2.FindRows(New Structure("FullPathLinux", FullPathLinux)) Do
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate, Volume.Presentation);
@@ -184,5 +195,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

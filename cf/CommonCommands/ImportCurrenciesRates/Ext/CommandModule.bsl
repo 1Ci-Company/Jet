@@ -16,7 +16,8 @@ Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	NotifyDescription = New NotifyDescription("ImportCurrencyRatesClient", ThisObject);
 	ShowQueryBox(NotifyDescription, 
 		NStr("en = 'You are about to import a file with full exchange rates data for all the periods from the service manager.
-              |The exchange rates that are marked to be imported from the Internet in specific data areas will be replaced in a background job. Do you want to continue?';"), 
+              |The exchange rates that are marked to be imported from the Internet in specific data areas will be replaced in a background job. Do you want to continue?';tr = 'Servis yöneticisinden tüm dönemler için tam döviz kuru verilerini içeren bir dosyayı içe aktarmak üzeresiniz.
+              |Belirli veri alanlarında internetten içe aktarılmak üzere işaretlenen döviz kurları arka plan işinde değiştirilecek. Devam etmek istiyor musunuz?'"), 
 		QuestionDialogMode.YesNo);
 	
 EndProcedure
@@ -35,8 +36,8 @@ Procedure ImportCurrencyRatesClient(Response, AdditionalParameters) Export
 	ImportCurrencyRates();
 	
 	ShowUserNotification(
-		NStr("en = 'The import is scheduled.';"), ,
-		NStr("en = 'The exchange rates will soon be imported in background mode.';"),
+		NStr("en = 'The import is scheduled.';tr = 'İçe aktarım planlandı.'"), ,
+		NStr("en = 'The exchange rates will soon be imported in background mode.';tr = 'Döviz kurları kısa süre içinde arka plan modunda içe aktarılacak.'"),
 		PictureLib.DialogInformation);
 	
 EndProcedure

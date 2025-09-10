@@ -30,7 +30,7 @@ Procedure AddReportCommands(ReportsCommands, Parameters) Export
 	
 	Command = ReportsCommands.Add();
 	Command.VariantKey      = "IrrelevantFilesVolumeByOwners";
-	Command.Presentation     = NStr("en = 'Unused files by owner (Top 10)';");
+	Command.Presentation     = NStr("en = 'Unused files by owner (Top 10)';tr = 'Sahipleri tarafından kullanılmayan dosyalar (İlk 10)'");
 	Command.Id     = "IrrelevantFilesVolumeByOwners";
 	Command.Manager          = "Report.IrrelevantFilesVolume";
 	Command.WriteMode       = "NotWrite";

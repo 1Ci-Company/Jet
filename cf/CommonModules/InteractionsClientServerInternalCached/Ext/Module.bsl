@@ -20,7 +20,7 @@ Function InteractionsContacts() Export
 	Contact = InteractionsClientServer.NewContactDescription();
 	Contact.Type                               = Type("CatalogRef.Users");
 	Contact.Name                               = "Users";
-	Contact.Presentation                     = NStr("en = 'Users';");
+	Contact.Presentation                     = NStr("en = 'Users';tr = 'Kullanıcılar'");
 	Contact.InteractiveCreationPossibility = False;
 	Contact.SearchByDomain                    = True;
 	Result.Add(Contact);

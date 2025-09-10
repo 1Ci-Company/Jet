@@ -135,11 +135,11 @@ Procedure SendReceiveUserEmailCompletion(Result, AdditionalParameters) Export
 		
 		If AdditionalParameters.DisplayProgress Then
 		
-			Title = NStr("en = 'Mail Sync';");
+			Title = NStr("en = 'Mail Sync';tr = 'E-posta Senkronizasyonu'");
 			ExecutionResult = GetFromTempStorage(Result.ResultAddress);
 			If ExecutionResult.HasErrors Then
 				ShowUserNotification(Title, "e1cib/app/DataProcessor.EventLog", 
-					NStr("en = 'Not all the mail has been synced. See the event log for details.';"), 
+					NStr("en = 'Not all the mail has been synced. See the event log for details.';tr = 'Bazı e-postalar senkronize edilemedi. Ayrıntılar için olay günlüğüne bakın.'"), 
 					PictureLib.Warning, UserNotificationStatus.Important);
 			Else	
 				ShowUserNotification(Title, AdditionalParameters.URL,
@@ -156,20 +156,20 @@ EndProcedure
 Function EmailsSendingReceivingResult(ExecutionResult)
 	
 	If ExecutionResult.EmailsReceived1 > 0 And ExecutionResult.SentEmails1 > 0 Then
-		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Received: %1; Sent: %2';"), 
+		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Received: %1; Sent: %2';tr = 'Alınan: %1; Gönderilen: %2'"), 
 			ExecutionResult.EmailsReceived1, ExecutionResult.SentEmails1);
 	ElsIf ExecutionResult.EmailsReceived1 > 0 Then
-		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Received: %1';"), 
+		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Received: %1';tr = 'Alındı: %1'"), 
 			ExecutionResult.EmailsReceived1);
 	ElsIf ExecutionResult.SentEmails1 > 0 Then
-		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Sent: %1';"), 
+		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Sent: %1';tr = 'Gönderildi: %1'"), 
 			ExecutionResult.SentEmails1);
 	Else
-		MessageText = NStr("en = 'No new messages.';");
+		MessageText = NStr("en = 'No new messages.';tr = 'Yeni e-posta yok.'");
 	EndIf;	
 	If ExecutionResult.UserAccountsAvailable > 1 Then
 		MessageText = MessageText + Chars.LF  
-			+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Accounts synced: %1';"),
+			+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Accounts synced: %1';tr = 'Senkronize edilen hesaplar: %1'"),
 				ExecutionResult.UserAccountsAvailable);
 	EndIf;
 	

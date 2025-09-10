@@ -304,15 +304,15 @@ Procedure OnlineSupportAndServicesOnChangeOfChatConnectionStatus(
 		EndIf;
 		
 		If ConversationsEnabled Then
-			Items.EnableDisableConversations.Title = NStr("en = 'Disable';");
-			Items.ConversationsEnabledState.Title = NStr("en = 'Conversations are enabled.';");
+			Items.EnableDisableConversations.Title = NStr("en = 'Disable';tr = 'Devre dışı bırak'");
+			Items.ConversationsEnabledState.Title = NStr("en = 'Conversations are enabled.';tr = 'Tartışmalar etkinleştirildi.'");
 			CommonClientServer.SetFormItemProperty(Items,
 				"ConversationsConfigureIntegrationWithExternalSystems",
 				"Enabled",
 				True);
 		Else
-			Items.EnableDisableConversations.Title = NStr("en = 'Enable';");
-			Items.ConversationsEnabledState.Title = NStr("en = 'Conversations are disabled.';");
+			Items.EnableDisableConversations.Title = NStr("en = 'Enable';tr = 'Etkinleştir'");
+			Items.ConversationsEnabledState.Title = NStr("en = 'Conversations are disabled.';tr = 'Konuşmalar devre dışı.'");
 			CommonClientServer.SetFormItemProperty(Items,
 				"ConversationsConfigureIntegrationWithExternalSystems",
 				"Enabled",

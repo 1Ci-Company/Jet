@@ -22,13 +22,13 @@
 //
 Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	ModuleReportsOptions = Common.CommonModule("ReportsOptions");
-	ReportSettings.LongDesc = NStr("en = 'Business process list and summary.';");
+	ReportSettings.LongDesc = NStr("en = 'Business process list and summary.';tr = 'İş süreçleri listesi ve özeti.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "BusinessProcessesList");
-	OptionSettings.LongDesc = NStr("en = 'Business processes of certain types for the specified period.';");
+	OptionSettings.LongDesc = NStr("en = 'Business processes of certain types for the specified period.';tr = 'Belirtilen dönem için belirli iş süreci türleri.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "StatisticsByKinds");
-	OptionSettings.LongDesc = NStr("en = 'Pivot chart of all active and completed business processes.';");
+	OptionSettings.LongDesc = NStr("en = 'Pivot chart of all active and completed business processes.';tr = 'Tüm devam eden ve tamamlanmış iş süreçlerinin özet grafiği.'");
 EndProcedure
 
 // End StandardSubsystems.ReportsOptions

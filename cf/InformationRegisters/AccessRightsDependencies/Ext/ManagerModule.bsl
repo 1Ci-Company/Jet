@@ -105,7 +105,10 @@ Function AccessRightsDependencies() Export
 				NStr("en = 'Error in procedure %1
 				           |of common module %2.
 				           |
-				           |Cannot find subordinate table ""%3"".';"),
+				           |Cannot find subordinate table ""%3"".';tr = '%2 ortak modülünün
+				           |%1 prosedüründe hata.
+				           |
+				           |""%3"" alt tablosu bulunamadı.'"),
 				"OnFillAccessRightsDependencies",
 				"AccessManagementOverridable",
 				String.SubordinateTable);
@@ -120,7 +123,10 @@ Function AccessRightsDependencies() Export
 				NStr("en = 'Error in procedure %1
 				           |of common module %2.
 				           |
-				           |Cannot find master table ""%3"".';"),
+				           |Cannot find master table ""%3"".';tr = '%2 ortak modülünün
+				           |%1 prosedüründe hata.
+				           |
+				           |""%3"" ana tablosu bulunamadı.'"),
 				"OnFillAccessRightsDependencies",
 				"AccessManagementOverridable",
 				String.LeadingTable);

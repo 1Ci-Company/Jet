@@ -23,7 +23,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	IsCustomSettings = Parameters.Property("Settings", Settings);
 	If Not IsCustomSettings Then 
-		Items.FormOK.Title = NStr("en = 'Save';");
+		Items.FormOK.Title = NStr("en = 'Save';tr = 'Sakla'");
 	EndIf;
 	Items.FormCancel.Visible = Not IsCustomSettings;
 	Items.FormCustomizeStandardSettings.Visible = IsCustomSettings;
@@ -224,13 +224,13 @@ Procedure DefineBehaviorInMobileClient()
 	Items.HeaderTextGroup.Group = ChildFormItemsGroup.HorizontalIfPossible;
 	Items.FooterTextGroup.Group = ChildFormItemsGroup.HorizontalIfPossible;
 	
-	Items.TopLeftText.InputHint = NStr("en = 'Top left';");
-	Items.TopMiddleText.InputHint = NStr("en = 'Top center';");
-	Items.TopRightText.InputHint = NStr("en = 'Top right';");
+	Items.TopLeftText.InputHint = NStr("en = 'Top left';tr = 'Üst solda'");
+	Items.TopMiddleText.InputHint = NStr("en = 'Top center';tr = 'Üst ortada'");
+	Items.TopRightText.InputHint = NStr("en = 'Top right';tr = 'Üst sağda'");
 	
-	Items.BottomLeftText.InputHint = NStr("en = 'Bottom left';");
-	Items.BottomCenterText.InputHint = NStr("en = 'Bottom center';");
-	Items.BottomRightText.InputHint = NStr("en = 'Bottom right';");
+	Items.BottomLeftText.InputHint = NStr("en = 'Bottom left';tr = 'Aşağıda solda'");
+	Items.BottomCenterText.InputHint = NStr("en = 'Bottom center';tr = 'Aşağıda ortada '");
+	Items.BottomRightText.InputHint = NStr("en = 'Bottom right';tr = 'Aşağıda sağda'");
 	
 	Items.TopLeftText.Height = 1;
 	Items.TopMiddleText.Height = 1;
@@ -350,7 +350,7 @@ Procedure PreparePreview()
 	Pattern.Area(2, 3).ColumnWidth = 40;
 	Pattern.Area(2, 4).ColumnWidth = 40;
 	
-	Pattern.Area(3, 2).Text      = Chars.LF + NStr("en = 'Report preview';") + Chars.LF + " ";
+	Pattern.Area(3, 2).Text      = Chars.LF + NStr("en = 'Report preview';tr = 'Rapor örneği'") + Chars.LF + " ";
 	Pattern.Area(3, 2).Font      = SampleFont;
 	Pattern.Area(3, 2).TextColor = SampleColor;
 	
@@ -405,7 +405,7 @@ Function FillTemplate(Template, HomePage)
 		DateToday = CommonClient.SessionDate();
 		Result = StrReplace(Template   , "[&Time]"         , Format(DateToday, "DLF=T"));
 		Result = StrReplace(Result, "[&Date]"          , Format(DateToday, "DLF=D"));
-		Result = StrReplace(Result, "[&ReportTitle]", NStr("en = 'Standard report';"));
+		Result = StrReplace(Result, "[&ReportTitle]", NStr("en = 'Standard report';tr = 'Standart rapor'"));
 		Result = StrReplace(Result, "[&User]"  , String(CurrentUser));
 		Result = StrReplace(Result, "[&PageNumber]" , PageSample);
 		Result = StrReplace(Result, "[&PagesTotal]"  , "9");

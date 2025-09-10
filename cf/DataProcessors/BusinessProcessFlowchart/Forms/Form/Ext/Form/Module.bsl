@@ -75,13 +75,13 @@ Procedure UpdateFlowchart()
 		+ ?(HasState, ",State", ""));
 	FillPropertyValues(ThisObject, BusinessProcessProperties);
 	If BusinessProcessProperties.Completed Then
-		Status = NStr("en = 'Completed';");
+		Status = NStr("en = 'Completed';tr = 'Tamamlandı'");
 		Items.StatusGroup.CurrentPage = Items.CompletedGroup;
 	ElsIf BusinessProcessProperties.Started Then
-		Status = NStr("en = 'Started';");
+		Status = NStr("en = 'Started';tr = 'Başlatıldı'");
 		Items.StatusGroup.CurrentPage = Items.NotCompletedGroup;
 	Else	
-		Status = NStr("en = 'Not started';");
+		Status = NStr("en = 'Not started';tr = 'Başlatılmadı'");
 		Items.StatusGroup.CurrentPage = Items.NotCompletedGroup;
 	EndIf;
 	If HasState Then
@@ -95,7 +95,8 @@ Procedure OpenRoutePointTasksList()
 
 #If WebClient Or MobileClient Then
 	ShowMessageBox(, NStr("en = 'Cannot perform the operation in web client or mobile client.
-		|Start thin client.';"));
+		|Start thin client.';tr = 'Eylem, web veya mobil istemcide mevcut değil. 
+		|İnce istemciyi başlatın.'"));
 	Return;
 #EndIf
 	ClearMessages();
@@ -103,7 +104,7 @@ Procedure OpenRoutePointTasksList()
 
 	If Not ValueIsFilled(BusinessProcess) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Specify a business process.';"),,
+			NStr("en = 'Specify a business process.';tr = 'İş sürecini belirtin.'"),,
 			"BusinessProcess");
 		Return;
 	EndIf;
@@ -113,12 +114,12 @@ Procedure OpenRoutePointTasksList()
 		Or TypeOf(CurItem) = Type("GraphicalSchemaItemSubBusinessProcess")) Then
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'To view the task list, select an action point or a nested business process of the flowchart.';"),,
+			NStr("en = 'To view the task list, select an action point or a nested business process of the flowchart.';tr = 'Görev listesini görebilmek için, bir hareket noktası veya akış çizelgesinden gömülü bir iş süreci seçin.'"),,
 			"Flowchart");
 		Return;
 	EndIf;
 
-	FormCaption = NStr("en = 'Business process route point tasks';");
+	FormCaption = NStr("en = 'Business process route point tasks';tr = 'İş akışının rota noktalarına göre görevler'");
 	
 	FormParameters = New Structure;
 	FormParameters.Insert("Filter", New Structure("BusinessProcess,RoutePoint", BusinessProcess, CurItem.Value));

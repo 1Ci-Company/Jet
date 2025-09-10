@@ -31,7 +31,7 @@
 Function DownloadFileAtClient(Val URL, Val ReceivingParameters = Undefined, Val WriteError1 = True) Export
 	
 #If WebClient Then
-	Raise NStr("en = 'Cannot download files in the web client.';");
+	Raise NStr("en = 'Cannot download files in the web client.';tr = 'Web istemcisinde çalışırken dosyalar istemciye indirilemez.'");
 #Else
 	
 	Result = GetFilesFromInternetInternalServerCall.DownloadFile(URL, ReceivingParameters, WriteError1);

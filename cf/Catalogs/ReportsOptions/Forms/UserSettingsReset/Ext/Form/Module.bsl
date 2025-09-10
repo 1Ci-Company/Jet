@@ -13,12 +13,12 @@
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	If TypeOf(Parameters.Variants) <> Type("Array") Then
-		ErrorText = NStr("en = 'No report options provided.';");
+		ErrorText = NStr("en = 'No report options provided.';tr = 'Rapor seçenekleri belirtilmedi.'");
 		Return;
 	EndIf;
 
 	If Not HasUserSettings(Parameters.Variants) Then
-		ErrorText = NStr("en = 'Custom settings for the %1selected report options have not been defined or have been reset.';");
+		ErrorText = NStr("en = 'Custom settings for the %1selected report options have not been defined or have been reset.';tr = 'Seçilen %1 rapor seçeneği için özel ayarlar tanımlanmadı veya sıfırlandı.'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, 
 			Format(Parameters.Variants.Count(), "NZ=0; NG=0"));
 		Return;
@@ -44,20 +44,21 @@ EndProcedure
 Procedure ResetCommand(Command)
 	OptionsCount = OptionsToAssign.Count();
 	If OptionsCount = 0 Then
-		ShowMessageBox(, NStr("en = 'No report options provided.';"));
+		ShowMessageBox(, NStr("en = 'No report options provided.';tr = 'Rapor seçenekleri belirtilmedi.'"));
 		Return;
 	EndIf;
 
 	ResetUserSettingsServer(OptionsToAssign);
 	If OptionsCount = 1 Then
 		OptionRef1 = OptionsToAssign[0].Value;
-		NotificationTitle1 = NStr("en = 'Custom settings for the report option have been reset.';");
+		NotificationTitle1 = NStr("en = 'Custom settings for the report option have been reset.';tr = 'Rapor seçeneği için özel seçenek sıfırlandı.'");
 		NotificationRef    = GetURL(OptionRef1);
 		NotificationText     = String(OptionRef1);
 		ShowUserNotification(NotificationTitle1, NotificationRef, NotificationText);
 	Else
 		NotificationText = NStr("en = 'Custom settings for %1 report options
-							   |have been reset.';");
+							   |have been reset.';tr = '%1 rapor seçenekleri için
+							   |özel ayarlar sıfırlandı.'");
 		NotificationText = StringFunctionsClientServer.SubstituteParametersToString(NotificationText, 
 			Format(OptionsCount, "NZ=0; NG=0"));
 		ShowUserNotification(,, NotificationText);

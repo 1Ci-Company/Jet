@@ -1277,7 +1277,7 @@ Procedure AddFilterCondition(Filter, Val Property, Val ValueComparisonType, Val 
 		
 	Else
 		
-		Raise NStr("en = 'Invalid filter description.';");
+		Raise NStr("en = 'Invalid filter description.';tr = 'Geçersiz filtre açıklaması.'");
 		
 	EndIf;
 	
@@ -1307,7 +1307,7 @@ Function CheckFilterConditions(Val ObjectToCheck, Val Filter = Undefined) Export
 			
 		Else
 			
-			Raise NStr("en = 'Invalid filter.';");
+			Raise NStr("en = 'Invalid filter.';tr = 'Geçersiz filtre.'");
 			
 		EndIf;
 		
@@ -1408,7 +1408,7 @@ Function AdministrationManager(Val AdministrationParameters)
 		
 	Else
 		
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Unknown connection type: %1.';"), AdministrationParameters.AttachmentType);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Unknown connection type: %1.';tr = 'Bilinmeyen bağlantı türü: %1.'"), AdministrationParameters.AttachmentType);
 		
 	EndIf;
 	

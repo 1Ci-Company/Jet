@@ -164,7 +164,9 @@ Procedure CustomizeReportInManagerModule(Settings, ReportMetadata) Export
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of ""%1"" parameter specified. Procedure %2.
 			|Failed to configure report options from manager module. Reason:
-			|%3';"),
+			|%3';tr = '%2 prosedüründe %1 parametresinin kabul edilemeyen değeri. 
+			| Rapor seçeneklerinin yönetici modülünden ayarlanamama nedeni:
+			|%3'"),
 			"VariantKey", "ReportsOptions.CustomizeReportInManagerModule",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		WriteToLog(EventLogLevel.Error, ErrorText, ReportMetadata);
@@ -246,7 +248,8 @@ Function DescriptionOfReport(Settings, Report) Export
 	If Result.Count() <> 1 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of ""%1"" parameter is specified. Function ""%2"".
-			|Report ""%3"" is not added to subsystem ""%4"". Check ""Option storage"" property in report properties.';"),
+			|Report ""%3"" is not added to subsystem ""%4"". Check ""Option storage"" property in report properties.';tr = '%2 işlevinde %1 parametresinin izin verilmeyen değeri. 
+			| Rapor ""%3"", ""%4"" alt sisteme bağlı değil. Rapor özelliklerinde ""Seçenek deposu"" özelliğini kontrol edin.'"),
 			"Report", "ReportsOptions.DescriptionOfReport", String(Report), SubsystemDescription(""));
 	EndIf;
 	
@@ -340,7 +343,8 @@ Function OptionDetails(Settings, Report, VariantKey) Export
 	If Result.Count() <> 1 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of ""%1"" parameter specified. Procedure %2.
-				|Report ""%4"" is missing option ""%3"".';"),
+				|Report ""%4"" is missing option ""%3"".';tr = '%2 işlevinde %1 parametresinin izin verilmeyen değeri:
+				|seçenek ""%3"" ""%4"" raporunda mevcut değil.'"),
 			"VariantKey", "ReportsOptions.OptionDetails", ReportOptionKey, MetadataOfReport.Name);
 	EndIf;
 	
@@ -693,7 +697,7 @@ Procedure ResetCustomSettings(Var_Key, SettingsTypes1 = Undefined) Export
 		ObjectsKeys.Add(ObjectKey);
 		
 	Else
-		Raise NStr("en = 'Invalid type of Report parameter';");
+		Raise NStr("en = 'Invalid type of Report parameter';tr = '""Rapor"" parametresinin yanlış türü'");
 	EndIf;
 	
 	If Not IsBlankString(Query.Text) Then
@@ -728,7 +732,7 @@ Procedure ResetCustomSettings(Var_Key, SettingsTypes1 = Undefined) Export
 				GotSelectionItem = Undefined;
 				SuccessiveReadingErrors = SuccessiveReadingErrors + 1;
 				WriteToLog(EventLogLevel.Error, 
-					NStr("en = 'Cannot read custom report settings due to:';")
+					NStr("en = 'Cannot read custom report settings due to:';tr = 'Özel rapor ayarları şu nedenle okunamıyor:'")
 					+ Chars.LF
 					+ ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			EndTry;
@@ -791,7 +795,7 @@ EndProcedure
 //  ReportsOptions.MoveUsersOptionsFromStandardStorage("EventLogAnalysis, ExpiringTasksOnDate");
 //
 Procedure MoveUsersOptionsFromStandardStorage(ReportsNames = "") Export
-	ProcedurePresentation = NStr("en = 'Direct conversion of report options';");
+	ProcedurePresentation = NStr("en = 'Direct conversion of report options';tr = 'Rapor seçeneklerinin doğrudan dönüşümü'");
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	// The result that will be saved in the storage.
@@ -820,7 +824,7 @@ Procedure MoveUsersOptionsFromStandardStorage(ReportsNames = "") Export
 			GotSelectionItem = Undefined;
 			SuccessiveReadingErrors = SuccessiveReadingErrors + 1;
 			WriteToLog(EventLogLevel.Error,
-				NStr("en = 'Cannot read report options from the standard storage due to:';")
+				NStr("en = 'Cannot read report options from the standard storage due to:';tr = 'Rapor seçenekleri standart depolama yerinden şu nedenle okunamıyor:'")
 				+ Chars.LF
 				+ ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		EndTry;
@@ -923,7 +927,7 @@ Procedure ImportUserOptions(UserOptions1 = Undefined) Export
 		Return;
 	EndIf;
 	
-	ProcedurePresentation = NStr("en = 'Finalize report option conversion';");
+	ProcedurePresentation = NStr("en = 'Finalize report option conversion';tr = 'Rapor seçeneklerinin tam dönüşümü'");
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	// Replace the column names with the names from the catalog structure.
@@ -1108,7 +1112,7 @@ Function AttachReportAndImportSettings(Val Parameters) Export
 			EndIf;
 			If Result.OptionRef1 = Undefined Then
 				Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Values of parameters ""%2"" are not specified when calling the ""%1"" procedure.';"),
+					NStr("en = 'Values of parameters ""%2"" are not specified when calling the ""%1"" procedure.';tr = '""%1"" prosedürü çağrılırken ""%2"" parametre değerleri belirtilmedi.'"),
 					"ReportsOptions.AttachReportAndImportSettings",
 					"OptionRef1, RefOfReport, VariantKey");
 				Return Result;
@@ -1166,7 +1170,7 @@ Function AttachReportAndImportSettings(Val Parameters) Export
 		
 		If DCSettingsOption = Undefined Then
 			Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The report option ""%1"" (key: ""%2"") is not found in the schema of the ""%3"" report.';"),
+				NStr("en = 'The report option ""%1"" (key: ""%2"") is not found in the schema of the ""%3"" report.';tr = '""%1"" seçeneği (anahtar ""%2"") ""%3"" rapor şemasında bulunamadı.'"),
 				String(Result.OptionRef1),
 				Result.VariantKey,
 				String(Result.RefOfReport));
@@ -1252,7 +1256,7 @@ Procedure OnWriteAdditionalReport(CurrentObject, Cancel, ExternalObject) Export
 	
 	If Not ReportsOptionsCached.InsertRight1() Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Insufficient rights to save options of additional report %1.';"),
+			NStr("en = 'Insufficient rights to save options of additional report %1.';tr = 'Ek rapor ""%1"" seçeneklerini yazmak için yetersiz erişim hakları.'"),
 			CurrentObject.Description);
 		WriteToLog(EventLogLevel.Error, ErrorText, CurrentObject.Ref);
 		Common.MessageToUser(ErrorText);
@@ -1468,9 +1472,9 @@ Function OpeningParameters(OptionRef) Export
 			Selection = Query.Execute().Select();
 			SetPrivilegedMode(False);
 			If Selection.Next() Then
-				Raise(NStr("en = 'Insufficient rights to view the report.';"), ErrorCategory.AccessViolation);
+				Raise(NStr("en = 'Insufficient rights to view the report.';tr = 'Görüntüleme için yetersiz yetki.'"), ErrorCategory.AccessViolation);
 			Else
-				Raise NStr("en = 'The report option does not exist.';");
+				Raise NStr("en = 'The report option does not exist.';tr = 'Rapor seçeneği mevcut değil.'");
 			EndIf;
 		EndIf;
 		
@@ -1498,7 +1502,8 @@ Procedure OnAttachReport(OpeningParameters) Export
 		If TypeOf(MetadataOfReport) <> Type("MetadataObject") Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot open report %1.
-					|The configuration extension that contains the report might have been disabled.';"),
+					|The configuration extension that contains the report might have been disabled.';tr = '""%1"" Raporu açılamıyor. 
+					|Bu raporla yapılan yapılandırma uzantısı devre dışı bırakılmış olabilir.'"),
 				OpeningParameters.Report);
 		EndIf;
 		OpeningParameters.ReportName = MetadataOfReport.Name;
@@ -1508,7 +1513,8 @@ Procedure OnAttachReport(OpeningParameters) Export
 		If Metadata.Reports.Find(OpeningParameters.ReportName) = Undefined Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot open report %1.
-					|The configuration extension that contains the report might have been disabled.';"),
+					|The configuration extension that contains the report might have been disabled.';tr = '""%1"" Raporu açılamıyor. 
+					|Bu raporla yapılan yapılandırma uzantısı devre dışı bırakılmış olabilir.'"),
 				OpeningParameters.ReportName);
 		EndIf;
 		OpeningParameters.Connected = True;
@@ -1714,7 +1720,7 @@ Function GenerateReport(Val Parameters, Val CheckFilling, Val GetCheckBoxEmpty) 
 	FillPropertyValues(Result, Connection); // "Object, Metadata, FullName, OptionKey, DCSchema, SchemaURL, SchemaModified, FormSettings"
 	
 	If Not Connection.Success Then
-		Result.ErrorText = NStr("en = 'Cannot generate the report:';") + Chars.LF + Connection.ErrorText;
+		Result.ErrorText = NStr("en = 'Cannot generate the report:';tr = 'Rapor oluşturulamadı:'") + Chars.LF + Connection.ErrorText;
 		Return Result;
 	EndIf;
 	
@@ -1739,7 +1745,7 @@ Function GenerateReport(Val Parameters, Val CheckFilling, Val GetCheckBoxEmpty) 
 		EndDo;
 		
 		If Not CheckPassed Then
-			Result.ErrorText = NStr("en = 'Population check failed:';");
+			Result.ErrorText = NStr("en = 'Population check failed:';tr = 'Raporun doldurma şekli doğrulanamadı:'");
 			For Each Message In UserMessages Do
 				Result.ErrorText = Result.ErrorText + Chars.LF + Message.Text;
 			EndDo;
@@ -1757,7 +1763,7 @@ Function GenerateReport(Val Parameters, Val CheckFilling, Val GetCheckBoxEmpty) 
 		
 		Result.DataStillUpdating = CheckUsedTables(TablesToUse, False);
 	Except
-		ErrorText = NStr("en = 'Cannot identify referenced tables:';");
+		ErrorText = NStr("en = 'Cannot identify referenced tables:';tr = 'Kullanılan tablolar belirlenemedi:'");
 		ErrorText = ErrorText + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		WriteToLog(EventLogLevel.Error, ErrorText, Result.OptionRef1);
 	EndTry;
@@ -1789,7 +1795,7 @@ Function GenerateReport(Val Parameters, Val CheckFilling, Val GetCheckBoxEmpty) 
 		Result.Success = False;
 		
 		WriteLogEvent(
-			NStr("en = 'Report options.Generate report';", Common.DefaultLanguageCode()),
+			NStr("en = 'Report options.Generate report';tr = 'Rapor seçenekleri.Raporun düzenlenmesi'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			Result.Metadata,
 			Result.OptionRef1,
@@ -1980,7 +1986,7 @@ Function ReportsAvailability(ReportsReferences) Export
 			TableRow = Result.Find(Ref, "Ref");
 			ReportValue = ReportsValues[Ref];
 			If ReportValue = Undefined Then
-				TableRow.Presentation = NStr("en = 'Insufficient rights to access the report option.';");
+				TableRow.Presentation = NStr("en = 'Insufficient rights to access the report option.';tr = 'Raporun seçeneği ile çalışmak için yetersiz yetki.'");
 			Else
 				TableRow.Report = ReportValue;
 				TableRow.ReportByStringType = ReportsOptionsClientServer.ReportByStringType(Undefined, TableRow.Report);
@@ -2061,18 +2067,18 @@ Function ReportInformation(Val ReportFullName, Val RaiseException1 = False) Expo
 			Result.ReportFullName = "ExternalReport." + Result.ReportShortName;
 			WriteToLog(EventLogLevel.Warning,
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The report %1 was added as an external report.';"),
+					NStr("en = 'The report %1 was added as an external report.';tr = '%1 raporu harici rapor olarak eklendi.'"),
 					ReportFullName));
 		ElsIf Not AccessRight("View", Result.ReportMetadata) Then
 			Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Insufficient rights to access report ""%1.""';"),
+				NStr("en = 'Insufficient rights to access report ""%1.""';tr = '""%1"" raporlamak için yetkiler yetersiz.'"),
 				ReportFullName);
 		EndIf;
 	ElsIf Upper(Prefix) = "EXTERNALREPORT" Then
 		// It is not required to get metadata and perform checks.
 	Else
 		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Report ""%1"" has unknown type. Expected types: ""%2"" or ""%3"".';"),
+			NStr("en = 'Report ""%1"" has unknown type. Expected types: ""%2"" or ""%3"".';tr = 'Bilinmeyen ""%1"" rapor türü (beklenen ""%2"" veya ""%3"").'"),
 			"Report", "ExternalReport", ReportFullName);
 		If RaiseException1 Then
 			Raise Result.ErrorText;
@@ -2131,14 +2137,16 @@ Function AdditionalReportOptionsStorageCorrect(MetadataOfReport, WarningText = "
 	If MetadataOfReport.VariantsStorage <> Undefined Then 
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The ""Option storage"" report property has invalid value.
-			|Valid value: %1.';"), Metadata.SettingsStorages.ReportsVariantsStorage.FullName());
+			|Valid value: %1.';tr = '""Seçenek saklama"" rapor özelliğinin değeri geçersiz.
+			|Geçerli değer: %1.'"), Metadata.SettingsStorages.ReportsVariantsStorage.FullName());
 	Else
-		WarningText = NStr("en = 'The ""Option storage"" report property is not specified.';");
+		WarningText = NStr("en = 'The ""Option storage"" report property is not specified.';tr = '""Seçenek saklama"" rapor özelliği belirtilmedi.'");
 	EndIf;
 
 	WarningText = WarningText + Chars.LF + Chars.LF
 		+ NStr("en = 'Saving and selecting report options may have some limitations.
-		|Contact the additional (external) report developer for further assistance.';");
+		|Contact the additional (external) report developer for further assistance.';tr = 'Rapor seçeneklerinin kaydedilmesi ve seçilmesiyle ilgili kısıtlamalar var.
+		|Yardım için ek (harici) rapor geliştiricisine başvurun.'");
 	Common.MessageToUser(WarningText);
 	
 	Return False;
@@ -2212,7 +2220,8 @@ Function PredefinedReportsOptions(ReportsType = "BuiltIn", ConnectedToTheStorage
 			Except
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot read the %1 report scheme:
-						|%2';"), ReportMetadata.Name, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
+						|%2';tr = '%1 rapor şeması okunamadı:
+						|%2'"), ReportMetadata.Name, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 				WriteToLog(EventLogLevel.Warning, ErrorText, ReportMetadata);
 			EndTry;
 			// Read report option settings from the schema.
@@ -2224,13 +2233,17 @@ Function PredefinedReportsOptions(ReportsType = "BuiltIn", ConnectedToTheStorage
 						ErrorTextTemplate = NStr("en = 'Cannot read the %1 report option list in a shared session
 							|because its settings contain links to separated predefined objects.
 							|
-							|%2';");
+							|%2';tr = 'Ortak oturumda %1 rapor seçeneği listesi okunamıyor
+							|çünkü ayarları ayrılmış öntanımlı nesnelere bağlantılar içeriyor.
+							|
+							|%2'");
 						
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							ErrorTextTemplate, ReportMetadata.Name, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 					Else
 						ErrorTextTemplate = NStr("en = 'Cannot read the %1 report option list:
-							|%2';");
+							|%2';tr = '%1 rapor seçenekleri listesi okunamadı:
+							|%2'");
 						
 						ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							ErrorTextTemplate, ReportMetadata.Name, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -2246,7 +2259,8 @@ Function PredefinedReportsOptions(ReportsType = "BuiltIn", ConnectedToTheStorage
 				Except
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot read the %1 report option list from the manager module:
-							|%2';"), ReportMetadata.Name, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
+							|%2';tr = 'Yönetici modülünden %1 rapor seçenekleri listesi okunamadı:
+							|%2'"), ReportMetadata.Name, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 					WriteToLog(EventLogLevel.Error, ErrorText, ReportMetadata);
 				EndTry;
 			EndIf;
@@ -2274,7 +2288,8 @@ Function PredefinedReportsOptions(ReportsType = "BuiltIn", ConnectedToTheStorage
 						Except
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'Cannot read the settings of the ""%1"" report option:
-									|%2';"), OptionDetails.VariantKey, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
+									|%2';tr = '""%1"" seçenek ayarları okunamadı:
+									|%2'"), OptionDetails.VariantKey, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 							WriteToLog(EventLogLevel.Warning, ErrorText, ReportMetadata);
 						EndTry;
 					EndIf;
@@ -2477,7 +2492,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 		Handler.Id = New UUID("38d2a135-53e0-4c68-9bd6-3d6df9b9dcfb");
 		Handler.Version        = "*";
 		Handler.Procedure     = "ReportsOptions.UpdatePredefinedReportOptionsSearchIndex";
-		Handler.Comment   = NStr("en = 'Update search index for predefined reports.';");
+		Handler.Comment   = NStr("en = 'Update search index for predefined reports.';tr = 'Program tarafından sağlanan rapor arama dizini güncelleme.'");
 	EndIf;
 	
 	// 3.3. Populate information to search for user report options.
@@ -2487,7 +2502,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Id   = New UUID("5ba93197-230b-4ac8-9abb-ab3662e5ff76");
 	Handler.Version          = "*";
 	Handler.Procedure       = "ReportsOptions.UpdateUserReportOptionsSearchIndex";
-	Handler.Comment     = NStr("en = 'Update search index for custom reports.';");
+	Handler.Comment     = NStr("en = 'Update search index for custom reports.';tr = 'Kullanıcılar tarafından kaydedilen rapor arama dizini güncelleme.'");
 	
 	// 3.4. Set the corresponding references to metadata object IDs in settings of universal report options.
 	Handler = Handlers.Add();
@@ -2502,7 +2517,9 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.Comment = NStr("en = 'Set a data source in the universal report option settings.
 		|Once the processing is completed, renaming of metadata objects will not lead to losing the saved report options.
-		|Fill the ""Use for"" field with the ""Computers and tablets"" value.';");
+		|Fill the ""Use for"" field with the ""Computers and tablets"" value.';tr = 'Evrensel rapor seçeneği ayarlarında bir veri kaynağı ayarlayın.
+		|İşlem tamamlandığında kalan metaveri nesneleri kayıtlı rapor seçeneklerinin kaybedilmesine yol açmaz.
+		|""Kullan"" alanını ""Bilgisayarlar ve tabletler"" değeriyle doldurun.'");
 	
 	Handler.ExecutionPriorities = InfobaseUpdate.HandlerExecutionPriorities();
 	Priority = Handler.ExecutionPriorities.Add();
@@ -2527,7 +2544,8 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.ObjectsToLock = "Catalog.ReportsOptions, InformationRegister.ReportOptionsSettings";
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.Comment = NStr("en = 'Moves the report access restrictions to the ""Report option settings"" information register.
-		|While this procedure is in progress, the report access restrictions for individual users and user groups might not work correctly.';");
+		|While this procedure is in progress, the report access restrictions for individual users and user groups might not work correctly.';tr = 'Rapor seçeneklerinin kullanılabilirliği için tüm ayarların ""Rapor seçenekleri ayarları"" bilgi kaydına aktarılması.
+		| İşlem tamamlanmadan önce, kullanıcılar (kullanıcı grupları) tarafından rapor seçeneklerinin kullanılabilirliğini ayarlamak doğru çalışmayacaktır.'");
 	
 	Handler.ExecutionPriorities = InfobaseUpdate.HandlerExecutionPriorities();
 	Priority = Handler.ExecutionPriorities.Add();
@@ -2663,7 +2681,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "Reports";
 	Kind.SubmenuName  = "ReportsSubmenu";
-	Kind.Title   = NStr("en = 'Reports';");
+	Kind.Title   = NStr("en = 'Reports';tr = 'Raporlar'");
 	Kind.Order     = 50;
 	Kind.Picture    = PictureLib.Report;
 	Kind.Representation = ButtonRepresentation.PictureAndText;
@@ -2791,7 +2809,7 @@ EndProcedure
 
 // Subsystem presentation. It is used for writing to the event log and in other places.
 Function SubsystemDescription(LanguageCode)
-	Return NStr("en = 'Report options';", ?(LanguageCode = Undefined, Common.DefaultLanguageCode(), LanguageCode));
+	Return NStr("en = 'Report options';tr = 'Rapor seçenekleri'", ?(LanguageCode = Undefined, Common.DefaultLanguageCode(), LanguageCode));
 EndFunction
 
 // Initialize reports.
@@ -2824,7 +2842,7 @@ Function AttachReportObject(RefOfReport, GetMetadata)
 	
 	If RefOfReport = Undefined Then
 		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Method %1 is missing parameter %2.';"),
+			NStr("en = 'Method %1 is missing parameter %2.';tr = '""%1"" yönteminde ""%2"" parametresi belirtilmedi.'"),
 			"AttachReportObject",
 			"RefOfReport");
 		Return Result;
@@ -2834,7 +2852,7 @@ Function AttachReportObject(RefOfReport, GetMetadata)
 	
 	If TypeOf(Result.Ref) = Type("String") Then
 		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot attach report %1 from the app. Reason: The report was added as an external report.';"),
+			NStr("en = 'Cannot attach report %1 from the app. Reason: The report was added as an external report.';tr = '%1 raporu uygulamadan eklenemiyor. Nedeni: Rapor harici rapor olarak eklenmiş.'"),
 			Result.Ref);
 		Return Result;
 	EndIf;
@@ -2847,20 +2865,20 @@ Function AttachReportObject(RefOfReport, GetMetadata)
 		
 		If TypeOf(Result.Metadata) <> Type("MetadataObject") Then
 			Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The report %1 is not a part of the app.';"),
+				NStr("en = 'The report %1 is not a part of the app.';tr = '%1 raporu uygulamaya ait değil.'"),
 				Result.Name);
 			Return Result;
 		EndIf;
 		Result.Name = Result.Metadata.Name;
 		If Not AccessRight("Use", Result.Metadata) Then
-			Result.ErrorText = NStr("en = 'Insufficient access rights';");
+			Result.ErrorText = NStr("en = 'Insufficient access rights';tr = 'Yetersiz erişim yetkileri'");
 			Return Result;
 		EndIf;
 		Try
 			Result.Object = Reports[Result.Name].Create();
 			Result.Success = True;
 		Except
-			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot attach report %1:';"),
+			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot attach report %1:';tr = '%1 raporu bağlanamadı:'"),
 				Result.Metadata);
 			ErrorText = ErrorText + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			WriteToLog(EventLogLevel.Error, ErrorText, Result.Metadata);
@@ -2981,7 +2999,7 @@ Procedure SetReportOutputModeInReportsPanels(Settings, Report, GroupByReports)
 		If DescriptionOfReport.Count() <> 1 Then
 			WriteToLog(EventLogLevel.Warning, 
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Report %1 is not attached to the subsystem.';"), Report.Name));
+					NStr("en = 'Report %1 is not attached to the subsystem.';tr = 'Rapor ""%1"" alt sisteme bağlı değil.'"), Report.Name));
 			Return;
 		EndIf;
 		DescriptionOfReport = DescriptionOfReport[0];
@@ -3029,7 +3047,9 @@ Function KeysChanges()
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'A conflict occurred when renaming the ""%1"" report option:
 				|The current option name ""%2"" (previous name ""%3"")
-				|is also registered as the previous name ""%4"" (current name ""%5"").';"),
+				|is also registered as the previous name ""%4"" (current name ""%5"").';tr = '""%1"" rapor seçeneği yeniden adlandırılırken uyuşmazlık oldu:
+				|Mevcut rapor adı ""%2"" (önceki ad ""%3"")
+				| önceki ad ""%4"" (mevcut ad ""%5"") olarak da kayıtlı.'"),
 				String(Update.Report),
 				Update.RelevantOptionName,
 				Update.OldOptionName,
@@ -3042,7 +3062,9 @@ Function KeysChanges()
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'A conflict occurred when renaming the ""%1"" report option:
 				|The previous option name ""%2"" (current name ""%3"")
-				|is also registered as the previous name of the ""%4"" report option (current name ""%5"").';"),
+				|is also registered as the previous name of the ""%4"" report option (current name ""%5"").';tr = '""%1"" rapor seçeneği yeniden adlandırılırken uyuşmazlık oldu:
+				|Önceki seçenek adı ""%2"" (mevcut ad ""%3"")
+				|""%4"" rapor seçeneğinin önceki adı (mevcut adı ""%5"") olarak da kayıtlı.'"),
 				String(Update.Report),
 				Update.OldOptionName,
 				Update.RelevantOptionName,
@@ -3240,7 +3262,7 @@ Function GlobalSettings() Export
 	Result.Insert("OutputIndividualHeaderOrFooterSettings", True);
 	
 	Result.Insert("Search", New Structure);
-	Result.Search.Insert("InputHint", NStr("en = 'Report description, field, or author';"));
+	Result.Search.Insert("InputHint", NStr("en = 'Report description, field, or author';tr = 'Raporun adı, alanı veya oluşturanı'"));
 	
 	Result.Insert("OtherReports", New Structure);
 	Result.OtherReports.Insert("CloseAfterChoice", True);
@@ -3373,17 +3395,17 @@ Procedure WriteProcedureStartToLog(ProcedureName)
 	
 	EventLog.AddMessageForEventLog(SubsystemDescription(Undefined),
 		EventLogLevel.Information,,,
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Starting %1.';"), ProcedureName)); 
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Starting %1.';tr = '""%1"" Prosedürünü başlatın.'"), ProcedureName)); 
 		
 EndProcedure
 
 // Writes a procedure completion event to the event log.
 Procedure WriteProcedureCompletionToLog(ProcedureName, ObjectsChanged = Undefined)
 	
-	Text = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Finishing %1.';"), ProcedureName);
+	Text = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Finishing %1.';tr = '""%1"" prosedürün sonu.'"), ProcedureName);
 	If ObjectsChanged <> Undefined Then
 		Text = Text + " " 
-			+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 objects have been modified.';"), ObjectsChanged);
+			+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 objects have been modified.';tr = '%1 nesne değiştirildi.'"), ObjectsChanged);
 	EndIf;
 	EventLog.AddMessageForEventLog(SubsystemDescription(Undefined),
 		EventLogLevel.Information, , , Text);
@@ -3532,7 +3554,7 @@ Procedure InternalUserNonexclusiveUpdate() Export
 		RollbackTransaction();
 		
 		WriteLogEvent(
-			NStr("en = 'Report options.Update utility user';", Common.DefaultLanguageCode()),
+			NStr("en = 'Report options.Update utility user';tr = 'Rapor seçenekleri.Yardımcı kullanıcıyı güncelle'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			Metadata.Catalogs.Users,,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -3615,9 +3637,9 @@ Function UpdateSearchIndex(Mode, IndexSchema)
 	StartPresentationsFilling(Mode, False);
 	
 	SharedData = (Mode = "ConfigurationCommonData" Or Mode = "ExtensionsCommonData");
-	Refinement = Lower(ModePresentation(Mode)) + ", " + ?(IndexSchema, NStr("en = 'full';"), NStr("en = 'by changes';"));
+	Refinement = Lower(ModePresentation(Mode)) + ", " + ?(IndexSchema, NStr("en = 'full';tr = 'tam'"), NStr("en = 'by changes';tr = 'değişikliklere göre'"));
 	
-	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating search index (%1)';"), Refinement);
+	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating search index (%1)';tr = 'Arama endeksinin yenilenmesi (%1)'"), Refinement);
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	Query = New Query;
@@ -3704,7 +3726,7 @@ Function UpdateSearchIndex(Mode, IndexSchema)
 				FoundItems = PredefinedOptions.FindRows(Search);
 				If FoundItems.Count() = 0 Then
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'The ""%1"" option of the ""%2"" report does not exist.';"), 
+						NStr("en = 'The ""%1"" option of the ""%2"" report does not exist.';tr = '""%2"" raporu için ""%1"" seçeneği bulunamadı'"), 
 						OptionObject.VariantKey, OptionObject.Report);
 					WriteToLog(EventLogLevel.Error, ErrorText, OptionObject.Ref);
 					RollbackTransaction();
@@ -3733,7 +3755,7 @@ Function UpdateSearchIndex(Mode, IndexSchema)
 				SchemaIndexed = FillFieldsForSearch(OptionObject, ReportInfo);
 			Except
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot rebuild the search index for option %1, report%2. The report might be corrupted.';"), 
+					NStr("en = 'Cannot rebuild the search index for option %1, report%2. The report might be corrupted.';tr = '""%1"" raporun ""%2"" seçeneği için arama endeksi yeniden yapılandırılamadı. Rapor arızalı olabilir.'"), 
 					OptionObject.VariantKey, OptionObject.Report);
 				WriteToLog(EventLogLevel.Error, ErrorText + Chars.LF 
 					+ ErrorProcessing.DetailErrorDescription(ErrorInfo()), OptionObject.Ref);
@@ -3771,8 +3793,8 @@ EndFunction
 Procedure UpdateKeysOfPredefinedItems(Mode, Result)
 	
 	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Updating report option keys (%1)';"), 
-		?(Mode = "ConfigurationCommonData", NStr("en = 'configuration metadata';"), NStr("en = 'extension metadata';")));
+		NStr("en = 'Updating report option keys (%1)';tr = 'Rapor seçeneklerinin anahtarlarının güncellenmesi (%1)'"), 
+		?(Mode = "ConfigurationCommonData", NStr("en = 'configuration metadata';tr = 'konfigürasyonun metaverileri'"), NStr("en = 'extension metadata';tr = 'uzantı metaverisi'")));
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	// Generate a table of replacements of old option keys for relevant ones.
@@ -3850,8 +3872,8 @@ EndProcedure
 Procedure MarkDeletedPredefinedItems(Mode, Result)
 	
 	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Updating predefined settings (%1)';"), 
-		?(Mode = "ConfigurationCommonData", NStr("en = 'configuration metadata';"), NStr("en = 'extension metadata';")));
+		NStr("en = 'Updating predefined settings (%1)';tr = 'Önceden tanımlanan ayarlarının güncellenmesi (%1)'"), 
+		?(Mode = "ConfigurationCommonData", NStr("en = 'configuration metadata';tr = 'konfigürasyonun metaverileri'"), NStr("en = 'extension metadata';tr = 'uzantı metaverisi'")));
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	If Mode = "ConfigurationCommonData" Then
@@ -4088,7 +4110,8 @@ Function UpdatePredefinedReportOption(Mode, OptionDetails, Result)
 		For Each Section In OptionDetails.Location Do
 			If Section.Key = Undefined Then
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'A subsystem to add the %1 report option (%2) to is not specified.
-					|See the %3 and %4 procedures.';"), OptionDetails.Description,
+					|See the %3 and %4 procedures.';tr = '%1 rapor seçeneğinin (%2) ekleneceği alt sistem belirtilmedi.
+					|%3 ve %4 prosedürlerine bakın.'"), OptionDetails.Description,
 					OptionDetails.VariantKey, ProcedureName, NameOfManagerModuleProcedure);
 				WriteToLog(EventLogLevel.Error, MessageText);
 				Continue;
@@ -4181,7 +4204,7 @@ EndFunction
 // Adjusts separated data to shared data.
 Procedure UpdateReportsOptionsByPredefinedOnes(Mode, Result)
 	
-	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating report options (%1)';"), 
+	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating report options (%1)';tr = 'Rapor seçeneklerinin güncellenmesi (%1)'"), 
 		Lower(ModePresentation(Mode)));
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
@@ -4525,7 +4548,7 @@ EndFunction
 Procedure MarkOptionsOfDeletedReportsForDeletion(Mode, Result)
 	
 	ProcedurePresentation = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Deleting options of deleted reports (%1)';"), 
+		NStr("en = 'Deleting options of deleted reports (%1)';tr = 'Silinmiş raporların seçeneklerini sil (%1)'"), 
 		Lower(ModePresentation(Mode)));
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
@@ -4622,7 +4645,7 @@ Procedure ReplaceUserSettingsKeys(OldOption, UpdatedOption)
 			GotSelectionItem = Undefined;
 			SuccessiveReadingErrors = SuccessiveReadingErrors + 1;
 			WriteToLog(EventLogLevel.Error,
-				NStr("en = 'Cannot read report options from the standard storage due to:';")
+				NStr("en = 'Cannot read report options from the standard storage due to:';tr = 'Rapor seçenekleri standart depolama yerinden şu nedenle okunamıyor:'")
 					+ Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo()),
 				OldOption.Ref);
 		EndTry;
@@ -4681,19 +4704,19 @@ Procedure RegisterOptionMeasurementsForUpdate(Val OldKey, Val UpdatedKey, Val Up
 	MeasurementUpdating.OldName     = OldKey     + ".Opening";
 	MeasurementUpdating.UpdatedName = UpdatedKey + ".Opening";
 	MeasurementUpdating.UpdatedDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Report %1 (open)';"), UpdatedDescription);
+		NStr("en = 'Report %1 (open)';tr = 'Rapor ""%1"" (açılış)'"), UpdatedDescription);
 	
 	MeasurementUpdating = MeasurementsTable.Add();
 	MeasurementUpdating.OldName     = OldKey     + ".Generation1";
 	MeasurementUpdating.UpdatedName = UpdatedKey + ".Generation1";
 	MeasurementUpdating.UpdatedDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Report %1 (generate)';"), UpdatedDescription);
+		NStr("en = 'Report %1 (generate)';tr = 'Rapor ""%1"" (oluşturma)'"), UpdatedDescription);
 	
 	MeasurementUpdating = MeasurementsTable.Add();
 	MeasurementUpdating.OldName     = OldKey     + ".Settings";
 	MeasurementUpdating.UpdatedName = UpdatedKey + ".Settings";
 	MeasurementUpdating.UpdatedDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Report %1 (settings)';"), UpdatedDescription);
+		NStr("en = 'Report %1 (settings)';tr = 'Rapor ""%1"" (ayarlar)'"), UpdatedDescription);
 EndProcedure
 
 // Write report option parameters (metadata cache for application speed).
@@ -4723,7 +4746,7 @@ Procedure WriteFunctionalOptionsTable(Mode, Result)
 	If Mode = "ExtensionsCommonData" And Not ValueIsFilled(SessionParameters.ExtensionsVersion) Then
 		Return; // The update is not required.
 	EndIf;
-	ProcedurePresentation = NStr("en = 'Save shared cache to register';");
+	ProcedurePresentation = NStr("en = 'Save shared cache to register';tr = 'Karşılıksız önbelleği sicile kaydetme'");
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	Result.FunctionalOptionsTable.Sort("Report, PredefinedOption, FunctionalOptionName");
@@ -4760,7 +4783,7 @@ Procedure RecordCurrentExtensionsVersion()
 		Return; // The update is not required.
 	EndIf;
 	
-	ProcedurePresentation = NStr("en = 'Save extension version register';");
+	ProcedurePresentation = NStr("en = 'Save extension version register';tr = 'Uzantı sürüm kaydı'");
 	WriteProcedureStartToLog(ProcedurePresentation);
 	
 	Query = New Query;
@@ -4872,7 +4895,7 @@ Function ReportsOptionsPresentationsFillingParameters(Languages = Undefined, Cur
 	JobMetadata = Metadata.ScheduledJobs.PredefinedReportOptionsUpdate;
 	JobKey = "ReportsOptionsPresentationsFillingForLanguage" + Upper(LanguageCode);
 	JobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Populating presentations of predefined report options for the %1 language';"), LanguageCode);
+		NStr("en = 'Populating presentations of predefined report options for the %1 language';tr = '%1 dili için önceden tanımlanmış rapor seçeneklerinin sunumlarını doldurma'"), LanguageCode);
 	
 	JobParameters = New Array;
 	JobParameters.Add(Languages);
@@ -4978,7 +5001,7 @@ Function InternalUser(Val LanguageCode)
 		RollbackTransaction();
 		
 		WriteLogEvent(
-			NStr("en = 'Report options.Create utility user';", Common.DefaultLanguageCode()),
+			NStr("en = 'Report options.Create utility user';tr = 'Rapor seçenekleri.Yardımcı kullanıcı oluştur'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			Metadata.Catalogs.Users,,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -5016,10 +5039,10 @@ EndFunction
 Function ModePresentation(Mode)
 	
 	Modes = New Map;
-	Modes.Insert("ConfigurationCommonData", NStr("en = 'Shared configuration data';"));
-	Modes.Insert("ExtensionsCommonData", NStr("en = 'Shared extension data';"));
-	Modes.Insert("SeparatedConfigurationData", NStr("en = 'Separate configuration data';"));
-	Modes.Insert("SeparatedExtensionData", NStr("en = 'Separate extension data';"));
+	Modes.Insert("ConfigurationCommonData", NStr("en = 'Shared configuration data';tr = 'Konfigürasyonun genel verileri'"));
+	Modes.Insert("ExtensionsCommonData", NStr("en = 'Shared extension data';tr = 'Uzantıların genel verileri'"));
+	Modes.Insert("SeparatedConfigurationData", NStr("en = 'Separate configuration data';tr = 'Konfigürasyonun bölünmüş verileri'"));
+	Modes.Insert("SeparatedExtensionData", NStr("en = 'Separate extension data';tr = 'Uzantıların bölünmüş verileri'"));
 	
 	ModePresentation = Modes.Get(Mode);
 	
@@ -5204,7 +5227,7 @@ EndProcedure
 //   String - Report importance.
 //
 Function SeeAlsoPresentation() Export
-	Return NStr("en = 'See also:';");
+	Return NStr("en = 'See also:';tr = 'Ayrıca bakınız'");
 EndFunction 
 
 // Importance group presentation.
@@ -5213,7 +5236,7 @@ EndFunction
 //   String - Report importance.
 //
 Function ImportantPresentation() Export
-	Return NStr("en = 'Important';");
+	Return NStr("en = 'Important';tr = 'Önemli'");
 EndFunction
 
 // Separator that is used to display several descriptions in the interface.
@@ -5285,7 +5308,7 @@ Procedure SetConditionalAppearanceOfReportOptionUsersList(Form) Export
 	ItemFilter.LeftValue = New DataCompositionField("OptionUsers.Value");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.NotFilled;
 	
-	Item.Appearance.SetParameterValue("Text", NStr("en = 'All users';"));
+	Item.Appearance.SetParameterValue("Text", NStr("en = 'All users';tr = 'Tüm kullanıcılar'"));
 	
 	//
 	Item = Form.ConditionalAppearance.Items.Add();
@@ -5503,11 +5526,12 @@ Function FillFieldsForSearch(OptionObject, ReportInfo = Undefined) Export
 	If DCSchema = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Report %2, option %1. Search settings required:
-			|Description of fields, parameters, and filters.';"),
+			|Description of fields, parameters, and filters.';tr = 'Arama ayarları ""%1"" raporunun ""%2"" seçeneği için doldurulmamıştır: 
+			|alan, parametre ve filtrelerin adları.'"),
 			OptionObject.VariantKey, OptionObject.Report);
 		If IsPredefined Then
 			ErrorText = ErrorText + Chars.LF
-				+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'For more details, see procedure ""%1"".';"),
+				+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'For more details, see procedure ""%1"".';tr = 'Ayrıntılar için %1prosedüre bakın.'"),
 					"ReportsOptionsOverridable.CustomizeReportsOptions");
 		EndIf;
 		WriteToLog(EventLogLevel.Information, ErrorText, OptionObject.Ref);
@@ -5532,7 +5556,10 @@ Function FillFieldsForSearch(OptionObject, ReportInfo = Undefined) Export
 			MessageTemplate = NStr("en = 'Cannot read custom report option settings. 
 				|They might use renamed or deleted configuration metadata objects
 				|or disabled extension metadata objects. For example, if you get the ""Missing view for type"" errors.
-				|%1';");
+				|%1';tr = 'Özel rapor seçeneği ayarları okunamıyor.
+				|Yeniden adlandırılmış veya silinmiş metaveri nesneleri 
+				|ya da devre dışı bırakılmış uzantı metaveri nesneleri kullanılıyor olabilir. Örneğin, ""Tür için görüntü yok"" hataları alabilirsiniz.
+				|%1'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			WriteToLog(EventLogLevel.Error, MessageText, OptionObject.Ref);
@@ -5546,7 +5573,7 @@ Function FillFieldsForSearch(OptionObject, ReportInfo = Undefined) Export
 			Or TypeOf(OptionObject) = Type("CatalogObject.PredefinedExtensionsReportsOptions") Then
 			WriteToLog(EventLogLevel.Error, 
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot read settings of a predefined report option: %1.';"), OptionObject.MeasurementsKey),
+					NStr("en = 'Cannot read settings of a predefined report option: %1.';tr = 'Raporun ön tanımlanmış seçeneğinin ayarları okunamadı: %1'"), OptionObject.MeasurementsKey),
 				OptionObject.Ref);
 		EndIf;
 		Return False;
@@ -6102,7 +6129,7 @@ Function ReportSettings(ReportRef, VariantKey, ReportObject)
 			ReportObject = Connection.Object;
 		Else
 			Text = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Failed to get settings for report %1:';") + Chars.LF + Connection.ErrorText,
+				NStr("en = 'Failed to get settings for report %1:';tr = '""%1"" raporun ayarları elde edilemedi:'") + Chars.LF + Connection.ErrorText,
 				ReportRef);
 			WriteToLog(EventLogLevel.Information, Text, ReportRef);
 			Return ReportSettings;
@@ -6121,7 +6148,11 @@ Function ReportSettings(ReportRef, VariantKey, ReportObject)
 				           |the ""Report options"" subsystem. However, an error occurred when receiving the settings.
 				           |The report developer might not have specified the %3 procedure or the report option cache might be outdated:
 				           |
-				           |%4';"),
+				           |%4';tr = '""%1"" (%2) raporu
+				           |""Rapor seçenekleri"" alt sistemine eklendi. Ancak, ayarlar alınırken hata oluştu.
+				           |Rapor geliştiricisi %3 prosedürünü belirtmemiş olabilir veya rapor seçeneği önbelleği eski olabilir:
+				           |
+				           |%4'"),
 				MetadataOfReport.Presentation(),
 				MetadataOfReport.FullName(),
 				"DefineFormSettings",
@@ -7523,7 +7554,7 @@ Procedure FindReportOptionsForOutput(FillParameters, ResultAddress) Export
 	RowEmptySubsystem = SubsystemsTable.Add();
 	RowEmptySubsystem.Ref = Catalogs.MetadataObjectIDs.EmptyRef();
 	RowEmptySubsystem.SectionReference = Catalogs.MetadataObjectIDs.EmptyRef(); 
-	RowEmptySubsystem.Presentation = NStr("en = 'Not included in sections';");
+	RowEmptySubsystem.Presentation = NStr("en = 'Not included in sections';tr = 'Bölümlere dahil değil'");
 	RowEmptySubsystem.Priority = "999";
 	RowEmptySubsystem.ItemNumber = 0;
 		
@@ -8340,7 +8371,7 @@ EndProcedure
 
 // Returns a message text that the report data is still being updated.
 Function DataIsBeingUpdatedMessage() Export
-	Return NStr("en = 'The report might contain incorrect data since the migration to the new version is not completed. If the report is not available for a while, contact the administrator.';");
+	Return NStr("en = 'The report might contain incorrect data since the migration to the new version is not completed. If the report is not available for a while, contact the administrator.';tr = 'Yeni sürüme geçiş tamamlanmadığı için rapor hatalı veriler içerebilir. Rapor uzun süre kullanılamazsa yöneticinize başvurun.'");
 EndFunction
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -8392,18 +8423,18 @@ Procedure OnDefineReportsAvailability(ReportsReferences, Result)
 		FoundItems = Result.FindRows(New Structure("Report", Report));
 		For Each TableRow In FoundItems Do
 			If Not AvailableByRLS Then
-				TableRow.Presentation = NStr("en = '<Insufficient rights to access the report option>';");
+				TableRow.Presentation = NStr("en = '<Insufficient rights to access the report option>';tr = '<Rapor seçeneği ile çalışma hakları yetersiz>'");
 			ElsIf Not FoundInApplication Then
 				TableRow.Presentation = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '<Report %1 doesn''t exist in app>';"),
+					NStr("en = '<Report %1 doesn''t exist in app>';tr = '<%1 raporu uygulamada mevcut değil>'"),
 					ReportName);
 			ElsIf Not AvailableByRights Then
 				TableRow.Presentation = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '<Insufficient rights to access report %1>';"),
+					NStr("en = '<Insufficient rights to access report %1>';tr = '<""%1"" rapor seçeneği ile çalışma hakları yetersiz>'"),
 					ReportName);
 			ElsIf Not AvailableByOptions Then
 				TableRow.Presentation = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '<Report %1 disabled in settings>';"),
+					NStr("en = '<Report %1 disabled in settings>';tr = '<Ayarlarda %1 raporu devre dışı>'"),
 					ReportName);
 			Else
 				TableRow.Available = True;
@@ -8641,7 +8672,7 @@ Function ReadReportOptionSettings(DirectoryName)
 	
 #Region ReadSettingsDetailsFile
 	
-	HeaderDescriptionErrors = NStr("en = 'Incorrect settings description format:';") + Chars.LF;
+	HeaderDescriptionErrors = NStr("en = 'Incorrect settings description format:';tr = 'Yanlış ayar tanım formatı:'") + Chars.LF;
 	
 	XMLReader = New XMLReader;
 	FileName = "SettingsDescription.xml";
@@ -8649,7 +8680,7 @@ Function ReadReportOptionSettings(DirectoryName)
 		XMLReader.OpenFile(DirectoryName + FileName);
 	Except
 		SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'File %1 is missing.';"), FileName);
+			NStr("en = 'File %1 is missing.';tr = '%1 dosyası eksik.'"), FileName);
 		Return SettingsDescription;
 	EndTry;
 	
@@ -8664,7 +8695,7 @@ Function ReadReportOptionSettings(DirectoryName)
 	
 	If DOMDocument.ChildNodes.Count() = 0 Then 
 		SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Item ""%1"" is missing.';"), "SettingsDescription");
+			NStr("en = 'Item ""%1"" is missing.';tr = '%1 bileşeni eksik.'"), "SettingsDescription");
 		Return SettingsDescription;
 	EndIf;
 	
@@ -8674,7 +8705,7 @@ Function ReadReportOptionSettings(DirectoryName)
 	ReportName = Item.Attributes.GetNamedItem(TagName);
 	If ReportName = Undefined Then 
 		SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Attribute ""%1"" is missing.';"), TagName);
+			NStr("en = 'Attribute ""%1"" is missing.';tr = '%1özniteliği eksik.'"), TagName);
 		Return SettingsDescription;
 	EndIf;
 	
@@ -8688,7 +8719,7 @@ Function ReadReportOptionSettings(DirectoryName)
 	TagName = "Settings"; 
 	If Content.Count() = 0 Then 
 		SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Item ""%1"" is missing.';"), TagName);
+			NStr("en = 'Item ""%1"" is missing.';tr = '%1 bileşeni eksik.'"), TagName);
 		Return SettingsDescription;
 	EndIf;
 	
@@ -8698,7 +8729,7 @@ Function ReadReportOptionSettings(DirectoryName)
 	VariantKey = Item.Attributes.GetNamedItem(AttributeName);
 	If VariantKey = Undefined Then 
 		SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Item ""%2"" is missing attribute ""%1"".';"), AttributeName, TagName);
+			NStr("en = 'Item ""%2"" is missing attribute ""%1"".';tr = '%2 bileşenin %1 özniteliği eksik.'"), AttributeName, TagName);
 		Return SettingsDescription;
 	EndIf;
 	
@@ -8707,7 +8738,7 @@ Function ReadReportOptionSettings(DirectoryName)
 	VariantPresentation = Item.Attributes.GetNamedItem(AttributeName);
 	If VariantPresentation = Undefined Then 
 		SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Item ""%2"" is missing attribute ""%1"".';"), AttributeName, TagName);
+			NStr("en = 'Item ""%2"" is missing attribute ""%1"".';tr = '%2 bileşenin %1 özniteliği eksik.'"), AttributeName, TagName);
 		Return SettingsDescription;
 	EndIf;
 	
@@ -8730,7 +8761,7 @@ Function ReadReportOptionSettings(DirectoryName)
 		SettingsKey = Item.Attributes.GetNamedItem(AttributeName);
 		If SettingsKey = Undefined Then 
 			SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Item ""%2"" is missing attribute ""%1"".';"), AttributeName, TagName);
+				NStr("en = 'Item ""%2"" is missing attribute ""%1"".';tr = '%2 bileşenin %1 özniteliği eksik.'"), AttributeName, TagName);
 			Return SettingsDescription;
 		EndIf;
 		
@@ -8738,7 +8769,7 @@ Function ReadReportOptionSettings(DirectoryName)
 		SettingsPresentation = Item.Attributes.GetNamedItem(AttributeName);
 		If SettingsPresentation = Undefined Then 
 			SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Item ""%2"" is missing attribute ""%1"".';"), AttributeName, TagName);			
+				NStr("en = 'Item ""%2"" is missing attribute ""%1"".';tr = '%2 bileşenin %1 özniteliği eksik.'"), AttributeName, TagName);			
 			Return SettingsDescription;
 		EndIf;
 		
@@ -8746,7 +8777,7 @@ Function ReadReportOptionSettings(DirectoryName)
 		IsCurrent1Presentation = Item.Attributes.GetNamedItem(AttributeName);
 		If IsCurrent1Presentation = Undefined Then 
 			SettingsDescription.ErrorDescription = HeaderDescriptionErrors + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Item ""%2"" is missing attribute ""%1"".';"), AttributeName, TagName);			
+				NStr("en = 'Item ""%2"" is missing attribute ""%1"".';tr = '%2 bileşenin %1 özniteliği eksik.'"), AttributeName, TagName);			
 			Return SettingsDescription;
 		EndIf;
 		
@@ -8815,7 +8846,7 @@ Function DeserializedSettings(FileName)
 		FileNameDetails = StrSplit(FileName, GetPathSeparator());
 		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid settings format: the %1 file is missing.';"),
+			NStr("en = 'Invalid settings format: the %1 file is missing.';tr = 'Yanlış ayar formatı: %1 dosyası eksik.'"),
 			FileNameDetails[FileNameDetails.UBound()]);
 	EndTry;
 	
@@ -8842,7 +8873,7 @@ EndFunction
 Function UpdateReportOptionByDetails(Val ReportOptionDetails, Val ReportOptionBase = Undefined)
 	
 	If Not ReportsOptionsCached.InsertRight1() Then 
-		Raise(NStr("en = 'Insufficient rights to perform the operation.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok.'"), ErrorCategory.AccessViolation);
 	EndIf;
 	
 	ReportInformation = ReportInformation(ReportOptionDetails.ReportName, True);
@@ -9084,7 +9115,7 @@ EndFunction
 
 Function ReportOptionDescriptionTemplate(DescriptionsOccupied, Val Description, CopiesCounterTemplate)
 	
-	CopyFlag = " - " + NStr("en = 'copy';");
+	CopyFlag = " - " + NStr("en = 'copy';tr = 'kopya'");
 	
 	If StrEndsWith(Description, CopyFlag) Then 
 		Return Description + CopiesCounterTemplate;
@@ -9141,14 +9172,14 @@ Procedure ShareUserSettings(SelectedUsers, SettingsDetailsTemplate) Export
 	
 	If UsersProperties.Valid2.Count() = 0 Then 
 		
-		SettingsDetailsTemplate.Insert("Warning", NStr("en = 'The selected users are inactive.';"));
+		SettingsDetailsTemplate.Insert("Warning", NStr("en = 'The selected users are inactive.';tr = 'Seçilen kullanıcılar aktif değil.'"));
 		Return;
 		
 	EndIf;
 	
 	If UsersProperties.Invalid1.Count() > 0 Then 
 		
-		NoteTemplate = NStr("en = 'Some of the selected users are inactive: %1.';");
+		NoteTemplate = NStr("en = 'Some of the selected users are inactive: %1.';tr = 'Seçilen kullanıcılardan bazıları aktif değil: %1.'");
 		
 		Explanation = StringFunctionsClientServer.SubstituteParametersToString(
 			NoteTemplate, StrConcat(UsersProperties.Invalid1, ", "));
@@ -9403,7 +9434,7 @@ Procedure SetUserSettingsPresentation(SettingsDetailsTemplate, CurrentUser)
 		
 	EndIf;
 	
-	TemplateOfPresentation = NStr("en = '%1''s settings';");
+	TemplateOfPresentation = NStr("en = '%1''s settings';tr = 'Ayarlar %1'");
 	UserPresentation2 = Common.ObjectAttributeValue(CurrentUser, "Presentation");
 	
 	If Common.SubsystemExists("StandardSubsystems.ObjectPresentationDeclension") Then
@@ -9483,16 +9514,16 @@ Procedure NotifyReportSettingsUsers(UsersProperties, SettingsDescription)
 	If ValueIsFilled(SettingsDescription.Presentation) Then 
 		
 		Text = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The report settings are available: ""%1.""';"), SettingsDescription.Presentation);
+			NStr("en = 'The report settings are available: ""%1.""';tr = '""%1"" rapor ayarları sağlandı'"), SettingsDescription.Presentation);
 	Else
-		Text = NStr("en = 'The report settings are available.';");
+		Text = NStr("en = 'The report settings are available.';tr = 'Rapor ayarları sağlandı'");
 	EndIf;
 	
 	Message = ModuleConversations.MessageDetails(Text);
 	Message.Data = SettingsDescription;
 	Message.Actions.Add(
 		ReportsOptionsClientServer.ApplyPassedSettingsActionName(),
-		NStr("en = 'Do you want to apply the settings?';"));
+		NStr("en = 'Do you want to apply the settings?';tr = 'Ayarlar uygulansın mı?'"));
 		
 	Try
 		ModuleConversations.SendMessage(
@@ -9506,7 +9537,7 @@ Procedure NotifyReportSettingsUsers(UsersProperties, SettingsDescription)
 		ReportOptionPresentation = String(SettingsDescription.ReportVariant);
 		
 		WriteLogEvent(
-			NStr("en = 'Report options.Report settings availability notification';", DefaultLanguageCode),
+			NStr("en = 'Report options.Report settings availability notification';tr = 'Rapor seçenekleri.Rapor ayarlarına erişim sağlama bildirimi'", DefaultLanguageCode),
 			EventLogLevel.Error,,
 			ReportOptionPresentation,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));

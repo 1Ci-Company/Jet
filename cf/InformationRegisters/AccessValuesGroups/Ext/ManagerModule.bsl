@@ -90,7 +90,10 @@ Procedure UpdateUsersGroups(Parameters = Undefined, HasChanges = Undefined) Expo
 			NStr("en = 'Error in procedure %1
 			           |of the %2 information register manager module.
 			           |
-			           |Some parameters are invalid.';"),
+			           |Some parameters are invalid.';tr = '%2 bilgi kaydı yönetici modülünün 
+			           |%1 prosedüründe hata.
+			           |
+			           |Bazı parametreler geçersiz.'"),
 			"UpdateUsersGroups",
 			"AccessValuesGroups");
 		Raise ErrorText;
@@ -852,13 +855,14 @@ EndProcedure
 Function ErrorTextTypeNotConfigured(AccessValueType)
 	
 	ErrorTitle =
-		NStr("en = 'An error occurred when updating Access Value Groups.';")
+		NStr("en = 'An error occurred when updating Access Value Groups.';tr = 'Erişim değeri grupları güncellenirken bir hata oluştu.'")
 		+ Chars.LF
 		+ Chars.LF;
 	
 	ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'For type ""%1""
-		           |usage of access value groups is not configured.';"),
+		           |usage of access value groups is not configured.';tr = 'Erişim değeri grupları ""%1"" kullanımı 
+		           |"" türü için ayarlanmamış.'"),
 		String(AccessValueType));
 	
 	Return ErrorText;
@@ -869,7 +873,7 @@ EndFunction
 Procedure CheckTablesMetadata(NamesOfTablesToUpdate, ByRefTypesForUpdate) Export
 	
 	ErrorTitle =
-		NStr("en = 'An error occurred when updating Access Value Groups.';")
+		NStr("en = 'An error occurred when updating Access Value Groups.';tr = 'Erişim değeri grupları güncellenirken bir hata oluştu.'")
 		+ Chars.LF
 		+ Chars.LF;
 	
@@ -890,7 +894,9 @@ Procedure CheckTablesMetadata(NamesOfTablesToUpdate, ByRefTypesForUpdate) Export
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Special tabular section ""%2""
 					           |with special attribute ""%3"" is not created
-					           |for access value type ""%1"".';"),
+					           |for access value type ""%1"".';tr = '""%1"" erişim değeri türü için
+					           |""%3"" özel özniteliğine sahip
+					           |özel ""%2"" tablo kısmı oluşturulmadı.'"),
 					String(AccessValueType),
 					"AccessGroups",
 					"AccessGroup");
@@ -900,7 +906,8 @@ Procedure CheckTablesMetadata(NamesOfTablesToUpdate, ByRefTypesForUpdate) Export
 		ElsIf TypeMetadata.Attributes.Find("AccessGroup") = Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Special attribute ""%2""
-				           |is not created for access value type ""%1"".';"),
+				           |is not created for access value type ""%1"".';tr = '""%1"" erişim değeri türü için
+				           |""%2"" özel özniteliği oluşturulmadı.'"),
 				String(AccessValueType), "AccessGroup");
 			Raise ErrorText;
 		EndIf;
@@ -1154,7 +1161,10 @@ Procedure UpdatePerformersGroups(PerformersGroups = Undefined,
 			NStr("en = 'Error in procedure %1
 			           |of the %2 information register manager module.
 			           |
-			           |Some parameters are invalid.';"),
+			           |Some parameters are invalid.';tr = '%2 bilgi kaydı yönetici modülünün 
+			           |%1 prosedüründe hata.
+			           |
+			           |Bazı parametreler geçersiz.'"),
 			"UpdatePerformersGroups",
 			"AccessValuesGroups");
 		Raise ErrorText;

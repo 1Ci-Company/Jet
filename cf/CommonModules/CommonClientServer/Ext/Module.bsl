@@ -153,27 +153,30 @@ Function FillingErrorText(
 	If Upper(FieldKind) = "FIELD" Then
 		If Upper(MessageKind) = "FILLTYPE" Then
 			Template =
-				NStr("en = 'Field ""%1"" cannot be empty.';");
+				NStr("en = 'Field ""%1"" cannot be empty.';tr = '""%1"" alanı doldurulmadı.'");
 		ElsIf Upper(MessageKind) = "CORRECTNESS" Then
 			Template =
 				NStr("en = 'Invalid value in field ""%1"".
-				           |%4';");
+				           |%4';tr = '""%1"" alanı yanlış dolduruldu. 
+				           |%4'");
 		EndIf;
 	ElsIf Upper(FieldKind) = "COLUMN" Then
 		If Upper(MessageKind) = "FILLTYPE" Then
-			Template = NStr("en = 'Column ""%1"" in line #%2, list ""%3"" cannot be empty.';");
+			Template = NStr("en = 'Column ""%1"" in line #%2, list ""%3"" cannot be empty.';tr = '""%3"" listesinin #%2 satırındaki ""%1"" sütunu doldurulmadı.'");
 		ElsIf Upper(MessageKind) = "CORRECTNESS" Then
 			Template = 
 				NStr("en = 'Column ""%1"" in line #%2, list ""%3"" contains invalid value.
-				           |%4';");
+				           |%4';tr = '""%3"" listesinin #%2 satırındaki ""%1"" sütunu yanlış dolduruldu.
+				           |%4'");
 		EndIf;
 	ElsIf Upper(FieldKind) = "LIST" Then
 		If Upper(MessageKind) = "FILLTYPE" Then
-			Template = NStr("en = 'The list ""%3"" is blank.';");
+			Template = NStr("en = 'The list ""%3"" is blank.';tr = '""%3"" listesine herhangi satır girilmedi'");
 		ElsIf Upper(MessageKind) = "CORRECTNESS" Then
 			Template =
 				NStr("en = 'The list ""%3"" contains invalid data.
-				           |%4';");
+				           |%4';tr = 'Liste ""%3"" yanlış dolduruldu.
+				           |%4'");
 		EndIf;
 	EndIf;
 	
@@ -307,14 +310,14 @@ Procedure Validate(Val Condition, Val Message = "", Val CheckContext = "") Expor
 	If Condition <> True Then
 		
 		If IsBlankString(Message) Then
-			ExceptionText = NStr("en = 'Invalid operation.';"); // Assertion failed
+			ExceptionText = NStr("en = 'Invalid operation.';tr = 'Geçersiz işlem'"); // Assertion failed
 		Else
 			ExceptionText = Message;
 		EndIf;
 		
 		If Not IsBlankString(CheckContext) Then
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 in %2';"), ExceptionText, CheckContext);
+				NStr("en = '%1 in %2';tr = '%2''da %1'"), ExceptionText, CheckContext);
 		EndIf;
 		
 		Raise ExceptionText;
@@ -352,17 +355,17 @@ Procedure CheckParameter(Val NameOfAProcedureOrAFunction, Val ParameterName, Val
 	Context = "CommonClientServer.CheckParameter";
 	Validate(TypeOf(NameOfAProcedureOrAFunction) = Type("String"), 
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of the %1 parameter.';"), "NameOfAProcedureOrAFunction"), 
+			NStr("en = 'Invalid value of the %1 parameter.';tr = '%1 parametresinin değeri geçersiz.'"), "NameOfAProcedureOrAFunction"), 
 		Context);
 	Validate(TypeOf(ParameterName) = Type("String"), 
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of the %1 parameter.';"), "ParameterName"), 
+			NStr("en = 'Invalid value of the %1 parameter.';tr = '%1 parametresinin değeri geçersiz.'"), "ParameterName"), 
 			Context);
 	
 	IsCorrectType = ExpectedTypeValue(ParameterValue, ExpectedTypes);
 	Validate(IsCorrectType <> Undefined, 
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of the %1 parameter.';"), "ExpectedTypes"),
+			NStr("en = 'Invalid value of the %1 parameter.';tr = '%1 parametresinin değeri geçersiz.'"), "ExpectedTypes"),
 		Context);
 		
 	If ParameterValue = Undefined Then
@@ -376,7 +379,8 @@ Procedure CheckParameter(Val NameOfAProcedureOrAFunction, Val ParameterName, Val
 	Validate(IsCorrectType,
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
-			           |Expected value: %3, passed value: %4 (type: %5).';"),
+			           |Expected value: %3, passed value: %4 (type: %5).';tr = '%2''deki %1 parametrenin geçersiz değeri.
+			           |Beklenen değer: %3; aktarılan değer: %4 (%5 türü).'"),
 			ParameterName, NameOfAProcedureOrAFunction, TypesPresentation(ExpectedTypes), 
 			PresentationOfParameterValue,
 		TypeOf(ParameterValue)));
@@ -385,7 +389,7 @@ Procedure CheckParameter(Val NameOfAProcedureOrAFunction, Val ParameterName, Val
 		
 		Validate(TypeOf(PropertiesTypesToExpect) = Type("Structure"), 
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid value of the %1 parameter.';"), "NameOfAProcedureOrAFunction"),
+				NStr("en = 'Invalid value of the %1 parameter.';tr = '%1 parametresinin değeri geçersiz.'"), "NameOfAProcedureOrAFunction"),
 			Context);
 		
 		For Each Property In PropertiesTypesToExpect Do
@@ -397,17 +401,19 @@ Procedure CheckParameter(Val NameOfAProcedureOrAFunction, Val ParameterName, Val
 			Validate(ParameterValue.Property(ExpectedPropertyName, PropertyValue), 
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Invalid value of parameter %1 (Structure) in %2.
-					           |Expected value: %3 (type: %4).';"), 
+					           |Expected value: %3 (type: %4).';tr = '%2 içindeki %1 (Yapı) parametresinin geçersiz değeri.
+					           |Beklenen değer: %3 (tür: %4).'"), 
 					ParameterName, NameOfAProcedureOrAFunction, ExpectedPropertyName, ExpectedPropertyType));
 			
 			IsCorrectType = ExpectedTypeValue(PropertyValue, ExpectedPropertyType);
 			Validate(IsCorrectType, 
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Invalid value of property %1 in parameter %2 (Structure) in %3.
-					           |Expected value: %4; passed value: %5 (type: %6).';"), 
+					           |Expected value: %4; passed value: %5 (type: %6).';tr = '%3 içindeki %2 (Yapı) parametresinde %1 özelliğinin geçersiz değeri.
+					           |Beklenen değer: %4; iletilen değer: %5 (tür: %6).'"), 
 					ExpectedPropertyName, ParameterName,	NameOfAProcedureOrAFunction,
 					TypesPresentation(ExpectedTypes), 
-					?(PropertyValue <> Undefined, PropertyValue, NStr("en = 'Undefined';")),
+					?(PropertyValue <> Undefined, PropertyValue, NStr("en = 'Undefined';tr = 'Tanımlanmamış'")),
 				TypeOf(PropertyValue)));
 			
 		EndDo;
@@ -421,7 +427,9 @@ Procedure CheckParameter(Val NameOfAProcedureOrAFunction, Val ParameterName, Val
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Invalid value of the %1 parameter in %2.
 				           |Expected value: %3.
-				           |Passed value: %4 (type: %5).';"),
+				           |Passed value: %4 (type: %5).';tr = '%2 konumunda %1 parametresinin değeri geçersiz.
+				           |Beklenen değer: %3.
+				           |Aktarılan değer: %4 (tür: %5).'"),
 				ParameterName, NameOfAProcedureOrAFunction, StrConcat(ExpectedValues, ","), 
 				PresentationOfParameterValue, TypeOf(ParameterValue)));
 	EndIf;
@@ -523,7 +531,7 @@ Procedure SupplementStructure(Receiver, Source, Replace = Undefined) Export
 				Continue;
 			Else
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The source and destination have identical keys: ""%1"".';"), 
+					NStr("en = 'The source and destination have identical keys: ""%1"".';tr = 'Kaynak ve alıcı anahtarlarının kesişimi: ""%1""'"), 
 					Item.Key);
 			EndIf
 		EndIf;
@@ -551,7 +559,7 @@ Procedure SupplementMap(Receiver, Source, Replace = Undefined) Export
 				Continue;
 			Else
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The source and destination have identical keys: ""%1"".';"), Item.Key);
+					NStr("en = 'The source and destination have identical keys: ""%1"".';tr = 'Kaynak ve alıcı anahtarlarının kesişimi: ""%1""'"), Item.Key);
 			EndIf
 		EndIf;
 		Receiver.Insert(Item.Key, Item.Value);
@@ -946,12 +954,12 @@ Function CompareVersions(Val VersionString1, Val VersionString2) Export
 	Version1 = StrSplit(String1, ".");
 	If Version1.Count() <> 4 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid %1 parameter format: %2';"), "VersionString1", VersionString1);
+			NStr("en = 'Invalid %1 parameter format: %2';tr = 'Yanlış %1 parametresi biçimi: %2'"), "VersionString1", VersionString1);
 	EndIf;
 	Version2 = StrSplit(String2, ".");
 	If Version2.Count() <> 4 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-	    	NStr("en = 'Invalid %1 parameter format: %2';"), "VersionString2", VersionString2);
+	    	NStr("en = 'Invalid %1 parameter format: %2';tr = 'Yanlış %1 parametresi biçimi: %2'"), "VersionString2", VersionString2);
 	EndIf;
 	
 	Result = 0;
@@ -981,12 +989,12 @@ Function CompareVersionsWithoutBuildNumber(Val VersionString1, Val VersionString
 	Version1 = StrSplit(String1, ".");
 	If Version1.Count() <> 3 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid %1 parameter format: %2';"), "VersionString1", VersionString1);
+			NStr("en = 'Invalid %1 parameter format: %2';tr = 'Yanlış %1 parametresi biçimi: %2'"), "VersionString1", VersionString1);
 	EndIf;
 	Version2 = StrSplit(String2, ".");
 	If Version2.Count() <> 3 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-	    	NStr("en = 'Invalid %1 parameter format: %2';"), "VersionString2", VersionString2);
+	    	NStr("en = 'Invalid %1 parameter format: %2';tr = 'Yanlış %1 parametresi biçimi: %2'"), "VersionString2", VersionString2);
 	EndIf;
 	
 	Result = 0;
@@ -1819,7 +1827,7 @@ Function EmailsFromString(Val AddressesList) Export
 					StringParts1.Delete(StringParts1.UBound());
 				Else
 					ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr(
-						"en = 'Invalid email address: %1.';"), Address);
+						"en = 'Invalid email address: %1.';tr = 'Geçersiz e-posta adresi: %1.'"), Address);
 					Address = "";
 				EndIf;
 				
@@ -1836,7 +1844,7 @@ Function EmailsFromString(Val AddressesList) Export
 		If ValueIsFilled(Alias) Then
 			Address = "";
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr(
-				"en = 'Invalid email address: %1.';"), Alias);
+				"en = 'Invalid email address: %1.';tr = 'Geçersiz e-posta adresi: %1.'"), Alias);
 			AddressStructure1 = New Structure("Alias, Address, ErrorDescription", Alias, Address, ErrorDescription);
 			Result.Add(AddressStructure1);
 		EndIf;
@@ -2277,12 +2285,12 @@ Procedure SetSpreadsheetDocumentFieldState(SpreadsheetDocumentField, State = "Do
 			StatePresentation.Visible                      = True;
 			StatePresentation.AdditionalShowMode = AdditionalShowMode.Irrelevance;
 			StatePresentation.Picture                       = New Picture;
-			StatePresentation.Text                          = NStr("en = 'To run the report, click ""Generate"".';");
+			StatePresentation.Text                          = NStr("en = 'To run the report, click ""Generate"".';tr = 'Raporu çalıştırmak için ""Oluştur""a tıklayın.'");
 		ElsIf Upper(State) = "REPORTGENERATION" Then  
 			StatePresentation.Visible                      = True;
 			StatePresentation.AdditionalShowMode = AdditionalShowMode.Irrelevance;
 			StatePresentation.Picture                       = PictureLib.TimeConsumingOperation48;
-			StatePresentation.Text                          = NStr("en = 'Generating report…';");
+			StatePresentation.Text                          = NStr("en = 'Generating report…';tr = 'Rapor oluşturuluyor...'");
 		Else
 			CheckParameter(
 				"CommonClientServer.SetSpreadsheetDocumentFieldState", "State", State, 
@@ -2295,7 +2303,8 @@ Procedure SetSpreadsheetDocumentFieldState(SpreadsheetDocumentField, State = "Do
 		Validate(SpreadsheetDocumentField.Type = FormFieldType.SpreadsheetDocumentField,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Invalid value of the %1 parameter in %2.
-				           |Expected value: %3, passed value: %4 (type: %5).';"),
+				           |Expected value: %3, passed value: %4 (type: %5).';tr = '%2''deki %1 parametrenin geçersiz değeri.
+				           |Beklenen değer: %3; aktarılan değer: %4 (%5 türü).'"),
 				"SpreadsheetDocumentField", "CommonClientServer.SetSpreadsheetDocumentFieldState", 
 				"FormFieldType.SpreadsheetDocumentField", SpreadsheetDocumentField.Type, TypeOf(SpreadsheetDocumentField.Type)));	
 	EndIf;
@@ -2610,8 +2619,8 @@ Function NewSecureConnection(Val ClientCertificate = Undefined, Val Certificatio
 	
 	If ConnectType = "CryptoPro" Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Web client does not support secured %1 connection.';"),
-				NStr("en = 'CryptoPro';"));
+				NStr("en = 'Web client does not support secured %1 connection.';tr = 'Web istemcisi güvenli %1 bağlantısını desteklemiyor.'"),
+				NStr("en = 'CryptoPro';tr = 'CryptoPro'"));
 	EndIf;
 	
 	Return New OpenSSLSecureConnection; // For backward compatibility purposes.
@@ -2650,8 +2659,8 @@ Function NewSecureConnection(Val ClientCertificate = Undefined, Val Certificatio
 			Return CryptoProSecureConnection;
 		Else
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'To establish a secure %1 connection, 1C:Enterprise version must be 8.3.24 or later. The current version is %2.';"),
-				NStr("en = 'CryptoPro';"), SystemInfo.AppVersion);
+				NStr("en = 'To establish a secure %1 connection, 1C:Enterprise version must be 8.3.24 or later. The current version is %2.';tr = 'Güvenli %1 bağlantısı kurmak için 1C:Enterprise 8.3.24 veya daha sonraki bir sürüm kullanın. Mevcut sürüm %2.'"),
+				NStr("en = 'CryptoPro';tr = 'CryptoPro'"), SystemInfo.AppVersion);
 		EndIf;
 	EndIf;
 	
@@ -3360,10 +3369,10 @@ Function EstablishExternalConnectionWithInfobase(Parameters) Export
 	
 #If Server Or ThickClientOrdinaryApplication Or ExternalConnection Then
 		ConnectionNotAvailable = Common.IsLinuxServer();
-		BriefErrorDetails = NStr("en = 'Servers on Linux do not support direct infobase connections.';");
+		BriefErrorDetails = NStr("en = 'Servers on Linux do not support direct infobase connections.';tr = 'Linux OS kapsamında bir sunucudaki veritabanına doğrudan bağlantı mevcut değildir.'");
 #Else
 		ConnectionNotAvailable = IsLinuxClient() Or IsOSXClient() Or IsMobileClient();
-		BriefErrorDetails = NStr("en = 'Only Windows clients support direct infobase connections.';");
+		BriefErrorDetails = NStr("en = 'Only Windows clients support direct infobase connections.';tr = 'Windows OS kapsamında bir istemcideki veritabanına doğrudan bağlantı mevcut değildir.'");
 #EndIf
 	
 	If ConnectionNotAvailable Then
@@ -3378,7 +3387,7 @@ Function EstablishExternalConnectionWithInfobase(Parameters) Export
 			COMConnector = New COMObject(COMConnectorName()); // "V83.COMConnector"
 		Except
 			Information = ErrorInfo();
-			ErrorMessageString = NStr("en = 'Failed to connect to another app: %1';");
+			ErrorMessageString = NStr("en = 'Failed to connect to another app: %1';tr = 'Başka bir uygulamaya bağlanılamıyor: %1'");
 			
 			Result.AddInAttachmentError = True;
 			Result.DetailedErrorDetails = StringFunctionsClientServer.SubstituteParametersToString(ErrorMessageString, ErrorProcessing.DetailErrorDescription(Information));
@@ -3394,14 +3403,14 @@ Function EstablishExternalConnectionWithInfobase(Parameters) Export
 		If FileRunMode Then
 			
 			If IsBlankString(Parameters.InfobaseDirectory) Then
-				ErrorMessageString = NStr("en = 'The infobase directory location is not specified.';");
+				ErrorMessageString = NStr("en = 'The infobase directory location is not specified.';tr = 'Veritabanın dizininin yeri belirlenmemiştir.'");
 				FillingCheckError = True;
 			EndIf;
 			
 		Else
 			
 			If IsBlankString(Parameters.NameOf1CEnterpriseServer) Or IsBlankString(Parameters.NameOfInfobaseOn1CEnterpriseServer) Then
-				ErrorMessageString = NStr("en = 'Required connection parameters are not specified: server name and infobase name.';");
+				ErrorMessageString = NStr("en = 'Required connection parameters are not specified: server name and infobase name.';tr = 'Gerekli bağlantı parametreleri belirlenmemiş: ""Sunucu adı""; ""Sunucudaki veritabanın adı"".'");
 				FillingCheckError = True;
 			EndIf;
 			
@@ -3451,7 +3460,7 @@ Function EstablishExternalConnectionWithInfobase(Parameters) Export
 			Result.Join = COMConnector.Connect(ConnectionString);
 		Except
 			Information = ErrorInfo();
-			ErrorMessageString = NStr("en = 'Failed to connect to another app: %1';");
+			ErrorMessageString = NStr("en = 'Failed to connect to another app: %1';tr = 'Başka bir uygulamaya bağlanılamıyor: %1'");
 			
 			Result.AddInAttachmentError = True;
 			Result.DetailedErrorDetails     = StringFunctionsClientServer.SubstituteParametersToString(ErrorMessageString, ErrorProcessing.DetailErrorDescription(Information));
@@ -3880,7 +3889,7 @@ EndFunction
 Function StartApplication(Val StartupCommand, ApplicationStartupParameters = Undefined) Export 
 	
 #If WebClient Or MobileClient Then
-	Raise NStr("en = 'Cannot run app in the web client.';");
+	Raise NStr("en = 'Cannot run app in the web client.';tr = 'Uygulama web istemcisinde çalıştırılamıyor.'");
 #Else
 	
 	CommandString = CommonInternalClientServer.SafeCommandString(StartupCommand);
@@ -3900,14 +3909,16 @@ Function StartApplication(Val StartupCommand, ApplicationStartupParameters = Und
 #If ExternalConnection Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Invalid value of the %1 parameter.
-			|Elevating system privileges from an external connection is not supported.';"),
+			|Elevating system privileges from an external connection is not supported.';tr = '%1 parametresinin değeri geçersiz.
+			|Sistem ayrıcalıkları harici bağlantıdan yükseltilemez.'"),
 			"ApplicationStartupParameters.ExecuteWithFullRights");
 #EndIf
 		
 #If Server Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter.
-			|Elevating system privileges is not supported on the server.';"),
+			|Elevating system privileges is not supported on the server.';tr = '%1 parametresinin değeri geçersiz.
+			|Sistem ayrıcalıkları sunucuda yükseltilemez.'"),
 			"ApplicationStartupParameters.ExecuteWithFullRights");
 #EndIf
 		
@@ -3971,7 +3982,11 @@ Function StartApplication(Val StartupCommand, ApplicationStartupParameters = Und
 					| - %1 and
 					| - %2
 					|Processes started by administrator
-					|cannot be monitored on behalf of user in this operating system.';"),
+					|cannot be monitored on behalf of user in this operating system.';tr = 'Aşağıdaki parametreleri aynı anda ayarlanamaz:
+					| - %1 ve
+					| - %2
+					|İşletim sistemi yönetici tarafından başlatılan süreçlerin
+					|kullanıcının adından izlenmesine izin vermez.'"),
 					"ApplicationStartupParameters.WaitForCompletion",
 					"ApplicationStartupParameters.ExecuteWithFullRights");
 			EndIf;
@@ -4104,19 +4119,19 @@ EndFunction
 Function ConnectionDiagnostics(URL) Export
 	
 #If WebClient Then
-	Raise NStr("en = 'The connection diagnostics are unavailable in the web client.';");
+	Raise NStr("en = 'The connection diagnostics are unavailable in the web client.';tr = 'Bağlantı tanılama işlemi web istemcisinde kullanılamaz.'");
 #Else
 	
 	LongDesc = New Array;
 	LongDesc.Add(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Accessing URL: %1.';"), 
+		NStr("en = 'Accessing URL: %1.';tr = 'URL''ye erişirken: %1'"), 
 		URL));
 	LongDesc.Add(DiagnosticsLocationPresentation());
 	
 #If Server Or ThickClientOrdinaryApplication Or ExternalConnection Then
 	If Common.DataSeparationEnabled() Then
 		LongDesc.Add(
-			NStr("en = 'Please contact the administrator.';"));
+			NStr("en = 'Please contact the administrator.';tr = 'Yöneticiye başvurun.'"));
 		
 		ErrorDescription = StrConcat(LongDesc, Chars.LF);
 		
@@ -4132,7 +4147,9 @@ Function ConnectionDiagnostics(URL) Export
 	Log.Add(
 		NStr("en = 'Diagnostics log:
 		           |Server availability test.
-		           |See the error description in the next log record.';"));
+		           |See the error description in the next log record.';tr = 'Tanılama günlüğü: 
+		           |sunucu kullanılabilirliğini denetler. 
+		           |Teşhis edilen hatanın açıklaması için aşağıdaki günlük iletisine bakın.'"));
 	Log.Add();
 	
 	ProxyConnection = False;
@@ -4163,7 +4180,8 @@ Function ConnectionDiagnostics(URL) Export
 		
 		LongDesc.Add(
 			NStr("en = 'Connection diagnostics are not performed because a proxy server is configured.
-			           |Please contact the administrator.';"));
+			           |Please contact the administrator.';tr = 'Proxy sunucusu yapılandırıldığından bağlantı tanılama başarısız oldu. 
+			           |Lütfen sistem yöneticinize başvurun.'"));
 		
 	Else 
 		
@@ -4180,7 +4198,8 @@ Function ConnectionDiagnostics(URL) Export
 			
 			LongDesc.Add(StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Attempted to access a resource that does not exist on server %1,
-				           |or some issues occurred on the remote server.';"),
+				           |or some issues occurred on the remote server.';tr = 'Sunucudaki mevcut olmayan kaynağa erişildi %1 
+				           |veya uzak sunucuda sorun yaşandı.'"),
 				ResourceServerAddress));
 			
 		Else 
@@ -4194,7 +4213,10 @@ Function ConnectionDiagnostics(URL) Export
 					NStr("en = 'No Internet access. Possible reasons:
 					           |- Computer is not connected to the Internet.
 					           | - Internet provider issues.
-					           |- Access blocked by firewall, antivirus, or another software.';"));
+					           |- Access blocked by firewall, antivirus, or another software.';tr = 'İnternet bağlantısı yok. Olası nedenler:
+					           |- Bilgisayar internete bağlı değil.
+					           | - İnternet sağlayıcısıyla ilgili sorunlar var.
+					           |- Erişim bir güvenlik duvarı, antivirüs vb. yazılım tarafından engelleniyor.'"));
 				
 			Else 
 				
@@ -4202,7 +4224,10 @@ Function ConnectionDiagnostics(URL) Export
 					NStr("en = 'Server %1 is currently unavailable. Possible reasons:
 					           |- Internet provider issues.
 					           |- Access blocked by firewall, antivirus, or other software.
-					           |- Server is disabled or undergoing maintenance.';"),
+					           |- Server is disabled or undergoing maintenance.';tr = '%1 sunucusuna ulaşılamıyor. Olası nedenler:
+					           |- İnternet sağlayıcısıyla ilgili sorunlar var.
+					           |- Erişim bir güvenlik duvarı, antivirüs vb. yazılım tarafından engelleniyor.
+					           |- Sunucu devre dışı durumda veya bakım çalışmasında.'"),
 					ResourceServerAddress));
 				
 				TraceLog = ServerRouteTraceLog(ResourceServerAddress);
@@ -4223,11 +4248,11 @@ Function ConnectionDiagnostics(URL) Export
 	
 #If Server Or ThickClientOrdinaryApplication Or ExternalConnection Then
 	WriteLogEvent(
-		NStr("en = 'Connection diagnostics';", DefaultLanguageCode()),
+		NStr("en = 'Connection diagnostics';tr = 'Bağlantı tanısı'", DefaultLanguageCode()),
 		EventLogLevel.Error,,, DiagnosticsLog);
 #Else
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Connection diagnostics';", DefaultLanguageCode()),
+		NStr("en = 'Connection diagnostics';tr = 'Bağlantı tanısı'", DefaultLanguageCode()),
 		"Error", DiagnosticsLog,, True);
 #EndIf
 	
@@ -4460,7 +4485,7 @@ Function TypesPresentation(ExpectedTypes)
 			IndexOf = IndexOf + 1;
 			If IndexOf > 10 Then
 				Result = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '%1,… (total %2 types)';"), 
+					NStr("en = '%1,… (total %2 types)';tr = '%1,... (toplam %2 tür)'"), 
 					Result, 
 					ExpectedTypes.Count());
 				Break;
@@ -4487,7 +4512,7 @@ Function TypePresentation(Type)
 		Return 
 			?(StrLen(TypeAsString) > 150, 
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '%1,… (total %2 types)';"),
+					NStr("en = '%1,… (total %2 types)';tr = '%1,... (toplam %2 tür)'"),
 					Left(TypeAsString, 150),
 					Type.Types().Count()), 
 				TypeAsString);
@@ -4642,11 +4667,12 @@ Procedure DeleteTempFile(FullFileName)
 		// ACC:547-off This code is required for backward compatibility. It is used in an obsolete API.
 		
 #If Server Then
-		WriteLogEvent(NStr("en = 'Core';", DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Core';tr = 'Esas işlevsellik'", DefaultLanguageCode()),
 			EventLogLevel.Warning,,, 
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot delete temporary file:
-				           |%1. Reason: %2';"), 
+				           |%1. Reason: %2';tr = 'Geçici dosya 
+				           |%1 aşağıdaki nedenle silinemedi: %2'"), 
 				FullFileName, 
 				ErrorProcessing.BriefErrorDescription(ErrorInfo())));
 #EndIf
@@ -4671,24 +4697,24 @@ Function DiagnosticsLocationPresentation()
 	
 #If Server Or ThickClientOrdinaryApplication Or ExternalConnection Then
 	If Common.DataSeparationEnabled() Then
-		Return NStr("en = 'Connecting from a remote 1C:Enterprise server.';");
+		Return NStr("en = 'Connecting from a remote 1C:Enterprise server.';tr = 'Bağlantı, 1C:Enterprise sunucusunda İnternet''te yapılıyor.'");
 	Else 
 		If Common.FileInfobase() Then
 			If ClientConnectedOverWebServer() Then 
 				Return StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Connecting from a file infobase on web server <%1>.';"), ComputerName());
+					NStr("en = 'Connecting from a file infobase on web server <%1>.';tr = 'Bağlantı, web-sunucusundaki dosya tabanından yapılıyor <%1>.'"), ComputerName());
 			Else 
 				Return StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Connecting from a file infobase on computer <%1>.';"), ComputerName());
+					NStr("en = 'Connecting from a file infobase on computer <%1>.';tr = 'Bağlantı, bilgisayardaki dosya tabanından yapılıyor <%1>.'"), ComputerName());
 			EndIf;
 		Else
 			Return StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Connecting from 1C:Enterprise server <%1>.';"), ComputerName());
+				NStr("en = 'Connecting from 1C:Enterprise server <%1>.';tr = 'Bağlantı, 1C:Enterprise sunucusunda <%1> yapılıyor.'"), ComputerName());
 		EndIf;
 	EndIf;
 #Else 
 	Return StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Connecting from computer <%1> (client).';"), ComputerName());
+		NStr("en = 'Connecting from computer <%1> (client).';tr = 'Bağlantı, bilgisayarda (istemcide) yapılıyor <%1>.'"), ComputerName());
 #EndIf
 	
 	// ACC:547-on
@@ -4741,11 +4767,11 @@ Function CheckServerAvailability(ServerAddress)
 	Log = New Array;
 	If Available Then
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Remote server %1 is available:';"), 
+			NStr("en = 'Remote server %1 is available:';tr = 'Uzak sunucu %1 kullanılamaz:'"), 
 			ServerAddress));
 	Else
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Remote server %1 is unavailable:';"), 
+			NStr("en = 'Remote server %1 is unavailable:';tr = 'Uzak sunucu %1 kullanılamaz:'"), 
 			ServerAddress));
 	EndIf;
 	
@@ -4782,7 +4808,7 @@ Function ServerRouteTraceLog(ServerAddress)
 	
 	Log = New Array;
 	Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Tracing route to remote server %1:';"), ServerAddress));
+		NStr("en = 'Tracing route to remote server %1:';tr = '%1 Uzak sunucuya rota izleme:'"), ServerAddress));
 	
 	Log.Add("> " + CommandString);
 	Log.Add(Result.OutputStream);

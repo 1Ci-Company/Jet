@@ -697,7 +697,7 @@ Function AllowedAccessKey() Export
 	If Not ValueIsFilled(RefInDatabase) Then
 		AllowedKey = Catalogs.AccessKeys.CreateItem();
 		AllowedKey.SetNewObjectRef(Ref);
-		AllowedKey.Description = NStr("en = 'Allowed access key';");
+		AllowedKey.Description = NStr("en = 'Allowed access key';tr = 'Izin verilmiş erişim anahtarı'");
 		
 		Block = New DataLock;
 		LockItem = Block.Add("Catalog.AccessKeys");
@@ -736,7 +736,7 @@ Function AllowedBlankAccessGroupsSet() Export
 	If Not ValueIsFilled(RefInDatabase) Then
 		AllowedBlankSet = Catalogs.SetsOfAccessGroups.CreateItem();
 		AllowedBlankSet.SetNewObjectRef(Ref);
-		AllowedBlankSet.Description = NStr("en = 'Allowed empty access group set';");
+		AllowedBlankSet.Description = NStr("en = 'Allowed empty access group set';tr = 'Erişim grupların izin verilen boş kümesi'");
 		AllowedBlankSet.SetItemsType = Catalogs.AccessGroups.EmptyRef();
 		
 		Block = New DataLock;
@@ -770,7 +770,7 @@ Function AccessKeyDimensions() Export
 	
 	If SimilarItemsInCollectionCount(KeyMetadata.Attributes, "Value") <> 5 Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Catalog ""%1"" can contain the maximum of 5 ""%2"" attributes.';"),
+			NStr("en = 'Catalog ""%1"" can contain the maximum of 5 ""%2"" attributes.';tr = '%1 dizinde en fazla 5 adet %2öznitelik olmalıdır.'"),
 			"AccessKeys", "Value" + "*");
 		Raise ErrorText;
 	EndIf;
@@ -778,7 +778,7 @@ Function AccessKeyDimensions() Export
 	If KeyMetadata.TabularSections.Find("Header") = Undefined
 	 Or SimilarItemsInCollectionCount(KeyMetadata.TabularSections.Header.Attributes, "Value", 6) <> 5 Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Catalog ""%1"" can contain tabular section ""%2"" with the maximum of 5 ""%3"" attributes.';"),
+			NStr("en = 'Catalog ""%1"" can contain tabular section ""%2"" with the maximum of 5 ""%3"" attributes.';tr = '""%1"" kataloğu en fazla 5 ""%3"" özniteliği olan ""%2"" tablo bölümü içerebilir.'"),
 			"AccessKeys", "Header", "Value" + "*");
 		Raise ErrorText;
 	EndIf;
@@ -786,7 +786,7 @@ Function AccessKeyDimensions() Export
 	TabularSectionsCount = SimilarItemsInCollectionCount(KeyMetadata.TabularSections, "TabularSection");
 	If TabularSectionsCount < 1 Or TabularSectionsCount > 12 Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Catalog ""%1"" can contain 1 to 12 tabular sections ""%2"".';"),
+			NStr("en = 'Catalog ""%1"" can contain 1 to 12 tabular sections ""%2"".';tr = '""%1"" kataloğunda 1 ila 12 ""%2"" tablo bölümü bulunabilir.'"),
 			"AccessKeys", "TabularSection" + "*");
 		Raise ErrorText;
 	EndIf;
@@ -815,7 +815,8 @@ Function AccessKeyDimensions() Export
 	If TabularSectionAttributesCount = 0 Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Tabular sections ""%2"" of catalog ""%1""
-			           |must contain the same number of attributes ""%3"", but not more than 15.';"),
+			           |must contain the same number of attributes ""%3"", but not more than 15.';tr = '""%1"" kataloğunun ""%2"" tablo bölümleri
+			           | en fazla 15 olmak üzere aynı sayıda ""%3"" özniteliği içermelidir.'"),
 			"AccessKeys", "TabularSection" + "*", "Value" + "*");
 		Raise ErrorText;
 	EndIf;
@@ -836,13 +837,15 @@ Function BasicRegisterFieldsCount(Val RegisterName = "") Export
 		If Dimensions.Count() < 1 Or Dimensions[0].Name <> "Register" Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In information register ""%1"",
-				           |the first dimension must be ""%2"".';"), RegisterName, "Register");
+				           |the first dimension must be ""%2"".';tr = '%1
+				           |Bilgi kaydında ilk boyut %2 olmalıdır.'"), RegisterName, "Register");
 			Raise ErrorText;
 		EndIf;
 		If Dimensions.Count() < 2 Or Dimensions[1].Name <> "AccessOption" Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In information register ""%1"",
-				           |the second dimension must be ""%2"".';"), RegisterName, "AccessOption");
+				           |the second dimension must be ""%2"".';tr = '%1
+				           |Bilgi kaydında ikinci boyut %2 olmalıdır.'"), RegisterName, "AccessOption");
 			Raise ErrorText;
 		EndIf;
 		IndexOfTheFieldDimension = 2;
@@ -851,7 +854,8 @@ Function BasicRegisterFieldsCount(Val RegisterName = "") Export
 		If Dimensions.Count() < 1 Or Dimensions[0].Name <> "AccessOption" Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In information register ""%1"",
-				           |the first dimension must be ""%2"".';"), RegisterName, "AccessOption");
+				           |the first dimension must be ""%2"".';tr = '%1
+				           |Bilgi kaydında ilk boyut %2 olmalıdır.'"), RegisterName, "AccessOption");
 			Raise ErrorText;
 		EndIf;
 		IndexOfTheFieldDimension = 1;
@@ -867,7 +871,8 @@ Function BasicRegisterFieldsCount(Val RegisterName = "") Export
 	
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'In information register ""%1"",
-			           |dimension ""%2"" must have type ""%3"".';"),
+			           |dimension ""%2"" must have type ""%3"".';tr = '%1
+			           |Bilgi kaydında %2boyut türü %3 olmalıdır.'"),
 			RegisterName, "AccessOption", "Number(4,0,Non_negative)");
 		Raise ErrorText;
 	EndIf;
@@ -876,7 +881,8 @@ Function BasicRegisterFieldsCount(Val RegisterName = "") Export
 	 Or Dimensions[IndexOfTheFieldDimension].Name <> "Field1" Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'In information register ""%1"",
-			           |dimension ""%2"" must be followed by ""%3"".';"), RegisterName, "AccessOption", "Field1");
+			           |dimension ""%2"" must be followed by ""%3"".';tr = '%1
+			           |Bilgi kaydında %2 boyuttan sonra %3 olmalıdır.'"), RegisterName, "AccessOption", "Field1");
 		Raise ErrorText;
 	EndIf;
 	
@@ -890,7 +896,9 @@ Function BasicRegisterFieldsCount(Val RegisterName = "") Export
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In the %1 information register,
 				           |dimensions of type %2<number> must be in order,
-				           |but %4 is found in the %3 dimension position';"),
+				           |but %4 is found in the %3 dimension position';tr = '%1 bilgi kaydında 
+				           |%2<number> tür değişiklikleri sıralı olmalıdır,
+				           |ancak %3 boyutun yerinde %4 tespit edildi'"),
 				RegisterName, "Field", FieldName, Dimension.Name);
 			Raise ErrorText;
 		EndIf;
@@ -1015,7 +1023,9 @@ Function PredefinedMetadataObjectIDDetails(FullMetadataObjectName) Export
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get the name of a predefined metadata object ID
 			           |as the specified metadata object does not exist:
-			           |""%1"".';"),
+			           |""%1"".';tr = 'Belirtilen metaveri nesnesi bulunmadığından dolayı önceden tanımlanmış
+			           |metaveri tanımlayıcısının adı elde edilemedi: 
+			           |""%1"".'"),
 			FullMetadataObjectName);
 		Raise ErrorText;
 	EndIf;

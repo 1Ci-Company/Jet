@@ -24,7 +24,7 @@ Procedure ImportCurrencyRates() Export
 	
 	If Descriptors.Descriptor.Count() < 1 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
-			"en = 'The service manager has no data of type ""%1""';"), "ExchangeRates");
+			"en = 'The service manager has no data of type ""%1""';tr = 'Servis yöneticisinde ""%1"" türüne ait veri mevcut değil'"), "ExchangeRates");
 	EndIf;
 	
 	ExRates = ModuleSuppliedData.ReferencesSuppliedDataFromCache("OneCurrencyRates");
@@ -79,8 +79,8 @@ Procedure CopyCurrencyRates(Val CurrencyCode_) Export
 	
 	CurrencyRef = Catalogs.Currencies.FindByCode(CurrencyCode_);
 	If CurrencyRef.IsEmpty() Then
-		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Currency with code %1 is not found in the catalog. Exchange rate import is canceled.';"), CurrencyCode_);
-		WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';", Common.DefaultLanguageCode()),
+		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Currency with code %1 is not found in the catalog. Exchange rate import is canceled.';tr = '%1 kodlu para birimi katalogda bulunamadı. Döviz kuru içe aktarımı iptal edildi.'"), CurrencyCode_);
+		WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';tr = 'Varsayılan master veriler. Döviz kurlarını veri alanlarına dağıt'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,,
 			ErrorText);
 		Return;
@@ -90,8 +90,8 @@ Procedure CopyCurrencyRates(Val CurrencyCode_) Export
 	Filter.Add(New Structure("Code, Value", "Currency", CurrencyCode_));
 	ExRates = ModuleSuppliedData.ReferencesSuppliedDataFromCache("OneCurrencyRates", Filter);
 	If ExRates.Count() = 0 Then
-		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'There are no exchange rates for the currency with code %1 in the default master data.';"), CurrencyCode_);
-		WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';", Common.DefaultLanguageCode()),
+		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'There are no exchange rates for the currency with code %1 in the default master data.';tr = 'Varsayılan master verilerde %1 koldu para birimi için döviz kuru yok.'"), CurrencyCode_);
+		WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';tr = 'Varsayılan master veriler. Döviz kurlarını veri alanlarına dağıt'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,,
 			ErrorText);
 		Return;
@@ -434,7 +434,7 @@ Procedure HandleSuppliedRatesPerDay(Val Descriptor, Val PathToFile)
 	
 	If RatesDate = "" Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
-			"en = 'Data of type ""%1"" does not contain characteristics ""%2"". Cannot update exchange rates.';"),
+			"en = 'Data of type ""%1"" does not contain characteristics ""%2"". Cannot update exchange rates.';tr = '""%1"" türündeki veriler ""%2"" özelliklerini içermiyor. Döviz kurları güncellenemiyor.'"),
 			"CurrencyRatesForDay", "Date");
 	EndIf;
 	
@@ -527,11 +527,12 @@ Procedure DistributeRatesByDataAreas(Val RatesDate, Val RateTable, Val AreasForU
 		Except
 			ModuleSaaSOperations.SignOutOfDataArea();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Couldn''t set session separation for %1. Reason:
-				|%2';", Common.DefaultLanguageCode()),
+				|%2';tr = '%1 için oturum ayırma ayarlanamıyor. Nedeni:
+				|%2'", Common.DefaultLanguageCode()),
 				Format(DataArea, "NZ=0; NG=0"),
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			
-			WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';tr = 'Varsayılan master veriler. Döviz kurlarını veri alanlarına dağıt'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorText);
 				
@@ -559,10 +560,11 @@ Procedure DistributeRatesByDataAreas(Val RatesDate, Val RateTable, Val AreasForU
 			ModuleSaaSOperations.SignOutOfDataArea();
 			
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot update the exchange rates in data area ""%1"". Reason:
-				|%2';", Common.DefaultLanguageCode()),
+				|%2';tr = '""%1"" veri alanında döviz kurları güncellenemedi. Nedeni:
+				|%2'", Common.DefaultLanguageCode()),
 				Format(DataArea, "NZ=0; NG=0"),
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-			WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Default master data.Distribute exchange rates to data areas';tr = 'Varsayılan master veriler. Döviz kurlarını veri alanlarına dağıt'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorText);
 			
@@ -766,9 +768,9 @@ Procedure ProcessTransactionedAreaRates(CommonQuery, AreaCurrencies, RateTable)
 			If Write Then
 				RecordSet.Write();
 			Else
-				Comment = NStr("en = 'The %1 exchange rate import as of %2 is canceled due to a period-end closing date violation.';"); 
+				Comment = NStr("en = 'The %1 exchange rate import as of %2 is canceled due to a period-end closing date violation.';tr = 'Ay sonu kapanışı tarihi ihlal edildiği için %2 tarihi itibarıyla %1 döviz kuru içe aktarılamadı.'"); 
 				Comment = StringFunctionsClientServer.SubstituteParametersToString(Comment, CurrencySelection1.Code, CommonSelection.Date);
-				EventName = NStr("en = 'Default master data.Cancel exchange rates import';", Common.DefaultLanguageCode());
+				EventName = NStr("en = 'Default master data.Cancel exchange rates import';tr = 'Varsayılan master veriler. Döviz kuru aktarımını iptal et'", Common.DefaultLanguageCode());
 				WriteLogEvent(EventName, EventLogLevel.Information,, CurrencySelection1.Ref, Comment);
 				Break;
 			EndIf;

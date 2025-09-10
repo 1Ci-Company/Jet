@@ -14,7 +14,7 @@
 Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	
 	If Not HasFilesInVolumes() Then
-		ShowMessageBox(, NStr("en = 'No files in volumes.';"));
+		ShowMessageBox(, NStr("en = 'No files in volumes.';tr = 'Ciltlerde dosyalar yok.'"));
 		Return;
 	EndIf;
 	

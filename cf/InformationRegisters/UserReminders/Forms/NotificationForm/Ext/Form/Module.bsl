@@ -21,7 +21,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Common.IsMobileClient() Then
 		Items.RepeatedNotificationPeriod.Visible = False;
-		Items.SnoozeButton.Title = NStr("en = 'Snooze';");
+		Items.SnoozeButton.Title = NStr("en = 'Snooze';tr = 'Ertele'");
 		Items.SnoozeButton.DefaultButton = True;
 		Items.OpenButton.LocationInCommandBar = ButtonLocationInCommandBar.InAdditionalSubmenu;
 		Items.StopButton.LocationInCommandBar = ButtonLocationInCommandBar.InAdditionalSubmenu;
@@ -31,7 +31,7 @@ EndProcedure
 &AtClient
 Procedure OnOpen(Cancel)
 
-	RepeatedNotificationPeriod = NStr("en = 'in 15 minutes';");
+	RepeatedNotificationPeriod = NStr("en = 'in 15 minutes';tr = '15 dakika sonra'");
 	RepeatedNotificationPeriod = UserRemindersClient.FormatTime(RepeatedNotificationPeriod);
 	UpdateRemindersTable();
 	UpdateTimeInRemindersTable();
@@ -264,14 +264,14 @@ Procedure UpdateTimeInRemindersTable()
 	DetachIdleHandler("UpdateTimeInRemindersTable");
 	
 	For Each TableRow In Reminders Do
-		TimePresentation = NStr("en = 'n/a';");
+		TimePresentation = NStr("en = 'n/a';tr = 'uygulanamaz'");
 		
 		If ValueIsFilled(TableRow.EventTime) Then
 			CurrentDate = CommonClient.SessionDate();
 			Time = CurrentDate - TableRow.EventTime;
 			If TableRow.EventTime - BegOfDay(TableRow.EventTime) < 60 // Events for the whole day.
 				And BegOfDay(TableRow.EventTime) = BegOfDay(CurrentDate) Then
-					TimePresentation = NStr("en = 'today';");
+					TimePresentation = NStr("en = 'today';tr = 'bugün'");
 			Else
 				If ModuleNumbers(Time) > 60*60*24 Then
 					Time = BegOfDay(CommonClient.SessionDate()) - BegOfDay(TableRow.EventTime);
@@ -351,7 +351,7 @@ Procedure FillRepeatedReminderPeriod()
 	
 	For Each Interval In TimeIntervals Do
 		Items.RepeatedNotificationPeriod.ChoiceList.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'in %1';"), Interval));
+			NStr("en = 'in %1';tr = '%1 sonra'"), Interval));
 	EndDo;
 	
 EndProcedure	
@@ -367,19 +367,19 @@ EndProcedure
 Function TimeIntervalPresentation(Val TimeCount)
 	Result = "";
 	
-	WeeksPresentation = NStr("en = ';%1 week;;;;%1 weeks';");
-	DaysPresentation   = NStr("en = ';%1 day;;;;%1 days';");
-	HoursPresentation  = NStr("en = ';%1 hour;;;;%1 hours';");
-	MinutesPresentation  = NStr("en = ';%1 minute;;;;%1 minutes';");
+	WeeksPresentation = NStr("en = ';%1 week;;;;%1 weeks';tr = ';%1 hafta;;;;%1 hafta'");
+	DaysPresentation   = NStr("en = ';%1 day;;;;%1 days';tr = ';%1 gün;;;;%1 gün'");
+	HoursPresentation  = NStr("en = ';%1 hour;;;;%1 hours';tr = ';%1 saat;;;;%1 saat'");
+	MinutesPresentation  = NStr("en = ';%1 minute;;;;%1 minutes';tr = ';%1 dakika;;;;%1 dakika'");
 	
 	TimeCount = Number(TimeCount);
 	CurrentDate = CommonClient.SessionDate();
 	
 	EventCame = True;
 	TodayEvent = BegOfDay(CurrentDate - TimeCount) = BegOfDay(CurrentDate);
-	TemplateOfPresentation = NStr("en = '%1 ago';");
+	TemplateOfPresentation = NStr("en = '%1 ago';tr = '%1 önce'");
 	If TimeCount < 0 Then
-		TemplateOfPresentation = NStr("en = 'in %1';");
+		TemplateOfPresentation = NStr("en = 'in %1';tr = '%1'' de'");
 		TimeCount = -TimeCount;
 		EventCame = False;
 	EndIf;
@@ -397,46 +397,46 @@ Function TimeIntervalPresentation(Val TimeCount)
 	
 	If WeeksCount > 4 Then
 		If EventCame Then
-			Return NStr("en = 'long ago';");
+			Return NStr("en = 'long ago';tr = 'uzun süre önce'");
 		Else
-			Return NStr("en = 'a long way from now';");
+			Return NStr("en = 'a long way from now';tr = 'yakın değil'");
 		EndIf;
 		
 	ElsIf WeeksCount > 1 Then
 		Result = StringFunctionsClientServer.StringWithNumberForAnyLanguage(WeeksPresentation, WeeksCount);
 	ElsIf WeeksCount > 0 Then
-		Result = NStr("en = 'a week';");
+		Result = NStr("en = 'a week';tr = 'hafta'");
 		
 	ElsIf DaysCount > 1 Then
 		If BegOfDay(CurrentDate) - BegOfDay(CurrentDate - TimeCount) = 60*60*24 * 2 Then
 			If EventCame Then
-				Return NStr("en = 'the day before yesterday';");
+				Return NStr("en = 'the day before yesterday';tr = 'dünden önceki gün'");
 			Else
-				Return NStr("en = 'the day after tomorrow';");
+				Return NStr("en = 'the day after tomorrow';tr = 'yarından sonraki gün'");
 			EndIf;
 		Else
 			Result = StringFunctionsClientServer.StringWithNumberForAnyLanguage(DaysPresentation, DaysCount);
 		EndIf;
 	ElsIf HoursCount + DaysCount * 24 > 3 And Not TodayEvent Then
 			If EventCame Then
-				Return NStr("en = 'yesterday';");
+				Return NStr("en = 'yesterday';tr = 'dün'");
 			Else
-				Return NStr("en = 'tomorrow';");
+				Return NStr("en = 'tomorrow';tr = 'yarın'");
 			EndIf;
 	ElsIf DaysCount > 0 Then
-		Result = NStr("en = 'a day';");
+		Result = NStr("en = 'a day';tr = 'gün'");
 	ElsIf HoursCount > 1 Then
 		Result = StringFunctionsClientServer.StringWithNumberForAnyLanguage(HoursPresentation, HoursCount);
 	ElsIf HoursCount > 0 Then
-		Result = NStr("en = 'an hour';");
+		Result = NStr("en = 'an hour';tr = 'saat'");
 		
 	ElsIf MinutesCount > 1 Then
 		Result = StringFunctionsClientServer.StringWithNumberForAnyLanguage(MinutesPresentation, MinutesCount);
 	ElsIf MinutesCount > 0 Then
-		Result = NStr("en = 'a minute';");
+		Result = NStr("en = 'a minute';tr = 'dakika'");
 		
 	Else
-		Return NStr("en = 'now';");
+		Return NStr("en = 'now';tr = 'şimdi'");
 	EndIf;
 	
 	Result = StringFunctionsClientServer.SubstituteParametersToString(TemplateOfPresentation, Result);

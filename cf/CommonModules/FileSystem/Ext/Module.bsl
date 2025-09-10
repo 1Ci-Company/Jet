@@ -49,7 +49,8 @@ Procedure DeleteTemporaryDirectory(Val Path) Export
 	If Not IsTempFileName(Path) Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of parameter %1 in %2:
-				|The catalog is not temporary ""%3"".';"), 
+				|The catalog is not temporary ""%3"".';tr = '%2 içindeki %1 parametresinin değeri yanlış:
+				|""%3"" kataloğu geçici değildir.'"), 
 			"Path", "FileSystem.DeleteTemporaryDirectory", Path);
 	EndIf;
 	
@@ -75,7 +76,8 @@ Procedure DeleteTempFile(Val Path) Export
 	If Not IsTempFileName(Path) Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of parameter %1 in %2:
-				|The file is not temporary ""%3"".';"), 
+				|The file is not temporary ""%3"".';tr = '%2 içindeki %1 parametresinin değeri yanlış:
+				|""%3"" dosyası geçici değildir.'"), 
 			"Path", "FileSystem.DeleteTempFile", Path);
 	EndIf;
 	
@@ -346,7 +348,9 @@ Function SharedDirectoryOfTemporaryFiles(NestedDirectory = Undefined) Export
 			
 			MessageTemplate = NStr("en = 'Temporary file directory does not exist.
 					|Ensure that the value is valid for the parameter:
-					|""%1"".';", Common.DefaultLanguageCode());
+					|""%1"".';tr = 'Geçici dosya dizini mevcut değil. 
+					|Uygulama ayarlarında 
+					| ""%1"" parametre değerinin doğru belirtildiğinden emin olunmalıdır.'", Common.DefaultLanguageCode());
 			
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, ConstantPresentation);
 			Raise(MessageText);
@@ -374,11 +378,12 @@ Procedure DeleteTempFiles(Val Path)
 		DeleteFiles(Path);
 	Except
 		WriteLogEvent(
-			NStr("en = 'Standard subsystems';", Common.DefaultLanguageCode()),
+			NStr("en = 'Standard subsystems';tr = 'Standart alt sistemler'", Common.DefaultLanguageCode()),
 			EventLogLevel.Warning,,, // ACC:154 - A warning (not an error).
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot delete temporary file %1. Reason:
-					|%2';"),
+					|%2';tr = '%1 geçici dosyası silinemiyor. Nedeni:
+					|%2'"),
 				Path,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo())));
 	EndTry;
@@ -406,7 +411,10 @@ Procedure CheckCurrentDirectory(CommandString, CurrentDirectory)
 				NStr("en = 'Couldn''t start %1.
 				           |Reason:
 				           |The catalog %2 does not exist
-				           |%3';"),
+				           |%3';tr = '%1 başlatılamadı.
+				           |Nedeni:
+				           |%2 kataloğu mevcut değil
+				           |%3'"),
 				CommandString, "CurrentDirectory", CurrentDirectory);
 		EndIf;
 		
@@ -415,7 +423,10 @@ Procedure CheckCurrentDirectory(CommandString, CurrentDirectory)
 				NStr("en = 'Couldn''t start %1.
 				           |Reason:
 				           |%2 is not a directory:
-				           |%3';"),
+				           |%3';tr = '%1 başlatılamadı.
+				           |Nedeni:
+				           |%2 bir dizin değil:
+				           |%3'"),
 				CommandString, "CurrentDirectory", CurrentDirectory);
 		EndIf;
 		

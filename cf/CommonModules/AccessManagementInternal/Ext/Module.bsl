@@ -277,7 +277,7 @@ Function AllowedDynamicListValues(Table, ValuesType, Values = Undefined, User = 
 		Properties = AccessKindsProperties.ByValuesTypes.Get(Current_Type); // See AccessKindProperties
 		If Properties = Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%1"" type is not an Access Value type.';"), String(Current_Type));
+				NStr("en = 'The ""%1"" type is not an Access Value type.';tr = 'Tür ""%1"" erişim değerlerin türü değil'"), String(Current_Type));
 			Raise ErrorText;
 		EndIf;
 		If UsedAccessKinds.Get(Properties.Ref) = Undefined Then
@@ -712,7 +712,7 @@ EndFunction
 //
 Function NameOfLogEventAccessGroupsMembersChanged() Export
 	
-	Return NStr("en = 'Access management.Change access group membership';",
+	Return NStr("en = 'Access management.Change access group membership';tr = 'Erişim yönetimi.Erişim grubu üyeliğini değiştir'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -722,7 +722,7 @@ EndFunction
 //
 Function NameOfLogEventAllowedValuesChanged() Export
 	
-	Return NStr("en = 'Access management.Change allowed values';",
+	Return NStr("en = 'Access management.Change allowed values';tr = 'Erişim yönetimi.İzin verilen değerleri değiştir'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -732,7 +732,7 @@ EndFunction
 //
 Function NameOfLogEventProfilesRolesChanged() Export
 	
-	Return NStr("en = 'Access management.Change profile roles';",
+	Return NStr("en = 'Access management.Change profile roles';tr = 'Erişim yönetimi.Profil rollerini değiştir'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -888,11 +888,11 @@ Procedure SetAccessUpdate(Use, WithoutCheckingIBUpdateExecution = False) Export
 		
 	ElsIf EnableJob Then
 		BackgroundJobs.Execute("AccessManagementInternal.EnableAccessUpdateScheduledJob",,,
-			NStr("en = 'Access management: Enable ""access update"" scheduled job';",
+			NStr("en = 'Access management: Enable ""access update"" scheduled job';tr = 'Erişim yönetimi: Zamanlanmış erişim güncelleme görevini etkinleştir'",
 				Common.DefaultLanguageCode()));
 	Else
 		BackgroundJobs.Execute("AccessManagementInternal.DisableAccessUpdateScheduledJob",,,
-			NStr("en = 'Access management: Disable ""access update"" scheduled job';",
+			NStr("en = 'Access management: Disable ""access update"" scheduled job';tr = 'Erişim yönetimi: Zamanlanmış erişim güncelleme görevini devre dışı bırak'",
 				Common.DefaultLanguageCode()));
 	EndIf;
 	
@@ -921,7 +921,11 @@ Function AccessRestrictionErrors() Export
 			           |in procedure ""%1""
 			           |of common module ""%2"". Reason:
 			           |
-			           |%3';"),
+			           |%3';tr = '%2 ortak modülünün %1
+			           | prosedüründe
+			           |erişim kısıtlamalı listeler yanlış belirtildi. Sebebi:
+			           |
+			           |%3'"),
 			"OnFillListsWithAccessRestriction",
 			"AccessManagementOverridable",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -1489,7 +1493,7 @@ Procedure ScheduleAccessRestrictionParametersUpdate(LongDesc, StartUpdate = Fals
 	
 	BackgroundJobs.Execute(
 		"AccessManagementInternal.RecordPlanningForUpdatingAccessRestrictionSettings",
-		ProcedureParameters,, NStr("en = 'Access management: Schedule access update';",
+		ProcedureParameters,, NStr("en = 'Access management: Schedule access update';tr = 'Erişim yönetimi: erişim güncelleme planlaması'",
 			Common.DefaultLanguageCode()));
 	
 EndProcedure
@@ -1810,7 +1814,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Version = "3.1.3.135";
 	Handler.Procedure = "InformationRegisters.AccessValuesGroups.ProcessDataForMigrationToNewVersion";
 	Handler.ExecutionMode = "Deferred";
-	Handler.Comment = NStr("en = 'Service data update.';");
+	Handler.Comment = NStr("en = 'Service data update.';tr = 'Servis verileri güncellemesi.'");
 	Handler.Id = New UUID("b3cb643e-d5cf-40b7-9db3-6315a88c063d");
 	Handler.UpdateDataFillingProcedure = "InformationRegisters.AccessValuesGroups.RegisterDataToProcessForMigrationToNewVersion";
 	Handler.ObjectsToRead = "InformationRegister.AccessValuesGroups";
@@ -1820,7 +1824,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Version = "3.0.2.174";
 	Handler.Procedure = "InformationRegisters.ObjectsRightsSettings.ProcessDataForMigrationToNewVersion";
 	Handler.ExecutionMode = "Deferred";
-	Handler.Comment = NStr("en = 'Updates service data of access rights settings.';");
+	Handler.Comment = NStr("en = 'Updates service data of access rights settings.';tr = 'Erişim yetkileri ayarlarının servis verilerini günceller.'");
 	Handler.Id = New UUID("40d1c62f-c3f1-4608-8985-2dc618c3d758");
 	Handler.UpdateDataFillingProcedure = "InformationRegisters.ObjectsRightsSettings.RegisterDataToProcessForMigrationToNewVersion";
 	Handler.ObjectsToRead = "InformationRegister.ObjectsRightsSettings";
@@ -1831,7 +1835,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Procedure = "Catalogs.AccessGroups.ProcessDataForMigrationToNewVersion";
 	Handler.ExecutionMode = "Deferred";
 	Handler.RunAlsoInSubordinateDIBNodeWithFilters = True;
-	Handler.Comment = NStr("en = 'Removes utility users from access groups.';");
+	Handler.Comment = NStr("en = 'Removes utility users from access groups.';tr = 'Yardımcı kullanıcıları erişim gruplarından çıkarır.'");
 	Handler.Id = New UUID("4795e622-6115-4abc-a8de-cf2e838b7ea2");
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.UpdateDataFillingProcedure = "Catalogs.AccessGroups.RegisterDataToProcessForMigrationToNewVersion";
@@ -2374,7 +2378,13 @@ Procedure AfterWriteAdministratorOnAuthorization(Comment) Export
 		           |and added to the ""Administrators"" access group.
 		           |
 		           |Please use the ""Users"" list to manage users and their rights
-		           |instead of the default user list in Designer mode.';");
+		           |instead of the default user list in Designer mode.';tr = 'Kullanıcı listesinde kayıtlı olmayan 
+		           |""Tam haklar"" rolüyle kullanıcı adına başlar. 
+		           |Kullanıcı listesinde otomatik kayıt yapılır. 
+		           |Kullanıcı Yöneticiler erişim grubuna eklendi.
+		           |
+		           |Bir liste ve kullanıcı hakları ayarını korumak için, 
+		           |Kullanıcılar listesini kullanın, 1C: İşletme yapılandırma modu kullanılmamalıdır.'");
 	
 EndProcedure
 
@@ -2399,7 +2409,9 @@ Procedure OnDefineQuestionTextBeforeWriteFirstAdministrator(QueryText) Export
 	QueryText =
 		NStr("en = 'You are about to add the first user to the list of users.
 		           |The user will be automatically added to the Administrators access group.
-		           |Continue?';")
+		           |Continue?';tr = 'Kullanıcı listesine ilk kullanıcıyı eklemek üzeresiniz.
+		           |Kullanıcı otomatik olarak Yöneticiler erişim grubuna eklenecek.
+		           |Devam edilsin mi?'")
 	
 EndProcedure
 
@@ -2439,7 +2451,8 @@ Procedure OnCreateAdministrator(Administrator, Refinement) Export
 	
 	CommentForLog = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'User ""%1"" was added to the Administrators access group. Reason:
-		           |%2';"),
+		           |%2';tr = 'Kullanıcı ""%1"" aşağıdaki nedenle Yöneticiler erişim grubuna eklendi: 
+		           |%2'"),
 		Administrator,
 		Refinement);
 	
@@ -2458,7 +2471,7 @@ Procedure OnCreateAdministrator(Administrator, Refinement) Export
 			Object.Users.Add().User = Administrator;
 			InfobaseUpdate.WriteData(Object);
 			WriteLogEvent(
-				NStr("en = 'Access management.Automatic change of ""Administrators"" access group';",
+				NStr("en = 'Access management.Automatic change of ""Administrators"" access group';tr = 'Erişim kontrolü. Yöneticiler erişim grubunun otomatik değişmesi'",
 				     Common.DefaultLanguageCode()),
 				EventLogLevel.Information,
 				Metadata.Catalogs.Users,
@@ -3340,7 +3353,9 @@ Procedure CheckAdministratorsAccessGroupForIBUser(GroupUsers, ErrorDescription) 
 		ErrorDescription =
 			NStr("en = 'At least one user authorized to log in
 			           |must be included in
-			           |the ""Administrators"" access group.';");
+			           |the ""Administrators"" access group.';tr = '""Yöneticiler"" erişim grubunda
+			           |uygulamaya giriş yapabilecek
+			           |en az bir kullanıcı olmalıdır.'");
 	EndIf;
 	
 EndProcedure
@@ -3360,14 +3375,14 @@ Function HasTableRestrictionByAccessKind(Table, AccessKind, AllAccessKinds) Expo
 	AccessKindsProperties = AccessKindsProperties();
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in function ""%1"" of common module ""%2"".';"),
+		NStr("en = 'Error in function ""%1"" of common module ""%2"".';tr = '%2 genel modülün %1 işlevinde hata oluştu.'"),
 		"HasTableRestrictionByAccessKind", "AccessManagement")
 		+ Chars.LF;
 	
 	AccessKindProperties = AccessKindsProperties.ByNames.Get(AccessKind);
 	If AccessKindProperties = Undefined Then
 		ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Access kind ""%1"" specified in parameter ""%2"" does not exist.';"),
+			NStr("en = 'Access kind ""%1"" specified in parameter ""%2"" does not exist.';tr = '%2 parametresinde belirtilen ""%1"" erişim türü mevcut değil.'"),
 			AccessKind, "AccessKind");
 		Raise ErrorText;
 	EndIf;
@@ -3383,7 +3398,8 @@ Function HasTableRestrictionByAccessKind(Table, AccessKind, AllAccessKinds) Expo
 		If AccessKindProperties = Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Access kind ""%1"" specified in parameter ""%2"" does not exist. Details:
-				           |""%3"".';"),
+				           |""%3"".';tr = '
+				           |%2 parametresinde belirtilen ""%1"" erişim türü mevcut değil:""%3"".'"),
 				CurrentAccessKind, "AllAccessKinds", AllAccessKinds);
 			Raise ErrorText;
 		EndIf;
@@ -3400,7 +3416,8 @@ Function HasTableRestrictionByAccessKind(Table, AccessKind, AllAccessKinds) Expo
 	If Not AccessKindSpecifiedInAllAccessKinds Then
 		ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Access kind ""%1"" specified in parameter ""%2"" does not exist in parameter ""%3""
-			           |Details: ""%4"".';"),
+			           |Details: ""%4"".';tr = '%2 parametresinde belirtilen ""%1"" erişim türü 
+			           |%3 parametresinde mevcut değil: ""%4"".'"),
 			AccessKind, "AccessKind", "AllAccessKinds", AllAccessKinds);
 		Raise ErrorText;
 	EndIf;
@@ -3971,23 +3988,23 @@ Procedure DataFillingForAccessRestriction(DataVolume = 0, OnlyCacheAttributes = 
 	
 	If DataVolume < 10000 Then
 		WriteLogEvent(
-			NStr("en = 'Access management.Populate data for access restriction';",
+			NStr("en = 'Access management.Populate data for access restriction';tr = 'Erişim yönetimi.Erişim kısıtlaması için verileri doldur'",
 				 Common.DefaultLanguageCode()),
 			EventLogLevel.Information,
 			,
 			,
-			NStr("en = 'Population of access restriction data completed.';"),
+			NStr("en = 'Population of access restriction data completed.';tr = 'Erişim kısıtlaması verilerinin doldurulması tamamlandı.'"),
 			EventLogEntryTransactionMode.Transactional);
 			
 		SetDataFillingForAccessRestriction(False);
 	Else
 		WriteLogEvent(
-			NStr("en = 'Access management.Populate data for access restriction';",
+			NStr("en = 'Access management.Populate data for access restriction';tr = 'Erişim yönetimi.Erişim kısıtlaması için verileri doldur'",
 				 Common.DefaultLanguageCode()),
 			EventLogLevel.Information,
 			,
 			,
-			NStr("en = 'A batch of access restriction data is recorded.';"),
+			NStr("en = 'A batch of access restriction data is recorded.';tr = 'Erişim kısıtlaması için verilerin bir kısmı yazılmıştır.'"),
 			EventLogEntryTransactionMode.Transactional);
 	EndIf;
 	
@@ -4149,7 +4166,9 @@ Function GetAccessValuesSetsOfTabularSection(Object)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid parameters.
 			           |Tabular section ""%2""
-			           |in an object of type ""%1"" does not exist.';"),
+			           |in an object of type ""%1"" does not exist.';tr = 'Geçersiz parametreler.
+			           |""%1"" türü nesnedeki
+			           |""%2"" tablo kısmı mevcut değil.'"),
 			ValueTypeObject, "AccessValuesSets");
 		Raise ErrorText;
 	EndIf;
@@ -4200,7 +4219,9 @@ Procedure UpdateAccessValuesSets(ReferenceOrObject, HasChanges = Undefined, IBUp
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid parameters.
 			           |Cannot find object type ""%1""
-			           |in event subscription %2.';"),
+			           |in event subscription %2.';tr = 'Geçersiz parametreler.
+			           | ""%1""
+			           | nesne türü %2 olay aboneliklerinde mevcut değil.'"),
 			ValueTypeObject,
 			"WriteAccessValuesSets");
 		Raise ErrorText;
@@ -4210,7 +4231,9 @@ Procedure UpdateAccessValuesSets(ReferenceOrObject, HasChanges = Undefined, IBUp
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An error occurred when writing access value sets:
 			           |The ""%3"" type is not specified in dimension ""%2""
-			           |of information register ""%1""';"),
+			           |of information register ""%1""';tr = 'Erişim değeri kümeleri yazılırken bir hata oluştu:
+			           |""%3"" türü, ""%1"" bilgi kaydının ""%2""
+			           |boyutunda belirtilmemiş.'"),
 			"AccessValuesSets",
 			"Object",
 			TypeOf(ObjectReference));
@@ -4318,12 +4341,12 @@ Procedure OnChangeAccessRestrictionAtRecordLevel(AccessRestrictionAtRecordLevelE
 	
 	If AccessRestrictionAtRecordLevelEnabled Then
 		WriteLogEvent(
-			NStr("en = 'Access management.Populate data for access restriction';",
+			NStr("en = 'Access management.Populate data for access restriction';tr = 'Erişim yönetimi.Erişim kısıtlaması için verileri doldur'",
 			     Common.DefaultLanguageCode()),
 			EventLogLevel.Information,
 			,
 			,
-			NStr("en = 'Population of access restriction data started.';"),
+			NStr("en = 'Population of access restriction data started.';tr = 'Erişim kısıtlaması verilerinin doldurulması başladı.'"),
 			EventLogEntryTransactionMode.Transactional);
 		
 		SetDataFillingForAccessRestriction(True);
@@ -4571,7 +4594,11 @@ Procedure SetFilterCriterionInQuery(Val Query, Val Values, Val ValuesParameterNa
 				           |
 				           |Parameter ""%2"" is missing a delimiter (colon)
 				           |in the following string of %3 format:
-				           |""%4"".';"),
+				           |""%4"".';tr = '%1 prosedürü yürütülürken hata oluştu.
+				           |
+				           | %2 parametresinde ""%3"
+"%4"" biçim satırında ayırıcı (iki nokta) mevcut değil
+				           |.'"),
 				"AccessManagement.SetFilterCriterionInQuery",
 				"ParameterNameFilterConditionsFieldName",
 				"<ParameterNameConditions>:<FieldName>",
@@ -4919,7 +4946,7 @@ Procedure UpdateRecordSets(Val Data, HasChanges)
 		
 		If Data.FirstDimensionName = Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid parameters in procedure ""%1"".';"),
+				NStr("en = 'Invalid parameters in procedure ""%1"".';tr = '%1 prosedüründe yanlış parametreler.'"),
 				"UpdateRecordSets");
 			Raise ErrorText;
 		Else
@@ -5205,7 +5232,10 @@ Function MetadataObjectEmptyRef(MetadataObjectDetails) Export
 			NStr("en = 'Error in function ""%1""
 			           |of common module ""%2"".
 			           |
-			           |Parameter ""%3"" is invalid.';"),
+			           |Parameter ""%3"" is invalid.';tr = '%2 genel modülün %1
+			           | işlevinde hata oluştu.
+			           |
+			           |Geçersiz parametre %3.'"),
 			"MetadataObjectEmptyRef",
 			"AccessManagementInternal",
 			"MetadataObjectDetails");
@@ -5222,7 +5252,11 @@ Function MetadataObjectEmptyRef(MetadataObjectDetails) Export
 			           |of common module ""%2"".
 			           |
 			           |Cannot get an empty reference for metadata object
-			           |""%3"".';"),
+			           |""%3"".';tr = '%2 genel modülünün %1
+			           | işlevinde bir hata oluştu.
+			           |
+			           |
+			           |""%3""Metaveri nesnesi için boş bir bağlanı alınamıyor.'"),
 			"MetadataObjectEmptyRef",
 			"AccessManagementInternal",
 			MetadataObject.FullName());
@@ -5306,7 +5340,10 @@ Function ChangesSelectionQueryText(NewDataSelectionQueryText,
 			NStr("en = 'Invalid value in parameter ""%1""
 			           |of procedure ""%2"" of module ""%3"".
 			           |
-			           |The query is missing a string ""%4"".';"),
+			           |The query is missing a string ""%4"".';tr = '""%3"" modülündeki ""%2"" prosedürünün 
+			           |""%1"" parametre değerinde hata oluştu.
+			           |
+			           |Sorgu metninde ""%4"" satırı mevcut değil.'"),
 			"OldDataSelectionQueryText",
 			"ChangesSelectionQueryText",
 			"AccessManagementInternal",
@@ -5322,7 +5359,10 @@ Function ChangesSelectionQueryText(NewDataSelectionQueryText,
 			NStr("en = 'Invalid value in parameter ""%1""
 			           |of procedure ""%2"" of module ""%3"".
 			           |
-			           |The query is missing a string ""%1"".';"),
+			           |The query is missing a string ""%1"".';tr = '""%3"" modülü ""%2"" prosedürünün
+			           |""%1"" parametresinde geçersiz değeri.
+			           |
+			           |Sorgu metninde ""%1"" satırı mevcut değil.'"),
 			"NewDataSelectionQueryText",
 			"ChangesSelectionQueryText",
 			"AccessManagementInternal",
@@ -5807,7 +5847,10 @@ Procedure OnChangeAccessValuesSets(Val ObjectReference, IBUpdate = False)
 					NStr("en = 'Cannot update the dependent access value set of the ""%1"" object
 					           |due to:
 					           |
-					           |%2';"),
+					           |%2';tr = '""%1"" nesnesinin bağımlı erişim değeri kümesi 
+					           |şu nedenle güncellenemiyor:
+					           |
+					           |%2'"),
 					String(DependentObjectRef),
 					ErrorProcessing.BriefErrorDescription(ErrorInfo));
 				Raise ErrorText;
@@ -5864,11 +5907,12 @@ Function OpenExternalReportsAndDataProcessorsProfileDetails() Export
 	ProfileDetails.Id = OpenExternalReportsAndDataProcessorsProfileID();
 	
 	ProfileDetails.Description =
-		NStr("en = 'Open external reports and data processors';", Common.DefaultLanguageCode());
+		NStr("en = 'Open external reports and data processors';tr = 'Harici raporları ve veri işlemcilerini aç'", Common.DefaultLanguageCode());
 	
 	ProfileDetails.LongDesc =
 		NStr("en = 'Grants the right to open external reports and data processors from the ""File—Open"" menu.
-		           |It is recommended that you do not change the list of profile''s roles.';");
+		           |It is recommended that you do not change the list of profile''s roles.';tr = '""Dosya Aç"" menüsünden Dış raporları ve işlemleri açma hakkını sağlar. 
+		           |Profil rollerinin kapsamının değiştirilmesi önerilmez.'");
 	
 	ProfileDetails.Roles.Add("InteractiveOpenExtReportsAndDataProcessors");
 	
@@ -5898,7 +5942,7 @@ Function OpenExternalReportsAndDataProcessorsAccessGroup(ProfileProperties)
 	AccessGroupObject.Description = ProfileProperties.Description;
 	AccessGroupObject.Profile      = ProfileProperties.Ref;
 	AccessGroupObject.Comment  =
-		NStr("en = 'Grants the right to open external reports and data processors from the ""File—Open"" menu.';",
+		NStr("en = 'Grants the right to open external reports and data processors from the ""File—Open"" menu.';tr = '""Dosya Aç"" menüsünden Dış raporları ve işlemleri açma hakkını sağlar.'",
 			Common.DefaultLanguageCode());
 	
 	AccessGroupObject.Write(); // It is important that the created group belongs to the subordinate node.
@@ -5975,7 +6019,8 @@ Procedure FillParameters_(InputParameters, Val AllParameters, Val RequiredParame
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid type of property set ""%1.""
-			           |Allowed types: %2 and %3.';"),
+			           |Allowed types: %2 and %3.';tr = 'Yanlış özellikler kümesi türü ""%1"".
+			           |İzin verilen türler: %2, %3.'"),
 			TypeOf(InputParameters), "Structure", "Undefined");
 		Raise ErrorText;
 	EndIf;
@@ -5983,7 +6028,7 @@ Procedure FillParameters_(InputParameters, Val AllParameters, Val RequiredParame
 	For Each KeyAndValue In Parameters Do
 		If Not AllParameters.Property(KeyAndValue.Key) Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The %1 parameter does not exist.';"),
+				NStr("en = 'The %1 parameter does not exist.';tr = 'Mevcut olmayan parametre %1 belirlendi'"),
 				KeyAndValue.Key);
 			Raise ErrorText;
 		EndIf;
@@ -5996,7 +6041,7 @@ Procedure FillParameters_(InputParameters, Val AllParameters, Val RequiredParame
 		For Each KeyAndValue In RequiredParameters2 Do
 			If Not Parameters.Property(KeyAndValue.Key) Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The required parameter %1 is not specified.';"),
+					NStr("en = 'The required parameter %1 is not specified.';tr = 'Gerekli parametre %1 belirlenmedi'"),
 					KeyAndValue.Key);
 				Raise ErrorText;
 			EndIf;
@@ -6497,7 +6542,9 @@ Procedure WriteAccessValuesSets(Val Object, HasChanges = Undefined, IBUpdate = F
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid parameters.
 			           |Cannot find object type ""%1""
-			           |in event subscriptions %2.';"),
+			           |in event subscriptions %2.';tr = 'Geçersiz parametreler.
+			           | ""%1""
+			           | nesne türü %2 olay aboneliklerinde mevcut değil.'"),
 			ValueTypeObject,
 			"WriteAccessValuesSets");
 		Raise ErrorText;
@@ -6510,7 +6557,9 @@ Procedure WriteAccessValuesSets(Val Object, HasChanges = Undefined, IBUpdate = F
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An error occurred when writing access value sets:
 			           |The ""%3"" type is not specified in dimension ""%2""
-			           |of information register ""%1"".';"),
+			           |of information register ""%1"".';tr = 'Erişim değeri kümeleri yazılırken bir hata oluştu:
+			           |""%3"" türü, ""%1"" bilgi kaydının 
+			           | ""%2"" boyutunda belirtilmemiş.'"),
 			"AccessValuesSets",
 			"Object",
 			TypeOf(ObjectReference));
@@ -6536,7 +6585,9 @@ Procedure WriteAccessValuesSets(Val Object, HasChanges = Undefined, IBUpdate = F
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Invalid parameters.
 					           |Cannot find object type ""%1""
-					           |in event subscriptions %2.';"),
+					           |in event subscriptions %2.';tr = 'Geçersiz parametreler.
+					           | ""%1""
+					           | nesne türü %2 olay aboneliklerinde mevcut değil.'"),
 					ValueTypeObject,
 					"FillAccessValuesSetsForTabularSections");
 				Raise ErrorText;
@@ -6640,7 +6691,9 @@ Procedure WriteDependentAccessValuesSets(Val Object, IBUpdate = False)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid parameters.
 			           |Cannot find object type ""%1""
-			           |in event subscription %2.';"),
+			           |in event subscription %2.';tr = 'Geçersiz parametreler.
+			           | ""%1""
+			           | nesne türü %2 olay aboneliğinde mevcut değil.'"),
 			ValueTypeObject,
 			"WriteDependentAccessValuesSets");
 		Raise ErrorText;
@@ -7179,7 +7232,7 @@ EndProcedure
 Procedure RegisterUnavailableRole(RoleDetails, Profile)
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Role is unavailable to user';",
+		NStr("en = 'Access management.Role is unavailable to user';tr = 'Erişim yönetimi.Rol kullanıcıya verilemez'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Error,
 		Metadata.Catalogs.AccessGroupProfiles,
@@ -7190,7 +7243,12 @@ Procedure RegisterUnavailableRole(RoleDetails, Profile)
 			           |%3
 			           |of access group profile ""%4""
 			           |%5
-			           |is unavailable to the user.';"),
+			           |is unavailable to the user.';tr = '""%1""
+			           | kullanıcı rolleri güncellenirken""%4""
+			           |%5
+			           | erişim grubu profilin ""%2""
+			           |%3
+			           | rolüne kullanıcı erişimez.'"),
 			String(RoleDetails.User),
 			RoleDetails.Role,
 			GetURL(RoleDetails.RoleRef),
@@ -7203,7 +7261,7 @@ EndProcedure
 Procedure RegisterNotFoundRole(RoleDetails, Profile)
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Role not found in metadata';",
+		NStr("en = 'Access management.Role not found in metadata';tr = 'Erişim yönetimi. Metaveride rol bulunmadı.'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Error,
 		Metadata.Catalogs.AccessGroupProfiles,
@@ -7214,7 +7272,12 @@ Procedure RegisterNotFoundRole(RoleDetails, Profile)
 			           |%3
 			           |of access group profile ""%4""
 			           |%5
-			           |does not exist in metadata.';"),
+			           |does not exist in metadata.';tr = '""%1""
+			           | kullanıcı rolleri güncellenirken ""%4""
+			           |%5
+			           | erişim grubu profilin ""%2""
+			           |%3
+			           | rolü metaverilerde mevcut değil.'"),
 			String(RoleDetails.User),
 			RoleDetails.Role,
 			GetURL(RoleDetails.RoleRef),
@@ -7381,19 +7444,19 @@ Procedure WriteUserOnRolesUpdate(UserRef, IBUser,
 				SimplifiedInterface = SimplifiedAccessRightsSetupInterface();
 				
 				If HadFullRights Then
-					Template = NStr("en = 'To disable administrator access for user %1, enter the password of current service user %2.';");
+					Template = NStr("en = 'To disable administrator access for user %1, enter the password of current service user %2.';tr = '%1 kullanıcısının yönetici erişimini devre dışı bırakmak için %2 mevcut servis kullanıcısının şifresini girin.'");
 				Else
-					Template = NStr("en = 'To grant user %1 administrator access, enter the password of current service user %2.';");
+					Template = NStr("en = 'To grant user %1 administrator access, enter the password of current service user %2.';tr = '%1 kullanıcısına yönetici erişimi vermek için mevcut %2 servis kullanıcısının şifresini girin. '");
 				EndIf;
 				
 				If HadFullRights And SimplifiedInterface Then
-					Refinement = NStr("en = 'This action can be performed only in a user card if the Administrator profile is disabled for them.';");
+					Refinement = NStr("en = 'This action can be performed only in a user card if the Administrator profile is disabled for them.';tr = 'Yönetici profili devre dışıysa bu işlem sadece kullanıcı kartında gerçekleştirilebilir.'");
 				ElsIf Not HadFullRights And SimplifiedInterface Then
-					Refinement = NStr("en = 'This action can be performed only in a user card if the Administrator profile is enabled for them.';");
+					Refinement = NStr("en = 'This action can be performed only in a user card if the Administrator profile is enabled for them.';tr = 'Yönetici profili etkinse bu işlem sadece kullanıcı kartında gerçekleştirilebilir.'");
 				ElsIf HadFullRights Then
-					Refinement = NStr("en = 'This action can be performed only in a card of the Administrators access group or in a user card when the user is removed from the Administrators access group.';");
+					Refinement = NStr("en = 'This action can be performed only in a card of the Administrators access group or in a user card when the user is removed from the Administrators access group.';tr = 'Bu işlem sadece Yöneticiler erişim grubunun kartında veya kullanıcı Yöneticiler erişim grubundan çıkarılmışsa kullanıcı kartında yapılabilir.'");
 				Else
-					Refinement = NStr("en = 'This action can be performed only in a card of the Administrators access group or in a user card when the user is added to the Administrators access group.';");
+					Refinement = NStr("en = 'This action can be performed only in a card of the Administrators access group or in a user card when the user is added to the Administrators access group.';tr = 'Bu işlem sadece Yöneticiler erişim grubunun kartında veya kullanıcı Yöneticiler erişim grubuna eklenmişse kullanıcı kartında yapılabilir.'");
 				EndIf;
 				
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(Template,
@@ -7712,7 +7775,13 @@ Procedure ExceptionOnRecordSearchError(Parameters)
 				           |Invalid value of parameter ""%3"":
 				           |Column ""%4"" contains invalid value ""%5"".
 				           |
-				           |Valid values are ""1"" and ""-1"".';"),
+				           |Valid values are ""1"" and ""-1"".';tr = '%2 ortak modülünün 
+				           |%1 prosedüründe hata.
+				           |
+				           |""%3"" parametresinin değeri geçersiz:
+				           |""%4"" sütunu geçersiz ""%5"" değerini içeriyor.
+				           |
+				           |Geçerli değerler: ""1"" ve ""-1"".'"),
 				"UpdateRecordSets",
 				"AccessManagementInternal",
 				"NewRecords",
@@ -7727,7 +7796,11 @@ Procedure ExceptionOnRecordSearchError(Parameters)
 		           |of common module %2.
 		           |
 		           |Cannot find a mandatory string
-		           |in parameter ""%3"".';"),
+		           |in parameter ""%3"".';tr = '%2 ortak modülünün 
+		           |%1 prosedüründe hata.
+		           |
+		           |""%3"" parametresinde 
+		           |zorunlu dize bulunamadı.'"),
 		"UpdateRecordSets",
 		"AccessManagementInternal",
 		"NewRecords");
@@ -8017,27 +8090,27 @@ Procedure FillPresentationTableAllAllowedInForm(Form, ThisProfile)
 	If ThisProfile Then
 		String = PresentationsAllAllowed.Add();
 		String.Name = "AllDeniedByDefault";
-		String.Presentation = NStr("en = 'All denied, configure exceptions in access groups';");
+		String.Presentation = NStr("en = 'All denied, configure exceptions in access groups';tr = 'Hepsi yasak, istisnalar erişim gruplarında atanır'");
 		
 		String = PresentationsAllAllowed.Add();
 		String.Name = "AllAllowedByDefault";
-		String.Presentation = NStr("en = 'All allowed, configure exceptions in access groups';");
+		String.Presentation = NStr("en = 'All allowed, configure exceptions in access groups';tr = 'Hepsine izin verilmiş, istisnalar erişim gruplarında atanır'");
 		
 		String = PresentationsAllAllowed.Add();
 		String.Name = "AllDenied";
-		String.Presentation = NStr("en = 'All denied, configure exceptions in profile';");
+		String.Presentation = NStr("en = 'All denied, configure exceptions in profile';tr = 'Hepsi yasak, istisnalar profilde atanır'");
 		
 		String = PresentationsAllAllowed.Add();
 		String.Name = "AllAllowed";
-		String.Presentation = NStr("en = 'All allowed, configure exceptions in profile';");
+		String.Presentation = NStr("en = 'All allowed, configure exceptions in profile';tr = 'Hepsine izin verilmiş, istisnalar profilde atanır'");
 	Else
 		String = PresentationsAllAllowed.Add();
 		String.Name = "AllDenied";
-		String.Presentation = NStr("en = 'All denied';");
+		String.Presentation = NStr("en = 'All denied';tr = 'Hepsi yasak'");
 		
 		String = PresentationsAllAllowed.Add();
 		String.Name = "AllAllowed";
-		String.Presentation = NStr("en = 'All allowed';");
+		String.Presentation = NStr("en = 'All allowed';tr = 'Tüm izin verilenler'");
 	EndIf;
 	
 	ChoiceList = Form.Items.AccessKindsAllAllowedPresentation.ChoiceList; // ValueList
@@ -8186,7 +8259,7 @@ Function EmptyAccessValueReferences() Export
 		NewRow = Table.Add();
 		NewRow.EmptyRef = TypeDetails.AdjustValue(Undefined);
 		NewRow.Presentation = "<" + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Empty reference: ""%1""';"), String(Type)) + ">";
+			NStr("en = 'Empty reference: ""%1""';tr = 'Boş referans: ""%1""'"), String(Type)) + ">";
 	EndDo;
 	
 	Return Table;
@@ -8587,7 +8660,7 @@ Function CheckedSessionAccessViewProperties(HashAmounts) Export
 		AccessManagementInternalCached.TableFieldTypes("DefinedType.AccessValue"));
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in procedure %1 of common module %2.';"),
+		NStr("en = 'Error in procedure %1 of common module %2.';tr = '%2 genel modülünün %1 prosedüründe hata oluştu.'"),
 		"OnFillAccessKinds", "AccessManagementOverridable")
 		+ Chars.LF
 		+ Chars.LF;
@@ -8611,7 +8684,7 @@ Function CheckedSessionAccessViewProperties(HashAmounts) Export
 	For Each AccessKind In AccessKinds Do
 		If AllAccessKindsNames[Upper(AccessKind.Name)] <> Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The access kind name ""%1"" is already defined.';"),
+				NStr("en = 'The access kind name ""%1"" is already defined.';tr = '""%1"" Erişim türü adı zaten tanımlanmıştı.'"),
 				AccessKind.Name);
 			Raise ErrorText;
 		EndIf;
@@ -8980,7 +9053,10 @@ Procedure CheckSubscriptionTypesUpdateAccessValuesGroups(AccessValuesWithGroups)
 		NStr("en = 'According to data retrieved from procedure ""%1""
 		           |of common module ""%2"",
 		           |type collection ""%3"" is missing mandatory types:
-		           |- %4';"),
+		           |- %4';tr = '""%2"" ortak modülünün 
+		           |""%1"" prosedüründen alınan verilere göre,
+		           |""%3"" tür koleksiyonunda gerekli türler eksik:
+		           |- %4'"),
 		"OnFillAccessKinds",
 		"AccessManagementOverridable",
 		"AccessValueObject",
@@ -8998,7 +9074,7 @@ Procedure ValidateType(AccessKind, Type, AllTypes, Parameters, CheckGroupsTypes 
 			Return;
 		EndIf;
 		ErrorText = Parameters.ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The Access Value type is not specified for the ""%1"" access kind.';"),
+			NStr("en = 'The Access Value type is not specified for the ""%1"" access kind.';tr = '""%1"" Erişim türü için erişim değer türü belirtilmemiş.'"),
 			AccessKind.Name);
 		Raise ErrorText;
 	EndIf;
@@ -9008,11 +9084,13 @@ Procedure ValidateType(AccessKind, Type, AllTypes, Parameters, CheckGroupsTypes 
 		If CheckGroupsTypes Then
 			ErrorDescription =
 				NStr("en = 'The ""%1"" type is specified as a value group type for the ""%2"" access kind.
-				           |However, it is not a reference type.';");
+				           |However, it is not a reference type.';tr = '""%1"" türü, ""%2"" türünde erişim türü için değer grubu türü olarak belirtilir.
+				           | Ancak referans tipi değil.'");
 		Else
 			ErrorDescription =
 				NStr("en = 'The ""%1"" type is specified as a value type for the ""%2"" access kind.
-				           |However, it is not a reference type.';");
+				           |However, it is not a reference type.';tr = '""%1"" türü, ""%2"" erişim türü için değer türü olarak belirlendi. 
+				           |Ancak bu referans türü değil.'");
 		EndIf;
 		ErrorText = Parameters.ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 			ErrorDescription, Type, AccessKind.Name);
@@ -9026,22 +9104,26 @@ Procedure ValidateType(AccessKind, Type, AllTypes, Parameters, CheckGroupsTypes 
 		If IntersectionCheck Then
 			ErrorDescription =
 				NStr("en = 'The ""%1"" type is specified as a value type for the ""%2"" access kind.
-				           |It cannot be specified as a value group type for the ""%3"" access kind.';");
+				           |It cannot be specified as a value group type for the ""%3"" access kind.';tr = '""%1"" türü, ""%2"" erişim türü için değer türü olarak belirlendi.
+				           |Erişim türü için ""%3"" değerler grup tipi olarak belirtilemez.'");
 		Else
 			ForSameAccessKindNoError = True;
 			ErrorDescription =
 				NStr("en = 'The ""%1"" value group type is already specified for the ""%2"" access kind.
-				           |It cannot be specified for the ""%3"" access kind.';");
+				           |It cannot be specified for the ""%3"" access kind.';tr = '""%1"" türü, ""%2"" erişim türü için değer türü olarak belirlendi.
+				           |Erişim türü için ""%3"" belirtilemez.'");
 		EndIf;
 	Else
 		If IntersectionCheck Then
 			ErrorDescription =
 				NStr("en = 'The ""%1"" type is specified as a value group type for the ""%2"" access kind.
-				           |It cannot be specified as a value type for the ""%3"" access kind.';");
+				           |It cannot be specified as a value type for the ""%3"" access kind.';tr = '""%1"" türü, ""%2"" erişim türü için değer türü olarak belirlendi.
+				           |Erişim türü için ""%3"" değer tipi olarak belirtilemez.'");
 		Else
 			ErrorDescription =
 				NStr("en = 'The ""%1"" value type is already specified for the ""%2"" access kind.
-				           |It cannot be specified for the ""%3"" access kind.';");
+				           |It cannot be specified for the ""%3"" access kind.';tr = '""%1"" türü, ""%2"" erişim türü için değer türü olarak belirlendi.
+				           |Erişim türü için ""%3"" belirtilemez.'");
 		EndIf;
 	EndIf;
 	
@@ -9061,11 +9143,13 @@ Procedure ValidateType(AccessKind, Type, AllTypes, Parameters, CheckGroupsTypes 
 		If CheckGroupsTypes Then
 			ErrorDescription =
 				NStr("en = 'The ""%1"" access value group type of the ""%2"" access kind
-				           |is not specified in the ""%3"" type collection.';");
+				           |is not specified in the ""%3"" type collection.';tr = '""%3"" tür koleksiyonunda ""%2"" erişim türünün 
+				           |""%1"" erişim değer grubu türü belirtilmedi.'");
 		Else
 			ErrorDescription =
 				NStr("en = 'The ""%1"" access value type of the ""%2"" access kind
-				           |is not specified in the ""%3"" type collection.';");
+				           |is not specified in the ""%3"" type collection.';tr = '""%3"" tür koleksiyonunda ""%2"" erişim türünün 
+				           |""%1"" erişim değer türü belirtilmedi.'");
 		EndIf;
 	EndIf;
 	
@@ -9453,13 +9537,13 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 			   And StringParts1.Count() <> 4
 			   And StringParts1.Count() <> 6 Then
 				ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Line must have the following format: %1.';"),
+					NStr("en = 'Line must have the following format: %1.';tr = 'Satır %1 formatında olmalıdır'"),
 					"<FullTableName>.<NameOfRight>.<AccessKindName>[.<FullObjectTableName>]");
 			ElsIf UniversalRestriction
 			   And StringParts1.Count() <> 4
 			   And StringParts1.Count() <> 7 Then
 				ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Line must have the following format: %1.';"),
+					NStr("en = 'Line must have the following format: %1.';tr = 'Satır %1 formatında olmalıdır'"),
 					"<FullTableName>.<NameOfRight>.<AccessKindName>[.<FullObjectTableName>.<HostRightName>]");
 			Else
 				Table    = StringParts1[0] + "." + StringParts1[1];
@@ -9479,11 +9563,11 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 						Continue;
 					EndIf;
 					ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Table ""%1"" does not exist.';"), Table);
+						NStr("en = 'Table ""%1"" does not exist.';tr = '""%1"" tablosu mevcut değil'"), Table);
 				
 				ElsIf Right <> "Read" And Right <> "Update" Then
 					ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Right ""%1"" does not exist.';"), Right);
+						NStr("en = 'Right ""%1"" does not exist.';tr = '""%1"" yetkisi mevcut değil.'"), Right);
 				
 				ElsIf Upper(AccessKind) = Upper("Object") Then
 					If Common.MetadataObjectByFullName(ObjectTable) = Undefined Then
@@ -9491,7 +9575,7 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 							Continue;
 						EndIf;
 						ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'Object table ""%1"" does not exist.';"),
+							NStr("en = 'Object table ""%1"" does not exist.';tr = '""%1"" nesne tablosu mevcut değil.'"),
 							ObjectTable);
 					Else
 						AccessKindRef = Undefined;
@@ -9500,7 +9584,7 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 						   And LeadingRight <> "Read"
 						   And LeadingRight <> "Update" Then
 							ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-								NStr("en = 'Master right ""%1"" does not exist.';"), LeadingRight);
+								NStr("en = 'Master right ""%1"" does not exist.';tr = '""%1"" ana yetki mevcut değil.'"), LeadingRight);
 						EndIf;
 					EndIf;
 					
@@ -9510,7 +9594,7 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 							Continue;
 						EndIf;
 						ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'Right settings owner table ""%1"" does not exist.';"),
+							NStr("en = 'Right settings owner table ""%1"" does not exist.';tr = '""%1"" yetki ayar sahibinin tablosu mevcut değil.'"),
 							ObjectTable);
 					Else
 						AccessKindRef = MetadataObjectEmptyRef(ObjectTable);
@@ -9522,7 +9606,7 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 						Continue;
 					EndIf;
 					ErrorNote = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Access kind ""%1"" does not exist.';"), AccessKind);
+						NStr("en = 'Access kind ""%1"" does not exist.';tr = '""%1"" erişim yetkisi mevcut değil.'"), AccessKind);
 				Else
 					AccessKindProperties = AccessKindsByNames.Get(AccessKind); // See AccessKindProperties
 					AccessKindRef = AccessKindProperties.Ref;
@@ -9533,7 +9617,8 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 			If ValueIsFilled(ErrorNote) Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Error in the details of the right restriction kind of a metadata object:
-						           |""%1"".';")
+						           |""%1"".';tr = 'Metaveri nesnesi kısıtlama hakkı türünün açıklama satırında bir hata oluştu: 
+						           |""%1"".'")
 						+ Chars.LF
 						+ Chars.LF,
 						CurrentRow)
@@ -9545,7 +9630,11 @@ Procedure AddViewsRestrictionsRights(AccessRestrictionKinds, RightsRestrictions,
 							           |in procedure %2
 							           |of common module %3.
 							           |
-							           |%4';"),
+							           |%4';tr = '%3 ortak modülünün 
+							           |%2 prosedüründe 
+							           |%1 alt sistem entegrasyon hatası.
+							           |
+							           |%4'"),
 							"AccessManagement",
 							"OnFillMetadataObjectsAccessRestrictionKinds",
 							"AccessManagementOverridable",
@@ -9932,7 +10021,9 @@ Function AccessAllowed(DataDetails, RightUpdate, RaiseException1 = False,
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
 			           |A reference, object, record key, or record set expected.
-			           |Passed value: %3 (type %4).';"),
+			           |Passed value: %3 (type %4).';tr = '%2''da geçersiz %1 parametre değeri.
+			           |Referans, nesne, kayıt anahtarı veya kayıt kümesi bekleniyordu.
+			           |Aktarılan değer: %3 (%4 türü).'"),
 			"DataDetails",
 			?(RaiseException1,
 				?(RightUpdate, "AccessManagement.CheckChangeAllowed",
@@ -9961,7 +10052,9 @@ Function AccessAllowed(DataDetails, RightUpdate, RaiseException1 = False,
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Invalid value of the %1 parameter in %2.
 				           |Only %3 is supported in the standard access restriction option.
-				           |Value passed: %4 (the %5 type).';"),
+				           |Value passed: %4 (the %5 type).';tr = '%2''da geçersiz %1 parametresi değeri.
+				           |Standart erşim sınırlama seçeneğinde sadece %3 desteklenir.
+				           |Aktarılan değer: %4 (%5 türü).'"),
 				"User",
 				?(RaiseException1,
 					?(RightUpdate, "AccessManagement.CheckChangeAllowed",
@@ -9981,7 +10074,12 @@ Function AccessAllowed(DataDetails, RightUpdate, RaiseException1 = False,
 				           |- either the %2 parameter value is invalid
 				           |value passed: %3 (the %4 type),
 				           |- or the %5 parameter value is invalid
-				           |value passed: %6 (the %7 type).';"),
+				           |value passed: %6 (the %7 type).';tr = 'İstisna çağrısı sadece mevcut kullanıcı için destekleniyor.
+				           |%1''da
+				           |- ya %2 parametresinin değeri geçeriz
+				           |aktarılan değer: %3 (%4 türü),
+				           |- veya %5 parametresinin değeri geçersiz
+				           |aktarılan değer: %6 (%7 türü)'"),
 				"AccessManagement.AccessAllowed",
 				"RaiseException1",
 				String(RaiseException1),
@@ -10839,11 +10937,13 @@ Procedure CheckAccessToSource(Source, BeforeWrite, IsRecordSet, Replacing, IsFul
 		If RestrictionParameters.ForExternalUsers Then
 			ErrorTemplate =
 				NStr("en = 'External users cannot access the data of the
-				           |""%1"" list.';");
+				           |""%1"" list.';tr = 'Harici kullanıcıların 
+				           |""%1"" listenin verilerine erişimleri yasaktır.'");
 		Else
 			ErrorTemplate =
 				NStr("en = 'Users cannot access the data of the
-				           |""%1"" list.';");
+				           |""%1"" list.';tr = 'Kullanıcıların 
+				           |""%1"" listenin verilerine erişimleri yasaktır.'");
 		EndIf;
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 			Source.Metadata().Presentation());
@@ -11201,31 +11301,37 @@ Procedure ReportAccessError(Data, OldVersion, HasReadRight, HasUpdateRight, IsNe
 		If HasReadRight Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Insufficient rights to edit data:
-				           |%1';"), DataPresentation(Data));
+				           |%1';tr = 'Verilerin düzenlenmesi için yetersiz yetki:
+				           |%1'"), DataPresentation(Data));
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Insufficient rights to read data:
-				           |%1';"), DataPresentation(Data));
+				           |%1';tr = 'Verileri okumak için yetersiz yetki:
+				           |%1'"), DataPresentation(Data));
 		EndIf;
 	Else
 		If HasReadRight And HasUpdateRight Then
 			If IsNew Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Insufficient rights to add data (no Add right):
-					           |%1';"), DataPresentation(Data));
+					           |%1';tr = 'Verilerin eklenmesi için yetersiz yetki (ekleme yetkisi yok):
+					           |%1'"), DataPresentation(Data));
 			Else
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Insufficient rights to add data (no Add right for the latest changes):
-					           |%1';"), DataPresentation(Data));
+					           |%1';tr = 'Verilerin eklenmesi için yetersiz yetki (yapılan değişikliklerin eklenmesi için yetersiz yetki):
+					           |%1'"), DataPresentation(Data));
 			EndIf;
 		ElsIf HasReadRight Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Insufficient rights to add data (you will be unable to change it):
-				           |%1';"), DataPresentation(Data));
+				           |%1';tr = 'Verileri eklemek için yetersiz yetki (değiştirilemez):
+				           |%1'"), DataPresentation(Data));
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Insufficient rights to add data (no Read right):
-				           |%1.';"), DataPresentation(Data));
+				           |%1.';tr = 'Veri ekleme yetkisi yok (Okuma yetkisi yok):
+				           |%1.'"), DataPresentation(Data));
 		EndIf;
 	EndIf;
 	
@@ -11268,11 +11374,11 @@ Function DataPresentation(Data)
 		
 		If FieldsCount = 1 Then
 			DataPresentation = DataPresentation
-				+ " " + NStr("en = 'with the following field:';")  + " " + String(Data.Filter);
+				+ " " + NStr("en = 'with the following field:';tr = 'alan ile'")  + " " + String(Data.Filter);
 			
 		ElsIf FieldsCount > 1 Then
 			DataPresentation = DataPresentation
-				+ " " + NStr("en = 'with the following fields:';") + " " + String(Data.Filter);
+				+ " " + NStr("en = 'with the following fields:';tr = 'alanlar ile'") + " " + String(Data.Filter);
 		EndIf;
 	Else
 		DataPresentation = String(Data);
@@ -12371,14 +12477,15 @@ Function StartAccessUpdateAtRecordLevel(IsManualStart = False, ThisIsARestart = 
 	If Not LimitAccessAtRecordLevelUniversally(True) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot start record-level access update.
-			           |Constant ""%1"" is disabled.';"),
+			           |Constant ""%1"" is disabled.';tr = '%1 sabiti devre dışı bırakıldığı için 
+			           |erişim kayıtlar seviyesinde güncellenemez.'"),
 			"LimitAccessAtRecordLevelUniversally");
 		Raise ErrorText;
 	EndIf;
 	
 	If TransactionActive() Then
 		ErrorText =
-			NStr("en = 'Cannot start record-level access update in an open transaction.';");
+			NStr("en = 'Cannot start record-level access update in an open transaction.';tr = 'Açık bir işlemde kayıt düzeyinde erişim güncelleştirmesi başlatılamıyor.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -12424,11 +12531,11 @@ Function StartAccessUpdateAtRecordLevel(IsManualStart = False, ThisIsARestart = 
 		CurrentSession = GetCurrentInfoBaseSession();
 		JobDescription =
 			?(IsManualStart,
-				NStr("en = 'Manual start';", Common.DefaultLanguageCode()),
-				NStr("en = 'Autostart';", Common.DefaultLanguageCode()))
+				NStr("en = 'Manual start';tr = 'Manuel başlatma'", Common.DefaultLanguageCode()),
+				NStr("en = 'Autostart';tr = 'Otomatik başlatma'", Common.DefaultLanguageCode()))
 			+ ": " + Metadata.ScheduledJobs.AccessUpdateOnRecordsLevel.Synonym + " ("
 			+ StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'from the %1 session started on %2';", Common.DefaultLanguageCode()),
+				NStr("en = 'from the %1 session started on %2';tr = '%2 tarihli %1 oturumdan'", Common.DefaultLanguageCode()),
 				Format(CurrentSession.SessionNumber, "NG="),
 				Format(CurrentSession.SessionStarted, "DLF=DT")) + ")";
 		
@@ -12441,7 +12548,7 @@ Function StartAccessUpdateAtRecordLevel(IsManualStart = False, ThisIsARestart = 
 	        And Performer.UUID <> LastAccessUpdate.BackgroundJobIdentifier Then
 		
 		Result.WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot start the access update as it has already been started on %1 at %2';"),
+			NStr("en = 'Cannot start the access update as it has already been started on %1 at %2';tr = 'Erişim güncellemesi zaten %1''da saat %2''da başlatıldığı için güncelleme başlatılamadı'"),
 			Format(Performer.Begin, "DLF=D"),
 			Format(Performer.Begin, "DLF=T"));
 	Else
@@ -12454,7 +12561,8 @@ Function StartAccessUpdateAtRecordLevel(IsManualStart = False, ThisIsARestart = 
 		Result.SessionProperties = SessionProperties;
 		Result.WarningText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The access update is already running
-			           |(computer: %1, session: %2, started on %3 at %4).';"),
+			           |(computer: %1, session: %2, started on %3 at %4).';tr = 'Erişim zaten güncelleniyor
+			           |(bilgisayar: %1, oturum: %2, başlatma: %3''de %4).'"),
 			SessionProperties.ComputerName,
 			SessionProperties.SessionNumber,
 			Format(SessionProperties.SessionStarted, "DLF=D"),
@@ -12477,7 +12585,8 @@ Procedure CancelAccessUpdateAtRecordLevel() Export
 	If TypeOf(Performer) = Type("InfoBaseSession") Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot cancel full access update
-			           |(computer: %1, session: %2, started on %3 at %4).';"),
+			           |(computer: %1, session: %2, started on %3 at %4).';tr = 'Tam erişim güncellemesi iptal edilemez 
+			           | (bilgisayar: %1, oturum: %2, başlatma: %3''da saat %4''da)'"),
 			Performer.ComputerName,
 			Performer.SessionNumber,
 			Format(Performer.SessionStarted, "DLF=D"),
@@ -12687,14 +12796,14 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 		If UpdateAll Then
 			BackgroundJobIdentifier = ArbitrarySessionID();
 		Else
-			ErrorText = NStr("en = 'Cannot update access in batches. The batch update is available only in background jobs.';");
+			ErrorText = NStr("en = 'Cannot update access in batches. The batch update is available only in background jobs.';tr = 'Erişim güncellemesi partiler halinde sadece arkaplan görevinde yapılabilir.'");
 			Raise ErrorText;
 		EndIf;
 		MainSessionID = String(New UUID);
 	Else
 		CurrentBackgroundJob = CurrentSession.GetBackgroundJob();
 		If CurrentBackgroundJob = Undefined Then
-			ErrorText = NStr("en = 'Cannot get the background job of the current session.';");
+			ErrorText = NStr("en = 'Cannot get the background job of the current session.';tr = 'Geçerli oturum arka planı görevi alınamadı.'");
 			Raise ErrorText;
 		EndIf;
 		BackgroundJobIdentifier = CurrentBackgroundJob.UUID;
@@ -12703,7 +12812,7 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 		MainSessionID = String(BackgroundJobIdentifier);
 	EndIf;
 	MainSessionDetails.Insert("Id", MainSessionID
-		+ " (" + NStr("en = 'Main session ID';") + ")");
+		+ " (" + NStr("en = 'Main session ID';tr = 'Ana oturum kimliği'") + ")");
 	
 	DataLock = New DataLock;
 	DataLock.Add("Constant.LastAccessUpdate");
@@ -12743,7 +12852,10 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 			NStr("en = 'The access update is denied.
 			           |To allow it, in the ""Update access at record level"" window, click ""Allow"".
 			           |You can open the window from the ""Users and rights settings"" panel. You can also open it using the following URL:
-			           |%1';"),
+			           |%1';tr = 'Erişim güncellemesi yasak.
+			           |İzin verebilmek için ""Kayıt seviyesinde erişim güncellemesi"" formunda ""İzin ver"" tıklanmalı.
+			           |Form, ""Kullanıcılar ve Yetki Ayarları"" panelinden veya gezinme bağlantısı takip edilerek açılabilir:
+			           |%1'"),
 			"e1cib/app/InformationRegister.DataAccessKeysUpdate.Form.AccessUpdateOnRecordsLevel");
 		Raise ErrorText;
 	EndIf;
@@ -12757,7 +12869,7 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 		   And Performer.UUID <> LastAccessUpdate.BackgroundJobIdentifier Then
 			
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot start the access update as it has already been started on %1 at %2.';"),
+				NStr("en = 'Cannot start the access update as it has already been started on %1 at %2.';tr = 'Erişim güncellemesi zaten %1''da saat %2''da başlatıldığı için güncelleme başlatılamadı'"),
 				Format(Performer.Begin, "DLF=D"),
 				Format(Performer.Begin, "DLF=T"));
 		Else
@@ -12766,7 +12878,8 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 			
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot start the access update as it is already running
-				           |(computer: %1, session: %2, started on %3 at %4).';"),
+				           |(computer: %1, session: %2, started on %3 at %4).';tr = 'Erişim güncellemesi zaten çalışıyor durumunda olduğu için başlatılamadı 
+				           | (bilgisayar: %1, oturum: %2, başlatma: %3''da saat %4''da)'"),
 				SessionProperties.ComputerName,
 				SessionProperties.SessionNumber,
 				Format(SessionProperties.SessionStarted, "DLF=D"),
@@ -12822,7 +12935,8 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 		ErrorInfo = ErrorInfo();
 		AddCompletionErrorText(AllErrorsText, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot close access update threads. Reason:
-			           |%1';"),
+			           |%1';tr = 'Şu nedenlerle erişim güncelleme akışları şu nedenle tamamlanamadı:
+			           |%1'"),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo)));
 	EndTry;
 	
@@ -12832,7 +12946,8 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 		ErrorInfo = ErrorInfo();
 		AddCompletionErrorText(AllErrorsText, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot cancel background jobs of access update threads. Reason:
-			           |%1';"),
+			           |%1';tr = 'Erişim güncelleme iş akışı arka plan işleri şu sebeple iptal edilemedi:
+			           |%1'"),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo)));
 	EndTry;
 	
@@ -12877,7 +12992,8 @@ Procedure ExecuteAccessUpdateAtRecordLevel(UpdateAll,
 	
 	AllErrorsText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot perform the access update. Reason:
-		           |%1';"), AllErrorsText);
+		           |%1';tr = 'Erişim güncellemesi 
+		           |%1 nedeniyle yürütülemedi.'"), AllErrorsText);
 	
 	If RaiseExceptiopnInsteadErrorRegistration Then
 		Raise AllErrorsText;
@@ -13629,7 +13745,8 @@ Procedure ScheduleObsoleteItemsProcessing(PlanningErrorText,
 		ErrorInfo = ErrorInfo();
 		PlanningErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot schedule processing of obsolete access restriction items. Reason:
-			           |%1';"),
+			           |%1';tr = 'Aşağıdakiler nedeniyle eski erişim kısıtlama öğelerinin işlenmesi planlanamadı:
+			           |%1'"),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 	EndTry;
 	
@@ -14921,7 +15038,7 @@ Function StartListAccessUpdate(Job, Context)
 			Parameters = New Array;
 			Parameters.Add(Context.MainSessionDetails);
 			FreeThread.BackgroundJob = BackgroundJobs.Execute(AccessUpdateThreadMethodName(), Parameters,,
-				NStr("en = 'Access management: Record-level update access thread';",
+				NStr("en = 'Access management: Record-level update access thread';tr = 'Erişim Kontrolü: Kayıtlar seviyesinde erişim güncelleme akışı'",
 					Common.DefaultLanguageCode()));
 			FreeThread.ThreadID = FreeThread.BackgroundJob.UUID;
 			Context.FreeThreads.Add(FreeThread);
@@ -15083,7 +15200,7 @@ Procedure UpdateBackgroundJobProperties(Stream, Context)
 	If BackgroundJob = Undefined Then
 		If RegisterAccessUpdateIndicators() Then
 			RegisterAccessUpdateError(UpdateErrorTextWithContext(
-				NStr("en = 'Cannot find the started background job.';"), Stream.Job, True), Context);
+				NStr("en = 'Cannot find the started background job.';tr = 'Başlatılan arkaplan görevi bulunamadı.'"), Stream.Job, True), Context);
 		EndIf;
 		Context.ProcessingCompleted = False;
 		Return;
@@ -15109,7 +15226,8 @@ Procedure CancelThreadBackgroundJob(Stream, Context)
 	Except
 		ErrorPresentation = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot cancel the thread''s background job. Reason:
-			           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo()));
+			           |%1';tr = 'Bu nedenle arka plan akış görevi iptal edilemedi:
+			           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 		RegisterAccessUpdateError(UpdateErrorTextWithContext(
 			ErrorPresentation, Stream.Job, True), Context);
 	EndTry;
@@ -15192,7 +15310,10 @@ Procedure ProcessExecutedJobs(Context, LockedThreads = Undefined)
 				NStr("en = 'Thread runtime exceeded (%1 seconds).
 				           |Retry to run the access update.
 				           |If this doesn''t work, reindex the database.
-				           |Also, see ""Slow hard drive"" on the thread setup panel.';"),
+				           |Also, see ""Slow hard drive"" on the thread setup panel.';tr = 'İş parçacığı çalışma süresi aşıldı (%1 saniye).
+				           |Erişim güncellemesini çalıştırmayı yeniden deneyin.
+				           |İşe yaramazsa, veritabanını yeniden indeksleyin.
+				           |Ayrıca, iş parçacığı panelinde ""Yavaş sabit disk""e bakın.'"),
 				MaxWaitSecondsCountOfWaitingForOneJobInThreadToBeProcessed());
 			
 			Stream.Job.ThereWasMistake = True;
@@ -15725,7 +15846,7 @@ Function PerformingThreadStarted(Context)
 	Context.Insert("CurrentSession", CurrentSession);
 	
 	If CurrentSession.ApplicationName <> "BackgroundJob" Then
-		ErrorText = NStr("en = 'Couldn''t process an access update batch outside of a background job.';");
+		ErrorText = NStr("en = 'Couldn''t process an access update batch outside of a background job.';tr = 'Erişim güncelleme kısmı yalnızca bir arka plan işinde işlenebilir.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -16096,7 +16217,7 @@ Procedure RegisterMainThreadUpdateIndicators(Context)
 	SessionDetails = Context.MainSessionDetails; // See MainSessionDetails
 	
 	If Context.UpdateInThisSession Then
-		Comment = NStr("en = 'The access update session is completed.';");
+		Comment = NStr("en = 'The access update session is completed.';tr = 'Erişim güncelleme oturumu tamamlandı.'");
 		AddSessionOperationIndicatorsValues(Comment, Indicators, SessionDetails);
 		AddJobsExecutionIndicatorsValues(Comment, Indicators);
 	Else
@@ -16110,7 +16231,7 @@ Procedure RegisterMainThreadUpdateIndicators(Context)
 		MinJobResultProcessingTime  = Indicators.MinJobResultProcessingTime / 1000;
 		MaxJobResultProcessingTime = Indicators.MaxJobResultProcessingTime / 1000;
 		
-		Comment = NStr("en = 'The session of the main access update thread is completed.';");
+		Comment = NStr("en = 'The session of the main access update thread is completed.';tr = 'Ana erişim güncelleme iş parçacığının oturumu tamamlandı.'");
 		AddSessionOperationIndicatorsValues(Comment, Indicators, SessionDetails);
 		
 		Comment = Comment + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
@@ -16119,7 +16240,12 @@ Procedure RegisterMainThreadUpdateIndicators(Context)
 			           |Jobs issued: %2.
 			           |Job issue time: %3 sec.
 			           |Minimum job issue time: %4 sec.
-			           |Maximum job issue time: %5 sec.';"),
+			           |Maximum job issue time: %5 sec.';tr = 'Serbest akış bekleme süresi: %1 sn
+			           |
+			           |Verilen görev sayısı: %2
+			           |Görev verme süresi: %3 sn
+			           |Minimum görev verme süresi: %4 sn
+			           |Maksimum görev verme süresi: %5 sn'"),
 			SecondsFormat(FreeThreadWaitsTime),
 			CountFormat(Indicators.IssuedJobsCount),
 			SecondsFormat(JobsIssueTime),
@@ -16132,7 +16258,12 @@ Procedure RegisterMainThreadUpdateIndicators(Context)
 			           |Maximum time of processing job results: %3 sec.
 			           |
 			           |Threads with execution timeout exceeded: %4.
-			           |Abnormally terminated threads: %5.';"),
+			           |Abnormally terminated threads: %5.';tr = 'İş sonuçlarının işleme süresi: %1 sn
+			           |İş sonuçları için minimum işleme süresi: %2 sn
+			           |İş sonuçları için maksimum işleme süresi: %3 sn
+			           |
+			           |Yürütme zamanını aşan akış sayısı: %4
+			           |Acil durumla sonuçlanan akış sayısı: %5'"),
 			SecondsFormat(JobsResultsProcessingTime),
 			SecondsFormat(MinJobResultProcessingTime),
 			SecondsFormat(MaxJobResultProcessingTime),
@@ -16142,7 +16273,7 @@ Procedure RegisterMainThreadUpdateIndicators(Context)
 	Data = SessionDetails.Id;
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Indicators.Access update';",
+		NStr("en = 'Access management.Indicators.Access update';tr = 'Erişim kontrolü.Göstergeler.Erişim güncellemesi'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Information, , Data, Comment);
 		
@@ -16155,7 +16286,7 @@ Procedure RegisterActiveThreadUpdateIndicators(Context)
 	
 	NewJobsWaitTime = Indicators.NewJobsWaitTime / 1000;
 	
-	Comment = NStr("en = 'The session of the worker access update thread is completed.';");
+	Comment = NStr("en = 'The session of the worker access update thread is completed.';tr = 'Çalışan erişim güncellemesi iş parçacığının oturumu tamamlandı.'");
 	AddSessionOperationIndicatorsValues(Comment, Indicators, Context.CurrentSession);
 	
 	SessionDetails = Context.ParentSessionDetails; // See MainSessionDetails
@@ -16165,7 +16296,11 @@ Procedure RegisterActiveThreadUpdateIndicators(Context)
 		           |Main thread session started at: %2.
 		           |
 		           |Total pauses due to waiting for an available thread: %3.
-		           |Total time of waiting for new jobs: %4 sec.';"),
+		           |Total time of waiting for new jobs: %4 sec.';tr = 'Ana iş parçacığı oturum numarası: %1.
+		           |Ana iş parçacığı oturumunun başlangıcı: %2.
+		           |
+		           |Uygun iş parçacığı beklemeden kaynaklanan toplam duraklama: %3.
+		           |Toplam yeni iş bekleme süresi: %4 sn.'"),
 		SessionDetails.SessionNumber,
 		SessionDetails.SessionStarted,
 		CountFormat(Indicators.WaitsForNewJobsCount),
@@ -16175,7 +16310,7 @@ Procedure RegisterActiveThreadUpdateIndicators(Context)
 	Data = SessionDetails.Id;
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Indicators.Access update';",
+		NStr("en = 'Access management.Indicators.Access update';tr = 'Erişim kontrolü.Göstergeler.Erişim güncellemesi'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Information, , Data, Comment);
 		
@@ -16192,7 +16327,9 @@ Procedure AddSessionOperationIndicatorsValues(Comment, Indicators, SessionDetail
 	Comment = Comment + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Session ID: %1.
 		           |Session started at: %2.
-		           |Duration: %3 sec.';"),
+		           |Duration: %3 sec.';tr = 'Oturum numarası: %1
+		           |Oturum başlangıcı: %2
+		           |Çalışma süresi: %3 sn'"),
 		SessionDetails.SessionNumber,
 		SessionDetails.SessionStarted,
 		SecondsFormat(OperationTime));
@@ -16225,7 +16362,13 @@ Procedure AddJobsExecutionIndicatorsValues(Comment, Indicators)
 		           |Jobs retried due to errors: %3.
 		           |Total duration of retried jobs: %4 sec.
 		           |Jobs retried due to errors: %5.
-		           |Maximum retries for a single job: %6.';"),
+		           |Maximum retries for a single job: %6.';tr = 'Yapılan iş sayısı: %1.
+		           |İş yürütme süresi: %2 sn.
+		           |
+		           |Hatalar nedeni ile tekrarlanan iş sayısı: %3.
+		           |Hatalar nedeni tekrarlanan işler için yürütme süresi: %4 sn.
+		           |Hatalar nedeni ile işlerin tekrarlama sayısı: %5.
+		           |Hatalar nedeni ile belirli bir işin maksimum tekrarlama sayısı: %6.'"),
 		CountFormat(ExecutedJobsCount),
 		SecondsFormat(JobsExecutionTime),
 		CountFormat(Indicators.CountOfJobsWithRetriesDueToErrors),
@@ -16244,7 +16387,17 @@ Procedure AddJobsExecutionIndicatorsValues(Comment, Indicators)
 		           |- Jobs completed: %5.
 		           |- Total time: %6 sec.
 		           |- Minimum job duration: %7 sec.
-		           |- Maximum job duration: %8 sec.';"),
+		           |- Maximum job duration: %8 sec.';tr = 'Yığın alma  ve/veya küçük birim işleme işi:
+		           |- yürütülen iş sayısı: %1
+		           |- iş yürütme süresi: %2 sn
+		           |- minimum iş yürütme süresi: %3 sn
+		           |- maksimum iş yürütme süresi: %4 sn
+		           |
+		           |Yığın işleme işleri:
+		           |- yürütülen iş sayısı: %5
+		           |- iş yürütme süresi: %6 sn
+		           |-minimum iş yürütme süresi: %7 sn
+		           |- maksimum iş yürütme süresi: %8 sn'"),
 		CountFormat(Indicators.CompletedJobsWithGetBatchesCount),
 		SecondsFormat(JobsWithGettingBatchesExecutionTime),
 		SecondsFormat(JobsWithGettingBatchesMinExecutionTime),
@@ -16256,7 +16409,7 @@ Procedure AddJobsExecutionIndicatorsValues(Comment, Indicators)
 	
 	If ValueIsFilled(Indicators.ErrorsTextOnRetryAttempts) Then
 		Comment = Comment + Chars.LF + Chars.LF
-			+ NStr("en = 'Error messages upon retries:';")
+			+ NStr("en = 'Error messages upon retries:';tr = 'Yeniden yürütmeye çalışırken hata metinleri:'")
 			+ Chars.LF + Chars.LF + Indicators.ErrorsTextOnRetryAttempts;
 	EndIf;
 	
@@ -16305,7 +16458,10 @@ Function UpdateErrorTextWithContext(ErrorInfo, CommonUpdateParameters, ErrorToFi
 				NStr("en = 'Cannot update access keys
 				           |for the ""%1"" list data items (for external users)
 				           |due to:
-				           |%2';"),
+				           |%2';tr = '""%1"" listesi
+				           |veri öğeleri (harici kullanıcılar) için erişim anahtarları
+				           |şu nedenle güncellemedi:
+				           |%2'"),
 				String(CommonUpdateParameters.ListID),
 				ErrorPresentation);
 		Else
@@ -16313,7 +16469,10 @@ Function UpdateErrorTextWithContext(ErrorInfo, CommonUpdateParameters, ErrorToFi
 				NStr("en = 'Cannot update access keys
 				           |for the ""%1"" list data items (for users)
 				           |due to:
-				           |%2';"),
+				           |%2';tr = '""%1"" listesi 
+				           |veri öğeleri (kullanıcılar) için erişim anahtarları
+				           |şu nedenle güncellenemedi:
+				           |%2'"),
 				String(CommonUpdateParameters.ListID),
 				ErrorPresentation);
 		EndIf;
@@ -16325,7 +16484,10 @@ Function UpdateErrorTextWithContext(ErrorInfo, CommonUpdateParameters, ErrorToFi
 				NStr("en = 'Cannot update external user access keys
 				           |for the ""%1"" list
 				           |due to:
-				           |%2';"),
+				           |%2';tr = '""%1"" listesi için 
+				           |harici kullanıcı erişim anahtarları
+				           |şu nedenle güncellenemiyor:
+				           |%2'"),
 				String(CommonUpdateParameters.ListID),
 				ErrorPresentation);
 		Else
@@ -16333,14 +16495,17 @@ Function UpdateErrorTextWithContext(ErrorInfo, CommonUpdateParameters, ErrorToFi
 				NStr("en = 'Cannot update user access keys
 				           |for the ""%1"" list
 				           |due to:
-				           |%2';"),
+				           |%2';tr = '""%1"" listesi için 
+				           |kullanıcı erişim anahtarları 
+				           |şu nedenle güncellenemiyor:
+				           |%2'"),
 				String(CommonUpdateParameters.ListID),
 				ErrorPresentation);
 		EndIf;
 	EndIf;
 	
 	If ErrorToFix1 Then
-		ErrorText = NStr("en = 'A recoverable error occurred (the update continues automatically).';")
+		ErrorText = NStr("en = 'A recoverable error occurred (the update continues automatically).';tr = 'Kurtarılabilir bir hata oluştu (güncelleme otomatik olarak devam ediyor).'")
 			+ Chars.LF + ErrorText;
 	EndIf;
 	
@@ -16363,7 +16528,7 @@ Procedure RegisterAccessUpdateError(ErrorText, Context)
 	Data = SessionDetails.Id;
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Record-level access update';",
+		NStr("en = 'Access management.Record-level access update';tr = 'Erişim kontrolü. Kayıt seviyesinde erişim güncelleme'",
 			Common.DefaultLanguageCode()),
 		EventLogLevel.Error, , Data, ErrorText);
 	
@@ -17532,7 +17697,7 @@ Procedure SetDataKeyKind(Item, DataKeyKind)
 	Order = DataKeyKindOrder(DataKeyKind);
 	If Order = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid name of the data key order kind: ""%1"".';"), DataKeyKind);
+			NStr("en = 'Invalid name of the data key order kind: ""%1"".';tr = '""%1"" veri anahtarının sıra türü adı geçersiz'"), DataKeyKind);
 		Raise ErrorText;
 	EndIf;
 	Item.Insert("DataKeyKind", DataKeyKind);
@@ -19344,10 +19509,10 @@ Procedure UpdateSetsOfOneUserInCatalog(DataItems, ParametersOfUpdate)
 	
 	If ParametersOfUpdate.ForExternalUsers Then
 		SetItemsType = Catalogs.ExternalUsers.EmptyRef();
-		ItemPresentation = NStr("en = 'External user';", Common.DefaultLanguageCode());
+		ItemPresentation = NStr("en = 'External user';tr = 'Harici kullanıcı'", Common.DefaultLanguageCode());
 	Else
 		SetItemsType = Catalogs.Users.EmptyRef();
-		ItemPresentation = NStr("en = 'User';", Common.DefaultLanguageCode());
+		ItemPresentation = NStr("en = 'User';tr = 'Kullanıcı'", Common.DefaultLanguageCode());
 	EndIf;
 	
 	For Each String In DataItems Do
@@ -19867,18 +20032,18 @@ Procedure UpdateGroupsSetsAssingedToUsersInCatalog(DataItems,
 	If IsAssignedAccessGroupsSetsUpdate Then
 		SetFieldName = "AccessGroupsSet";
 		SetItemsType = Catalogs.AccessGroups.EmptyRef();
-		GroupsItemsPresentation = NStr("en = 'Access groups';",
+		GroupsItemsPresentation = NStr("en = 'Access groups';tr = 'Erişim grupları'",
 			Common.DefaultLanguageCode());
 		
 	Else
 		SetFieldName = "UserGroupsSet";
 		If Not ForExternalUsers Then
 			SetItemsType = Catalogs.UserGroups.EmptyRef();
-			GroupsItemsPresentation = NStr("en = 'Users groups';",
+			GroupsItemsPresentation = NStr("en = 'Users groups';tr = 'Kullanıcı grupları'",
 				Common.DefaultLanguageCode());
 		Else
 			SetItemsType = Catalogs.ExternalUsersGroups.EmptyRef();
-			GroupsItemsPresentation = NStr("en = 'External user groups';",
+			GroupsItemsPresentation = NStr("en = 'External user groups';tr = 'Harici kullanıcı grupları'",
 				Common.DefaultLanguageCode());
 		EndIf;
 	EndIf;
@@ -21331,7 +21496,8 @@ Procedure WriteObjectsAccessKeys(ParametersOfUpdate, Context)
 		TablesTypesByNames = AccessManagementInternalCached.LanguageSyntax().TablesTypes.ByNames;
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot update the access key for object ""%1"" with type ""%2"".
-			           |Type ""%3"" is not a member of ""%4"" type collection.';"),
+			           |Type ""%3"" is not a member of ""%4"" type collection.';tr = '""%2"" türündeki ""%1"" nesnesi için erişim anahtarı güncellenemiyor.
+			           |""%3"" türü, ""%4"" tür koleksiyonunun üyesi değil.'"),
 			String(Context.ObjectsAccessKeysDetails[0].CurrentRef),
 			String(TypeOf(Context.ObjectsAccessKeysDetails[0].CurrentRef)),
 			RefTypeName1(ParametersOfUpdate.List, TablesTypesByNames),
@@ -21701,7 +21867,9 @@ Procedure CheckAccessKeyValueType(KeyDetails, AllowedValuesTypes, ParametersOfUp
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Update of access value keys for the ""%3"" list:
 						           |cannot save value ""%1,"" as its type ""%2""
-						           |is not specified in type collection ""%4"".';"),
+						           |is not specified in type collection ""%4"".';tr = '""%3"" listesi için erişim değeri anahtarlarının güncellenmesi:
+						           |""%1"" değeri kaydedilemiyor çünkü ""%2"" türü, 
+						           |""%4"" tür koleksiyonunda belirtilmemiş.'"),
 						String(Value),
 						String(TypeOf(Value)),
 						ParametersOfUpdate.List,
@@ -23801,7 +23969,7 @@ Function CalculatedCondition(Context, Condition, RootNode = False)
 		
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot calculate the access key rights as node ""%1"" is not supported.';"),
+			NStr("en = 'Cannot calculate the access key rights as node ""%1"" is not supported.';tr = 'Erişim anahtarı hakları hesaplanırken, ünite desteklenmiyor ""%1"".'"),
 			Condition.Node);
 		Raise ErrorText;
 	EndIf;
@@ -24601,16 +24769,16 @@ EndFunction
 // For the RegisterAccessUpdatePlanning procedure.
 Procedure RegisterAccessUpdatePlanningInLog(Lists, PlanningParameters)
 	
-	CommentForLog = NStr("en = 'Source';", Common.DefaultLanguageCode())
+	CommentForLog = NStr("en = 'Source';tr = 'Kaynak'", Common.DefaultLanguageCode())
 		+ ": " + PlanningParameters.LongDesc + Chars.LF;
 	
 	If Lists.Count() > 1 Then
 		CommentForLog = CommentForLog
-			+ NStr("en = 'Lists';", Common.DefaultLanguageCode()) + ":"
+			+ NStr("en = 'Lists';tr = 'Listeler'", Common.DefaultLanguageCode()) + ":"
 			+ Chars.LF + Chars.Tab + StrConcat(Lists, Chars.LF + Chars.Tab);
 	Else
 		CommentForLog = CommentForLog
-			+ NStr("en = 'List';", Common.DefaultLanguageCode());
+			+ NStr("en = 'List';tr = 'Liste'", Common.DefaultLanguageCode());
 		
 		CommentForLog = CommentForLog + " = " + Lists[0];
 	EndIf;
@@ -24670,7 +24838,7 @@ Procedure RegisterAccessUpdatePlanningInLog(Lists, PlanningParameters)
 	EndIf;
 	
 	Try
-		Raise NStr("en = 'Call stack';");
+		Raise NStr("en = 'Call stack';tr = 'Çağrı yığını'");
 	Except
 		CallStack = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 	EndTry;
@@ -24678,7 +24846,7 @@ Procedure RegisterAccessUpdatePlanningInLog(Lists, PlanningParameters)
 	CommentForLog = CommentForLog + Chars.LF + Chars.LF + CallStack;
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Indicators.Schedule access update';",
+		NStr("en = 'Access management.Indicators.Schedule access update';tr = 'Erişim yönetimi.Göstergeler.Erişim güncelleme planlaması'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Information, ,
 		LeadingObject,
@@ -24709,7 +24877,7 @@ Function LeadingObjectPointerDetails(Pointer, PlanningParameters)
 		If RefsTypes.Get(TypeOf(FilterElement.Value)) <> Undefined Then
 			ValueDescription = GetURL(FilterElement.Value);
 		ElsIf TypeOf(FilterElement.Value) = Type("Undefined") Then
-			ValueDescription = NStr("en = 'Undefined';");
+			ValueDescription = NStr("en = 'Undefined';tr = 'Tanımlanmamış'");
 		Else
 			ValueDescription = Format(FilterElement.Value, "NZ=0; DE='01.01.0001 00:00:00'");
 		EndIf;
@@ -25097,7 +25265,8 @@ Function ListPropertiesAsLeadingOne(FullName, TransactionID = Undefined, Repeate
 	If RepeatedCall Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot prepare properties of the leading ""%1"" list
-			           |due to the invalid state of access restriction parameters.';"),
+			           |due to the invalid state of access restriction parameters.';tr = 'Erişim kısıtlama ayarlarının hatalı durumu 
+			           |nedeniyle ""%1"" liste özellikleri ana olarak hazırlanamadı.'"),
 			FullName);
 		Raise ErrorText;
 	EndIf;
@@ -25361,7 +25530,8 @@ Procedure FillRestrictionParameters(FullName, TransactionID, Parameters,
 		If RepeatedCall Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot update access restriction parameters of the ""%1"" list.
-				           |The string of properties of the parameters version that is the source for calculating the hash is unstable.';"),
+				           |The string of properties of the parameters version that is the source for calculating the hash is unstable.';tr = 'Karma toplamı hesaplamak için parametrelerin sürümünün kararsız özellik dizesi nedeniyle ""%1"" 
+				           |liste erişim kısıtlaması ayarları güncellenemedi.'"),
 				FullName);
 			Raise ErrorText;
 		EndIf;
@@ -25670,7 +25840,8 @@ Function AccessRestrictionError(CommonContext, FullName)
 			Else
 				ErrorTextForUsers = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot generate access restriction parameters for users. Reason:
-					           |%1';"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
+					           |%1';tr = 'Kullanıcılar için erişim kısıtlaması parametreleri şu nedenle oluşturulamadı:
+					           |%1'"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			EndIf;
 		EndTry;
 		
@@ -25688,7 +25859,9 @@ Function AccessRestrictionError(CommonContext, FullName)
 					ErrorTextForUsers = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot generate query texts based on users'' access restriction parameters.
 						           |Reason:
-						           |%1';"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
+						           |%1';tr = 'Kullanıcılar için erişim kısıtlaması parametrelerine bağlı
+						           |sorgu metinleri şu nedenle oluşturulamadı:
+						           |%1'"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
 				EndIf;
 			EndTry;
 		EndIf;
@@ -25719,7 +25892,8 @@ Function AccessRestrictionError(CommonContext, FullName)
 			Else
 				ErrorTextForExternalUsers = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot generate access restriction parameters for external users. Reason:
-					           |%1';"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
+					           |%1';tr = 'Harici kullanıcılar için erişim kısıtlaması parametreleri şu nedenle oluşturulamadı:
+					           |%1'"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			EndIf;
 		EndTry;
 		
@@ -25737,7 +25911,9 @@ Function AccessRestrictionError(CommonContext, FullName)
 					ErrorTextForExternalUsers = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot generate query texts based on access restriction parameters of external users.
 						           |Reason:
-						           |%1';"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
+						           |%1';tr = 'Harici kullanıcılar için erişim kısıtlaması parametrelerine bağlı
+						           |sorgu metinleri şu nedenle oluşturulamadı:
+						           |%1'"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
 				EndIf;
 			EndTry;
 		EndIf;
@@ -25963,7 +26139,7 @@ Procedure SetImplementationSettings(ImplementationSettings, Data, TablesTypesByN
 				RegisterField = RegisterDimensions.Find(FieldName);
 				TypeDescription = ?(RegisterField = Undefined, New TypeDescription, RegisterField.Type);
 				TypesList = TypesList + ?(TypesList = "", "", Chars.LF)
-					+ NStr("en = '- for dimension';") + " " + FieldName + ":" + Chars.LF
+					+ NStr("en = '- for dimension';tr = '- ölçüm için'") + " " + FieldName + ":" + Chars.LF
 					+ "	" + TextWithIndent(TypesListFromArray(FieldDetails.Type.Types(),
 						True, TablesTypesByNames, TypeDescription), "	");
 				FieldNumber = FieldNumber + 1;
@@ -25979,7 +26155,7 @@ Procedure SetImplementationSettings(ImplementationSettings, Data, TablesTypesByN
 		AlreadyAdded = Metadata.Catalogs[NameParts[0]].GetPredefinedNames().Find(NameParts[1]) <> Undefined;
 		ImplementationSettings.Insert("PredefinedID",
 			New Structure("CatalogName, PredefinedItemName", NameParts[0],
-				 "- " + NameParts[1] + ?(AlreadyAdded, " (" + NStr("en = 'already added';") + ")", "")));
+				 "- " + NameParts[1] + ?(AlreadyAdded, " (" + NStr("en = 'already added';tr = 'zaten eklendi'") + ")", "")));
 		Break;
 	EndDo;
 	
@@ -26020,7 +26196,7 @@ Function TypesListFromArray(TypesNames, RefsTypes, TablesTypesByNames, TypeDescr
 		TypesList = TypesList + ?(TypesList = "", "", Chars.LF) + "- " + TypeName;
 		
 		If TypeDescription.ContainsType(Type) Then
-			TypesList = TypesList + " (" + NStr("en = 'already added';") + ")";
+			TypesList = TypesList + " (" + NStr("en = 'already added';tr = 'zaten eklendi'") + ")";
 		EndIf;
 	EndDo;
 	
@@ -26082,7 +26258,8 @@ Procedure CheckRestrictionForUsersKind(Context, Result, ForExternalUsers, Additi
 			Result.RestrictionParametersGenerationError =
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot generate access restriction parameters. Reason:
-					           |%1';"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
+					           |%1';tr = 'Erişim kısıtlaması parametreleri şu nedenle oluşturulamadı:
+					           |%1'"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		EndIf;
 		Context.DependenciesAccountingAvailable = False;
 	EndTry;
@@ -26108,7 +26285,8 @@ Procedure CheckRestrictionForUsersKind(Context, Result, ForExternalUsers, Additi
 				Result.QueriesTextsGenerationError =
 					StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot generate query texts based on access restriction parameters. Reason:
-						           |%1';"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
+						           |%1';tr = 'Erişim kısıtlaması parametrelerine bağlı sorgu metinleri şu nedenle oluşturulamadı:
+						           |%1'"), ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			EndIf;
 			Context.DependenciesAccountingAvailable = False;
 		EndTry;
@@ -26231,7 +26409,13 @@ Function DataRestrictionDetails(CommonContext, FullName, WithoutCallingException
 				           |Access restriction of this list is misspecified
 				           |in manager module of procedure ""%4"". Reason:
 				           |
-				           |%5';"),
+				           |%5';tr = '""%1"", ""%3"" genel modülünün 
+				           |""%2"" prosedüründe erişim kısıtlamalı liste olarak belirtilmiş.
+				           |
+				           |Bu listenin erişim kısıtlaması 
+				           |yönetici modülünün ""%4"" prosedüründe yanlış belirtilmiş. Sebep:
+				           |
+				           |%5'"),
 				FullName,
 				"OnFillListsWithAccessRestriction",
 				"AccessManagementOverridable",
@@ -26256,7 +26440,13 @@ Function DataRestrictionDetails(CommonContext, FullName, WithoutCallingException
 				           |Access restriction of this list is misspecified
 				           |in procedure ""%5"" of common module ""%4"". Reason:
 				           |
-				           |%6';"),
+				           |%6';tr = '""%1"", ""%3"" genel modülünün 
+				           |""%2"" prosedüründe erişim kısıtlamalı liste olarak belirtilmiş.
+				           |
+				           |Bu listenin erişim kısıtlaması 
+				           |""%4""genel modülünün ""%5"" prosedüründe yanlış belirtilmiş. Sebep:
+				           |
+				           |%6'"),
 				FullName,
 				"OnFillListsWithAccessRestriction",
 				"AccessManagementOverridable",
@@ -26298,7 +26488,16 @@ Function DataRestrictionDetails(CommonContext, FullName, WithoutCallingException
 				           |Unlike registers, document journals only support
 				           |restrictions by owner without writing access keys:
 				           |
-				           |%5';"),
+				           |%5';tr = '""%1"", ""%3"" genel modülünün ""%2""
+				           |prosedüründe erişim kısıtlamalı liste olarak belirtilmiş.
+				           |
+				           | Bu listenin erişim kısıtlaması 
+				           |yönetici modülünün ""%4"" prosedüründe yanlış belirtilmiş. Sebep:
+				           |
+				           |Kayıtların aksine, belge günlükleri erişim anahtarlarını yazmadan sadece
+				           |sahibe göre kısıtlamalar desteklemektedir:
+				           |
+				           |%5'"),
 				FullName,
 				"OnFillListsWithAccessRestriction",
 				"AccessManagementOverridable",
@@ -26315,7 +26514,16 @@ Function DataRestrictionDetails(CommonContext, FullName, WithoutCallingException
 				           |Unlike registers, document journals only support
 				           |restrictions by owner without writing access keys:
 				           |
-				           |%6';"),
+				           |%6';tr = '""%3"" genel modülünün ""%2"" prosedüründe
+				           |""%1"" erişim kısıtlama listesi olarak belirtilmiştir. 
+				           |
+				           | ""%4"" genel modülünün ""%5"" prosedüründe
+				           |bu listenin erişim kısıtlaması yanlış belirtilmiştir. Sebep: 
+				           |
+				           |Kayıtların aksine, belge günlükleri
+				           |erişim anahtarlarını yazmadan sadece sahibine göre kısıtlama destekliyor:
+				           |
+				           |%6'"),
 				FullName,
 				"OnFillListsWithAccessRestriction",
 				"AccessManagementOverridable",
@@ -26673,23 +26881,23 @@ Function NewAccessRestrictionParametersVersion(CommonContext, HasChanges = False
 			ProcedureParameters.Add(RecordingOptionsInTheStore);
 			CurrentSession = GetCurrentInfoBaseSession();
 			JobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Access management: Save a new version of access restriction parameters (from the %1 session started on %2)';",
+				NStr("en = 'Access management: Save a new version of access restriction parameters (from the %1 session started on %2)';tr = 'Erişim yönetimi: Erişim kısıtlama parametrelerinin yeni bir sürümünü kaydet (%2 tarihli %1 oturumdan)'",
 					Common.DefaultLanguageCode()),
 				Format(CurrentSession.SessionNumber, "NG="),
 				Format(CurrentSession.SessionStarted, "DLF=DT"));
 			BackgroundJob = BackgroundJobs.Execute(ProcedureName, ProcedureParameters,, JobDescription);
 			BackgroundJob = BackgroundJob.WaitForExecutionCompletion(60);
 			Result = GetFromTempStorage(ResultAddress);
-			ErrorTitle = NStr("en = 'Couldn''t save a new version of access restriction parameters due to:';");
+			ErrorTitle = NStr("en = 'Couldn''t save a new version of access restriction parameters due to:';tr = 'Erişim kısıtlama ayarlarının yeni bir sürümü şu sebeple yazılamadı:'");
 			If BackgroundJob.State = BackgroundJobState.Active Then
 				BackgroundJob.Cancel();
 				ErrorText = ErrorTitle + Chars.LF
-					+ NStr("en = 'Background job was in progress for more than 60 seconds. Therefore, it is canceled.';");
+					+ NStr("en = 'Background job was in progress for more than 60 seconds. Therefore, it is canceled.';tr = 'Arka plan işinin yürütülmesi 60 saniyeden fazla sürdüğünden iptal edildi.'");
 				Raise ErrorText;
 			EndIf;
 			If BackgroundJob.State = BackgroundJobState.Canceled Then
 				ErrorText = ErrorTitle + Chars.LF
-					+ NStr("en = 'Background job is canceled by administrator.';");
+					+ NStr("en = 'Background job is canceled by administrator.';tr = 'Arka plan görevi yönetici tarafından iptal edildi.'");
 				Raise ErrorText;
 			EndIf;
 			If BackgroundJob.State <> BackgroundJobState.Completed Then
@@ -26698,13 +26906,13 @@ Function NewAccessRestrictionParametersVersion(CommonContext, HasChanges = False
 						+ ErrorProcessing.DetailErrorDescription(BackgroundJob.ErrorInfo);
 				Else
 					ErrorText = ErrorTitle + Chars.LF
-						+ NStr("en = 'Background job crashed.';");
+						+ NStr("en = 'Background job crashed.';tr = 'Arka plan işi acil durum ile tamamlandı.'");
 				EndIf;
 				Raise ErrorText;
 			EndIf;
 			If TypeOf(Result) <> Type("Structure") Then
 				ErrorText = ErrorTitle + Chars.LF
-					+ NStr("en = 'Background job did not return the result.';");
+					+ NStr("en = 'Background job did not return the result.';tr = 'Arka plan görevi sonuç vermedi.'");
 				Raise ErrorText;
 			EndIf;
 			If Result.SessionRestartRequired Then
@@ -26810,7 +27018,7 @@ Procedure WriteANewVersionOfTheAccessRestrictionParametersInTheBackground(Result
 		If Parameters.AccessID = AccessID() Then
 			Result.VersionDetails = DescriptionOfTheNewVersionOfAccessRestrictionParameters(Parameters);
 		Else
-			Result.ErrorText = NStr("en = 'Error verifying access.';");
+			Result.ErrorText = NStr("en = 'Error verifying access.';tr = 'Erişim kontrol hatası.'");
 		EndIf;
 	Except
 		ErrorInfo = ErrorInfo();
@@ -27060,7 +27268,10 @@ Procedure CheckWhetherTheMetadataIsUpToDate() Export
 				NStr("en = 'Cannot check or update access rights due to:
 				           |%1
 				           |
-				           |Retry the operation in a minute. If the issue persists, restart the session.';"),
+				           |Retry the operation in a minute. If the issue persists, restart the session.';tr = 'Erişim yetkileri şu sebeple kontrol edilemedi ya da yenilenemedi:
+				           |%1
+				           |
+				           |İşlemi bir dakika sonra tekrarlayın, eğer hata devam ederse, oturumu yeniden başlatın.'"),
 						   ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 			Raise ErrorText;
 		EndTry;
@@ -27120,12 +27331,14 @@ Procedure DoLogParametersMismatch(Record, Comment, IsError = False)
 		Return;
 	EndIf;
 	
-	EventName = NStr("en = 'Access management.Access restriction parameters.Mismatch';",
+	EventName = NStr("en = 'Access management.Access restriction parameters.Mismatch';tr = 'Erişim yönetimi.Erişim kısıtlama parametreleri.Uyuşmazlık'",
 		Common.DefaultLanguageCode());
 	TitleTemplate1 =
 		NStr("en = 'There is a discrepancy in the recorded access restriction parameters
 		           |Version %1, Creation date %2, Hash: %3,
-		           |Persistent parameter hash: %4';");
+		           |Persistent parameter hash: %4';tr = 'Kaydedilen erişim kısıtlaması parametrelerinde uyuşmazlık var
+		           |Sürüm %1, Oluşturma tarihi %2, Karma %3, 
+		           |Kalıcı parametre karması: %4'");
 	
 	Title = StringFunctionsClientServer.SubstituteParametersToString(TitleTemplate1,
 		Record.Version,
@@ -27188,7 +27401,7 @@ Procedure RegisterAccessRestrictionParametersVersionString(Record, VersionString
 	Comment = StrConcat(Content, Chars.LF);
 	
 	WriteLogEvent(
-		NStr("en = 'Access management.Access restriction parameters.Version line';",
+		NStr("en = 'Access management.Access restriction parameters.Version line';tr = 'Erişim yönetimi.Erişim kısıtlama parametreleri.Sürüm satırı'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Information,
 		Metadata.InformationRegisters.AccessRestrictionParameters,,
@@ -28422,7 +28635,12 @@ Procedure SetDependentListsLevel(LeadingListProperties1, ListsProperties, Previo
 				           |contain a circular dependency if function
 				           |""%3"" or ""%4"" is present in one or several lists
 				           |included in the cycle:
-				           |%5';"),
+				           |%5';tr = '""%3"" veya ""%4"" fonksiyonu döngünün içerdiği bir veya birkaç 
+				           |listelerde mevcutsa,
+				           |yönetici modüllerinin veya ""%2"" genel modülünün
+				           |""%1"" prosedürlerinde belirtilen erişim kısıtlamaları
+				           |döngüsel bağlılık içermektedir:
+				           |%5'"),
 				"OnFillAccessRestriction",
 				"AccessManagementOverridable",
 				"ObjectReadingAllowed",
@@ -28480,7 +28698,8 @@ Procedure SetOptimizationByOwnerField(DependentListProperties, ListsProperties, 
 						"ByOwnerWithoutSavingAccessKeysForExternalUsers", "ByOwnerWithoutSavingAccessKeys");
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot apply the optimization option ""%1"" as it is required
-						           |for the dependent list ""%2"".';"),
+						           |for the dependent list ""%2"".';tr = 'Bir ""%1"" kısıtlama optimizasyon işareti belirlendi, ancak bu nedenle bağlı ""%2"" liste için gerekli olduğu için bu 
+						           |optimizasyon yapılamaz.'"),
 						OptimizationFlagName,
 						DependentListProperties.FullName);
 					ErrorContext = New Structure("ListsWithRestriction, RestrictionsDetails1");
@@ -28654,7 +28873,13 @@ Procedure FillParametersMismatchForLogging(ListsWithoutIntegration, InfoForLoggi
 				           |types available for fields (%4) in the
 				           |	%5 access restriction in the dimensions of the
 				           |	%2
-				           |information register will be unavailable.';"),
+				           |information register will be unavailable.';tr = '%1 tablosunda, 
+				           |	%2
+				           |bilgi kaydının boyutlarında 
+				           |	%5 erişim kısıtlamasında alanlar (%4) için yeterli
+				           |	- %3
+				           |tür olmayan satırlar kullanılamayacak.
+				           |'"),
 				RegisterDescription.FullName,
 				RegisterDescription.SeparateKeysRegisterName,
 				StrConcat(RegisterDescription.MissingTypes, "," + Chars.LF + "	- "),
@@ -28666,7 +28891,11 @@ Procedure FillParametersMismatchForLogging(ListsWithoutIntegration, InfoForLoggi
 				           |there are not enough
 				           |	- %3
 				           |types available for fields (%4) in the
-				           |	%5 access restriction in the %2 type collection will be unavailable.';"),
+				           |	%5 access restriction in the %2 type collection will be unavailable.';tr = '%1 tablosunda, %2 tür koleksiyonunda 
+				           |	%5 erişim kısıtlamasında alanlar (%4) için yeterli
+				           |	- %3
+				           |tür olmayan satırlar kullanılamayacak.
+				           |'"),
 				RegisterDescription.FullName,
 				"RegisterAccessKeysRegisterField",
 				StrConcat(RegisterDescription.MissingTypes, "," + Chars.LF + "	- "),
@@ -28718,7 +28947,10 @@ Function ParametersMismatchDetails(ListsWithoutIntegration)
 			NStr("en = 'The types of the following tables are not specified in the %1 type collection,
 			           | so their rows will be unavailable:
 			           |
-			           |%2';"),
+			           |%2';tr = 'Aşağıdaki tabloların türleri %1 tür koleksiyonunda belirtilmediğinden
+			           | satırları kullanılamıyor:
+			           |
+			           |%2'"),
 			"AccessKeysValuesOwner",
 			StrConcat(Lists.UnloadValues(), Chars.LF)));
 	EndIf;
@@ -28731,7 +28963,12 @@ Function ParametersMismatchDetails(ListsWithoutIntegration)
 			           |lines containing references to objects of these types
 			           |will be unavailable in the fields that are used to restrict access to them:
 			           |
-			           |%2';"),
+			           |%2';tr = 'Aşağıdaki ana tabloların türleri %1 tür koleksiyonunda belirtilmediğinden,
+			           |bunlara bağlı tablolarda (parantez içinde),
+			           |bu tür nesnelere referans içeren satırlar 
+			           |bunlara erişimi kısıtlamak için kullanılan alanlarda kullanılamıyor:
+			           |
+			           |%2'"),
 			"AccessKeysValuesOwner",
 			StrConcat(LeadingLists.UnloadValues(), Chars.LF)));
 	EndIf;
@@ -29064,7 +29301,9 @@ Function TheKeyOfTheTable(FullName, TypeCollectionName = Undefined, TablesTypesB
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Unknown non-reference metadata object
 			           |""%1""
-			           |with record-level restriction support.';"), FullName);
+			           |with record-level restriction support.';tr = 'Bilinmeyen kayıt seviyesinde kısıtlama desteklemeli bağlantı dışı 
+			           |""%1""
+			           |metaveri nesnesi.'"), FullName);
 		Raise ErrorText;
 	EndIf;
 	
@@ -30649,7 +30888,8 @@ Procedure ConfigureCreationOfAccessKeyForDependentListsWithoutKeys(Result)
 	If Result.FieldsComposition <> 0 Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Field %2 was calculated incorrectly for list %1.
-				|Value %3 is specified, 0 was expected.';"),
+				|Value %3 is specified, 0 was expected.';tr = '%1 listesi için %2 alanı yanlış hesaplandı.
+				| Belirtilen değer %3, beklenen değer 0.'"),
 			Result.List, "FieldsComposition", Format(Result.FieldsComposition, "NZ=0; NG="));
 		Raise ErrorText;
 	EndIf;
@@ -30768,7 +31008,7 @@ Procedure AddVersionItem(Context, FieldName, Value) Export
 		
 		Context.VersionProperties.Add(FieldName + " = " + DataStringForHashing(Value));
 	Else
-		ErrorText = NStr("en = 'The access restriction version''s data type is invalid.';");
+		ErrorText = NStr("en = 'The access restriction version''s data type is invalid.';tr = 'Erişim kısıtlama sürümü için yanlış veri türü.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -30888,7 +31128,8 @@ Procedure FillNewBasicFieldsDetails(Result, Context)
 		// Increasing the quantity of basic fields in a separate register.
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The number of basic fields in the %1 information register
-			           |exceeds the limit: %2.';"),
+			           |exceeds the limit: %2.';tr = 'Bilgi kaydındaki %1
+			           |referans alanların sayısı izin verilen maksimum sayıyı aşıyor: %2'"),
 			?(SeparateKeysRegisterName = "", "AccessKeysForRegisters", SeparateKeysRegisterName),
 			BasicFields.MaxQuantity);
 		
@@ -31017,11 +31258,13 @@ Procedure FillInTheRestrictionOnTheObjectOwnerBeforeSimplifying(Result, Context)
 				If ValueIsFilled(UpdateRestriction) Then
 					ErrorTemplate =
 						NStr("en = 'The optimization option %1 is set
-						           |but the specified read and update restriction is applied outside of the function ""%2"".';");
+						           |but the specified read and update restriction is applied outside of the function ""%2"".';tr = '""%1"" Kısıtlama optimizasyon işareti belirlendi, 
+						           |ancak belirtilen değişiklik okuma kısıtlaması tek ""%2"" işlevi tarafından temsil edilmedi.'");
 				Else
 					ErrorTemplate =
 						NStr("en = 'The optimization option %1 is set
-						           |but the specified read restriction is applied outside of the function ""%2"".';");
+						           |but the specified read restriction is applied outside of the function ""%2"".';tr = 'Kısıtlama optimizasyon işareti belirlendi ""%1"", 
+						           |ancak belirtilen okuma kısıtlaması tek ""%2"" işlevi tarafından temsil edilmedi.'");
 				EndIf;
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 					OptimizationFlagName, "ObjectReadingAllowed");
@@ -31043,7 +31286,9 @@ Procedure FillInTheRestrictionOnTheObjectOwnerBeforeSimplifying(Result, Context)
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The optimization option %1 is set
 						           |but the owner field is not the only parameter of the %2 function.
-						           |';"),
+						           |';tr = '%1 optimizasyon seçeneği ayarlandı 
+						           |fakat sahip alanı %2 fonksiyonunun tek parametresi değil.
+						           |'"),
 						OptimizationFlagName,
 						"ObjectReadingAllowed");
 					ErrorText = ErrorTextWithTitle(ErrorText, Context);
@@ -31073,7 +31318,9 @@ Procedure FillInTheRestrictionOnTheObjectOwnerBeforeSimplifying(Result, Context)
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The optimization option ""%1"" is set
 					           |but the specified update restriction is applied outside of the
-					           |""%2"" or ""%3"" function.';"),
+					           |""%2"" or ""%3"" function.';tr = 'Kısıtlama optimizasyon işareti belirlendi ""%1"",
+					           |ancak belirtilen değişiklik kısıtlaması tek 
+					           |""%2"" ya da ""%3"" işlevi tarafından temsil edilmedi.'"),
 					OptimizationFlagName, "ObjectReadingAllowed", "ObjectUpdateAllowed");
 				ErrorText = ErrorTextWithTitle(ErrorText, Context);
 				If Context.Property("ErrorOnCallException") Then
@@ -31093,7 +31340,9 @@ Procedure FillInTheRestrictionOnTheObjectOwnerBeforeSimplifying(Result, Context)
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The optimization option %1 is set
 						           |but the owner field is not the only parameter of the %2 function.
-						           |';"),
+						           |';tr = '%1 optimizasyon seçeneği ayarlandı 
+						           |fakat sahip alanı %2 fonksiyonunun tek parametresi değil.
+						           |'"),
 						OptimizationFlagName,
 						UpdateRestriction.Node);
 					ErrorText = ErrorTextWithTitle(ErrorText, Context);
@@ -31114,7 +31363,8 @@ Procedure FillInTheRestrictionOnTheObjectOwnerBeforeSimplifying(Result, Context)
 				If RestrictionByOwnerRequired Then
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The optimization option %1 is set
-						           |but the owner field value is not the same in the read and update restrictions.';"),
+						           |but the owner field value is not the same in the read and update restrictions.';tr = 'Kısıtlama optimizasyon işareti belirlendi ""%1"",
+						           |ancak sahibin alanı okuma ve değişiklik kısıtlamalarında uyumlu değildir.'"),
 						OptimizationFlagName,
 						UpdateRestriction.Node);
 					ErrorText = ErrorTextWithTitle(ErrorText, Context);
@@ -31140,7 +31390,9 @@ Procedure FillInTheRestrictionOnTheObjectOwnerBeforeSimplifying(Result, Context)
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The optimization option %1 is set
 				           |but the specified restriction does not contain any of the following functions:
-				           |%2, %3.';"),
+				           |%2, %3.';tr = 'Kısıtlama optimizasyon işareti belirlendi ""%1"",
+				           |ancak belirtilen değişiklik kısıtlaması 
+				           |""%2"", ""%3"" işlevlerden hiçbirini içermiyor.'"),
 				OptimizationFlagName, "ObjectReadingAllowed", "ObjectUpdateAllowed");
 			ErrorText = ErrorTextWithTitle(ErrorText, Context);
 			If Context.Property("ErrorOnCallException") Then
@@ -31227,7 +31479,9 @@ Function PossibleRestrictionOnTheObjectOwner(Condition, ThisIsALimitationOfTheCh
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'When filling in a possible owner object restriction
 		           |for the ""%1"" list,
-		           |the ""%2"" node is not supported.';"),
+		           |the ""%2"" node is not supported.';tr = '""%1""
+		           | listesi için nesne 
+		           |sahibine göre olası kısıtlama doldurulurken ""%2"" düğüm desteklenmiyor.'"),
 		Context.List,
 		Condition.Node);
 	
@@ -31300,7 +31554,8 @@ Procedure FillInTheRestrictionOnTheObjectOwnerAfterSimplification(Result, Contex
 			If RestrictionByOwnerRequired And FieldsProperties.Count() <> 0 Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The optimization option %1 is set
-					           |but the restriction includes multiple fields.';"),
+					           |but the restriction includes multiple fields.';tr = 'Kısıtlama optimizasyon işareti belirlendi ""%1"", 
+					           | ancak kısıtlamada kullanılan alanların sayısı bire eşittir.'"),
 					OptimizationFlagName);
 				ErrorText = ErrorTextWithTitle(ErrorText, Context);
 				If Context.Property("ErrorOnCallException") Then
@@ -31340,7 +31595,9 @@ Procedure FillInTheRestrictionOnTheObjectOwnerAfterSimplification(Result, Contex
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The optimization option %1 is selected.
 						           |However, you cannot write access keys for the following tables:
-						           |%2';"),
+						           |%2';tr = 'Kısıtlama optimizasyon işareti belirlendi ""%1"",
+						           | ancak aşağıdaki tablolar için erişim anahtarları kaydedilemez: 
+						           |%2'"),
 						OptimizationFlagName,
 						StrConcat(IncorrectTypes, Chars.LF));
 					ErrorText = ErrorTextWithTitle(ErrorText, Context);
@@ -31621,7 +31878,14 @@ Procedure FillFieldsAndAdditionalTablesGroups(Context)
 			           |These fields include:
 			           |- Fields of tabular sections.
 			           |- Fields of additional tables attached to the list.
-			           |- Header fields whose Access Values can have more than one Access Value Group.';"),
+			           |- Header fields whose Access Values can have more than one Access Value Group.';tr = 'Liste %1
+			           |erişimi kısıtlamasında, erişim anahtarındaki tek tek tablo kısımlarını gerektiren alanların sayısı, 
+			           |erişim anahtarındaki mevcut tablo kısımlarının sayısından daha fazladır.
+			           |
+			           |Bu alanlar şunları içerir: 
+			           |- tablo bölümleri alanları, 
+			           |- listeye eklenen ek tablolar alanları 
+			           |- erişim değeri birden fazla erişim değeri grubuna sahip olan başlık alanları.'"),
 			Context.List);
 		
 		If Context.Property("ErrorOnCallException") Then
@@ -31636,7 +31900,9 @@ Procedure FillFieldsAndAdditionalTablesGroups(Context)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'In the access restriction of the %1 list,
 			           |the number of list fields that are used in the access restriction
-			           |exceeds the limit of basic fields: %2.';"),
+			           |exceeds the limit of basic fields: %2.';tr = 'Liste erişimi %1
+			           |kısıtlamasında, erişim kısıtlamasında kullanılan liste alanı sayısı, 
+			           |izin verilen maksimum referans alanı sayısını aşmaktadır:%2.'"),
 			Context.List,
 			Context.BasicFields.MaxCount);
 		
@@ -31674,7 +31940,9 @@ Procedure FillFieldsAndAdditionalTablesGroups(Context)
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'In the access restriction of the %1 list,
 						           |the number of list fields that are used in the access restriction
-						           |exceeds the maximum allowed number: 15.';"),
+						           |exceeds the maximum allowed number: 15.';tr = 'Liste erişimi %1
+						           |kısıtlamasında, erişim kısıtlamasında kullanılan liste alanı sayısı, 
+						           |izin verilen maksimum referans alanı sayısını aşmaktadır: 15.'"),
 						Context.List);
 					If Context.Property("ErrorOnCallException") Then
 						Context.ErrorOnCallException.Text = ErrorText;
@@ -31715,7 +31983,9 @@ Procedure FillFieldsAndAdditionalTablesGroups(Context)
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In the access restriction of the %1 list,
 				           |the number of fields of a single tabular section that are used in the access restriction
-				           |exceeds the limit: %2.';"),
+				           |exceeds the limit: %2.';tr = '%1 listesi erişim 
+				           |kısıtlamasında, erişim kısıtlamasındaki kullanılan tek bir tablonun alan sayısı, 
+				           |şu limiti aşmaktadır: %2.'"),
 				Context.List,
 				AccessKeyDimensions.TabularSectionAttributesCount);
 			
@@ -31894,7 +32164,9 @@ Procedure FillRightCalculationStructure(CalculationCondition, Condition, Context
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot fill in the structure required for calculation of the %1 right to the access keys
 			           |of the ""%2"" list.
-			           |Node ""%3"" is not supported.';"),
+			           |Node ""%3"" is not supported.';tr = '''''%2'''' listesinin erişim anahtar 
+			           |hakları %1 hesaplama yapısı doldurulurken 
+			           | ünite ''''%3'''' desteklenmiyor.'"),
 			Context.NameOfRight,
 			Context.List,
 			Condition.Node);
@@ -31905,7 +32177,9 @@ Procedure FillRightCalculationStructure(CalculationCondition, Condition, Context
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot fill in the structure required for calculation of the %1 right to the access keys
 			           |of the ""%2"" list.
-			           |The field properties are not defined for node ""%3"".';"),
+			           |The field properties are not defined for node ""%3"".';tr = '""%2"" listesinin erişim anahtarlarına
+			           |%1 yetkisi hesaplaması için gereken yapı doldurulamadı.
+			           |""%3"" düğümü için alan özellikleri belirlenmemiştir.'"),
 			Context.NameOfRight,
 			Context.List,
 			Condition.Node);
@@ -32238,7 +32512,7 @@ Function ConnectionConditionText(AdditionalTable, Context,
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'No processing rule is defined for the ""%1"" node.';"), Condition.Node);
+		NStr("en = 'No processing rule is defined for the ""%1"" node.';tr = '""%1"" ünitenin işlemesi belirlenmemiştir'"), Condition.Node);
 	
 	Raise ErrorText;
 	
@@ -32374,7 +32648,12 @@ Procedure AddBasicField(Context, FieldNode, FieldProperties = Undefined, Additio
 					           |
 					           |It is not allowed if you use the shared information register ""%4"".
 					           |Either exclude simple types from the basic field types,
-					           |or create a separate register of access keys for this list.';"),
+					           |or create a separate register of access keys for this list.';tr = 'Liste erişim kısıtlamasında %1
+					           |referan alan %2 basit türler içerir: %3.
+					           |
+					           |Genel bilgi kaydı kullanılırken buna izin verilmez %4.
+					           |Ya basit türleri referans alan türlerinden hariç tutun 
+					           |ya da bu liste için ayrı bir erişim anahtarı kaydı oluşturun.'"),
 					Context.List,
 					BasicFieldName,
 					StrConcat(RestrictedTypes, ", "),
@@ -32839,7 +33118,9 @@ Function SimplifiedRestrictionCondition(Val Condition, Context, ConditionRoot = 
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot simplify the restriction for the %1 right
 				           |of the ""%2"" list.
-				           |The field properties are not defined for node ""%3"".';"),
+				           |The field properties are not defined for node ""%3"".';tr = '""%2""
+				           | listesinin %1
+				           | yetkinin kısıtlama koşulları basitleştirilirken ""%3"" ünite için alan koşulları belirlenmedi.'"),
 				Context.NameOfRight,
 				Context.List,
 				Condition.Node);
@@ -32877,7 +33158,9 @@ Function SimplifiedRestrictionCondition(Val Condition, Context, ConditionRoot = 
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot simplify the restriction for the %1 right
 			           |of the ""%2"" list.
-			           |Node ""%3"" is not supported.';"),
+			           |Node ""%3"" is not supported.';tr = '""%2""
+			           | listesinin %1
+			           | yetkinin kısıtlama koşulları basitleştirilirken ""%3"" ünite desteklenmiyor.'"),
 			Context.NameOfRight,
 			Context.List,
 			Condition.Node);
@@ -33006,7 +33289,9 @@ Function TheTypeOfAccessValuesUsed(Context, ValuesType)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An error occurred when calling function %1 of common module %2:
 			           |Access value
-			           | types in use are not filled in for table %3.';"),
+			           | types in use are not filled in for table %3.';tr = '%2 genel modülünün %1 işlev çağrısı hatası:
+			           |%3
+			           |tablosu için kullanılan erişim değerleri doldurulmadı.'"),
 			"TheTypeOfAccessValuesUsed",
 			"AccessManagementInternal",
 			Context.List);
@@ -38610,31 +38895,35 @@ Function ErrorsTextToCallException(FullName, ErrorsDescription, ForExternalUsers
 		If InManagerModule = Undefined Then
 			If ForExternalUsers Then
 				ErrorTitle = 
-					NStr("en = 'Cannot restrict external user access to the ""%1"" list.';");
+					NStr("en = 'Cannot restrict external user access to the ""%1"" list.';tr = '""%1"" listesine harici kullanıcı erişiminin kısıtlanmasında hata oluştu:'");
 			Else
 				ErrorTitle = 
-					NStr("en = 'Cannot restrict user access to the ""%1"" list.';");
+					NStr("en = 'Cannot restrict user access to the ""%1"" list.';tr = '""%1"" listesine kullanıcı erişiminin kısıtlanmasında hata oluştu:'");
 			EndIf;
 		ElsIf InManagerModule Then
 			If ForExternalUsers Then
 				ErrorTitle =
 					NStr("en = 'An error in restriction of external user access to the ""%1"" list
-					           |specified in procedure ""%2"" of the metadata object manager module:';");
+					           |specified in procedure ""%2"" of the metadata object manager module:';tr = 'Metaveri nesne yönetici modülünün ""%2"" prosedüründe 
+					           |belirtilen ""%1"" listesine harici kullanıcıların erişimi kısıtlanırken bir hata oluştu:'");
 			Else
 				ErrorTitle =
 					NStr("en = 'An error in restriction of user access to the ""%1"" list
-					           |specified in procedure ""%2"" of the metadata object manager module:';");
+					           |specified in procedure ""%2"" of the metadata object manager module:';tr = 'Metaveri nesne yönetici modülünün ""%2"" prosedüründe belirtilen ""%1""
+					           | listesine kullanıcıların erişimi kısıtlanırken bir hata oluştu:'");
 			EndIf;
 			Refinement = "OnFillAccessRestriction";
 		Else
 			If ForExternalUsers Then
 				ErrorTitle =
 					NStr("en = 'An error in restriction of external user access to the ""%1"" list
-					           |specified in procedure ""%2"":';");
+					           |specified in procedure ""%2"":';tr = '""%2"" prosedüründe belirtilen ""%1""
+					           | listesine harici kullanıcıların erişimi kısıtlanırken bir hata oluştu:'");
 			Else
 				ErrorTitle =
 					NStr("en = 'An error in restriction of user access to the ""%1"" list
-					           |specified in procedure ""%2"":';");
+					           |specified in procedure ""%2"":';tr = '""%2"" prosedüründe belirtilen ""%1""
+					           | listesine kullanıcıların erişimi kısıtlanırken bir hata oluştu:'");
 			EndIf;
 			Refinement = "AccessManagementOverridable.OnFillAccessRestriction";
 		EndIf;
@@ -38642,31 +38931,35 @@ Function ErrorsTextToCallException(FullName, ErrorsDescription, ForExternalUsers
 		If InManagerModule = Undefined Then
 			If ForExternalUsers Then
 				ErrorTitle = 
-					NStr("en = 'Cannot restrict external user access to the ""%1"" list.';");
+					NStr("en = 'Cannot restrict external user access to the ""%1"" list.';tr = '""%1"" listesine harici kullanıcı erişiminin kısıtlanmasında hata oluştu:'");
 			Else
 				ErrorTitle = 
-					NStr("en = 'Cannot restrict user access to the ""%1"" list.';");
+					NStr("en = 'Cannot restrict user access to the ""%1"" list.';tr = '""%1"" listesine kullanıcı erişiminin kısıtlanmasında hata oluştu:'");
 			EndIf;
 		ElsIf InManagerModule Then
 			If ForExternalUsers Then
 				ErrorTitle = 
 					NStr("en = 'Errors in restriction of external user access to the ""%1"" list
-					           |specified in procedure ""%2"" of the metadata object manager module:';");
+					           |specified in procedure ""%2"" of the metadata object manager module:';tr = 'Metaveri nesne yönetici modülünün ""%2"" prosedüründe 
+					           |belirtilen ""%1"" listesine harici kullanıcıların erişimi kısıtlanırken hatalar oluştu:'");
 			Else
 				ErrorTitle = 
 					NStr("en = 'Errors in restriction of user access to the ""%1"" list
-					           |specified in procedure ""%2"" of the metadata object manager module:';");
+					           |specified in procedure ""%2"" of the metadata object manager module:';tr = 'Metaveri nesne yönetici modülünün ""%2"" prosedüründe belirtilen ""%1""
+					           | listesine kullanıcıların erişimi kısıtlanırken hatalar oluştu:'");
 			EndIf;
 			Refinement = "OnFillAccessRestriction";
 		Else
 			If ForExternalUsers Then
 				ErrorTitle = 
 					NStr("en = 'Errors in restriction of external user access to the ""%1"" list
-					           |specified in procedure ""%2"":';");
+					           |specified in procedure ""%2"":';tr = '""%2"" prosedüründe belirtilen ""%1""
+					           | listesine harici kullanıcıların erişimi kısıtlanırken hatalar oluştu:'");
 			Else
 				ErrorTitle = 
 					NStr("en = 'Errors in restriction of user access to the ""%1"" list
-					           |specified in procedure ""%2"":';");
+					           |specified in procedure ""%2"":';tr = '""%2"" prosedüründe belirtilen ""%1""
+					           | listesine kullanıcıların erişimi kısıtlanırken hatalar oluştu:'");
 			EndIf;
 			Refinement = "AccessManagementOverridable.OnFillAccessRestriction";
 		EndIf;
@@ -38818,7 +39111,13 @@ Function AllowedTemplatesDetails()
 		           |2. Different read and update restrictions:
 		           |%2
 		           |3. Any of these two options with additional tables, for instance:
-		           |%3';"),
+		           |%3';tr = 'Kısıtlama, 4 seçenekten birinde 1-3 bölümden oluşabilir: 
+		           |1) Okuma ve değiştirmenin aynı kısıtlaması: 
+		           |%1
+		           |2) farklı okuma ve değiştirme kısıtlamaları: 
+		           |%2
+		           |3) ek tablolarla yukarıdaki seçeneklerden herhangi biri, örneğin :
+		           |%3'"),
 		Template1, Template2, Template3);
 	
 	Return LongDesc;
@@ -38987,7 +39286,7 @@ Function CharsetsTable(InternalData)
 		TableRow.Position = CharacterNumber;
 		TableRow.Kind = "InvalidChar";
 		TableRow.ErrorText   = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid character ""%1"" with code %2.';"), Char, CharCode(Char));
+			NStr("en = 'Invalid character ""%1"" with code %2.';tr = '%2 kodlu izin verilmeyen ""%1"" karakteri.'"), Char, CharCode(Char));
 	EndDo;
 	
 	If CharsetKind = "Word" Then
@@ -39003,7 +39302,7 @@ Function CharsetsTable(InternalData)
 		TableRow.Position = CharsetPosition;
 		TableRow.ErrorPosition = CharacterNumber - CharsetPosition;
 		TableRow.ErrorText   = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The end character %1 of the string constant is missing.';"), TableRow.Chars);
+			NStr("en = 'The end character %1 of the string constant is missing.';tr = 'Satır sabitinin %1 bitiş karakteri eksik.'"), TableRow.Chars);
 	EndIf;
 	
 	LastRow = CharsetsTable.Add();
@@ -39035,7 +39334,7 @@ Procedure AddWordToCharsetsTable(Table,
 		
 		If WordProperties.IsReserve Then
 			NewRow.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%1"" keyword is not supported.';"), CharacterString);
+				NStr("en = 'The ""%1"" keyword is not supported.';tr = '""%1"" anahtar kelimesi desteklenmiyor'"), CharacterString);
 		EndIf;
 		Return;
 	EndIf;
@@ -39048,7 +39347,7 @@ Procedure AddWordToCharsetsTable(Table,
 			IsNumber = False;
 		Else
 			NewRow.Kind = "Name";
-			NewRow.ErrorText = NStr("en = 'A name cannot start with a dot.';");
+			NewRow.ErrorText = NStr("en = 'A name cannot start with a dot.';tr = 'İsim nokta ile başlayamaz'");
 			Return;
 		EndIf;
 	Else
@@ -39061,7 +39360,7 @@ Procedure AddWordToCharsetsTable(Table,
 		For Each Char In Charset Do
 			If NumbersChars.Get(Char) = Undefined Then
 				NewRow.ErrorPosition = CharacterNumber - 1;
-				NewRow.ErrorText   = NStr("en = 'A number must contain only digits.';");
+				NewRow.ErrorText   = NStr("en = 'A number must contain only digits.';tr = 'Sayı sadece rakamlardan oluşabilir'");
 				Return;
 			EndIf;
 			CharacterNumber = CharacterNumber + 1;
@@ -39069,7 +39368,7 @@ Procedure AddWordToCharsetsTable(Table,
 		NumberChars = Left(CharacterString, CharacterNumber - 1);
 		If StrLen(NumberChars) > 16 Then
 			NewRow.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The number ""%1"" is too big.';"), NumberChars);
+				NStr("en = 'The number ""%1"" is too big.';tr = 'Çok büyük sayı ""%1""'"), NumberChars);
 			Return;
 		EndIf;
 		NewRow.Refinement = Number(NumberChars);
@@ -39080,11 +39379,11 @@ Procedure AddWordToCharsetsTable(Table,
 		For Each NamePart In NameParts Do
 			If NamePart = "" And NamePartPosition > 1 Then
 				NewRow.ErrorPosition = NamePartPosition - 1;
-				NewRow.ErrorText   = NStr("en = 'A name is expected after the dot.';");
+				NewRow.ErrorText   = NStr("en = 'A name is expected after the dot.';tr = 'Noktadan sonra ad olmalıdır.'");
 				Return;
 			ElsIf NumbersChars.Get(Left(NamePart, 1)) <> Undefined Then
 				NewRow.ErrorPosition = NamePartPosition - 1;
-				NewRow.ErrorText   = NStr("en = 'In a name, a number cannot follow a dot.';");
+				NewRow.ErrorText   = NStr("en = 'In a name, a number cannot follow a dot.';tr = 'Addaki noktadan sonra sayı bulunamaz.'");
 				Return;
 			EndIf;
 			NamePartPosition = NamePartPosition + StrLen(NamePart) + 1;
@@ -39110,11 +39409,11 @@ Procedure AddOperationToCharsetsTable(Table,
 	
 	If OperationProperties = Undefined Then
 		NewRow.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid operation: ""%1"".';"), CharacterString);
+			NStr("en = 'Invalid operation: ""%1"".';tr = 'Geçersiz işlem ""%1""'"), CharacterString);
 		
 	ElsIf OperationProperties.IsReserve Then
 		NewRow.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Unsupported operation: ""%1"".';"), CharacterString);
+			NStr("en = 'Unsupported operation: ""%1"".';tr = '""%1"" operasyonu desteklenmiyor'"), CharacterString);
 	EndIf;
 	
 EndProcedure
@@ -39897,13 +40196,14 @@ Function RestrictionParts(InternalData)
 	If PartProperties1.Name = "" Then
 		SetPartBeginningError(PartProperties1, InsertKeywordsIntoString(InternalData,
 			NStr("en = 'None of the following keywords are found at the beginning of the first part of the restriction text:
-			           |""%1"", ""%2"", or ""%3"".';"),
+			           |""%1"", ""%2"", or ""%3"".';tr = 'Kısıtlama metnin ilk bölümünde anahtar kelimelerin hiçbiri bulunamadı 
+			           |""%1"", ""%2"", ""%3""'"),
 			"AllowReadUpdate,AllowRead,AttachAdditionalTables"));
 		Return RestrictionParts;
 		
 	ElsIf PartProperties1.Name = "AllowUpdateIfReadingAllowed" Then
 		SetPartBeginningError(PartProperties1,
-			NStr("en = 'Invalid keyword at the beginning of the first part of the restriction text.';"));
+			NStr("en = 'Invalid keyword at the beginning of the first part of the restriction text.';tr = 'Kısıtlama metnin ilk kısmının başında izin verilmeyen anahtar kelime bulundu.'"));
 		Return RestrictionParts;
 		
 	ElsIf PartsProperties.Count() = 1
@@ -39913,7 +40213,8 @@ Function RestrictionParts(InternalData)
 		SetPartBeginningError(CharsetsTable,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'A restriction text cannot have a single part
-				           |with the ""%1"" keyword.';"), PartProperties1.Presentation));
+				           |with the ""%1"" keyword.';tr = 'Kısıtlama metni, ""%1"" anahtar kelimesi ile
+				           |tek bölümden oluşmaz.'"), PartProperties1.Presentation));
 		Return RestrictionParts;
 	EndIf;
 	
@@ -39930,7 +40231,8 @@ Function RestrictionParts(InternalData)
 		SetPartBeginningError(PartProperties1.SeparatorRow,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'A restriction text with the ""%1"" keyword in the first part
-				           |cannot contain the second part.';"), PartProperties1.Presentation));
+				           |cannot contain the second part.';tr = '""%1"" anahtar kelimesi ilk bölümde belirtildiğinde
+				           |kısıtlama metninin ikinci kısmı olmamalıdır'"), PartProperties1.Presentation));
 		Return RestrictionParts;
 	EndIf;
 	
@@ -39938,12 +40240,14 @@ Function RestrictionParts(InternalData)
 		If PartProperties1.Name = "AllowRead" Then
 			SetPartBeginningError(PartProperties2, InsertKeywordsIntoString(InternalData,
 				NStr("en = 'Keyword ""%1"" is not found
-				           |at the beginning of the second part of the restriction text.';"),
+				           |at the beginning of the second part of the restriction text.';tr = 'Kısıtlama metninin ikinci bölümünün başında ""%1"" anahtar kelimesi 
+				           |yok'"),
 				"AllowUpdateIfReadingAllowed"));
 		Else // Part1Properties.Name = "AttachAdditionalTables".
 			SetPartBeginningError(PartProperties2, InsertKeywordsIntoString(InternalData,
 				NStr("en = 'Neither ""%1"" nor ""%2""
-				           |keywords are found at the beginning of the second part of the restriction text.';"),
+				           |keywords are found at the beginning of the second part of the restriction text.';tr = 'Kısıtlama metnin ilk bölümünde anahtar kelimelerin hiçbiri bulunamadı
+				           |""%1"", ""%2""'"),
 				"AllowReadUpdate,AllowRead"));
 		EndIf;
 		Return RestrictionParts;
@@ -39955,7 +40259,7 @@ Function RestrictionParts(InternalData)
 	        And PartProperties2.Name <> "AllowRead" Then
 		
 		SetPartBeginningError(PartProperties2,
-			NStr("en = 'Invalid keyword at the beginning of the second part of the restriction text.';"));
+			NStr("en = 'Invalid keyword at the beginning of the second part of the restriction text.';tr = 'Kısıtlama metnin ikinci kısmının başında izin verilmeyen anahtar kelime bulundu.'"));
 		Return RestrictionParts;
 		
 	ElsIf PartsProperties.Count() = 2
@@ -39964,7 +40268,8 @@ Function RestrictionParts(InternalData)
 		SetPartBeginningError(CharsetsTable,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The restriction text cannot contain only two parts when
-				           |the ""%1"" keyword is present in the second part.';"), PartProperties2.Presentation));
+				           |the ""%1"" keyword is present in the second part.';tr = '""%1"" anahtar kelimesi ikinci kısımda belirtildiğinde
+				           |kısıtlama metni sadece iki kısımdan oluşamaz'"), PartProperties2.Presentation));
 		Return RestrictionParts;
 	EndIf;
 	
@@ -39981,14 +40286,16 @@ Function RestrictionParts(InternalData)
 		SetPartBeginningError(PartProperties2.SeparatorRow,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'A restriction text with the ""%1"" keyword in the second part
-				           |cannot contain the third part.';"), PartProperties2.Presentation));
+				           |cannot contain the third part.';tr = 'Kısıtlama metninin üçüncü kısmı,
+				           |ikinci bölümde ""%1"" anahtar kelimesi belirtildiğinde olmamalıdır.'"), PartProperties2.Presentation));
 		Return RestrictionParts;
 	EndIf;
 	
 	If PartProperties3.Name = "" Then
 		SetPartBeginningError(PartProperties3, InsertKeywordsIntoString(InternalData,
 			NStr("en = 'Keyword ""%1"" is not found
-			           |at the beginning of the third part of the restriction text.';"),
+			           |at the beginning of the third part of the restriction text.';tr = 'Kısıtlama metninin üçüncü bölümünün başında ""%1"" anahtar kelimesi 
+			           |yok'"),
 			"AllowUpdateIfReadingAllowed"));
 		Return RestrictionParts;
 		
@@ -39996,7 +40303,7 @@ Function RestrictionParts(InternalData)
 	        And PartProperties3.Name <> "AllowUpdateIfReadingAllowed" Then
 		
 		SetPartBeginningError(PartProperties3,
-			NStr("en = 'Invalid keyword at the beginning of the third part of the restriction text.';"));
+			NStr("en = 'Invalid keyword at the beginning of the third part of the restriction text.';tr = 'Kısıtlama metnin üçüncü kısmının başında izin verilmeyen anahtar kelime bulundu.'"));
 		Return RestrictionParts;
 	EndIf;
 	
@@ -40302,7 +40609,8 @@ Procedure ParseAdditionalTables(PartProperties, InternalData)
 			?(PartRows.Count() < 3, PartProperties.SeparatorRow, PartRows[1]),
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Keyword ""%2"" is not found
-				           |after keyword ""%1"".';"),
+				           |after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi 
+				           |yok'"),
 				PartProperties.Presentation,
 				KeywordRegardingLanguage("ThisList", InternalData)));
 		Return;
@@ -40316,7 +40624,7 @@ Procedure ParseAdditionalTables(PartProperties, InternalData)
 		SetPartBeginningError(
 			?(PartRows.Count() < 3, PartProperties.SeparatorRow, PartRows[2]),
 				InsertKeywordsIntoString(InternalData,
-					NStr("en = 'Keyword ""%2"" is not found after keyword ""%1"".';"),
+					NStr("en = 'Keyword ""%2"" is not found after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi yok'"),
 					"ThisList,As"));
 		Return;
 	EndIf;
@@ -40326,7 +40634,7 @@ Procedure ParseAdditionalTables(PartProperties, InternalData)
 		SetPartBeginningError(
 			?(PartRows.Count() < 4, PartProperties.SeparatorRow, PartRows[3]),
 				InsertKeywordsIntoString(InternalData,
-					NStr("en = 'No alias is found after keyword ""%1"".';"),
+					NStr("en = 'No alias is found after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra takma ad yok'"),
 					"As"));
 		Return;
 	EndIf;
@@ -40402,7 +40710,7 @@ Procedure ParseConnection(Join, PartProperties, InternalData)
 	If Join[0].Kind <> "Keyword"
 	 Or Join[0].Refinement <> "Left" Then
 		SetErrorInsidePart(Join, 0, InsertKeywordsIntoString(InternalData,
-			NStr("en = 'Keyword ""%1"" is not found.';"), "Left"));
+			NStr("en = 'Keyword ""%1"" is not found.';tr = '""%1"" anahtar kelimesi yok'"), "Left"));
 		
 		If Join[0].Kind <> "Keyword"
 		 Or Join[0].Refinement <> "Inner"
@@ -40417,7 +40725,7 @@ Procedure ParseConnection(Join, PartProperties, InternalData)
 	 Or Join[1].Refinement <> "Join" Then
 		SetErrorInsidePart(Join, 1,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Keyword ""%2"" is not found after keyword ""%1"".';"),
+				NStr("en = 'Keyword ""%2"" is not found after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi yok'"),
 				Join[0].Chars,
 				KeywordRegardingLanguage("Join", InternalData)));
 		Return;
@@ -40427,7 +40735,7 @@ Procedure ParseConnection(Join, PartProperties, InternalData)
 	 Or Join[2].Kind <> "Name" Then
 		SetErrorInsidePart(Join, 2,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'No table name is found after keyword ""%1"".';"),
+				NStr("en = 'No table name is found after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra tablo adı yok'"),
 				Join[1].Chars));
 		Return;
 	EndIf;
@@ -40438,14 +40746,14 @@ Procedure ParseConnection(Join, PartProperties, InternalData)
 	 Or Join[3].Kind <> "Keyword"
 	 Or Join[3].Refinement <> "As" Then
 		SetErrorInsidePart(Join, 3, InsertKeywordsIntoString(InternalData,
-			NStr("en = 'Keyword ""%1"" is not found after the table name.';"), "As"));
+			NStr("en = 'Keyword ""%1"" is not found after the table name.';tr = 'Tablo adından sonra ""%1"" anahtar kelimesi yok'"), "As"));
 		Return;
 	EndIf;
 	
 	If Join.Count() < 5
 	 Or Join[4].Kind <> "Name" Then
 		SetErrorInsidePart(Join, 4, InsertKeywordsIntoString(InternalData,
-			NStr("en = 'No table alias is found after keyword ""%1"".';"), "As"));
+			NStr("en = 'No table alias is found after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra tablo takma adı yok'"), "As"));
 		Return;
 	EndIf;
 	
@@ -40455,7 +40763,7 @@ Procedure ParseConnection(Join, PartProperties, InternalData)
 	 Or Join[5].Kind <> "Keyword"
 	 Or Join[5].Refinement <> "On" Then
 		SetErrorInsidePart(Join, 5, InsertKeywordsIntoString(InternalData,
-			NStr("en = 'Keyword ""%1"" is not found after the table alias.';"), "On"));
+			NStr("en = 'Keyword ""%1"" is not found after the table alias.';tr = 'Tablo takma adından sonra ""%1"" anahtar kelimesi yok'"), "On"));
 		Return;
 	EndIf;
 	
@@ -40634,7 +40942,7 @@ Procedure MarkIncorrectArgumentsAndProhibitedNodes(Condition, AvailableNodes, Co
 			
 			SetErrorInRow(Condition.Source,
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The ""%1"" operation is allowed only after a field.';"),
+					NStr("en = 'The ""%1"" operation is allowed only after a field.';tr = '""%1"" işlemi yalnızca alandan sonra mümkündür'"),
 					Condition.Source.Chars));
 		EndIf;
 		MarkIncorrectArgumentsAndProhibitedNodes(Condition.Argument, AvailableNodes, Context);
@@ -40665,11 +40973,12 @@ Procedure MarkIncorrectArgumentsAndProhibitedNodes(Condition, AvailableNodes, Co
 		If ErrorInFirstArgument Or ErrorInSecondArgument Then
 			If Context.IsMergeCondition Then
 				ErrorText =
-					NStr("en = 'The ""%1"" operation is allowed only for a field (with a field, a value, or a constant).';");
+					NStr("en = 'The ""%1"" operation is allowed only for a field (with a field, a value, or a constant).';tr = '""%1"" İşlemi yalnızca alan, değer veya sabit alan için geçerlidir'");
 			Else
 				ErrorText =
 					NStr("en = 'The ""%1"" operation is allowed only for a field (with a value or a constant),
-					           |or for a value type (with a type.)';");
+					           |or for a value type (with a type.)';tr = '""%1"" işlemi yalnızca bir değer veya sabit alan için ve
+					           | bir türe sahip bir değer türü için geçerlidir'");
 			EndIf;
 			If ErrorInFirstArgument Then
 				ConditionFirstArgument = Condition.FirstArgument; // See NodeDetails
@@ -40704,7 +41013,7 @@ Procedure MarkIncorrectArgumentsAndProhibitedNodes(Condition, AvailableNodes, Co
 		
 			SetErrorInRow(Condition.Source,
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The ""%1"" function is allowed only in ""="" and ""<>"" operations.';"),
+					NStr("en = 'The ""%1"" function is allowed only in ""="" and ""<>"" operations.';tr = '""%1"" işlevi yalnızca ""="" ve ""<>"" işlemlerde geçerlidir'"),
 					Condition.Source.Chars));
 		EndIf;
 		
@@ -40803,10 +41112,10 @@ Procedure SelectFieldAlias(FieldNode, Context)
 		If Context.IsMergeCondition Then
 			If Not ValueIsFilled(FieldNode.Alias) Then
 				SetErrorInRow(FieldNode.NameSource,
-					NStr("en = 'In the join condition, an alias is required before the field name.';"));
+					NStr("en = 'In the join condition, an alias is required before the field name.';tr = 'Bağlantı koşulunda alanın adından önce takma ad gerekir'"));
 			ElsIf Context.AvailableAliases.Get(Upper(FieldNode.Alias)) = Undefined Then
 				SetErrorInRow(FieldNode.NameSource,
-					NStr("en = 'An alias from the next join is not allowed.';"));
+					NStr("en = 'An alias from the next join is not allowed.';tr = 'Aşağıdaki bağlantıdan takma ad belirtilemez'"));
 			EndIf;
 		EndIf;
 	EndIf;
@@ -40824,7 +41133,7 @@ EndProcedure
 Procedure DeleteSourceProperty(Condition)
 	
 	If TypeOf(Condition) = Type("ValueTableRow") Then
-		ErrorText = NStr("en = 'Some of the sources of character sets are not deleted.';");
+		ErrorText = NStr("en = 'Some of the sources of character sets are not deleted.';tr = 'Tüm karakter kümesi kaynakları kaldırılmadı'");
 		Raise ErrorText;
 		
 	ElsIf TypeOf(Condition) <> Type("Structure") Then
@@ -40872,35 +41181,35 @@ Procedure SetNodeProhibitedError(String, Context)
 	
 	If String.Type = "Function" Then
 		If Context.IsMergeCondition Then
-			ErrorTemplate = NStr("en = 'The ""%1"" function is not allowed in join conditions.';");
+			ErrorTemplate = NStr("en = 'The ""%1"" function is not allowed in join conditions.';tr = '""%1"" işlevi bağlantı koşulunda yasaklanmıştır'");
 			
 		ElsIf Context.IsConditionWhen Then
 			ErrorTemplate = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%3"" function is not allowed in the restriction condition of the ""%1"" operation in ""%2"" clauses.';"),
+				NStr("en = 'The ""%3"" function is not allowed in the restriction condition of the ""%1"" operation in ""%2"" clauses.';tr = '""%3"" teklifte ""%1"" işlevi ""%2"" işlemindeki kısıtlama koşulunda yasaklandı'"),
 				"Case,When", String.Chars);
 			
 		ElsIf Context.IsValueThenElse Then
 			ErrorTemplate = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%4"" function is not allowed in the restriction condition of the ""%1"" operation in ""%2"" and ""%3"" clauses.';"),
+				NStr("en = 'The ""%4"" function is not allowed in the restriction condition of the ""%1"" operation in ""%2"" and ""%3"" clauses.';tr = '""%3"" ve ""%4"" teklifte ""%1"" işlevi ""%2"" işlemindeki kısıtlama koşulunda yasaklandı'"),
 				"Case,Then,Else", String.Chars);
 		Else
-			ErrorTemplate = NStr("en = 'The ""%1"" function is not allowed in restriction conditions.';");
+			ErrorTemplate = NStr("en = 'The ""%1"" function is not allowed in restriction conditions.';tr = '""%1"" işlevi bağlantı koşulunda yasaklanmıştır'");
 		EndIf;
 	Else
 		If Context.IsMergeCondition Then
-			ErrorTemplate = NStr("en = 'The ""%1"" operation is not allowed in join conditions.';");
+			ErrorTemplate = NStr("en = 'The ""%1"" operation is not allowed in join conditions.';tr = '""%1"" işlemi bağlantı koşulunda yasaklanmıştır'");
 			
 		ElsIf Context.IsConditionWhen Then
 			ErrorTemplate = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%3"" operation is not allowed in the restriction condition of the ""%1"" operation in ""%2"" clauses.';"),
+				NStr("en = 'The ""%3"" operation is not allowed in the restriction condition of the ""%1"" operation in ""%2"" clauses.';tr = '""%3"" teklifte ""%1"" işlemi ""%2"" işlemindeki kısıtlama koşulunda yasaklandı'"),
 				"Case,When", String.Chars);
 			
 		ElsIf Context.IsValueThenElse Then
 			ErrorTemplate = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%4"" operation is not allowed in the restriction condition of the ""%1"" operation in ""%2"" and ""%3"" clauses.';"),
+				NStr("en = 'The ""%4"" operation is not allowed in the restriction condition of the ""%1"" operation in ""%2"" and ""%3"" clauses.';tr = '""%3"" ve ""%4"" teklifte ""%1"" işlemi ""%2"" işlemindeki kısıtlama koşulunda yasaklandı'"),
 				"Case,Then,Else", String.Chars);
 		Else
-			ErrorTemplate = NStr("en = 'The ""%1"" operation is not allowed in restriction conditions.';");
+			ErrorTemplate = NStr("en = 'The ""%1"" operation is not allowed in restriction conditions.';tr = '""%1"" işlemi kısıtlama koşulunda yasaklanmıştır'");
 		EndIf;
 	EndIf;
 	
@@ -40919,7 +41228,7 @@ Procedure MarkTypesRepetitionsAmongThoseToCheckAndClarify(Node, Context)
 			TypesInList.Insert(Upper(TypeInList.Chars), True);
 		Else
 			SetErrorInRow(TypeInList, StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%1"" type is already in the list.';"), TypeInList.Chars));
+				NStr("en = 'The ""%1"" type is already in the list.';tr = 'Tür ""%1"" daha önce belirtilmişti'"), TypeInList.Chars));
 		EndIf;
 	EndDo;
 	
@@ -40935,7 +41244,7 @@ Procedure MarkTypesRepetitionsAmongThoseToCheckAndClarify(Node, Context)
 		   And TypesInList.Get(Upper(TypeSource.Chars)) <> Undefined Then
 			
 			SetErrorInRow(TypeSource, InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%2"" type is already in the list of types for the ""%1"" keyword.';"),
+				NStr("en = 'The ""%2"" type is already in the list of types for the ""%1"" keyword.';tr = 'Tür ""%2"" anahtar kelimesi ""%1"" türleri arasında zaten belirtilmiştir'"),
 				"Only",
 				TypeSource.Chars));
 			
@@ -40943,13 +41252,13 @@ Procedure MarkTypesRepetitionsAmongThoseToCheckAndClarify(Node, Context)
 		        And TypesInList.Get(Upper(TypeSource.Chars)) = Undefined Then
 			
 			SetErrorInRow(TypeSource, InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%2"" type is not in the list of types for the ""%1"" keyword.';"),
+				NStr("en = 'The ""%2"" type is not in the list of types for the ""%1"" keyword.';tr = 'Tür ""%2"" anahtar kelimesi ""%1"" türleri arasında belirtilmemiştir'"),
 				"Not",
 				TypeSource.Chars));
 			
 		ElsIf TypesToClarify.Get(Upper(TypeSource.Chars)) <> Undefined Then
 			SetErrorInRow(TypeSource, StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Type ""%1"" already has a refiner';"), TypeSource.Chars));
+				NStr("en = 'Type ""%1"" already has a refiner';tr = 'Tür ""%1"" netleştirilmesi zaten belirtilmiştir'"), TypeSource.Chars));
 		Else
 			TypesToClarify.Insert(Upper(TypeSource.Chars), True);
 		EndIf;
@@ -40975,7 +41284,8 @@ Procedure ParseRestrictionCondition(PartProperties, InternalData)
 			?(PartRows.Count() < 2, PartProperties.SeparatorRow, PartRows[1]),
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Keyword ""%2"" is not found
-					           |after keyword ""%1"".';"),
+					           |after keyword ""%1"".';tr = '""%1"" anahtar kelimesinden sonra""%2"" anahtar kelimesi yok
+					           |'"),
 					PartProperties.Presentation,
 					KeywordRegardingLanguage("Where", InternalData)));
 		Return;
@@ -41156,12 +41466,12 @@ Procedure ParseExpression(Condition, Content, CurrentContext, NestedExpression =
 			Else
 				Context.LongDesc = Undefined;
 				SetErrorInRow(String,
-					NStr("en = 'A comma is only allowed as a separator for function parameters.';"));
+					NStr("en = 'A comma is only allowed as a separator for function parameters.';tr = 'Virgül sadece işlev parametreleri ayırmak için kullanılabilir'"));
 			EndIf;
 		Else
 			Context.LongDesc = Undefined;
 			SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'There is no processing algorithm defined for the ""%1"" keyword.';"), String.Chars));
+				NStr("en = 'There is no processing algorithm defined for the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinin işlemesi belirlenmedi'"), String.Chars));
 		EndIf;
 		
 		If Context.LongDesc = Undefined Then
@@ -41272,11 +41582,11 @@ Procedure ParseConnector(Context, IsOperation = False)
 		
 		Context.LongDesc = Undefined;
 		SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" keyword can be used only in function parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" keyword can be used only in function parameters.';tr = '""%1"" anahtar kelimesi sadece işlevlerin parametrelerinde kullanılabilir'"), String.Chars));
 	Else
 		Context.LongDesc = Undefined;
 		SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There is no processing algorithm defined for the ""%1"" keyword.';"), String.Chars));
+			NStr("en = 'There is no processing algorithm defined for the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinin işlemesi belirlenmedi'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41300,7 +41610,7 @@ Procedure ParseConnectorIn(Context)
 			ParseConnectorValueIn(Context, Substring, NewDetails);
 			
 			If ParameterDetails.Rows[0] <> Substring Then
-				SetErrorInRow(Substring, NStr("en = 'A comma preceding a parameter is missing.';"));
+				SetErrorInRow(Substring, NStr("en = 'A comma preceding a parameter is missing.';tr = 'Parametreden önce virgül belirtilmedi'"));
 			EndIf;
 			
 		EndDo;
@@ -41310,7 +41620,7 @@ Procedure ParseConnectorIn(Context)
 	
 	If NewDetails.SearchFor.Node <> "Field" Then
 		SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" operation is allowed only after a field name.';"), String.Chars));
+			NStr("en = 'The ""%1"" operation is allowed only after a field name.';tr = '""%1"" İşlemi yalnızca alan adından sonra belirtilebilir'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41337,20 +41647,20 @@ Procedure ParseConnectorValueIn(Context, Substring, NewDetails)
 			EndIf;
 		Else
 			SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%2"" keyword is not allowed in the list of values of the ""%1"" operation.';"),
+				NStr("en = 'The ""%2"" keyword is not allowed in the list of values of the ""%1"" operation.';tr = '""%1"" işlem değerleri listesinde ""%2"" anahtar kelimesine izin verilmez'"),
 				String.Chars, Substring.Chars));
 		EndIf;
 		
 	ElsIf Substring.Kind = "Name" Then
 		SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Field names are not allowed in the list of values of the ""%1"" operation.';"), String.Chars));
+			NStr("en = 'Field names are not allowed in the list of values of the ""%1"" operation.';tr = '""%1"" işlem değerleri listesinde alan adı kullanılmaz'"), String.Chars));
 		
 	ElsIf Substring.Chars = "(" Then
 		SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Parentheses are allowed only for function parameters in the list of values of the ""%1"" operation.';"), String.Chars));
+			NStr("en = 'Parentheses are allowed only for function parameters in the list of values of the ""%1"" operation.';tr = 'Parantez ""%1"" işlem değerleri listesinde yalnızca işlev parametreleri için geçerlidir'"), String.Chars));
 	Else
 		SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Only values are allowed in the list of values of the ""%1"" operation.';"), String.Chars));
+			NStr("en = 'Only values are allowed in the list of values of the ""%1"" operation.';tr = '""%1"" İşlem değerleri listesinde yalnızca değerleri belirtebilirsiniz'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41415,7 +41725,7 @@ Procedure AddConnector(Context, NewDetails, FirstArgument);
 		InsertConnectorConsideringPriority(Context, Undefined, NewDetails, FirstArgument);
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There is no processing algorithm defined for node ""%1"".';"), LongDesc.Node);
+			NStr("en = 'There is no processing algorithm defined for node ""%1"".';tr = '""%1"" ünitenin işlemesi belirlenmemiştir'"), LongDesc.Node);
 		Raise ErrorText;
 	EndIf;
 	
@@ -41428,8 +41738,8 @@ Procedure ProcessMissingArgumentAfterConnector(Context, SecondArgument, LogicalO
 	
 	SetErrorInRow(LongDesc.Source,
 		?(LogicalOperation,
-			NStr("en = 'An argument is missing after a logical operation.';"),
-			NStr("en = 'An argument is missing after an operation.';")),
+			NStr("en = 'An argument is missing after a logical operation.';tr = 'Mantıksal işlemden sonra bağımsız değişken belirtilmedi'"),
+			NStr("en = 'An argument is missing after an operation.';tr = 'İşlemden sonra bağımsız değişken belirtilmedi'")),
 		True);
 	
 	SecondArgument = New Structure("Source, Node, Value", Context.String, "Constant", True);
@@ -41531,7 +41841,7 @@ Procedure ParseFunction(Context)
 		
 	ElsIf Not String.IsReserve Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There is no processing algorithm defined for the ""%1"" function.';"), String.Refinement);
+			NStr("en = 'There is no processing algorithm defined for the ""%1"" function.';tr = '""%1"" işlevin işlemesi belirlenmemiştir'"), String.Refinement);
 		Raise ErrorText;
 	EndIf;
 	
@@ -41587,7 +41897,7 @@ Procedure ParseFirstCheckingFunctionParameter(Context, FirstParameter, NewDetail
 	Else
 		SetErrorInRow(FirstParameter.Rows[0],
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'The first parameter must be a field name, the ""%1"" function, or the ""%2"" function.';"),
+				NStr("en = 'The first parameter must be a field name, the ""%1"" function, or the ""%2"" function.';tr = 'İlk parametre alan adı, ""%1"" işlevi veya ""%2"" işlevi olabilir'"),
 				"Cast,IsNull"));
 		Return;
 	EndIf;
@@ -41603,7 +41913,8 @@ Procedure ParseFirstCheckingFunctionParameter(Context, FirstParameter, NewDetail
 		SetErrorInRow(TableRow(FirstParameter.Rows[0].EndString, Context),
 			InsertKeywordsIntoString(Context,
 				NStr("en = 'If the ""%1"" or ""%2"" keyword is used in the ""%4"" function parameter,
-				           |a dot operator and a field name are required after the ""%3"" nested function.';"),
+				           |a dot operator and a field name are required after the ""%3"" nested function.';tr = 'İç içe geçmiş ""%3""işlevinden sonra, 
+				           |""%4"" işlev parametresinde ""%1"" veya ""%2"" anahtar kelime kullanıyorsa, alan adı nokta ile belirtilmelidir'"),
 				"Only,Not",
 				FirstParameter.Rows[0].Chars,
 				Context.String.Chars),
@@ -41616,7 +41927,7 @@ Procedure ParseFirstCheckingFunctionParameter(Context, FirstParameter, NewDetail
 		
 		SetErrorInRow(FirstParameter.Rows[1],
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%1"" or ""%2"" keyword is required after a field description.';"),
+				NStr("en = 'The ""%1"" or ""%2"" keyword is required after a field description.';tr = 'Alan açıklamasından sonra ya ""%1"", ya da ""%2"" anahtar kelimesi belirtilebilir'"),
 				"Only,Not"));
 		Return;
 	EndIf;
@@ -41627,7 +41938,7 @@ Procedure ParseFirstCheckingFunctionParameter(Context, FirstParameter, NewDetail
 	
 	If FirstParameter.Rows.Count() < 3 Then
 		SetErrorInRow(FirstParameter.Rows[1],  StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'A type (a table name) is missing after the ""%1"" keyword.';"), FirstParameter.Rows[1].Chars));
+			NStr("en = 'A type (a table name) is missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra tür (tablo adı) belirtilmedi'"), FirstParameter.Rows[1].Chars));
 		Return;
 	EndIf;
 	
@@ -41635,14 +41946,14 @@ Procedure ParseFirstCheckingFunctionParameter(Context, FirstParameter, NewDetail
 	   And FirstParameter.Rows[2].Chars <> "(" Then
 	
 		SetErrorInRow(FirstParameter.Rows[2],  StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Either a type (a table name) or a type list in parentheses is required after the ""%1"" keyword.';"),
+			NStr("en = 'Either a type (a table name) or a type list in parentheses is required after the ""%1"" keyword.';tr = '""%1"" anahtar kelimeden sonra tür (tablo adı) veya parantez içinde türler listesi belirtilmelidir'"),
 			FirstParameter.Rows[1].Chars));
 		Return;
 	EndIf;
 	
 	If FirstParameter.Rows.Count() > 3 Then
 		SetErrorInRow(FirstParameter.Rows[3], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'A comma is missing before the ""%1"" function parameter.';"), Context.String.Chars));
+			NStr("en = 'A comma is missing before the ""%1"" function parameter.';tr = '""%1"" işlevin parametresinden önce virgül belirtilmemiştir'"), Context.String.Chars));
 	EndIf;
 	
 	If FirstParameter.Rows[2].Kind = "Name" Then
@@ -41665,7 +41976,7 @@ Procedure ParseFirstCheckingFunctionParameter(Context, FirstParameter, NewDetail
 			NewDetails.Types.Add(Parameter.Rows[0]);
 		Else
 			SetErrorInRow(Parameter.Rows[?(Parameter.Rows.Count() < 2, 0, 1)],
-				NStr("en = 'Only table names separated by commas are allowed in a list of types.';"));
+				NStr("en = 'Only table names separated by commas are allowed in a list of types.';tr = 'Türler listesinde yalnızca virgül ile tablo adları belirtilebilir'"));
 		EndIf;
 	EndDo;
 	
@@ -41694,16 +42005,17 @@ Procedure ParseAdditionalCheckingFunctionParameter(Context, Parameter, NewDetail
 		SetErrorInRow(Parameter.Rows[0],
 			InsertKeywordsIntoString(Context,
 				NStr("en = 'An additional parameter must be a type (a table name),
-				           |""%1"", ""%2"", ""%3"", ""%4"", ""%5"", ""%6"", or ""%7"".';"),
+				           |""%1"", ""%2"", ""%3"", ""%4"", ""%5"", ""%6"", or ""%7"".';tr = 'Tür (tablo adı) ek parametre olabilir, 
+				           |""%1"", ""%2"", ""%3"", ""%4"", ""%5"", ""%6"" ve ""%7""'"),
 				"EmptyRef,Undefined,Null,Number,String,Date,Boolean"));
 		Return;
 	EndIf;
 	
 	If Parameter.Rows.Count() < 2 Then
 		If Parameter.Rows[0].Kind = "Name" Then 
-			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" type (table name).';");
+			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" type (table name).';tr = 'Türden (tablo adından) sonra ""%2"" ""%1"" anahtar kelime belirtilmelidir'");
 		Else
-			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" keyword.';");
+			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" keyword.';tr = '""%2"" anahtar kelimeden sonra ""%1"" anahtar kelimesi belirtilmelidir'");
 		EndIf;
 		SetErrorInRow(Parameter.Rows[0], InsertKeywordsIntoString(Context,
 				Template, "As", Parameter.Rows[0].Chars),
@@ -41715,9 +42027,9 @@ Procedure ParseAdditionalCheckingFunctionParameter(Context, Parameter, NewDetail
 	 Or Parameter.Rows[1].Refinement <> "As" Then
 		
 		If Parameter.Rows[0].Kind = "Name" Then
-			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" type (table name).';");
+			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" type (table name).';tr = 'Türden (tablo adından) sonra ""%2"" ""%1"" anahtar kelime belirtilmelidir'");
 		Else
-			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" keyword.';");
+			Template = NStr("en = 'The ""%1"" keyword must follow the ""%2"" keyword.';tr = '""%2"" anahtar kelimeden sonra ""%1"" anahtar kelimesi belirtilmelidir'");
 		EndIf;
 		SetErrorInRow(Parameter.Rows[1], InsertKeywordsIntoString(Context,
 			Template, "As", Parameter.Rows[0].Chars));
@@ -41726,7 +42038,7 @@ Procedure ParseAdditionalCheckingFunctionParameter(Context, Parameter, NewDetail
 	
 	If Parameter.Rows.Count() < 3 Then
 		SetErrorInRow(Parameter.Rows[1], InsertKeywordsIntoString(Context,
-				NStr("en = 'A clarification value ""%1"", ""%2"", or ""%3"" is missing after the ""%4"" keyword.';"),
+				NStr("en = 'A clarification value ""%1"", ""%2"", or ""%3"" is missing after the ""%4"" keyword.';tr = '""%4"" anahtar kelimeden sonra ""%1"", ""%2"" veya ""%3"" netleştirme değeri belirtilmemiştir'"),
 				"False,True,Empty",
 				Parameter.Rows[1].Chars),
 			True);
@@ -41737,7 +42049,7 @@ Procedure ParseAdditionalCheckingFunctionParameter(Context, Parameter, NewDetail
 	 Or Parameter.Rows[2].Type <> "ClarificationValue" Then
 		
 		SetErrorInRow(Parameter.Rows[2], InsertKeywordsIntoString(Context,
-			NStr("en = 'A clarification value ""%1"", ""%2"", or ""%3"" is required after the ""%4"" keyword.';"),
+			NStr("en = 'A clarification value ""%1"", ""%2"", or ""%3"" is required after the ""%4"" keyword.';tr = '""%4"" anahtar kelimeden sonra ""%1"", ""%2"" veya ""%3"" netleştirme değeri belirtilmelidir'"),
 			"False,True,Empty",
 			Parameter.Rows[1].Chars));
 	Else
@@ -41746,7 +42058,7 @@ Procedure ParseAdditionalCheckingFunctionParameter(Context, Parameter, NewDetail
 	
 	If Parameter.Rows.Count() > 3 Then
 		SetErrorInRow(Parameter.Rows[3],
-			NStr("en = 'A comma or an extra parameter is missing before the parameter.';"));
+			NStr("en = 'A comma or an extra parameter is missing before the parameter.';tr = 'Parametreden önce virgül veya fazla parametre belirtilmemiştir'"));
 	EndIf;
 	
 EndProcedure
@@ -41774,7 +42086,7 @@ Procedure ParseValueFunctionOrTypeFunctionParameters(String, NewDetails, IsValue
 		
 	ElsIf IsValueFunction Then
 		SetErrorInRow(Parameter.Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a predefined value name.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a predefined value name.';tr = '""%1"" işlevinde yalnızca önceden tanımlanmış değerin adı belirtilebilir'"), String.Chars));
 	
 	ElsIf Parameter.Rows[0].Kind = "Keyword"
 	        And Parameter.Rows[0].Type = "TypeName" Then
@@ -41782,19 +42094,19 @@ Procedure ParseValueFunctionOrTypeFunctionParameters(String, NewDetails, IsValue
 		NewDetails.Name = Parameter.Rows[0].Refinement;
 	Else
 		SetErrorInRow(Parameter.Rows[0], InsertKeywordsIntoString(Context,
-			NStr("en = 'The ""%5"" function requires a table name, ""%1"", ""%2"", ""%3"", or ""%4"".';"),
+			NStr("en = 'The ""%5"" function requires a table name, ""%1"", ""%2"", ""%3"", or ""%4"".';tr = '""%5"" işlevinde tablo adı veya ""%1"", ""%2"", ""%3"" ve ""%4"" belirtilebilir'"),
 			"Number,String,Date,Boolean",
 			String.Chars));
 	EndIf;
 	
 	If Parameter.Rows.Count() > 1 Then
 		SetErrorInRow(Parameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() > 1 Then
 		SetErrorInRow(ParametersContent[1].Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41817,17 +42129,17 @@ Procedure ParseFunctionParametersTheRoleIsAvailable(String, NewDetails, Context)
 		CheckTheRoleName(NewDetails.NameOfRole, Parameter.Rows[0]);
 	Else
 		SetErrorInRow(Parameter.Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires only a role name.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires only a role name.';tr = '""%1"" işlevinde yalnızca önceden rol adı belirtilebilir'"), String.Chars));
 	EndIf;
 	
 	If Parameter.Rows.Count() > 1 Then
 		SetErrorInRow(Parameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() > 1 Then
 		SetErrorInRow(ParametersContent[1].Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41849,19 +42161,19 @@ Procedure ParseTheParametersOfTheAccessRightFunction(String, NewDetails, Context
 		NewDetails.NameOfRight = FirstParameter.Rows[0].Chars;
 	Else
 		SetErrorInRow(FirstParameter.Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The first parameter of the ""%1"" function requires only an access right name.';"), String.Chars));
+			NStr("en = 'The first parameter of the ""%1"" function requires only an access right name.';tr = '""%1"" işlevinin ilk parametresinde sadece yetki adı belirtilebilir'"), String.Chars));
 	EndIf;
 	
 	If FirstParameter.Rows.Count() > 1 Then
 		SetErrorInRow(FirstParameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'A comma is missing before the ""%1"" parameter of the ""%2"" function.';"),
+			NStr("en = 'A comma is missing before the ""%1"" parameter of the ""%2"" function.';tr = '""%2"" işlevinin ""%1"" parametre öncesinde virgül belirtilmedi'"),
 			FirstParameter.Rows[1].Chars,
 			String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() < 2 Then
 		SetErrorInRow(FirstParameter.EndString, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires two parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires two parameters.';tr = '""%1"" işlevin iki parametresi olmalıdır'"), String.Chars));
 		Return;
 	EndIf;
 	
@@ -41873,18 +42185,18 @@ Procedure ParseTheParametersOfTheAccessRightFunction(String, NewDetails, Context
 			NewDetails.FullMetadataObjectName, SecondParameter.Rows[0]);
 	Else
 		SetErrorInRow(SecondParameter.Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The second parameter of the ""%1"" function requires only a full metadata object name.';"),
+			NStr("en = 'The second parameter of the ""%1"" function requires only a full metadata object name.';tr = '""%1"" işlevinin ikinci parametresinde yalnızca tam metaveri adı belirtilebilir'"),
 			String.Chars));
 	EndIf;
 	
 	If SecondParameter.Rows.Count() > 1 Then
 		SetErrorInRow(SecondParameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires only two parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires only two parameters.';tr = '""%1"" işlevi yalnızca iki parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() > 2 Then
 		SetErrorInRow(ParametersContent[2].Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires only two parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires only two parameters.';tr = '""%1"" işlevi yalnızca iki parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41918,7 +42230,7 @@ Procedure ParseValueTypeFunctionParameters(Context, NewDetails)
 	Else
 		SetErrorInRow(Parameter.Rows[0],
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'The parameter must be a field name, the ""%1"" function, or the ""%2"" function.';"),
+				NStr("en = 'The parameter must be a field name, the ""%1"" function, or the ""%2"" function.';tr = 'Parametre alan adı, ""%1"" işlevi veya ""%2"" işlevi olabilir'"),
 				"Cast,IsNull"));
 		Return;
 	EndIf;
@@ -41929,7 +42241,7 @@ Procedure ParseValueTypeFunctionParameters(Context, NewDetails)
 		
 		SetErrorInRow(TableRow(Parameter.Rows[0].EndString, Context),
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'A dot operator and a field name are required after the ""%1"" nested function.';"),
+				NStr("en = 'A dot operator and a field name are required after the ""%1"" nested function.';tr = 'İç içe geçmiş ""%1"" işlevinden sonra, alan adı nokta ile belirtilmelidir'"),
 				Parameter.Rows[0].Chars),
 			True);
 	EndIf;
@@ -41940,12 +42252,12 @@ Procedure ParseValueTypeFunctionParameters(Context, NewDetails)
 	
 	If Parameter.Rows.Count() > 1 Then
 		SetErrorInRow(Parameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() > 1 Then
 		SetErrorInRow(ParametersContent[1].Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -41986,7 +42298,7 @@ Function FieldNodeDetailsFromExpressFunction(String, Context)
 		If NewDetails.Attachment.Attachment = Undefined Then
 			SetErrorInRow(TableRow(FirstParameter.Rows[0].EndString, Context),
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'A dot operator and a field name are required after the ""%1"" nested function.';"),
+					NStr("en = 'A dot operator and a field name are required after the ""%1"" nested function.';tr = 'İç içe geçmiş ""%1"" işlevinden sonra, alan adı nokta ile belirtilmelidir'"),
 					FirstParameter.Rows[0].Chars),
 				True);
 		Else
@@ -42000,7 +42312,7 @@ Function FieldNodeDetailsFromExpressFunction(String, Context)
 	Else
 		SetErrorInRow(FirstParameter.Rows[0],
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'The first parameter must be a field name, the ""%1"" function, or the ""%2"" function.';"),
+				NStr("en = 'The first parameter must be a field name, the ""%1"" function, or the ""%2"" function.';tr = 'İlk parametre alan adı, ""%1"" işlevi veya ""%2"" işlevi olabilir'"),
 				"Cast,IsNull"));
 		Return NewDetails;
 	EndIf;
@@ -42008,7 +42320,7 @@ Function FieldNodeDetailsFromExpressFunction(String, Context)
 	If FirstParameter.Rows.Count() < 2 Then
 		SetErrorInRow(FirstParameter.Rows[0],
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%1"" keyword is required after the field description.';"), "As"), True);
+				NStr("en = 'The ""%1"" keyword is required after the field description.';tr = 'Alan açıklamasından sonra ""%1"" anahtar kelimesi belirtilmelidir'"), "As"), True);
 		Return NewDetails;
 	EndIf;
 	
@@ -42017,19 +42329,19 @@ Function FieldNodeDetailsFromExpressFunction(String, Context)
 		
 		SetErrorInRow(FirstParameter.Rows[1],
 			InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%1"" keyword is required after the field description.';"), "As"));
+				NStr("en = 'The ""%1"" keyword is required after the field description.';tr = 'Alan açıklamasından sonra ""%1"" anahtar kelimesi belirtilmelidir'"), "As"));
 		Return NewDetails;
 	EndIf;
 	
 	If FirstParameter.Rows.Count() < 3 Then
 		SetErrorInRow(FirstParameter.Rows[1],  StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'A type (a table name) is missing after the ""%1"" keyword.';"), FirstParameter.Rows[1].Chars));
+			NStr("en = 'A type (a table name) is missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra tür (tablo adı) belirtilmedi'"), FirstParameter.Rows[1].Chars));
 		Return NewDetails;
 	EndIf;
 	
 	If FirstParameter.Rows[2].Kind <> "Name" Then
 		SetErrorInRow(FirstParameter.Rows[2],  StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'A type (a table name) is required after the ""%1"" keyword.';"),
+			NStr("en = 'A type (a table name) is required after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra tür (tablo adı) belirtilmelidir'"),
 			FirstParameter.Rows[1].Chars));
 	Else
 		NewDetails.Cast = FirstParameter.Rows[2].Chars;
@@ -42038,12 +42350,12 @@ Function FieldNodeDetailsFromExpressFunction(String, Context)
 	
 	If FirstParameter.Rows.Count() > 3 Then
 		SetErrorInRow(FirstParameter.Rows[3], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() > 1 Then
 		SetErrorInRow(FirstParameter.EndString, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires a single parameter.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires a single parameter.';tr = '""%1"" işlevi yalnızca bir parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	Return NewDetails;
@@ -42073,18 +42385,18 @@ Function FieldNodeDetailsFromIsNullFunction(String, Context)
 		NewDetails.NameSource = FirstParameter.Rows[0];
 	Else
 		SetErrorInRow(FirstParameter.Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The first parameter of the ""%1"" function must be a field name.';"), String.Chars));
+			NStr("en = 'The first parameter of the ""%1"" function must be a field name.';tr = '""%1"" işlevin ilk parametresi yalnızca alan adı olabilir'"), String.Chars));
 	EndIf;
 	
 	If FirstParameter.Rows.Count() > 1 Then
 		SetErrorInRow(FirstParameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'A comma is missing before the ""%1"" function parameter.';"), String.Chars));
+			NStr("en = 'A comma is missing before the ""%1"" function parameter.';tr = '""%1"" işlevin parametresinden önce virgül belirtilmemiştir'"), String.Chars));
 		Return NewDetails;
 	EndIf;
 	
 	If ParametersContent.Count() < 2 Then
 		SetErrorInRow(FirstParameter.EndString, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires two parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires two parameters.';tr = '""%1"" işlevin iki parametresi olmalıdır'"), String.Chars));
 		Return NewDetails;
 	EndIf;
 	
@@ -42108,18 +42420,18 @@ Function FieldNodeDetailsFromIsNullFunction(String, Context)
 		EndIf;
 	Else
 		SetErrorInRow(SecondParameter.Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The second parameter of the ""%1"" function must be either a predefined value or a constant.';"),
+			NStr("en = 'The second parameter of the ""%1"" function must be either a predefined value or a constant.';tr = '""%1"" işlevinde, ikinci parametre önceden tanımlanmış bir değer veya sabit olabilir'"),
 			String.Chars));
 	EndIf;
 	
 	If SecondParameter.Rows.Count() > 1 Then
 		SetErrorInRow(SecondParameter.Rows[1], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires only two parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires only two parameters.';tr = '""%1"" işlevi yalnızca iki parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	If ParametersContent.Count() > 2 Then
 		SetErrorInRow(ParametersContent[2].Rows[0], StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" function requires only two parameters.';"), String.Chars));
+			NStr("en = 'The ""%1"" function requires only two parameters.';tr = '""%1"" işlevi yalnızca iki parametreye sahip olabilir'"), String.Chars));
 	EndIf;
 	
 	Return NewDetails;
@@ -42155,11 +42467,11 @@ Function CommaSeparatedParameters(RowDescription, Context)
 			If Not PreviousSubstringIsArgumentPart Then
 				If String.Rows[0] = SubstringDetails Then
 					SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'A parameter is missing before a comma.';"), Substring.Chars));
+						NStr("en = 'A parameter is missing before a comma.';tr = 'Virgülden önce parametre belirtilmedi'"), Substring.Chars));
 					ParameterDetails.Rows.Add(AdditionalString1(Substring, ""));
 				Else
 					SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'A parameter is missing, or an extra comma is added.';"), Substring.Chars));
+						NStr("en = 'A parameter is missing, or an extra comma is added.';tr = 'Eksik parametre veya fazla virgül'"), Substring.Chars));
 				EndIf;
 			EndIf;
 			If ParameterDetails.Rows.Count() > 0 Then
@@ -42181,7 +42493,7 @@ Function CommaSeparatedParameters(RowDescription, Context)
 		ParameterDetails.EndString = TableRow(String.EndString, Context);
 	Else
 		SetErrorInRow(Substring, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'An extra comma is added, or a parameter is missing after the comma.';"), Substring.Chars), True);
+			NStr("en = 'An extra comma is added, or a parameter is missing after the comma.';tr = 'Fazla virgül veya virgülden sonra belirtilmemiş parametre'"), Substring.Chars), True);
 	EndIf;
 	
 	Return ParametersContent;
@@ -42213,7 +42525,7 @@ Procedure ParseChoice(Context)
 		Else
 			SkipWhenAnalysis = True;
 			SetErrorInRow(ChoiceFirstRow, StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'If the argument for the ""%1"" keyword is specified, it must be a field name.';"),
+				NStr("en = 'If the argument for the ""%1"" keyword is specified, it must be a field name.';tr = 'Anahtar kelime argümanı ""%1"" belirtildiğinde, yalnızca alan adı olabilir'"),
 				String.Chars));
 		EndIf;
 	EndIf;
@@ -42241,7 +42553,8 @@ Procedure ParseChoice(Context)
 				If ValueIsFilled(When.Chars) Then
 					SetErrorInRow(When, StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'As a field follows the ""%1"" keyword, 
-						           |either a predefined value or a constant is required after the ""%2"" keyword.';"),
+						           |either a predefined value or a constant is required after the ""%2"" keyword.';tr = '""%1""Anahtar kelimesinden sonra alan belirtildiğinden, ""%2""anahtar kelimesinden sonra önceden
+						           | tanımlanmış bir değer veya sabit belirtilmelidir'"),
 						String.Chars,
 						When.Chars));
 				EndIf;
@@ -42266,7 +42579,8 @@ Procedure ParseChoice(Context)
 			ElsIf ValueIsFilled(When.Chars) Then
 				SetErrorInRow(FirstSubstringWhen, StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'As a field follows the ""%1"" keyword, 
-					           |either a predefined value or a constant is required after the ""%2"" keyword.';"),
+					           |either a predefined value or a constant is required after the ""%2"" keyword.';tr = '""%1""Anahtar kelimesinden sonra alan belirtildiğinden, ""%2""anahtar kelimesinden sonra önceden
+					           | tanımlanmış bir değer veya sabit belirtilmelidir'"),
 					String.Chars,
 					When.Chars));
 			EndIf;
@@ -42278,7 +42592,7 @@ Procedure ParseChoice(Context)
 			
 		ElsIf ValueIsFilled(ThenContent.Chars) Then
 			SetErrorInRow(FirstSubstringWhen, StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'A logical expression is expected after the ""%1"" keyword.';"), ThenContent.Chars));
+				NStr("en = 'A logical expression is expected after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra mantıksal ifade belirtilmelidir.'"), ThenContent.Chars));
 		EndIf;
 		
 		IndexOf = IndexOf + 2;
@@ -42306,14 +42620,16 @@ Procedure ParseErrorKeyword(Context)
 			// "Disabled".
 			SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The ""%1"" value is allowed only as a value to be clarified
-				           |in the parameters of the ""%2"" function.';"),
+				           |in the parameters of the ""%2"" function.';tr = '""%1"" Değeri yalnızca işlev parametrelerinde ""%2""
+				           |belirtilen değer olarak kullanılabilir'"),
 				String.Chars,
 				KeywordRegardingLanguage("ValueAllowed", Context)));
 		Else
 			// "BlankRef" or "Null".
 			SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The ""%1"" value is allowed only as a value to be clarified
-				           |in the parameters of functions that check permissions.';"),
+				           |in the parameters of functions that check permissions.';tr = '""%1"" Değeri yalnızca işlev parametrelerinde
+				           |netleştirilen değer olarak kullanılabilir'"),
 				String.Chars));
 		EndIf;
 		
@@ -42321,12 +42637,13 @@ Procedure ParseErrorKeyword(Context)
 		// "Number", "String", "Date", "Boolean".
 		SetErrorInRow(String, InsertKeywordsIntoString(Context,
 			NStr("en = 'A name of the ""%1"" type is allowed only as a parameter of the ""%2"" function
-			           |or as a value to be clarified in the parameters of functions that check permissions.';"),
+			           |or as a value to be clarified in the parameters of functions that check permissions.';tr = '""%1""Türü adı yalnızca ""%2"" işlev parametresi olarak veya 
+			           |izin doğrulama işlev parametrelerinde netleştirilen değer olarak kullanılabilir'"),
 			String.Chars,
 			"Type"));
 	Else
 		SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There is no processing algorithm defined for the ""%1"" keyword.';"), String.Chars));
+			NStr("en = 'There is no processing algorithm defined for the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinin işlemesi belirlenmedi'"), String.Chars));
 	EndIf;
 	
 EndProcedure
@@ -42377,7 +42694,7 @@ Procedure AddArgumentFunctionChoiceOperator(Context, DetailsToAdd)
 		ProcessMissingLogicalOperation(Context, Undefined, DetailsToAdd);
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There is no processing algorithm defined for node ""%1"".';"), LongDesc.Node);
+			NStr("en = 'There is no processing algorithm defined for node ""%1"".';tr = '""%1"" ünitenin işlemesi belirlenmemiştir'"), LongDesc.Node);
 		Raise ErrorText;
 	EndIf;
 	
@@ -42386,7 +42703,7 @@ EndProcedure
 // For the AddArgumentFunctionChoiceOperator procedure
 Procedure ProcessMissingLogicalOperation(Context, DetailsLastArgument, DetailsToAdd)
 	
-	SetErrorInRow(Context.String, NStr("en = 'A logical operation is missing.';"));
+	SetErrorInRow(Context.String, NStr("en = 'A logical operation is missing.';tr = 'Mantıksal işlem belirtilmedi.'"));
 	
 	// Recovery.
 	AdditionalString1 = AdditionalString1(Context.String, "And", Context);
@@ -42426,7 +42743,7 @@ Function ExpressionsInParenthesesInAttachments(Rows, Context)
 		ElsIf String.Chars = ")" Then
 			If Attachments.Count() = 1 Then
 				SetErrorInRow(String,
-					NStr("en = 'A closing parenthesis is found before an opening parenthesis.';"));
+					NStr("en = 'A closing parenthesis is found before an opening parenthesis.';tr = 'Açılış parantezinden önce kapanış parantezi belirtildi'"));
 			Else
 				DeleteLastAttachment(Attachments, CurrentAttachment, Context, String);
 			EndIf;
@@ -42441,7 +42758,7 @@ Function ExpressionsInParenthesesInAttachments(Rows, Context)
 		Attachment.EndString = String;
 		Attachments.Delete(LastAttachmentIndex);
 		SetErrorInRow(Attachment,
-			NStr("en = 'A closing parenthesis is missing after an opening parenthesis.';"), True);
+			NStr("en = 'A closing parenthesis is missing after an opening parenthesis.';tr = 'Kapanış parantezi olmadan açılış parantez belirtildi'"), True);
 	EndDo;
 	
 	Return Result;
@@ -42481,7 +42798,7 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 			Else
 				If CurrentAttachment.Refinement = "Case" Then
 					SetErrorInRow(CurrentAttachment, InsertKeywordsIntoString(Context,
-						NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';"), "Case,When"), True);
+						NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi belirtilmedi'"), "Case,When"), True);
 					RestoreChoiceStructure(CurrentAttachment, Attachments, CurrentAttachment, "When", Context);
 				EndIf;
 			EndIf;
@@ -42492,7 +42809,7 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 			
 			If Attachments.Count() = 1 Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';"), "When,Case"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';tr = 'Anahtar kelime ""%1"" anahtar kelimeden ""%2"" önce belirtildi'"), "When,Case"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Case", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "Case" Then
@@ -42500,7 +42817,7 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 				
 			ElsIf CurrentAttachment.Refinement = "When" Then
 				SetErrorInRow(CurrentAttachment, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';"), "When,Then"), True);
+					NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi belirtilmedi'"), "When,Then"), True);
 				RestoreChoiceStructure(CurrentAttachment, Attachments, CurrentAttachment, "Then", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "Then" Then
@@ -42508,7 +42825,7 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 				
 			Else // CurrentAttachment.Clarification = "Else"
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword must precede the ""%2"" keyword.';"), "When,Else"));
+					NStr("en = 'The ""%1"" keyword must precede the ""%2"" keyword.';tr = 'Anahtar kelime ""%1"" anahtar kelimeden ""%2"" önce olmalıdır'"), "When,Else"));
 				DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 			EndIf;
 			AddAttachment(String, Attachments, CurrentAttachment, Context);
@@ -42517,12 +42834,12 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 			
 			If Attachments.Count() = 1 Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" and ""%3"" keywords.';"), "Then,Case,When"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" and ""%3"" keywords.';tr = 'Anahtar kelime ""%1"" anahtar kelimelerden ""%2"" ve ""%3"" önce belirtildi'"), "Then,Case,When"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Case,When", Context);
 			
 			ElsIf CurrentAttachment.Refinement = "Case" Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';"), "Then,When"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';tr = 'Anahtar kelime ""%1"" anahtar kelimeden ""%2"" önce belirtildi'"), "Then,When"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "When", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "When" Then
@@ -42530,12 +42847,12 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 				
 			ElsIf CurrentAttachment.Refinement = "Then" Then
 				SetErrorInRow(CurrentAttachment, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';"), "Then,When"), True);
+					NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi belirtilmedi'"), "Then,When"), True);
 				RestoreChoiceStructure(CurrentAttachment, Attachments, CurrentAttachment, "When", Context);
 				
 			Else // CurrentAttachment.Clarification = "Else"
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword must precede the ""%2"" keyword.';"), "Then,Else"));
+					NStr("en = 'The ""%1"" keyword must precede the ""%2"" keyword.';tr = 'Anahtar kelime ""%1"" anahtar kelimeden ""%2"" önce olmalıdır'"), "Then,Else"));
 				DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "When", Context);
 			EndIf;
@@ -42546,17 +42863,17 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 			
 			If Attachments.Count() = 1 Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"", ""%3"", and ""%4"" keywords.';"), "Else,Case,When,Then"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"", ""%3"", and ""%4"" keywords.';tr = 'Anahtar kelime ""%1"" anahtar kelimelerden ""%2"", ""%3"" ve ""%4"" önce belirtildi'"), "Else,Case,When,Then"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Case,When,Then", Context);
 			
 			ElsIf CurrentAttachment.Refinement = "Case" Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" and ""%3"" keywords.';"), "Else,When,Then"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" and ""%3"" keywords.';tr = 'Anahtar kelime ""%1"" anahtar kelimelerden ""%2"" ve ""%3"" önce belirtildi'"), "Else,When,Then"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "When,Then", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "When" Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';"), "Else,Then"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';tr = 'Anahtar kelime ""%1"" anahtar kelimeden ""%2"" önce belirtildi'"), "Else,Then"));
 				DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Then", Context);
 				
@@ -42565,7 +42882,7 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 				
 			Else // CurrentAttachment.Clarification = "Else"
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'Repeated keyword: ""%1"".';"), "Else"));
+					NStr("en = 'Repeated keyword: ""%1"".';tr = 'Anahtar kelime ""%1"" tekrar belirtildi'"), "Else"));
 			EndIf;
 			DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 			AddAttachment(String, Attachments, CurrentAttachment, Context);
@@ -42574,23 +42891,23 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 			
 			If Attachments.Count() = 1 Then
 				SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"", ""%3"", ""%4"", and ""%5"" keywords.';"), "End,Case,When,Then,Else"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"", ""%3"", ""%4"", and ""%5"" keywords.';tr = '""%1"" anahtar kelimesi ""%2"", ""%3"", ""%4"" ve ""%5"" anahtar kelimelerinden önce belirtildi'"), "End,Case,When,Then,Else"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Case,When,Then,Else", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "Case" Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"", ""%3"", and ""%4"" keywords.';"), "End,When,Then,Else"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"", ""%3"", and ""%4"" keywords.';tr = 'Anahtar kelime ""%1"" anahtar kelimelerden ""%2"", ""%3"" ve ""%4"" önce belirtildi'"), "End,When,Then,Else"));
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "When,Then,Else", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "When" Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" and ""%3"" keywords.';"), "End,Then,Else"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" and ""%3"" keywords.';tr = 'Anahtar kelime ""%1"" anahtar kelimelerden ""%2"" ve ""%3"" önce belirtildi'"), "End,Then,Else"));
 				DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Then,Else", Context);
 				
 			ElsIf CurrentAttachment.Refinement = "Then" Then
 				SetErrorInRow(String, InsertKeywordsIntoString(Context,
-					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';"), "End,Else"));
+					NStr("en = 'The ""%1"" keyword precedes the ""%2"" keyword.';tr = 'Anahtar kelime ""%1"" anahtar kelimeden ""%2"" önce belirtildi'"), "End,Else"));
 				DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 				RestoreChoiceStructure(String, Attachments, CurrentAttachment, "Else", Context);
 				
@@ -42607,24 +42924,24 @@ Function ExpressionsSelectionWhenThenInAttachments(Rows, Context)
 		
 		If CurrentAttachment.Refinement = "Case" Then
 			ErrorText = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%2"", ""%3"", ""%4"", and ""%5"" keywords are missing after the ""%1"" keyword.';"), "Case,When,Then,Else,End");
+				NStr("en = 'The ""%2"", ""%3"", ""%4"", and ""%5"" keywords are missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra ""%2"", ""%3"", ""%4"" ve ""%5"" anahtar kelimeleri belirtilmedi'"), "Case,When,Then,Else,End");
 			RestoreChoiceStructure(CurrentAttachment, Attachments, CurrentAttachment, "When,Then,Else", Context);
 			
 		ElsIf CurrentAttachment.Refinement = "When" Then
 			ErrorText = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%2"", ""%3"", and ""%4"" keywords are missing after the ""%1"" keyword.';"), "When,Then,Else,End");
+				NStr("en = 'The ""%2"", ""%3"", and ""%4"" keywords are missing after the ""%1"" keyword.';tr = 'Anahtar kelimeden ""%1"" sonra anahtar kelimeler ""%2"", ""%3"" ve ""%4"" belirtilmedi'"), "When,Then,Else,End");
 			DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 			RestoreChoiceStructure(CurrentAttachment, Attachments, CurrentAttachment, "Then,Else", Context);
 			
 		ElsIf CurrentAttachment.Refinement = "Then" Then
 			ErrorText = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%2"" and ""%3"" keywords are missing after the ""%1"" keyword.';"), "Then,Else,End");
+				NStr("en = 'The ""%2"" and ""%3"" keywords are missing after the ""%1"" keyword.';tr = 'Anahtar kelimeden ""%1"" sonra anahtar kelimeler ""%2"" ve ""%3"" belirtilmedi'"), "Then,Else,End");
 			DeleteLastAttachment(Attachments, CurrentAttachment, Context);
 			RestoreChoiceStructure(CurrentAttachment, Attachments, CurrentAttachment, "Else", Context);
 			
 		Else // CurrentAttachment.Clarification = "Else"
 			ErrorText = InsertKeywordsIntoString(Context,
-				NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';"), "Else,End");
+				NStr("en = 'The ""%2"" keyword is missing after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelimesi belirtilmedi'"), "Else,End");
 		EndIf;
 		SetErrorInRow(CurrentAttachment, ErrorText, True);
 		DeleteLastAttachment(Attachments, CurrentAttachment, Context);
@@ -42673,20 +42990,20 @@ Function FunctionsWithExpressionsInParentheses(Rows, InternalData)
 				If String.Rows.Count() = 0 Then
 					If String.Type = "Function" Then
 						SetErrorInRow(Rows[IndexOf], StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'Parameters of the ""%1"" function are missing.';"), String.Chars), True);
+							NStr("en = 'Parameters of the ""%1"" function are missing.';tr = '""%1"" işlevin hiç bir parametresi belirtilmedi'"), String.Chars), True);
 					Else
 						SetErrorInRow(Rows[IndexOf], StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'The list of values for the ""%1"" operation is empty.';"), String.Chars), True);
+							NStr("en = 'The list of values for the ""%1"" operation is empty.';tr = '""%1"" İşlem değerleri listesinde herhangi bir değer belirtilmedi'"), String.Chars), True);
 					EndIf;
 				EndIf;
 			Else
 				String.Rows = New Array;
 				If String.Type = "Function" Then
 					SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Missing parameters in parentheses after the ""%1"" function.';"), String.Chars), True);
+						NStr("en = 'Missing parameters in parentheses after the ""%1"" function.';tr = '""%1"" İşlevinden sonra parantez içindeki parametreler belirtilmedi'"), String.Chars), True);
 				Else
 					SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Missing values in parentheses after the ""%1"" keyword.';"), String.Chars), True);
+						NStr("en = 'Missing values in parentheses after the ""%1"" keyword.';tr = '""%1"" anahtar kelimesinden sonra parantez içindeki değerler belirtilmedi.'"), String.Chars), True);
 				EndIf;
 			EndIf;
 			
@@ -42705,7 +43022,7 @@ Function FunctionsWithExpressionsInParentheses(Rows, InternalData)
 			Else
 				String.Rows = New Array;
 				SetErrorInRow(String, InsertKeywordsIntoString(InternalData,
-						NStr("en = 'The ""%1"" keyword is missing after the ""%2"" keyword.';"),
+						NStr("en = 'The ""%1"" keyword is missing after the ""%2"" keyword.';tr = '""%1"" anahtar kelimesinden sonra ""%2"" anahtar kelime belirtilmedi'"),
 						"Null",
 						String.Chars),
 					True);
@@ -42725,7 +43042,7 @@ Function FunctionsWithExpressionsInParentheses(Rows, InternalData)
 				Continue;
 			Else
 				SetErrorInRow(String, StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'A field name cannot begin with a period "".""';"), String.Chars));
+					NStr("en = 'A field name cannot begin with a period "".""';tr = 'Alan adı nokta (""."") ile başlayamaz'"), String.Chars));
 			EndIf;
 		EndIf;
 		
@@ -42865,7 +43182,7 @@ Procedure SetAlias(PartRow, IConnectionShort, InternalData)
 	If PointPosition > 0 Then
 		PartRow.ErrorPosition = PointPosition - 1;
 		PartRow.ErrorText =
-			NStr("en = 'An alias cannot contain a period "".""';");
+			NStr("en = 'An alias cannot contain a period "".""';tr = 'Takma ad ""."" karakterini içeremez'");
 			
 	ElsIf TypeOf(IConnectionShort) = Type("String") Then
 		IConnectionShort = PartRow.Chars;
@@ -42880,7 +43197,7 @@ Procedure SetAlias(PartRow, IConnectionShort, InternalData)
 						IConnectionShort.Alias, IConnectionShort.Table));
 			EndIf;
 		Else
-			PartRow.ErrorText = NStr("en = 'Duplicate alias.';");
+			PartRow.ErrorText = NStr("en = 'Duplicate alias.';tr = 'Takma ad tekrarlandı'");
 		EndIf;
 	EndIf;
 	
@@ -42899,7 +43216,7 @@ Procedure SetTableName(PartRow, IConnectionShort, InternalData)
 	
 	If StrStartsWith(PartRow.Chars, ".") Then
 		PartRow.ErrorText =
-			NStr("en = 'A table name cannot begin with a period "".""';");
+			NStr("en = 'A table name cannot begin with a period "".""';tr = 'Tablo adı ""."" karakteriyle başlayamaz'");
 		Return;
 	EndIf;
 	
@@ -42910,7 +43227,7 @@ Procedure SetTableName(PartRow, IConnectionShort, InternalData)
 		
 		PointPosition = PointPosition + StrFind(Mid(PartRow.Chars, PointPosition + 1), ".");
 		PartRow.ErrorText =
-			NStr("en = 'A full table name cannot contain more than two periods "".""';");
+			NStr("en = 'A full table name cannot contain more than two periods "".""';tr = 'Tablonun tam adı ikiden fazla ""."" karakter içeremez'");
 		
 		PartRow.ErrorPosition = PointPosition - 1;
 		Return;
@@ -42934,13 +43251,13 @@ Procedure AddRequiredTableAsDataSource(Context, Table, Source)
 	If NameProperties.NamePartsCount < 2
 	 Or NameProperties.NamePartsCount > 3 Then
 		SetErrorInRow(Source,
-			NStr("en = 'A name of a joined table must contain one or two dots.';"));
+			NStr("en = 'A name of a joined table must contain one or two dots.';tr = 'Birleştirilmiş tablonun adı bir veya iki nokta içermelidir.'"));
 		Return;
 	EndIf;
 	
 	If NameProperties.TablesTypeProperties = Undefined Then
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The table name ""%2"" begins with an invalid word ""%1"".';"), NameProperties.TypeName, Table));
+			NStr("en = 'The table name ""%2"" begins with an invalid word ""%1"".';tr = '""%1"" tablo adının ""%2"" başlangıcı yanlış'"), NameProperties.TypeName, Table));
 		Return;
 	EndIf;
 	
@@ -42953,11 +43270,11 @@ Procedure AddRequiredTableAsDataSource(Context, Table, Source)
 			
 			If ClarificationProperties.Use = "Illegal" Then
 				SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The ""%1"" tables of the ""%2"" table group are not allowed.';"),
+					NStr("en = 'The ""%1"" tables of the ""%2"" table group are not allowed.';tr = '""%1"" tablo grubunun ""%2"" tabloları kullanılamaz'"),
 					NameProperties.Extension, NameProperties.TypeName));
 			Else
 				SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Joining the ""%1"" tables of the ""%2"" table group is not allowed.';"),
+					NStr("en = 'Joining the ""%1"" tables of the ""%2"" table group is not allowed.';tr = '""%1"" tablo grubunun ""%2"" tabloları eklenemez'"),
 					NameProperties.Extension, NameProperties.TypeName));
 			EndIf;
 			Return;
@@ -42982,19 +43299,19 @@ Procedure AddRequiredTableAsReferenceType(Context, Table, Source)
 	
 	If NameProperties.NamePartsCount <> 2 Then
 		SetErrorInRow(Source,
-			NStr("en = 'A table name specified as a type must contain a single dot.';"));
+			NStr("en = 'A table name specified as a type must contain a single dot.';tr = 'Tür olarak belirtilen tablo adında tek bir nokta olmalıdır.'"));
 		Return;
 	EndIf;
 	
 	If NameProperties.TablesTypeProperties = Undefined Then
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The table name ""%2"" begins with an invalid word ""%1"".';"), NameProperties.TypeName, Table));
+			NStr("en = 'The table name ""%2"" begins with an invalid word ""%1"".';tr = '""%1"" tablo adının ""%2"" başlangıcı yanlış'"), NameProperties.TypeName, Table));
 		Return;
 	EndIf;
 	
 	If Not NameProperties.TablesTypeProperties.IsReferenceType Then
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" table group is not included in any reference types.';"), NameProperties.TypeName, Table));
+			NStr("en = 'The ""%1"" table group is not included in any reference types.';tr = '""%1"" tablo grubu referans türlerin kapsamına girmez'"), NameProperties.TypeName, Table));
 		Return;
 	EndIf;
 	
@@ -43014,13 +43331,13 @@ Procedure AddRequiredPredefinedItem(Context, FullPredefinedItemName, Source)
 	
 	If NameProperties.NamePartsCount <> 3 Then
 		SetErrorInRow(Source,
-			NStr("en = 'A predefined value name must contain two dots.';"));
+			NStr("en = 'A predefined value name must contain two dots.';tr = 'Öntanımlı değer adı iki adet nokta içermelidir.'"));
 		Return;
 	EndIf;
 	
 	If NameProperties.TablesTypeProperties = Undefined Then
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The table name ""%2"" begins with an invalid word ""%1"".';"),
+			NStr("en = 'The table name ""%2"" begins with an invalid word ""%1"".';tr = '""%1"" tablo adının ""%2"" başlangıcı yanlış'"),
 			NameProperties.TypeName,
 			NameProperties.TypeName + "." + NameProperties.NameWithoutType));
 		Return;
@@ -43028,7 +43345,7 @@ Procedure AddRequiredPredefinedItem(Context, FullPredefinedItemName, Source)
 	
 	If Not NameProperties.TablesTypeProperties.IsReferenceType Then
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" table group is not included in any reference types.';"), NameProperties.TypeName));
+			NStr("en = 'The ""%1"" table group is not included in any reference types.';tr = '""%1"" tablo grubu referans türlerin kapsamına girmez'"), NameProperties.TypeName));
 		Return;
 	EndIf;
 	
@@ -43040,7 +43357,7 @@ Procedure AddRequiredPredefinedItem(Context, FullPredefinedItemName, Source)
 	      Or WordProperties.Id <> "EmptyRef") Then
 		
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There are no predefined items in the ""%1"" table group.';"), NameProperties.TypeName));
+			NStr("en = 'There are no predefined items in the ""%1"" table group.';tr = '""%1"" tablo grubunda önceden tanımlanmış unsurlar yok'"), NameProperties.TypeName));
 		Return;
 	EndIf;
 	
@@ -43067,13 +43384,13 @@ Procedure CheckTheRoleName(NameOfRole, Source)
 	
 	If StrFind(NameOfRole, ".") > 0 Then
 		SetErrorInRow(Source,
-			NStr("en = 'Role name must not contain dots';"));
+			NStr("en = 'Role name must not contain dots';tr = 'Rol adı nokta içermemelidir'"));
 		Return;
 	EndIf;
 	
 	If Metadata.Roles.Find(NameOfRole) = Undefined Then
 		SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Role ""%1"" is missing in the metadata';"), NameOfRole));
+			NStr("en = 'Role ""%1"" is missing in the metadata';tr = '""%1"" rolü metaverilerde mevcut değil'"), NameOfRole));
 		Return;
 	EndIf;
 	
@@ -43089,7 +43406,7 @@ Procedure CheckTheNameOfTheMetadataObjectRight(NameOfRight, SourceOfLaw, ObjectN
 	
 	If StrFind(NameOfRight, ".") > 0 Then
 		SetErrorInRow(SourceOfLaw,
-			NStr("en = 'Access right name must not contain dots';"));
+			NStr("en = 'Access right name must not contain dots';tr = 'Yetki adı noktalar içermemelidir'"));
 		Return;
 	EndIf;
 	
@@ -43097,7 +43414,7 @@ Procedure CheckTheNameOfTheMetadataObjectRight(NameOfRight, SourceOfLaw, ObjectN
 	MetadataObject = MetadataObjectByFullNameForCheckingTheRight(ObjectName, StandardAttributeName);
 	If MetadataObject = Undefined Then
 		SetErrorInRow(ObjectSource, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Metadata object ""%1"" does not exist';"), ObjectName));
+			NStr("en = 'Metadata object ""%1"" does not exist';tr = '""%1"" metaveri nesnesi mevcut değil'"), ObjectName));
 		Return;
 	EndIf;
 	
@@ -43112,7 +43429,8 @@ Procedure CheckTheNameOfTheMetadataObjectRight(NameOfRight, SourceOfLaw, ObjectN
 	If ValueIsFilled(ErrorText) Then
 		SetErrorInRow(SourceOfLaw, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot check the ""%1"" access right of the ""%2"" metadata object due to:
-			           |%3';"), NameOfRight, ObjectName, ErrorText));
+			           |%3';tr = '""%2"" metaveri nesnesinin ""%1"" yetkisi şu sebeple denetlenemedi:
+			           |%3'"), NameOfRight, ObjectName, ErrorText));
 		Return;
 	EndIf;
 	
@@ -43207,7 +43525,7 @@ Procedure AddRequiredTableField(Context, Table, FieldName, Source,
 			
 			Context.Insert("ErrorSetToFirstFieldInMainTable");
 			SetErrorInFieldNameString(Context, Source,
-				NStr("en = 'The field does not exist as non-existent table ""%1"" is specified.';"), 0, ,
+				NStr("en = 'The field does not exist as non-existent table ""%1"" is specified.';tr = 'geçersiz ""%1"" tablosu belirtildiğinden alan mevcut değil'"), 0, ,
 				Context.MainTable);
 		EndIf;
 		
@@ -44057,13 +44375,13 @@ Procedure MarkIncorrectFieldsTablesAndFieldsTypesNames(TablesFields, Context)
 			If Not TableProperties.TableExists Then
 				For Each Source In TableProperties.Sources Do
 					SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'Table ""%1"" does not exist.';"), Source.Chars), , 2);
+							NStr("en = 'Table ""%1"" does not exist.';tr = '""%1"" tablosu mevcut değil'"), Source.Chars), , 2);
 				EndDo;
 				If TableProperties.Property("FirstField")
 				   And TableProperties.FirstField.FirstSource <> Undefined Then
 					
 					SetErrorInFieldNameString(Context, TableProperties.FirstField.FirstSource.Key,
-						NStr("en = 'The field does not exist as non-existent table ""%1"" is specified.';"), 0, ,
+						NStr("en = 'The field does not exist as non-existent table ""%1"" is specified.';tr = 'Geçersiz ""%1"" tablosu belirtildiğinden alan mevcut değil'"), 0, ,
 						TableProperties.FirstField.FirstSource.Value);
 				EndIf;
 				For Each PredefinedItemDetails In TableProperties.Predefined Do
@@ -44071,7 +44389,7 @@ Procedure MarkIncorrectFieldsTablesAndFieldsTypesNames(TablesFields, Context)
 						NameContent = StrSplit(Source.Chars, ".");
 						
 						SetErrorInRow(Source, StringFunctionsClientServer.SubstituteParametersToString(
-								NStr("en = 'The predefined value does not exist as non-existent table ""%1"" is specified.';"),
+								NStr("en = 'The predefined value does not exist as non-existent table ""%1"" is specified.';tr = 'Geçersiz ""%1"" tablosu belirtildiğinden önceden tanımlanmış değer mevcut değil'"),
 								NameContent[0] + "." + NameContent[1]), , 2);
 					EndDo;
 				EndDo;
@@ -44087,7 +44405,7 @@ Procedure MarkIncorrectFieldsTablesAndFieldsTypesNames(TablesFields, Context)
 					NameContent = StrSplit(Source.Chars, ".");
 					Source.ErrorPosition = StrLen(NameContent[0] + "." + NameContent[1]) + 1;
 					Source.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Predefined value ""%1"" does not exist.';"), NameContent[2]);
+						NStr("en = 'Predefined value ""%1"" does not exist.';tr = 'önceden tanımlanmış ""%1"" değer mevcut değil'"), NameContent[2]);
 				EndDo;
 			EndDo;
 			
@@ -44101,13 +44419,13 @@ Procedure MarkIncorrectFieldsTablesAndFieldsTypesNames(TablesFields, Context)
 					For Each Source In ExtensionProperties1.Sources Do
 						SetErrorInRow(Source,
 							StringFunctionsClientServer.SubstituteParametersToString(
-								NStr("en = 'Table ""%1"" does not exist.';"), Source.Chars), , 2);
+								NStr("en = 'Table ""%1"" does not exist.';tr = '""%1"" tablosu mevcut değil'"), Source.Chars), , 2);
 					EndDo;
 					If ExtensionProperties1.Property("FirstField")
 					   And ExtensionProperties1.FirstField.FirstSource <> Undefined Then
 						
 						SetErrorInFieldNameString(Context, ExtensionProperties1.FirstField.FirstSource.Key,
-							NStr("en = 'The field does not exist as non-existent table ""%1"" is specified.';"), 0, ,
+							NStr("en = 'The field does not exist as non-existent table ""%1"" is specified.';tr = 'Geçersiz ""%1"" tablosu belirtildiğinden alan mevcut değil'"), 0, ,
 							ExtensionProperties1.FirstField.FirstSource.Value);
 					EndIf;
 					Continue;
@@ -44131,18 +44449,18 @@ Procedure MarkIncorrectFieldAndFieldTypes(FieldDetails, Context)
 			EOF = False;
 			If FieldProperties.ErrorKind = "TabularSectionNoField" Then
 				EOF = True;
-				ErrorTemplate = NStr("en = 'A field is missing after the ""%1"" tabular section of the ""%2"" table.';");
+				ErrorTemplate = NStr("en = 'A field is missing after the ""%1"" tabular section of the ""%2"" table.';tr = '""%1"" tablonun sekmeli bölümünden sonraki ""%2"" alan belirtilmedi'");
 				
 			ElsIf FieldProperties.ErrorKind = "AdditionalTableTabularSection" Then
-				ErrorTemplate = NStr("en = 'Tabular section ""%1"" of the additional table ""%2"" is not supported.';");
+				ErrorTemplate = NStr("en = 'Tabular section ""%1"" of the additional table ""%2"" is not supported.';tr = '""%2"" ek tablo için ""%1"" tablo bölümü desteklenmiyor'");
 				
 			ElsIf FieldProperties.ErrorKind = "Illegal" Then
-				ErrorTemplate = NStr("en = 'The ""%1"" field of the ""%2"" table is not allowed.';");
+				ErrorTemplate = NStr("en = 'The ""%1"" field of the ""%2"" table is not allowed.';tr = '""%1"" tablonun ""%2"" alanı kullanılamaz'");
 				
 			ElsIf FieldProperties.ErrorKind = "Prohibited" Then
-				ErrorTemplate = NStr("en = 'The ""%1"" field of the ""%2"" table is not allowed.';");
+				ErrorTemplate = NStr("en = 'The ""%1"" field of the ""%2"" table is not allowed.';tr = '""%1"" tablonun ""%2"" alanı kullanılamaz'");
 			Else
-				ErrorTemplate = NStr("en = 'Field ""%1"" of table ""%2"" does not exist.';");
+				ErrorTemplate = NStr("en = 'Field ""%1"" of table ""%2"" does not exist.';tr = '""%2"" tablonun ""%1"" alanı mevcut değil'");
 			EndIf;
 			SetErrorInFieldNameString(Context,
 				 SourceDetails.Key, ErrorTemplate, 1, True, SourceDetails.Value, EOF);
@@ -44153,15 +44471,15 @@ Procedure MarkIncorrectFieldAndFieldTypes(FieldDetails, Context)
 	If FieldProperties.FieldWithError > 1 Then
 		For Each SourceDetails In FieldDetails.Value.Sources Do
 			If FieldProperties.ErrorKind = "TabularSectionAfterDot" Then
-				ErrorTemplate = NStr("en = 'Cannot address the ""%1"" tabular section using dot syntax.';");
+				ErrorTemplate = NStr("en = 'Cannot address the ""%1"" tabular section using dot syntax.';tr = 'Nokta sözdizimi kullanılarak ""%1"" tablo bölümü adreslenemiyor.'");
 				
 			ElsIf FieldProperties.ErrorKind = "Illegal" Then
-				ErrorTemplate = NStr("en = 'The ""%1"" field is not allowed.';");
+				ErrorTemplate = NStr("en = 'The ""%1"" field is not allowed.';tr = '""%1"" alan kullanılamaz'");
 				
 			ElsIf FieldProperties.ErrorKind = "Prohibited" Then
-				ErrorTemplate = NStr("en = 'The ""%1"" field is not allowed.';");
+				ErrorTemplate = NStr("en = 'The ""%1"" field is not allowed.';tr = '""%1"" alan kullanılamaz'");
 			Else
-				ErrorTemplate = NStr("en = 'Field ""%1"" does not exist.';");
+				ErrorTemplate = NStr("en = 'Field ""%1"" does not exist.';tr = '""%1"" alan mevcut değil'");
 			EndIf;
 			SetErrorInFieldNameString(Context,
 				SourceDetails.Key, ErrorTemplate, FieldProperties.FieldWithError, True);
@@ -44177,7 +44495,7 @@ Procedure MarkIncorrectFieldAndFieldTypes(FieldDetails, Context)
 	   And FieldProperties.Collection <> "StandardTabularSections" Then
 		
 			For Each SourceDetails In FieldDetails.Value.Sources Do
-				ErrorTemplate = NStr("en = 'Redundant syntax: a dot operator and the ""%1"" field after a field.';");
+				ErrorTemplate = NStr("en = 'Redundant syntax: a dot operator and the ""%1"" field after a field.';tr = '""%1"" alan herhangi alandan ""nokta ile"" belirt'");
 				SetErrorInFieldNameString(Context,
 					SourceDetails.Key, ErrorTemplate, 2, True);
 		EndDo;
@@ -44191,7 +44509,7 @@ Procedure MarkIncorrectFieldAndFieldTypes(FieldDetails, Context)
 				If Not TypeProperties.ContainsType Then
 					SetErrorInRow(SourceDetails.Key,
 						StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'Type ""%2"" does not exist for field ""%1"".';"),
+							NStr("en = 'Type ""%2"" does not exist for field ""%1"".';tr = '""%1"" alanın ""%2"" türü mevcut değil'"),
 							SourceDetails.Value.Chars,
 							SourceDetails.Key.Chars),
 						, 2);
@@ -44306,13 +44624,14 @@ Procedure UpdateProgressInBackground(Context, ResultAddress) Export
 			ErrorText = ErrorProcessing.BriefErrorDescription(ErrorInfo);
 		EndTry;
 	Else
-		ErrorText = NStr("en = 'The app version is updated. Restart the app.';");
+		ErrorText = NStr("en = 'The app version is updated. Restart the app.';tr = 'Uygulama sürümü güncellendi. Uygulamayı yeniden başlatın.'");
 	EndIf;
 	
 	If ErrorText <> Undefined Then
 		Context.Insert("ErrorInfo", StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot update the progress bar. Reason:
-			           |%1';"), ErrorText));
+			           |%1';tr = 'İlerleme çubuğu güncellenemedi. Nedeni:
+			           |%1'"), ErrorText));
 	EndIf;
 	
 	PutToTempStorage(Context, ResultAddress);

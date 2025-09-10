@@ -56,7 +56,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "GenerateFrom";
 	Kind.SubmenuName  = "CreateBasedOnSubmenu";
-	Kind.Title   = NStr("en = 'Generate';");
+	Kind.Title   = NStr("en = 'Generate';tr = 'Esasında oluştur'");
 	Kind.Order     = 60;
 	Kind.Picture    = PictureLib.InputOnBasis;
 	Kind.Representation = ButtonRepresentation.Picture;

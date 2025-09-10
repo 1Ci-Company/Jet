@@ -74,7 +74,7 @@ Function CanReplaceItems(Val ReplacementPairs, Val ReplacementParameters = Undef
 		// Replacing a contact information kind with another kind is only allowed if they both belong to the same group.
 		ReplacementAllowed = CurrentRef.Parent = DestinationRef.Parent;
 		If Not ReplacementAllowed Then
-			Error = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Item ""%1"" belongs to ""%2,"" while ""%3"" belongs to ""%4.""';"),
+			Error = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Item ""%1"" belongs to ""%2,"" while ""%3"" belongs to ""%4.""';tr = 'Eleman ""%1"" atıfta bulunur  ""%2"", а  ""%3"" -  к ""%4""'"),
 				CurrentRef, CurrentRef.Parent, DestinationRef, DestinationRef.Parent);
 			Result.Insert(CurrentRef, Error);
 		EndIf;
@@ -91,7 +91,7 @@ EndFunction
 Procedure DuplicatesSearchParameters(SearchParameters, AdditionalParameters = Undefined) Export
 	
 	Restriction = New Structure;
-	Restriction.Insert("Presentation",      NStr("en = 'Same group and same type (for example, ""address"" or ""phone"" type).';"));
+	Restriction.Insert("Presentation",      NStr("en = 'Same group and same type (for example, ""address"" or ""phone"" type).';tr = 'Aynı gruba ve aynı tipe (adres, telefon vb.) aittirler.'"));
 	Restriction.Insert("AdditionalFields", "Parent, Type, Used");
 	SearchParameters.ComparisonRestrictions.Add(Restriction);
 	
@@ -182,9 +182,9 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		ModuleNationalLanguageSupportServer = Common.CommonModule("NationalLanguageSupportServer");
 		ModuleNationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description", 
-			"en = '""Users"" catalog contact information';", LanguagesCodes); // @NStr-1
+			"en = '""Users"" catalog contact information';tr = '""Kullanıcılar"" dizininin iletişim bilgileri'", LanguagesCodes); // @NStr-1
 	Else
-		Item.Description = NStr("en = '""Users"" catalog contact information';", 
+		Item.Description = NStr("en = '""Users"" catalog contact information';tr = '""Kullanıcılar"" dizininin iletişim bilgileri'", 
 			Common.DefaultLanguageCode());
 	EndIf;
 	
@@ -202,9 +202,9 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		ModuleNationalLanguageSupportServer = Common.CommonModule("NationalLanguageSupportServer");
 		ModuleNationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description", 
-		"en = 'Email';", LanguagesCodes); // @NStr-1
+		"en = 'Email';tr = 'E-posta'", LanguagesCodes); // @NStr-1
 	Else
-		Item.Description = NStr("en = 'Email';", Common.DefaultLanguageCode());
+		Item.Description = NStr("en = 'Email';tr = 'E-posta'", Common.DefaultLanguageCode());
 	EndIf;
 	
 	
@@ -223,9 +223,9 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		ModuleNationalLanguageSupportServer = Common.CommonModule("NationalLanguageSupportServer");
 		ModuleNationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description", 
-		"en = 'Phone';", LanguagesCodes); // @NStr-1
+		"en = 'Phone';tr = 'Telefon'", LanguagesCodes); // @NStr-1
 	Else
-		Item.Description = NStr("en = 'Phone';", Common.DefaultLanguageCode());
+		Item.Description = NStr("en = 'Phone';tr = 'Telefon'", Common.DefaultLanguageCode());
 	EndIf;
 	
 	ContactsManagerOverridable.OnInitialItemsFilling(LanguagesCodes, Items, TabularSections);
@@ -290,15 +290,17 @@ Procedure CheckIDUniqueness(IDForFormulas, Ref, Parent, Cancel) Export
 			IDByRules = False;
 			
 			ErrorText = NStr("en = 'ID ""%1"" does not comply with variable naming rules.
-									|An ID must not contain spaces and special characters.';");
+									|An ID must not contain spaces and special characters.';tr = '""%1"" tanımlayıcısı değişkenleri adlandırma kurallarına uymuyor.
+									|Tanımlayıcı boşluk ve özel karakter içermemelidir.'");
 			Common.MessageToUser(
 				StringFunctionsClientServer.SubstituteParametersToString(ErrorText, IDForFormulas),,
 				"IDForFormulas",, Cancel);
 				
 			LanguageCode = Common.DefaultLanguageCode();
-			EventName = NStr("en = 'Save additional attribute or information record';", LanguageCode);
+			EventName = NStr("en = 'Save additional attribute or information record';tr = 'Ek öznitelik (bilgi) girişi'", LanguageCode);
 			ErrorText = NStr("en = 'ID ""%1"" does not comply with variable naming rules.
-									|An ID must not contain spaces and special characters.';", LanguageCode);
+									|An ID must not contain spaces and special characters.';tr = '""%1"" tanımlayıcısı değişkenleri adlandırma kurallarına uymuyor.
+									|Tanımlayıcı boşluk ve özel karakter içermemelidir.'", LanguageCode);
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 				IDForFormulas);
 			WriteLogEvent(EventName,
@@ -322,16 +324,16 @@ Procedure CheckIDUniqueness(IDForFormulas, Ref, Parent, Cancel) Export
 				
 				Cancel = True;
 				
-				ErrorText = NStr("en = 'The database already contains a contact information kind with ID ""%1"" within group ""%2"". The ID must be unique';");
+				ErrorText = NStr("en = 'The database already contains a contact information kind with ID ""%1"" within group ""%2"". The ID must be unique';tr = '""%2"" grubu içinde ""%1"" numaralı bir iletişim bilgisi türü zaten veritabanında var. Kimlik numarası benzersiz olmalıdır'");
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 					IDForFormulas, TopLevelParent);
 				Common.MessageToUser(ErrorText,, "IDForFormulas");
 				
 				LanguageCode = Common.DefaultLanguageCode();
-				ErrorText = NStr("en = 'The database already contains a contact information kind with ID ""%1"" within group ""%2"". The ID must be unique';", LanguageCode);
+				ErrorText = NStr("en = 'The database already contains a contact information kind with ID ""%1"" within group ""%2"". The ID must be unique';tr = '""%2"" grubu içinde ""%1"" numaralı bir iletişim bilgisi türü zaten veritabanında var. Kimlik numarası benzersiz olmalıdır'", LanguageCode);
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 					IDForFormulas, TopLevelParent);
-				EventName = NStr("en = 'Save additional attribute or information record';", LanguageCode);
+				EventName = NStr("en = 'Save additional attribute or information record';tr = 'Ek öznitelik (bilgi) girişi'", LanguageCode);
 				WriteLogEvent(EventName,
 					EventLogLevel.Error,
 					Ref.Metadata(),
@@ -342,14 +344,14 @@ Procedure CheckIDUniqueness(IDForFormulas, Ref, Parent, Cancel) Export
 		
 	Else
 		
-		ErrorText = NStr("en = 'ID for formulas is required';");
+		ErrorText = NStr("en = 'ID for formulas is required';tr = 'Formül için tanımlayıcı doldurulmadı'");
 		Common.MessageToUser(
 			StringFunctionsClientServer.SubstituteParametersToString(ErrorText, IDForFormulas),,
 			"IDForFormulas",, Cancel);
 			
 		LanguageCode = Common.DefaultLanguageCode();
-		EventName = NStr("en = 'Save additional attribute or information record';", LanguageCode);
-		ErrorText = NStr("en = 'ID for formulas is required';", LanguageCode);
+		EventName = NStr("en = 'Save additional attribute or information record';tr = 'Ek öznitelik (bilgi) girişi'", LanguageCode);
+		ErrorText = NStr("en = 'ID for formulas is required';tr = 'Formül için tanımlayıcı doldurulmadı'", LanguageCode);
 		WriteLogEvent(EventName,
 			EventLogLevel.Error,
 			Ref.Metadata(),
@@ -374,7 +376,7 @@ Function UUIDForFormulas(ObjectPresentation, CurrentObjectRef, Parent) Export
 	Id = IDForFormulas(ObjectPresentation);
 	If IsBlankString(Id) Then
 		// Presentation consists of special characters and digits.
-		Prefix = NStr("en = 'ID';");
+		Prefix = NStr("en = 'ID';tr = 'Tanımlayıcı '");
 		Id = IDForFormulas(Prefix + ObjectPresentation);
 	EndIf;
 	
@@ -692,14 +694,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some contact information kinds: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) some contact information kinds: %1';tr = 'Bazı iletişim bilgisi türleri işlenemedi (atlandı): %1'"), 
 				ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.ContactInformationKinds,,
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Yet another batch of contact information kinds is processed: %1';"),
+					NStr("en = 'Yet another batch of contact information kinds is processed: %1';tr = 'Başka türde iletişim bilgileri işlendi: %1'"),
 					ObjectsProcessed));
 	EndIf;
 	

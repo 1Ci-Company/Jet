@@ -77,7 +77,7 @@ Procedure FormGetProcessing(FormType, Parameters, SelectedForm, AdditionalInform
 	If FormType = "ObjectForm" Then
 		OptionRef1 = CommonClientServer.StructureProperty(Parameters, "Key");
 		If Not ValueIsFilled(OptionRef1) Then
-			Raise NStr("en = 'You can create a report option only from a report form.';");
+			Raise NStr("en = 'You can create a report option only from a report form.';tr = 'Rapor seçeneği yalnızca rapor formunda oluşturulabilir.'");
 		EndIf;
 
 		OpeningParameters = ReportsOptions.OpeningParameters(OptionRef1);
@@ -92,10 +92,10 @@ Procedure FormGetProcessing(FormType, Parameters, SelectedForm, AdditionalInform
 				ReportsOptions.OnAttachReport(OpeningParameters);
 			EndIf;
 			If Not OpeningParameters.Connected Then
-				Raise NStr("en = 'You can open an external report option only from a report form.';");
+				Raise NStr("en = 'You can open an external report option only from a report form.';tr = 'Harici rapor seçeneği sadece bir rapor formundan açılabilir.'");
 			EndIf;
 		Else
-			Raise NStr("en = 'You can open an external report option only from a report form.';");
+			Raise NStr("en = 'You can open an external report option only from a report form.';tr = 'Harici rapor seçeneği sadece bir rapor formundan açılabilir.'");
 		EndIf;
 
 		FullReportName = Kind + "." + OpeningParameters.ReportName;
@@ -261,12 +261,18 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 				CommentTemplate = NStr("en = 'Cannot identify the data source for report option %1.
 										 |It might be corrupted and cannot be recovered.
 										 |
-										 |Details: %2.';");
+										 |Details: %2.';tr = '%1 rapor seçeneği için veri kaynağı belirlenemiyor.
+										 |Bozuk veya düzeltilemiyor olabilir.
+										 |
+										 |Ayrıntılar: %2.'");
 			Else
 				CommentTemplate = NStr("en = 'Cannot identify the type of device for the %1 report option.
 										 |It might be corrupted and cannot be recovered.
 										 |
-										 |Technical details: %2';");
+										 |Technical details: %2';tr = '%1 rapor seçeneği için cihaz türü belirlenemiyor.
+										 |Bozuk veya kurtarılamıyor olabilir.
+										 |
+										 |Teknik bilgiler: %2'");
 			EndIf;
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(
 				CommentTemplate, RepresentationOfTheReference, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -282,12 +288,12 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	Parameters.ProcessingCompleted = InfobaseUpdate.DataProcessingCompleted(Parameters.Queue,
 		FullObjectName);
 	If Processed = 0 And Declined <> 0 Then
-		MessageTemplate = NStr("en = 'Couldn''t process (skipped) some report options: %1';");
+		MessageTemplate = NStr("en = 'Couldn''t process (skipped) some report options: %1';tr = 'Bazı rapor seçenekleri işlenemedi: %1'");
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, Declined);
 
 		Raise MessageText;
 	Else
-		CommentTemplate = NStr("en = 'Yet another batch of report options is processed: %1';");
+		CommentTemplate = NStr("en = 'Yet another batch of report options is processed: %1';tr = 'Başka bir rapor seçeneği paketi işlendi: %1'");
 		Comment = StringFunctionsClientServer.SubstituteParametersToString(CommentTemplate, Processed);
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			MetadataObject,, Comment);

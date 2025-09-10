@@ -44,7 +44,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Rescanning = Parameters.Rescanning;
 	
 	If Parameters.Rescanning Then
-		Items.OK.Title = NStr("en = 'Scan';");
+		Items.OK.Title = NStr("en = 'Scan';tr = 'Tara'");
 	EndIf;
 	
 	ScanJobParameters = CommonServerCall.CommonSettingsStorageLoad("ScanAddIn", "ScanJobParameters", Undefined);
@@ -115,10 +115,10 @@ Procedure PathToConverterApplicationStartChoice(Item, ChoiceData, StandardProces
 		
 	OpenFileDialog = New FileDialog(FileDialogMode.Open);
 	OpenFileDialog.FullFileName = PathToConverterApplication;
-	Filter = NStr("en = 'Executable files (*.exe)|*.exe';");
+	Filter = NStr("en = 'Executable files (*.exe)|*.exe';tr = 'Yürütülebilir dosyalar (*.exe)|*.exe'");
 	OpenFileDialog.Filter = Filter;
 	OpenFileDialog.Multiselect = False;
-	OpenFileDialog.Title = NStr("en = 'Select file to convert to PDF';");
+	OpenFileDialog.Title = NStr("en = 'Select file to convert to PDF';tr = 'PDF''ye dönüştürülecek bir dosya seçin'");
 	If OpenFileDialog.Choose() Then
 		PathToConverterApplication = OpenFileDialog.FullFileName;
 	EndIf;
@@ -135,7 +135,7 @@ EndProcedure
 
 &AtClient
 Procedure JPGQualityOnChange(Item)
-	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';"), JPGQuality);
+	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';tr = 'Kalite (%1)'"), JPGQuality);
 EndProcedure
 
 &AtClient
@@ -150,7 +150,7 @@ Procedure DeviceNameStartChoice(Item, StandardProcessing)
 		Item.ChoiceList.LoadValues(DeviceArray);
 	Else
 		StandardProcessing = False;
-		ShowMessageBox(,NStr("en = 'No scanners were detected. Check the scanner connection.';"));
+		ShowMessageBox(,NStr("en = 'No scanners were detected. Check the scanner connection.';tr = 'Tarayıcı bulunamadı. Tarayıcı bağlantısını kontrol edin.'"));
 	EndIf;
 EndProcedure 
 
@@ -165,7 +165,7 @@ EndProcedure
 Procedure ScanErrorTextURLProcessing(Item, FormattedStringURL, StandardProcessing)
 	If FormattedStringURL = "TechnicalInformation" Then
 		AfterTechnicalInfoReceived = New NotifyDescription("AfterTechnicalInfoReceived", ThisObject);
-		FilesOperationsInternalClient.GetTechnicalInformation(NStr("en = 'The last scan attempt failed.';"), 
+		FilesOperationsInternalClient.GetTechnicalInformation(NStr("en = 'The last scan attempt failed.';tr = 'Son tarama girişimi başarısız oldu.'"), 
 			AfterTechnicalInfoReceived);
 		StandardProcessing = False;
 	EndIf;
@@ -183,7 +183,7 @@ Procedure ScanLogCatalogStartChoice(Item, ChoiceData, StandardProcessing)
 	OpenFileDialog = New FileDialog(FileDialogMode.ChooseDirectory);
 	OpenFileDialog.FullFileName = ScanLogCatalog;
 	OpenFileDialog.Multiselect = False;
-	OpenFileDialog.Title = NStr("en = 'Select a path to save the scan log';");
+	OpenFileDialog.Title = NStr("en = 'Select a path to save the scan log';tr = 'Tarama günlüğünün kaydedileceği yolu seçin'");
 	
 	If OpenFileDialog.Choose() Then
 		ScanLogCatalog = OpenFileDialog.Directory;
@@ -200,7 +200,7 @@ EndProcedure
 &AtClient
 Procedure InformationForTechnicalSupportClick(Item)
 	AfterTechnicalInfoReceived = New NotifyDescription("AfterTechnicalInfoReceived", ThisObject);
-		FilesOperationsInternalClient.GetTechnicalInformation(NStr("en = 'Send technical information from the setting form.';"), 
+		FilesOperationsInternalClient.GetTechnicalInformation(NStr("en = 'Send technical information from the setting form.';tr = 'Ayar formundan teknik bilgileri gönder.'"), 
 			AfterTechnicalInfoReceived);
 EndProcedure
 
@@ -229,7 +229,7 @@ Procedure OK(Command)
 	
 	If UserScanSettings.UseScanLogDirectory Then
 		If UserScanSettings.ScanLogCatalog = "" Then
-			ErrorText = NStr("en = 'Path to scan log is not specified.';");
+			ErrorText = NStr("en = 'Path to scan log is not specified.';tr = 'Tarama kaydının yolu belirtilmedi.'");
 			CommonClient.MessageToUser(ErrorText, , "ScanLogCatalog");
 			Context.FillingCheckError = True;
 			Result = New Structure("Success", True);
@@ -262,7 +262,7 @@ EndProcedure
 &AtClient
 Procedure RefreshStatus()
 	
-	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';"), JPGQuality);
+	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';tr = 'Kalite (%1)'"), JPGQuality);
 	Items.ScannedImageFormat.Enabled = False;
 	Items.Resolution.Enabled = False;
 	Items.Chromaticity.Enabled = False;
@@ -293,7 +293,7 @@ Procedure UpdateStateAfterInitialization(InitializationCheckResult, Context) Exp
 	Attachable_Module = InitializationCheckResult.Attachable_Module;
 		
 	If Not FilesOperationsInternalClient.IsReadyForScanning(ThisObject, Attachable_Module) Then
-		Items.DeviceName.InputHint = NStr("en = 'Check scanner connection';");
+		Items.DeviceName.InputHint = NStr("en = 'Check scanner connection';tr = 'Tarayıcı bağlantısını kontrol et'");
 		Return;
 	Else
 		Items.DeviceName.InputHint = "";
@@ -415,7 +415,7 @@ EndProcedure
 Procedure AfterCheckInstalledConversionApp(RunResult, ExternalContext) Export
 	If StrFind(RunResult.OutputStream, "ImageMagick") = 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Specified path to the %1 application is incorrect.';"), "ImageMagick"); 
+			NStr("en = 'Specified path to the %1 application is incorrect.';tr = '%1 uygulamasına belirtilen yol yanlış.'"), "ImageMagick"); 
 		CommonClient.MessageToUser(MessageText, , "PathToConverterApplication");
 	ElsIf Not ExternalContext.FillingCheckError Then
 		OKCompletion(ExternalContext.UserScanSettings);
@@ -480,14 +480,14 @@ Procedure AfterScanDirAvailabilityChecked(Result, ExternalContext) Export
 	FillingCheckError = ExternalContext.FillingCheckError;
 	
 	If Not Result.Success Then
-		ErrorText = NStr("en = 'Cannot write to the specified directory. Choose another directory.';");
+		ErrorText = NStr("en = 'Cannot write to the specified directory. Choose another directory.';tr = 'Belirtilen dizine kaydedilemiyor. Başka bir dizin seçin.'");
 		CommonClient.MessageToUser(ErrorText, , "ScanLogCatalog");
 		FillingCheckError = True;
 	EndIf;
 	
 	If UserScanSettings.UseImageMagickToConvertToPDF Then
 		If Not ValueIsFilled(UserScanSettings.PathToConverterApplication) Then
-			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Path to ""%1"" is not specified.';"), 
+			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Path to ""%1"" is not specified.';tr = '""%1"" yolu belirtilmedi.'"), 
 			"ImageMagick");
 			CommonClient.MessageToUser(ErrorText, , "PathToConverterApplication");
 			FillingCheckError = True;

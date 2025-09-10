@@ -14,7 +14,7 @@
 Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	
 	If CommandParameter = Undefined Then
-		ShowMessageBox(,NStr("en = 'Tasks are not selected.';"));
+		ShowMessageBox(,NStr("en = 'Tasks are not selected.';tr = 'Görevler seçilmedi.'"));
 		Return;
 	EndIf;
 		
@@ -22,7 +22,7 @@ Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	For Each Task In CommandParameter Do
 		BusinessProcessesAndTasksServerCall.ExecuteTask(Task, True);
 		ShowUserNotification(
-			NStr("en = 'The task is completed';"),
+			NStr("en = 'The task is completed';tr = 'Görev tamamlandı'"),
 			GetURL(Task),
 			String(Task));
 	EndDo;

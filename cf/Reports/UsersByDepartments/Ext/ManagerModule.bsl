@@ -26,7 +26,7 @@ Procedure BeforeAddReportCommands(ReportsCommands, Parameters, StandardProcessin
 	Presentation = Undefined;
 	
 	If Parameters.FormName = "Catalog.Users.Form.ListForm" Then
-		Presentation = NStr("en = 'Users by department';");
+		Presentation = NStr("en = 'Users by department';tr = 'Bölüme göre kullanıcılar'");
 	EndIf;
 	
 	If Presentation = Undefined Then
@@ -58,7 +58,7 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "Main");
 	OptionSettings.Enabled = Users.IsDepartmentUsed();
 	OptionSettings.LongDesc =
-		NStr("en = 'Displays users'' membership in departments.';");
+		NStr("en = 'Displays users'' membership in departments.';tr = 'Kullanıcıların bölümlere üyeliklerini gösterir.'");
 	
 EndProcedure
 

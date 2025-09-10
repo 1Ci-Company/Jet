@@ -182,7 +182,7 @@ Procedure DeferredUpdateHyperlinkClick(Item)
 		
 		OpenForm("DataProcessor.EventLog.Form.EventLog", FormParameters);
 	Else
-		WarningText = NStr("en = 'Data has not been processed yet.';");
+		WarningText = NStr("en = 'Data has not been processed yet.';tr = 'Veri henüz işlenmemiş.'");
 		ShowMessageBox(,WarningText);
 	EndIf;
 	
@@ -228,7 +228,11 @@ Procedure Pause(Command)
 		|the application might malfunction.
 		|It is recommended that you only stop a data processing procedure
 		|if you find an error in it and only after technical support approval
-		|because data processing procedures might depend on each other.';");
+		|because data processing procedures might depend on each other.';tr = 'Ek veri işleme prosedürlerini durdurmak, 
+		|programın dengesiz çalışmasına veya çalışamamasına neden olabilir. 
+		|Veri işleme prosedüründe bir hata bulunursa ve yalnızca 
+		|destek ekibine danıştıktan sonra veri işleme 
+		|prosedürlerin birbirine bağlı olduğundan, devre dışı bırakılması önerilir.'");
 	QuestionButtons = New ValueList;
 	QuestionButtons.Add("Yes", "Stop");
 	QuestionButtons.Add("None", "Cancel");
@@ -580,9 +584,9 @@ Procedure GenerateDeferredHandlerTable(AllHandlersExecuted = True, InitialFillin
 	EndIf;
 	
 	If HandlersNotExecuted Then
-		Items.ExplanationText.Title = NStr("en = 'It is recommended that you start the data processing procedures that have not been completed.';");
+		Items.ExplanationText.Title = NStr("en = 'It is recommended that you start the data processing procedures that have not been completed.';tr = 'Tamamlanmamış veri işleme prosedürlerini başlatmanız önerilir.'");
 	Else
-		Items.ExplanationText.Title = NStr("en = 'It is recommended that you restart the procedures that have not been completed.';");
+		Items.ExplanationText.Title = NStr("en = 'It is recommended that you restart the procedures that have not been completed.';tr = 'Gerçekleşmeyen veri işleme prosedürlerini başlatmak önerilir.'");
 	EndIf;
 	
 	If ObsoleteDataCleanupHandlerRow <> Undefined Then
@@ -590,7 +594,7 @@ Procedure GenerateDeferredHandlerTable(AllHandlersExecuted = True, InitialFillin
 		DeferredHandlers.Move(RowIndex, DeferredHandlers.Count() - 1 - RowIndex);
 		ObsoleteDataCleanupHandlerRow.IsObsoleteDataCleanupHandler = True;
 		ObsoleteDataCleanupHandlerRow.HandlerAddOn =
-			NStr("en = 'View and clear obsolete data manually.';");
+			NStr("en = 'View and clear obsolete data manually.';tr = 'Eski verileri manuel olarak görüntüle ve sil.'");
 	EndIf;
 	
 	ItemNumber = 1;
@@ -650,48 +654,49 @@ Procedure AddDeferredHandler(HandlerRow, HandlersNotExecuted, AllHandlersExecute
 	
 	ExecutionPeriodTemplate =
 		NStr("en = '%1 -
-		           |%2';");
+		           |%2';tr = '%1 -
+		           |%2'");
 	
-	UpdateProcedureInformationTemplate = NStr("en = 'Data processing procedure %1 %2.';");
+	UpdateProcedureInformationTemplate = NStr("en = 'Data processing procedure %1 %2.';tr = 'Veri ""%1"" işleme prosedürü%2.'");
 	
 	ListLine.Status = HandlerRow.Status;
 	If HandlerRow.Status = Enums.UpdateHandlersStatuses.Completed Then
 		
 		HandlersNotExecuted = False;
-		ExecutionStatusPresentation = NStr("en = 'is completed';");
-		ListLine.StatusPresentation = NStr("en = 'Completed';");
+		ExecutionStatusPresentation = NStr("en = 'is completed';tr = 'başarıyla tamamlandı'");
+		ListLine.StatusPresentation = NStr("en = 'Completed';tr = 'Tamamlandı'");
 		ListLine.ExecutionDuration = UpdateProcedureDuration(ExecutionDuration, MaximumProductionDurationDays);
 	ElsIf HandlerRow.Status = Enums.UpdateHandlersStatuses.Running Then
 		
 		HandlersNotExecuted = False;
 		AllHandlersExecuted        = False;
-		ExecutionStatusPresentation = NStr("en = 'is running';");
+		ExecutionStatusPresentation = NStr("en = 'is running';tr = 'şu anda yürütülüyor'");
 		If Progress <> Undefined Then
-			StatusTemplate = NStr("en = 'Running (%1%)';");
+			StatusTemplate = NStr("en = 'Running (%1%)';tr = 'Yürütülüyor (%1%)'");
 			ListLine.StatusPresentation = StringFunctionsClientServer.SubstituteParametersToString(StatusTemplate, Progress)
 		Else
-			ListLine.StatusPresentation = NStr("en = 'Running';");
+			ListLine.StatusPresentation = NStr("en = 'Running';tr = 'Aktif'");
 		EndIf;
 	ElsIf HandlerRow.Status = Enums.UpdateHandlersStatuses.Error Then
 		
 		HandlersNotExecuted = False;
 		AllHandlersExecuted        = False;
-		ExecutionStatusPresentation = NStr("en = 'Data processing procedure ""%1"" completed with error:';") + Chars.LF + Chars.LF;
+		ExecutionStatusPresentation = NStr("en = 'Data processing procedure ""%1"" completed with error:';tr = 'Veri işleme prosedürü ""%1"" başarıyla tamamlandı:'") + Chars.LF + Chars.LF;
 		ExecutionStatusPresentation = StringFunctionsClientServer.SubstituteParametersToString(ExecutionStatusPresentation, HandlerRow.HandlerName);
 		ListLine.UpdateProcessInformation = ExecutionStatusPresentation + HandlerRow.ErrorInfo;
-		ListLine.StatusPresentation = NStr("en = 'Error';");
+		ListLine.StatusPresentation = NStr("en = 'Error';tr = 'Hata'");
 		ListLine.ExecutionDuration = UpdateProcedureDuration(ExecutionDuration, MaximumProductionDurationDays);
 	ElsIf HandlerRow.Status = Enums.UpdateHandlersStatuses.Paused Then
 		
 		HandlersNotExecuted = False;
 		AllHandlersExecuted        = False;
-		ExecutionStatusPresentation = NStr("en = 'is paused by administrator';");
-		ListLine.StatusPresentation = NStr("en = 'Paused';");
+		ExecutionStatusPresentation = NStr("en = 'is paused by administrator';tr = 'yönetici tarafından durduruldu'");
+		ListLine.StatusPresentation = NStr("en = 'Paused';tr = 'Durduruldu'");
 	Else
 		
 		AllHandlersExecuted        = False;
-		ExecutionStatusPresentation = NStr("en = 'has not started yet';");
-		ListLine.StatusPresentation = NStr("en = 'Not started';");
+		ExecutionStatusPresentation = NStr("en = 'has not started yet';tr = 'henüz yürütülmedi'");
+		ListLine.StatusPresentation = NStr("en = 'Not started';tr = 'Başlatılmadı'");
 	EndIf;
 	
 	If Not IsBlankString(HandlerRow.Comment) Then
@@ -745,14 +750,14 @@ Function UpdateProcedureDuration(ExecutionDuration, MaximumProductionDurationDay
 		ExecutionDuration = MaximumProductionDurationDays;
 	EndIf;
 	
-	SecondsTemplate = NStr("en = '%1 sec';");
-	MinutesTemplate = NStr("en = '%1 min %2 sec';");
-	HoursTemplate = NStr("en = '%1 h %2 min';");
+	SecondsTemplate = NStr("en = '%1 sec';tr = 'saniye %1'");
+	MinutesTemplate = NStr("en = '%1 min %2 sec';tr = '%1 dk %2 sn'");
+	HoursTemplate = NStr("en = '%1 h %2 min';tr = '%1 sa %2 dk'");
 	
 	DurationInSeconds = ExecutionDuration/1000;
 	DurationInSeconds = Round(DurationInSeconds);
 	If DurationInSeconds < 1 Then
-		Return NStr("en = 'less than a second';")
+		Return NStr("en = 'less than a second';tr = 'saniyeden az'")
 	ElsIf DurationInSeconds < 60 Then
 		Return StringFunctionsClientServer.SubstituteParametersToString(SecondsTemplate, DurationInSeconds);
 	ElsIf DurationInSeconds < 3600 Then
@@ -929,7 +934,7 @@ EndProcedure
 Function StartingPatchInstallation()
 	
 	ExecutionParameters = TimeConsumingOperations.FunctionExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Install patches following an update error.';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Install patches following an update error.';tr = 'Güncelleme hatasından sonra yamaları yükle.'");
 	Return TimeConsumingOperations.ExecuteFunction(ExecutionParameters, "GetApplicationUpdates.DownloadAndInstallFixes");
 	
 EndFunction

@@ -15,11 +15,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Parameters.DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.AdditionalDataProcessor Then
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'My additional data processors (%1)';"), 
+			NStr("en = 'My additional data processors (%1)';tr = 'Ek veri işlemcilerim (%1)'"), 
 			AdditionalReportsAndDataProcessors.SectionPresentation(Parameters.SectionRef));
 	ElsIf Parameters.DataProcessorsKind = Enums.AdditionalReportsAndDataProcessorsKinds.AdditionalReport Then
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'My additional reports (%1)';"), 
+			NStr("en = 'My additional reports (%1)';tr = 'Ek raporlarım (%1)'"), 
 			AdditionalReportsAndDataProcessors.SectionPresentation(Parameters.SectionRef));
 	EndIf;
 	

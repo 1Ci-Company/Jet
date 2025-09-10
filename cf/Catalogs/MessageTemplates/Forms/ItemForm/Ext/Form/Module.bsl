@@ -148,7 +148,7 @@ Procedure BeforeWriteAtServer(Cancel, CurrentObject, WriteParameters)
 	CheckInformation = ProcessTemplateText();
 	
 	If Not CheckInformation.Success Then
-		Common.MessageToUser(NStr("en = 'Couldn''t save template.';")
+		Common.MessageToUser(NStr("en = 'Couldn''t save template.';tr = 'Şablon kaydedilemedi.'")
 			+ Chars.LF + CheckInformation.ErrorText);
 		Cancel = True;
 		Return;
@@ -294,8 +294,8 @@ Function ProcessTemplateText()
 	
 	If InvalidParameters.Count() > 0 Then
 		ErrorText = ?(InvalidParameters.Count() = 1,
-			NStr("en = 'Invalid placeholder:';"),
-			NStr("en = 'Invalid placeholders:';"));
+			NStr("en = 'Invalid placeholder:';tr = 'Geçersiz yer tutucu:'"),
+			NStr("en = 'Invalid placeholders:';tr = 'Geçersiz yer tutucular:'"));
 		Result.ErrorText = ErrorText + " " + StrConcat(InvalidParameters, ", ");
 		Result.Success = False;
 	EndIf;
@@ -660,7 +660,7 @@ Procedure CheckTemplateFilling(Command)
 	CheckInformation = ProcessTemplateText();
 	
 	If CheckInformation.Success Then
-		ShowMessageBox(, NStr("en = 'Template is valid.';"));
+		ShowMessageBox(, NStr("en = 'Template is valid.';tr = 'Şablon geçerli.'"));
 	Else
 		CommonClient.MessageToUser(CheckInformation.ErrorText);
 	EndIf;
@@ -776,7 +776,7 @@ Procedure ChangeAttachment(Command)
 	If CurrentData.Ref = PredefinedValue("Catalog.MessageTemplatesAttachedFiles.EmptyRef") Then
 		AdditionalParameters = New Structure("CurrentIndexInCollection", CurrentIDInCollection);
 		OnCloseNotifyHandler = New NotifyDescription("ChangeAttachmentCompletion", ThisObject, AdditionalParameters);
-		QueryText = NStr("en = 'You can access the file''s properties after you save the file. Save it now?';");
+		QueryText = NStr("en = 'You can access the file''s properties after you save the file. Save it now?';tr = 'Dosya kaydedildikten sonra özelliklerine erişilebilir. Dosya kaydedilsin mi?'");
 		ShowQueryBox(OnCloseNotifyHandler, QueryText, QuestionDialogMode.YesNo);
 	Else
 		OpenAttachmentProperties(CurrentIDInCollection);
@@ -796,7 +796,7 @@ Procedure CopyAttachment(Command)
 	If CurrentData.Ref = PredefinedValue("Catalog.MessageTemplatesAttachedFiles.EmptyRef") Then
 		AdditionalParameters = New Structure("CurrentIndexInCollection", Id);
 		OnCloseNotifyHandler = New NotifyDescription("CopyAttachmentCompletion", ThisObject, AdditionalParameters);
-		QueryText = NStr("en = 'To copy the file, you need to save the template. Do you want to save it?';");
+		QueryText = NStr("en = 'To copy the file, you need to save the template. Do you want to save it?';tr = 'Şablon kaydedildikten sonra dosya kopyalanabilir. Şablonu kaydetmek istiyor musunuz?'");
 		ShowQueryBox(OnCloseNotifyHandler, QueryText, QuestionDialogMode.YesNo);
 	Else
 		CopyAttachmentFile(Id);
@@ -1144,7 +1144,7 @@ EndProcedure
 Procedure ShowFormItems(EmailFormat = "")
 	
 	If Object.ForSMSMessages Then
-		TitleSuffix = NStr("en = 'Text message template';");
+		TitleSuffix = NStr("en = 'Text message template';tr = 'SMS şablonu'");
 		Items.FormEmailTextKind.Visible = False;
 		Items.Pages.CurrentPage = Items.SMSMessage;
 		Items.EmailSubject.Visible = False;
@@ -1156,7 +1156,7 @@ Procedure ShowFormItems(EmailFormat = "")
 		Items.AttributesMenuAddParameterToSMSMessageText.Visible = True;
 		Items.HiddenTilteSMSMessage.Visible = True;
 	ElsIf Object.ForEmails Then
-		TitleSuffix = NStr("en = 'Email message template';");
+		TitleSuffix = NStr("en = 'Email message template';tr = 'E-posta şablonu'");
 		Items.AttachmentsGroup.Visible = True;
 		Items.AttributesContextMenuAddMailParameter.Visible = True;
 		Items.AttributesMenuAddMailParameter.Visible = True;
@@ -1172,7 +1172,7 @@ Procedure ShowFormItems(EmailFormat = "")
 		EndIf;
 		
 	Else
-		TitleSuffix = NStr("en = 'Message template';");
+		TitleSuffix = NStr("en = 'Message template';tr = 'Mesaj şablonu'");
 		Items.FormEmailTextKind.Visible = False;
 		Items.Pages.CurrentPage = Items.MessageEmail;
 		Items.EmailSubject.Visible = False;
@@ -1187,7 +1187,7 @@ Procedure ShowFormItems(EmailFormat = "")
 	If ValueIsFilled(Object.Ref) Then
 		Title = Object.Description + " (" + TitleSuffix + ")";
 	Else
-		Title = TitleSuffix + " (" + NStr("en = 'Create';")+ ")";
+		Title = TitleSuffix + " (" + NStr("en = 'Create';tr = 'Oluştur'")+ ")";
 	EndIf;
 	
 	If Object.TemplateByExternalDataProcessor Then
@@ -1478,7 +1478,7 @@ EndProcedure
 
 &AtServer
 Procedure SetEmailPlainText(TextWrappingRequired = False)
-	Items.FormEmailTextKind.Title = NStr("en = 'Plain Text';");
+	Items.FormEmailTextKind.Title = NStr("en = 'Plain Text';tr = 'Düz metin'");
 	Items.MessageEmailHTML.Visible = False;
 	Items.MessageEmail.Visible = True;
 	Items.Pages.CurrentPage = Items.MessageEmail;
@@ -1672,7 +1672,7 @@ Function CopyAttachmentsFromSource()
 	
 	ListOfFiles = New Array; // Array of DefinedType.AttachedFile
 	ErrorList = Undefined;
-	ErrorDescription = NStr("en = 'Cannot copy attachment due to: %1';");
+	ErrorDescription = NStr("en = 'Cannot copy attachment due to: %1';tr = 'Eklenti şu nedenle kaydedilemiyor: %1'");
 	
 	If Common.SubsystemExists("StandardSubsystems.FilesOperations") Then
 		ModuleFilesOperations = Common.CommonModule("FilesOperations");
@@ -1684,7 +1684,7 @@ Function CopyAttachmentsFromSource()
 				Except
 					ErrorInfo = ErrorInfo();
 					
-					WriteErrorToEventLog(EventNameMessageTemplates(), ErrorInfo, NStr("en = 'Failed to extract and save the file';"));
+					WriteErrorToEventLog(EventNameMessageTemplates(), ErrorInfo, NStr("en = 'Failed to extract and save the file';tr = 'Dosya çıkarılamadı ve kaydedilemedi'"));
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorDescription, ErrorProcessing.BriefErrorDescription(ErrorInfo));
 					CommonClientServer.AddUserError(ErrorList, "Attachments", ErrorText, "Attachments",, ErrorText);
 					Continue;
@@ -1896,7 +1896,7 @@ EndProcedure
 &AtServer
 Function EventNameMessageTemplates()
 	
-	Return NStr("en = 'Message templates';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Message templates';tr = 'İleti şablonları'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -1945,7 +1945,7 @@ Procedure FillTemplateByExternalDataProcessor()
 			
 		Else
 			
-			ErrorDescription = NStr("en = 'Subject ""%1"" specified in the external data processor is not found. Cannot attach the external data processor.';");
+			ErrorDescription = NStr("en = 'Subject ""%1"" specified in the external data processor is not found. Cannot attach the external data processor.';tr = 'Harici veri işlemcisinde belirtilen ""%1"" konusu bulunamadı. Harici veri işlemcisi eklenemiyor.'");
 			Raise StringFunctionsClientServer.SubstituteParametersToString(ErrorDescription, ExternalDataProcessorDataStructure.InputOnBasisParameterTypeFullName);
 			
 		EndIf;

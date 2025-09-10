@@ -28,7 +28,7 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	ModuleReportsOptions.SetOutputModeInReportPanels(Settings, ReportSettings, False);
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "Main");
-	OptionSettings.LongDesc = NStr("en = 'Universal report on catalogs, documents, and registers.';");
+	OptionSettings.LongDesc = NStr("en = 'Universal report on catalogs, documents, and registers.';tr = 'Kataloglar, belgeler ve kayıtlar ile ilgili evrensel raporlar'");
 	
 EndProcedure
 
@@ -295,39 +295,39 @@ Function AvailableMetadataObjectsTypes()
 	AvailableValues = New ValueList;
 	
 	If HasMetadataTypeObjects(Metadata.Catalogs) Then
-		AvailableValues.Add("Catalogs", NStr("en = 'Catalog';"), , PictureLib.Catalog);
+		AvailableValues.Add("Catalogs", NStr("en = 'Catalog';tr = 'Katalog'"), , PictureLib.Catalog);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.Documents) Then
-		AvailableValues.Add("Documents", NStr("en = 'Document';"), , PictureLib.Document);
+		AvailableValues.Add("Documents", NStr("en = 'Document';tr = 'Belge'"), , PictureLib.Document);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.InformationRegisters) Then
-		AvailableValues.Add("InformationRegisters", NStr("en = 'Information register';"), , PictureLib.InformationRegister);
+		AvailableValues.Add("InformationRegisters", NStr("en = 'Information register';tr = 'Bilgi kaydı'"), , PictureLib.InformationRegister);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.AccumulationRegisters) Then
-		AvailableValues.Add("AccumulationRegisters", NStr("en = 'Accumulation register';"), , PictureLib.AccumulationRegister);
+		AvailableValues.Add("AccumulationRegisters", NStr("en = 'Accumulation register';tr = 'Birikim kaydı'"), , PictureLib.AccumulationRegister);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.AccountingRegisters) Then
-		AvailableValues.Add("AccountingRegisters", NStr("en = 'Accounting register';"), , PictureLib.AccountingRegister);
+		AvailableValues.Add("AccountingRegisters", NStr("en = 'Accounting register';tr = 'Muhasebe kaydı'"), , PictureLib.AccountingRegister);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.CalculationRegisters) Then
-		AvailableValues.Add("CalculationRegisters", NStr("en = 'Calculation register';"), , PictureLib.CalculationRegister);
+		AvailableValues.Add("CalculationRegisters", NStr("en = 'Calculation register';tr = 'Hesaplama kaydı'"), , PictureLib.CalculationRegister);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.ChartsOfCalculationTypes) Then
-		AvailableValues.Add("ChartsOfCalculationTypes", NStr("en = 'Charts of calculation types';"), , PictureLib.ChartOfCalculationTypes);
+		AvailableValues.Add("ChartsOfCalculationTypes", NStr("en = 'Charts of calculation types';tr = 'Hesaplama türleri çizelgeleri'"), , PictureLib.ChartOfCalculationTypes);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.Tasks) Then
-		AvailableValues.Add("Tasks", NStr("en = 'Tasks';"), , PictureLib.Task);
+		AvailableValues.Add("Tasks", NStr("en = 'Tasks';tr = 'Görevler'"), , PictureLib.Task);
 	EndIf;
 	
 	If HasMetadataTypeObjects(Metadata.BusinessProcesses) Then
-		AvailableValues.Add("BusinessProcesses", NStr("en = 'Business processes';"), , PictureLib.BusinessProcess);
+		AvailableValues.Add("BusinessProcesses", NStr("en = 'Business processes';tr = 'İş süreçleri'"), , PictureLib.BusinessProcess);
 	EndIf;
 	
 	Return AvailableValues;
@@ -387,41 +387,41 @@ Function AvailableTables(MetadataObjectType, MetadataObjectName)
 		If MetadataObject.InformationRegisterPeriodicity
 			<> Metadata.ObjectProperties.InformationRegisterPeriodicity.Nonperiodical Then
 			
-			AvailableValues.Add("SliceLast", NStr("en = 'Last values slice';"));
-			AvailableValues.Add("SliceFirst", NStr("en = 'First values slice';"));
+			AvailableValues.Add("SliceLast", NStr("en = 'Last values slice';tr = 'Son değerler dilimi'"));
+			AvailableValues.Add("SliceFirst", NStr("en = 'First values slice';tr = 'İlk değerler dilimi'"));
 		EndIf;
 	ElsIf MetadataObjectType = "AccumulationRegisters" Then
 		If MetadataObject.RegisterType = Metadata.ObjectProperties.AccumulationRegisterType.Balance Then
-			AvailableValues.Add("BalanceAndTurnovers", NStr("en = 'Balances and turnovers';"));
-			AvailableValues.Add("Balance", NStr("en = 'Balances';"));
-			AvailableValues.Add("Turnovers", NStr("en = 'Turnovers';"));
+			AvailableValues.Add("BalanceAndTurnovers", NStr("en = 'Balances and turnovers';tr = 'Bakiye ve cirolar'"));
+			AvailableValues.Add("Balance", NStr("en = 'Balances';tr = 'Bakiyeler'"));
+			AvailableValues.Add("Turnovers", NStr("en = 'Turnovers';tr = 'Cirolar'"));
 		Else
-			AvailableValues.Add("Turnovers", NStr("en = 'Turnovers';"));
+			AvailableValues.Add("Turnovers", NStr("en = 'Turnovers';tr = 'Cirolar'"));
 		EndIf;
 	ElsIf MetadataObjectType = "AccountingRegisters" Then
-		AvailableValues.Add("BalanceAndTurnovers", NStr("en = 'Balances and turnovers';"));
-		AvailableValues.Add("Balance", NStr("en = 'Balances';"));
-		AvailableValues.Add("Turnovers", NStr("en = 'Turnovers';"));
+		AvailableValues.Add("BalanceAndTurnovers", NStr("en = 'Balances and turnovers';tr = 'Bakiye ve cirolar'"));
+		AvailableValues.Add("Balance", NStr("en = 'Balances';tr = 'Bakiyeler'"));
+		AvailableValues.Add("Turnovers", NStr("en = 'Turnovers';tr = 'Cirolar'"));
 		If MetadataObject.Correspondence Then
-			AvailableValues.Add("DrCrTurnovers", NStr("en = 'Dr/Cr turnovers';"));
+			AvailableValues.Add("DrCrTurnovers", NStr("en = 'Dr/Cr turnovers';tr = 'Borç/Alacak cirosu'"));
 		EndIf;
-		AvailableValues.Add("RecordsWithExtDimensions", NStr("en = 'Records with extra dimensions';"));
+		AvailableValues.Add("RecordsWithExtDimensions", NStr("en = 'Records with extra dimensions';tr = 'Ekstra boyutlu kayıtlar'"));
 	ElsIf MetadataObjectType = "CalculationRegisters" Then 
 		If MetadataObject.ActionPeriod Then
-			AvailableValues.Add("ScheduleData", NStr("en = 'Chart data';"));
-			AvailableValues.Add("ActualActionPeriod", NStr("en = 'Actual validity period';"));
+			AvailableValues.Add("ScheduleData", NStr("en = 'Chart data';tr = 'Grafik verileri'"));
+			AvailableValues.Add("ActualActionPeriod", NStr("en = 'Actual validity period';tr = 'Fiili geçerlilik dönemi'"));
 		EndIf;
 	ElsIf MetadataObjectType = "ChartsOfCalculationTypes" Then
 		If MetadataObject.DependenceOnCalculationTypes
 			<> Metadata.ObjectProperties.ChartOfCalculationTypesBaseUse.DontUse Then 
 			
-			AvailableValues.Add("BaseCalculationTypes", NStr("en = 'Baseline calculation types.';"));
+			AvailableValues.Add("BaseCalculationTypes", NStr("en = 'Baseline calculation types.';tr = 'Temel hesaplama türleri.'"));
 		EndIf;
 		
-		AvailableValues.Add("LeadingCalculationTypes", NStr("en = 'Primary calculation types';"));
+		AvailableValues.Add("LeadingCalculationTypes", NStr("en = 'Primary calculation types';tr = 'Birincil hesaplama türleri'"));
 		
 		If MetadataObject.ActionPeriodUse Then 
-			AvailableValues.Add("DisplacingCalculationTypes", NStr("en = 'Overriding calculation types';"));
+			AvailableValues.Add("DisplacingCalculationTypes", NStr("en = 'Overriding calculation types';tr = 'Önleyici hesaplama türleri'"));
 		EndIf;
 	EndIf;
 	
@@ -468,7 +468,7 @@ Procedure AddObjectTotals(Val ReportParameters, Val DataCompositionSchema)
 	ObjectPresentation = MetadataObject.Presentation();
 	
 	ReferenceDetails = MetadataObject.StandardAttributes["Ref"];
-	If ValueIsFilled(ReferenceDetails.Synonym) And ReferenceDetails.Synonym <> NStr("en = 'Reference';") Then // ACC:1391 - If the synonym of the "Ref" attribute differs from the standard "Ref", the column header displays the object presentation.
+	If ValueIsFilled(ReferenceDetails.Synonym) And ReferenceDetails.Synonym <> NStr("en = 'Reference';tr = 'Referans'") Then // ACC:1391 - If the synonym of the "Ref" attribute differs from the standard "Ref", the column header displays the object presentation.
 		ObjectPresentation = ReferenceDetails.Synonym;
 	ElsIf ValueIsFilled(MetadataObject.ObjectPresentation) Then
 		ObjectPresentation = Common.ObjectPresentation(MetadataObject);
@@ -524,7 +524,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 		
 		DataSetField = DataCompositionSchema.DataSets[0].Fields.Add(Type("DataCompositionSchemaDataSetField"));
 		DataSetField.Field = "Recorder";
-		DataSetField.Title = NStr("en = 'Recorder';");
+		DataSetField.Title = NStr("en = 'Recorder';tr = 'Kaydedici'");
 		DataSetField.DataPath = "Recorder";
 		DataSetField.Role.PeriodType = DataCompositionPeriodType.Main;
 		DataSetField.Role.IgnoreNULLValues = True;
@@ -549,7 +549,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 	// For accounting registers, setting up roles is important.
 	If ReportParameters.MetadataObjectType = "AccountingRegisters" Then
 		
-		AccountField = AddDataSetField(DataCompositionSchema.DataSets[0], "Account", NStr("en = 'Account';"));
+		AccountField = AddDataSetField(DataCompositionSchema.DataSets[0], "Account", NStr("en = 'Account';tr = 'Hesap'"));
 		AccountField.Role.AccountTypeExpression = "Account.Type";
 		AccountField.Role.Account = True;
 		
@@ -559,7 +559,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 		EndIf;
 		
 		For ExtDimensionNumber = 1 To ExtDimensionCount Do
-			ExtDimensionField = AddDataSetField(DataCompositionSchema.DataSets[0], "ExtDimension" + ExtDimensionNumber, NStr("en = 'Extra dimension';") + " " + ExtDimensionNumber);
+			ExtDimensionField = AddDataSetField(DataCompositionSchema.DataSets[0], "ExtDimension" + ExtDimensionNumber, NStr("en = 'Extra dimension';tr = 'Ekstra boyut'") + " " + ExtDimensionNumber);
 			ExtDimensionField.Role.Dimension = True;
 			ExtDimensionField.Role.IgnoreNULLValues = False;
 		EndDo;
@@ -578,17 +578,17 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 			AddTotalField(DataCompositionSchema, Resource.Name + "Turnover");
 			
 			If ReportParameters.MetadataObjectType = "AccountingRegisters" Then
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';"), Resource.Name + "TurnoverDr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';tr = 'ciro Borç'"), Resource.Name + "TurnoverDr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "TurnoverDr");
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';"), Resource.Name + "TurnoverCr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';tr = 'ciro Alacak'"), Resource.Name + "TurnoverCr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "TurnoverCr");
 				
 				If Not Resource.Balance Then
-					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalancedTurnover", Resource.Synonym + " " + NStr("en = 'corr. turnover';"), Resource.Name + "BalancedTurnover");
+					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalancedTurnover", Resource.Synonym + " " + NStr("en = 'corr. turnover';tr = 'muh.ciro'"), Resource.Name + "BalancedTurnover");
 					AddTotalField(DataCompositionSchema, Resource.Name + "BalancedTurnover");
-					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalancedTurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr corr. turnover';"), Resource.Name + "BalancedTurnoverDr");
+					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalancedTurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr corr. turnover';tr = 'muh. ciro Borç'"), Resource.Name + "BalancedTurnoverDr");
 					AddTotalField(DataCompositionSchema, Resource.Name + "BalancedTurnoverDr");
-					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalancedTurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr corr. turnover';"), Resource.Name + "BalancedTurnoverCr");
+					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalancedTurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr corr. turnover';tr = 'muh. ciro Alacak'"), Resource.Name + "BalancedTurnoverCr");
 					AddTotalField(DataCompositionSchema, Resource.Name + "BalancedTurnoverCr");
 				EndIf;
 			EndIf;
@@ -599,9 +599,9 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Turnover", Resource.Synonym);
 				AddTotalField(DataCompositionSchema, Resource.Name + "Turnover");
 			Else
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';"), Resource.Name + "TurnoverDr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';tr = 'ciro Borç'"), Resource.Name + "TurnoverDr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "TurnoverDr");
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';"), Resource.Name + "TurnoverCr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';tr = 'ciro Alacak'"), Resource.Name + "TurnoverCr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "TurnoverCr");
 			EndIf;
 			
@@ -611,15 +611,15 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name, Resource.Synonym);
 				AddTotalField(DataCompositionSchema, Resource.Name);
 			Else
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Dr", Resource.Synonym + " " + NStr("en = 'Dr';"), Resource.Name + "Dr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Dr", Resource.Synonym + " " + NStr("en = 'Dr';tr = 'Borç'"), Resource.Name + "Dr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "Dr");
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Cr", Resource.Synonym + " " + NStr("en = 'Cr';"), Resource.Name + "Cr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Cr", Resource.Synonym + " " + NStr("en = 'Cr';tr = 'Cr'"), Resource.Name + "Cr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "Cr");
 			EndIf;
 			
 		ElsIf ReportParameters.TableName = "BalanceAndTurnovers" Then
 			
-			SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningBalance", Resource.Synonym + " " + NStr("en = 'open balance';"), Resource.Name + "OpeningBalance");
+			SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningBalance", Resource.Synonym + " " + NStr("en = 'open balance';tr = 'açılış bakiyesi'"), Resource.Name + "OpeningBalance");
 			AddTotalField(DataCompositionSchema, Resource.Name + "OpeningBalance");
 			
 			If ReportParameters.MetadataObjectType = "AccountingRegisters" Then
@@ -629,7 +629,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				SetField.Role.BalanceGroup = "Bal" + Resource.Name;
 				SetField.Role.AccountField = "Account";
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr open balance';"), Resource.Name + "OpeningBalanceDr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr open balance';tr = 'Borç açılış bakiyesi'"), Resource.Name + "OpeningBalanceDr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.OpeningBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.Debit;
@@ -637,7 +637,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				SetField.Role.BalanceGroup = "Bal" + Resource.Name;
 				AddTotalField(DataCompositionSchema, Resource.Name + "OpeningBalanceDr");
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr open balance';"), Resource.Name + "OpeningBalanceCr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr open balance';tr = 'Alacak açılış bakiyesi'"), Resource.Name + "OpeningBalanceCr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.OpeningBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.Credit;
@@ -645,14 +645,14 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				SetField.Role.BalanceGroup = "Bal" + Resource.Name;
 				AddTotalField(DataCompositionSchema, Resource.Name + "OpeningBalanceCr");
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningSplittedBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr open balance detailed';"), Resource.Name + "OpeningSplittedBalanceDr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningSplittedBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr open balance detailed';tr = 'Borç açılış bakiyesi ayrıntılı'"), Resource.Name + "OpeningSplittedBalanceDr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.OpeningBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.None;
 				SetField.Role.BalanceGroup = "DetldBal" + Resource.Name + "Dr";
 				AddTotalField(DataCompositionSchema, Resource.Name + "OpeningSplittedBalanceDr");
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningSplittedBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr open balance detailed';"), Resource.Name + "OpeningSplittedBalanceCr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "OpeningSplittedBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr open balance detailed';tr = 'Alacak açılış bakiyesi ayrıntılı'"), Resource.Name + "OpeningSplittedBalanceCr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.OpeningBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.None;
@@ -667,24 +667,24 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 
 			EndIf;
 			
-			AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Turnover", Resource.Synonym + " " + NStr("en = 'turnover';"), Resource.Name + "Turnover");
+			AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Turnover", Resource.Synonym + " " + NStr("en = 'turnover';tr = 'ciro'"), Resource.Name + "Turnover");
 			AddTotalField(DataCompositionSchema, Resource.Name + "Turnover");
 			
 			If ReportParameters.MetadataObjectType = "AccumulationRegisters" Then
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Receipt", Resource.Synonym + " " + NStr("en = 'income';"), Resource.Name + "Receipt");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Receipt", Resource.Synonym + " " + NStr("en = 'income';tr = 'Gelir'"), Resource.Name + "Receipt");
 				AddTotalField(DataCompositionSchema, Resource.Name + "Receipt");
 				
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Expense", Resource.Synonym + " " + NStr("en = 'expense';"), Resource.Name + "Expense");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Expense", Resource.Synonym + " " + NStr("en = 'expense';tr = 'gider'"), Resource.Name + "Expense");
 				AddTotalField(DataCompositionSchema, Resource.Name + "Expense");
 			ElsIf ReportParameters.MetadataObjectType = "AccountingRegisters" Then
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';"), Resource.Name + "TurnoverDr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';tr = 'ciro Borç'"), Resource.Name + "TurnoverDr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "TurnoverDr");
 				
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';"), Resource.Name + "TurnoverCr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';tr = 'ciro Alacak'"), Resource.Name + "TurnoverCr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "TurnoverCr");
 			EndIf;
 			
-			SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingBalance", Resource.Synonym + " " + NStr("en = 'close balance';"), Resource.Name + "ClosingBalance");
+			SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingBalance", Resource.Synonym + " " + NStr("en = 'close balance';tr = 'kapanış bakiyesi'"), Resource.Name + "ClosingBalance");
 			AddTotalField(DataCompositionSchema, Resource.Name + "ClosingBalance");
 			
 			If ReportParameters.MetadataObjectType = "AccountingRegisters" Then
@@ -694,7 +694,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				SetField.Role.AccountField = "Account";
 				SetField.Role.BalanceGroup = "Bal" + Resource.Name;
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr close balance';"), Resource.Name + "ClosingBalanceDr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr close balance';tr = 'Borç kapanış bakiyesi'"), Resource.Name + "ClosingBalanceDr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.ClosingBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.Debit;
@@ -702,7 +702,7 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				SetField.Role.BalanceGroup = "Bal" + Resource.Name;
 				AddTotalField(DataCompositionSchema, Resource.Name + "ClosingBalanceDr");
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr close balance';"), Resource.Name + "ClosingBalanceCr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr close balance';tr = 'Alacak kapanış bakiyesi'"), Resource.Name + "ClosingBalanceCr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.ClosingBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.Credit;
@@ -710,14 +710,14 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 				SetField.Role.BalanceGroup = "Bal" + Resource.Name;
 				AddTotalField(DataCompositionSchema, Resource.Name + "ClosingBalanceCr");
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingSplittedBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr close balance detailed';"), Resource.Name + "ClosingSplittedBalanceDr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingSplittedBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr close balance detailed';tr = 'Borç kapanış bakiyesi ayrıntılı'"), Resource.Name + "ClosingSplittedBalanceDr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.ClosingBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.None;
 				SetField.Role.BalanceGroup = "DetldBal" + Resource.Name + "Dr";
 				AddTotalField(DataCompositionSchema, Resource.Name + "ClosingSplittedBalanceDr");
 				
-				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingSplittedBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr close balance detailed';"), Resource.Name + "ClosingSplittedBalanceCr");
+				SetField = AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "ClosingSplittedBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr close balance detailed';tr = 'Alacak kapanış bakiyesi ayrıntılı'"), Resource.Name + "ClosingSplittedBalanceCr");
 				SetField.Role.Balance = True;
 				SetField.Role.BalanceType = DataCompositionBalanceType.ClosingBalance;
 				SetField.Role.AccountingBalanceType = DataCompositionAccountingBalanceType.None;
@@ -731,20 +731,20 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 			EndIf;
 			
 		ElsIf ReportParameters.TableName = "Balance" Then
-			AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Balance", Resource.Synonym + " " + NStr("en = 'balance';"), Resource.Name + "Balance");
+			AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Balance", Resource.Synonym + " " + NStr("en = 'balance';tr = 'Bakiye'"), Resource.Name + "Balance");
 			AddTotalField(DataCompositionSchema, Resource.Name + "Balance");
 			
 			If ReportParameters.MetadataObjectType = "AccountingRegisters" Then
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalanceDr", Resource.Synonym + " " + NStr("en = 'Dr balance';"), Resource.Name + "BalanceDr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalanceDr", Resource.Synonym + " " + NStr("en = 'Dr balance';tr = 'bakiye Alacak'"), Resource.Name + "BalanceDr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "BalanceDr");
 				
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalanceCr", Resource.Synonym + " " + NStr("en = 'Cr balance';"), Resource.Name + "BalanceCr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "BalanceCr", Resource.Synonym + " " + NStr("en = 'Cr balance';tr = 'bakiye Borç'"), Resource.Name + "BalanceCr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "BalanceCr");
 				
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "SplittedBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr balance detailed';"), Resource.Name + "SplittedBalanceDr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "SplittedBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr balance detailed';tr = 'Borç bakiyesi ayrıntılı'"), Resource.Name + "SplittedBalanceDr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "SplittedBalanceDr");
 				
-				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "SplittedBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr balance detailed';"), Resource.Name + "SplittedBalanceCr");
+				AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "SplittedBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr balance detailed';tr = 'Alacak bakiyesi ayrıntılı'"), Resource.Name + "SplittedBalanceCr");
 				AddTotalField(DataCompositionSchema, Resource.Name + "SplittedBalanceCr");
 			EndIf;
 		ElsIf ReportParameters.MetadataObjectType = "InformationRegisters" Then
@@ -758,9 +758,9 @@ Procedure AddRegisterTotals(Val ReportParameters, Val DataCompositionSchema)
 					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name, Resource.Synonym);
 					AddTotalField(DataCompositionSchema, Resource.Name);
 				Else
-					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Dr", Resource.Synonym + " " + NStr("en = 'Dr';"), Resource.Name + "Dr");
+					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Dr", Resource.Synonym + " " + NStr("en = 'Dr';tr = 'Borç'"), Resource.Name + "Dr");
 					AddTotalField(DataCompositionSchema, Resource.Name + "Dr");
-					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Cr", Resource.Synonym + " " + NStr("en = 'Cr';"), Resource.Name + "Cr");
+					AddDataSetField(DataCompositionSchema.DataSets[0], Resource.Name + "Cr", Resource.Synonym + " " + NStr("en = 'Cr';tr = 'Cr'"), Resource.Name + "Cr");
 					AddTotalField(DataCompositionSchema, Resource.Name + "Cr");
 				EndIf;
 			Else
@@ -776,7 +776,7 @@ Procedure AddSubordinateRecordsCountTotals(DataCompositionSchema)
 	
 	FieldToEval = DataCompositionSchema.CalculatedFields.Add();
 	FieldToEval.DataPath = "SubordinateRecordsCount";
-	FieldToEval.Title = NStr("en = 'Number of records';");
+	FieldToEval.Title = NStr("en = 'Number of records';tr = 'Kayıt sayısı'");
 	FieldToEval.Expression = "1";
 	FieldToEval.ValueType = New TypeDescription("Number");
 	
@@ -805,21 +805,21 @@ EndProcedure
 Function AddPeriodFieldsInDataSet(DataSet, ThereIsFieldLogger)
 	
 	PeriodsList = New ValueList;
-	PeriodsList.Add("SecondPeriod",   NStr("en = 'Period second';"));
-	PeriodsList.Add("MinutePeriod",    NStr("en = 'Period minute';"));
-	PeriodsList.Add("HourPeriod",       NStr("en = 'Period hour';"));
-	PeriodsList.Add("DayPeriod",      NStr("en = 'Period day';"));
-	PeriodsList.Add("WeekPeriod",    NStr("en = 'Period week';"));
-	PeriodsList.Add("TenDaysPeriod",    NStr("en = 'Period ten-day';"));
-	PeriodsList.Add("MonthPeriod",     NStr("en = 'Period month';"));
-	PeriodsList.Add("QuarterPeriod",   NStr("en = 'Period quarter';"));
-	PeriodsList.Add("HalfYearPeriod", NStr("en = 'Period half-year';"));
-	PeriodsList.Add("YearPeriod",       NStr("en = 'Period year';"));
+	PeriodsList.Add("SecondPeriod",   NStr("en = 'Period second';tr = 'Dönem saniye'"));
+	PeriodsList.Add("MinutePeriod",    NStr("en = 'Period minute';tr = 'Dönem dakika'"));
+	PeriodsList.Add("HourPeriod",       NStr("en = 'Period hour';tr = 'Dönem saat'"));
+	PeriodsList.Add("DayPeriod",      NStr("en = 'Period day';tr = 'Dönem Gün'"));
+	PeriodsList.Add("WeekPeriod",    NStr("en = 'Period week';tr = 'Dönem Hafta'"));
+	PeriodsList.Add("TenDaysPeriod",    NStr("en = 'Period ten-day';tr = 'Dönem on yıllık'"));
+	PeriodsList.Add("MonthPeriod",     NStr("en = 'Period month';tr = 'Dönem Ay'"));
+	PeriodsList.Add("QuarterPeriod",   NStr("en = 'Period quarter';tr = 'Dönem Çeyrek yıl'"));
+	PeriodsList.Add("HalfYearPeriod", NStr("en = 'Period half-year';tr = 'Dönem yarıyıl'"));
+	PeriodsList.Add("YearPeriod",       NStr("en = 'Period year';tr = 'Dönem Yıl'"));
 	
 	FolderName = "TimeIntervals_";
 	DataSetFieldsList = New ValueList;
 	DataSetFieldsFolder = DataSet.Fields.Add(Type("DataCompositionSchemaDataSetFieldFolder"));
-	DataSetFieldsFolder.Title   = NStr("en = 'Periods';");
+	DataSetFieldsFolder.Title   = NStr("en = 'Periods';tr = 'Dönemler'");
 	DataSetFieldsFolder.DataPath = FolderName;
 	
 	PeriodType = DataCompositionPeriodType.Main;
@@ -896,22 +896,22 @@ Procedure AddIndicators(ReportParameters, DCSettings)
 	
 	If ReportParameters.TableName = "BalanceAndTurnovers" Then
 		SelectedFieldsOpeningBalance = DCSettings.Selection.Items.Add(Type("DataCompositionSelectedFieldGroup"));
-		SelectedFieldsOpeningBalance.Title = NStr("en = 'Open balance';");
+		SelectedFieldsOpeningBalance.Title = NStr("en = 'Open balance';tr = 'Açılış bakiyesi'");
 		SelectedFieldsOpeningBalance.Placement = DataCompositionFieldPlacement.Horizontally;
 		If ReportParameters.MetadataObjectType = "AccumulationRegisters" Then
 			SelectedFieldsReceipt = DCSettings.Selection.Items.Add(Type("DataCompositionSelectedFieldGroup"));
-			SelectedFieldsReceipt.Title = NStr("en = 'Income';");
+			SelectedFieldsReceipt.Title = NStr("en = 'Income';tr = 'Giriş'");
 			SelectedFieldsReceipt.Placement = DataCompositionFieldPlacement.Horizontally;
 			SelectedFieldsExpense = DCSettings.Selection.Items.Add(Type("DataCompositionSelectedFieldGroup"));
-			SelectedFieldsExpense.Title = NStr("en = 'Expense';");
+			SelectedFieldsExpense.Title = NStr("en = 'Expense';tr = 'Gider'");
 			SelectedFieldsExpense.Placement = DataCompositionFieldPlacement.Horizontally;
 		ElsIf ReportParameters.MetadataObjectType = "AccountingRegisters" Then
 			SelectedFieldsTurnovers = DCSettings.Selection.Items.Add(Type("DataCompositionSelectedFieldGroup"));
-			SelectedFieldsTurnovers.Title = NStr("en = 'Turnovers';");
+			SelectedFieldsTurnovers.Title = NStr("en = 'Turnovers';tr = 'Cirolar'");
 			SelectedFieldsTurnovers.Placement = DataCompositionFieldPlacement.Horizontally;
 		EndIf;
 		SelectedFieldsClosingBalance = DCSettings.Selection.Items.Add(Type("DataCompositionSelectedFieldGroup"));
-		SelectedFieldsClosingBalance.Title = NStr("en = 'Close balance';");
+		SelectedFieldsClosingBalance.Title = NStr("en = 'Close balance';tr = 'Kapanış bakiyesi'");
 		SelectedFieldsClosingBalance.Placement = DataCompositionFieldPlacement.Horizontally;
 	EndIf;
 	
@@ -970,31 +970,31 @@ Procedure AddIndicators(ReportParameters, DCSettings)
 			
 			SelectedFields = DCSettings.Selection;
 			If ReportParameters.TableName = "Turnovers" Then
-				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';"));
-				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';"));
+				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';tr = 'ciro Borç'"));
+				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';tr = 'ciro Alacak'"));
 			ElsIf ReportParameters.TableName = "DrCrTurnovers" Then
 				If Resource.Balance Then
-					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "Turnover", Resource.Synonym + " " + NStr("en = 'turnover';"));
+					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "Turnover", Resource.Synonym + " " + NStr("en = 'turnover';tr = 'ciro'"));
 				Else
-					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';"));
-					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';"));
+					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';tr = 'ciro Borç'"));
+					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';tr = 'ciro Alacak'"));
 				EndIf;
 			ElsIf ReportParameters.TableName = "Balance" Then
-				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "BalanceDr", Resource.Synonym + " " + NStr("en = 'Dr balance';"));
-				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "BalanceCr", Resource.Synonym + " " + NStr("en = 'Cr balance';"));
+				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "BalanceDr", Resource.Synonym + " " + NStr("en = 'Dr balance';tr = 'Borç bakiyesi'"));
+				ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "BalanceCr", Resource.Synonym + " " + NStr("en = 'Cr balance';tr = 'Alacak bakiyesi'"));
 			ElsIf ReportParameters.TableName = "BalanceAndTurnovers" Then
-				ReportsServer.AddSelectedField(SelectedFieldsOpeningBalance, Resource.Name + "OpeningBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr open balance';"));
-				ReportsServer.AddSelectedField(SelectedFieldsOpeningBalance, Resource.Name + "OpeningBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr open balance';"));
-				ReportsServer.AddSelectedField(SelectedFieldsTurnovers, Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';"));
-				ReportsServer.AddSelectedField(SelectedFieldsTurnovers, Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';"));
-				ReportsServer.AddSelectedField(SelectedFieldsClosingBalance, Resource.Name + "ClosingBalanceDr", " " + Resource.Synonym + NStr("en = 'Dr close balance';"));
-				ReportsServer.AddSelectedField(SelectedFieldsClosingBalance, Resource.Name + "ClosingBalanceCr", " " + Resource.Synonym + NStr("en = 'Cr close balance';"));
+				ReportsServer.AddSelectedField(SelectedFieldsOpeningBalance, Resource.Name + "OpeningBalanceDr", Resource.Synonym + " " + NStr("en = 'Dr open balance';tr = 'Borç açılış bakiyesi'"));
+				ReportsServer.AddSelectedField(SelectedFieldsOpeningBalance, Resource.Name + "OpeningBalanceCr", Resource.Synonym + " " + NStr("en = 'Cr open balance';tr = 'Alacak açılış bakiyesi'"));
+				ReportsServer.AddSelectedField(SelectedFieldsTurnovers, Resource.Name + "TurnoverDr", Resource.Synonym + " " + NStr("en = 'Dr turnover';tr = 'ciro Borç'"));
+				ReportsServer.AddSelectedField(SelectedFieldsTurnovers, Resource.Name + "TurnoverCr", Resource.Synonym + " " + NStr("en = 'Cr turnover';tr = 'ciro Alacak'"));
+				ReportsServer.AddSelectedField(SelectedFieldsClosingBalance, Resource.Name + "ClosingBalanceDr", " " + Resource.Synonym + NStr("en = 'Dr close balance';tr = 'Borç kapanış bakiyesi'"));
+				ReportsServer.AddSelectedField(SelectedFieldsClosingBalance, Resource.Name + "ClosingBalanceCr", " " + Resource.Synonym + NStr("en = 'Cr close balance';tr = 'Alacak kapanış bakiyesi'"));
 			ElsIf ReportParameters.TableName = "RecordsWithExtDimensions" Or ReportParameters.TableName = "" Then
 				If Resource.Balance Then
 					ReportsServer.AddSelectedField(SelectedFields, Resource.Name, Resource.Synonym);
 				Else
-					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "Dr", Resource.Synonym + " " + NStr("en = 'Dr';"));
-					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "Cr", Resource.Synonym + " " + NStr("en = 'Cr';"));
+					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "Dr", Resource.Synonym + " " + NStr("en = 'Dr';tr = 'Borç'"));
+					ReportsServer.AddSelectedField(SelectedFields, Resource.Name + "Cr", Resource.Synonym + " " + NStr("en = 'Cr';tr = 'Cr'"));
 				EndIf;
 			EndIf;
 		EndDo;
@@ -1312,11 +1312,11 @@ Function DataSource(ManagerType, ObjectName)
 	ObjectType = ObjectTypeByManagerType(ManagerType);
 	FullObjectName = ObjectType + "." + ObjectName;
 	If Common.MetadataObjectByFullName(FullObjectName) = Undefined Then 
-		WriteLogEvent(NStr("en = 'Report options. Configure universal report data source';", 
+		WriteLogEvent(NStr("en = 'Report options. Configure universal report data source';tr = 'Rapor seçenekleri. Evrensel rapor veri kaynağını ayarlama'", 
 			Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			Metadata.Catalogs.ReportsOptions,,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot find data source for %1';"), 
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot find data source for %1';tr = '%1 için veri kaynağı bulunamıyor'"), 
 				FullObjectName));
 		Return Undefined;
 	EndIf;
@@ -1330,13 +1330,13 @@ Function DataSourceMetadata(DataSource, Context)
 		MetadataObject = Common.MetadataObjectByID(DataSource);
 	Except
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot generate the report due to: %1%2';"),
+			NStr("en = 'Cannot generate the report due to: %1%2';tr = 'Rapor şu nedenle oluşturulamıyor: %1%2'"),
 			ErrorProcessing.BriefErrorDescription(ErrorInfo()),
-			NStr("en = 'Select another catalog or document.';"));
-		WriteLogEvent(NStr("en = 'Generate a universal report option';", Common.DefaultLanguageCode()),
+			NStr("en = 'Select another catalog or document.';tr = 'Başka bir katalog veya belge seçin.'"));
+		WriteLogEvent(NStr("en = 'Generate a universal report option';tr = 'Evrensel rapor seçeneği oluştur'", Common.DefaultLanguageCode()),
 			EventLogLevel.Warning, Metadata.Reports.UniversalReport,, MessageText);
 		If TypeOf(Context) = Type("ClientApplicationForm") Then
-			RecommendationText = NStr("en = 'Cannot generate the report. Select another catalog or document.';");
+			RecommendationText = NStr("en = 'Cannot generate the report. Select another catalog or document.';tr = 'Rapor oluşturulamıyor. Başka bir katalog veya belge seçin.'");
 			ReportsClientServer.DisplayReportState(
 				Context, RecommendationText);
 			Common.MessageToUser(MessageText);
@@ -1412,7 +1412,7 @@ Procedure SetStandardReportHeader(Context, Settings, FixedParameters, AvailableV
 		And Not ValueIsFilled(PeriodPresentation) Then 
 		
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Universal report: %1 ""%2""';"),
+			NStr("en = 'Universal report: %1 ""%2""';tr = 'Evrensel rapor: %1 ""%2""'"),
 			ParameterValues.MetadataObjectType,
 			ParameterValues.MetadataObjectName);
 		
@@ -1420,7 +1420,7 @@ Procedure SetStandardReportHeader(Context, Settings, FixedParameters, AvailableV
 		And Not ValueIsFilled(PeriodPresentation) Then 
 		
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Universal report: %1 ""%2"" - table ""%3""';"),
+			NStr("en = 'Universal report: %1 ""%2"" - table ""%3""';tr = 'Evrensel rapor: %1 ""%2"" ; ""%3"" tablosu'"),
 			ParameterValues.MetadataObjectType,
 			ParameterValues.MetadataObjectName,
 			ParameterValues.TableName);
@@ -1429,13 +1429,13 @@ Procedure SetStandardReportHeader(Context, Settings, FixedParameters, AvailableV
 		And ValueIsFilled(PeriodPresentation) Then 
 		
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Universal report: %1 ""%2"" for %3';"),
+			NStr("en = 'Universal report: %1 ""%2"" for %3';tr = 'Evrensel rapor: %3 için %1 ""%2""'"),
 			ParameterValues.MetadataObjectType,
 			ParameterValues.MetadataObjectName,
 			PeriodPresentation);
 	Else
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Universal report: %1 ""%2"" - table ""%3"" for %4';"),
+			NStr("en = 'Universal report: %1 ""%2"" - table ""%3"" for %4';tr = 'Evrensel rapor: %1 ""%2""; %4 için ""%3"" tablosu'"),
 			ParameterValues.MetadataObjectType,
 			ParameterValues.MetadataObjectName,
 			ParameterValues.TableName,
@@ -1833,7 +1833,7 @@ EndFunction
 
 Function MainDataTableNamePresentation()
 	
-	Return NStr("en = 'Main data';");
+	Return NStr("en = 'Main data';tr = 'Ana veri'");
 	
 EndFunction
 

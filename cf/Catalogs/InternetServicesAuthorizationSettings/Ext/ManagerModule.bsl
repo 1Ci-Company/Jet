@@ -209,7 +209,7 @@ Procedure AddPermissionForInternetResource(Permissions, InternetResourceAddress)
 			Upper(URIStructure.Schema),
 			URIStructure.Host,
 			,
-			NStr("en = 'Email.';")));
+			NStr("en = 'Email.';tr = 'E-posta.'")));
 	
 EndProcedure
 

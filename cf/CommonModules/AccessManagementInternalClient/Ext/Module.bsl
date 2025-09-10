@@ -163,7 +163,7 @@ Procedure AccessValueStartChoice(Form, Item, ChoiceData, StandardProcessing) Exp
 		
 		Form.CurrentTypesOfValuesToSelect.ShowChooseItem(
 			New NotifyDescription("AccessValueStartChoiceFollowUp", ThisObject, Context),
-			NStr("en = 'Select data type';"),
+			NStr("en = 'Select data type';tr = 'Veri türünü seçin'"),
 			Form.CurrentTypesOfValuesToSelect[0]);
 	EndIf;
 	
@@ -359,7 +359,8 @@ Procedure AccessKindsAccessKindPresentationChoiceProcessing(Form, Item, ValueSel
 		
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The ""%1"" access kind is already selected.
-			           |Please select another one.';"),
+			           |Please select another one.';tr = 'Erişim türü ""%1"" zaten seçilidir. 
+			           |Başka birini seçin.'"),
 			ValueSelected));
 		
 		StandardProcessing = False;
@@ -1214,7 +1215,7 @@ Procedure AttheStartofSelectingReportValuesAnalysisAccessPermissions(ReportForm,
 	PickingParameters.SelectedMetadataObjects = Selected_;
 	PickingParameters.MetadataObjectsToSelectCollection = Collections;
 	PickingParameters.ObjectsGroupMethod = "BySections,ByKinds";
-	PickingParameters.Title = NStr("en = 'Pick tables';");
+	PickingParameters.Title = NStr("en = 'Pick tables';tr = 'Tabloları seç'");
 	
 	Context = New Structure;
 	Context.Insert("SelectionConditions", SelectionConditions);
@@ -1248,11 +1249,11 @@ Procedure AttheStartofSelectingReportValuesRoleRights(ReportForm, SelectionCondi
 			ListItem.Value = "Role." + ListItem.Value;
 		EndDo;
 		PickingParameters.ObjectsGroupMethod = "ByKinds";
-		PickingParameters.Title = NStr("en = 'Pick roles';");
+		PickingParameters.Title = NStr("en = 'Pick roles';tr = 'Rol seç'");
 		Collections.Add("Roles");
 	Else
 		PickingParameters.ObjectsGroupMethod = "ByKinds,BySections";
-		PickingParameters.Title = NStr("en = 'Pick metadata objects';");
+		PickingParameters.Title = NStr("en = 'Pick metadata objects';tr = 'Metaveri nesnesi seç'");
 		PickingParameters.SelectCollectionsWhenAllObjectsSelected = True;
 		AddMetadataObjectCollectionWithRights(Collections);
 	EndIf;

@@ -366,12 +366,12 @@ Procedure CreateEmailMessage(Val FieldValues, Val EmailParameters = Undefined,
 		InformationType = ContactInformation.ContactInformationType;
 		
 		If IsBlankString(MailAddr) Then
-			ErrorText= NStr("en = 'To send an email, enter an email address.';");
+			ErrorText= NStr("en = 'To send an email, enter an email address.';tr = 'E-posta göndermek için e-posta adresi girin.'");
 		ElsIf TypeOf(MailAddr) <> Type("String") Or InformationType = Undefined Then
-			ErrorText =  NStr("en = 'Cannot send an email as the value is not an email address.';");
+			ErrorText =  NStr("en = 'Cannot send an email as the value is not an email address.';tr = 'Değer e-posta adresi olmadığı için e-posta gönderilemiyor.'");
 		ElsIf InformationType <> PredefinedValue("Enum.ContactInformationTypes.Email") Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot create an email from contact information of the ""%1"" type.';"), InformationType);
+				NStr("en = 'Cannot create an email from contact information of the ""%1"" type.';tr = '""%1"" tür iletişim bilgileri ile e-posta adresini oluşturamaz'"), InformationType);
 		Else
 			MailAddresses = CommonClientServer.EmailsFromString(MailAddr);
 			ErrorsTexts = New Array;
@@ -426,7 +426,7 @@ Procedure CreateSMSMessage(Val FieldValues, Val SMSParameters = Undefined,
 	Val DeleteExpectedKind = Undefined, ObsoleteContactInformationSource = "") Export
 	
 	If Not CommonClient.SubsystemExists("StandardSubsystems.SendSMSMessage") Then
-		Raise NStr("en = 'Text messaging is not available.';");
+		Raise NStr("en = 'Text messaging is not available.';tr = 'SMS gönderilemez.'");
 	EndIf;
 	
 	If TypeOf(SMSParameters) = Type("String") Then
@@ -450,10 +450,10 @@ Procedure CreateSMSMessage(Val FieldValues, Val SMSParameters = Undefined,
 		InformationType = ContactInformation.ContactInformationType;
 		If InformationType <> PredefinedValue("Enum.ContactInformationTypes.Phone") Then
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot send the text message as the phone number you provided is invalid: %1.';"), 
+				NStr("en = 'Cannot send the text message as the phone number you provided is invalid: %1.';tr = 'Girdiğiniz telefon numarası geçersiz olduğu için SMS gönderilemiyor: %1'"), 
 				InformationType);
 		ElsIf FieldValues = "" And IsBlankString(SMSParameters.Presentation) Then
-			ErrorText = NStr("en = 'To send a text message, enter a phone number.';");
+			ErrorText = NStr("en = 'To send a text message, enter a phone number.';tr = 'SMS göndermek için telefon numarasını girin.'");
 		EndIf;
 		
 		If ValueIsFilled(ErrorText) Then
@@ -539,7 +539,7 @@ Procedure Telephone(PhoneNumber) Export
 		AvailableProtocolName = TelephonyApplicationInstalled();
 		If AvailableProtocolName = Undefined Then
 			StringWithWarning = New FormattedString(
-					NStr("en = 'To make a call, install a telecom app. For example,';"),
+					NStr("en = 'To make a call, install a telecom app. For example,';tr = 'Arama yapmak için telekom uygulaması yükleyin. Örneğin,'"),
 					 " ", New FormattedString("Skype",,,, "http://www.skype.com"), ".");
 			ShowMessageBox(Undefined, StringWithWarning);
 			Return;
@@ -602,14 +602,14 @@ Procedure GoToWebLink(Val FieldValues, Val Presentation = "", ExpectedKind = Und
 	InformationType = ContactInformation.ContactInformationType;
 	
 	If InformationType <> PredefinedValue("Enum.ContactInformationTypes.WebPage") Then
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot follow a link from contact information of the ""%1"" type.';"), InformationType);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot follow a link from contact information of the ""%1"" type.';tr = '""%1"" türü için bir iletişim bilgileri referansı açılamıyor'"), InformationType);
 	EndIf;
 		
 	XMLData = ContactInformation.XMLData1;
 
 	HyperlinkAddress = ContactsManagerInternalServerCall.ContactInformationCompositionString(XMLData);
 	If TypeOf(HyperlinkAddress) <> Type("String") Then
-		Raise NStr("en = 'Error getting URL. Invalid contact information type.';");
+		Raise NStr("en = 'Error getting URL. Invalid contact information type.';tr = 'Referans alınırken bir hata oluştu, iletişim bilgilerin türü yanlış'");
 	EndIf;
 	
 	If StrFind(HyperlinkAddress, "://") > 0 Then
@@ -1054,7 +1054,7 @@ Procedure AfterStartApplication(ApplicationStarted, Parameters) Export
 	
 	If Not ApplicationStarted Then 
 		StringWithWarning = New FormattedString(
-			NStr("en = 'To make a call, install a telecom app. For example,';"),
+			NStr("en = 'To make a call, install a telecom app. For example,';tr = 'Arama yapmak için telekom uygulaması yükleyin. Örneğin,'"),
 			 " ", New FormattedString("Skype",,,, "http://www.skype.com"), ".");
 		ShowMessageBox(Undefined, StringWithWarning);
 	EndIf;
@@ -1371,7 +1371,7 @@ Procedure EnterAComment(Val Form, Val AttributeName, Val FoundRow, Val Result, A
 	Notification = New NotifyDescription("EnterACommentCompletion", ThisObject, AdditionalParameters);
 	
 	CommonClient.ShowMultilineTextEditingForm(Notification, Comment,
-		NStr("en = 'Comment';"));
+		NStr("en = 'Comment';tr = 'YORUM'"));
 EndProcedure
 
 // Completes a nonmodal dialog.
@@ -1631,7 +1631,7 @@ Procedure OpenSkype(CommandLine1)
 	
 #If Not WebClient Then
 		If IsBlankString(TelephonyApplicationInstalled("skype")) Then
-			ShowMessageBox(Undefined, NStr("en = 'Install Skype to make Skype calls.';"));
+			ShowMessageBox(Undefined, NStr("en = 'Install Skype to make Skype calls.';tr = 'Skype araması yapmak için programı yükleyin.'"));
 			Return;
 		EndIf;
 #EndIf
@@ -1999,7 +1999,7 @@ Procedure BeforePhoneCall(ContactInformation, AdditionalParameters) Export
 	
 	If IsBlankString(ContactInformation.Presentation) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'To start a call, enter a phone number.';"), , AdditionalParameters.AttributeName);
+			NStr("en = 'To start a call, enter a phone number.';tr = 'Aramak için telefon numarasını girin.'"), , AdditionalParameters.AttributeName);
 		Return;
 	EndIf;
 	Telephone(ContactInformation.Presentation);
@@ -2010,7 +2010,7 @@ Procedure BeforeCreateSMS(ContactInformation, AdditionalParameters) Export
 
 	If IsBlankString(ContactInformation.Presentation) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'To send a text message, enter a phone number.';"), , AdditionalParameters.AttributeName);
+			NStr("en = 'To send a text message, enter a phone number.';tr = 'SMS göndermek için telefon numarasını girin.'"), , AdditionalParameters.AttributeName);
 		Return;
 	EndIf;
 	SMSParameters = SMSAndEmailParameters();

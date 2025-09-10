@@ -169,16 +169,17 @@ Procedure MetadataObjectsTreeBeforeDeleteRow(Item, Cancel)
 		If SettingToDeleteParent <> Undefined And SettingToDeleteParent.DetailedInfoAvailable Then
 			
 			QueryText = NStr("en = 'If you delete the setting, you will not be able
-				|to clean up files according to the rules defined in it. Continue?';");
+				|to clean up files according to the rules defined in it. Continue?';tr = 'Ayarların silinmesi, belirlenmiş kurallara göre
+				|dosyaların silinmesinin durdurulmasına yol açar. Devam edilsin mi?'");
 			NotifyDescription = New NotifyDescription("DeleteSettingItemCompletion", ThisObject);
-			ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.No, NStr("en = 'Warning';"));
+			ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.No, NStr("en = 'Warning';tr = 'Uyarı'"));
 			Return;
 			
 		EndIf;
 		
 	EndIf;
 	
-	MessageText = NStr("en = 'Advanced file cleanup settings are unavailable for this object.';");
+	MessageText = NStr("en = 'Advanced file cleanup settings are unavailable for this object.';tr = 'Bu nesne için genişletilmiş dosya temizleme ayarı öngörülmemiştir.'");
 	ShowMessageBox(, MessageText);
 	
 EndProcedure
@@ -264,7 +265,7 @@ Function CanClearVersions()
 		CurrentData = Items.MetadataObjectsTree.CurrentData;
 		If Not CurrentData.IsFile
 			And CurrentData.FileOwner <> Undefined Then
-			ShowMessageBox(, NStr("en = 'File versions are not stored for this object.';"));
+			ShowMessageBox(, NStr("en = 'File versions are not stored for this object.';tr = 'Bu nesne için dosya sürümleri kaydedilmemektedir.'"));
 			Return False;
 		EndIf;
 	EndIf;
@@ -296,7 +297,10 @@ Procedure Clear(Command)
 	ShowQueryBox(Notification, NStr("en = 'Clean up unused files?
 		|
 		|Unused files will be permanently deleted based on the settings you''ve configured.
-		|You might want to create a backup of the infobase and network file storage volumes before deleting.';"), 
+		|You might want to create a backup of the infobase and network file storage volumes before deleting.';tr = 'Kullanılmayan dosyalar silinsin mi?
+		|
+		|Kullanılmayan dosyalar yaptığınız ayarlara bağlı olarak tamamen silinecek.
+		|Silmeden önce infobase''i ve ağ dosya depolama birimlerini yedeklemek isteyebilirsiniz.'"), 
 		QuestionDialogMode.OKCancel);
 EndProcedure
 
@@ -373,7 +377,7 @@ EndProcedure
 Procedure CalculateDeletableFilesInfo()
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 	ExecutionParameters.RefinementErrors =
-		NStr("en = 'Cannot calculate the total size of files to delete:';");
+		NStr("en = 'Cannot calculate the total size of files to delete:';tr = 'Silinecek toplam dosya boyutu hesaplanamıyor:'");
 	TotalsCalculationDetails = TimeConsumingOperations.ExecuteFunction(ExecutionParameters, 
 		"FilesOperationsInternal.InformationAboutFilesToBeCleaned");
 EndProcedure
@@ -414,10 +418,10 @@ EndProcedure
 &AtClient
 Procedure DisplayTotals(TheAmountOfFilesBeingDeleted, IrrelevantFilesVolume)
 	Items.DeletedFilesVolume.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Files being deleted: %1 MB';"),
+		NStr("en = 'Files being deleted: %1 MB';tr = 'Silinecek dosyalar: %1 Mb'"),
 		 Format(TheAmountOfFilesBeingDeleted, "NFD=2; NZ=0;"));
 	Items.IrrelevantFilesVolume.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Unused files: %1 MB';"),
+		NStr("en = 'Unused files: %1 MB';tr = 'Gereksiz dosyalar: %1 Mb'"),
 		 Format(IrrelevantFilesVolume, "NFD=2; NZ=0;"));
 EndProcedure
 
@@ -544,7 +548,7 @@ Procedure FillObjectTypesInValueTree()
 		If AllCatalogs.ContainsType(Type.FileOwner) Then
 			If CatalogsNode = Undefined Then
 				CatalogsNode = MOTree.Rows.Add();
-				CatalogsNode.ObjectDescriptionSynonym = NStr("en = 'Catalogs';");
+				CatalogsNode.ObjectDescriptionSynonym = NStr("en = 'Catalogs';tr = 'Kataloglar'");
 			EndIf;
 			NewTableRow = CatalogsNode.Rows.Add();
 			ObjectID = Common.MetadataObjectID(Type.FileOwner);
@@ -566,13 +570,13 @@ Procedure FillObjectTypesInValueTree()
 		ElsIf AllDocuments.ContainsType(Type.FileOwner) Then
 			If DocumentsNode = Undefined Then
 				DocumentsNode = MOTree.Rows.Add();
-				DocumentsNode.ObjectDescriptionSynonym = NStr("en = 'Documents';");
+				DocumentsNode.ObjectDescriptionSynonym = NStr("en = 'Documents';tr = 'Belgeler'");
 			EndIf;
 			NewTableRow = DocumentsNode.Rows.Add();
 		ElsIf BusinessProcesses.AllRefsType().ContainsType(Type.FileOwner) Then
 			If BusinessProcessesNode = Undefined Then
 				BusinessProcessesNode = MOTree.Rows.Add();
-				BusinessProcessesNode.ObjectDescriptionSynonym = NStr("en = 'Business processes';");
+				BusinessProcessesNode.ObjectDescriptionSynonym = NStr("en = 'Business processes';tr = 'İş süreçleri'");
 			EndIf;
 			NewTableRow = BusinessProcessesNode.Rows.Add();
 		EndIf;
@@ -823,7 +827,7 @@ Procedure RunScheduledJob()
 	Else
 		JobParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 		JobParameters.BackgroundJobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Manual start: %1';"), ScheduledJobMetadata1.Synonym);
+			NStr("en = 'Manual start: %1';tr = 'Manuel başlatma: %1'"), ScheduledJobMetadata1.Synonym);
 		JobResult = TimeConsumingOperations.ExecuteInBackground(ScheduledJobMetadata1.MethodName, 
 			New Structure("ManualStart1", True), JobParameters);
 		If ValueIsFilled(BackgroundJobIdentifier) Then
@@ -901,7 +905,7 @@ Procedure AddSettingsByOwner(ValueSelected)
 		DetalizedSetting = OwnerElement.Add();
 		FillPropertyValues(DetalizedSetting, NewRecord);
 		DetalizedSetting.ObjectDescriptionSynonym = Setting;
-		DetalizedSetting.FilterRule = NStr("en = 'Change rule';");
+		DetalizedSetting.FilterRule = NStr("en = 'Change rule';tr = 'Kural değiştir'");
 	EndDo;
 	
 EndProcedure
@@ -1007,7 +1011,7 @@ Procedure AddFileCleanupSettings()
 	TreeRow = Items.MetadataObjectsTree.CurrentData;
 	
 	If Not TreeRow.DetailedInfoAvailable Then
-		MessageText = NStr("en = 'Advanced file cleanup settings are unavailable for this object.';");
+		MessageText = NStr("en = 'Advanced file cleanup settings are unavailable for this object.';tr = 'Bu nesne için genişletilmiş dosya temizleme ayarı öngörülmemiştir.'");
 		ShowMessageBox(, MessageText);
 		Return;
 	EndIf;
@@ -1025,7 +1029,7 @@ Procedure AddFileCleanupSettings()
 	ChoiceFormParameters.Insert("UsersGroupsSelection", True);
 	
 	ChoiceFormParameters.Insert("AdvancedPick", True);
-	ChoiceFormParameters.Insert("PickFormHeader", NStr("en = 'Select settings items';"));
+	ChoiceFormParameters.Insert("PickFormHeader", NStr("en = 'Select settings items';tr = 'Ayar öğelerini seç'"));
 	
 	// Excluding already existing settings from the selection list.
 	ExistingSettings1 = TreeRow.GetItems();
@@ -1073,7 +1077,7 @@ Procedure ConfigureFilePurgeModes()
 	Items.DeletedFilesVolume.Visible = UseVolumes;
 	Items.FilesCleanupMode.Visible = UseVolumes;
 	Items.AutomaticallyCleanUpUnusedFiles.Title = ?(UseVolumes, 
-		NStr("en = 'Clean up automatically:';"), NStr("en = 'Clean up unused files automatically:';"));
+		NStr("en = 'Clean up automatically:';tr = 'Otomatik olarak temizle:'"), NStr("en = 'Clean up unused files automatically:';tr = 'Kullanılmayan dosyaları otomatik temizle:'"));
 	
 EndProcedure
 

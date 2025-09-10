@@ -17,7 +17,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	FillPropertyValues(ThisObject, Parameters, "ReportSettings, SettingsComposer, CurrentVariantKey");
 	TitleProperties = Parameters.TitleProperties;
 	Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Filter by: %1';"), TitleProperties.Text);
+		NStr("en = 'Filter by: %1';tr = 'Filter by: %1'"), TitleProperties.Text);
 	InitializeFormData();
 	SetConditionalAppearance();
 	
@@ -133,13 +133,13 @@ Procedure GoToAdvancedSettings(Command)
 	If TypeOf(GroupingTheFilter) = Type("DataCompositionSettings") Then 
 		
 		TitleFilterGrouping = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '""%1"" report filters';"),
+			NStr("en = '""%1"" report filters';tr = '""%1"" report filters'"),
 			DescriptionOfReportSettings.Description);
 		
 	Else
 		
 		TitleFilterGrouping = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Filters of the ""%1"" grouping of the ""%2"" report';"),
+			NStr("en = 'Filters of the ""%1"" grouping of the ""%2"" report';tr = 'Filters of the ""%1"" grouping of the ""%2"" report'"),
 			String(GroupingTheFilter.GroupFields),
 			DescriptionOfReportSettings.Description);
 		

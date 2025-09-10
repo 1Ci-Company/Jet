@@ -39,7 +39,7 @@ Function SearchForDuplicatesAreaManager(Val DataSearchAreaName) Export
 	EndIf;
 	
 	Raise StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Invalid type of ""%1"" metadata object.';"), DataSearchAreaName);
+		NStr("en = 'Invalid type of ""%1"" metadata object.';tr = 'Yanlış meta veri nesne türü ""%1""'"), DataSearchAreaName);
 EndFunction
 
 // Searches for duplicates across all data in the infobase.
@@ -158,7 +158,7 @@ Function DuplicatesGroups(Val SearchParameters, Val SampleObject = Undefined) Ex
 				ParametersOfSearchForSimilarStrings = DuplicateObjectsDetection.ParametersOfSearchForSimilarStrings();
 			Except
 				Result.ErrorDescription = 
-					NStr("en = 'Cannot attach the add-in for fuzzy search for duplicates. For more information, see the event log.';");
+					NStr("en = 'Cannot attach the add-in for fuzzy search for duplicates. For more information, see the event log.';tr = 'Kopyalar için bulanık arama eklentisi eklenemiyor. Daha fazla bilgi için olay günlüğüne bakın.'");
 				Return Result;
 			EndTry;
 			FillPropertyValues(ParametersOfSearchForSimilarStrings, StringsComparisonForSimilarity);
@@ -228,7 +228,7 @@ Function DuplicatesGroups(Val SearchParameters, Val SampleObject = Undefined) Ex
 		// Consider restriction.
 		If ReturnedBatchSize > 0 And (DuplicatesTable.Count() > ReturnedBatchSize) Then
 				Result.ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Too many duplicates were found. First %1 items are shown.';"), ReturnedBatchSize); 
+					NStr("en = 'Too many duplicates were found. First %1 items are shown.';tr = 'Çok fazla kopya bulundu. Sadece ilk %1 gösteriliyor.'"), ReturnedBatchSize); 
 				Result.ReturnedLessThanFound = True;
 			Break;
 		EndIf;
@@ -673,7 +673,7 @@ Function DuplicateSearchDataCompositionSchema(SearchParameters, Characteristics,
 		If AvailableDCField = Undefined Then
 			WriteLogEvent(DuplicateObjectsDetection.SubsystemDescription(False),
 				EventLogLevel.Warning, Characteristics.MetadataObject, SampleObject,
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field %1 does not exist.';"), String(DCField)));
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field %1 does not exist.';tr = '""%1"" alanı mevcut değil.'"), String(DCField)));
 			Continue;
 		EndIf;
 		SelectedDCField = DCSettings.Selection.Items.Add(Type("DataCompositionSelectedField"));
@@ -1048,5 +1048,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

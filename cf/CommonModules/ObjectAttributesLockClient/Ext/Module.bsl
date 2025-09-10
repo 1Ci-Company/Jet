@@ -221,7 +221,7 @@ EndFunction
 Procedure ShowAllVisibleAttributesUnlockedWarning(ContinuationHandler = Undefined) Export
 	
 	ShowMessageBox(ContinuationHandler,
-		NStr("en = 'Editing visible attributes of the object is already allowed.';"));
+		NStr("en = 'Editing visible attributes of the object is already allowed.';tr = 'İzin verilen tüm görünen nesne niteliklerini düzenleme.'"));
 	
 EndProcedure
 
@@ -318,7 +318,7 @@ EndFunction
 //
 Procedure CheckObjectRefs(Val ContinuationHandler, Val ReferencesArrray, Val AttributesSynonyms) Export
 	
-	DialogTitle = NStr("en = 'Allow attribute edit';");
+	DialogTitle = NStr("en = 'Allow attribute edit';tr = 'Özniteliklerin düzenlenmesine izin'");
 	
 	AttributesPresentation = "";
 	For Each AttributeSynonym In AttributesSynonyms Do
@@ -334,7 +334,13 @@ Procedure CheckObjectRefs(Val ContinuationHandler, Val ReferencesArrray, Val Att
 			           |Before you allow editing, view the occurrences of these attributes
 			           |and consider possible data implications.
 			           |Generating the list of occurrences might take a while.
-			           |';"),
+			           |';tr = 'Veri tutarsızlığını önlemek için şu öznitelikler kilitlendi:
+			           |%1.
+			           |
+			           |Düzenlemeye izin vermeden önce bu özniteliklerin kullanım yerlerine bakın
+			           |ve olası veri sorunlarını dikkate alın.
+			           |Kullanım yerlerinin listelenmesi zaman alabilir.
+			           |'"),
 			AttributesPresentation);
 	Else
 		If ReferencesArrray.Count() = 1 Then
@@ -343,7 +349,11 @@ Procedure CheckObjectRefs(Val ContinuationHandler, Val ReferencesArrray, Val Att
 				           |
 				           |Before you allow editing, view the occurrences of %2
 				           |and consider possible data implications.
-				           |Generating the list of occurrences might take a while.';"),
+				           |Generating the list of occurrences might take a while.';tr = 'Veri tutarsızlığının önlenmesi için %1 özniteliği kilitlendi.
+				           |
+				           |Düzenlemeye izin vermeden önce %2 kullanım yerlerine bakın
+				           |ve olası veri sorunlarını dikkate alın.
+				           |Kullanım yerlerinin listelenmesi zaman alabilir.'"),
 				AttributesPresentation, ReferencesArrray[0]);
 		Else
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -351,7 +361,11 @@ Procedure CheckObjectRefs(Val ContinuationHandler, Val ReferencesArrray, Val Att
 				           |
 				           |Before you allow editing, view the occurrences of the selected items (%2)
 				           |and consider possible data implications.
-				           |Generating the list of occurrences might take a while.';"),
+				           |Generating the list of occurrences might take a while.';tr = 'Veri tutarsızlığının önlenmesi için %1 özniteliği kilitlendi.
+				           |
+				           |Düzenlemeye izin vermeden önce, seçilen öğelerin (%2) kullanım yerlerine bakın
+				           |ve olası veri sorunlarını dikkate alın.
+				           |Kullanım yerlerinin listelenmesi zaman alabilir.'"),
 				AttributesPresentation, ReferencesArrray.Count());
 		EndIf;
 	EndIf;
@@ -363,8 +377,8 @@ Procedure CheckObjectRefs(Val ContinuationHandler, Val ReferencesArrray, Val Att
 	Parameters.Insert("ContinuationHandler", ContinuationHandler);
 	
 	Buttons = New ValueList;
-	Buttons.Add(DialogReturnCode.Yes, NStr("en = 'View and allow';"));
-	Buttons.Add(DialogReturnCode.No, NStr("en = 'Cancel';"));
+	Buttons.Add(DialogReturnCode.Yes, NStr("en = 'View and allow';tr = 'Kontrol et ve izin ver'"));
+	Buttons.Add(DialogReturnCode.No, NStr("en = 'Cancel';tr = 'İptal et'"));
 	
 	ShowQueryBox(
 		New NotifyDescription("CheckObjectReferenceAfterValidationConfirm",

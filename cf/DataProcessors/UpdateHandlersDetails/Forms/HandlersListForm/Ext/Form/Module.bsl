@@ -34,7 +34,7 @@ EndProcedure
 Procedure OnOpen(Cancel)
 	
 #If WebClient Then
-	Raise NStr("en = 'Web client usage is not supported.';");
+	Raise NStr("en = 'Web client usage is not supported.';tr = 'Web istemcisinde çalışma desteklenmiyor.'");
 #EndIf
 	
 	If StrFind(LaunchParameter,"=") > 0 Then
@@ -119,7 +119,7 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 	If Modified And Not Exit Then
 		Cancel = True;
 		ResponseHandler1 = New NotifyDescription("FormClosingCompletion", ThisObject);
-		ShowQueryBox(ResponseHandler1, NStr("en = 'The data has been changed. Do you want to save the changes to the repository?';"), QuestionDialogMode.YesNoCancel);
+		ShowQueryBox(ResponseHandler1, NStr("en = 'The data has been changed. Do you want to save the changes to the repository?';tr = 'Veriler değiştirildi. Değişiklikler depoya kaydedilsin mi?'"), QuestionDialogMode.YesNoCancel);
 	EndIf;
 	
 EndProcedure
@@ -167,7 +167,7 @@ Procedure SRCDirectoryStartChoice(Item, ChoiceData, StandardProcessing)
 		StandardProcessing = False;
 		
 		FileSelectionHandler = New NotifyDescription("DirectorySelectionDialogBoxCompletion", ThisObject, "SRCDirectory");
-		FileSystemClient.SelectDirectory(FileSelectionHandler, NStr("en = 'Select a SRC directory';"), Object.SRCDirectory);
+		FileSystemClient.SelectDirectory(FileSelectionHandler, NStr("en = 'Select a SRC directory';tr = 'SRC katalogunu belirtin'"), Object.SRCDirectory);
 		
 #EndIf
 EndProcedure
@@ -188,7 +188,7 @@ Procedure ErrorFileDirectoryStartChoice(Item, ChoiceData, StandardProcessing)
 		FileDialog = New FileDialog(FileDialogMode.ChooseDirectory);
 		FileDialog.FullFileName = ErrorFileDirectory;
 		FileSelectionHandler = New NotifyDescription("DirectorySelectionDialogBoxCompletion", ThisObject, "ErrorFileDirectory");
-		FileSystemClient.SelectDirectory(FileSelectionHandler, NStr("en = 'Specify an error files directory';"), ErrorFileDirectory);
+		FileSystemClient.SelectDirectory(FileSelectionHandler, NStr("en = 'Specify an error files directory';tr = 'Hata dosyaları katalogunu belirtin'"), ErrorFileDirectory);
 #EndIf
 EndProcedure
 
@@ -311,7 +311,7 @@ Procedure UpdateHandlersBeforeDeleteRow(Item, Cancel)
 	
 	Cancel = True;
 	ResponseHandler1 = New NotifyDescription("HandlerDetailsDeletionCompletion", ThisObject);
-	QueryText = NStr("en = 'Do you want to delete handler details?';");
+	QueryText = NStr("en = 'Do you want to delete handler details?';tr = 'İşleyici açıklaması silinsin mi?'");
 	ShowQueryBox(ResponseHandler1, QueryText, QuestionDialogMode.YesNo);
 	
 EndProcedure
@@ -421,7 +421,8 @@ Procedure SaveAllHandlersToRepository(Command)
 	SavingParameters = New Structure("AllHandlers", True);
 	ResponseHandler1 = New NotifyDescription("RepositorySaveCompletion", ThisObject, SavingParameters);
 	QueryText = NStr("en = 'Warning. All update handler details procedures will be overwritten.
-						|Continue?';");
+						|Continue?';tr = 'Dikkat! Tüm işleyici güncelleme açıklama prosedürleri yeniden yazılacak.
+						|Devam etmek istiyor musunuz?'");
 	ShowQueryBox(ResponseHandler1, QueryText, QuestionDialogMode.YesNo);
 	
 EndProcedure
@@ -446,7 +447,7 @@ Procedure SetBuildNumberForHandlers(Command)
 	AdditionalParameters = New Structure("BuildNumberForHandlers", True);
 	ResponseHandler1 = New NotifyDescription("BuildNumberInputCompletion", ThisObject, AdditionalParameters);
 	VersionNumbers = StrSplit(ConfigurationVersion,".");
-	ShowInputNumber(ResponseHandler1, Number(VersionNumbers[3])+1, NStr("en = 'New build number';"));
+	ShowInputNumber(ResponseHandler1, Number(VersionNumbers[3])+1, NStr("en = 'New build number';tr = 'Yeni yapı numarası'"));
 	
 EndProcedure
 
@@ -475,7 +476,7 @@ Procedure SaveToFile(Command)
 		
 		FileSelectionHandler = New NotifyDescription("FileDialogCompletion", ThisObject, "");
 		FileDialog = New FileDialog(FileDialogMode.Save);
-		FileDialog.Title = NStr("en = 'Specify a file name';");
+		FileDialog.Title = NStr("en = 'Specify a file name';tr = 'Dosya ismini belirtin'");
 		FileDialog.Filter = FilterBackupFiles();
 		FileDialog.Multiselect = False;
 		FileSystemClient.ShowSelectionDialog(FileSelectionHandler, FileDialog);
@@ -491,7 +492,7 @@ Procedure LoadFromFile(Command)
 		
 		Notification = New NotifyDescription("SelectFileAfterPutFiles", ThisObject);
 		ImportParameters = FileSystemClient.FileImportParameters();
-		ImportParameters.Dialog.Title = NStr("en = 'Select file';");
+		ImportParameters.Dialog.Title = NStr("en = 'Select file';tr = 'Dosyayı belirtin'");
 		ImportParameters.Dialog.Filter = FilterBackupFiles();
 		ImportParameters.FormIdentifier = UUID;
 		FileSystemClient.ImportFile_(Notification, ImportParameters);
@@ -553,7 +554,7 @@ EndProcedure
 Procedure ShowPrioritiesHandlerConflicts(Command)
 	
 	If Items.UpdateHandlers.CurrentData = Undefined Then
-		ShowMessageBox(,NStr("en = 'Update handler is not selected';"));
+		ShowMessageBox(,NStr("en = 'Update handler is not selected';tr = 'Güncelleme işleyicileri seçilmedi'"));
 		Return;
 	EndIf;
 	
@@ -569,7 +570,7 @@ EndProcedure
 Procedure ShowHandlerObjects(Command)
 	
 	If Items.UpdateHandlers.CurrentData = Undefined Then
-		ShowMessageBox(,NStr("en = 'Update handler is not selected';"));
+		ShowMessageBox(,NStr("en = 'Update handler is not selected';tr = 'Güncelleme işleyicileri seçilmedi'"));
 		Return;
 	EndIf;
 	
@@ -590,7 +591,7 @@ Procedure ExecuteQueueBuildingTest(Command)
 		ApplySettingsGroupAppearance();
 		If Not ValueIsFilled(ErrorFileDirectory) Then
 			CommonClient.MessageToUser(
-				NStr("en = 'Error files directory is not specified.';"),
+				NStr("en = 'Error files directory is not specified.';tr = 'Hata dosyaları katalogu belirtilmedi.'"),
 				,
 				,
 				"ErrorFileDirectory");
@@ -817,7 +818,7 @@ Function TheSRCDirectoryIsSpecifiedCorrectly()
 	Result = True;
 	If Not ValueIsFilled(Object.SRCDirectory) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'SRC directory path is not specified';"),
+			NStr("en = 'SRC directory path is not specified';tr = 'SRC dizin yolu belirtilmedi'"),
 			,
 			,
 			"Object.SRCDirectory");
@@ -827,7 +828,7 @@ Function TheSRCDirectoryIsSpecifiedCorrectly()
 	DirectoryOnHardDrive = New File(Object.SRCDirectory);
 	If Not DirectoryOnHardDrive.Exists() Then
 		CommonClient.MessageToUser(
-			NStr("en = 'SRC directory is not found';"),
+			NStr("en = 'SRC directory is not found';tr = 'SRC dizini bulunamadı'"),
 			,
 			,
 			"Object.SRCDirectory");
@@ -897,7 +898,7 @@ Function AddModuleProcedure(Code)
 		NewText = StringFunctionsClientServer.SubstituteParametersToString(EmptyModuleManager, ProcedureText);
 		WriteModuleText(NewText, FullFileName);
 		
-		Template = NStr("en = 'The ""%2"" procedure is added to the ""%1"" module';");
+		Template = NStr("en = 'The ""%2"" procedure is added to the ""%1"" module';tr = '""%1"" modülüne ""%2"" prosedürü eklendi'");
 		CommonClient.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(Template, Code.ModuleName, ProcedureName));
 		Return True;
 	EndIf;
@@ -1023,12 +1024,14 @@ Function AddModuleProcedure(Code)
 		NewText = StrConcat(ModuleStrings, Chars.LF);
 		WriteModuleText(NewText, FullFileName);
 		
-		Template = NStr("en = 'The ""%2"" procedure is added to the ""%1"" module';");
+		Template = NStr("en = 'The ""%2"" procedure is added to the ""%1"" module';tr = '""%1"" modülüne ""%2"" prosedürü eklendi'");
 		CommonClient.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(Template, Code.ModuleName, ProcedureName));
 	Else
 		Template = NStr("en = 'Cannot add the ""%2"" procedure to the ""%1"" module.
 		|The ""%3"" region might be not set in the module.
-		|Add the procedure or region manually and record the handlers again.';");
+		|Add the procedure or region manually and record the handlers again.';tr = '""%1"" modülüne ""%2"" prosedürü eklenemedi
+		|Muhtemelen modülde ""%3"" alanı belirlenmedi.
+		|Prosedürü veya alanı manüel olarak ekleyin ve işleyicilerin kaydını tekrarlayın.'");
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(Template, Code.ModuleName, ProcedureName, "InfobaseUpdate");
 		Raise MessageText;
 	EndIf;
@@ -1146,11 +1149,11 @@ Procedure ReplaceModuleProcedure(Code)
 	
 	ProcedureName = ProcedureName(Code.ProcedureTitle);
 	If VersionSet Then
-		Template = NStr("en = 'In the ""%1"" module, new version ""%2"" is installed';");
+		Template = NStr("en = 'In the ""%1"" module, new version ""%2"" is installed';tr = '""%1"" modülünde yeni versiyon kuruldu ""%2""'");
 		CommonClient.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(Template, Code.ModuleName, Code.Version));
 	EndIf;
 	If WasReplaced Then
-		Template = NStr("en = 'In the ""%1"" module, the ""%2"" procedure is replaced';");
+		Template = NStr("en = 'In the ""%1"" module, the ""%2"" procedure is replaced';tr = '""%1"" modülünde ""%2"" prosedürü değiştirildi'");
 		NewText = NewModule.GetText();
 		WriteModuleText(NewText, FullFileName);
 		CommonClient.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(Template, Code.ModuleName, ProcedureName));
@@ -1294,7 +1297,7 @@ Procedure SaveVersionToConfigurationRoot()
 	
 	FileText = NewFile.GetText();
 	If VersionSet Then
-		Template = NStr("en = 'New version ""%1"" is installed in the configuration root';");
+		Template = NStr("en = 'New version ""%1"" is installed in the configuration root';tr = 'Konfigürasyon kök dizininde yeni versiyon ""%1"" kuruldu'");
 		NewText = NewFile.GetText();
 		WriteModuleText(NewText, FullFileName);
 		CommonClient.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(Template, NewConfigurationVersion));
@@ -1597,20 +1600,20 @@ Procedure FillQuickFilters(Val HandlersDetails = Undefined)
 	AddQuickFilter(HandlersDetails, RowsArray, "IssueStatus", AnalysisRequiredStatus, "AnalysisRequired", StyleColors.SpecialTextColor);
 	AddQuickFilter(HandlersDetails, RowsArray, "LowPriorityReading", LowPriorityReadingStatus, "LowPriorityReading", StyleColors.SpecialTextColor);
 	AddQuickFilter(HandlersDetails, RowsArray, "ChangedCheckProcedure", StatusChangedCheckProcedure, "ChangedCheckProcedure", WebColors.Goldenrod);
-	AddQuickFilter(HandlersDetails, RowsArray, "ExecutionMode", NStr("en = 'Deferred';"), "Deferred");
-	AddQuickFilter(HandlersDetails, RowsArray, "ExecutionMode", NStr("en = 'Exclusive';"), "Exclusively");
-	AddQuickFilter(HandlersDetails, RowsArray, "ExecutionMode", NStr("en = 'Real-time';"), "Seamless");
-	AddQuickFilter(HandlersDetails, RowsArray, "TechnicalDesign", NStr("en = 'Technical design';"), "TechnicalDesign");
+	AddQuickFilter(HandlersDetails, RowsArray, "ExecutionMode", NStr("en = 'Deferred';tr = 'Ertelenen'"), "Deferred");
+	AddQuickFilter(HandlersDetails, RowsArray, "ExecutionMode", NStr("en = 'Exclusive';tr = 'Tekel'"), "Exclusively");
+	AddQuickFilter(HandlersDetails, RowsArray, "ExecutionMode", NStr("en = 'Real-time';tr = 'Gerçek-zamanlı'"), "Seamless");
+	AddQuickFilter(HandlersDetails, RowsArray, "TechnicalDesign", NStr("en = 'Technical design';tr = 'Tek.proje'"), "TechnicalDesign");
 	
-	AddAnotherQuickFilter(HandlersDetails, "DeferredHandlersExecutionMode", NStr("en = 'Parallel';"), "Parallel");
-	AddAnotherQuickFilter(HandlersDetails, "DeferredHandlersExecutionMode", NStr("en = 'Sequentially';"), "Sequentially");
-	AddAnotherQuickFilter(HandlersDetails, "InitialFilling", NStr("en = 'Initial population';"), "InitialFilling");
-	AddAnotherQuickFilter(HandlersDetails, "ExecuteInMandatoryGroup", NStr("en = 'Required';"), "IsRequired");
-	AddAnotherQuickFilter(HandlersDetails, "Multithreaded", NStr("en = 'Multi-threaded';"), "Multithreaded");
-	AddAnotherQuickFilter(HandlersDetails, "DataToReadWriter", NStr("en = 'Writing of readable objects';"), "DataToReadWriter");
-	AddAnotherQuickFilter(HandlersDetails, "WriteAgain", NStr("en = 'Rewriting';"), "WriteAgain");
+	AddAnotherQuickFilter(HandlersDetails, "DeferredHandlersExecutionMode", NStr("en = 'Parallel';tr = 'Paralel'"), "Parallel");
+	AddAnotherQuickFilter(HandlersDetails, "DeferredHandlersExecutionMode", NStr("en = 'Sequentially';tr = 'Art arda'"), "Sequentially");
+	AddAnotherQuickFilter(HandlersDetails, "InitialFilling", NStr("en = 'Initial population';tr = 'İlk doldurma'"), "InitialFilling");
+	AddAnotherQuickFilter(HandlersDetails, "ExecuteInMandatoryGroup", NStr("en = 'Required';tr = 'Gerekli'"), "IsRequired");
+	AddAnotherQuickFilter(HandlersDetails, "Multithreaded", NStr("en = 'Multi-threaded';tr = 'Çok iş parçacıklı'"), "Multithreaded");
+	AddAnotherQuickFilter(HandlersDetails, "DataToReadWriter", NStr("en = 'Writing of readable objects';tr = 'Okunabilir kaydı'"), "DataToReadWriter");
+	AddAnotherQuickFilter(HandlersDetails, "WriteAgain", NStr("en = 'Rewriting';tr = 'Tekrar kayıt'"), "WriteAgain");
 	
-	StatusText = NStr("en = 'Other';");
+	StatusText = NStr("en = 'Other';tr = 'Diğer'");
 	HyperlinkString = New FormattedString(
 		StatusText,
 		, 
@@ -1619,7 +1622,7 @@ Procedure FillQuickFilters(Val HandlersDetails = Undefined)
 	RowsArray.Add(HyperlinkString);
 	RowsArray.Add("  ");
 	
-	StatusText = StringFunctionsClientServer.SubstituteParametersToString("%1 (%2)", NStr("en = 'All';"), HandlersDetails.Count());
+	StatusText = StringFunctionsClientServer.SubstituteParametersToString("%1 (%2)", NStr("en = 'All';tr = 'Tümü'"), HandlersDetails.Count());
 	HyperlinkString = New FormattedString(
 		StatusText, 
     	, 
@@ -2146,7 +2149,7 @@ Function HandlersDetailsByManagersModules(SettingsAddress)
 	EndIf;
 	
 	If OnlySelectedItems And Not ExtendedFormMode Then
-		HandlersCode = ModuleCodeDetails(NStr("en = 'Selected handlers';"));
+		HandlersCode = ModuleCodeDetails(NStr("en = 'Selected handlers';tr = 'Seçilen işleyiciler'"));
 		For Each ModuleCode In ModulesTexts Do
 			HandlersCode.ProcedureText = HandlersCode.ProcedureText + ModuleCode.ProcedureText + Chars.LF + Chars.LF;
 		EndDo;
@@ -3675,7 +3678,7 @@ Function ReadYAMLFile(FileName)
 	
 	File = New File(FileName);
 	If Not File.Exists() Then
-		Template = NStr("en = 'Settings file ""%1"" was not found';");
+		Template = NStr("en = 'Settings file ""%1"" was not found';tr = '""%1"" ayarlar dosyası bulunamadı'");
 		Raise StringFunctionsClientServer.SubstituteParametersToString(Template, FileName);
 	EndIf;
 	
@@ -3688,8 +3691,8 @@ Function ReadYAMLFile(FileName)
 		
 	Except
 		ErrorText = ErrorProcessing.DetailErrorDescription(ErrorInfo());
-		MessageText = Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot read file %1.';"), FileName);
-		MessageText = MessageText  + Chars.LF + NStr("en = 'Reason';")+":" + Chars.LF;
+		MessageText = Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot read file %1.';tr = '%1 dosyası okunamadı.'"), FileName);
+		MessageText = MessageText  + Chars.LF + NStr("en = 'Reason';tr = 'Nedeniyle'")+":" + Chars.LF;
 		MessageText = MessageText  + ErrorText;
 		Raise MessageText;
 	EndTry;
@@ -3749,8 +3752,8 @@ Procedure ReadYAMLStrings(Result, FileText, LineNumber = 0, Level = 0, ReadMulti
 	
 	Except
 		ErrorText = ErrorProcessing.DetailErrorDescription(ErrorInfo());
-		MessageText = Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot parse string: %1';"), FileString);
-		MessageText = MessageText  + Chars.LF + NStr("en = 'Reason';")+":" + Chars.LF;
+		MessageText = Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot parse string: %1';tr = 'Satır okunamadı: %1'"), FileString);
+		MessageText = MessageText  + Chars.LF + NStr("en = 'Reason';tr = 'Nedeniyle'")+":" + Chars.LF;
 		MessageText = MessageText  + ErrorText;
 		Raise MessageText;
 	EndTry;
@@ -3826,7 +3829,7 @@ Procedure WriteError(ObjectName, ErrorDescription = "",
                          ErrorInfo = Undefined, Var_Key = Undefined)
 	 
 	Error = CreateErrorDescription();
-	Error.ErrorType              = NStr("en = 'An error occurred while building the queue of deferred update handlers';");
+	Error.ErrorType              = NStr("en = 'An error occurred while building the queue of deferred update handlers';tr = 'Ertelenmiş güncelleme işleyicileri sıralanırken hata oluştu'");
 	Error.PlaybackOrder = ErrorDescription;
 	Error.MetadataObject       = ObjectName;
 	
@@ -3944,7 +3947,7 @@ Function GetSettingsTexts()
 	SettingsTexts = New ValueList;
 	SettingsTexts.Add(
 		ClippingTags.GetText(), 
-		NStr("en = 'Save the cut_tags.yml file to the .settings directory of the local design folder in the UTF-8 encoding';"));
+		NStr("en = 'Save the cut_tags.yml file to the .settings directory of the local design folder in the UTF-8 encoding';tr = 'cut_tags.yml dosyası projenin yerel klasöründe .settings katalogunda UTF-8 karakter kümesine kaydet'"));
 	
 	Return SettingsTexts;
 	
@@ -4026,7 +4029,7 @@ EndProcedure
 Procedure SetSimplifiedMode()
 	
 	ExtendedFormMode = False;
-	Items.SwitchFormMode.Title = NStr("en = 'Go to advanced mode';");
+	Items.SwitchFormMode.Title = NStr("en = 'Go to advanced mode';tr = 'Gelişmiş moda geç'");
 	SetFormModeItemsVisibility();
 	
 EndProcedure
@@ -4035,7 +4038,7 @@ EndProcedure
 Procedure SetAdvancedMode()
 	
 	ExtendedFormMode = True;
-	Items.SwitchFormMode.Title = NStr("en = 'Go to simplified mode';");
+	Items.SwitchFormMode.Title = NStr("en = 'Go to simplified mode';tr = 'Sadeleştirilmiş moda geç'");
 	SetFormModeItemsVisibility();
 	
 EndProcedure
@@ -4094,9 +4097,9 @@ Procedure InitializeDataProcessorConstants()
 	
 	DataProcessor = DataProcessorObject2();
 	
-	AnalysisRequiredStatus = NStr("en = 'Analysis required';");
-	StatusChangedCheckProcedure = NStr("en = 'Check procedure is changed';");
-	LowPriorityReadingStatus = NStr("en = 'Low order read';");
+	AnalysisRequiredStatus = NStr("en = 'Analysis required';tr = 'Analiz gerekiyor'");
+	StatusChangedCheckProcedure = NStr("en = 'Check procedure is changed';tr = 'Kontrol prosedürü değiştirildi'");
+	LowPriorityReadingStatus = NStr("en = 'Low order read';tr = 'Düşük konum okuma'");
 	SubsystemsToDevelop = New FixedArray(DataProcessor.SubsystemsToDevelop());
 	
 	PluralForm = New FixedMap(DataProcessor.PluralForm);
@@ -4180,19 +4183,19 @@ EndFunction
 &AtClient
 Procedure ApplySettingsGroupAppearance()
 	
-	TemplateOfPresentation = NStr("en = 'Save to %1';");
+	TemplateOfPresentation = NStr("en = 'Save to %1';tr = '%1''de kaydet'");
 	Receiver = Object.SRCDirectory;
 	If Not ValueIsFilled(Object.SRCDirectory) Then
-		Receiver = NStr("en = '<Specify a src directory in the repository>';");
+		Receiver = NStr("en = '<Specify a src directory in the repository>';tr = '<src depo katalogunu belirtin>'");
 	EndIf;
 	
 	GroupPresentation = StringFunctionsClientServer.SubstituteParametersToString(TemplateOfPresentation, Receiver);
 	
 	If Items.ErrorFileDirectory.Visible Then
-		TemplateOfPresentation =  TemplateOfPresentation + " " + NStr("en = 'Errors: %2';");
+		TemplateOfPresentation =  TemplateOfPresentation + " " + NStr("en = 'Errors: %2';tr = 'Hatalar: %2'");
 		ErrorsDirectory = ErrorFileDirectory;
 		If Not ValueIsFilled(ErrorFileDirectory) Then
-			ErrorsDirectory = NStr("en = '<Specify an errors directory>';");
+			ErrorsDirectory = NStr("en = '<Specify an errors directory>';tr = '<Hatalar katalogunu belirtin>'");
 		EndIf;
 		GroupPresentation = StringFunctionsClientServer.SubstituteParametersToString(TemplateOfPresentation, Receiver, ErrorsDirectory);
 	EndIf;
@@ -4217,7 +4220,7 @@ EndProcedure
 
 &AtClient
 Function FilterBackupFiles()
-	Return StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Handler details (*.handlers)|*.handlers|All files (%1)|%1';"), GetAllFilesMask());
+	Return StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Handler details (*.handlers)|*.handlers|All files (%1)|%1';tr = 'İşleyici bilgileri (*.handlers)|*.handlers|Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 EndFunction
 
 &AtClient
@@ -4394,19 +4397,19 @@ Procedure SetQuickFilter(QuickFilterName)
 		Filter = New Structure("IssueStatus", AnalysisRequiredStatus);
 		
 	ElsIf QuickFilterName = "Deferred" Then
-		Filter = New Structure("ExecutionMode", NStr("en = 'Deferred';"));
+		Filter = New Structure("ExecutionMode", NStr("en = 'Deferred';tr = 'Ertelendi'"));
 		
 	ElsIf QuickFilterName = "Exclusively" Then
-		Filter = New Structure("ExecutionMode", NStr("en = 'Exclusive';"));
+		Filter = New Structure("ExecutionMode", NStr("en = 'Exclusive';tr = 'Tekel'"));
 		
 	ElsIf QuickFilterName = "Seamless" Then
-		Filter = New Structure("ExecutionMode", NStr("en = 'Real-time';"));
+		Filter = New Structure("ExecutionMode", NStr("en = 'Real-time';tr = 'Gerçek-zamanlı'"));
 		
 	ElsIf QuickFilterName = "Sequentially" Then
-		Filter = New Structure("DeferredHandlersExecutionMode", NStr("en = 'Sequentially';"));
+		Filter = New Structure("DeferredHandlersExecutionMode", NStr("en = 'Sequentially';tr = 'Art arda'"));
 		
 	ElsIf QuickFilterName = "Parallel" Then
-		Filter = New Structure("DeferredHandlersExecutionMode", NStr("en = 'Parallel';"));
+		Filter = New Structure("DeferredHandlersExecutionMode", NStr("en = 'Parallel';tr = 'Paralel'"));
 		
 	ElsIf QuickFilterName = "InitialFilling" Then
 		Filter = New Structure("InitialFilling", True);

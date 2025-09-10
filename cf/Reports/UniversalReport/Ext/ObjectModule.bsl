@@ -175,10 +175,12 @@ Procedure BeforeImportSettingsToComposer(Context, SchemaKey, VariantKey, NewDCSe
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot set fixed parameters
 				           |for the universal report option with the ""%1"" key. Reason:
-				           |%2';"),
+				           |%2';tr = '""%1"" anahtarı ile evrensel rapor seçeneği için 
+				           |sabit parametreler ayarlanamıyor. Nedeni:
+				           |%2'"),
 				           VariantKey,
 				           ErrorProcessing.DetailErrorDescription(ErrorInfo));
-			WriteLogEvent(NStr("en = 'Report options.Set up universal report parameters';", 
+			WriteLogEvent(NStr("en = 'Report options.Set up universal report parameters';tr = 'Rapor seçenekleri.Evrensel rapor parametreleri ayarla'", 
 				Common.DefaultLanguageCode()),
 				EventLogLevel.Error,
 				Metadata.Catalogs.ReportsOptions,,
@@ -213,10 +215,12 @@ Procedure BeforeImportSettingsToComposer(Context, SchemaKey, VariantKey, NewDCSe
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot save the fixed parameters
 				           |for the universal report option with the ""%1"" key. Reason:
-				           |%2';"),
+				           |%2';tr = '""%1"" anahtarı ile evrensel rapor seçeneği için 
+				           |sabit parametreler kaydedilemiyor. Nedeni:
+				           |%2'"),
 				           VariantKey,
 				           ErrorProcessing.DetailErrorDescription(ErrorInfo));
-			WriteLogEvent(NStr("en = 'Report options.Set up universal report parameters';", 
+			WriteLogEvent(NStr("en = 'Report options.Set up universal report parameters';tr = 'Rapor seçenekleri.Evrensel rapor parametreleri ayarla'", 
 				Common.DefaultLanguageCode()),
 				EventLogLevel.Error,
 				Metadata.Catalogs.ReportsOptions,,
@@ -422,5 +426,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

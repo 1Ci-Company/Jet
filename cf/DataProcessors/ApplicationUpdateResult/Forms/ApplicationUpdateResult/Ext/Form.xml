@@ -5,6 +5,10 @@
 			<v8:lang>en</v8:lang>
 			<v8:content>Application update results</v8:content>
 		</v8:item>
+		<v8:item>
+			<v8:lang>tr</v8:lang>
+			<v8:content>Uygulama güncelleme sonuçları</v8:content>
+		</v8:item>
 	</Title>
 	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
 	<AutoTitle>false</AutoTitle>
@@ -36,6 +40,10 @@
 						<v8:lang>en</v8:lang>
 						<v8:content>Close</v8:content>
 					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>Kapat</v8:content>
+					</v8:item>
 				</Title>
 				<ExtendedTooltip name="FormCloseExtendedTooltip" id="127"/>
 			</Button>
@@ -46,6 +54,10 @@
 					<v8:item>
 						<v8:lang>en</v8:lang>
 						<v8:content>Restart deferred update…</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>Ertelenmiş güncellemeyi yeniden başlat...</v8:content>
 					</v8:item>
 				</Title>
 				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
@@ -64,6 +76,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Patch deletion information</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Yamaları kaldırma hakkında bilgi</v8:content>
 				</v8:item>
 			</Title>
 			<Group>AlwaysHorizontal</Group>
@@ -94,6 +110,15 @@ Possible reasons:
 
 Such actions can lead to various errors when the application is running and when updating it to a new version. It is recommended that you use regular tools for updating.</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Yeni bir sürüme güncelleme yapılırken eski düzeltmelerin (yamaların) kaldırılması normal olarak gerçekleştirilmedi, bu nedenle yönetici uygulamaya ilk girdiğinde kaldırıldılar. 
+Olası nedenler: 
+• güncelleme, tavsiye edilmeyen üçüncü taraf araçlar tarafından gerçekleştirildi; 
+• uygulamanın bu sürümüne uygun olmayan bir yama, örneğin yapılandırıcı kullanılarak manuel olarak yüklendi. 
+
+Bu tür eylemler, uygulama çalışırken ve yeni bir sürüme güncellendiğinde çeşitli hatalara yol açabilir. Güncelleme için standart araçların kullanılması önerilir.</v8:content>
+						</v8:item>
 					</Title>
 					<ContextMenu name="PatchesDeletionLabelContextMenu" id="261"/>
 					<ExtendedTooltip name="PatchesDeletionLabelExtendedTooltip" id="262"/>
@@ -105,6 +130,10 @@ Such actions can lead to various errors when the application is running and when
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Group</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Grup</v8:content>
 				</v8:item>
 			</Title>
 			<Group>Vertical</Group>
@@ -119,6 +148,10 @@ Such actions can lead to various errors when the application is running and when
 							<v8:lang>en</v8:lang>
 							<v8:content>Update results</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Güncelleme sonucu</v8:content>
+						</v8:item>
 					</Title>
 					<PagesRepresentation>None</PagesRepresentation>
 					<ExtendedTooltip name="UpdateResultsGroupExtendedTooltip" id="185"/>
@@ -128,6 +161,10 @@ Such actions can lead to various errors when the application is running and when
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Update completed</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Güncelleme tamamlandı</v8:content>
 								</v8:item>
 							</Title>
 							<VerticalStretch>false</VerticalStretch>
@@ -140,6 +177,10 @@ Such actions can lead to various errors when the application is running and when
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Information picture</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Bilgi resmi</v8:content>
 										</v8:item>
 									</Title>
 									<Picture>
@@ -159,6 +200,11 @@ Such actions can lead to various errors when the application is running and when
 											<v8:content>The application was updated to version %1
 on %2 at %3 (update duration: %4).</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Uygulama sürümü %4 tarihi %3 saatinde
+ %1 %2 sürümüne güncellendi.</v8:content>
+										</v8:item>
 									</Title>
 									<ContextMenu name="UpdateCompletedInformationContextMenu" id="87"/>
 									<ExtendedTooltip name="UpdateCompletedInformationExtendedTooltip" id="131"/>
@@ -171,6 +217,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 									<v8:lang>en</v8:lang>
 									<v8:content>Update error</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Güncelleme hatası</v8:content>
+								</v8:item>
 							</Title>
 							<Group>HorizontalIfPossible</Group>
 							<ExtendedTooltip name="UpdateErrorGroupExtendedTooltip" id="187"/>
@@ -181,6 +231,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Error picture</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Hata resmi</v8:content>
 										</v8:item>
 									</Title>
 									<Picture>
@@ -197,6 +251,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 											<v8:lang>en</v8:lang>
 											<v8:content>Error details</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Hata bilgisi</v8:content>
+										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
 									<Behavior>Usual</Behavior>
@@ -210,6 +268,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Cannot update the application. See the error details in the &lt;link EventLog&gt;event log&lt;/&gt;.</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Yazılım güncellemesi sırasında bazı sorunlar oldu. Bilgileri şurada saklanır&lt;link EventLog&gt;kayıt günlüğü&lt;/&gt;.</v8:content>
 												</v8:item>
 											</Title>
 											<ContextMenu name="UpdateErrorInformationContextMenu" id="200"/>
@@ -226,6 +288,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 													<v8:lang>en</v8:lang>
 													<v8:content>Information for technical support</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Teknik destek için bilgi</v8:content>
+												</v8:item>
 											</Title>
 											<ExtendedTooltip name="InformationForTechnicalSupportExtendedTooltip" id="239"/>
 										</Button>
@@ -241,6 +307,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 							<v8:lang>en</v8:lang>
 							<v8:content>Installed patches</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Kurulu düzeltmeler</v8:content>
+						</v8:item>
 					</Title>
 					<PagesRepresentation>None</PagesRepresentation>
 					<ExtendedTooltip name="InstalledPatchesGroupExtendedTooltip" id="203"/>
@@ -250,6 +320,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Patches installed</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Düzeltmeler kuruldu</v8:content>
 								</v8:item>
 							</Title>
 							<Group>HorizontalIfPossible</Group>
@@ -266,6 +340,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 											<v8:lang>en</v8:lang>
 											<v8:content>Patches installed composition</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Düzeltmeler kuruldu oluşturma</v8:content>
+										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
 									<Behavior>Usual</Behavior>
@@ -278,6 +356,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>&lt;link 123&gt;Patches&lt;/&gt; are installed(%1)</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>&lt;link 123&gt;Yamalar&lt;/&gt; yüklendi (%1)</v8:content>
 												</v8:item>
 											</Title>
 											<ContextMenu name="PatchesInstalledInformationContextMenu" id="212"/>
@@ -296,6 +378,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 									<v8:lang>en</v8:lang>
 									<v8:content>Patch installation error</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Düzeltme ayarlama hatası</v8:content>
+								</v8:item>
 							</Title>
 							<Group>HorizontalIfPossible</Group>
 							<ExtendedTooltip name="PatchesInstallationErrorGroupExtendedTooltip" id="218"/>
@@ -311,6 +397,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 											<v8:lang>en</v8:lang>
 											<v8:content>Patch installation error composition</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Düzeltme ayarlama hatası düzenleme</v8:content>
+										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
 									<Behavior>Usual</Behavior>
@@ -323,6 +413,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Cannot install &lt;link 123&gt;patches (%1 out of %2)&lt;/&gt;</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>&lt;link 123&gt;düzeltmeler kurulamadı (%1 / %2)&lt;/&gt;</v8:content>
 												</v8:item>
 											</Title>
 											<ContextMenu name="PatchesErrorInformationContextMenu" id="225"/>
@@ -345,6 +439,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 					<v8:lang>en</v8:lang>
 					<v8:content>Update status</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Güncelleme durumu</v8:content>
+				</v8:item>
 			</Title>
 			<HorizontalStretch>true</HorizontalStretch>
 			<PagesRepresentation>None</PagesRepresentation>
@@ -356,6 +454,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 							<v8:lang>en</v8:lang>
 							<v8:content>Update in file database</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Dosya veri tabanında güncelleme</v8:content>
+						</v8:item>
 					</Title>
 					<ExtendedTooltip name="FileInfobaseUpdateExtendedTooltip" id="134"/>
 					<ChildItems>
@@ -364,6 +466,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Header file infobase</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Dosya tabanı başlığı</v8:content>
 								</v8:item>
 							</Title>
 							<Behavior>Usual</Behavior>
@@ -377,6 +483,10 @@ on %2 at %3 (update duration: %4).</v8:content>
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Action in progress picture</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Resim eylem yürütülüyor</v8:content>
 										</v8:item>
 									</Title>
 									<Picture>
@@ -395,6 +505,11 @@ on %2 at %3 (update duration: %4).</v8:content>
 											<v8:content>Pending additional data processing procedures.
 Access to this data is temporarily restricted.</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Veri işleyici ek prosedürlerini çalıştırmak gereklidir.
+Uygulamada bu dosyalarla çalışma geçici olarak kısıtlıdır.</v8:content>
+										</v8:item>
 									</Title>
 									<VerticalAlign>Center</VerticalAlign>
 									<ContextMenu name="FileInfobaseInformationTitleContextMenu" id="36"/>
@@ -408,6 +523,10 @@ Access to this data is temporarily restricted.</v8:content>
 									<v8:lang>en</v8:lang>
 									<v8:content>Information file infobase</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Bilgi dosyası tabanı</v8:content>
+								</v8:item>
 							</Title>
 							<Group>Vertical</Group>
 							<Behavior>Usual</Behavior>
@@ -420,6 +539,10 @@ Access to this data is temporarily restricted.</v8:content>
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Start deferred update</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Ertelenmiş güncellemeyi başlat</v8:content>
 										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
@@ -436,6 +559,10 @@ Access to this data is temporarily restricted.</v8:content>
 													<v8:lang>en</v8:lang>
 													<v8:content>Data processing procedures</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Veri işleme prosedürleri listesi</v8:content>
+												</v8:item>
 											</Title>
 											<ExtendedTooltip name="OpenDeferredHandlersList1ExtendedTooltip" id="140"/>
 										</Button>
@@ -448,6 +575,10 @@ Access to this data is temporarily restricted.</v8:content>
 													<v8:lang>en</v8:lang>
 													<v8:content>Run data processing procedures</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Veri işleme prosedürlerini çalıştır</v8:content>
+												</v8:item>
 											</Title>
 											<ToolTipRepresentation>ShowBottom</ToolTipRepresentation>
 											<ExtendedTooltip name="ExecuteExtendedTooltip" id="141">
@@ -459,6 +590,13 @@ Access to this data is temporarily restricted.</v8:content>
 (from 1 minute to several hours, depending on the data size).
 Applications users might experience lags during the data processing.
 Therefore, it is recommended that you schedule it to the lowest user activity periods.</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>tr</v8:lang>
+														<v8:content>Veri işleme 
+(girilen veri hacmine bağlı olarak) birkaç dakikadan birkaç saate kadar sürebilir.
+İşleme sırasında kullanıcı aktivitelerinde önemli ölçüde yavaşlama görülebilir.
+Veri işlemenin kullanıcı aktivitesinin en düşük olduğu dönemde yapılması tavsiye edilir.</v8:content>
 													</v8:item>
 												</Title>
 											</ExtendedTooltip>
@@ -475,6 +613,10 @@ Therefore, it is recommended that you schedule it to the lowest user activity pe
 							<v8:lang>en</v8:lang>
 							<v8:content>Update status for user</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Kullanıcı için güncelleme durumu</v8:content>
+						</v8:item>
 					</Title>
 					<ShowTitle>false</ShowTitle>
 					<ExtendedTooltip name="UpdateStatusForUserExtendedTooltip" id="145"/>
@@ -484,6 +626,10 @@ Therefore, it is recommended that you schedule it to the lowest user activity pe
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Header SaaS mode</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Hizmet modeli başlığı</v8:content>
 								</v8:item>
 							</Title>
 							<Behavior>Usual</Behavior>
@@ -497,6 +643,10 @@ Therefore, it is recommended that you schedule it to the lowest user activity pe
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Action in progress picture</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Resim eylem yürütülüyor</v8:content>
 										</v8:item>
 									</Title>
 									<Picture>
@@ -516,6 +666,12 @@ Therefore, it is recommended that you schedule it to the lowest user activity pe
 Access to this data is temporary restricted.
 Please wait till the processing is completed.</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Veri işleme ek prosedürleri çalıştırılmadı.
+Uygulamada bu verilerle çalışma geçici olarak
+sınırlıdır ve bu veri işleyicinin bitmesini beklemek gereklidir.</v8:content>
+										</v8:item>
 									</Title>
 									<VerticalAlign>Center</VerticalAlign>
 									<ContextMenu name="InformationForUserTitleContextMenu" id="125"/>
@@ -531,6 +687,10 @@ Please wait till the processing is completed.</v8:content>
 									<v8:lang>en</v8:lang>
 									<v8:content>Data processing procedures</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Veri işleme prosedürleri listesi</v8:content>
+								</v8:item>
 							</Title>
 							<ExtendedTooltip name="OpenDeferredHandlersList2ExtendedTooltip" id="149"/>
 						</Button>
@@ -542,6 +702,10 @@ Please wait till the processing is completed.</v8:content>
 							<v8:lang>en</v8:lang>
 							<v8:content>Updating</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Güncelleme yürütülüyor</v8:content>
+						</v8:item>
 					</Title>
 					<ShowTitle>false</ShowTitle>
 					<ExtendedTooltip name="UpdateInProgressExtendedTooltip" id="150"/>
@@ -551,6 +715,10 @@ Please wait till the processing is completed.</v8:content>
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Update progress</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Güncelleme ilerlemesi</v8:content>
 								</v8:item>
 							</Title>
 							<Group>Vertical</Group>
@@ -565,6 +733,10 @@ Please wait till the processing is completed.</v8:content>
 											<v8:lang>en</v8:lang>
 											<v8:content>Header client server</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>İstemci sunucu başlığı</v8:content>
+										</v8:item>
 									</Title>
 									<Behavior>Usual</Behavior>
 									<Representation>None</Representation>
@@ -577,6 +749,10 @@ Please wait till the processing is completed.</v8:content>
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Action in progress picture</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Resim eylem yürütülüyor</v8:content>
 												</v8:item>
 											</Title>
 											<Picture>
@@ -595,6 +771,11 @@ Please wait till the processing is completed.</v8:content>
 													<v8:content>Additional data processing procedures required for update to version xx.yy.zz are in progress.
 Access to this data is temporary restricted.</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Veri işleme ek prosedürleri, xx.yy.zz sürümü için çalışıyor
+Bu verileri ile çalışma geçici olarak sınırlandırılmıştır.</v8:content>
+												</v8:item>
 											</Title>
 											<ContextMenu name="InformationTitleContextMenu" id="8"/>
 											<ExtendedTooltip name="InformationTitleExtendedTooltip" id="154"/>
@@ -607,6 +788,10 @@ Access to this data is temporary restricted.</v8:content>
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Header update is not in progress</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Başlık güncellemesi çalışmıyor</v8:content>
 										</v8:item>
 									</Title>
 									<Behavior>Usual</Behavior>
@@ -631,6 +816,11 @@ Access to this data is temporary restricted.</v8:content>
 													<v8:content>Additional procedures of data processing are not executed as the "Deferred update" scheduled job is disabled.
 &lt;link Enable&gt;Enable&lt;/&gt;</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Ek veri işleme prosedürleri gerçekleştirilmez, çünkü "Gecikmeli güncelleme" zamanlanmış görevi devre dışı bırakıldı. 
+&lt;link Enable&gt;Aç&lt;/&gt;</v8:content>
+												</v8:item>
 											</Title>
 											<ContextMenu name="ExplanationUpdateNotRunningContextMenu" id="284"/>
 											<ExtendedTooltip name="ExplanationUpdateNotRunningExtendedTooltip" id="285"/>
@@ -646,6 +836,10 @@ Access to this data is temporary restricted.</v8:content>
 											<v8:lang>en</v8:lang>
 											<v8:content>Progress details</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>İlerleme bilgisi</v8:content>
+										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
 									<Behavior>Usual</Behavior>
@@ -658,6 +852,10 @@ Access to this data is temporary restricted.</v8:content>
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Progress and errors</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>İlerleme ve hatalar</v8:content>
 												</v8:item>
 											</Title>
 											<Group>Vertical</Group>
@@ -672,6 +870,10 @@ Access to this data is temporary restricted.</v8:content>
 															<v8:lang>en</v8:lang>
 															<v8:content>Indent and progress</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Girinti ve ilerleme</v8:content>
+														</v8:item>
 													</Title>
 													<Group>AlwaysHorizontal</Group>
 													<Behavior>Usual</Behavior>
@@ -684,6 +886,10 @@ Access to this data is temporary restricted.</v8:content>
 																<v8:item>
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Alignment</v8:content>
+																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Hizalama</v8:content>
 																</v8:item>
 															</Title>
 															<Behavior>Usual</Behavior>
@@ -704,6 +910,10 @@ Access to this data is temporary restricted.</v8:content>
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Progress and issues</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>İlerleme ve sorunlar</v8:content>
+																</v8:item>
 															</Title>
 															<Group>Vertical</Group>
 															<Behavior>Usual</Behavior>
@@ -717,6 +927,10 @@ Access to this data is temporary restricted.</v8:content>
 																			<v8:lang>en</v8:lang>
 																			<v8:content>Progress</v8:content>
 																		</v8:item>
+																		<v8:item>
+																			<v8:lang>tr</v8:lang>
+																			<v8:content>İlerleme</v8:content>
+																		</v8:item>
 																	</Title>
 																	<Group>Vertical</Group>
 																	<Behavior>Usual</Behavior>
@@ -729,6 +943,10 @@ Access to this data is temporary restricted.</v8:content>
 																				<v8:item>
 																					<v8:lang>en</v8:lang>
 																					<v8:content>Handler issues indication</v8:content>
+																				</v8:item>
+																				<v8:item>
+																					<v8:lang>tr</v8:lang>
+																					<v8:content>Geliştiricilerle ilgili sorunların göstergesi</v8:content>
 																				</v8:item>
 																			</Title>
 																			<Behavior>Usual</Behavior>
@@ -751,6 +969,10 @@ Access to this data is temporary restricted.</v8:content>
 																							<v8:lang>en</v8:lang>
 																							<v8:content>Issues</v8:content>
 																						</v8:item>
+																						<v8:item>
+																							<v8:lang>tr</v8:lang>
+																							<v8:content>Sorunlu durumlar</v8:content>
+																						</v8:item>
 																					</Title>
 																					<ContextMenu name="ProblemSituationsContextMenu" id="328"/>
 																					<ExtendedTooltip name="ProblemSituationsExtendedTooltip" id="329"/>
@@ -766,6 +988,10 @@ Access to this data is temporary restricted.</v8:content>
 																					<v8:lang>en</v8:lang>
 																					<v8:content>Data issues indication</v8:content>
 																				</v8:item>
+																				<v8:item>
+																					<v8:lang>tr</v8:lang>
+																					<v8:content>Veri sorunu göstergesi</v8:content>
+																				</v8:item>
 																			</Title>
 																			<Group>AlwaysHorizontal</Group>
 																			<Behavior>Usual</Behavior>
@@ -778,6 +1004,10 @@ Access to this data is temporary restricted.</v8:content>
 																						<v8:item>
 																							<v8:lang>en</v8:lang>
 																							<v8:content>Decoration data issues indication</v8:content>
+																						</v8:item>
+																						<v8:item>
+																							<v8:lang>tr</v8:lang>
+																							<v8:content>Veri sorunlarının dekorasyon göstergesi</v8:content>
 																						</v8:item>
 																					</Title>
 																					<GroupVerticalAlign>Center</GroupVerticalAlign>
@@ -793,6 +1023,10 @@ Access to this data is temporary restricted.</v8:content>
 																						<v8:item>
 																							<v8:lang>en</v8:lang>
 																							<v8:content>Data issues</v8:content>
+																						</v8:item>
+																						<v8:item>
+																							<v8:lang>tr</v8:lang>
+																							<v8:content>Veri sorunları</v8:content>
 																						</v8:item>
 																					</Title>
 																					<ToolTipRepresentation>Button</ToolTipRepresentation>
@@ -810,6 +1044,10 @@ Access to this data is temporary restricted.</v8:content>
 																				<v8:item>
 																					<v8:lang>en</v8:lang>
 																					<v8:content>Completed: %1 out of %2.</v8:content>
+																				</v8:item>
+																				<v8:item>
+																					<v8:lang>tr</v8:lang>
+																					<v8:content>Tamamlanan: %1 / %2.</v8:content>
 																				</v8:item>
 																			</Title>
 																			<Hyperlink>true</Hyperlink>
@@ -832,6 +1070,10 @@ Access to this data is temporary restricted.</v8:content>
 																			<v8:lang>en</v8:lang>
 																			<v8:content>Loop</v8:content>
 																		</v8:item>
+																		<v8:item>
+																			<v8:lang>tr</v8:lang>
+																			<v8:content>Döngü</v8:content>
+																		</v8:item>
 																	</Title>
 																	<Behavior>Usual</Behavior>
 																	<Representation>None</Representation>
@@ -846,6 +1088,10 @@ Access to this data is temporary restricted.</v8:content>
 																				<v8:item>
 																					<v8:lang>en</v8:lang>
 																					<v8:content>No object has been processed for the last hour. Probably data processing went into an endless loop</v8:content>
+																				</v8:item>
+																				<v8:item>
+																					<v8:lang>tr</v8:lang>
+																					<v8:content>Son bir saat içinde hiçbir nesne işlenmedi, bir veri işleme döngüsü olabilir</v8:content>
 																				</v8:item>
 																			</Title>
 																			<BackColor>style:AttentionBackColor</BackColor>
@@ -866,6 +1112,10 @@ Access to this data is temporary restricted.</v8:content>
 													<v8:lang>en</v8:lang>
 													<v8:content>Indent</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Girinti</v8:content>
+												</v8:item>
 											</Title>
 											<Behavior>Usual</Behavior>
 											<Representation>None</Representation>
@@ -884,6 +1134,10 @@ Access to this data is temporary restricted.</v8:content>
 													<v8:lang>en</v8:lang>
 													<v8:content>Priority</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Öncelik</v8:content>
+												</v8:item>
 											</Title>
 											<Behavior>Usual</Behavior>
 											<Representation>None</Representation>
@@ -896,6 +1150,10 @@ Access to this data is temporary restricted.</v8:content>
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Priority</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Öncelik</v8:content>
 														</v8:item>
 													</Title>
 													<ToolTipRepresentation>None</ToolTipRepresentation>
@@ -910,6 +1168,10 @@ Access to this data is temporary restricted.</v8:content>
 																		<v8:lang>en</v8:lang>
 																		<v8:content>User experience</v8:content>
 																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Kullanıcı çalışması</v8:content>
+																	</v8:item>
 																</Presentation>
 																<Value xsi:type="xs:string">UserWork</Value>
 															</xr:Value>
@@ -922,6 +1184,10 @@ Access to this data is temporary restricted.</v8:content>
 																	<v8:item>
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Data processing</v8:content>
+																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Veri işleme</v8:content>
 																	</v8:item>
 																</Presentation>
 																<Value xsi:type="xs:string">DataProcessing</Value>
@@ -936,6 +1202,11 @@ Access to this data is temporary restricted.</v8:content>
 																<v8:content>&lt;b&gt;• &lt;/&gt;&lt;b&gt;User experience&lt;/&gt;: Data processing takes longer, but server load and user experience degradation are minimal. 
 &lt;b&gt;• &lt;/&gt;&lt;b&gt;Data processing&lt;/&gt;: Data processing is faster, but server load is higher and user experience degradation is significant. Use this mode when the availability of processed data is critical.</v8:content>
 															</v8:item>
+															<v8:item>
+																<v8:lang>tr</v8:lang>
+																<v8:content>&lt;b&gt;• &lt;/&gt;&lt;b&gt;Kullanıcı deneyimi&lt;/&gt;: Veri işleme daha uzun sürer fakat sunucu yükü ve kullanıcı deneyimi en azdır.
+&lt;b&gt;• &lt;/&gt;&lt;b&gt;Veri işleme&lt;/&gt;: Veri işleme daha hızlıdır, ancak sunucu yükü daha yüksektir ve kullanıcı deneyimi önemli ölçüde bozulur. İşlenen verilerin kullanılabilirliği kritik öneme sahip olduğunda bu modu kullanmanız önerilir.</v8:content>
+															</v8:item>
 														</Title>
 													</ExtendedTooltip>
 													<Events>
@@ -948,6 +1219,10 @@ Access to this data is temporary restricted.</v8:content>
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Number of threads</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Akış</v8:content>
 														</v8:item>
 													</Title>
 													<TitleLocation>Left</TitleLocation>
@@ -963,6 +1238,14 @@ Access to this data is temporary restricted.</v8:content>
 &lt;b&gt;● &lt;/&gt;&lt;b&gt;&lt;fontsize 8&gt;Number&lt;/&gt;&lt;/&gt;&lt;b&gt; of threads&lt;/&gt;: The number of concurrent update handlers. The default value is 8. Recommended values:
 &lt;b&gt;    •&lt;/&gt;For regular operations, use up to 50-75% of the server cluster's processor cores. 
 &lt;b&gt;    •&lt;/&gt;For forced updates during periods of low activity, use as many cores as available in the server cluster.</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>tr</v8:lang>
+																<v8:content>&lt;b&gt;● &lt;/&gt;&lt;b&gt;Kullanıcı deneyimi&lt;/&gt;: Veri işleme daha uzun sürer fakat sunucu yükü ve kullanıcı deneyimi en azdır.
+&lt;b&gt;●&lt;/&gt;&lt;b&gt;Veri işleme&lt;/&gt;: Veri işleme daha hızlıdır, ancak sunucu yükü daha yüksektir ve kullanıcı deneyimi önemli ölçüde bozulur. İşlenen verilerin kullanılabilirliği kritik öneme sahip olduğunda bu modu kullanmanız önerilir.
+&lt;b&gt;●&lt;/&gt;&lt;b&gt;&lt;fontsize 8&gt;Akış&lt;/&gt;&lt;/&gt;&lt;b&gt;sayısı&lt;/&gt;: Eşzamanlı güncelleme işleyicilerinin sayısı. Varsayılan değer 8'dir. Önerilen değerler:
+&lt;b&gt;   •&lt;/&gt;Düzenli işlemler için sunucu kümesinin işlemci çekirdeklerinin en fazla %50-75'ini kullanın. 
+&lt;b&gt;   •&lt;/&gt;Etkinliğin düşük olduğu dönemlerde zorunlu güncellemeler için sunucu kümesinde mevcut olduğu kadar çok çekirdek kullanın.</v8:content>
 															</v8:item>
 														</Title>
 													</ExtendedTooltip>
@@ -983,6 +1266,12 @@ Access to this data is temporary restricted.</v8:content>
 (from 1 minute to several hours, depending on the data size).
 Applications users might experience lags during the data processing.</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Veri işleme 
+(girilen veri hacmine bağlı olarak birkaç dakikadan birkaç saate kadar) sürebilir.
+İşleme sırasında kullanıcı aktivitelerinde önemli ölçüde yavaşlama görülebilir.</v8:content>
+												</v8:item>
 											</Title>
 											<TitleHeight>3</TitleHeight>
 											<ContextMenu name="FileInfobaseInformationHint2ContextMenu" id="115"/>
@@ -993,6 +1282,10 @@ Applications users might experience lags during the data processing.</v8:content
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Hint about the period with least user activity</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>En az kullanıcı aktivite dönemi hakkında ipucu</v8:content>
 												</v8:item>
 											</Title>
 											<Group>Vertical</Group>
@@ -1010,6 +1303,10 @@ Applications users might experience lags during the data processing.</v8:content
 															<v8:lang>en</v8:lang>
 															<v8:content>It is recommended that you schedule the data processing to run during the period of minimum user activity.</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Bu nedenle, en az kullanıcı aktivite sırasında işlem yapmak için zamanlamayı ayarlamanızı öneririz.</v8:content>
+														</v8:item>
 													</Title>
 													<ContextMenu name="MinimalUserActivityPeriodHintContextMenu" id="101"/>
 													<ExtendedTooltip name="MinimalUserActivityPeriodHintExtendedTooltip" id="158"/>
@@ -1019,6 +1316,10 @@ Applications users might experience lags during the data processing.</v8:content
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Schedule settings</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Program ayarları</v8:content>
 														</v8:item>
 													</Title>
 													<Behavior>Usual</Behavior>
@@ -1033,6 +1334,10 @@ Applications users might experience lags during the data processing.</v8:content
 																<v8:item>
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Set schedule</v8:content>
+																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Takvimi yapılandır</v8:content>
 																</v8:item>
 															</Title>
 															<ExtendedTooltip name="ModifyScheduleExtendedTooltip" id="159"/>
@@ -1053,6 +1358,10 @@ Applications users might experience lags during the data processing.</v8:content
 							<v8:lang>en</v8:lang>
 							<v8:content>Update completed</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Güncelleme tamamlandı</v8:content>
+						</v8:item>
 					</Title>
 					<ShowTitle>false</ShowTitle>
 					<ExtendedTooltip name="UpdateCompletedExtendedTooltip" id="163"/>
@@ -1062,6 +1371,10 @@ Applications users might experience lags during the data processing.</v8:content
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Deferred update completed</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Ertelenmiş güncelleme başarıyla tamamlandı</v8:content>
 								</v8:item>
 							</Title>
 							<Group>Vertical</Group>
@@ -1075,6 +1388,10 @@ Applications users might experience lags during the data processing.</v8:content
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Header completed</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Başlık tamamlandı</v8:content>
 										</v8:item>
 									</Title>
 									<Group>AlwaysHorizontal</Group>
@@ -1101,6 +1418,10 @@ Applications users might experience lags during the data processing.</v8:content
 													<v8:lang>en</v8:lang>
 													<v8:content>No additional data processing required.</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Ek veri işleme gerekmiyor.</v8:content>
+												</v8:item>
 											</Title>
 											<ContextMenu name="NoDeferredHandlersInformationContextMenu" id="119"/>
 											<ExtendedTooltip name="NoDeferredHandlersInformationExtendedTooltip" id="167"/>
@@ -1112,6 +1433,10 @@ Applications users might experience lags during the data processing.</v8:content
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Some additional data processing procedures have not been completed.</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Ek veri işleme prosedürleri gerçekleştirilmedi</v8:content>
 												</v8:item>
 											</Title>
 											<ContextMenu name="DeferredUpdateCompletedInformationContextMenu" id="51"/>
@@ -1125,6 +1450,10 @@ Applications users might experience lags during the data processing.</v8:content
 											<v8:lang>en</v8:lang>
 											<v8:content>Go to the deferred handler list</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Ertelenmiş geliştiriciler listesine geç</v8:content>
+										</v8:item>
 									</Title>
 									<Group>AlwaysHorizontal</Group>
 									<Behavior>Usual</Behavior>
@@ -1137,6 +1466,10 @@ Applications users might experience lags during the data processing.</v8:content
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Group</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Grup</v8:content>
 												</v8:item>
 											</Title>
 											<Behavior>Usual</Behavior>
@@ -1157,6 +1490,10 @@ Applications users might experience lags during the data processing.</v8:content
 													<v8:lang>en</v8:lang>
 													<v8:content>Group</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Grup</v8:content>
+												</v8:item>
 											</Title>
 											<Group>Vertical</Group>
 											<Behavior>Usual</Behavior>
@@ -1169,6 +1506,10 @@ Applications users might experience lags during the data processing.</v8:content
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Go to the list and issues</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Listeye geçiş ve sorunlar</v8:content>
 														</v8:item>
 													</Title>
 													<Group>Vertical</Group>
@@ -1183,6 +1524,10 @@ Applications users might experience lags during the data processing.</v8:content
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Group handler issues indication</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Grup geliştiricileri ilgili sorunların göstergesi</v8:content>
+																</v8:item>
 															</Title>
 															<Behavior>Usual</Behavior>
 															<Representation>None</Representation>
@@ -1194,6 +1539,10 @@ Applications users might experience lags during the data processing.</v8:content
 																		<v8:item>
 																			<v8:lang>en</v8:lang>
 																			<v8:content>Decoration issues indication completed</v8:content>
+																		</v8:item>
+																		<v8:item>
+																			<v8:lang>tr</v8:lang>
+																			<v8:content>Dekorasyon gösterge sorunları tamamlandı</v8:content>
 																		</v8:item>
 																	</Title>
 																	<GroupVerticalAlign>Center</GroupVerticalAlign>
@@ -1210,6 +1559,10 @@ Applications users might experience lags during the data processing.</v8:content
 																			<v8:lang>en</v8:lang>
 																			<v8:content>Issues</v8:content>
 																		</v8:item>
+																		<v8:item>
+																			<v8:lang>tr</v8:lang>
+																			<v8:content>Sorunlu durumlar</v8:content>
+																		</v8:item>
 																	</Title>
 																	<ContextMenu name="ProblemSituationsCompletedContextMenu" id="356"/>
 																	<ExtendedTooltip name="ProblemSituationsCompletedExtendedTooltip" id="357"/>
@@ -1225,6 +1578,10 @@ Applications users might experience lags during the data processing.</v8:content
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Group data issues indication</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Grup veri sorunlarının göstergesi</v8:content>
+																</v8:item>
 															</Title>
 															<Group>AlwaysHorizontal</Group>
 															<Behavior>Usual</Behavior>
@@ -1237,6 +1594,10 @@ Applications users might experience lags during the data processing.</v8:content
 																		<v8:item>
 																			<v8:lang>en</v8:lang>
 																			<v8:content>Decoration data issues indication completed</v8:content>
+																		</v8:item>
+																		<v8:item>
+																			<v8:lang>tr</v8:lang>
+																			<v8:content>Dekorasyon verileri sorunu göstergesi tamamlandı</v8:content>
 																		</v8:item>
 																	</Title>
 																	<GroupVerticalAlign>Center</GroupVerticalAlign>
@@ -1252,6 +1613,10 @@ Applications users might experience lags during the data processing.</v8:content
 																		<v8:item>
 																			<v8:lang>en</v8:lang>
 																			<v8:content>Data issues</v8:content>
+																		</v8:item>
+																		<v8:item>
+																			<v8:lang>tr</v8:lang>
+																			<v8:content>Veri sorunları</v8:content>
 																		</v8:item>
 																	</Title>
 																	<ToolTipRepresentation>Button</ToolTipRepresentation>
@@ -1271,6 +1636,10 @@ Applications users might experience lags during the data processing.</v8:content
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Required data processing procedures.</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Veri işleme prosedürlerinin çalıştırılması gereklidir</v8:content>
+																</v8:item>
 															</Title>
 															<ExtendedTooltip name="OpenDeferredHandlersListExtendedTooltip" id="170"/>
 														</Button>
@@ -1283,6 +1652,10 @@ Applications users might experience lags during the data processing.</v8:content
 															<v8:lang>en</v8:lang>
 															<v8:content>Update technical details</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Güncelleme sonuçları hakkında teknik bilgiler</v8:content>
+														</v8:item>
 													</Title>
 													<ToolTipRepresentation>Button</ToolTipRepresentation>
 													<Hyperlink>true</Hyperlink>
@@ -1292,6 +1665,10 @@ Applications users might experience lags during the data processing.</v8:content
 															<v8:item>
 																<v8:lang>en</v8:lang>
 																<v8:content>Technical details from the event log to provide to technical support.</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>tr</v8:lang>
+																<v8:content>Teknik desteğe verilecek, kayıt defterindeki teknik bilgiler.</v8:content>
 															</v8:item>
 														</Title>
 													</ExtendedTooltip>
@@ -1319,6 +1696,11 @@ Applications users might experience lags during the data processing.</v8:content
 					<v8:content>To view the application update report,
 go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;.</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Uygulama sürümünün güncelleme raporu için
+&lt;b&gt;Yönetim&lt;/&gt; — &lt;b&gt;Yardım ve Hizmet&lt;/&gt;'a gidin.</v8:content>
+				</v8:item>
 			</Title>
 			<TitleHeight>2</TitleHeight>
 			<ContextMenu name="WhereToFindThisFormHintContextMenu" id="75"/>
@@ -1338,6 +1720,10 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Report on progress of data area update</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Veri alanı güncellemesi ilerleme raporu</v8:content>
 				</v8:item>
 			</Title>
 			<Hyperlink>true</Hyperlink>
@@ -1394,6 +1780,10 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Priority</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Öncelik</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:string</v8:Type>
@@ -1426,6 +1816,10 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Number of infobase update threads</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Veritabanı güncelleme akışlarının sayısı</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -1464,11 +1858,19 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Run data processing procedures</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Veri işleme prosedürlerini çalıştır</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Run additional data processing procedures.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Ek veri işleme prosedürlerini yürüt.</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Picture>
@@ -1484,11 +1886,19 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Open list of additional data processing procedures</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Ek veri işleme prosedürlerin listesini aç</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Open list of additional data processing procedures.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Ek veri işleme prosedürlerin listesini aç</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>OpenDeferredHandlersList</Action>
@@ -1499,6 +1909,10 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Change schedule</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Programı değiştirmek</v8:content>
 				</v8:item>
 			</Title>
 			<Picture>
@@ -1514,11 +1928,19 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Information for technical support</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Teknik destek bilgileri</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Information for technical support</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Teknik destek bilgileri</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>InformationForTechnicalSupport</Action>
@@ -1529,11 +1951,19 @@ go to &lt;b&gt;Administration&lt;/&gt; — &lt;b&gt;Support and service&lt;/&gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Restart deferred update…</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Ertelenmiş güncellemeyi yeniden başlat...</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Restart deferred update</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Bekleyen güncellemeyi yeniden başlat</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>RelaunchDeferredUpdate</Action>

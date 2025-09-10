@@ -88,7 +88,7 @@ Procedure TextURLProcessing(Item, FormattedStringURL, StandardProcessing)
 	
 	Document = New TextDocument;
 	Document.SetText(NewPatchesDetails);
-	Document.Show(NStr("en = 'New patches';"));
+	Document.Show(NStr("en = 'New patches';tr = 'Yeni yamalar'"));
 EndProcedure
 
 &AtClient
@@ -111,9 +111,9 @@ Procedure ScheduleClick(Item, StandardProcessing)
 	StandardProcessing = False;
 	CompletionHandler = New NotifyDescription("ScheduleClickCompletion", ThisObject);
 	List = New ValueList;
-	List.Add("Once", NStr("en = 'Once a day';"));
-	List.Add("Twice", NStr("en = 'Twice a day';"));
-	List.Add("OtherInterval", NStr("en = 'Another interval…';"));
+	List.Add("Once", NStr("en = 'Once a day';tr = 'Günde bir defa'"));
+	List.Add("Twice", NStr("en = 'Twice a day';tr = 'Günde iki defa'"));
+	List.Add("OtherInterval", NStr("en = 'Another interval…';tr = 'Başka aralık...'"));
 	
 	ShowChooseFromMenu(CompletionHandler, List, Items.Schedule);
 EndProcedure
@@ -220,7 +220,7 @@ Procedure FillInTheFormDisplaySchedule()
 		CurrentSchedule.Insert("Presentation");
 		CurrentSchedule.Insert("Schedule");
 		CurrentSchedule.Insert("LastAlert");
-		SchedulePresentation = NStr("en = 'Once a day';");
+		SchedulePresentation = NStr("en = 'Once a day';tr = 'Günde bir defa'");
 	Else
 		SchedulePresentation = CurrentSchedule.Presentation;
 	EndIf;
@@ -301,7 +301,7 @@ Procedure SetMainText(CheckParameters, NewPatchesCount)
 		If ShouldOutputDetails Then
 			PartsOfMessage.Add("...");
 			PartsOfMessage.Add("");
-			PartsOfMessage.Add(NStr("en = '<a href = ""%1"">View details</a>';"));
+			PartsOfMessage.Add(NStr("en = '<a href = ""%1"">View details</a>';tr = '<a href = ""%1"">Ayrıntıları görüntüle</a>'"));
 		EndIf; 
 	EndIf;
 	Message = StrConcat(PartsOfMessage, Chars.LF);
@@ -314,13 +314,13 @@ EndProcedure
 Procedure SetVisibilityAvailability(Form)
 	
 	If Form.PossibleAction = 0 Then
-		RunActionButtonTitle = NStr("en = 'Restart';");
+		RunActionButtonTitle = NStr("en = 'Restart';tr = 'Yeniden başlat'");
 		Form.Items.RestartTime.Enabled = False;
 	ElsIf Form.PossibleAction = 1 Then
-		RunActionButtonTitle = NStr("en = 'Schedule';");
+		RunActionButtonTitle = NStr("en = 'Schedule';tr = 'Program'");
 		Form.Items.RestartTime.Enabled = True;
 	ElsIf Form.PossibleAction = 2 Then
-		RunActionButtonTitle = NStr("en = 'Remind me tomorrow';");
+		RunActionButtonTitle = NStr("en = 'Remind me tomorrow';tr = 'Yarın hatırlat'");
 		Form.Items.RestartTime.Enabled = False;
 	EndIf;
 	
@@ -336,7 +336,7 @@ Procedure DoScheduleRestart()
 	SecondsBeforeRestart = RestartTime - SessionTime;
 	If SecondsBeforeRestart < 560 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Choose a time after %1';"), Format(SessionTime + 600, "DF=HH:mm"));
+			NStr("en = 'Choose a time after %1';tr = '%1 sonrasında bir zaman seçin'"), Format(SessionTime + 600, "DF=HH:mm"));
 		CommonClient.MessageToUser(MessageText,,"RestartTime");
 		Return;
 	EndIf;

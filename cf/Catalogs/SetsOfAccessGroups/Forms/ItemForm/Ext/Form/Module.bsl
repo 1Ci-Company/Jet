@@ -50,7 +50,9 @@ Procedure EnableEditing(Command)
 	ShowMessageBox(,
 		NStr("en = 'It is recommended that you do not change the access group set as it is mapped to different access keys.
 		           |To resolve the issue, delete the access group set or
-		           |delete the mapping between the set and the access keys in the registers, and then run the access update.';"));
+		           |delete the mapping between the set and the access keys in the registers, and then run the access update.';tr = 'Farklı nesnelerle eşleştirildiğinden erişim anahtarı değiştirilmemelidir.
+		           |Standart olmayan bir sorunu gidermek için, erişim anahtarını veya 
+		           |kayıtlarda onunla bağlantıyı kaldırmanız ve erişim güncelleme işlemini gerçekleştirmeniz gerekir.'"));
 	
 EndProcedure
 

@@ -84,27 +84,27 @@ Procedure OK(Command)
 	
 	For Each ParameterFromForm In ParametersList Do
 		If StrCompare(ParameterFromForm.Value, ParameterName) = 0 Then
-			ShowMessageBox(, NStr("en = 'Placeholder name error. A placeholder with this name already exists.';"));
+			ShowMessageBox(, NStr("en = 'Placeholder name error. A placeholder with this name already exists.';tr = 'Yer tutucu adı hatası. Bu ada sahip bir yer tutucu zaten var.'"));
 			Return;
 		EndIf;
 		If StrCompare(ParameterFromForm.Presentation, ParameterPresentation) = 0 Then
-			ShowMessageBox(, NStr("en = 'Placeholder presentation error. A placeholder with this presentation already exists.';"));
+			ShowMessageBox(, NStr("en = 'Placeholder presentation error. A placeholder with this presentation already exists.';tr = 'Yer tutucu gösterim hatası. Bu gösterime sahip bir yer tutucu zaten mevcut.'"));
 			Return;
 		EndIf;
 	EndDo;
 	
 	If InvalidParameterName(ParameterName) Or IsBlankString(ParameterName) Then
-		ShowMessageBox(, NStr("en = 'Invalid placeholder name. Special characters and whitespace are not allowed.';"));
+		ShowMessageBox(, NStr("en = 'Invalid placeholder name. Special characters and whitespace are not allowed.';tr = 'Geçersiz yer tutucu adı. Özel karakterler ve boşluk kullanılamaz.'"));
 		Return;
 	EndIf;
 	
 	If IsBlankString(ParameterPresentation) Then
-		ShowMessageBox(, NStr("en = 'Invalid placeholder presentation.';"));
+		ShowMessageBox(, NStr("en = 'Invalid placeholder presentation.';tr = 'Geçersiz yer tutucu gösterimi.'"));
 		Return;
 	EndIf;
 	
 	If IsBlankString(TypeAsString) Then
-		ShowMessageBox(, NStr("en = 'Invalid placeholder type.';"));
+		ShowMessageBox(, NStr("en = 'Invalid placeholder type.';tr = 'Geçersiz yer tutucu türü.'"));
 		Return;
 	EndIf;
 	
@@ -160,13 +160,13 @@ Procedure FillChoiceListInputOnBasis(ParameterType)
 	EndDo;
 	
 	If ParameterType = Type("String") Then
-		TypePresentation = NStr("en = 'String';");
+		TypePresentation = NStr("en = 'String';tr = 'Dize'");
 	ElsIf ParameterType = Type("Date") Then
-		TypePresentation = NStr("en = 'Date';");
+		TypePresentation = NStr("en = 'Date';tr = 'Tarih'");
 	EndIf;
 	
-	Items.TypeAsString.ChoiceList.Insert(0, "Date", NStr("en = 'Date';"));
-	Items.TypeAsString.ChoiceList.Insert(0, "String", NStr("en = 'String';"));
+	Items.TypeAsString.ChoiceList.Insert(0, "Date", NStr("en = 'Date';tr = 'Tarih'"));
+	Items.TypeAsString.ChoiceList.Insert(0, "String", NStr("en = 'String';tr = 'Dize'"));
 	
 	TypeAsString = TypePresentation;
 	

@@ -160,7 +160,7 @@ Procedure FillInTheFileDetails(AttachedFile, BinaryDataOrPath,
 		And Not ValueIsFilled(AttachedFile.Ref) Then
 		
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Blank value of the %1 property the %2 parameter (Structure) of the %3 procedure.';"),
+			NStr("en = 'Blank value of the %1 property the %2 parameter (Structure) of the %3 procedure.';tr = '%3 prosedüründe %2 parametrenin (Yapı) %1 özellik değeri belirtilmedi.'"),
 			"Ref",
 			"AttachedFile",
 			"FilesOperationsInVolumesInternal.AppendFile"), ErrorCategory.ConfigurationError);
@@ -177,7 +177,8 @@ Procedure FillInTheFileDetails(AttachedFile, BinaryDataOrPath,
 			
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot add file ""%1"" to a volume as the file is missing.
-				|The file might have been deleted by antivirus software. Please contact the administrator.';"),
+				|The file might have been deleted by antivirus software. Please contact the administrator.';tr = '""%1"" dosyası eksik olduğu için birime eklenemiyor.
+				|Dosya bir antivirüs programı tarafından silinmiş olabilir. Yöneticiye başvurun.'"),
 				AttachedFile.Description + "." + AttachedFile.Extension);
 			Raise ErrorText;
 			
@@ -257,7 +258,8 @@ Procedure CopyAttachedFile(AttachedFile, FilePathDestination) Export
 	If Not SourceFile1.Exists() Then
 		ErrorMessage = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'File data was deleted. The file might have been cleaned up as unused or deleted by the antivirus software.
-				|%1';"), String(AttachedFile));
+				|%1';tr = 'Dosya bilgileri silindi. Dosya gereksiz olarak ya da virüsten koruma programı tarafından silinmiş olabilir.
+				|%1'"), String(AttachedFile));
 		Raise ErrorMessage;		
 	EndIf;
 	
@@ -305,7 +307,7 @@ Function DeleteFile(PathToFile) Export
 			Result.ErrorInfo = ErrorProcessing.ErrorMessageForUser(Error);
 			Result.Success = False;
 			WriteLogEvent(
-				NStr("en = 'Files.Delete files from volume';", Common.DefaultLanguageCode()),
+				NStr("en = 'Files.Delete files from volume';tr = 'Dosyalar. Dosyaları birimden sil'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorProcessing.DetailErrorDescription(Error));
 		EndTry;
@@ -492,7 +494,8 @@ Function FullFileNameInVolume(FileProperties, FileDateInVolume = Undefined) Expo
 		If Not Volume.Exists() Or Not Volume.IsDirectory() Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'A network directory for the ""%1"" storage volume does not exist: %2
-					|Contact your administrator.';"), FileProperties.Volume, FullVolumePath);
+					|Contact your administrator.';tr = '""%1"" dosya depolama birimi için ağ dizini yok: %2
+					|Lütfen yöneticinize başvurun.'"), FileProperties.Volume, FullVolumePath);
 		EndIf;
 		Raise;
 	EndTry	
@@ -631,11 +634,13 @@ Procedure OnDefineChecks(ChecksGroups, Checks) Export
 	
 	Validation = Checks.Add();
 	Validation.GroupID          = "SystemChecks";
-	Validation.Description                 = NStr("en = 'Search for references to missing files in storage volumes';");
+	Validation.Description                 = NStr("en = 'Search for references to missing files in storage volumes';tr = 'Depolama birimlerinde varolmayan dosyalara bağlantılar bulma'");
 	Validation.Reasons                      = NStr("en = 'The file was deleted or moved by the antivirus software,
-		|unintentional actions of the administrator, or similar reasons.';");
+		|unintentional actions of the administrator, or similar reasons.';tr = 'Dosya, 
+		|virüsten koruma programları, istenmeyen yönetici eylemleri vb. nedeniyle fiziksel olarak silinmiş veya disk üzerinde taşınmıştır.'");
 	Validation.Recommendation                 = NStr("en = '• Mark the file for deletion.
-		|• Restore the volume file from a backup.';");
+		|• Restore the volume file from a backup.';tr = '• Dosyayı silmek üzere işaretleyin.
+		|• Birim dosyasını yedekten geri yükleyin.'");
 	Validation.Id                = "StandardSubsystems.ReferenceToNonexistingFilesInVolumeCheck";
 	Validation.HandlerChecks           = "FilesOperationsInVolumesInternal.ReferenceToNonexistingFilesInVolumeCheck";
 	Validation.AccountingChecksContext = "SystemChecks";
@@ -829,7 +834,7 @@ Function SetFilesStoragePaths(FilesToRecover, VolumePath) Export
 		Except
 			RollbackTransaction();
 			WriteLogEvent(
-				NStr("en = 'Files.File recovery in volume';", Common.DefaultLanguageCode()),
+				NStr("en = 'Files.File recovery in volume';tr = 'Dosyalar.Birimde dosya kurtarma'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		EndTry;
@@ -986,9 +991,11 @@ Procedure WriteTheFileDataToTheVolume(AttachedFile, BinaryDataOrPath)
 		
 		ErrorDescriptionTemplate = NStr("en = 'An error occurred when adding file ""%1""
 			|to volume ""%2"" (%3):
-			|""%4"".';");
+			|""%4"".';tr = '""%1"" 
+			|Dosyası eklenirken hata oluştu ""%2"" (%3): 
+			|""%4"".'");
 		
-		WriteLogEvent(NStr("en = 'Files.Add file';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Files.Add file';tr = 'Dosyalar. Dosyanın eklenmesi'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				ErrorDescriptionTemplate,
@@ -1013,7 +1020,10 @@ Procedure WriteTheFileDataToTheVolume(AttachedFile, BinaryDataOrPath)
 				NStr("en = 'Cannot add file:
 				|""%1.%2"".
 				|
-				|Please contact the administrator.';"),
+				|Please contact the administrator.';tr = 'Dosya eklenemedi: 
+				|""%1.%2"" 
+				|
+				|Lütfen sistem yöneticinize başvurun.'"),
 				AttachedFile.Description,
 				AttachedFile.Extension);
 				
@@ -1147,7 +1157,7 @@ Procedure ClearDeletedFilesInTheVolume(Directory)
 	Except
 		RollbackTransaction();
 		Error = ErrorInfo();
-		WriteLogEvent(NStr("en = 'File management.File cleanup';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'File management.File cleanup';tr = 'Dosya yönetimi.Dosya temizleme'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			Metadata.Catalogs.FileStorageVolumes,
 			Volume.Ref,
@@ -1933,13 +1943,13 @@ EndProcedure
 // For the VolumeIntegrityCheck DCS report.
 Function ViewStatusChecks(Val CheckStatus) Export
 	If CheckStatus = "OK" Then
-		Return NStr("en = 'Data integrity check passed';");
+		Return NStr("en = 'Data integrity check passed';tr = 'Bütünsel veriler'");
 	ElsIf CheckStatus = "ExtraFileInTome" Then 
-		Return NStr("en = 'Unreferenced files (files in the volume that have no entries in the application)';");
+		Return NStr("en = 'Unreferenced files (files in the volume that have no entries in the application)';tr = 'Referanssız dosyalar (uygulamada girişi olmayan, birimdeki dosyalar)'");
 	ElsIf CheckStatus = "NoFileInVolume" Then
-		Return NStr("en = 'No files in the volume';");
+		Return NStr("en = 'No files in the volume';tr = 'Birimde dosya yok'");
 	ElsIf CheckStatus = "FixingPossible" Then
-		Return NStr("en = 'Corrupted file info';");
+		Return NStr("en = 'Corrupted file info';tr = 'Bozuk dosya bilgileri'");
 	EndIf;
 EndFunction
 
@@ -1981,7 +1991,7 @@ Function VolumeAvailable(Volume, VolumePresentation, Path, CheckParameters)
 	If IsBlankString(Path) Then
 		
 		IssueSummary = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t save files to file storage volume ""%1"" as it does not have a path to the network directory.';"), 
+			NStr("en = 'Couldn''t save files to file storage volume ""%1"" as it does not have a path to the network directory.';tr = 'Dosya depolama birimin ""%1"" ağ kataloğu kısayolu bulunamadı. Dosyaların depolanması mümkün değil.'"), 
 			VolumePresentation);
 		WriteVolumeIssue(Volume, IssueSummary, CheckParameters);
 		Return False;
@@ -2000,7 +2010,11 @@ Function VolumeAvailable(Volume, VolumePresentation, Path, CheckParameters)
 				|%2
 				|
 				|The network directory might be unavailable, or you have insufficient access rights.
-				|Cannot access the files stored in the volume.';"),
+				|Cannot access the files stored in the volume.';tr = 'Dosya depolama birimi ""%1"" nedeniyle kullanılamaz: 
+				|%2
+				|
+				|belirtilen ağ dizini devre dışı bırakılabilir veya erişim hakları yoktur. 
+				|Bu birimde depolanan tüm dosyalarla çalışmak imkansızdır.'"),
 				Path, ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 		IssueSummary = IssueSummary + Chars.LF;
 		WriteVolumeIssue(Volume, IssueSummary, CheckParameters);
@@ -2085,10 +2099,10 @@ Procedure SearchRefsToNonExistingFilesInVolumes(MetadataObject, CheckParameters,
 				
 			ObjectReference = ResultString1.ObjectWithIssue;
 			If ResultString1.Owner <> Undefined Then
-				IssueSummary = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Version ""%1"" of file ""%2"" does not exist in volume ""%3.""';"),
+				IssueSummary = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Version ""%1"" of file ""%2"" does not exist in volume ""%3.""';tr = '""%1"" dosyanın ""%2"" sürümü ""%3"" biriminde mevcut değil.'"),
 					ResultString1.File, ResultString1.Owner, ResultString1.Volume);
 			Else
-				IssueSummary = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'File ""%1"" does not exist in volume ""%2.""';"),
+				IssueSummary = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'File ""%1"" does not exist in volume ""%2.""';tr = 'Dosya ""%1"" ""%2"" biriminde mevcut değil.'"),
 					ResultString1.File, ResultString1.Volume);
 			EndIf;
 			
@@ -2155,7 +2169,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Version = "3.1.8.331";
 	Handler.Procedure = "Catalogs.FilesVersions.ProcessVersionStoragePath";
 	Handler.ExecutionMode = "Deferred";
-	Handler.Comment = NStr("en = 'Fixes incorrect file storage paths in a volume.';");
+	Handler.Comment = NStr("en = 'Fixes incorrect file storage paths in a volume.';tr = 'Birimdeki yanlış dosya saklama yollarını düzeltir.'");
 	Handler.Id = New UUID("06354049-b702-4f27-8e99-f49b86f7f152");
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.ObjectsToLock = "Catalog.FilesVersions";
@@ -2215,7 +2229,8 @@ Procedure UpdateVolumePathLinux() Export
 			
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Couldn''t process file storage volume %1. Reason:
-				|%2';"), 
+				|%2';tr = '%1 dosya depolama birimi şu sebeple işlenemedi:
+				|%2'"), 
 				Selection.Ref, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			
 			WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Warning,
@@ -2334,7 +2349,9 @@ Function FreeVolume(AttachedFile)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot add the %1 file 
 				|as no file storage volume is configured.
-				|Contact the administrator.';"),
+				|Contact the administrator.';tr = 'Dosya saklama birimi yapılandırılmadığından
+				|%1 dosyası eklenemiyor.
+				|Yöneticiye başvurun.'"),
 			AttachedFile.Description + "." + AttachedFile.Extension);
 	EndIf;
 	
@@ -2361,7 +2378,9 @@ Function FreeVolume(AttachedFile)
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 	NStr("en = 'Cannot add the %1 file 
 		|as the file storage volumes do not have enough space.
-		|Contact the administrator.';"),
+		|Contact the administrator.';tr = 'Dosya saklama birimlerinde yeterli alan olmadığından 
+		|%1 dosyası eklenemiyor.
+		|Yöneticiye başvurun.'"),
 		AttachedFile.Description + "." + AttachedFile.Extension);
 	Raise ErrorText;	
 	

@@ -35,14 +35,14 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	TemplateFileName = CommonClientServer.ReplaceProhibitedCharsInFileName(TemplatePresentation) + "." + Lower(TemplateType);
 	
 	If Parameters.OpenOnly Then
-		Title = NStr("en = 'Open print form template';");
+		Title = NStr("en = 'Open print form template';tr = 'Yazdırma formu şablonunu aç'");
 	EndIf;
 	
 	ClientType = ?(Common.IsWebClient(), "", "Not") + "WebClient";
 	
 	If Not Common.IsWebClient() And Not Common.IsMobileClient() And TemplateType = "MXL" Then
 		Items.ApplyChangesLabelNotWebClient.Title = NStr(
-			"en = 'Once you finish editing the template, click Apply changes';");
+			"en = 'Once you finish editing the template, click Apply changes';tr = 'Şablonu düzenlemeyi bitirdiğinizde Değişiklikleri uygula''ya tıklayın.'");
 	EndIf;
 	
 	SetApplicationNameForTemplateOpening();
@@ -157,20 +157,20 @@ Procedure SetApplicationNameForTemplateOpening()
 	
 	FileType = Lower(TemplateType);
 	If FileType = "mxl" Then
-		ApplicationNameForTemplateOpening = NStr("en = '1C:Enterprise. File management';");
+		ApplicationNameForTemplateOpening = NStr("en = '1C:Enterprise. File management';tr = '1C:Enterprise. Dosya yönetimi'");
 		TemplateOpeningApplicationAddress = "http://v8.1c.ru/metod/fileworkshop.htm";
 	ElsIf FileType = "doc" Then
-		ApplicationNameForTemplateOpening = NStr("en = 'Microsoft Word';");
+		ApplicationNameForTemplateOpening = NStr("en = 'Microsoft Word';tr = 'Microsoft Word'");
 		TemplateOpeningApplicationAddress = "http://office.microsoft.com/ru-ru/word";
 	ElsIf FileType = "odt" Then
-		ApplicationNameForTemplateOpening = NStr("en = 'OpenOffice Writer';");
+		ApplicationNameForTemplateOpening = NStr("en = 'OpenOffice Writer';tr = 'OpenOffice Writer'");
 		TemplateOpeningApplicationAddress = "http://www.openoffice.org/product/writer.html";
 	ElsIf FileType = "docx" Then
-		ApplicationNameForTemplateOpening = NStr("en = 'any editors that support Office Open XML documents';");
+		ApplicationNameForTemplateOpening = NStr("en = 'any editors that support Office Open XML documents';tr = 'Office Open XML belgelerini destekleyen tüm düzenleyiciler'");
 		TemplateOpeningApplicationAddress = "";
 	EndIf;
 	
-	NavigateToAppPage = NStr("en = 'Open %1 installation web page';");
+	NavigateToAppPage = NStr("en = 'Open %1 installation web page';tr = '%1 yükleme web sayfasını aç'");
 	NavigateToAppPage = StringFunctionsClientServer.SubstituteParametersToString(NavigateToAppPage, ApplicationNameForTemplateOpening);
 	Items.LinkToApplicationPageBeforeDownloadWebClient.Title = NavigateToAppPage;
 	Items.LinkToApplicationPageBeforeDownloadNotWebClient.Title = NavigateToAppPage;
@@ -178,26 +178,30 @@ Procedure SetApplicationNameForTemplateOpening()
 	Items.LinkToApplyChangesApplicationPageNotWebClient.Title = NavigateToAppPage;
 	
 	Items.BeforeDownloadTemplateInstructionWebClientLabel.Title = 
-		NStr("en = 'Click Continue to import.';");
+		NStr("en = 'Click Continue to import.';tr = 'İçe aktarmak için Devam''a tıklayın.'");
 	Items.BeforeDownloadTemplateInstructionNotWebClientLabel.Title = 
-		NStr("en = 'Click Continue to open the template in another application. Modify the template, close it, and follow further instructions.';");
+		NStr("en = 'Click Continue to open the template in another application. Modify the template, close it, and follow further instructions.';tr = 'Şablonu başka bir uygulamada açmak için Devam''a tıklayın. Şablonu değiştirin, kapatın ve diğer talimatları izleyin.'");
 	
 	If Parameters.OpenOnly Then
 		Items.BeforeDownloadTemplateApplicationWebClientLabel.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Template file ""%1"" is ready to be imported and opened with an external application on your computer.
 				 |
-				 |If you haven''t installed the editor yet, we recommend installing %2.';"), TemplatePresentation,
+				 |If you haven''t installed the editor yet, we recommend installing %2.';tr = '""%1"" şablon dosyası içe aktarılmaya ve bilgisayarınızda harici bir uygulamayla açılmaya hazır.
+				 |
+				 |Yüklü bir düzenleyiciniz yoksa %2 yüklemenizi öneririz.'"), TemplatePresentation,
 				ApplicationNameForTemplateOpening);
 	Else
 		Items.BeforeDownloadTemplateApplicationWebClientLabel.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Template file ""%1"" is ready to be imported and edited with an external application on your computer.
 				 |
-				 |If you haven''t installed the editor yet, we recommend installing %2.';"), TemplatePresentation,
+				 |If you haven''t installed the editor yet, we recommend installing %2.';tr = '""%1"" şablon dosyası içe aktarılmaya ve bilgisayarınızda harici bir uygulamayla düzenlenmeye hazır.
+				 |
+				 |Yüklü bir düzenleyiciniz yoksa %2 yüklemenizi öneririz.'"), TemplatePresentation,
 				ApplicationNameForTemplateOpening);
 	EndIf;
 	
 	Items.BeforeDownloadTemplateApplicationNotWebClientLabel.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Template file ""%1"" is ready to be edited with an external application. If you haven''t installed the editor yet, we recommend installing %2.';"), 
+		NStr("en = 'Template file ""%1"" is ready to be edited with an external application. If you haven''t installed the editor yet, we recommend installing %2.';tr = '""%1"" şablon dosyası harici bir uygulama ile  düzenlenmeye hazır. Yüklü bir düzenleyiciniz yoksa %2''yi yüklemenizi öneririz.'"), 
 		TemplatePresentation, ApplicationNameForTemplateOpening);
 	
 	Items.ApplyChangesLabelWebClient.Title = StringFunctionsClientServer.SubstituteParametersToString(
@@ -205,14 +209,22 @@ Procedure SetApplicationNameForTemplateOpening()
 			 |
 			 |After editing, confirm the changes and close the template file. Then click ""Apply changes"" and select this file in the next dialog box.
 			 |
-			 |If you haven''t installed the editor yet, we recommend installing %1.';"), ApplicationNameForTemplateOpening);
+			 |If you haven''t installed the editor yet, we recommend installing %1.';tr = 'Lütfen şablon dosyasının içe aktarılmasını bekleyin, ardından açın ve düzenleyin.
+			 |
+			 |Düzenledikten sonra değişiklikleri onaylayın ve şablon dosyasını kapatın. Ardından ""Değişiklikleri uygula""ya tıklayın ve bir sonraki iletişim kutusunda bu dosyayı seçin.
+			 |
+			 |Editörü henüz yüklemediyseniz %1 yüklemenizi öneririz.'"), ApplicationNameForTemplateOpening);
 	
 	Items.ApplyChangesLabelNotWebClient.Title = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Please wait for the template to be opened in the editor.
 	    	 |
 			 |After editing, confirm the changes and close the template. Then click ""Apply changes"".
 			 |
-			 |If you haven''t installed the editor yet, we recommend installing %1.';"), ApplicationNameForTemplateOpening);
+			 |If you haven''t installed the editor yet, we recommend installing %1.';tr = 'Lütfen şablonun editörde açılmasını bekleyin.
+	    	 |
+	    	 |Düzenledikten sonra değişiklikleri onaylayın ve şablonu kapatın. Ardından ""Değişiklikleri uygula""ya tıklayın.
+	    	 |
+	    	 |Editörü henüz yüklemediyseniz %1 yüklemenizi öneririz.'"), ApplicationNameForTemplateOpening);
 		
 	LinkToAplicationPageVisibility = (Common.IsWebClient() Or FileType <> "mxl") And FileType <> "docx";
 	Items.LinkToApplicationPageBeforeDownloadWebClient.Visible = LinkToAplicationPageVisibility;
@@ -365,7 +377,7 @@ Function PrintFormTemplate(TemplateMetadataObjectName)
 		Return Template;
 	EndIf;
 	
-	Raise NStr("en = 'Cannot open this template for viewing or editing.';");
+	Raise NStr("en = 'Cannot open this template for viewing or editing.';tr = 'Bu şablon, görüntüleme veya düzenleme için açılamaz.'");
 	
 EndFunction
 

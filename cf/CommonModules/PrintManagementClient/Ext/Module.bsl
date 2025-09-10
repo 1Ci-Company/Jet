@@ -86,7 +86,7 @@ Procedure ExecutePrintToPrinterCommand(PrintManagerName, TemplatesNames, Objects
 #EndIf
 	
 	If PrintForms.Cancel Then
-		CommonClient.MessageToUser(NStr("en = 'Insufficient rights to print out the form. Contact your administrator.';"));
+		CommonClient.MessageToUser(NStr("en = 'Insufficient rights to print out the form. Contact your administrator.';tr = 'Yazdırma formunu yazıcıya gönderme yetkiniz yok. Yöneticinize başvurun.'"));
 		Return;
 	EndIf;
 	
@@ -627,7 +627,7 @@ Function TemplateArea(Val RefToTemplate, Val AreaDetails) Export
 		ElsIf	AreaDetails.AreaType = "List" Then
 			Area = PrintManagementMSWordClient.GetMSWordTemplateArea(RefToTemplate, AreaDetails.AreaName, 1, 0);
 		Else
-			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Area type is not specified or invalid: %1.';"), AreaDetails.AreaType);
+			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Area type is not specified or invalid: %1.';tr = 'Alan tipi yanlış belirtilmemiş veya belirtilmemiş: %1.'"), AreaDetails.AreaType);
 		EndIf;
 		
 		If Area <> Undefined Then
@@ -644,7 +644,7 @@ Function TemplateArea(Val RefToTemplate, Val AreaDetails) Export
 				Or AreaDetails.AreaType = "List" Then
 			Area = PrintManagementOOWriterClient.GetTemplateArea(RefToTemplate, AreaDetails.AreaName);
 		Else
-			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Area type is not specified or invalid: %1.';"), AreaDetails.AreaName);
+			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Area type is not specified or invalid: %1.';tr = 'Alan tipi yanlış belirtilmemiş veya belirtilmemiş: %1.'"), AreaDetails.AreaName);
 		EndIf;
 		
 		If Area <> Undefined Then
@@ -726,7 +726,7 @@ Procedure AttachArea(Val PrintForm, Val TemplateArea, Val GoToNextRow1 = True) E
 	Except
 		ErrorMessage = TrimAll(ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 		ErrorMessage = ?(Right(ErrorMessage, 1) = ".", ErrorMessage, ErrorMessage + ".");
-		ErrorMessage = ErrorMessage + " " + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Error occurred during output of %1 template area.';"),
+		ErrorMessage = ErrorMessage + " " + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Error occurred during output of %1 template area.';tr = 'Şablondan alan ""%1"" elde etmeye çalışırken bir hata oluştu.'"),
 			TemplateArea.AreaDetails.AreaName);
 		Raise ErrorMessage;
 	EndTry;
@@ -903,10 +903,10 @@ Procedure SwitchLanguage(Form, Command) Export
 		NotifyDescription = New NotifyDescription("WhenSwitchingTheLanguage", ThisObject, Parameters);
 		
 		Buttons = New ValueList;
-		Buttons.Add(DialogReturnCode.OK, NStr("en = 'Continue';"));
+		Buttons.Add(DialogReturnCode.OK, NStr("en = 'Continue';tr = 'Devam etmek'"));
 		Buttons.Add(DialogReturnCode.Cancel);
 		
-		QueryText = NStr("en = 'Current template changes are not saved. Do you want to continue?';");
+		QueryText = NStr("en = 'Current template changes are not saved. Do you want to continue?';tr = 'Mevcut şablon değişiklikleri kaydedilmedi. Devam etmek istiyor musunuz?'");
 		ShowQueryBox(NotifyDescription, QueryText, Buttons, , DialogReturnCode.Cancel);
 	Else
 		WhenSwitchingTheLanguage(DialogReturnCode.OK, Parameters);
@@ -993,7 +993,7 @@ Function CheckPassedObjectsCount(CommandParameter)
 EndFunction
 
 Function AreaTypeSpecifiedIncorrectlyText()
-	Return NStr("en = 'Area type is not specified or invalid.';");
+	Return NStr("en = 'Area type is not specified or invalid.';tr = 'Alan tipi yanlış belirtilmemiş veya belirtilmemiş.'");
 EndFunction
 
 Procedure WhenSwitchingTheLanguage(Response, Parameters) Export

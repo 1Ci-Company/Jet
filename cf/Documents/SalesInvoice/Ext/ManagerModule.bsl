@@ -269,7 +269,7 @@ Procedure AddPrintCommands(PrintCommands) Export
 	PrintCommand = PrintCommands.Add();
 	PrintCommand.PrintManager = "PrintManagement";
 	PrintCommand.Id = "Document.SalesInvoice.PF_MXL_SalesInvoice";
-	PrintCommand.Presentation = NStr("en = 'Sales invoice'");
+	PrintCommand.Presentation = NStr("en = 'Sales invoice'; tr = 'Satış faturası'");
 	
 EndProcedure
 

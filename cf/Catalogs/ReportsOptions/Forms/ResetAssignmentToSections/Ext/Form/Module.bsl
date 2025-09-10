@@ -13,7 +13,7 @@
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	If TypeOf(Parameters.Variants) <> Type("Array") Then
-		ErrorText = NStr("en = 'No report options provided.';");
+		ErrorText = NStr("en = 'No report options provided.';tr = 'Rapor seçenekleri belirtilmedi.'");
 		Return;
 	EndIf;
 
@@ -38,20 +38,21 @@ EndProcedure
 Procedure ResetCommand(Command)
 	SelectedOptionsCount = OptionsToAssign.Count();
 	If SelectedOptionsCount = 0 Then
-		ShowMessageBox(, NStr("en = 'No report options provided.';"));
+		ShowMessageBox(, NStr("en = 'No report options provided.';tr = 'Rapor seçenekleri belirtilmedi.'"));
 		Return;
 	EndIf;
 
 	OptionsCount = ResetAssignmentSettingsServer(OptionsToAssign);
 	If OptionsCount = 1 And SelectedOptionsCount = 1 Then
 		OptionRef1 = OptionsToAssign[0].Value;
-		NotificationTitle1 = NStr("en = 'Report option location settings have been reset.';");
+		NotificationTitle1 = NStr("en = 'Report option location settings have been reset.';tr = 'Rapor seçeneğinin konum ayarları sıfırlandı.'");
 		NotificationRef    = GetURL(OptionRef1);
 		NotificationText     = String(OptionRef1);
 		ShowUserNotification(NotificationTitle1, NotificationRef, NotificationText);
 	Else
 		NotificationText = NStr("en = 'Location settings for %1 report options
-							   |have been reset.';");
+							   |have been reset.';tr = '%1 rapor seçenekleri için 
+							   |konum ayarları sıfırlandı.'");
 		NotificationText = StringFunctionsClientServer.SubstituteParametersToString(NotificationText, Format(
 			OptionsCount, "NZ=0; NG=0"));
 		ShowUserNotification(,, NotificationText);
@@ -135,7 +136,10 @@ Procedure Filter()
 			ErrorText = NStr("en = 'You do not have to reset location settings for selected report options due to one or more of the following reasons:
 							   |- Selected report options are custom options.
 							   |- Selected report options are marked for deletion.
-							   |- Selected report options are additional or external reports.';");
+							   |- Selected report options are additional or external reports.';tr = 'Aşağıdaki bir veya daha fazla nedenden dolayı, seçilen rapor seçenekleri için atama ayarlarını sıfırlamanız gerekmiyor:
+							   |- Seçilen rapor seçenekleri özel seçenekler.
+							   |- Seçilen rapor seçenekleri silinmek üzere işaretlenmiş.
+							   |- Seçilen rapor seçenekleri ek veya harici raporlar.'");
 			Return;
 		EndIf;
 	EndIf;

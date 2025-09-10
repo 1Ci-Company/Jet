@@ -19,7 +19,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	Placement = Undefined;
 	If Not Parameters.Property("Placement", Placement) Then
-		Raise NStr("en = 'Location service parameter has not been passed.';");
+		Raise NStr("en = 'Location service parameter has not been passed.';tr = 'Location service parameter has not been passed.'");
 	EndIf;
 	If Placement = DataCompositionFieldPlacement.Auto Then
 		GroupPlacement = "Auto";
@@ -32,7 +32,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	ElsIf Placement = DataCompositionFieldPlacement.SpecialColumn Then
 		GroupPlacement = "SpecialColumn";
 	Else
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Location parameter contains invalid value: %1.';"), String(Placement));
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Location parameter contains invalid value: %1.';tr = 'Location parameter contains invalid value: %1.'"), String(Placement));
 	EndIf;
 EndProcedure
 

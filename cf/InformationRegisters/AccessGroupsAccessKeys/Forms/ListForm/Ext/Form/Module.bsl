@@ -42,7 +42,7 @@ Procedure SetConditionalAppearance()
 	AppearanceItem.ViewMode = DataCompositionSettingsItemViewMode.Inaccessible;
 	
 	DecorationTextItem = AppearanceItem.Appearance.Items.Find("Text");
-	DecorationTextItem.Value = NStr("en = 'Allowed empty access group';");
+	DecorationTextItem.Value = NStr("en = 'Allowed empty access group';tr = 'Izin verilen boş erişim grubu'");
 	DecorationTextItem.Use = True;
 	
 	FilterElement = AppearanceItem.Filter.Items.Add(Type("DataCompositionFilterItem"));

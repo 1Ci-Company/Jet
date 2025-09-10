@@ -79,7 +79,7 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 			If TypeOf(TableRow.UsersType) <> TypeOf(Catalogs.Users.EmptyRef()) Then
 				PurposeDescription = Metadata.FindByType(TypeOf(TableRow.UsersType)).Presentation();
 				Common.MessageToUser( 
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot use the Role with the refinement: %1.';"), PurposeDescription ),,,
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot use the Role with the refinement: %1.';tr = 'Rol görev için gerekli tanımlama ile kullanılamaz: %1.'"), PurposeDescription ),,,
 						"UsedByAddressingObjects", Cancel);
 			EndIf;
 		EndDo;
@@ -119,7 +119,7 @@ EndProcedure
 &AtClient
 Procedure SelectPurpose(Command)
 	NotifyDescription = New NotifyDescription("AfterAssignmentChoice", ThisObject);
-	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select role assignment';"),,, NotifyDescription);
+	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select role assignment';tr = 'Rolün görevini seç'"),,, NotifyDescription);
 EndProcedure
 
 #EndRegion

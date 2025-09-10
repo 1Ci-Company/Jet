@@ -124,9 +124,9 @@ EndProcedure
 Procedure StartDeletionMarkChange(CurrentData)
 	
 	If CurrentData.DeletionMark Then
-		QueryText = NStr("en = 'Do you want to clear the deletion mark from ""%1""?';");
+		QueryText = NStr("en = 'Do you want to clear the deletion mark from ""%1""?';tr = '""%1"" için silme işareti kaldırılsın mı?'");
 	Else
-		QueryText = NStr("en = 'Do you want to mark ""%1"" for deletion?';");
+		QueryText = NStr("en = 'Do you want to mark ""%1"" for deletion?';tr = '""%1"" silinmek üzere işaretlensin mi?'");
 	EndIf;
 	
 	ShowQueryBox(New NotifyDescription("ContinueDeletionMarkChange", ThisObject, CurrentData),

@@ -743,7 +743,7 @@ EndProcedure
 
 Function RunFilesRecovery(Volume, FormUniqueID) Export
 	ExecutionParameters = TimeConsumingOperations.FunctionExecutionParameters(FormUniqueID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = '""File recovery""';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = '""File recovery""';tr = '""Dosya kurtarma""'");
 	ExecutionParameters.BackgroundJobKey = "FileRecovery";
 	
 	Return TimeConsumingOperations.ExecuteFunction(ExecutionParameters, "Reports.VolumeIntegrityCheck.RecoverFiles", Volume);
@@ -1075,7 +1075,7 @@ Function SaveChangesAndUnlockFile(FileData, FileInfo1, DontChangeRecordInWorking
 	FileDataCurrent = FileData(FileData.Ref,, FileDataParameters);
 	If Not FileDataCurrent.CurrentUserEditsFile And Not FileToSynchronizeByCloudService(
 		FileData.Ref) Then
-		Raise NStr("en = 'The file is not locked by the current user.';");
+		Raise NStr("en = 'The file is not locked by the current user.';tr = 'Dosya geçerli kullanıcı tarafından kullanılmıyor'");
 	EndIf;
 
 	PreviousVersion = FileData.CurrentVersion;
@@ -1158,7 +1158,7 @@ Function SaveFileChanges(FileRef, FileInfo1, DontChangeRecordInWorkingDirectory,
 	FileDataParameters.GetBinaryDataRef = False;
 	FileDataCurrent = FileData(FileRef,, FileDataParameters);
 	If Not FileDataCurrent.CurrentUserEditsFile And Not FileToSynchronizeByCloudService(FileRef) Then
-		Raise NStr("en = 'The file is not locked by the current user.';");
+		Raise NStr("en = 'The file is not locked by the current user.';tr = 'Dosya geçerli kullanıcı tarafından kullanılmıyor'");
 	EndIf;
 
 	OldVersion = ?(FileInfo1.StoreVersions, FileRef.CurrentVersion, FileRef);
@@ -1602,7 +1602,7 @@ Function GetFileDataAndSaveFileChanges(FileRef, FileInfo1, RelativeFilePath,
 
 	FileData = FileData(FileRef,, FileDataParameters);
 	If Not FileData.CurrentUserEditsFile Then
-		Raise NStr("en = 'The file is not locked by the current user.';");
+		Raise NStr("en = 'The file is not locked by the current user.';tr = 'Dosya geçerli kullanıcı tarafından kullanılmıyor'");
 	EndIf;
 
 	VersionCreated = SaveFileChanges(FileRef, FileInfo1, False, RelativeFilePath,
@@ -2333,8 +2333,8 @@ Function FilesDeletionResult(FilesOrVersions, UUID) Export
 				DeleteFileData(FileOrVersion, UUID, Result, AuthorizedUser);
 			EndIf;
 		Else
-			Result.WarningText = ?(IsFileVersion, NStr("en = 'Only the author can delete the file version.';"),
-				NStr("en = 'Only the author can delete the file.';"));
+			Result.WarningText = ?(IsFileVersion, NStr("en = 'Only the author can delete the file version.';tr = 'Dosya sürümü sadece oluşturan tarafından silinebilir.'"),
+				NStr("en = 'Only the author can delete the file.';tr = 'Dosya sadece oluşturan tarafından silinebilir.'"));
 		EndIf;
 		DeletionResult.Insert(FileOrVersion, Result);
 
@@ -3204,7 +3204,7 @@ EndProcedure
 Function TechnicalInformation() Export
 
 	Result = New Structure;
-	ScanLogEvent = NStr("en = 'Scan images';", Common.DefaultLanguageCode());
+	ScanLogEvent = NStr("en = 'Scan images';tr = 'Görsel tarama'", Common.DefaultLanguageCode());
 
 	FilterEvents = New Array;
 	FilterEvents.Add(ScanLogEvent + "." + "EnumDevices.Start");

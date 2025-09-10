@@ -23,7 +23,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	OwnerPresentation = Common.SubjectString(Record.FileOwner);
 	
-	Title = NStr("en = 'File synchronization setting:';")
+	Title = NStr("en = 'File synchronization setting:';tr = 'Dosya senkronizasyonu ayarı:'")
 		+ " " + OwnerPresentation;
 	
 EndProcedure

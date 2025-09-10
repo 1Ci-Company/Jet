@@ -257,7 +257,7 @@ Procedure FillCheckProcessing(Form, Cancel, CheckedAttributes, Object = Undefine
 			
 			If Not ValueIsFilled(Form[LongDesc.ValueAttributeName]) Then
 				Common.MessageToUser(
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" field is required.';"), LongDesc.Description),
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" field is required.';tr = '""%1"" alanı doldurulmadı.'"), LongDesc.Description),
 					,
 					LongDesc.ValueAttributeName,
 					,
@@ -524,7 +524,7 @@ Procedure AddProperty(Owner, Parameters, IsInfoRecord = False) Export
 			EndTry;
 		EndIf;
 		If PropertiesSet = Undefined Then
-			ExceptionText = NStr("en = 'The passed ""%1"" object is not connected to the Properties subsystem.';");
+			ExceptionText = NStr("en = 'The passed ""%1"" object is not connected to the Properties subsystem.';tr = 'İletilen ""%1"" nesnesi Özellikler alt sistemine bağlı değil.'");
 			Raise StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, Owner);
 		EndIf;
 	EndIf;
@@ -547,7 +547,8 @@ Procedure AddProperty(Owner, Parameters, IsInfoRecord = False) Export
 	If MissingParameters.Count() > 0 Then
 		MissingParameters = StrConcat(MissingParameters, ", ");
 		ExceptionText = NStr("en = 'Required parameters are not passed:
-			|%1.';");
+			|%1.';tr = 'Gerekli parametreler iletilmedi:
+			|%1.'");
 		Raise StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, MissingParameters);
 	EndIf;
 	
@@ -656,7 +657,7 @@ Function AddPropertyValue(Val Owner, Parameters, Hierarchy = False) Export
 	
 	If Not Parameters.Property("Description")
 		Or Not ValueIsFilled(Parameters.Description) Then
-		Raise NStr("en = 'The required ""Description"" parameter is not specified.';");
+		Raise NStr("en = 'The required ""Description"" parameter is not specified.';tr = 'Gerekli ""Tanım"" parametresi belirtilmedi.'");
 	EndIf;
 	
 	If TypeOf(Owner) = Type("String") Then
@@ -671,7 +672,7 @@ Function AddPropertyValue(Val Owner, Parameters, Hierarchy = False) Export
 			|	AdditionalAttributesAndInfo.Name = &Name";
 		Result = Query.Execute().Unload();
 		If Result.Count() = 0 Then
-			ExceptionPattern = NStr("en = 'An additional attribute with the ""%1"" name is not found.';");
+			ExceptionPattern = NStr("en = 'An additional attribute with the ""%1"" name is not found.';tr = '""%1"" adlı ek öznitelik bulunamadı.'");
 			Raise StringFunctionsClientServer.SubstituteParametersToString(ExceptionPattern, Owner);
 		EndIf;
 		
@@ -681,7 +682,8 @@ Function AddPropertyValue(Val Owner, Parameters, Hierarchy = False) Export
 	AttributeType = Common.ObjectAttributeValue(Owner, "ValueType");
 	If Not PropertyManagerInternal.ValueTypeContainsPropertyValues(AttributeType) Then
 		ExceptionPattern = NStr("en = 'You can add values only for additional attributes
-			|with the ""%1"" or ""%2"" types. The current attribute value type is ""%3""';");
+			|with the ""%1"" or ""%2"" types. The current attribute value type is ""%3""';tr = 'Sadece ""%1"" veya ""%2"" türündeki 
+			|ek öznitelikler için değer ekleyebilirsiniz.Mevcut öznitelik değerinin türü ""%3""'");
 		ExceptionPattern = StrReplace(ExceptionPattern, Chars.LF, " ");
 		Raise StringFunctionsClientServer.SubstituteParametersToString(ExceptionPattern,
 			Type("CatalogRef.ObjectsPropertiesValues"),
@@ -976,7 +978,7 @@ Procedure FillAdditionalAttributesInForm(Form, Object = Undefined, LabelsFields 
 				Value = PropertyDetails.ValueType.AdjustValue(PropertyDetails.Value);
 				StringValue2 = StringFunctions.FormattedString(Value);
 			Else
-				Value = NStr("en = 'not set';");
+				Value = NStr("en = 'not set';tr = 'Belirlenmedi'");
 				EditLink1 = "NotDefined";
 				StringValue2 = New FormattedString(Value,, StyleColors.EmptyHyperlinkColor,, EditLink1);
 			EndIf;
@@ -1001,7 +1003,7 @@ Procedure FillAdditionalAttributesInForm(Form, Object = Undefined, LabelsFields 
 				If SetDetails = Undefined Then
 					SetDetails = ObjectPropertySets.Add();
 					SetDetails.Set     = PropertyDetails.Set;
-					SetDetails.Title = NStr("en = 'Deleted attributes';")
+					SetDetails.Title = NStr("en = 'Deleted attributes';tr = 'Silinen özellikler'")
 				EndIf;
 				
 				If Not ValueIsFilled(SetDetails.Title) Then
@@ -1057,7 +1059,7 @@ Procedure FillAdditionalAttributesInForm(Form, Object = Undefined, LabelsFields 
 					Type("FormButton"),
 					HyperlinkGroup);
 				
-				ButtonTitle = NStr("en = 'Start/finish editing of attribute %1';");
+				ButtonTitle = NStr("en = 'Start/finish editing of attribute %1';tr = '%1 özniteliğin düzenlenmesini başlat/bitir'");
 				Button.Title = StringFunctionsClientServer.SubstituteParametersToString(ButtonTitle, PropertyDetails.Description);
 				Button.LocationInCommandBar = ButtonLocationInCommandBar.InAdditionalSubmenu;
 				Button.CommandName = "EditAttributeHyperlink";
@@ -1871,7 +1873,7 @@ Procedure FillObjectLabels(Form, Object = Undefined, ArbitraryObject = False) Ex
 		NewItem.Hyperlink = True;
 		NewItem.Picture = PictureLib.EditLabels;
 		NewItem.SetAction("Click", "Attachable_PropertiesExecuteCommand");
-		NewItem.ToolTip = NStr("en = 'Edit labels';");
+		NewItem.ToolTip = NStr("en = 'Edit labels';tr = 'Etiketleri düzenle'");
 	EndIf;
 	
 	Labels = PropertiesByAdditionalAttributesKind(
@@ -1959,8 +1961,8 @@ Procedure FillObjectLabels(Form, Object = Undefined, ArbitraryObject = False) Ex
 		NewItem.Hyperlink = True;
 		NewItem.SetAction("Click", "Attachable_PropertiesExecuteCommand"); 
 		NewItem.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'and %1 more';"), LabelsToHideCount);
-		NewItem.ToolTip = NStr("en = 'Other labels';");
+			NStr("en = 'and %1 more';tr = 've %1 daha'"), LabelsToHideCount);
+		NewItem.ToolTip = NStr("en = 'Other labels';tr = 'Diğer etiketler'");
 	EndIf;
 	
 	If ArbitraryObject Or LabelsShownCount <> 0 Then
@@ -2559,9 +2561,9 @@ Procedure NewMainFormObjects(Form, Context, CreateAdditionalAttributesDetails)
 			If AccessRight("Update", Metadata.Catalogs.AdditionalAttributesAndInfoSets) Then
 				// Add a command.
 				Command = Form.Commands.Add("EditAdditionalAttributesComposition");
-				Command.Title = NStr("en = 'Edit additional attributes';");
+				Command.Title = NStr("en = 'Edit additional attributes';tr = 'Ek özellik setini değiştir'");
 				Command.Action = "Attachable_PropertiesExecuteCommand";
-				Command.ToolTip = NStr("en = 'Edit additional attributes';");
+				Command.ToolTip = NStr("en = 'Edit additional attributes';tr = 'Ek özellik setini değiştir'");
 				Command.Picture = PictureLib.ListSettings;
 				
 				Button = Form.Items.Add(
@@ -2576,9 +2578,9 @@ Procedure NewMainFormObjects(Form, Context, CreateAdditionalAttributesDetails)
 			EndIf;
 			
 			Command = Form.Commands.Add("EditAttributeHyperlink");
-			Command.Title   = NStr("en = 'Start/finish editing';");
+			Command.Title   = NStr("en = 'Start/finish editing';tr = 'Düzenlemeyi başlat/bitir'");
 			Command.Action    = "Attachable_PropertiesExecuteCommand";
-			Command.ToolTip   = NStr("en = 'Start/finish editing';");
+			Command.ToolTip   = NStr("en = 'Start/finish editing';tr = 'Düzenlemeyi başlat/bitir'");
 			Command.Picture    = PictureLib.Change;
 			Command.Representation = ButtonRepresentation.Picture;
 		EndIf;
@@ -2674,12 +2676,14 @@ Procedure PrepareFormForDeferredInitialization(Form, ItemForPlacementName, Index
 		PageHeader = ?(ValueIsFilled(Parent.Title), Parent.Title, Parent.Name);
 		PageGroupHeader1 = ?(ValueIsFilled(PagesGroup.Title), PagesGroup.Title, PagesGroup.Name);
 		
-		PlacementWarning = NStr("en = 'To show additional attributes, display the ""%1"" group under any other item in the ""%2"" group. To do so, click More — Change form.';");
+		PlacementWarning = NStr("en = 'To show additional attributes, display the ""%1"" group under any other item in the ""%2"" group. To do so, click More — Change form.';tr = 'Ek özellikleri görüntülemek için, ""%1""grubu ""%2"" grubunda (başka bir gruptan sonra) ilk öğe şeklinde yerleştirin (menü Daha fazla-Formu değiştirin).'");
 		PlacementWarning = StringFunctionsClientServer.SubstituteParametersToString(PlacementWarning,
 			PageHeader, PageGroupHeader1);
 		ToolTipText = NStr("en = 'To restore a form to the default settings, do the following:
 			| • Select More — Change form.
-			| • In the Customize form window that opens, select More actions — Restore default settings.';");
+			| • In the Customize form window that opens, select More actions — Restore default settings.';tr = 'Formu varsayılan ayarlara geri yüklemek için:
+			| • Daha fazla > Formu değiştir''i seçin.
+			| • Açılan Formu özelleştir penceresinde Diğer işlemler > Varsayılan ayarları geri yükle''yi seçin.'");
 			
 		Decoration.ToolTipRepresentation = ToolTipRepresentation.Button;
 		Decoration.Title  = PlacementWarning;

@@ -18,7 +18,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 	For Each VersionRecord In ThisObject Do
 		If Not IsBlankString(VersionRecord.Version) And Not IsFullVersionNumber(VersionRecord.Version) Then
 			Common.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid version number: %1. The expected format is ""1.2.3.4"".';"), VersionRecord.Version));
+				NStr("en = 'Invalid version number: %1. The expected format is ""1.2.3.4"".';tr = 'Hatalı sürüm numarası: %1 (""1.2.3.4"" şeklinde bir değer bekleniyor)'"), VersionRecord.Version));
 			Cancel = True; 
 	    	AttributesNotToCheck.Add("Version"); 
 		EndIf;
@@ -53,5 +53,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

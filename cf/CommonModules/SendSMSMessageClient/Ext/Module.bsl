@@ -77,7 +77,8 @@ Procedure CheckForSMSMessageSendingSettings(ResultHandler)
 			OpenSettingsForm(NotifyDescription);
 		Else
 			MessageText = NStr("en = 'SMS settings are not configured.
-				|Please contact the administrator.';");
+				|Please contact the administrator.';tr = 'SMS ayarları yapılandırılmadı.
+				|Lütfen, yönetici ile irtibata geçin.'");
 			ShowMessageBox(, MessageText);
 		EndIf;
 	EndIf;

@@ -14,6 +14,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>UUID</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Evrensel Özgün Tanımlayıcı (UUID)</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>v8:UUID</v8:Type>
@@ -26,6 +30,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Username</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kullanıcı adı</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -44,6 +52,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Login allowed</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Girişe izin verildi</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>xs:boolean</v8:Type>
@@ -59,6 +71,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
@@ -72,33 +88,9 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Show in list</v8:content>
 				</v8:item>
-			</title>
-			<valueType>
-				<v8:Type>xs:boolean</v8:Type>
-			</valueType>
-			<appearance>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>HorizontalAlign</dcscor:parameter>
-					<dcscor:value xsi:type="v8ui:HorizontalAlign">Center</dcscor:value>
-				</dcscor:item>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>Format</dcscor:parameter>
-					<dcscor:value xsi:type="v8:LocalStringType">
-						<v8:item>
-							<v8:lang>en</v8:lang>
-							<v8:content>BF=; BT=Yes</v8:content>
-						</v8:item>
-					</dcscor:value>
-				</dcscor:item>
-			</appearance>
-		</field>
-		<field xsi:type="DataSetFieldField">
-			<dataPath>CannotChangePassword</dataPath>
-			<field>CannotChangePassword</field>
-			<title xsi:type="v8:LocalStringType">
 				<v8:item>
-					<v8:lang>en</v8:lang>
-					<v8:content>Cannot change password</v8:content>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Listede göster</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -116,6 +108,46 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>CannotChangePassword</dataPath>
+			<field>CannotChangePassword</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cannot change password</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Şifre değiştirilemiyor</v8:content>
+				</v8:item>
+			</title>
+			<valueType>
+				<v8:Type>xs:boolean</v8:Type>
+			</valueType>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>HorizontalAlign</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:HorizontalAlign">Center</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Format</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 			</appearance>
@@ -127,6 +159,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>OS user</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>OS Kullanıcısı</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -145,6 +181,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Language</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Dil</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>xs:string</v8:Type>
@@ -161,6 +201,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Run mode</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Çalışma modu</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -179,6 +223,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Standard authentication</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Standart doğrulama</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>xs:boolean</v8:Type>
@@ -194,6 +242,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
@@ -207,6 +259,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>OS authentication</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>OS (İşletim sistemi) doğrulama</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>xs:boolean</v8:Type>
@@ -222,6 +278,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
@@ -235,6 +295,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>OpenID authentication</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>OpenID kimlik doğrulaması</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>xs:boolean</v8:Type>
@@ -250,6 +314,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
@@ -263,33 +331,9 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>OpenID-Connect authentication</v8:content>
 				</v8:item>
-			</title>
-			<valueType>
-				<v8:Type>xs:boolean</v8:Type>
-			</valueType>
-			<appearance>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>HorizontalAlign</dcscor:parameter>
-					<dcscor:value xsi:type="v8ui:HorizontalAlign">Center</dcscor:value>
-				</dcscor:item>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>Format</dcscor:parameter>
-					<dcscor:value xsi:type="v8:LocalStringType">
-						<v8:item>
-							<v8:lang>en</v8:lang>
-							<v8:content>BF=; BT=Yes</v8:content>
-						</v8:item>
-					</dcscor:value>
-				</dcscor:item>
-			</appearance>
-		</field>
-		<field xsi:type="DataSetFieldField">
-			<dataPath>AccessTokenAuthentication</dataPath>
-			<field>AccessTokenAuthentication</field>
-			<title xsi:type="v8:LocalStringType">
 				<v8:item>
-					<v8:lang>en</v8:lang>
-					<v8:content>Access token authentication</v8:content>
+					<v8:lang>tr</v8:lang>
+					<v8:content>OpenID-Connect kimlik doğrulaması</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -306,6 +350,46 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>AccessTokenAuthentication</dataPath>
+			<field>AccessTokenAuthentication</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Access token authentication</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Erişim belirteci kimlik doğrulaması</v8:content>
+				</v8:item>
+			</title>
+			<valueType>
+				<v8:Type>xs:boolean</v8:Type>
+			</valueType>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>HorizontalAlign</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:HorizontalAlign">Center</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Format</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
@@ -333,6 +417,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
@@ -367,6 +455,10 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 			</appearance>
@@ -378,6 +470,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Full name</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Tam adı</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -414,6 +510,10 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 			</appearance>
@@ -433,33 +533,9 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>This is an external user</v8:content>
 				</v8:item>
-			</title>
-			<valueType>
-				<v8:Type>xs:boolean</v8:Type>
-			</valueType>
-			<appearance>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>HorizontalAlign</dcscor:parameter>
-					<dcscor:value xsi:type="v8ui:HorizontalAlign">Center</dcscor:value>
-				</dcscor:item>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>Format</dcscor:parameter>
-					<dcscor:value xsi:type="v8:LocalStringType">
-						<v8:item>
-							<v8:lang>en</v8:lang>
-							<v8:content>BF=; BT=Yes</v8:content>
-						</v8:item>
-					</dcscor:value>
-				</dcscor:item>
-			</appearance>
-		</field>
-		<field xsi:type="DataSetFieldField">
-			<dataPath>NoMatchingInfobaseUser</dataPath>
-			<field>NoMatchingInfobaseUser</field>
-			<title xsi:type="v8:LocalStringType">
 				<v8:item>
-					<v8:lang>en</v8:lang>
-					<v8:content>No matching infobase user</v8:content>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Harici kullanıcıdır</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -477,6 +553,46 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>NoMatchingInfobaseUser</dataPath>
+			<field>NoMatchingInfobaseUser</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>No matching infobase user</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Eşleşen Infobase kullanıcısı yok</v8:content>
+				</v8:item>
+			</title>
+			<valueType>
+				<v8:Type>xs:boolean</v8:Type>
+			</valueType>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>HorizontalAlign</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:HorizontalAlign">Center</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Format</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>BF=; BT=Yes</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 			</appearance>
@@ -488,6 +604,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Access expires on</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Erişim sonu</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -505,6 +625,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Demand password change on next login</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Bir sonraki oturum açmasında parola değiştirmesini talep et</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type>xs:boolean</v8:Type>
@@ -521,6 +645,10 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>BF=; BT=Yes</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>BF=; BT=Evet</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 			</appearance>
@@ -533,6 +661,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Access never expires</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Erişim asla sona ermez</v8:content>
+				</v8:item>
 			</title>
 		</field>
 		<field xsi:type="DataSetFieldField">
@@ -542,6 +674,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>User inactivity timeout</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kullanıcı etkin olmama zaman aşımı</v8:content>
 				</v8:item>
 			</title>
 		</field>
@@ -553,6 +689,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Login allowed on</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Girişe izin verme tarihi</v8:content>
+				</v8:item>
 			</title>
 		</field>
 		<field xsi:type="DataSetFieldField">
@@ -562,6 +702,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Last active on</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Son etkinlik tarihi</v8:content>
 				</v8:item>
 			</title>
 		</field>
@@ -573,6 +717,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Login auto-denied on</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Otomatik giriş reddi tarihi</v8:content>
+				</v8:item>
 			</title>
 		</field>
 		<field xsi:type="DataSetFieldField">
@@ -582,6 +730,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Last active client</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>En son aktif istemci</v8:content>
 				</v8:item>
 			</title>
 		</field>
@@ -659,6 +811,10 @@ WHERE
 					<v8:lang>en</v8:lang>
 					<v8:content>Full name</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Tam adı</v8:content>
+				</v8:item>
 			</title>
 			<valueType>
 				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ExternalUsers</v8:Type>
@@ -672,6 +828,10 @@ WHERE
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Phone</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Telefon</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -689,6 +849,10 @@ WHERE
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Email</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>E-posta</v8:content>
 				</v8:item>
 			</title>
 			<valueType>
@@ -721,6 +885,10 @@ WHERE
 				<v8:lang>en</v8:lang>
 				<v8:content>External users</v8:content>
 			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Harici kullanıcılar</v8:content>
+			</v8:item>
 		</title>
 		<valueType>
 			<v8:Type>xs:boolean</v8:Type>
@@ -736,6 +904,10 @@ WHERE
 			<v8:item>
 				<v8:lang>en</v8:lang>
 				<v8:content>Users</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Kullanıcılar</v8:content>
 			</v8:item>
 		</title>
 		<valueType>
@@ -753,6 +925,10 @@ WHERE
 				<v8:lang>en</v8:lang>
 				<v8:content>IDs of users that do not exist in the infobase</v8:content>
 			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Veri tabanında bulunmayan kullanıcıların ID</v8:content>
+			</v8:item>
 		</title>
 		<valueType>
 			<v8:Type>v8:UUID</v8:Type>
@@ -768,6 +944,10 @@ WHERE
 			<v8:item>
 				<v8:lang>en</v8:lang>
 				<v8:content>User and external user details</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Kullanıcı ve harici kullanıcı bilgileri</v8:content>
 			</v8:item>
 		</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
@@ -999,6 +1179,10 @@ WHERE
 							<v8:lang>en</v8:lang>
 							<v8:content>User and external user details</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Kullanıcı ve harici kullanıcı bilgileri</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
@@ -1023,6 +1207,10 @@ WHERE
 			<v8:item>
 				<v8:lang>en</v8:lang>
 				<v8:content>User details</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Kullanıcı ayrıntıları</v8:content>
 			</v8:item>
 		</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
@@ -1251,6 +1439,10 @@ WHERE
 							<v8:lang>en</v8:lang>
 							<v8:content>User details</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Kullanıcı ayrıntıları</v8:content>
+						</v8:item>
 					</dcscor:value>
 				</dcscor:item>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
@@ -1275,6 +1467,10 @@ WHERE
 			<v8:item>
 				<v8:lang>en</v8:lang>
 				<v8:content>External user details</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Harici kullanıcı bilgileri</v8:content>
 			</v8:item>
 		</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
@@ -1465,6 +1661,10 @@ WHERE
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>External user details</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Harici kullanıcı bilgileri</v8:content>
 						</v8:item>
 					</dcscor:value>
 				</dcscor:item>

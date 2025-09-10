@@ -17,7 +17,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Parameters.ScanCommandAvailable Then
 		If Parameters.ScanCommandAvailable Then
-			Items.CreateMode.ChoiceList.Add(3, NStr("en = 'From scanner';"));
+			Items.CreateMode.ChoiceList.Add(3, NStr("en = 'From scanner';tr = 'Tarayıcıdan'"));
 		EndIf;
 	EndIf;
 	

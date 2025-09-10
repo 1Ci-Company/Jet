@@ -22,19 +22,19 @@
 //
 Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	ModuleReportsOptions = Common.CommonModule("ReportsOptions");
-	ReportSettings.LongDesc = NStr("en = 'Unassigned tasks analysis (tasks not assigned to any users).';");
+	ReportSettings.LongDesc = NStr("en = 'Unassigned tasks analysis (tasks not assigned to any users).';tr = 'Atanmayan görevler analizi (hiçbir kullanıcın atanmadığı görevler).'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UnassignedTasksSummary");
-	OptionSettings.LongDesc = NStr("en = 'Unassigned tasks summary (tasks assigned to blank roles).';");
+	OptionSettings.LongDesc = NStr("en = 'Unassigned tasks summary (tasks assigned to blank roles).';tr = 'Atanmayan görevler toplamı (boş rollere atanan görevler).'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UnassignedTasksByPerformers");
-	OptionSettings.LongDesc = NStr("en = 'Unassigned tasks (tasks assigned to blank roles).';");
+	OptionSettings.LongDesc = NStr("en = 'Unassigned tasks (tasks assigned to blank roles).';tr = 'Atanmayan görevler (boş rollere atanan görevler).'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UnassignedTasksByAddressingObjects");
-	OptionSettings.LongDesc = NStr("en = 'Unassigned tasks by business objects.';");
+	OptionSettings.LongDesc = NStr("en = 'Unassigned tasks by business objects.';tr = 'İş nesnelerine göre atanmamış görevler.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "OverdueTasks");
-	OptionSettings.LongDesc = NStr("en = 'Unassigned and overdue tasks (tasks not assigned to any users).';");
+	OptionSettings.LongDesc = NStr("en = 'Unassigned and overdue tasks (tasks not assigned to any users).';tr = 'Atanmayan ve vadesi geçmiş görevler (hiçbir kullanıcının atanmadığı görevler).'");
 EndProcedure
 
 // End StandardSubsystems.ReportsOptions

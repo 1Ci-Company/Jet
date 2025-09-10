@@ -296,7 +296,7 @@ Function TitleSettings(SettingsItem, SettingDetails, SettingType, ItemTheCustomS
 		And SettingValue <> SettingPresentation Then 
 		
 		Return StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 (%2)';"), SettingValue, SettingPresentation);
+			NStr("en = '%1 (%2)';tr = '%1 (%2)'"), SettingValue, SettingPresentation);
 		
 	EndIf;
 	
@@ -364,7 +364,7 @@ Function SettingValue(SettingsItem, SettingDetails, SettingType, ItemTheCustomSe
 	EndIf;
 	
 	If Not ValueIsFilled(SettingValue) Then 
-		Return NStr("en = 'Not set';");
+		Return NStr("en = 'Not set';tr = 'Not set'");
 	EndIf;
 	
 	Return String(SettingValue);
@@ -595,7 +595,7 @@ Procedure RefreshTitle()
 	EndDo;
 	
 	Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Quick settings (%1 of %2)';"), NumberOfQuickSettings, QuickSettings.Count());
+		NStr("en = 'Quick settings (%1 of %2)';tr = 'Quick settings (%1 of %2)'"), NumberOfQuickSettings, QuickSettings.Count());
 	
 EndProcedure
 

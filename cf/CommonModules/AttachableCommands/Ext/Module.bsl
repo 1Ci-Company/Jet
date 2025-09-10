@@ -90,7 +90,9 @@ Procedure OnCreateAtServer(Form, Val PlacementParameters = Undefined) Export
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'To call the %1 procedure in report forms,
 					|common forms, and data processors,
-					|you must explicitly specify parameter %2.';"),
+					|you must explicitly specify parameter %2.';tr = 'Rapor, işlem formlarında ve genel formlarda 
+					| ""%1""
+					| prosedürü çağırdığınızda ""%2"" parametresi açık belirtilmelidir'"),
 				"AttachableCommands.OnCreateAtServer",
 				"PlacementParameters.Sources");
 		EndIf;
@@ -347,7 +349,7 @@ Function AttachableObjectSettings(FullName, InterfaceSettings4 = Undefined) Expo
 		Manager.OnDefineSettings(Settings);
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot read %1 object settings from the manager module:';"), FullName);
+			NStr("en = 'Cannot read %1 object settings from the manager module:';tr = 'Yönetici modülünden %1 nesne ayarları okunamıyor:'"), FullName);
 		ErrorText = ErrorText + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		
 		WriteError1 = False;
@@ -359,7 +361,7 @@ Function AttachableObjectSettings(FullName, InterfaceSettings4 = Undefined) Expo
 	
 		If WriteError1 Then
 			WriteLogEvent(
-				NStr("en = 'Attachable commands';", Common.DefaultLanguageCode()),
+				NStr("en = 'Attachable commands';tr = 'Bağlanabilir komutlar'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,
 				Common.MetadataObjectByFullName(FullName),
 				FullName,
@@ -485,7 +487,8 @@ Function AttachableObjectsTable(InterfaceSettings4 = Undefined) Export
 			Table.Columns.Add(Setting.Key, Setting.TypeDescription);
 		Except
 			ErrorText = NStr("en = 'Cannot register a setting for attachable objects application interface.
-				|Key: %1. Type description: %2. Error description: %3.';");
+				|Key: %1. Type description: %2. Error description: %3.';tr = 'Bağlanan nesnelerin program arayüz ayarı kaydedilemedi. 
+				| Anahtar: ""%1"", tür açıklaması: ""%2"", hata açıklaması: ""%3"".'");
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				ErrorText,
 				Setting.Key,
@@ -715,7 +718,7 @@ EndFunction
 Procedure CheckCommandsKindName(KindName) Export
 	
 	If Not CommonClientServer.NameMeetPropertyNamingRequirements(KindName) Then
-		ErrorText = NStr("en = 'Command kind name ""%1"" does not meet naming requirements for variables.';");
+		ErrorText = NStr("en = 'Command kind name ""%1"" does not meet naming requirements for variables.';tr = '""%1"" komut türü adı değişkenleri isimlendirme şartlarına uygun değil.'");
 		Raise StringFunctionsClientServer.SubstituteParametersToString(ErrorText, KindName);
 	EndIf;
 	
@@ -939,7 +942,7 @@ Procedure OutputCommands(Form, Commands, PlacementParameters)
 	CapCommand = Form.Commands.Find("OutputToEmptySubmenuCommand");
 	If CapCommand = Undefined Then
 		CapCommand = Form.Commands.Add("OutputToEmptySubmenuCommand");
-		CapCommand.Title = NStr("en = '(N/A)';");
+		CapCommand.Title = NStr("en = '(N/A)';tr = '(yok)'");
 	EndIf;
 	
 	// Selected submenu post-processing.
@@ -1244,19 +1247,19 @@ Function RegisterSubmenu(Items, InfoOnAllSubmenus, SubmenuName, NewSubmenuTempla
 		If Not Groups.Property("Important") Then
 			GroupImportant = Items.Add(SubmenuName + "Important", Type("FormGroup"), Popup);
 			GroupImportant.Type = FormGroupType.ButtonGroup;
-			GroupImportant.Title = Popup.Title + " (" + NStr("en = 'Important';") + ")";
+			GroupImportant.Title = Popup.Title + " (" + NStr("en = 'Important';tr = 'Önemli'") + ")";
 			Groups.Insert("Important", GroupImportant);
 		EndIf;
 		If Not Groups.Property("Ordinary") Then
 			DefaultGroup = Items.Add(SubmenuName + "Ordinary", Type("FormGroup"), Popup);
 			DefaultGroup.Type = FormGroupType.ButtonGroup;
-			DefaultGroup.Title = Popup.Title + " (" + NStr("en = 'Standard';") + ")";
+			DefaultGroup.Title = Popup.Title + " (" + NStr("en = 'Standard';tr = 'Standart'") + ")";
 			Groups.Insert("Ordinary", DefaultGroup);
 		EndIf;
 		If Not Groups.Property("SeeAlso") Then
 			GroupSeeAlso = Items.Add(SubmenuName + "SeeAlso", Type("FormGroup"), Popup);
 			GroupSeeAlso.Type = FormGroupType.ButtonGroup;
-			GroupSeeAlso.Title = Popup.Title + " (" + NStr("en = 'See also:';") + ")";
+			GroupSeeAlso.Title = Popup.Title + " (" + NStr("en = 'See also:';tr = 'Ayrıca bakınız'") + ")";
 			Groups.Insert("SeeAlso", GroupSeeAlso);
 		EndIf;
 		
@@ -1434,7 +1437,7 @@ Function CommandDetails(CommandNameInForm, SettingsAddress) Export
 	Command = Commands.Find(CommandNameInForm, "NameOnForm");
 	If Command = Undefined Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Information on command ""%1"" does not exist.';"),
+			NStr("en = 'Information on command ""%1"" does not exist.';tr = '""%1"" grup bilgileri bulunamadı.'"),
 			CommandNameInForm);
 	EndIf;
 	CommandDetails = Common.ValueTableRowToStructure(Command);
@@ -1464,7 +1467,7 @@ Function CommandDetails(CommandNameInForm, SettingsAddress) Export
 				MetadataObjectCommonModule = Metadata.CommonModules.Find(ModuleName);
 				If MetadataObjectCommonModule = Undefined Then
 					Raise StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Common module ""%1"" does not exist.';"),
+						NStr("en = 'Common module ""%1"" does not exist.';tr = ' ""%1"" ortak modülü mevcut değil.'"),
 						ModuleName);
 				EndIf;
 				If MetadataObjectCommonModule.ClientManagedApplication Then
@@ -1686,7 +1689,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "Send";
 	Kind.SubmenuName  = "SubmenuSend";
-	Kind.Title   = NStr("en = 'Send';");
+	Kind.Title   = NStr("en = 'Send';tr = 'Gönder'");
 	Kind.Order     = 45;
 	Kind.Picture    = PictureLib.SendMessage;
 	Kind.Representation = ButtonRepresentation.PictureAndText;
@@ -1694,7 +1697,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "Organizer";
 	Kind.SubmenuName  = "SubmenuOrganizer";
-	Kind.Title   = NStr("en = 'Organizer';");
+	Kind.Title   = NStr("en = 'Organizer';tr = 'Düzenleyici'");
 	Kind.Order     = 50;
 	Kind.Picture    = PictureLib.Organizer;
 	Kind.Representation = ButtonRepresentation.Picture;	

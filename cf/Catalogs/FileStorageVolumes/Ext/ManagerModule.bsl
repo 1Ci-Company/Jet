@@ -49,7 +49,7 @@ Procedure AddReportCommands(ReportsCommands, Parameters) Export
 	
 	Command = ReportsCommands.Add();
 	Command.VariantKey       = "Main";
-	Command.Presentation      = NStr("en = 'Volume integrity check';");
+	Command.Presentation      = NStr("en = 'Volume integrity check';tr = 'Birim bütünlüğünü kontrol et'");
 	Command.Id      = "VolumeIntegrityCheck";
 	Command.Manager           = "Report.VolumeIntegrityCheck";
 	Command.MultipleChoice = False;

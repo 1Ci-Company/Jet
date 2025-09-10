@@ -16,7 +16,7 @@ EndProcedure
 Procedure Recalculate(Command)
 	
 	If RecalculateAtServer() Then
-		CommonClient.MessageToUser(NStr("en = 'Inventory costs are recalculated.'"));
+		CommonClient.MessageToUser(NStr("en = 'Inventory costs are recalculated.'; tr = 'Stok maliyetleri yeniden hesaplandı.'"));
 	EndIf;
 	
 EndProcedure
@@ -41,7 +41,7 @@ Procedure SetSeqBounds()
 	SeqBoundEnd = DataProcessors.InventoryCostRecalculation.SequenceEnd();
 	If SeqBoundEnd = Undefined Then
 		SeqBoundEnd = SeqBoundCurrent;
-		SeqBoundEndStr = NStr("en = 'There are no expense documents'");
+		SeqBoundEndStr = NStr("en = 'There are no expense documents'; tr = 'Gider belgesi yok'");
 	Else
 		SeqBoundEndStr = String(SeqBoundEnd);
 	EndIf;

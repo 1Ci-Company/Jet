@@ -22,7 +22,13 @@ Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 				|
 				|The app time is the server time converted to the device''s time zone
 				|(%4).
-				|This time is used in timestamps when saving documents and other objects.';"),
+				|This time is used in timestamps when saving documents and other objects.';tr = 'Uygulama zamanı: %1
+				|Sunucu zamanı: %2
+				|İstemci zamanı: %3
+				|
+				|Uygulama zamanı cihazın saat dilimine dönüştürülmüş sunucu zamanıdır
+				|(%4).
+				|Belgeler ve diğer nesneler kaydedilirken zaman damgalarında bu zaman kullanılır.'"),
 			Format(CommonClient.SessionDate(), "DLF=T"),
 			Format(AdditionalInformation.ServerDate, "DLF=T"),
 			Format(CurrentDate(), "DLF=T"), // ACC:143 - An example of CurrentDate call for determining the computer time

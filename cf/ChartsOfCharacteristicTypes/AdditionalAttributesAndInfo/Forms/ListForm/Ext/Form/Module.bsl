@@ -16,13 +16,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	CommonClientServer.SetDynamicListParameter(
 		List,
 		"PresentationAdditionalInfo",
-		NStr("en = 'Additional information records';"),
+		NStr("en = 'Additional information records';tr = 'Ek bilgi'"),
 		True);
 	
 	CommonClientServer.SetDynamicListParameter(
 		List,
 		"PresentationAdditionalAttributes",
-		NStr("en = 'Additional attributes';"),
+		NStr("en = 'Additional attributes';tr = 'Ek öznitelikler'"),
 		True);
 	
 	// Grouping properties to sets.

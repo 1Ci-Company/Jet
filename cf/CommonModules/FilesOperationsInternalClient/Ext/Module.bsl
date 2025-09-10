@@ -97,13 +97,13 @@ Function AddFromFileSystemWithExtensionSynchronous(ExecutionParameters) Export
 	Result.Insert("ErrorText",  "");
 	
 	DIalogBoxFilter = ?(ExecutionParameters.Property("SelectionDialogFilter"),
-		ExecutionParameters.SelectionDialogFilter, StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask()));
+		ExecutionParameters.SelectionDialogFilter, StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask()));
 		
 	If Not ExecutionParameters.Property("FullFileName") Then
 		// Import from the file system with 1C:Enterprise Extension.
 		FileDialog = New FileDialog(FileDialogMode.Open);
 		FileDialog.Multiselect = False;
-		FileDialog.Title = NStr("en = 'Select file';");
+		FileDialog.Title = NStr("en = 'Select file';tr = 'Dosya seç'");
 		FileDialog.Filter = DIalogBoxFilter;
 		FileDialog.Directory = FilesOperationsInternalServerCall.FolderWorkingDirectory(ExecutionParameters.FileOwner);
 		If Not FileDialog.Choose() Then
@@ -119,7 +119,8 @@ Function AddFromFileSystemWithExtensionSynchronous(ExecutionParameters) Export
 	FileToAdd = New File(ExecutionParameters.FullFileName);
 	If Not FileToAdd.Exists() Then
 		ErrorText = NStr("en = 'The file does not exist:
-			|%1';");
+			|%1';tr = 'Dosya mevcut değil:
+			|%1'");
 		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, 
 			ExecutionParameters.FullFileName);
 		Return Result;
@@ -129,7 +130,7 @@ Function AddFromFileSystemWithExtensionSynchronous(ExecutionParameters) Export
 		And ExecutionParameters.MaximumSize > 0
 		And FileToAdd.Size() > ExecutionParameters.MaximumSize*1024*1024 Then
 		
-		ErrorText = NStr("en = 'The file size exceeds %1 MB.';");
+		ErrorText = NStr("en = 'The file size exceeds %1 MB.';tr = 'Dosya boyutu %1 Mb aşıyor.'");
 		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, 
 			ExecutionParameters.MaximumSize);
 		
@@ -229,7 +230,7 @@ Function AddFromFileSystemWithExtensionSynchronous(ExecutionParameters) Export
 	Notify("Write_File", NotificationParameters, Result.FileRef);
 	
 	ShowUserNotification(
-		NStr("en = 'Created:';"),
+		NStr("en = 'Created:';tr = 'Oluşturuldu:'"),
 		GetURL(Result.FileRef),
 		Result.FileRef,
 		PictureLib.DialogInformation);
@@ -261,8 +262,8 @@ Procedure AddFilesAddInSuggested(FileSystemExtensionAttached1, AdditionalParamet
 		If Not AdditionalParameters.Property("FullFileName") Then
 			SelectingFile = New FileDialog(FileDialogMode.Open);
 			SelectingFile.Multiselect = True;
-			SelectingFile.Title = NStr("en = 'Select file';");
-			SelectingFile.Filter = ?(ValueIsFilled(Filter), Filter, NStr("en = 'All files';") + " (*.*)|*.*");
+			SelectingFile.Title = NStr("en = 'Select file';tr = 'Dosya seç'");
+			SelectingFile.Filter = ?(ValueIsFilled(Filter), Filter, NStr("en = 'All files';tr = 'Tüm dosyalar'") + " (*.*)|*.*");
 			If SelectingFile.Choose() Then
 				SelectedFiles = SelectingFile.SelectedFiles;
 			EndIf;
@@ -289,7 +290,7 @@ Procedure AddFilesAddInSuggested(FileSystemExtensionAttached1, AdditionalParamet
 				AttachedFile = AttachedFilesArray[0];
 				
 				ShowUserNotification(
-					NStr("en = 'Created:';"),
+					NStr("en = 'Created:';tr = 'Oluşturuldu:'"),
 					GetURL(AttachedFile),
 					AttachedFile,
 					PictureLib.DialogInformation);
@@ -332,9 +333,9 @@ EndProcedure
 //
 Procedure ShowFileSystemExtensionRequiredMessageBox(ResultHandler, CommandPresentation = "") Export
 	If Not ClientSupportsSynchronousCalls() Then
-		WarningText = NStr("en = 'Action ""%1"" is supported only in client application.';");
+		WarningText = NStr("en = 'Action ""%1"" is supported only in client application.';tr = '""%1"" eylemi sadece istemci uygulamasında destekleniyor.'");
 	Else
-		WarningText = NStr("en = 'To continue with ""%1"", install 1C:Enterprise Extension.';");
+		WarningText = NStr("en = 'To continue with ""%1"", install 1C:Enterprise Extension.';tr = '""%1"" ile devam edebilmek için 1C:Enterprise uzantısını yükleyin.'");
 	EndIf;
 	If ValueIsFilled(CommandPresentation) Then
 		WarningText = StrReplace(WarningText, "%1", CommandPresentation);
@@ -387,9 +388,9 @@ Function FilesToImport() Export
 	
 	OpenFileDialog = New FileDialog(FileDialogMode.Open);
 	OpenFileDialog.FullFileName     = "";
-	OpenFileDialog.Filter             = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+	OpenFileDialog.Filter             = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 	OpenFileDialog.Multiselect = True;
-	OpenFileDialog.Title          = NStr("en = 'Select files';");
+	OpenFileDialog.Title          = NStr("en = 'Select files';tr = 'Dosyaları seçin'");
 	
 	FileNamesArray = New Array;
 	
@@ -422,7 +423,7 @@ Procedure CorrectFileName(FileName, DeleteInvalidCharacters = False) Export
 	ExceptionStr = CommonClientServer.GetProhibitedCharsInFileName();
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'A file name cannot contain the following characters: %1';"), ExceptionStr);
+		NStr("en = 'A file name cannot contain the following characters: %1';tr = 'Dosya adı şu karakterleri içeremez: %1'"), ExceptionStr);
 	
 	Result = True;
 	
@@ -783,8 +784,8 @@ Procedure VerifySignatures(Form, RefToBinaryData, SelectedRows = Undefined, File
 	EndIf;
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';"));
-	DataDetails.Insert("DataTitle",       NStr("en = 'File';"));
+	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+	DataDetails.Insert("DataTitle",       NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data",                RefToBinaryData);
 	DataDetails.Insert("Presentation",         FileData.Ref);
 	DataDetails.Insert("Object",                FileData.Ref);
@@ -1038,9 +1039,9 @@ Procedure BeforeExit(Cancel, Warnings) Export
 	
 	UserWarning = StandardSubsystemsClient.WarningOnExit();
 	UserWarning.HyperlinkText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Open list of locked files (%1)';"),
+		NStr("en = 'Open list of locked files (%1)';tr = 'Düzenlenmiş dosya listesini açın (%1)'"),
 		Response.LockedFilesCount);
-	UserWarning.WarningText = NStr("en = 'Some files are being edited, and their changes are not propagated to the app.';");
+	UserWarning.WarningText = NStr("en = 'Some files are being edited, and their changes are not propagated to the app.';tr = 'Bazı dosyalar düzenleniyor; değişiklikleri uygulamaya aktarılmadı.'");
 	
 	ActionOnClickHyperlink = UserWarning.ActionOnClickHyperlink;
 	
@@ -1194,7 +1195,7 @@ Procedure SpreadsheetDocumentSelectionHandler(ReportForm, Item, Area, StandardPr
 		CallbackOnCompletion = New NotifyDescription("AfterFilesRecovered", ThisObject, AdditionalParameters);
 
 		IdleParameters = TimeConsumingOperationsClient.IdleParameters(ReportForm);
-		IdleParameters.Title = NStr("en = 'Restoring file info';");
+		IdleParameters.Title = NStr("en = 'Restoring file info';tr = 'Dosya bilgilerini geri yükleme'");
 		IdleParameters.OutputIdleWindow = True;
 		
 		TimeConsumingOperationsClient.WaitCompletion(Job, CallbackOnCompletion, IdleParameters);
@@ -1231,7 +1232,8 @@ Function CheckExtentionOfFileToDownload(FileExtention, RaiseException1 = True)
 		If RaiseException1 Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Uploading files with the ""%1"" extension is not allowed.
-				           |Please contact the administrator.';"),
+				           |Please contact the administrator.';tr = '""%1"" uzantılı dosyaların yüklenmesine izin verilmiyor.
+				           |Lütfen, yöneticiye başvurun.'"),
 				FileExtention);
 		Else
 			Return False;
@@ -1347,7 +1349,8 @@ Procedure GetUserDataWorkingDirectoryAfterGetDataError(ErrorInfo, StandardProces
 	Result.Insert("Directory", "");
 	Result.Insert("ErrorDescription", StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot retrieve the user''s working directory. Reason:
-		           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo)));
+		           |%1';tr = 'Aşağıdaki nedenlerden dolayı kullanıcı verilerinin 
+		           |çalışma dizini alınamadı:%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo)));
 	
 	ExecuteNotifyProcessing(Context.Notification, Result);
 	
@@ -1444,13 +1447,16 @@ Procedure ActionOnOpenFileInWorkingDirectory(ResultHandler, FileNameWithPath, Fi
 			// Date is the same, but the size is different. It is a rare but possible case.
 			
 			Parameters.Insert("Title",
-				NStr("en = 'Different file sizes';"));
+				NStr("en = 'Different file sizes';tr = 'Dosya boyutu farklı'"));
 			
 			Parameters.Insert("Message",
 				NStr("en = 'The size of the local file copy differs from the size of the file stored in the application.
 				           |
 				           |Do you want to update the local file
-				           |or open the local file without updating it?';"));
+				           |or open the local file without updating it?';tr = 'Bir bilgisayardaki çalışma dizinindeki dosyanın boyutu ve programdaki kopyası farklıdır. 
+				           |
+				           |Programdan bir dosya alınıp bilgisayarda var olan biriyle değiştirilsin mi yoksa
+				           | güncelleme olmadan mevcut dosya açılsın mı?'"));
 		Else
 			ReturnResult(ResultHandler, "OpenExistingFile");
 			Return;
@@ -1460,13 +1466,17 @@ Procedure ActionOnOpenFileInWorkingDirectory(ResultHandler, FileNameWithPath, Fi
 	        < Parameters.ChangeDateUniversalInFileStorage Then
 		// The most recent file is in the file storage
 		If FileData.InWorkingDirectoryForRead = False Then
-			Parameters.Insert("Title", NStr("en = 'Newer file version in application';"));
+			Parameters.Insert("Title", NStr("en = 'Newer file version in application';tr = 'Uygulamada dosyanın daha yeni sürümü mevcut'"));
 			Parameters.Insert("Message",
 				NStr("en = 'The file in the application was modified
 				           |later than its local copy.
 				           |
 				           |Do you want to retrieve the file from the application
-				           |or open the local copy?';"));
+				           |or open the local copy?';tr = 'Uygulamada düzenleme için meşgul olarak işaretlenmiş bir dosya, 
+				           |bilgisayarınızdaki çalışma dizinindeki kopyadan daha sonraki bir değiştirme tarihine (daha yeni) sahiptir. 
+				           |
+				           |Uygulamadan bir dosya alıp bilgisayarda varolan bir dosya ile değiştirilsin mi yoksa 
+				           |varolan bir dosya açılsın mı?'"));
 		Else
 			ReturnResult(ResultHandler, "GetFromStorageAndOpen");
 			Return;
@@ -1484,13 +1494,16 @@ Procedure ActionOnOpenFileInWorkingDirectory(ResultHandler, FileNameWithPath, Fi
 			Return;
 		Else
 			// The file in the working directory is for reading.
-			Parameters.Insert("Title", NStr("en = 'Newer local file version';"));
+			Parameters.Insert("Title", NStr("en = 'Newer local file version';tr = 'Bilgisayarda dosyanın daha yeni kopyası mevcut'"));
 			Parameters.Insert(
 				"Message",
 				NStr("en = 'The local file copy was modified later than the file in the application. The local copy might have been edited.
 				           |
 				           |Do you want to open the local copy or replace it with the file
-				           |from the application?';"));
+				           |from the application?';tr = 'Bilgisayarınızdaki çalışma dizinindeki bir dosyanın bir kopyası, programda olduğundan daha sonraki bir değişiklik tarihine (daha yeni) sahiptir. Bu kopya düzenlenmiş olabilir. 
+				           |
+				           |Bilgisayarınızda varolan bir dosya açılsın veya 
+				           |uygulamadaki dosya ile değişiklikleri kaybederek değiştirilsin ve açılsın mı?'"));
 		EndIf;
 	EndIf;
 	
@@ -1604,7 +1617,15 @@ Procedure OutputNotificationOnEdit(ResultHandler)
 				|(you will need it to edit and put the file back to the application).
 				|
 				|3. To edit the file, open the previously selected directory,
-				|find the saved file, and open it.';");
+				|find the saved file, and open it.';tr = 'Dosyayı açmanız veya kaydetmeniz istenecek.
+				|
+				|1. Sakla''ya tıklayın.
+				|
+				|2. Dosyanın kaydedileceği dizini seçin ve adını unutmayın 
+				|(dosyayı düzenleyip uygulamaya geri koymak için gerekecek).
+				|
+				|3. Dosyayı düzenlemek için, daha önce seçtiğiniz dizini açın,
+				|kaydedilen dosyayı bulun ve açın.'");
 				
 			SystemInfo = New SystemInfo;
 			If StrFind(SystemInfo.UserAgentInformation, "Firefox") <> 0 Then
@@ -1612,17 +1633,17 @@ Procedure OutputNotificationOnEdit(ResultHandler)
 				+ "
 				|
 				|"
-				+ NStr("en = '(By default Mozilla Firefox saves files to ""My Documents"" directory.)';");
+				+ NStr("en = '(By default Mozilla Firefox saves files to ""My Documents"" directory.)';tr = '(Mozilla Firefox dosyaları varsayılan olarak ""Belgelerim"" klasörüne otomatik olarak kaydeder)'");
 			EndIf;
 			Buttons = New ValueList;
-			Buttons.Add("Continue", NStr("en = 'Continue';"));
-			Buttons.Add("Cancel", NStr("en = 'Cancel';"));
+			Buttons.Add("Continue", NStr("en = 'Continue';tr = 'Devam'"));
+			Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal et'"));
 			ReminderParameters = New Structure;
 			ReminderParameters.Insert("Picture", PictureLib.DialogInformation);
 			ReminderParameters.Insert("CheckBoxText",
-				NStr("en = 'Do not show this message again';"));
+				NStr("en = 'Do not show this message again';tr = 'Bu mesajı tekrar gösterme'"));
 			ReminderParameters.Insert("Title",
-				NStr("en = 'Get file to view or edit';"));
+				NStr("en = 'Get file to view or edit';tr = 'Görüntüleme veya düzenleme için dosya al'"));
 			StandardSubsystemsClient.ShowQuestionToUser(
 				ResultHandler, ReminderText, Buttons, ReminderParameters);
 			
@@ -1757,7 +1778,7 @@ Procedure PutSelectedFilesInStorage(Val SelectedFiles,
 		If Not PutFiles(Files, PlacedFiles, , False, FormIdentifier) Then
 			CommonClient.MessageToUser(
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot put the ""%1"" file in the application.';"),
+					NStr("en = 'Cannot put the ""%1"" file in the application.';tr = '""%1"" dosyası uygulamaya yerleştirilemiyor.'"),
 					File.FullName) );
 			Continue;
 		EndIf;
@@ -1806,15 +1827,15 @@ Procedure UpdateFileSavingState(Val SelectedFiles,
 	
 	If SelectedFiles.Count() > 1 Then
 		If CurrentPosition = Undefined Then
-			ShowUserNotification(NStr("en = 'Save files';"),, NStr("en = 'The files are saved.';"));
+			ShowUserNotification(NStr("en = 'Save files';tr = 'Dosyaların kaydedilmesi'"),, NStr("en = 'The files are saved.';tr = 'Dosya kaydı başarı ile tamamlandı'"));
 		EndIf;
 	Else
 		If CurrentPosition = Undefined Then
 			ExplanationText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'File ""%1"" (%2 MB) is saved.';"),
+				NStr("en = 'File ""%1"" (%2 MB) is saved.';tr = 'Dosya ""%1"" (%2 MB) kaydedildi.'"),
 				FileNameToSave,
 				SizeInMB);
-			ShowUserNotification(NStr("en = 'Save files';"), , ExplanationText, PictureLib.DialogInformation);
+			ShowUserNotification(NStr("en = 'Save files';tr = 'Dosyaların kaydedilmesi'"), , ExplanationText, PictureLib.DialogInformation);
 		EndIf;
 	EndIf;
 	
@@ -1863,7 +1884,7 @@ Procedure PutSelectedFilesInStorageWebCompletion(Result, Address, SelectedFileNa
 		BaseName = PathStructure.BaseName;
 	Else
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot put the ""%1"" file in the application.';"),
+			NStr("en = 'Cannot put the ""%1"" file in the application.';tr = '""%1"" dosyası uygulamaya yerleştirilemiyor.'"),
 			SelectedFileName);
 	EndIf;
 	
@@ -1878,7 +1899,8 @@ Procedure PutSelectedFilesInStorageWebCompletion(Result, Address, SelectedFileNa
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The size of file ""%1"" (%2 MB)
-			|exceeds the limit (%3 MB).';"),
+			|exceeds the limit (%3 MB).';tr = '""%1"" dosyasının boyutu (%2 MB)
+			|izin verilen dosya boyutunu aşıyor (%3 MB).'"),
 			SelectedFileName,
 			FilesOperationsInternalClientServer.FileSizePresentation(SizeInMB),
 			FilesOperationsInternalClientServer.FileSizePresentation(SizeInMBMax));
@@ -1929,7 +1951,8 @@ Function AbilityToUnlockFile(ObjectRef,
 	ElsIf Not ValueIsFilled(BeingEditedBy) Then
 		ErrorString = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot unlock file ""%1""
-			           |because it is not locked.';"),
+			           |because it is not locked.';tr = 'Kilitli olmadığı için
+			           |""%1"" dosyasının kilidi açılamıyor.'"),
 			String(ObjectRef));
 		Return False;
 	Else
@@ -1939,7 +1962,8 @@ Function AbilityToUnlockFile(ObjectRef,
 		
 		ErrorString = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot unlock file ""%1""
-			           |because it is locked by ""%2"".';"),
+			           |because it is locked by ""%2"".';tr = '""%2"" tarafından kilitlendiği için
+			           |""%1""dosyasının kilidi açılamıyor.'"),
 			String(ObjectRef),
 			String(BeingEditedBy));
 		Return False;
@@ -2001,7 +2025,7 @@ Procedure UnlockFileWithoutQuestion(FileData, UUID = Undefined)
 		ReregisterFileInWorkingDirectory(FileData, True, FileData.OwnerWorkingDirectory <> "");
 	EndIf;
 	
-	ShowUserNotification(NStr("en = 'The file is released.';"),
+	ShowUserNotification(NStr("en = 'The file is released.';tr = 'Dosya bırakıldı'"),
 		FileData.URL, FileData.FullVersionDescription, PictureLib.DialogInformation);
 	
 EndProcedure
@@ -2021,11 +2045,12 @@ Procedure MoveFilesToFolder(ObjectsRef, Folder) Export
 	For Each FileData In FilesData Do
 		
 		ShowUserNotification(
-			NStr("en = 'Move file';"),
+			NStr("en = 'Move file';tr = 'Dosyayı taşı'"),
 			FileData.URL,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'File ""%1""
-				           |is moved to folder ""%2"".';"),
+				           |is moved to folder ""%2"".';tr = 'Dosya ""%1"" 
+				           | ""%2"" klasöre taşındı.'"),
 				String(FileData.Ref),
 				String(Folder)),
 			PictureLib.DialogInformation);
@@ -2078,7 +2103,7 @@ EndFunction
 //
 Function EventLogEvent()
 	
-	Return NStr("en = 'Files';", CommonClient.DefaultLanguageCode());
+	Return NStr("en = 'Files';tr = 'Dosyalar'", CommonClient.DefaultLanguageCode());
 	
 EndFunction
 
@@ -2091,7 +2116,8 @@ Function ErrorCreatingNewFile(ErrorInfo)
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot create a file due to:
-		           |%1';"),
+		           |%1';tr = 'Şu nedenle dosya oluşturulamıyor:
+		           |%1'"),
 		ErrorProcessing.BriefErrorDescription(ErrorInfo));
 
 EndFunction
@@ -2117,7 +2143,8 @@ Function CheckCanImportFile(File, RaiseException1 = True, FilesWithErrors = Unde
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The size of file ""%1"" (%2 MB)
-			           |exceeds the limit (%3 MB).';"),
+			           |exceeds the limit (%3 MB).';tr = '""%1"" dosyasının boyutu (%2 MB)
+			           |izin verilen dosya boyutunu aşıyor (%3 MB).'"),
 			File.Name,
 			FilesOperationsInternalClientServer.FileSizePresentation(SizeInMB),
 			FilesOperationsInternalClientServer.FileSizePresentation(SizeInMBMax));
@@ -2139,7 +2166,8 @@ Function CheckCanImportFile(File, RaiseException1 = True, FilesWithErrors = Unde
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Uploading files with the ""%1"" extension is not allowed.
-			           |Please contact the administrator.';"),
+			           |Please contact the administrator.';tr = '""%1"" uzantılı dosyaların yüklenmesine izin verilmiyor.
+			           |Lütfen, yöneticiye başvurun.'"),
 			File.Extension);
 		
 		If RaiseException1 Then
@@ -2230,7 +2258,11 @@ Procedure FinishEditWithExtension(ExecutionParameters)
 					           |""%1"" (%2)
 					           |to the application as it does not exist in the working directory.
 					           |
-					           |Do you want to release the file?';"),
+					           |Do you want to release the file?';tr = '
+					           |""%1"" (%2)
+					           | dosyası bilgisayarda çalışma dizininde olmadığı için programa yerleştirilemedi.
+					           |
+					           |Dosya boşaltılsın mı?'"),
 					String(FileData.Ref),
 					ExecutionParameters.FullFilePath);
 			Else
@@ -2238,7 +2270,10 @@ Procedure FinishEditWithExtension(ExecutionParameters)
 					NStr("en = 'Cannot store file ""%1""
 					           |to the application as it does not exist in the working directory.
 					           |
-					           |Do you want to release the file?';"),
+					           |Do you want to release the file?';tr = '""%1""
+					           |dosyası bilgisayarda çalışma dizininde olmadığı için programa yerleştirilemedi.
+					           |
+					           |Dosya boşaltılsın mı?'"),
 					String(FileData.Ref));
 			EndIf;
 			
@@ -2258,7 +2293,8 @@ Procedure FinishEditWithExtension(ExecutionParameters)
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot store file ""%1"" to the working directory.
-				|Probably, the directory is in use by another app.';"),
+				|Probably, the directory is in use by another app.';tr = '""%1"" dosyası çalışma dizininde saklanamıyor.
+				|Dizin başka bir uygulama tarafından kullanılıyor olabilir.'"),
 			String(FileData.Ref));
 		Raise ErrorText + Chars.LF + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 	EndTry;
@@ -2380,7 +2416,10 @@ Procedure FinishEditWithExtensionAfterCheckEncrypted(ExecutionParameters)
 				NStr("en = 'Cannot store the file to the application. Reason:
 				|""%1""
 				|
-				|Do you want to retry?';"),
+				|Do you want to retry?';tr = 'Aşağıdaki nedenle bilgisayardaki dosya uygulamaya yerleştirilemedi: 
+				|""%1"". 
+				|
+				| İşlem tekrarlansın mı?'"),
 				ErrorProcessing.BriefErrorDescription(ErrorInfo));
 			
 			Notification  = New NotifyDescription("FinishEditWithExtensionAfterCheckEncryptedRepeat", ThisObject, ExecutionParameters);
@@ -2469,14 +2508,16 @@ Procedure FinishEditWithExtensionAfterDeleteFileFromWorkingDirectory(Result, Exe
 	If ExecutionParameters.ShouldShowUserNotification Then
 		If ExecutionParameters.VersionUpdated Then
 			NoteTemplate = NStr("en = 'File ""%1""
-			                             |is updated and released.';");
+			                             |is updated and released.';tr = 'Dosya ""%1""
+			                             | güncellendi ve kilidi açıldı.'");
 		Else
 			NoteTemplate = NStr("en = 'File ""%1""
-			                             |is not modified and released.';");
+			                             |is not modified and released.';tr = '""%1"" dosyası
+			                             |değiştirilmedi ve kilidi açılmadı.'");
 		EndIf;
 		
 		ShowUserNotification(
-			NStr("en = 'Editing completed';"),
+			NStr("en = 'Editing completed';tr = 'Düzenleme tamamlandı'"),
 			ExecutionParameters.FileData.URL,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NoteTemplate, String(ExecutionParameters.FileData.Ref)),
@@ -2516,12 +2557,14 @@ Procedure FinishEditWithExtensionExceptionProcessing(ErrorInfo, ExecutionParamet
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot store the ""%1"" file
 			|from the computer to the application. Reason:
-			|%2.';"),
+			|%2.';tr = 'Bilgisayardaki ""%1"" dosyası 
+			|uygulamada saklanamıyor. Nedeni:
+			|%2.'"),
 		String(ExecutionParameters.FileData.Ref),
 		ErrorProcessing.DetailErrorDescription(ErrorInfo));
 	EventLogClient.AddMessageForEventLog(EventLogEvent(),
 		"Warning", MessageText,, True);
-	QueryText = MessageText + Chars.LF + Chars.LF + NStr("en = 'Retry the operation?';");
+	QueryText = MessageText + Chars.LF + Chars.LF + NStr("en = 'Retry the operation?';tr = 'İşlem tekrarlansın mı?'");
 	Handler = New NotifyDescription("FinishEditWithExtensionAfterRespondQuestionRepeat", 
 		ThisObject, ExecutionParameters);
 	ShowQueryBox(Handler, QueryText, QuestionDialogMode.RetryCancel);
@@ -2700,8 +2743,8 @@ Procedure FinishEditWithoutExtensionAfterImportFile(Put, Address, SelectedFileNa
 	// SuggestFileSystemExtensionInstallationNow() is not required, because everything is done in the memory via BinaryData
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';"));
-	DataDetails.Insert("DataTitle",     NStr("en = 'File';"));
+	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';tr = 'Dosya şifreleme'"));
+	DataDetails.Insert("DataTitle",     NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data",              Address);
 	DataDetails.Insert("Presentation",       ExecutionParameters.ObjectRef);
 	DataDetails.Insert("CertificatesSet",   ExecutionParameters.ObjectRef);
@@ -2766,14 +2809,16 @@ Procedure FinishEditWithoutExtensionAfterEncryptFile(DataDetails, ExecutionParam
 	If ExecutionParameters.ShouldShowUserNotification Then
 		If Result.Success Then
 			NoteTemplate = NStr("en = 'File ""%1""
-			                             |is updated and released.';");
+			                             |is updated and released.';tr = '""%1"" dosyası
+			                             |güncellendi ve kilidi açıldı.'");
 		Else
 			NoteTemplate = NStr("en = 'File ""%1""
-			                             |is not modified and released.';");
+			                             |is not modified and released.';tr = '""%1"" dosyası
+			                             |değiştirilmedi ve kilidi açılmadı.'");
 		EndIf;
 		
 		ShowUserNotification(
-			NStr("en = 'Editing completed';"),
+			NStr("en = 'Editing completed';tr = 'Düzenleme tamamlandı'"),
 			ExecutionParameters.FileData.URL,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NoteTemplate, String(ExecutionParameters.FileData.Ref)),
@@ -2810,7 +2855,11 @@ Procedure FinishEditExceptionHandler(ErrorInfo, ExecutionParameters)
 		           |from the computer to the application. Reason:
 		           |""%2"".
 		           |
-		           |Do you want to retry?';"),
+		           |Do you want to retry?';tr = 'Bilgisayardaki ""%1"" dosyası 
+		           |uygulamada saklanamıyor. Nedeni:
+		           |""%2"".
+		           |
+		           |Yeniden denemek ister misiniz?'"),
 		String(ExecutionParameters.ObjectRef),
 		ErrorProcessing.BriefErrorDescription(ErrorInfo));
 	
@@ -2863,7 +2912,7 @@ Procedure UpdateFromFileOnHardDrive(ResultHandler, FileData, FormIdentifier,
 		ChoicePath = MyDocumentsDirectory();
 	EndIf;
 	
-	Dialog.Title                   = NStr("en = 'Select file';");
+	Dialog.Title                   = NStr("en = 'Select file';tr = 'Dosya seç'");
 	Dialog.Preview     = False;
 	Dialog.CheckFileExist = False;
 	Dialog.Multiselect          = False;
@@ -2892,12 +2941,12 @@ Procedure UpdateFromFileOnHardDrive(ResultHandler, FileData, FormIdentifier,
 		EndIf;
 		
 		If ValueIsFilled(EncryptedFilesExtension) Then
-			Filter = NStr("en = 'File (*.%1)|*.%1|Encrypted file (*.%2)|*.%2';") + "|"
-					+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+			Filter = NStr("en = 'File (*.%1)|*.%1|Encrypted file (*.%2)|*.%2';tr = 'Dosya (*.%1)|*.%1|Şifreli dosya (*.%2)|*.%2'") + "|"
+					+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 			Dialog.Filter = StringFunctionsClientServer.SubstituteParametersToString(Filter, FileData.Extension, EncryptedFilesExtension);
 		Else
-			Filter = NStr("en = 'All files (%1)|%1';") + "|"
-					+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+			Filter = NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'") + "|"
+					+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 			Dialog.Filter = StringFunctionsClientServer.SubstituteParametersToString(Filter, FileData.Extension);
 		EndIf;
 		
@@ -2917,7 +2966,7 @@ Procedure UpdateFromFileOnHardDrive(ResultHandler, FileData, FormIdentifier,
 		And FileOnHardDrive.Size() > FileAddingOptions.MaximumSize*1024*1024 Then
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The file size exceeds %1 MB.';"), FileAddingOptions.MaximumSize);
+			NStr("en = 'The file size exceeds %1 MB.';tr = 'Dosya boyutu %1 Mb aşıyor.'"), FileAddingOptions.MaximumSize);
 		ReturnResultAfterShowWarning(ResultHandler, ErrorText, False);
 		Return;
 		
@@ -3002,8 +3051,8 @@ Procedure UpdateFromFileOnHardDriveBeforeDecryption(Files, ExecutionParameters) 
 	EndIf;
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';"));
-	DataDetails.Insert("DataTitle",       NStr("en = 'File';"));
+	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+	DataDetails.Insert("DataTitle",       NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data",                Files[0].Location);
 	DataDetails.Insert("Presentation",         ExecutionParameters.FileData.Ref);
 	DataDetails.Insert("EncryptionCertificates", New Array);
@@ -3076,7 +3125,13 @@ Procedure UpdateFromFileOnHardDriveFollowUp(ExecutionParameters)
 			| the file to be imported was modified on %2,
 			| the file in the application was modified on %3.
 			|
-			|Do you want to replace the file with the older version from the device?';");
+			|Do you want to replace the file with the older version from the device?';tr = '""%1"" 
+			| cihazından yüklenen dosyanın düzenleme tarihi şu programdaki dosyanın düzenleme tarihinden daha erken:
+			|
+			|%2yüklenen dosyaya değişiklik girildi;
+			|%3programdaki dosyaya değişiklik girildi.
+			|
+			|Dosya cihazdaki daha önceki sürümle değiştirilsin mi?'");
 #Else
 		QuestionTextTemplate = NStr("en = 'File ""%1"" to be imported from the computer 
 			|was modified earlier than the file in the application:
@@ -3084,7 +3139,13 @@ Procedure UpdateFromFileOnHardDriveFollowUp(ExecutionParameters)
 			| the file to be imported was modified on %2,
 			| the file in the application was modified on %3.
 			|
-			|Do you want to replace the file with the older version from the computer?';");
+			|Do you want to replace the file with the older version from the computer?';tr = '""%1"" 
+			| bilgisayardan yüklenen dosyanın düzenleme tarihi şu programdaki dosyanın düzenleme tarihinden daha erken:
+			|
+			|%2 yüklenen dosyaya değişiklik girildi;
+			|%3 programdaki dosyaya değişiklik girildi.
+			|
+			|Dosya cihazdaki daha önceki sürümle değiştirilsin mi?'");
 #EndIf
 		QueryText = StringFunctionsClientServer.SubstituteParametersToString(QuestionTextTemplate,
 			String(ExecutionParameters.FileData.Ref),
@@ -3115,7 +3176,8 @@ Procedure UpdateFromFileOnHardDriveFollowUp(ExecutionParameters)
 		Except
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'File ""%1"" is being edited.
-					|Finish editing and try again.';"),
+					|Finish editing and try again.';tr = '""%1"" dosyası düzenleme için açık.
+					|Önce düzenlemeyi tamamlayın, daha sonra işlemi tekrarlayın.'"),
 				FullFileName);
 			ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, ErrorText, Undefined);
 			Return;
@@ -3304,11 +3366,12 @@ Procedure LockFileByRefAfterInstallExtension(ExtensionInstalled, ExecutionParame
 	
 	FileData = ExecutionParameters.FileData; // See FilesOperationsInternalServerCall.FileData
 	ShowUserNotification(
-		NStr("en = 'Edit file';"),
+		NStr("en = 'Edit file';tr = 'Dosya düzenle'"),
 		ExecutionParameters.FileData.URL,
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'File ""%1""
-			           |is locked for editing.';"), String(FileData.Ref)),
+			           |is locked for editing.';tr = 'Dosya ""%1"" 
+			           | düzenlenmek üzere meşgul edildi.'"), String(FileData.Ref)),
 		PictureLib.DialogInformation);
 	
 	ChangeLockedFilesCount(1);
@@ -3377,10 +3440,10 @@ Procedure LockFilesByRefsAfterInstallExtension(ExtensionInstalled, ExecutionPara
 	EndDo;
 	
 	ShowUserNotification(
-		NStr("en = 'Lock files';"),
+		NStr("en = 'Lock files';tr = 'Dosyaları kilitle'"),
 		,
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Files (%1 out of %2) are locked for editing.';"),
+			NStr("en = 'Files (%1 out of %2) are locked for editing.';tr = 'Dosyalar (%2''den %1''i ) düzenleme için kilitlendi.'"),
 			LockedFilesCount,
 			ExecutionParameters.FilesArray.Count()),
 		PictureLib.DialogInformation);
@@ -3456,11 +3519,12 @@ Procedure EditFileByRefAfterInstallExtension(ExtensionInstalled, ExecutionParame
 	
 	FileData = ExecutionParameters.FileData; // See FilesOperationsInternalServerCall.FileData
 	
-	ShowUserNotification(NStr("en = 'Edit files';"),
+	ShowUserNotification(NStr("en = 'Edit files';tr = 'Dosya düzenle'"),
 		ExecutionParameters.FileData.URL,
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'File ""%1""
-			           |is locked for editing.';"), String(FileData.Ref)),
+			           |is locked for editing.';tr = 'Dosya ""%1"" 
+			           | düzenlenmek üzere meşgul edildi.'"), String(FileData.Ref)),
 			PictureLib.DialogInformation);
 	
 	If ExecutionParameters.FileData.Version.IsEmpty() Then 
@@ -3722,7 +3786,10 @@ Procedure UnlockFilesByRefsAfterInstallExtension(ExtensionInstalled, ExecutionPa
 		NStr("en = 'If you cancel editing,
 		           |you will lose the changes.
 		           |
-		           |Do you want to continue?';"),
+		           |Do you want to continue?';tr = 'Dosya düzenlemenin
+		           | iptali, değişikliklerinizi kaybetmenize neden olabilir. 
+		           |
+		           |Devam etmek istiyor musunuz?'"),
 		QuestionDialogMode.YesNo,
 		,
 		DialogReturnCode.No);
@@ -3757,9 +3824,9 @@ Procedure UnlockFilesByRefsAfterRespondQuestionCancelEdit(Response, ExecutionPar
 	EndDo;
 	
 	ShowUserNotification(
-		NStr("en = 'Cancel file editing';"),,
+		NStr("en = 'Cancel file editing';tr = 'Dosya düzenlemeyi iptal et'"),,
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'File editing canceled (%1 out of %2).';"),
+			NStr("en = 'File editing canceled (%1 out of %2).';tr = 'Dosya düzenleme iptal edildi (%1 / %2).'"),
 			ExecutionParameters.FilesData.Count(),
 			ExecutionParameters.FilesArray.Count()),
 		PictureLib.DialogInformation);
@@ -3857,7 +3924,11 @@ Procedure UnlockFileAfterInstallExtension(ExtensionInstalled, ExecutionParameter
 			           |""%1"",
 			           |you might lose the changes.
 			           |
-			           |Do you want to continue?';"),
+			           |Do you want to continue?';tr = '
+			           |""%1""
+			           |dosya düzenlemesinin iptali değişikliklerin kaybolmasına yol açabilir.
+			           |
+			           |Devam etmek istiyor musunuz?'"),
 			String(ExecutionParameters.ObjectRef));
 		ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.No);
 		Return;
@@ -3893,7 +3964,7 @@ Procedure UnlockFileAfterRespondQuestionCancelEdit(Response, ExecutionParameters
 		
 		If Not ExecutionParameters.DontAskQuestion Then
 			ShowUserNotification(
-				NStr("en = 'File released';"),
+				NStr("en = 'File released';tr = 'Dosya bırakıldı'"),
 				ExecutionParameters.FileData.URL,
 				ExecutionParameters.FileData.FullVersionDescription,
 				PictureLib.DialogInformation);
@@ -3972,7 +4043,12 @@ Procedure SaveFileChangesWithExtension(ExecutionParameters)
 				           |to the application as it does not exist on the computer:
 				           |%2.
 				           |
-				           |Do you want to release the file?';"),
+				           |Do you want to release the file?';tr = '""%1"" dosyası 
+						   |bilgisayarda bulunmadığından 
+						   |uygulamada saklanamıyor:
+						   |%2.
+						   |
+						   |Dosya bırakılsın mı?'"),
 				String(FileData.Ref),
 				ExecutionParameters.FullFilePath);
 		Else
@@ -3981,7 +4057,11 @@ Procedure SaveFileChangesWithExtension(ExecutionParameters)
 						   |the ""%1"" file
 				           |to the application as it does not exist on the computer:
 				           |
-				           |Do you want to release the file?';"),
+				           |Do you want to release the file?';tr = '""%1"" dosyası 
+						   |bilgisayarda bulunmadığından 
+						   |uygulamada saklanamıyor:
+						   |
+						   |Dosya bırakılsın mı?'"),
 				String(FileData.Ref));
 		EndIf;
 		
@@ -4152,14 +4232,14 @@ Procedure SaveFileChangesWithExtensionAfterCheckEncrypted(ExecutionParameters)
 	If ExecutionParameters.ShouldShowUserNotification Then
 		If VersionUpdated Then
 			ShowUserNotification(
-				NStr("en = 'New version saved';"),
+				NStr("en = 'New version saved';tr = 'Yeni sürüm kaydedildi'"),
 				ExecutionParameters.FileData.URL,
 				ExecutionParameters.FileData.FullVersionDescription,
 				PictureLib.DialogInformation);
 		Else
 			ShowUserNotification(
-				NStr("en = 'New version not saved';"),,
-				NStr("en = 'The file is not changed.';"),
+				NStr("en = 'New version not saved';tr = 'Yeni sürüm kaydedilmedi'"),,
+				NStr("en = 'The file is not changed.';tr = 'Dosya değişmedi'"),
 				PictureLib.DialogInformation);
 			Handler = New NotifyDescription("SaveFileChangesWithExtensionAfterShowNotification", ThisObject, ExecutionParameters);
 			ShowInformationFileWasNotModified(Handler);
@@ -4341,8 +4421,8 @@ Procedure SaveFileChangesWithoutExtensionAfterImportFile(Put, Address, SelectedF
 	// SuggestFileSystemExtensionInstallationNow() is not required, because everything is done in the memory via BinaryData
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';"));
-	DataDetails.Insert("DataTitle",     NStr("en = 'File';"));
+	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';tr = 'Dosya şifreleme'"));
+	DataDetails.Insert("DataTitle",     NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data",              Address);
 	DataDetails.Insert("Presentation",       ExecutionParameters.ObjectRef);
 	DataDetails.Insert("CertificatesSet",   ExecutionParameters.ObjectRef);
@@ -4391,7 +4471,7 @@ Procedure SaveFileChangesWithoutExtensionAfterEncryptFile(DataDetails, Execution
 	ExecutionParameters.FileData = Result.FileData;
 	If ExecutionParameters.ShouldShowUserNotification Then
 		ShowUserNotification(
-			NStr("en = 'The new version is saved.';"),
+			NStr("en = 'The new version is saved.';tr = 'Yeni sürüm kaydedildi'"),
 			ExecutionParameters.FileData.URL,
 			ExecutionParameters.FileData.FullVersionDescription,
 			PictureLib.DialogInformation);
@@ -4418,8 +4498,8 @@ Procedure EncryptFileBeforePutFileInFileStorage(ExecutionParameters)
 	// SuggestFileSystemExtensionInstallationNow() is not required, because everything is done in the memory via BinaryData
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';"));
-	DataDetails.Insert("DataTitle",     NStr("en = 'File';"));
+	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';tr = 'Dosya şifreleme'"));
+	DataDetails.Insert("DataTitle",     NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data",              ExecutionParameters.FullFilePath);
 	DataDetails.Insert("Presentation",       ExecutionParameters.ObjectRef);
 	DataDetails.Insert("CertificatesSet",   ExecutionParameters.ObjectRef);
@@ -4464,7 +4544,8 @@ Function CertificatesNotSpecified(CertificatesArray)
 	If CertificatesArray.Count() = 0 Then
 		ShowMessageBox(,
 			NStr("en = 'Certificates of the encrypted file are not specified.
-			           |Please decrypt the file and then encrypt it again.';"));
+			           |Please decrypt the file and then encrypt it again.';tr = 'Şifrelenmiş dosya belirtilen sertifikalara sahip değil. 
+			           |Dosyayı çöz ve tekrar şifrele.'"));
 		
 		Return True;
 	EndIf;
@@ -4534,11 +4615,12 @@ Procedure LockFileAfterInstallExtension(ExtensionInstalled, ExecutionParameters)
 	EndIf;
 	
 	ShowUserNotification(
-		NStr("en = 'Edit files';"),
+		NStr("en = 'Edit files';tr = 'Dosya düzenle'"),
 		ExecutionParameters.FileData.URL,
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'File ""%1""
-			           |is locked for editing.';"),
+			           |is locked for editing.';tr = 'Dosya ""%1"" 
+			           | düzenlenmek üzere meşgul edildi.'"),
 			String(ExecutionParameters.FileData.Ref)),
 		PictureLib.DialogInformation);
 	
@@ -4583,7 +4665,7 @@ Procedure AddFilesCompletion(AttachedFile, AdditionalParameters) Export
 	If OpenCardAfterCreateFromFile Then
 		
 		ShowUserNotification(
-			NStr("en = 'Create';"),
+			NStr("en = 'Create';tr = 'Oluştur'"),
 			GetURL(AttachedFile),
 			AttachedFile,
 			PictureLib.DialogInformation);
@@ -4615,7 +4697,11 @@ Procedure DeleteFileWithoutConfirmation(FullFileName)
 					|""%1"".
 					|It might be locked by another application.
 					|
-					|%2';"),
+					|%2';tr = 'Dosya çalışma dizininden silinemedi:
+					|""%1"". 
+					|Başka bir uygulama tarafından kullanılıyor olabilir.
+					|
+					|%2'"),
 				FullFileName, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			EventLogClient.AddMessageForEventLog(EventLogEvent(),
 				"Warning", MessageText,, True);
@@ -4682,7 +4768,7 @@ Procedure GetVersionFileToLocalFilesCache(ResultHandler, FileData, ForReading,
 	// Receiving a file path in the working directory and checking it for uniqueness.
 	If ExecutionParameters.FullFileName = "" Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Cannot get the file from the application to the working directory.';"));
+			NStr("en = 'Cannot get the file from the application to the working directory.';tr = 'Bilgisayarda çalışma dizinindeki uygulamadan dosya alınamıyor.'"));
 		ReturnResult(ResultHandler, ExecutionParameters);
 		Return;
 	EndIf;
@@ -4780,7 +4866,7 @@ Function CanAccessWorkingDirectory(OwnerWorkingDirectory, Owner)
 		// no exception is thrown (however, the directory will be unavailable).
 		InformationAboutTheCatalog = New File(OwnerWorkingDirectory);
 		If Not InformationAboutTheCatalog.Exists() Then
-			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The directory of the %1 file folder does not exist.';"), 
+			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The directory of the %1 file folder does not exist.';tr = '%1 dosya klasörünün dizini mevcut değil.'"), 
 				Owner);
 		EndIf;
 		CreateDirectory(OwnerWorkingDirectory);
@@ -4791,7 +4877,7 @@ Function CanAccessWorkingDirectory(OwnerWorkingDirectory, Owner)
 	Except
 		// Insufficient rights to create a directory, or this path does not exist.
 		// Set the default settings.
-		EventLogMessage = NStr("en = 'Working directory %1 for file folder %2 is not found or there is no save permission. Default settings are restored.';");
+		EventLogMessage = NStr("en = 'Working directory %1 for file folder %2 is not found or there is no save permission. Default settings are restored.';tr = '%2 dosya klasörü için %1 çalışma dizini bulunamadı veya kaydetme izni yok. Varsayılan ayarlar geri yüklendi.'");
 		EventLogMessage = StringFunctionsClientServer.SubstituteParametersToString(EventLogMessage, 
 			OwnerWorkingDirectory, Owner);
 		OwnerWorkingDirectory = "";
@@ -4799,7 +4885,7 @@ Function CanAccessWorkingDirectory(OwnerWorkingDirectory, Owner)
 		FilesOperationsInternalServerCall.CleanUpWorkingDirectory(Owner);
 		
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'File management';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'File management';tr = 'Dosyaları yönet'", CommonClient.DefaultLanguageCode()),
 			"Warning",
 			EventLogMessage,
 			CommonClient.SessionDate(),
@@ -4835,7 +4921,7 @@ Procedure GetAttachedFile(Notification, AttachedFile, FormIdentifier, Additional
 	EndIf;
 	
 	Context.Insert("ErrorTitle",
-		NStr("en = 'Cannot get the file from the application. Reason:';") + Chars.LF);
+		NStr("en = 'Cannot get the file from the application. Reason:';tr = 'Dosya, aşağıdakiler nedeniyle dosya bilgisayara alınamıyor:'") + Chars.LF);
 	
 	If Context.ForEditing
 	   And Context.FileData.BeingEditedBy <> UsersClient.AuthorizedUser() Then
@@ -4844,7 +4930,7 @@ Procedure GetAttachedFile(Notification, AttachedFile, FormIdentifier, Additional
 		Result.Insert("FullFileName", "");
 		Result.Insert("ErrorDescription", Context.ErrorTitle 
 			+ StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The file is locked by %1.';"), String(Context.FileData.BeingEditedBy)));
+				NStr("en = 'The file is locked by %1.';tr = 'Dosya zaten %1 tarafından düzenleniyor.'"), String(Context.FileData.BeingEditedBy)));
 		ExecuteNotifyProcessing(Context.Notification, Result);
 		Return;
 	EndIf;
@@ -4862,7 +4948,7 @@ Procedure GetAttachedFileAfterAttachExtension(ExtensionAttached, Context) Export
 		Result = New Structure;
 		Result.Insert("FullFileName", "");
 		Result.Insert("ErrorDescription", Context.ErrorTitle
-			+ NStr("en = '1C:Enterprise Extension is not installed.';"));
+			+ NStr("en = '1C:Enterprise Extension is not installed.';tr = '1C:Enterprise Extension ile çalışma için uzantı yüklenmedi.'"));
 		ExecuteNotifyProcessing(Context.Notification, Result);
 		Return;
 	EndIf;
@@ -4893,7 +4979,7 @@ Procedure GetAttachedFileAfterGetWorkingDirectory(Result, Context) Export
 	Action.Insert("Action", "CreateDirectory");
 	Action.Insert("File", Context.FileDirectory);
 	Action.Insert("ErrorTitle", Context.ErrorTitle
-		+ NStr("en = 'Cannot create the directory. Reason:';"));
+		+ NStr("en = 'Cannot create the directory. Reason:';tr = 'Dizin aşağıdakilerden dolayı oluşturulmadı:'"));
 	FileOperations.Add(Action);
 	
 	Action = New Structure;
@@ -4901,7 +4987,7 @@ Procedure GetAttachedFileAfterGetWorkingDirectory(Result, Context) Export
 	Action.Insert("File",  Context.FullFileName);
 	Action.Insert("Properties", New Structure("ReadOnly", False));
 	Action.Insert("ErrorTitle", Context.ErrorTitle
-		+ NStr("en = 'Cannot change the ""Read-only"" property. Reason:';"));
+		+ NStr("en = 'Cannot change the ""Read-only"" property. Reason:';tr = 'Dosyanın ""Yalnızca görüntüle"" özelliğini değiştiremezsiniz:'"));
 	FileOperations.Add(Action);
 	
 	Action = New Structure;
@@ -4920,7 +5006,7 @@ Procedure GetAttachedFileAfterGetWorkingDirectory(Result, Context) Export
 	Action.Insert("File",  Context.FullFileName);
 	Action.Insert("Properties", FileProperties);
 	Action.Insert("ErrorTitle", Context.ErrorTitle
-		+ NStr("en = 'Cannot set the file properties. Reason:';"));
+		+ NStr("en = 'Cannot set the file properties. Reason:';tr = 'Dosya özellikleri şu sebeple ayarlanamıyor:'"));
 	FileOperations.Add(Action);
 	
 	ProcessFile(New NotifyDescription(
@@ -4968,7 +5054,7 @@ Procedure PutAttachedFile(Notification, AttachedFile, FormIdentifier, Additional
 	EndIf;
 	
 	Context.Insert("ErrorTitle",
-		NStr("en = 'Cannot store the local file to the application. Reason:';") + Chars.LF);
+		NStr("en = 'Cannot store the local file to the application. Reason:';tr = 'Bir dosya, aşağıdakilerden dolayı dosya depolama birimine yerleştirilemiyor:'") + Chars.LF);
 	
 	FileSystemClient.AttachFileOperationsExtension(New NotifyDescription(
 		"PutAttachedFileAfterAttachExtension", ThisObject, Context));
@@ -4981,7 +5067,7 @@ Procedure PutAttachedFileAfterAttachExtension(ExtensionAttached, Context) Export
 	If Not ExtensionAttached Then
 		Result = New Structure;
 		Result.Insert("ErrorDescription", Context.ErrorTitle
-			+ NStr("en = '1C:Enterprise Extension is not installed.';"));
+			+ NStr("en = '1C:Enterprise Extension is not installed.';tr = '1C:Enterprise Extension ile çalışma için uzantı yüklenmedi.'"));
 		ExecuteNotifyProcessing(Context.Notification, Result);
 		Return;
 	EndIf;
@@ -5044,7 +5130,7 @@ Procedure PlaceTheAttachedFileAfterReceivingTheWorkingDirectoryContinued(FileExi
 		Action.Insert("Action", "CreateDirectory");
 		Action.Insert("File", Context.FileDirectory);
 		Action.Insert("ErrorTitle", Context.ErrorTitle
-			+ NStr("en = 'Cannot create the directory. Reason:';"));
+			+ NStr("en = 'Cannot create the directory. Reason:';tr = 'Dizin aşağıdakilerden dolayı oluşturulmadı:'"));
 		FileOperations.Add(Action);
 		
 		Action = New Structure;
@@ -5052,7 +5138,7 @@ Procedure PlaceTheAttachedFileAfterReceivingTheWorkingDirectoryContinued(FileExi
 		Action.Insert("File",  Context.FullFileName);
 		Action.Insert("Properties", New Structure("ReadOnly", False));
 		Action.Insert("ErrorTitle", Context.ErrorTitle
-			+ NStr("en = 'Cannot change the ""Read-only"" property. Reason:';"));
+			+ NStr("en = 'Cannot change the ""Read-only"" property. Reason:';tr = 'Dosyanın ""Yalnızca görüntüle"" özelliğini değiştiremezsiniz:'"));
 		FileOperations.Add(Action);
 		
 		Action = New Structure;
@@ -5060,7 +5146,7 @@ Procedure PlaceTheAttachedFileAfterReceivingTheWorkingDirectoryContinued(FileExi
 		Action.Insert("File",     Context.FullFileName);
 		Action.Insert("Source", Context.FullNameOfFileToPut);
 		Action.Insert("ErrorTitle", Context.ErrorTitle
-			+ NStr("en = 'Cannot copy the file. Reason:';"));
+			+ NStr("en = 'Cannot copy the file. Reason:';tr = 'Dosya aşağıdaki nedeniyle kopyalanmadı:'"));
 		FileOperations.Add(Action);
 		AddCall(Calls, "BeginCopyingFile", Context.FullNameOfFileToPut, Context.FullFileName, Undefined, Undefined);
 	EndIf;
@@ -5070,7 +5156,7 @@ Procedure PlaceTheAttachedFileAfterReceivingTheWorkingDirectoryContinued(FileExi
 	Action.Insert("File",  Context.FullFileName);
 	Action.Insert("Properties", New Structure("ReadOnly", True));
 	Action.Insert("ErrorTitle", Context.ErrorTitle
-		+ NStr("en = 'Cannot change the ""Read-only"" property. Reason:';"));
+		+ NStr("en = 'Cannot change the ""Read-only"" property. Reason:';tr = 'Dosyanın ""Yalnızca görüntüle"" özelliğini değiştiremezsiniz:'"));
 	FileOperations.Add(Action);
 	
 	Context.Insert("FileProperties", New Structure);
@@ -5083,7 +5169,7 @@ Procedure PlaceTheAttachedFileAfterReceivingTheWorkingDirectoryContinued(FileExi
 	Action.Insert("File",  Context.FullFileName);
 	Action.Insert("Properties", Context.FileProperties);
 	Action.Insert("ErrorTitle", Context.ErrorTitle
-		+ NStr("en = 'Cannot get the file properties. Reason:';"));
+		+ NStr("en = 'Cannot get the file properties. Reason:';tr = 'Aşağıdakilerden dolayı dosya özellikleri alınmadı:'"));
 	FileOperations.Add(Action);
 	
 	Context.Insert("PlacementAction", New Structure);
@@ -5199,11 +5285,12 @@ Procedure FileDirectory(ResultHandler, FileData) Export
 	Handler = New NotifyDescription("FileDirectoryAfterRespondQuestionGetFile", ThisObject, HandlerParameters);
 	
 	QuestionButtons = New ValueList;
-	QuestionButtons.Add(DialogReturnCode.Yes, NStr("en = 'Save and open the directory';"));
-	QuestionButtons.Add(DialogReturnCode.No, NStr("en = 'Cancel';"));
+	QuestionButtons.Add(DialogReturnCode.Yes, NStr("en = 'Save and open the directory';tr = 'Dizini kaydet ve aç'"));
+	QuestionButtons.Add(DialogReturnCode.No, NStr("en = 'Cancel';tr = 'İptal et'"));
 	ShowQueryBox(Handler,
 		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The file directory does not exist. Probably file ""%1"" was never opened on this computer.
-			|Do you want to save a local file copy and open its directory?';"),
+			|Do you want to save a local file copy and open its directory?';tr = 'Dosya dizini yok. Belki de bu bilgisayarda ""%1"" dosyası henüz açılmamıştır. 
+			|Dosya bilgisayara kaydedilsin ve dizini açılsın mı?'"),
 			FileName),
 		QuestionButtons);
 	
@@ -5349,7 +5436,7 @@ Procedure ClearSpaceInWorkingDirectory(ResultHandler, VersionAttributes)
 	// The amount of free disk space cannot be determined in the web client.
 	ReturnResultAfterShowWarning(
 		ResultHandler,
-		NStr("en = 'You can clear the working directory only in the thin client.';"),
+		NStr("en = 'You can clear the working directory only in the thin client.';tr = 'Çalışma dizininin temizlenmesi sadece ince istemcide yapılabilir.'"),
 		Undefined);
 	Return;
 #EndIf
@@ -5391,7 +5478,7 @@ EndProcedure
 Procedure CleanUpWorkingDirectory(ResultHandler, WorkingDirectoryFilesSize, SizeOfFileToAdd, ClearEverything) Export
 	
 #If WebClient Then
-	ReturnResultAfterShowWarning(ResultHandler, NStr("en = 'You can clear the working directory only in the thin client.';"), Undefined);
+	ReturnResultAfterShowWarning(ResultHandler, NStr("en = 'You can clear the working directory only in the thin client.';tr = 'Çalışma dizininin temizlenmesi sadece uygulamada yapılabilir (ince istemci).'"), Undefined);
 	Return;
 #EndIf
 	
@@ -5452,8 +5539,8 @@ EndProcedure
 Procedure ClearWorkingDirectoryForFileToOpen(ExecutionParameters)
 	
 	IndexOf = 0;
-	Title = NStr("en = 'Clearing working directory';");
-	Text = NStr("en = 'Please wait…';");
+	Title = NStr("en = 'Clearing working directory';tr = 'Çalışma dizininin temizlenmesi'");
+	Text = NStr("en = 'Please wait…';tr = 'Lütfen bekleyin...'");
 	Status(Title, 1, Text);
 	For Each Item In ExecutionParameters.TableOfFiles Do
 		
@@ -5572,11 +5659,12 @@ Procedure GetFromServerAndRegisterInLocalFilesCache(Val ExecutionParameters)
 					
 					MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The file path (working directory + file name) is longer than %1 characters:
-						           |%2';"),
+						           |%2';tr = 'Dosya yolu uzunluğu (çalışma dizini artı dosya adı) %1 karakterden daha uzun:
+						           |%2'"),
 						ExecutionParameters.FullPathMaxSize,
 						ExecutionParameters.FullFileName);
 					MessageText = MessageText + Chars.CR + Chars.CR
-						+ NStr("en = 'Please choose a shorter file name.';");
+						+ NStr("en = 'Please choose a shorter file name.';tr = 'Dosya adını kısaltın.'");
 					ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, 
 						MessageText, ExecutionParameters);
 					Return;
@@ -5603,7 +5691,10 @@ Procedure GetFromServerAndRegisterInLocalFilesCacheOfferSelectDirectory(Response
 		NStr("en = 'The file path (working directory + file name) is longer than %1 characters:
 		|%2
 		|
-		|Do you want to select a different main working directory?';"),
+		|Do you want to select a different main working directory?';tr = 'Dosya yolu uzunluğu %1 karakterden daha uzun:
+		|%2
+		|
+		|Farklı bir ana çalışma dizini seçilsin mi?'"),
 		ExecutionParameters.FullPathMaxSize,
 		ExecutionParameters.FullFileName);
 	Handler = New NotifyDescription("GetFromServerAndRegisterInLocalFilesCacheStartToSelectDirectory", ThisObject, ExecutionParameters);
@@ -5620,7 +5711,7 @@ Procedure GetFromServerAndRegisterInLocalFilesCacheStartToSelectDirectory(Respon
 	EndIf;
 	
 	// Selecting a new path to a working directory.
-	Title = NStr("en = 'Select another main working directory';");
+	Title = NStr("en = 'Select another main working directory';tr = 'Başka ana çalışma dizini seçin'");
 	DirectorySelected1 = ChoosePathToWorkingDirectory(ExecutionParameters.DirectoryName, Title, False);
 	If Not DirectorySelected1 Then
 		ReturnResult(ExecutionParameters.ResultHandler, ExecutionParameters);
@@ -5707,8 +5798,8 @@ Procedure GetFromServerAndRegisterInLocalFilesCacheFollowUp(ExecutionParameters)
 			ExecutionParameters.FileData.Version,, ExecutionParameters.FormIdentifier);
 		
 		DataDetails = New Structure;
-		DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';"));
-		DataDetails.Insert("DataTitle",       NStr("en = 'File';"));
+		DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+		DataDetails.Insert("DataTitle",       NStr("en = 'File';tr = 'Dosya'"));
 		DataDetails.Insert("Data",                ReturnStructure.BinaryData);
 		DataDetails.Insert("Presentation",         ExecutionParameters.FileData.Ref);
 		DataDetails.Insert("EncryptionCertificates", ExecutionParameters.FileData.Ref);
@@ -5973,7 +6064,11 @@ Procedure GetVersionFileToFolderWorkingDirectoryFollowUp(ExecutionParameters)
 				           |""%1""
 				           |that matches another file stored in the application.
 				           |
-				           |It is recommended that you rename one of the files in the application.';"),
+				           |It is recommended that you rename one of the files in the application.';tr = 'Bilgisayarın çalışma dizininde programdaki başka bir dosya ile 
+				           |eşleşen 
+				           |""%1""dosyası mevcut.
+				           |
+				           |Programdaki dosyalardan birini yeniden adlandırmanız önerilir.'"),
 				ExecutionParameters.FullFileName);
 		Else
 			WarningText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -5982,7 +6077,12 @@ Procedure GetVersionFileToFolderWorkingDirectoryFollowUp(ExecutionParameters)
 				           |that matches another file stored in the application.
 				           |
 				           |It is recommended that you select another working directory for one of the application folders.
-				           |(Two folders cannot have the same working directory.)';"),
+				           |(Two folders cannot have the same working directory.)';tr = 'Bilgisayarın çalışma dizininde programdaki başka bir dosya ile 
+				           |eşleşen 
+				           |""%1""dosyası mevcut.
+				           |
+				           |Uygulamadaki klasörlerden biri için başka çalışma dizinin belirtilmesi önerilir.
+				           | (İki klasörde aynı çalışma dizinine sahip olmamalıdır).'"),
 				ExecutionParameters.FullFileName);
 		EndIf;
 		
@@ -6082,7 +6182,7 @@ Procedure GetFromServerAndRegisterInFolderWorkingDirectory(ResultHandler, FileDa
 	// Receiving a file path in the working directory and checking it for uniqueness.
 	If ExecutionParameters.FullFileName = "" Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Cannot get the file from the application to the working directory.';"));
+			NStr("en = 'Cannot get the file from the application to the working directory.';tr = 'Bilgisayarda çalışma dizinindeki uygulamadan dosya alınamıyor.'"));
 		ReturnResult(ExecutionParameters.ResultHandler, ExecutionParameters);
 		Return;
 	EndIf;
@@ -6169,7 +6269,8 @@ Procedure CheckFullPathMaxLengthInWorkingDirectory(ResultHandler, FileData,
 	
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'The file path (working directory + file name) is longer than %1 characters:
-		           |%2';"),
+		           |%2';tr = 'Dosya yolu uzunluğu (çalışma dizini artı dosya adı) %1 karakterden daha uzun:
+		           |%2'"),
 		ExecutionParameters.FullPathMaxSize,
 		ExecutionParameters.FullFileName);
 	
@@ -6179,7 +6280,7 @@ Procedure CheckFullPathMaxLengthInWorkingDirectory(ResultHandler, FileData,
 	// If the file name + 5 exceeds 260 characters, output the message "Replace the file name with a shorter one."
 	If StrLen(ExecutionParameters.NormalFileName) > MaxFileNameLength Then
 		MessageText = MessageText + Chars.CR + Chars.CR
-			+ NStr("en = 'Please choose a shorter file name.';");
+			+ NStr("en = 'Please choose a shorter file name.';tr = 'Dosya adını kısaltın.'");
 		ReturnResultAfterShowWarning(ResultHandler, MessageText, False);
 		Return;
 	EndIf;
@@ -6188,7 +6289,7 @@ Procedure CheckFullPathMaxLengthInWorkingDirectory(ResultHandler, FileData,
 	// "Rename the directories or move the directory to a different location."
 	If StrLen(FileData.OwnerWorkingDirectory) > ExecutionParameters.FullPathMaxSize - 5 Then
 		MessageText = MessageText + Chars.CR + Chars.CR
-			+ NStr("en = 'Please rename the folders or move the current folder to another one.';");
+			+ NStr("en = 'Please rename the folders or move the current folder to another one.';tr = 'Klasör adlarını değiştirin veya bu klasörü başka bir klasöre taşıyın.'");
 		ReturnResultAfterShowWarning(ResultHandler, MessageText, False);
 		Return;
 	EndIf;
@@ -6205,7 +6306,11 @@ Procedure CheckFullPathMaxLengthInWorkingDirectorySuggestChooseDirectory(Executi
 		|%2
 		|
 		|Do you want to select a different main working directory?
-		|(The working directory content will be moved to the selected directory.)';"),
+		|(The working directory content will be moved to the selected directory.)';tr = 'Tam dosya yolu uzunluğu (çalışma dizini artı dosya adı) %1 karakterden daha uzun:
+		|%2
+		|
+		|Başka bir ana çalışma dizini seçilsin mi?
+		|(Çalışma dizininin içeriği seçilen dizine aktarılır).'"),
 		ExecutionParameters.FullPathMaxSize, ExecutionParameters.FullFileName);
 	Handler = New NotifyDescription("CheckFullPathMaxLengthInWorkingDirectoryStartChooseDirectory", ThisObject, ExecutionParameters);
 	ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo);
@@ -6221,7 +6326,7 @@ Procedure CheckFullPathMaxLengthInWorkingDirectoryStartChooseDirectory(Response,
 	EndIf;
 	
 	// Selecting a new path to a working directory.
-	Title = NStr("en = 'Select another working directory';");
+	Title = NStr("en = 'Select another working directory';tr = 'Başka bir çalışma dizini seç'");
 	DirectorySelected1 = ChoosePathToWorkingDirectory(ExecutionParameters.FileData.OwnerWorkingDirectory, Title, True);
 	If Not DirectorySelected1 Then
 		ReturnResult(ExecutionParameters.ResultHandler, False);
@@ -6285,7 +6390,11 @@ Procedure CopyDirectoryContent1(ResultHandler, Val SourceDirectory, Val Recipien
 			           |""%1"".
 			           |Probably it is locked by another application.
 			           |
-			           |Do you want to retry?';"),
+			           |Do you want to retry?';tr = '""%1""
+			           |dosyası kopyalanamadı.
+			           |Başka bir uygulama tarafından kullanılıyor olabilir.
+			           |
+			           |İşlemi tekrar yapmak istiyor musunuz?'"),
 			Result.ErrorFullFileName);
 		
 		ExecutionParameters = New Structure;
@@ -6395,7 +6504,10 @@ Procedure MoveWorkingDirectoryContent(ResultHandler, SourceDirectory, RecipientD
 			NStr("en = 'The destination working directory
 			           |""%1""
 			           |is included in the source working directory
-			           |""%2"".';"),
+			           |""%2"".';tr = 'Seçilmiş çalışma dizini 
+			           |""%1""
+			           | eski çalışma dizini kapsamındadır 
+			           |""%2"".'"),
 			RecipientDirectory,
 			SourceDirectory);
 		ReturnResultAfterShowWarning(ResultHandler, WarningText, False);
@@ -6468,7 +6580,10 @@ Procedure MoveWorkingDirectoryContentAfterSuccessAndCancelClearing(Result, Execu
 			NStr("en = 'Cannot copy files from directory
 			           |""%1""
 			           |back to directory
-			           |""%2"".';"),
+			           |""%2"".';tr = '
+			           |""%1""
+			           | dizinin içeriği 
+			           |""%2"" dizine geri kopyalanamadı.'"),
 			ExecutionParameters.RecipientDirectory,
 			ExecutionParameters.SourceDirectory);
 		ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, WarningText, False);
@@ -6520,7 +6635,11 @@ Procedure DeleteDirectoryContentStart(ExecutionParameters)
 					|""%1"".
 					|It might be locked by another application.
 					|
-					|%2';"),
+					|%2';tr = 'Dosya çalışma dizininden silinemedi:
+					|""%1"". 
+					|Başka bir uygulama tarafından kullanılıyor olabilir.
+					|
+					|%2'"),
 				Path, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			EventLogClient.AddMessageForEventLog(EventLogEvent(),
 				"Warning", MessageText,, True);
@@ -6558,7 +6677,7 @@ Procedure FilesImportAfterCheckSizes(Result, ExecutionParameters) Export
 	
 	ExecutionParameters.Insert("TotalFilesCount", Result.TotalFilesCount);
 	If ExecutionParameters.TotalFilesCount = 0 Then
-		ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, NStr("en = 'No files to add';"), Undefined);
+		ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, NStr("en = 'No files to add';tr = 'Eklenecek dosya yok'"), Undefined);
 		Return;
 	EndIf;
 	
@@ -6613,7 +6732,9 @@ Procedure FilesImportLoop(ExecutionParameters)
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Folder ""%1"" already exists.
 					           |
-					           |Do you want to continue the upload?';"),
+					           |Do you want to continue the upload?';tr = 'Klasör ""%1"" zaten var. 
+					           |
+					           |Klasör içe aktarılıyor mu?'"),
 					ExecutionParameters.FolderName);
 				Handler = New NotifyDescription("FilesImportLoopAfterRespondQuestionContinue", ThisObject, ExecutionParameters);
 				ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo);
@@ -6710,7 +6831,7 @@ Procedure FilesImportAfterLoopFollowUp(ExecutionParameters)
 	
 	If ExecutionParameters.AllFilesStructureArray.Count() > 1 Then
 		StateText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The upload is completed. Files uploaded: %1.';"), String(ExecutionParameters.AllFilesStructureArray.Count()) );
+			NStr("en = 'The upload is completed. Files uploaded: %1.';tr = 'Dosyaların içe aktarımı tamamlandı. İçe aktarılan dosya sayısı: %1'"), String(ExecutionParameters.AllFilesStructureArray.Count()) );
 		ShowUserNotification(StateText);
 	EndIf;
 	
@@ -6722,7 +6843,7 @@ Procedure FilesImportAfterLoopFollowUp(ExecutionParameters)
 		Item0 = ExecutionParameters.AllFilesStructureArray[0];
 		Ref = GetURL(Item0.File);
 		ShowUserNotification(
-			NStr("en = 'Updated:';"),
+			NStr("en = 'Updated:';tr = 'Değişiklik:'"),
 			Ref,
 			Item0.File,
 			PictureLib.DialogInformation);
@@ -6758,7 +6879,11 @@ Procedure DeleteFilesAfterAdd(AllFilesStructureArray, AllFoldersArray)
 					|""%1"".
 					|It might be locked by another application.
 					|
-					|%2';"),
+					|%2';tr = 'Programa eklendikten sonra dosya silinemedi:
+					|""%1"". 
+					|Başka bir uygulama tarafından kullanılıyor olabilir.
+					|
+					|%2'"),
 				SelectedFile.FullName, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			EventLogClient.AddMessageForEventLog(EventLogEvent(),
 				"Warning", MessageText,, True);
@@ -6823,7 +6948,9 @@ Procedure SaveAsWithExtension(ExecutionParameters)
 				Message = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The local copy of file ""%1""
 					           |was modified later than the file in the application.
-					           |The local copy might have been edited.';"),
+					           |The local copy might have been edited.';tr = 'Bilgisayardaki çalışma dizinindeki ""%1""
+					           | dosyanın değişim tarihi, uygulamadaki tarihten daha geç (yeni)dir. 
+					           |Bilgisayardaki dosya düzenlenmiş olabilir.'"),
 					String(ExecutionParameters.FileData.Ref));
 				
 				FormOpenParameters.Insert("Message", Message);
@@ -6913,8 +7040,8 @@ Procedure SaveAsWithExtensionAfterSaveModeChoice(Result, ExecutionParameters) Ex
 		ExecutionParameters.UUID);
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';"));
-	DataDetails.Insert("DataTitle",       NStr("en = 'File';"));
+	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+	DataDetails.Insert("DataTitle",       NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data",                ReturnStructure.BinaryData);
 	DataDetails.Insert("Presentation",         ExecutionParameters.FileData.Ref);
 	DataDetails.Insert("Object",                ExecutionParameters.FileData.Ref);
@@ -6980,7 +7107,7 @@ Procedure SaveAsWithExtensionAfterDecryption(DataDetails, ExecutionParameters) E
 	SelectingFile.FullFileName = NameWithExtension;
 	SelectingFile.DefaultExt = Extension;
 	Filter = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'All files (*.%1)|*.%1';"), Extension);
+		NStr("en = 'All files (*.%1)|*.%1';tr = 'Tüm dosyalar (*.%1)|*.%1'"), Extension);
 	SelectingFile.Filter = Filter;
 	SelectingFile.Directory = ExecutionParameters.ChoicePath;
 	
@@ -7030,7 +7157,7 @@ Procedure SaveAsWithExtensionAfterDecryption(DataDetails, ExecutionParameters) E
 		EndIf;
 	EndIf;
 	
-	ShowUserNotification(NStr("en = 'File saved';"), , FullFileName);
+	ShowUserNotification(NStr("en = 'File saved';tr = 'Dosya başarıyla kaydedildi'"), , FullFileName);
 	
 	ChoicePathPrevious = ExecutionParameters.ChoicePath;
 	ExecutionParameters.ChoicePath = File.Path;
@@ -7147,17 +7274,21 @@ Procedure ShowReminderBeforePutFile(ResultHandler)
 				|to commit.
 				|
 				|Please select the file from the directory
-				|that you specified when you started editing the file.';");
+				|that you specified when you started editing the file.';tr = 'Şimdi uygulamaya koymak
+				|ve düzenlemeyi tamamlamak için bir dosya seçin.
+				|
+				|Düzenlemenin başında belirttiğiniz
+				|katalogda gerekli dosyayı bulun.'");
 				
 			Buttons = New ValueList;
-			Buttons.Add("Continue", NStr("en = 'Continue';"));
-			Buttons.Add("Cancel", NStr("en = 'Cancel';"));
+			Buttons.Add("Continue", NStr("en = 'Continue';tr = 'Devam'"));
+			Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal et'"));
 			ReminderParameters = New Structure;
 			ReminderParameters.Insert("Picture", PictureLib.DialogInformation);
 			ReminderParameters.Insert("CheckBoxText",
-				NStr("en = 'Do not show this message again';"));
+				NStr("en = 'Do not show this message again';tr = 'Bu mesajı tekrar gösterme'"));
 			ReminderParameters.Insert("Title",
-				NStr("en = 'Store file';"));
+				NStr("en = 'Store file';tr = 'Dosya yerleştirme'"));
 			StandardSubsystemsClient.ShowQuestionToUser(
 				ResultHandler, ReminderText, Buttons, ReminderParameters);
 			Return;
@@ -7230,12 +7361,12 @@ Procedure CheckMaxFilesSize(ResultHandler, CheckParameters)
 		For Each File In ArrayOfTooBigFiles Do
 			BigFile = New File(File);
 			FileSizeInMB = Int(BigFile.Size() / (1024 * 1024));
-			StringText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2 MB)';"), String(File), String(FileSizeInMB));
+			StringText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2 MB)';tr = '%1(%2 MB)'"), String(File), String(FileSizeInMB));
 			TooBigFiles.Add(StringText);
 		EndDo;
 		
 		Parameters.Insert("TooBigFiles", TooBigFiles);
-		Parameters.Insert("Title", NStr("en = 'File upload warning';"));
+		Parameters.Insert("Title", NStr("en = 'File upload warning';tr = 'Dosya içe aktarma uyarısı'"));
 		
 		Handler = New NotifyDescription("CheckFileSizeLimitAfterRespondQuestion", ThisObject, ExecutionParameters);
 		OpenForm("DataProcessor.FilesOperations.Form.QuestionOnFileImport", Parameters, , , , , Handler, FormWindowOpeningMode.LockWholeInterface);
@@ -7268,15 +7399,15 @@ Procedure ShowInformationFileWasNotModified(ResultHandler)
 	
 	PersonalSettings = PersonalFilesOperationsSettings();
 	If PersonalSettings.ShowFileNotModifiedFlag Then
-		ReminderText = NStr("en = 'Cannot create a new version because the file has not been modified. The comment is discarded.';");
+		ReminderText = NStr("en = 'Cannot create a new version because the file has not been modified. The comment is discarded.';tr = 'Dosya değiştirilmediğinden yeni sürüm oluşturulmadı. Yorum silindi.'");
 		Buttons = QuestionDialogMode.OK;
 		ReminderParameters = New Structure;
 		ReminderParameters.Insert("LockWholeInterface", True);
 		ReminderParameters.Insert("Picture", PictureLib.DialogInformation);
 		ReminderParameters.Insert("CheckBoxText",
-			NStr("en = 'Do not show this message again';"));
+			NStr("en = 'Do not show this message again';tr = 'Bu mesajı tekrar gösterme'"));
 		ReminderParameters.Insert("Title",
-			NStr("en = 'Information';"));
+			NStr("en = 'Information';tr = 'Bilgi'"));
 		StandardSubsystemsClient.ShowQuestionToUser(
 			ResultHandler, ReminderText, Buttons, ReminderParameters);
 	Else
@@ -7352,9 +7483,9 @@ Procedure FinishEditByRefsAfterInstallExtension(ExtensionInstalled, ExecutionPar
 		EndIf;
 	EndDo;
 	
-	ShowUserNotification(NStr("en = 'Commit files';"),,
+	ShowUserNotification(NStr("en = 'Commit files';tr = 'Dosya düzenlemeyi bitir'"),,
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Commit files (%1 of %2).';"),
+			NStr("en = 'Commit files (%1 of %2).';tr = 'Dosya düzenleme tamamlandı (%1 / %2).'"),
 			ExecutionParameters.FilesData.Count(),
 			ExecutionParameters.FilesArray.Count()),
 			PictureLib.DialogInformation);
@@ -7401,7 +7532,7 @@ Procedure AddFilesWithDrag(Val FileOwner, Val FormIdentifier, Val FileNamesArray
 		AttachedFile = AttachedFilesArray[0];
 		
 		ShowUserNotification(
-			NStr("en = 'Create';"),
+			NStr("en = 'Create';tr = 'Oluştur'"),
 			GetURL(AttachedFile),
 			AttachedFile,
 			PictureLib.DialogInformation);
@@ -7685,8 +7816,8 @@ Procedure OpenFileWithoutExtension(Notification, FileData, FormIdentifier,
 			FileData.Version,, FormIdentifier);
 		
 		DataDetails = New Structure;
-		DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';"));
-		DataDetails.Insert("DataTitle",       NStr("en = 'File';"));
+		DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+		DataDetails.Insert("DataTitle",       NStr("en = 'File';tr = 'Dosya'"));
 		DataDetails.Insert("Data",                ReturnStructure.BinaryData);
 		DataDetails.Insert("Presentation",         FileData.Ref);
 		DataDetails.Insert("Object",                FileData.Ref);
@@ -7872,14 +8003,14 @@ Procedure Encrypt(ResultHandler, FileData, UUID) Export
 	ExecutionParameters.Insert("ThumbprintsArray", New Array);
 	
 	If ExecutionParameters.FileData.Encrypted Then
-		WarningText = NStr("en = 'File ""%1"" is already encrypted.';");
+		WarningText = NStr("en = 'File ""%1"" is already encrypted.';tr = '""%1"" Dosyası zaten şifrelenmiş.'");
 		WarningText = StrReplace(WarningText, "%1", String(ExecutionParameters.FileData.Ref));
 		ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, WarningText, ExecutionParameters);
 		Return;
 	EndIf;
 	
 	If ValueIsFilled(ExecutionParameters.FileData.BeingEditedBy) Then
-		WarningText = NStr("en = 'Cannot encrypt the file because it is locked.';");
+		WarningText = NStr("en = 'Cannot encrypt the file because it is locked.';tr = 'Kilitli dosya şifrelenemiyor.'");
 		ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, WarningText, ExecutionParameters);
 		Return;
 	EndIf;
@@ -7903,7 +8034,7 @@ Procedure Encrypt(ResultHandler, FileData, UUID) Export
 	FilePresentation = String(ExecutionParameters.FileData.Ref);
 	If ExecutionParameters.FileData.VersionsCount > 1 Then
 		FilePresentation = FilePresentation + " (" + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Versions: %1';"), ExecutionParameters.FileData.VersionsCount) + ")";
+			NStr("en = 'Versions: %1';tr = 'Sürümler: %1'"), ExecutionParameters.FileData.VersionsCount) + ")";
 	EndIf;
 	PresentationsList = New ValueList;
 	PresentationsList.Add(ExecutionParameters.FileData.Ref, FilePresentation);
@@ -7927,10 +8058,10 @@ Procedure Encrypt(ResultHandler, FileData, UUID) Export
 	EndDo;
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';"));
-	DataDetails.Insert("DataTitle",     NStr("en = 'File';"));
+	DataDetails.Insert("Operation",            NStr("en = 'Encrypt file';tr = 'Dosya şifreleme'"));
+	DataDetails.Insert("DataTitle",     NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("DataSet",         DataSet);
-	DataDetails.Insert("SetPresentation", NStr("en = 'Files (%1)';"));
+	DataDetails.Insert("SetPresentation", NStr("en = 'Files (%1)';tr = 'Dosyalar (%1)'"));
 	DataDetails.Insert("PresentationsList", PresentationsList);
 	DataDetails.Insert("NotifyOnCompletion", False);
 	
@@ -8028,7 +8159,7 @@ Procedure Decrypt(ResultHandler, FileRef, UUID, FileData) Export
 	FilePresentation = String(FileData.Ref);
 	If FileData.VersionsCount > 1 Then
 		FilePresentation = FilePresentation + " (" + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Versions: %1';"), FileData.VersionsCount) + ")";
+			NStr("en = 'Versions: %1';tr = 'Sürümler: %1'"), FileData.VersionsCount) + ")";
 	EndIf;
 	PresentationsList = New ValueList;
 	PresentationsList.Add(FileData.Ref, FilePresentation);
@@ -8055,10 +8186,10 @@ Procedure Decrypt(ResultHandler, FileRef, UUID, FileData) Export
 	EndDo;
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';"));
-	DataDetails.Insert("DataTitle",       NStr("en = 'File';"));
+	DataDetails.Insert("Operation",              NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+	DataDetails.Insert("DataTitle",       NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("DataSet",           DataSet);
-	DataDetails.Insert("SetPresentation",   NStr("en = 'Files (%1)';"));
+	DataDetails.Insert("SetPresentation",   NStr("en = 'Files (%1)';tr = 'Dosyalar (%1)'"));
 	DataDetails.Insert("PresentationsList",   PresentationsList);
 	DataDetails.Insert("EncryptionCertificates", EncryptionCertificates);
 	DataDetails.Insert("NotifyOnCompletion",   False);
@@ -8169,7 +8300,7 @@ Procedure AppendFile(
 		Or TypeOf(AddingOptions) = Type("Boolean") Then
 		
 		ExecutionParameters.Insert("MaximumSize", 0);
-		ExecutionParameters.Insert("SelectionDialogFilter",  StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask()));
+		ExecutionParameters.Insert("SelectionDialogFilter",  StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask()));
 		ExecutionParameters.Insert("NotOpenCardAfterCreateFromFile", ?(AddingOptions = Undefined, False, AddingOptions));
 		
 	Else
@@ -8307,9 +8438,9 @@ Procedure AddFromFileSystemWithoutFileSystemExtensionAfterImportFile(Put, Addres
 	
 	PathStructure = CommonClientServer.ParseFullFileName(SelectedFileName);
 	If IsBlankString(PathStructure.Extension) Then
-		QueryText = NStr("en = 'Select a file with an extension.';");
+		QueryText = NStr("en = 'Select a file with an extension.';tr = 'Uzantılı bir dosya belirtin.'");
 		Buttons = New ValueList;
-		Buttons.Add(DialogReturnCode.Retry, NStr("en = 'Select another file';"));
+		Buttons.Add(DialogReturnCode.Retry, NStr("en = 'Select another file';tr = 'Başka bir dosya seç'"));
 		Buttons.Add(DialogReturnCode.Cancel);
 		Handler = New NotifyDescription("AddFromFileSystemWithoutExtensionAfterRespondQuestionContinue", ThisObject, ExecutionParameters);
 		ShowQueryBox(Handler, QueryText, Buttons);
@@ -8322,7 +8453,7 @@ Procedure AddFromFileSystemWithoutFileSystemExtensionAfterImportFile(Put, Addres
 		FileSize = GetFromTempStorage(Address).Size();
 		If FileSize > ExecutionParameters.MaximumSize*1024*1024 Then
 			
-			ErrorText = NStr("en = 'The file size exceeds %1 MB.';");
+			ErrorText = NStr("en = 'The file size exceeds %1 MB.';tr = 'Dosya boyutu %1 Mb aşıyor.'");
 			Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, 
 				ExecutionParameters.MaximumSize);
 			ReturnResultAfterShowWarning(ExecutionParameters.ResultHandler, Result.ErrorText, Undefined);
@@ -8371,7 +8502,7 @@ Procedure AddFromFileSystemWithoutFileSystemExtensionAfterImportFile(Put, Addres
 	Notify("Write_File", NotificationParameters, Result.FileRef);
 	
 	ShowUserNotification(
-		NStr("en = 'Created:';"),
+		NStr("en = 'Created:';tr = 'Oluşturuldu:'"),
 		GetURL(Result.FileRef),
 		Result.FileRef,
 		PictureLib.DialogInformation);
@@ -8575,7 +8706,7 @@ Procedure InformOfEncryption(FilesArrayInWorkingDirectoryToDelete,
 	ModuleDigitalSignatureClient = CommonClient.CommonModule("DigitalSignatureClient");
 	ModuleDigitalSignatureClient.InformOfObjectEncryption(
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'File: %1';"), FileRef));
+			NStr("en = 'File: %1';tr = 'Dosya: %1'"), FileRef));
 	
 EndProcedure
 
@@ -8596,7 +8727,7 @@ Procedure InformOfDecryption(FileOwner, FileRef) Export
 	ModuleDigitalSignatureClient = CommonClient.CommonModule("DigitalSignatureClient");
 	ModuleDigitalSignatureClient.InformOfObjectDecryption(
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'File: %1';"), FileRef));
+			NStr("en = 'File: %1';tr = 'Dosya: %1'"), FileRef));
 	
 EndProcedure
 
@@ -8624,8 +8755,8 @@ Procedure SignFile(AttachedFile, FileData, FormIdentifier,
 	
 	If SignArrayOfFiles And AttachedFile.Count() > 1 Then
 		
-		DataDetails.Insert("Operation",            NStr("en = 'Sign files';"));
-		DataDetails.Insert("DataTitle",     NStr("en = 'Files';"));
+		DataDetails.Insert("Operation",            NStr("en = 'Sign files';tr = 'Dosyaları imzala'"));
+		DataDetails.Insert("DataTitle",     NStr("en = 'Files';tr = 'Dosyalar'"));
 		
 		DataSet = New Array;
 		FileIndex = 0;
@@ -8651,8 +8782,8 @@ Procedure SignFile(AttachedFile, FileData, FormIdentifier,
 		
 	Else
 		
-		DataDetails.Insert("Operation",        NStr("en = 'Sign file';"));
-		DataDetails.Insert("DataTitle", NStr("en = 'File';"));
+		DataDetails.Insert("Operation",        NStr("en = 'Sign file';tr = 'Dosya imzalama'"));
+		DataDetails.Insert("DataTitle", NStr("en = 'File';tr = 'Dosya'"));
 		
 		If SignArrayOfFiles Then
 			DataDetails.Insert("Presentation", AttachedFile[0]);
@@ -8732,7 +8863,7 @@ Procedure AddSignatureFromFile(File, FormIdentifier, CompletionHandler) Export
 	EndIf;
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("DataTitle",     NStr("en = 'File';"));
+	DataDetails.Insert("DataTitle",     NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Presentation",       FileData.Ref);
 	DataDetails.Insert("ShowComment", True);
 	DataDetails.Insert("Data",              FileProperties.BinaryData);
@@ -8809,7 +8940,7 @@ Procedure SaveFileWithSignature(File, FormIdentifier) Export
 	ExecutionParameters.Insert("FormIdentifier", FormIdentifier);
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("DataTitle",     NStr("en = 'File';"));
+	DataDetails.Insert("DataTitle",     NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Presentation",       ExecutionParameters.FileData.Ref);
 	DataDetails.Insert("ShowComment", True);
 	DataDetails.Insert("Object",              ExecutionParameters.FileData.Ref);
@@ -9000,7 +9131,8 @@ Procedure ImportFilesRecursivelySetNextQuestion(ExecutionParameters)
 	
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Folder ""%1"" already exists.
-		           |Do you want to continue the upload?';"),
+		           |Do you want to continue the upload?';tr = 'Klasör ""%1"" zaten var. 
+		           |Klasörü içe aktarmaya devam etmek istiyor musunuz?'"),
 		ExecutionParameters.FolderToAddToSelectedFiles.Name);
 	
 	Handler = New NotifyDescription("FilesImportRecursivelyAfterRespondQuestion", ThisObject, ExecutionParameters);
@@ -9058,7 +9190,7 @@ Procedure ImportFilesRecursivelyWithoutDialogBoxes(Val Owner, Val SelectedFiles,
 		If Not SelectedFile.Exists() Then
 			Record = New Structure;
 			Record.Insert("FileName", SelectedFile.FullName);
-			Record.Insert("Error", NStr("en = 'No file on the computer.';"));
+			Record.Insert("Error", NStr("en = 'No file on the computer.';tr = 'Bilgisayarda dosya yok.'"));
 			ExecutionParameters.ArrayOfFilesNamesWithErrors.Add(Record);
 			Continue;
 		EndIf;
@@ -9121,11 +9253,11 @@ Procedure ImportFilesRecursivelyWithoutDialogBoxes(Val Owner, Val SelectedFiles,
 			ExecutionParameters.Indicator = Int(ExecutionParameters.Counter * 100 / ExecutionParameters.TotalFilesCount);
 			SizeInMB = SelectedFile.Size() / (1024 * 1024);
 			LabelMore = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Processing file ""%1"" (%2 MB)…';"),
+				NStr("en = 'Processing file ""%1"" (%2 MB)…';tr = '""%1"" dosyası işleniyor (%2 MB)...'"),
 				SelectedFile.Name, 
 				FilesOperationsInternalClientServer.FileSizePresentation(SizeInMB));
 				
-			StateText = NStr("en = 'Uploading files from your computer...';");
+			StateText = NStr("en = 'Uploading files from your computer...';tr = 'Dosyalar bilgisayarınızdan yükleniyor...'");
 			
 			Status(StateText,
 				ExecutionParameters.Indicator,
@@ -9142,7 +9274,7 @@ Procedure ImportFilesRecursivelyWithoutDialogBoxes(Val Owner, Val SelectedFiles,
 			PlacedFiles = New Array;			
 			If Not PutFiles(Files, PlacedFiles, , False, ExecutionParameters.FormIdentifier) Then
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot put the file in the ""%1"" temporary storage.';"),
+					NStr("en = 'Cannot put the file in the ""%1"" temporary storage.';tr = 'Dosya ""%1"" geçici depolama yerine koyulamıyor.'"),
 					SelectedFile.FullName);
 			EndIf;
 			
@@ -9393,9 +9525,9 @@ Function CheckLockedFilesOnExit()
 	CurrentUser = UsersClient.AuthorizedUser();
 	
 	ApplicationWarningFormParameters = New Structure;
-	ApplicationWarningFormParameters.Insert("MessageQuestion",      NStr("en = 'Exit the app?';"));
-	ApplicationWarningFormParameters.Insert("MessageTitle",   NStr("en = 'The following files are locked:';"));
-	ApplicationWarningFormParameters.Insert("Title",            NStr("en = 'Exit application';"));
+	ApplicationWarningFormParameters.Insert("MessageQuestion",      NStr("en = 'Exit the app?';tr = 'Uygulamadan çıkılsın mı?'"));
+	ApplicationWarningFormParameters.Insert("MessageTitle",   NStr("en = 'The following files are locked:';tr = 'Aşağıdaki dosyalar düzenleme için kullanılıyor:'"));
+	ApplicationWarningFormParameters.Insert("Title",            NStr("en = 'Exit application';tr = 'Uygulamadan çık'"));
 	ApplicationWarningFormParameters.Insert("BeingEditedBy",          CurrentUser);
 	
 	ApplicationWarningForm = "DataProcessor.FilesOperations.Form.LockedFilesListWithQuestion";
@@ -9665,7 +9797,8 @@ Function ChoosePathToWorkingDirectory(DirectoryName, Title, OwnerWorkingDirector
 			// Insufficient rights to create a directory, or this path does not exist.
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Error writing to directory ""%1"".
-				           |Invalid path or insufficient permissions.';"),
+				           |Invalid path or insufficient permissions.';tr = '""%1"" 
+				           |dizinine yazmak için yanlış yol veya yetersiz haklar.'"),
 				DirectoryName);
 			ShowMessageBox(, ErrorText);
 			Return False;
@@ -9680,7 +9813,11 @@ Function ChoosePathToWorkingDirectory(DirectoryName, Title, OwnerWorkingDirector
 					           |""%1""
 					           |contains files.
 					           |
-					           |Please select another directory.';"),
+					           |Please select another directory.';tr = 'Seçilen 
+					           |""%1""
+					           |çalışma dizininde zaten dosyalar var.
+					           |
+					           |Başka bir dizin seçin.'"),
 					DirectoryName);
 				ShowMessageBox(, ErrorText);
 				Return False;
@@ -9840,7 +9977,13 @@ Procedure CompareFiles(FormIdentifier, FirstFile, SecondFile, Extension, Version
 			|   Microsoft Word document (.doc, .docx)
 			|   HTML document (.html, .htm)
 			|   Spreadsheet document (.mxl)
-			|   OpenDocument text document (.odt)';");
+			|   OpenDocument text document (.odt)';tr = 'Dosya karşılaştırması yalnızca aşağıdaki türdeki dosyalar için destekleniyor:
+			|   Metin belgesi (.txt, .md)
+			|   RTF belge (.rtf)
+			|   Microsoft Word Belgesi (.doc, .docx)
+			|   HTML Belgesi (.html, .htm)
+			|   Tablo Belgesi (.mxl)
+			|   OpenDocument Metin Belgesi (.odt)'");
 		ShowMessageBox(, WarningText);
 		Return;
 	EndIf;
@@ -9921,7 +10064,7 @@ Procedure CompareFilesInternal(ExecutionParameters)
 			Return;
 		EndIf;	
 		
-		FileHeaderTemplate = NStr("en = '%1 (version # %2)';");
+		FileHeaderTemplate = NStr("en = '%1 (version # %2)';tr = '%1 (sürüm No %2)'");
 		FirstFileData = ExecutionParameters.FileData1; // See FilesOperationsInternalServerCall.FileData
 		FileName1 = CommonClientServer.GetNameWithExtension(FirstFileData.FullVersionDescription,
 			FirstFileData.Extension);
@@ -9995,10 +10138,10 @@ Procedure ExecuteCompareFiles(PathToFile1, PathToFile2, FileVersionsComparisonMe
 		
 	Except
 		ErrorMessage = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot compare the files. Reason: %1';"),
+			NStr("en = 'Cannot compare the files. Reason: %1';tr = 'Dosyalar şu sebeple karşılaştırılamadı: %1'"),
 			ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Files.Compare files';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Files.Compare files';tr = 'Dosyalar.Dosya karşılaştırılması'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorMessage, , True);
 		Raise ErrorMessage;
 	EndTry;
@@ -10023,10 +10166,10 @@ Procedure CompareOpenOfficeOrgWriterFiles(Val PathToFile1, Val PathToFile2)
 		DispatcherHelperObject = ServiceManagerObject.createInstance("com.sun.star.frame.DispatchHelper");
 	Except
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Files.Compare files';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Files.Compare files';tr = 'Dosyalar.Dosya karşılaştırılması'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()),, True);
 		Raise ErrorProcessing.BriefErrorDescription(ErrorInfo()) + Chars.LF 
-			+ NStr("en = 'Install or reinstall OpenOffice.org Writer.';");
+			+ NStr("en = 'Install or reinstall OpenOffice.org Writer.';tr = 'OpenOffice.org Writer uygulamasını yükleyin (yeniden yükleyin).'");
 	EndTry;	
 	
 	// Opening parameters: disabling macros.
@@ -10063,10 +10206,10 @@ Procedure CompareMicrosoftWordFiles(PathToFile1, PathToFile2)
 		WordObject = New COMObject("Word.Application");
 	Except
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Files.Compare files';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Files.Compare files';tr = 'Dosyalar.Dosya karşılaştırılması'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()),, True);
 		Raise ErrorProcessing.BriefErrorDescription(ErrorInfo()) + Chars.LF 
-			+ NStr("en = 'Install or reinstall Microsoft Word.';");
+			+ NStr("en = 'Install or reinstall Microsoft Word.';tr = 'Microsoft Word uygulamasını yükleyin (yeniden yükleyin).'");
 	EndTry;	
 	WordObject.Visible = 0;
 	WordObject.WordBasic.DisableAutoMacros(1);
@@ -10077,7 +10220,7 @@ Procedure CompareMicrosoftWordFiles(PathToFile1, PathToFile2)
 		Document.Merge(PathToFile2, 2, 0, 0); // MergeTarget:=wdMergeTargetSelected, DetectFormatChanges:=False, UseFormattingFrom:=wdFormattingFromCurrent
 	Except
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Files.Compare files';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Files.Compare files';tr = 'Dosyalar.Dosya karşılaştırılması'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()),, True);
 		Raise ErrorProcessing.BriefErrorDescription(ErrorInfo());
 	EndTry;	
@@ -10106,7 +10249,7 @@ Procedure CompareSpreadsheetDocuments1(PathToFile1, PathToFile2, TitleLeft, Titl
 	FormOpenParameters.TitleLeft = TitleLeft;
 	FormOpenParameters.TitleRight = TitleRight;
 	FormOpenParameters.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Compare %1 to %2';"), TitleLeft, TitleRight);
+		NStr("en = 'Compare %1 to %2';tr = '%1 ile %2 karşılaştırılması'"), TitleLeft, TitleRight);
 	StandardSubsystemsClient.ShowSpreadsheetComparison(PlacedFiles[0].Location, 
 		PlacedFiles[1].Location, FormOpenParameters);
 	
@@ -10474,7 +10617,7 @@ EndProcedure
 Procedure ProcessFileAfterGetFiles(ObtainedFiles, Context) Export
 	
 	If TypeOf(ObtainedFiles) <> Type("Array") Or ObtainedFiles.Count() = 0 Then
-		ProcessFileAfterError(NStr("en = 'Getting the file was canceled.';"), Undefined, Context);
+		ProcessFileAfterError(NStr("en = 'Getting the file was canceled.';tr = 'Dosya alımı iptal edildi.'"), Undefined, Context);
 		Return;
 	EndIf;
 	
@@ -10486,7 +10629,7 @@ EndProcedure
 Procedure ProcessFileAfterPutFiles(PlacedFiles, Context) Export
 	
 	If TypeOf(PlacedFiles) <> Type("Array") Or PlacedFiles.Count() = 0 Then
-		ProcessFileAfterError(NStr("en = 'Storing the file was canceled.';"), Undefined, Context);
+		ProcessFileAfterError(NStr("en = 'Storing the file was canceled.';tr = 'Dosya saklama iptal edildi.'"), Undefined, Context);
 		Return;
 	EndIf;
 	
@@ -10725,13 +10868,13 @@ Procedure InitAddIn(NotificationOfReturn, SuggestInstall = False) Export
 	If Not ScanAvailable() Then 
 		AddInAttachmentResult = CommonInternalClient.AddInAttachmentResult();
 		AddInAttachmentResult.Attached = False;
-		AddInAttachmentResult.ErrorDescription = NStr("en = 'Scanning is supported on Windows and Linux only.';");
+		AddInAttachmentResult.ErrorDescription = NStr("en = 'Scanning is supported on Windows and Linux only.';tr = 'Tarama sadece Windows ve Linux''te destekleniyor.'");
 		ExecuteNotifyProcessing(NotificationOfReturn, AddInAttachmentResult);
 		Return;
 	EndIf;
 	
 	ConnectionParameters = CommonClient.AddInAttachmentParameters();
-	ConnectionParameters.ExplanationText = NStr("en = 'To continue, attach a scanning add-in.';");
+	ConnectionParameters.ExplanationText = NStr("en = 'To continue, attach a scanning add-in.';tr = 'Devam etmek için bir tarama eklentisi ekleyin.'");
 	ConnectionParameters.SuggestInstall = SuggestInstall;
 	
 	ComponentDetails = FilesOperationsInternalClientServer.ComponentDetails();
@@ -10928,8 +11071,8 @@ Procedure GetDecryptedDataForPrinting(FileData, UUID)
 	EndIf;
 	
 	DataDetails = New Structure;
-	DataDetails.Insert("Operation", NStr("en = 'Decrypt file';"));
-	DataDetails.Insert("DataTitle", NStr("en = 'File';"));
+	DataDetails.Insert("Operation", NStr("en = 'Decrypt file';tr = 'Dosya detaylandırması'"));
+	DataDetails.Insert("DataTitle", NStr("en = 'File';tr = 'Dosya'"));
 	DataDetails.Insert("Data", FileData.RefToBinaryFileData);
 	DataDetails.Insert("Presentation", FileData.Ref);
 	DataDetails.Insert("EncryptionCertificates",
@@ -10964,7 +11107,7 @@ Procedure PrintFileWithStamp(FileData)
 	
 	Document = FilesOperationsInternalServerCall.DocumentWithStamp(FileData);
 	
-	DocumentName3 = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (with stamp)';"), 
+	DocumentName3 = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (with stamp)';tr = '%1 (kaşeli)'"), 
 				FileData.Description);
 	
 	If TypeOf(Document) = Type("SpreadsheetDocument") Then
@@ -11099,7 +11242,7 @@ Function GetFileToWorkingDirectory(Val FileBinaryDataAddress,
 		CreateDirectory(DirectoryForSave);
 	Except
 		ErrorMessage = ErrorProcessing.BriefErrorDescription(ErrorInfo());
-		ErrorMessage = NStr("en = 'An error occurred when creating a directory on the computer:';") + " " + ErrorMessage;
+		ErrorMessage = NStr("en = 'An error occurred when creating a directory on the computer:';tr = 'Bilgisayarda dizin oluşturulurken hata oluştu:'") + " " + ErrorMessage;
 		CommonClient.MessageToUser(ErrorMessage);
 		Return False;
 	EndTry;
@@ -11204,7 +11347,7 @@ Function ConnectedDevices(Form, Attachable_Module)
 		ConnectedDevices = New Array;
 		ErrorPresentation = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		WriteScanLog("EnumDevices", ErrorPresentation, True);
-		ShowScanError(Form, NStr("en = 'Cannot get the list of devices';"), ErrorPresentation);
+		ShowScanError(Form, NStr("en = 'Cannot get the list of devices';tr = 'Cihaz listesi alınamıyor'"), ErrorPresentation);
 	EndTry;
 	Return ConnectedDevices;
 EndFunction
@@ -11239,7 +11382,7 @@ Function ScannerSetting(Form, Attachable_Module, DeviceName, SettingName) Export
 	Except
 		ErrorPresentation = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		WriteScanLog("GetSetting", ErrorPresentation, True);
-		ShowScanError(Form, NStr("en = 'Cannot get the device settings.';"), ErrorPresentation);
+		ShowScanError(Form, NStr("en = 'Cannot get the device settings.';tr = 'Cihaz ayarları alınamıyor.'"), ErrorPresentation);
 		Return -1;
 	EndTry;
 	
@@ -11255,7 +11398,7 @@ Function IsDevicePresent(Form, Attachable_Module, ShowError_ = True) Export
 		ErrorPresentation = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		WriteScanLog("IsDevicePresent", ErrorPresentation, True);
 		If ShowError_ Then
-			ShowScanError(Form, NStr("en = 'Cannot check for devices';"), ErrorPresentation);
+			ShowScanError(Form, NStr("en = 'Cannot check for devices';tr = 'Cihazlar kontrol edilemiyor'"), ErrorPresentation);
 		EndIf;
 		IsDevicePresent = False;
 	EndTry;
@@ -11294,7 +11437,7 @@ Procedure BeginScan(Form, Attachable_Module, ScanningParameters) Export
 	Except
 		ErrorPresentation = ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		WriteScanLog("BeginScan", ErrorPresentation, True);
-		ShowScanError(Form, NStr("en = 'Cannot scan the document';"), ErrorPresentation);
+		ShowScanError(Form, NStr("en = 'Cannot scan the document';tr = 'Belge taranamıyor'"), ErrorPresentation);
 	EndTry;
 	
 EndProcedure
@@ -11372,7 +11515,7 @@ Procedure AfterScanLogDirAvailabilityChecked(Result, ExternalContext) Export
 	If Not Result.Success Then
 		FilesOperationsInternalServerCall.ResetScanLogDirectoryParameters(ExternalContext.ClientID);
 		WriteScanLog("ComponentFile", StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot access the scan log directory: %1. Your choice is not saved.';"), ExternalContext.ScanLogCatalog), True);
+			NStr("en = 'Cannot access the scan log directory: %1. Your choice is not saved.';tr = 'Tarama kayıt dizinine erişilemiyor: %1. Seçiminiz kaydedilmedi.'"), ExternalContext.ScanLogCatalog), True);
 		ScanningSettings1 = New Structure;
 		ScanningSettings1.Insert("ScanLogCatalog", "");
 		ScanningSettings1.Insert("UseScanLogDirectory", False);
@@ -11412,7 +11555,7 @@ EndProcedure
 Procedure WriteScanLog(Event, Comment = "", IsError = False) Export 
 	
 	EventLogClient.AddMessageForEventLog(
-		NStr("en = 'Scan images';", CommonClient.DefaultLanguageCode()) + "." + Event,
+		NStr("en = 'Scan images';tr = 'Görsel tarama'", CommonClient.DefaultLanguageCode()) + "." + Event,
 		?(IsError, "Error", "Information"), Comment,, True);
 	
 EndProcedure
@@ -11449,11 +11592,11 @@ EndProcedure
 Procedure GetTechnicalInformation(DetailErrorDescription, NotificationOnCompletion = Undefined) Export
 	
 	OpenFileDialog = New FileDialog(FileDialogMode.Save);
-	OpenFileDialog.FullFileName = NStr("en = 'Technical information';");
-	Filter = NStr("en = 'Issue report';") + "(*.zip)|*.zip";
+	OpenFileDialog.FullFileName = NStr("en = 'Technical information';tr = 'Teknik bilgi'");
+	Filter = NStr("en = 'Issue report';tr = 'Sorun raporu'") + "(*.zip)|*.zip";
 	OpenFileDialog.Filter = Filter;
 	OpenFileDialog.Multiselect = False;
-	OpenFileDialog.Title = NStr("en = 'Save technical information about the issue';");
+	OpenFileDialog.Title = NStr("en = 'Save technical information about the issue';tr = 'Sorunlar ilgili teknik bilgiyi kaydet'");
 	If Not OpenFileDialog.Choose() Then
 		Return;
 	EndIf;
@@ -11480,7 +11623,7 @@ Procedure AfterLogFilesTempDirectoryCreated(DirectoryName, Context) Export
 	RecordZIP = New ZipFileWriter(Context.FileName);
 	NameOfLogFile = TechnicalInformation.NameOfLogFile;
 	If NameOfLogFile = Undefined Then
-		WriteScanLog("ComponentFile", NStr("en = 'Specify the name of the scanning add-in log file.';"), True);
+		WriteScanLog("ComponentFile", NStr("en = 'Specify the name of the scanning add-in log file.';tr = 'Tarama eklentisi kayıt dosyasının adını belirtin.'"), True);
 	Else
 		Log_File = New File(NameOfLogFile);
 		LogFileNameForSaving = "";
@@ -11491,7 +11634,7 @@ Procedure AfterLogFilesTempDirectoryCreated(DirectoryName, Context) Export
 			RecordZIP.Add(LogFileNameForSaving);
 		Else
 			WriteScanLog("ComponentFile", StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The scanning add-in log file does not exist. %1';"), 
+				NStr("en = 'The scanning add-in log file does not exist. %1';tr = 'Tarama eklentisi kayıt dosyası mevcut değil. %1'"), 
 				NameOfLogFile), True);
 		EndIf;
 	EndIf;
@@ -11502,7 +11645,7 @@ Procedure AfterLogFilesTempDirectoryCreated(DirectoryName, Context) Export
 	Context.Insert("TempFilesDir", TempFilesDir);
 	Context.Insert("TechnicalInformation", TechnicalInformation);
 	
-	Text =  NStr("en = 'Computer information:';") + Chars.LF + StandardSubsystemsClient.SupportInformation();
+	Text =  NStr("en = 'Computer information:';tr = 'Bilgisayar bilgisi'") + Chars.LF + StandardSubsystemsClient.SupportInformation();
 	Context.Insert("SummaryInfoText", Text);
 		
 	NotifyDescription = New NotifyDescription("SummaryInfoAfterAddInObtained", ThisObject, Context);
@@ -11523,7 +11666,7 @@ Procedure SummaryInfoAfterAddInObtained(InitializationResult, Context) Export
 			Attachable_Module = InitializationResult.Attachable_Module;
 			VersionComponents = Attachable_Module.Version();
 			AddInInformation = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 add-in version: %2';"), "ImageScan", VersionComponents);
+				NStr("en = '%1 add-in version: %2';tr = '%1 eklenti sürümü: %2'"), "ImageScan", VersionComponents);
 		Except
 			WriteScanLog("Version", ErrorProcessing.DetailErrorDescription(ErrorInfo()), True);
 		EndTry;
@@ -11532,18 +11675,18 @@ Procedure SummaryInfoAfterAddInObtained(InitializationResult, Context) Export
 	EndIf;
 	
 	SummaryInfoText = SummaryInfoText + Chars.LF + AddInInformation
-		+ Chars.LF + Chars.LF + NStr("en = 'Technical information';") + ":" 
+		+ Chars.LF + Chars.LF + NStr("en = 'Technical information';tr = 'Teknik bilgi'") + ":" 
 		+ Chars.LF + Context.DetailErrorDescription
 		+ Chars.LF + Chars.LF;
 		
 	If CommonClient.FileInfobase() Then
 		WorkMode = ?(CommonClient.ClientConnectedOverWebServer(),
-			NStr("en = 'File mode via web';"), NStr("en = 'File';"));
+			NStr("en = 'File mode via web';tr = 'Web yoluyla dosya modu'"), NStr("en = 'File';tr = 'Dosya'"));
 	Else
-		WorkMode = NStr("en = 'Client/server';");
+		WorkMode = NStr("en = 'Client/server';tr = 'İstemci/sunucu'");
 	EndIf;
 	
-	SummaryInfoText = SummaryInfoText + NStr("en = 'Infobase operation mode';")+ " - " + WorkMode;
+	SummaryInfoText = SummaryInfoText + NStr("en = 'Infobase operation mode';tr = 'Infobase çalışma modu'")+ " - " + WorkMode;
 	
 	SummaryInfoFileName = Context.TempFilesDir + "SummaryInformation.txt";
 	
@@ -11591,12 +11734,12 @@ Procedure DeleteData(CompletionHandler, FileOrVersion, UUID) Export
 	Context.Insert("UUID", UUID);
 	
 	If TypeOf(FileOrVersion) <> Type("CatalogRef.FilesVersions") Then
-		QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to delete the %1 file permanently?';"),
+		QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to delete the %1 file permanently?';tr = '%1 dosyası kalıcı olarak silinsin mi?'"),
 			String(FileOrVersion));
-		TitleText = NStr("en = 'Delete file';");
+		TitleText = NStr("en = 'Delete file';tr = 'Dosya silme'");
 	Else
-		QueryText   = NStr("en = 'Do you want to delete the file version permanently?';");
-		TitleText = NStr("en = 'Delete file version';");
+		QueryText   = NStr("en = 'Do you want to delete the file version permanently?';tr = 'Dosyanın sürümü kalıcı olarak silinsin mi?'");
+		TitleText = NStr("en = 'Delete file version';tr = 'Dosya sürümünün silinmesi'");
 	EndIf;
 	
 	ShowQueryBox(New NotifyDescription("DeleteDataAfterRespondQuestion", ThisObject, Context),
@@ -11677,12 +11820,12 @@ Procedure DeleteFilesData(CompletionHandler, FilesOrVersions, UUID) Export
 	
 	FileOrVersion = FilesOrVersions[0];
 	If FilesOrVersions.Count() = 1 Then
-		QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to delete the %1 file permanently?';"),
+		QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to delete the %1 file permanently?';tr = '%1 dosyası kalıcı olarak silinsin mi?'"),
 			String(FileOrVersion));
-		TitleText = NStr("en = 'Delete file';");
+		TitleText = NStr("en = 'Delete file';tr = 'Dosya silme'");
 	Else
-		QueryText = NStr("en = 'Do you want to delete the files permanently?';");
-		TitleText = NStr("en = 'Delete files';");
+		QueryText = NStr("en = 'Do you want to delete the files permanently?';tr = 'Dosyalar kalıcı olarak silinsin mi?'");
+		TitleText = NStr("en = 'Delete files';tr = 'Dosyaları sil'");
 	EndIf;
 	
 	ShowQueryBox(New NotifyDescription("DeleteFilesDataAfterQuestionAnswered", ThisObject, Context),
@@ -11722,7 +11865,7 @@ Procedure DeleteFilesDataAfterQuestionAnswered(Response, Context) Export
 		WarningText = "";
 		For Each Warning In Warnings Do
 			WarningText = ?(WarningText = "", "", Chars.LF)
-				+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1: %2';"), Warning.Key, Warning.Value);
+				+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1: %2';tr = '%1: %2'"), Warning.Key, Warning.Value);
 		EndDo;
 		NotifyOfDataDeletion(Context.CompletionHandler, WarningText);
 	EndIf;
@@ -11794,15 +11937,15 @@ Procedure AfterFilesRecovered(Result, AdditionalParameters) Export
 		ProgressDetailedInfo = GetFromTempStorage(Result.ResultAddress);
 		If ProgressDetailedInfo.Processed < ProgressDetailedInfo.Total Then
 			Message = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Restored file info: %1 out of %1. For details, see Event log.';"),
+				NStr("en = 'Restored file info: %1 out of %1. For details, see Event log.';tr = 'Dosya bilgileri geri yüklendi: %1 / %1. Ayrıntılı bilgi için Olay günlüğüne bakın.'"),
 				ProgressDetailedInfo.Processed, ProgressDetailedInfo.Total);
-			ShowUserNotification(NStr("en = 'Restore file info';"),,
+			ShowUserNotification(NStr("en = 'Restore file info';tr = 'Dosya bilgilerini geri yükle'"),,
 				Message, PictureLib.DialogExclamation, UserNotificationStatus.Important);
 		ElsIf ProgressDetailedInfo.Total > 0 Then
-			ShowUserNotification(NStr("en = 'Restore file info';"),,
-				NStr("en = 'File info is restored. Updating the report…';"));
+			ShowUserNotification(NStr("en = 'Restore file info';tr = 'Dosya bilgilerini geri yükle'"),,
+				NStr("en = 'File info is restored. Updating the report…';tr = 'Dosya bilgileri geri yüklendi. Rapor güncelleniyor...'"));
 		Else
-			ShowMessageBox(, NStr("en = 'No corrupted files to recover.';"));
+			ShowMessageBox(, NStr("en = 'No corrupted files to recover.';tr = 'Kurtarılacak bozuk dosya yok.'"));
 			Return;
 		EndIf;
 		

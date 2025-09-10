@@ -47,7 +47,7 @@ Function UserWorkingDirectory() Export
 		// no exception is thrown (however, the directory will be unavailable).
 		InformationAboutTheCatalog = New File(DirectoryName);
 		If Not InformationAboutTheCatalog.Exists() Then
-			Raise NStr("en = 'Directory does not exist.';");
+			Raise NStr("en = 'Directory does not exist.';tr = 'Katalog mevcut değil.'");
 		EndIf;
 
 		CreateDirectory(DirectoryName);
@@ -57,13 +57,13 @@ Function UserWorkingDirectory() Export
 	Except
 		// Insufficient rights to create a directory, or this path does not exist.
 		// Set the default settings.
-		EventLogMessage = NStr("en = 'Working directory %1 is not found or there is no save permission. Default settings are restored.';");
+		EventLogMessage = NStr("en = 'Working directory %1 is not found or there is no save permission. Default settings are restored.';tr = '%1 çalışma katalogu mevcut değil ya da kaydedilmesi için yetki yok. Varsayılan ayarlar geri yüklendi.'");
 		EventLogMessage = StringFunctionsClientServer.SubstituteParametersToString(EventLogMessage, DirectoryName);
 		DirectoryName = FilesOperationsInternalClient.SelectPathToUserDataDirectory();
 		FilesOperationsInternalClient.SetUserWorkingDirectory(DirectoryName);
 		
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'File management';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'File management';tr = 'Dosyaları yönet'", CommonClient.DefaultLanguageCode()),
 			"Warning",
 			EventLogMessage,
 			CommonClient.SessionDate(),

@@ -75,7 +75,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 			Command = Commands.Add();
 			Command.Kind = "ObjectsMarkedForDeletionDisplay";
 			Command.Importance = "SeeAlso";
-			Command.Presentation = NStr("en = 'Show objects marked for deletion';");
+			Command.Presentation = NStr("en = 'Show objects marked for deletion';tr = 'Silinmek üzere işaretlenenleri göster'");
 			Command.WriteMode = "NotWrite";
 			Command.VisibilityInForms = "ListForm";
 			Command.MultipleChoice = False;
@@ -88,7 +88,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 				Command = Commands.Add();
 				Command.Kind = "GoToMarkedForDeletionItems";
 				Command.Importance = "SeeAlso";
-				Command.Presentation = NStr("en = 'Go to objects marked for deletion';");
+				Command.Presentation = NStr("en = 'Go to objects marked for deletion';tr = 'Silinmek üzere işaretlenenlere git'");
 				Command.WriteMode = "NotWrite";
 				Command.VisibilityInForms = "ListForm";
 				Command.MultipleChoice = False;
@@ -110,7 +110,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 		Kind = AttachableCommandsKinds.Add();
 		Kind.Name         = "ObjectsMarkedForDeletionDisplay";
 		Kind.SubmenuName  = "Service";
-		Kind.Title   = NStr("en = 'Tools';");
+		Kind.Title   = NStr("en = 'Tools';tr = 'Araçlar'");
 		Kind.Order     = 80;
 		Kind.Picture    = PictureLib.ServiceSubmenu;
 		Kind.Representation = ButtonRepresentation.PictureAndText;
@@ -122,7 +122,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 		Kind = AttachableCommandsKinds.Add();
 		Kind.Name         = "GoToMarkedForDeletionItems";
 		Kind.SubmenuName  = "Service";
-		Kind.Title   = NStr("en = 'Tools';");
+		Kind.Title   = NStr("en = 'Tools';tr = 'Araçlar'");
 		Kind.Order     = 80;
 		Kind.Picture    = PictureLib.ServiceSubmenu;
 		Kind.Representation = ButtonRepresentation.PictureAndText;
@@ -169,7 +169,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id  = JobID;
 		ToDoItem.HasToDoItems       = NotDeletedObjectsCount1.Total > 0;
-		ToDoItem.Presentation  = NStr("en = 'Skipped objects';");
+		ToDoItem.Presentation  = NStr("en = 'Skipped objects';tr = 'Silinmeyen nesneler'");
 		ToDoItem.Count     = NotDeletedObjectsCount1.Total;
 		ToDoItem.Form          = "InformationRegister.NotDeletedObjects.ListForm";
 		ToDoItem.Owner       = Section;
@@ -370,9 +370,9 @@ Procedure MarkedObjectsDeletionControl() Export
 					HasDeletionSession, SelectionDetailRecords.LockTime, Undefined));
 			Except
 				WriteLogEvent(
-					NStr("en = 'Marked object deletion';", Common.DefaultLanguageCode()),
+					NStr("en = 'Marked object deletion';tr = 'İşaretlilerin silinmesi'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error,,, NStr(
-					"en = 'Cannot disable check of marked objects due to:';") + Chars.LF
+					"en = 'Cannot disable check of marked objects due to:';tr = 'Silinecek nesnelerin denetimi şu sebeple devre dışı bırakılamadı:'") + Chars.LF
 					+ ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			EndTry;
 		EndDo;
@@ -1043,8 +1043,8 @@ Function ProcessDeletionMarksQueue(DeletionMarkQueue)
 			ErrorText.Add(ObjectsPresentations[Object] + ":" + Chars.LF + ErrorsPresentations[Object]);
 		EndDo;
 		WriteLogEvent(
-			NStr("en = 'Marked object deletion';", Common.DefaultLanguageCode()), EventLogLevel.Error,
-			,, NStr("en = 'Couldn''t mark the following objects for deletion:';") + Chars.LF + StrConcat(
+			NStr("en = 'Marked object deletion';tr = 'İşaretlilerin silinmesi'", Common.DefaultLanguageCode()), EventLogLevel.Error,
+			,, NStr("en = 'Couldn''t mark the following objects for deletion:';tr = 'Belirtilen nesneler için silinme işareti ayarlanamadı:'") + Chars.LF + StrConcat(
 			ErrorText, Chars.LF + Chars.LF));
 
 	EndIf;
@@ -1104,8 +1104,8 @@ Procedure ProhibitUsageOfObjectsToDelete(Source, Cancel)
 	Except
 		Error = ErrorInfo();
 		WriteLogEvent(
-				NStr("en = 'Delete marked objects';", Common.DefaultLanguageCode()),
-			EventLogLevel.Error,,, NStr("en = 'Cannot control objects to be deleted:';")
+				NStr("en = 'Delete marked objects';tr = 'İşaretlilerin silinmesi'", Common.DefaultLanguageCode()),
+			EventLogLevel.Error,,, NStr("en = 'Cannot control objects to be deleted:';tr = 'Silinecek nesnelerin denetimi yapılamadı:'")
 			+ ErrorProcessing.DetailErrorDescription(Error));
 	EndTry;
 
@@ -1117,7 +1117,8 @@ Procedure ProhibitUsageOfObjectsToDelete(Source, Cancel)
 		EndDo;
 
 		MessageText = NStr("en = 'The selected item %1 is currently being deleted as it was marked for deletion.
-							  |Select another value.';");
+							  |Select another value.';tr = 'Seçilen %1 nesnesi silinmek üzere işaretlendiğinden şu anda siliniyor.
+							  |Başka değeri seçin.'");
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			MessageText, RepresentationOfTheReference);
 
@@ -1130,7 +1131,9 @@ Procedure ProhibitUsageOfObjectsToDelete(Source, Cancel)
 
 		MessageText = NStr("en = 'The selected items are currently being deleted as they were marked for deletion.
 							  |Select other values.
-							  |%1';");
+							  |%1';tr = 'Seçilen nesneler silinmek üzere işaretlendiğinden şu anda siliniyor.
+							  |Başka değerleri seçin.
+							  |%1'");
 
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			MessageText, StrConcat(LinkRepresentation, "-" + Chars.LF));
@@ -1395,7 +1398,7 @@ Procedure AddNotDeletedItemRelationsRow(NotDeletedItemsLinksTable, Cause, TypesI
 		TableRow.IsConstant = True;
 		TableRow.ReferenceType = False;
 		TableRow.Presentation = Common.ObjectPresentation(Cause.Metadata) + " (" + NStr(
-			"en = 'Constant';") + ")";
+			"en = 'Constant';tr = 'Sabit'") + ")";
 		Kind = "CONSTANT";
 	Else
 		TypeInformation = TypeInformation(ObjectType, TypesInformation);
@@ -1410,7 +1413,7 @@ Procedure AddNotDeletedItemRelationsRow(NotDeletedItemsLinksTable, Cause, TypesI
 		TableRow.ReferenceType = TypeInformation.Referential;
 		If Common.IsRegister(Cause.Metadata) Then
 			TableRow.Presentation = Common.ObjectPresentation(Cause.Metadata) + " (" + NStr(
-				"en = 'Register';") + ")";
+				"en = 'Register';tr = 'Kaydet'") + ")";
 		Else
 			TableRow.Presentation = String(Cause.UsageInstance1) + " ("
 				+ TypeInformation.ItemPresentation + ")";
@@ -1456,7 +1459,9 @@ Function ToDeleteMarkedObjectsInternal(ObjectsToDelete, DeletionMode = "Standard
 	If AllowedModes.Find(DeletionMode) = Undefined Then
 		ErrorText = NStr("en = 'Invalid value of the %1 parameter in %2.
 						   |Expected value: %3.
-						   |Actual value: %4 (type: %5).';");
+						   |Actual value: %4 (type: %5).';tr = '%2''deki %1 parametrenin geçersiz değeri. 
+						   |Beklenen değer: %3; 
+						   |aktarılan değer: %4 (%5 türü).'");
 
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, "DeletionMode",
 			"ToDeleteMarkedObjects", StrConcat(AllowedModes, Chars.LF + "-"), DeletionMode, TypeOf(

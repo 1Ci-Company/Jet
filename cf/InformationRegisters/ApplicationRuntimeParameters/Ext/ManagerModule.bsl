@@ -169,7 +169,7 @@ Function ApplicationParameterChanges(ParameterName) Export
 	If Not IsApplicationParameterChanges(LastChanges) Then
 		CheckIfCanUpdateSaaS(ParameterName, Undefined, "GettingChanges");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'No changes are found for parameter ""%1"".';"), ParameterName)
+			NStr("en = 'No changes are found for parameter ""%1"".';tr = '""%1"" parametresi için değişiklik bulunamadı.'"), ParameterName)
 			+ StandardSubsystemsServer.ApplicationRunParameterErrorClarificationForDeveloper();
 		Raise ErrorText;
 	EndIf;
@@ -370,7 +370,7 @@ EndFunction
 Function ImportApplicationParametersInBackground(WaitCompletion, FormIdentifier, ReportProgress) Export
 	
 	OperationParametersList = TimeConsumingOperations.BackgroundExecutionParameters(FormIdentifier);
-	OperationParametersList.BackgroundJobDescription = NStr("en = 'Background import of app parameters';");
+	OperationParametersList.BackgroundJobDescription = NStr("en = 'Background import of app parameters';tr = 'Uygulama parametrelerinin arka planda içe aktarımı'");
 	// To view the process bar, the update should run in the background.
 	// In the update mode, the launch of a background job is intermitted by a block of code,
 	// which mitigates the launch delay event without the exclusive mode set.
@@ -396,7 +396,7 @@ EndFunction
 Function UpdateApplicationParametersInBackground(WaitCompletion, FormIdentifier, ReportProgress) Export
 	
 	OperationParametersList = TimeConsumingOperations.BackgroundExecutionParameters(FormIdentifier);
-	OperationParametersList.BackgroundJobDescription = NStr("en = 'Background update of app parameters';");
+	OperationParametersList.BackgroundJobDescription = NStr("en = 'Background update of app parameters';tr = 'Uygulama parametrelerinin arka planda güncellenmesi'");
 	OperationParametersList.NoExtensions = True;
 	OperationParametersList.WaitCompletion = WaitCompletion;
 	
@@ -416,7 +416,14 @@ Function UpdateApplicationParametersInBackground(WaitCompletion, FormIdentifier,
 			           |from another background job, or from a COM connection.
 			           |
 			           |To update, you need either to update interactively
-			           |starting up 1C:Enterprise or temporarily disable configuration extensions.';");
+			           |starting up 1C:Enterprise or temporarily disable configuration extensions.';tr = 'Konfigürasyon uzantıları bağlıyken uygulamanın çalışma parametrelerinin güncellenmesi
+			           | yalnız arka planda, konfigürasyon uzantıları olmadan çalıştırılabilir.
+			           |
+			           |Dosya veritabanında başka arka plan görevinden arka plan görevi çalıştırılamaz
+			           | ve COM-bağlantıyla çalıştırılamaz.
+			           |
+			           |Güncellemenin yapılabilmesi için 
+			           |1С:Enterprise çalıştırarak güncelleme interaktif olarak veya konfigürasyon uzantılarını devre dışı bırakarak yapılabilir.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -434,7 +441,7 @@ EndFunction
 Function UpdateExtensionVersionParametersInBackground(WaitCompletion, FormIdentifier, ReportProgress) Export
 	
 	OperationParametersList = TimeConsumingOperations.BackgroundExecutionParameters(FormIdentifier);
-	OperationParametersList.BackgroundJobDescription = NStr("en = 'Update extension version parameters in background';");
+	OperationParametersList.BackgroundJobDescription = NStr("en = 'Update extension version parameters in background';tr = 'Uzant versiyonlarının çalışma parametrelerinin arka plan güncellenmesi'");
 	// To view the process bar, the update should run in the background.
 	// In the update mode, the launch of a background job is intermitted by a block of code,
 	// which mitigates the launch delay event without the exclusive mode set.
@@ -471,17 +478,20 @@ Function ProcessedTimeConsumingOperationResult(Result, Operation) Export
 		If Operation = "ImportApplicationParameters" Then
 			BriefErrorDescription =
 				NStr("en = 'Couldn''t import app parameters. Reason:
-				           |The import background job is canceled.';");
+				           |The import background job is canceled.';tr = 'Uygulama parametreleri içe aktarılamadı. Nedeni:
+				           |İçe aktarım arka plan işi iptal edildi.'");
 			
 		ElsIf Operation = "ApplicationParametersUpdate" Then
 			BriefErrorDescription =
 				NStr("en = 'Couldn''t update app parameters. Reason:
-				           |The update background job is canceled.';");
+				           |The update background job is canceled.';tr = 'Uygulama parametreleri güncellenemedi. Nedeni:
+				           |Güncelleme arka plan işi iptal edildi.'");
 			
 		Else // ExtensionVersionParametersUpdate.
 			BriefErrorDescription =
 				NStr("en = 'Cannot update extension version parameters. Reason:
-				           |The update background job is canceled.';");
+				           |The update background job is canceled.';tr = 'Uzantı sürümü parametreleri güncellenemedi. Nedeni:
+				           |Güncelleme arka plan işi iptal edildi.'");
 		EndIf;
 		
 	ElsIf Result.Status = "Completed2" Then
@@ -493,17 +503,20 @@ Function ProcessedTimeConsumingOperationResult(Result, Operation) Export
 		ElsIf Operation = "ImportApplicationParameters" Then
 			BriefErrorDescription =
 				NStr("en = 'Couldn''t import app parameters. Reason:
-				           |The import background job has not returned the result.';");
+				           |The import background job has not returned the result.';tr = 'Uygulama parametreleri içe aktarılamadı. Nedeni:
+				           |İçe aktarım arka plan işi sonuç vermedi.'");
 			
 		ElsIf Operation = "ApplicationParametersUpdate" Then
 			BriefErrorDescription =
 				NStr("en = 'Couldn''t update app parameters. Reason:
-				           |The update background job has not returned the result.';");
+				           |The update background job has not returned the result.';tr = 'Uygulama parametreleri güncellenemedi. Nedeni:
+				           |Güncelleme arka plan işi sonuç vermedi.'");
 			
 		Else // ExtensionVersionParametersUpdate.
 			BriefErrorDescription =
 				NStr("en = 'Cannot update extension version parameters. Reason:
-				           |The update background job has not returned the result.';");
+				           |The update background job has not returned the result.';tr = 'Uzantı sürümü parametreleri güncellenemedi. Nedeni:
+				           |Güncelleme arka plan işi sonuç vermedi.'");
 		EndIf;
 	ElsIf Result.Status <> "ImportApplicationParametersNotRequired"
 	        And Result.Status <> "ApplicationParametersImportAndUpdateNotRequired"
@@ -604,7 +617,7 @@ EndFunction
 Procedure ExecuteUpdateUnsharedDataInBackground(Parameters, FormIdentifier) Export
 	
 	OperationParametersList = TimeConsumingOperations.BackgroundExecutionParameters(FormIdentifier);
-	OperationParametersList.BackgroundJobDescription = NStr("en = 'Update shared service data';");
+	OperationParametersList.BackgroundJobDescription = NStr("en = 'Update shared service data';tr = 'Ayırılmamış yardımcı verilerin güncellenmesi'");
 	OperationParametersList.NoExtensions = True;
 	OperationParametersList.WaitCompletion = Undefined;
 	
@@ -615,16 +628,16 @@ Procedure ExecuteUpdateUnsharedDataInBackground(Parameters, FormIdentifier) Expo
 		If TimeConsumingOperation.Status = "Error" Then
 			ErrorText = TimeConsumingOperation.DetailErrorDescription;
 		ElsIf TimeConsumingOperation.Status = "Canceled" Then
-			ErrorText = NStr("en = 'The background job is canceled';");
+			ErrorText = NStr("en = 'The background job is canceled';tr = 'Arka plan işi iptal edildi'");
 		Else
-			ErrorText = NStr("en = 'Background job error';");
+			ErrorText = NStr("en = 'Background job error';tr = 'Arka plan görevinin çalışma hatası'");
 		EndIf;
 		Raise ErrorText;
 	EndIf;
 	
 	Result = GetFromTempStorage(TimeConsumingOperation.ResultAddress);
 	If TypeOf(Result) <> Type("Structure") Then
-		ErrorText = NStr("en = 'Background job did not return the result';");
+		ErrorText = NStr("en = 'Background job did not return the result';tr = 'Arka plan görevi sonuç vermedi'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -643,7 +656,8 @@ Procedure LongOperationHandlerPerformUpdateUnsharedData(Parameters, ResultAddres
 	If ValueIsFilled(SessionParameters.AttachedExtensions) Then
 		ErrorText =
 			NStr("en = 'Couldn''t update app parameters. Reason:
-			           |Attached configuration extensions are found.';");
+			           |Attached configuration extensions are found.';tr = 'Uygulama parametreleri güncellenemedi. Nedeni:
+			           |Ekli konfigürasyon uzantıları bulunamadı.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -651,7 +665,8 @@ Procedure LongOperationHandlerPerformUpdateUnsharedData(Parameters, ResultAddres
 	   And Common.SeparatedDataUsageAvailable() Then
 		ErrorText =
 			NStr("en = 'Couldn''t update app parameters. Reason:
-			           |Cannot perform the update in the data area.';");
+			           |Cannot perform the update in the data area.';tr = 'Uygulama parametreleri güncellenemedi. Nedeni:
+			           |Veri alanında güncelleme yapılamıyor.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -856,7 +871,8 @@ Procedure LoadProgramOperationParametersTakingIntoAccountExecutionMode(ReportPro
 	   And Common.SeparatedDataUsageAvailable() Then
 		ErrorText =
 			NStr("en = 'Couldn''t import application parameters. Reason:
-			           |Cannot perform the import in the data area.';");
+			           |Cannot perform the import in the data area.';tr = 'Uygulama parametreleri içe aktarılamadı. Nedeni:
+			           |Veri alanında içe aktarım yapılamıyor.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -918,7 +934,7 @@ Procedure LoadProgramOperationParametersTakingIntoAccountExecutionMode(ReportPro
 	
 	If ValueIsFilled(ListOfCriticalChanges) Then
 		
-		EventName = NStr("en = 'Metadata object IDs.Import of critical changes required';",
+		EventName = NStr("en = 'Metadata object IDs.Import of critical changes required';tr = 'Meta veri nesne kimlikleri. Kritik değişiklikleri içe aktar'",
 			Common.DefaultLanguageCode());
 		
 		WriteLogEvent(EventName, EventLogLevel.Error, , , ListOfCriticalChanges);
@@ -940,19 +956,29 @@ Procedure LoadProgramOperationParametersTakingIntoAccountExecutionMode(ReportPro
 			           |Update the master node again, register priority data for export,
 			           |and repeat data synchronization:
 			           |- In the master node, start the app with "" %1"" command-line option.
-			           |%2';");
+			           |%2';tr = 'Infobase güncellenemiyor. Olası nedenler:
+			           |- Ana düğüm doğru güncellenmedi (uygulama sürüm numarası değişmemiş,
+			           | bu nedenle ""Metaveri nesne ID''leri"" kataloğu doldurulmamış olabilir).
+			           |- Öncelikli verilerin dışa aktarımı (""Metaveri nesnesi ID''leri"" kataloğu)
+			           |iptal edildi.
+			           |
+			           |Ana düğümü tekrar güncelleyin, dışa aktarım için öncelikli verileri kaydedin
+			           |ve veri senkronizasyonunu tekrarlayın:
+			           |- Ana düğümde uygulamayı ""%1"" komut satırı seçeneğiyle başlatın.
+			           |%2'");
 		
 		If SubordinateDIBNodeSetup Then
 			// Setting up a subordinate DIB node during the first start.
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 				"/C" + " " + "StartInfobaseUpdate",
-				NStr("en = '- Then retry creating a subordinate node.';"));
+				NStr("en = '- Then retry creating a subordinate node.';tr = '- sonra alt üniteyi tekrar oluşturun.'"));
 		Else
 			// Updating a subordinate DIB node.
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 				"/C" + " " + "StartInfobaseUpdate",
 				NStr("en = '- Then repeat data synchronization with this infobase: 
-				           | first in the master node, then in the infobase (restart the infobase before the synchronization).';"));
+				           | first in the master node, then in the infobase (restart the infobase before the synchronization).';tr = '- Ardından, veri senkronizasyonunu bu infobase ile tekrarlayın: 
+				           |önce ana düğümde, sonra infobase''de (senkronizasyondan önce infobase''i yeniden başlatın).'"));
 		EndIf;
 		
 		Raise ErrorText;
@@ -976,7 +1002,8 @@ Procedure UpdateProgramOperationParametersBasedOnExecutionMode(ReportProgress)
 		And Not UpdateWithoutBackgroundJob() Then
 		ErrorText =
 			NStr("en = 'Couldn''t update app parameters. Reason:
-			           |Attached configuration extensions are found.';");
+			           |Attached configuration extensions are found.';tr = 'Uygulama parametreleri güncellenemedi. Nedeni:
+			           |Ekli konfigürasyon uzantıları bulunamadı.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -984,7 +1011,8 @@ Procedure UpdateProgramOperationParametersBasedOnExecutionMode(ReportProgress)
 	   And Common.SeparatedDataUsageAvailable() Then
 		ErrorText =
 			NStr("en = 'Couldn''t update app parameters. Reason:
-			           |Cannot perform the update in the data area.';");
+			           |Cannot perform the update in the data area.';tr = 'Uygulama parametreleri güncellenemedi. Nedeni:
+			           |Veri alanında güncelleme yapılamıyor.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -1154,10 +1182,12 @@ Function ApplicationParameterStoredData(ParameterName)
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Error getting parameter of %1
 				           |Failed to retrieve the value from the storage:
-				           |%2';"),
+				           |%2';tr = '%1 parametresi alınırken hata oluştu
+				           |Depolama alanından değer alınamadı:
+				           |%2'"),
 				ParameterName,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo));
-			EventName = NStr("en = 'App parameters.Get parameter';",
+			EventName = NStr("en = 'App parameters.Get parameter';tr = 'Uygulama parametreleri.Parametre al'",
 				Common.DefaultLanguageCode());
 			WriteLogEvent(EventName, EventLogLevel.Information,,, Comment);
 		EndTry;
@@ -1206,7 +1236,7 @@ Procedure CheckIfCanUpdateSaaS(Val ParameterName, NewValue, Val Operation)
 	ChangeStorageParameterName = ParameterName + ChangeStorageParameterNameClarification();
 	LastChanges = ApplicationParameterStoredData(ChangeStorageParameterName);
 	
-	EventName = NStr("en = 'App parameters.Not updated in shared mode';",
+	EventName = NStr("en = 'App parameters.Not updated in shared mode';tr = 'Uygulama parametreleri.Ortak modda güncellenmedi'",
 		Common.DefaultLanguageCode());
 	
 	Comment = StringFunctionsClientServer.SubstituteParametersToString(
@@ -1216,7 +1246,13 @@ Procedure CheckIfCanUpdateSaaS(Val ParameterName, NewValue, Val Operation)
 		           |on behalf of a user with service administrator rights
 		           |(in shared mode).
 		           |
-		           |Invalid parameter:';"),
+		           |Invalid parameter:';tr = '1. Mesajı teknik desteğe gönderin.
+		           |2. Sorunu çözmeye çalışın:
+		           |Servis yöneticisi yetkilerine sahip kullanıcı adına 
+		           |uygulamayı ""%1"" komut satırı seçeneğiyle çalıştırın 
+		           |(ortak modda).
+		           |
+		           |Geçersiz parametre:'"),
 		"/From1" + " " + "StartInfobaseUpdate");
 
 	Comment = Comment + Chars.LF +
@@ -1235,7 +1271,8 @@ Procedure CheckIfCanUpdateSaaS(Val ParameterName, NewValue, Val Operation)
 	// Exception for the user.
 	ErrorText =
 		NStr("en = 'The application parameters are not updated in shared mode.
-		           |Please contact the service administrator. See the Event log for details.';");
+		           |Please contact the service administrator. See the Event log for details.';tr = 'Uygulamanın parametreleri bölünmemiş modda güncellenmedi. 
+		           |Servis yöneticisine başvurun. Detaylar kayıt günlüğündedir.'");
 	
 	Raise ErrorText;
 	

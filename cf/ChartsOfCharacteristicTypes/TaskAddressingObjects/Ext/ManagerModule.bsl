@@ -119,9 +119,9 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		ModuleNationalLanguageSupportServer = Common.CommonModule("NationalLanguageSupportServer");
 			ModuleNationalLanguageSupportServer.FillMultilanguageAttribute(Item, "Description",
-		"en = 'All business objects';", LanguagesCodes); // @NStr-1
+		"en = 'All business objects';tr = 'Tüm iş nesneleri'", LanguagesCodes); // @NStr-1
 	Else
-		Item.Description = NStr("en = 'All business objects';", Common.DefaultLanguageCode());
+		Item.Description = NStr("en = 'All business objects';tr = 'Tüm iş nesneleri'", Common.DefaultLanguageCode());
 	EndIf;
 	
 	BusinessProcessesAndTasksOverridable.OnInitialFillingTasksAddressingObjects(LanguagesCodes, Items, TabularSections);

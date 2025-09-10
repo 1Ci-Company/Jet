@@ -70,13 +70,14 @@ Function GetExternalUserAuthorizationObject(ExternalUser = Undefined) Export
 		If UsersInternal.AuthorizationObjectIsInUse(AuthorizationObject, ExternalUser) Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Authorization object ""%1"" (%2)
-					|is set for several external users.';"),
+					|is set for several external users.';tr = '""%1"" (%2)
+					| yetkilendirme nesnesi birden fazla harici kullanıcı için ayarlanmıştır.'"),
 				AuthorizationObject,
 				TypeOf(AuthorizationObject));
 		EndIf;
 	Else
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'No authorization object is set for the external user ""%1"".';"),
+			NStr("en = 'No authorization object is set for the external user ""%1"".';tr = '""%1"" harici kullanıcı için yetkilendirme nesnesi belirlenmedi.'"),
 			ExternalUser);
 	EndIf;
 	

@@ -46,7 +46,8 @@ Procedure UpdateRegisterData(HasChanges = Undefined) Export
 		
 		ErrorText =
 			NStr("en = 'Couldn''t update role rights. Reason:
-			           |Extensions that modify configuration roles are found.';");
+			           |Extensions that modify configuration roles are found.';tr = 'Konfigürasyon rol yetkileri şu sebeple yenilenemedi:
+			           |Konfigürasyon rollerini değiştiren bağlı konfigürasyon uzantıları bulundu.'");
 		Raise ErrorText;
 	EndIf;
 	

@@ -167,7 +167,7 @@ Procedure ExecuteCommandInBackground(Val CommandID, Val CommandParameters, Val H
 		AccompanyingText1 = TrimAll(Title + Chars.LF + AccompanyingText1);
 	EndIf;
 	If Not ValueIsFilled(AccompanyingText1) Then
-		AccompanyingText1 = NStr("en = 'Command running.';");
+		AccompanyingText1 = NStr("en = 'Command running.';tr = 'Komut yapılıyor.'");
 	EndIf;
 	
 	WaitSettings = TimeConsumingOperationsClient.IdleParameters(Form);
@@ -345,7 +345,7 @@ EndProcedure
 // Displays a notification before command run.
 Procedure ShowNotificationOnCommandExecution(CommandToExecute)
 	If CommandToExecute.ShouldShowUserNotification Then
-		ShowUserNotification(NStr("en = 'Command running…';"), , CommandToExecute.Presentation);
+		ShowUserNotification(NStr("en = 'Command running…';tr = 'Komut yapılıyor...'"), , CommandToExecute.Presentation);
 	EndIf;
 EndProcedure
 
@@ -368,7 +368,9 @@ Procedure OpenDataProcessorForm(CommandToExecute, Form, RelatedObjects) Export
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1 report or data processor is missing the main form,
 				|or the main form does not support standard applications.
-				|Command %2 failed.';"),
+				|Command %2 failed.';tr = 'Rapor veya veri işlemcisi için ""%1"" ana form 
+				|atanmamış veya ana formun, normal uygulamada başlatılması amaçlanmamıştır. 
+				|Komut ""%2"" çalıştırılamıyor.'"),
 				String(CommandToExecute.Ref),
 				CommandToExecute.Presentation);
 		EndIf;
@@ -405,7 +407,9 @@ Procedure ExecuteDataProcessorClientMethod(CommandToExecute, Form, RelatedObject
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1 report or data processor is missing the main form,
 				|or the main form does not support standard applications.
-				|Command %2 failed.';"),
+				|Command %2 failed.';tr = 'Rapor veya veri işlemcisi için ""%1"" ana form 
+				|atanmamış veya ana formun, normal uygulamada başlatılması amaçlanmamıştır. 
+				|Komut ""%2"" çalıştırılamıyor.'"),
 				String(CommandToExecute.Ref),
 				CommandToExecute.Presentation);
 		EndIf;
@@ -508,9 +512,9 @@ Procedure ExportToFile(ExportingParameters) Export
 	EndIf;
 	
 	SavingParameters = FileSystemClient.FileSavingParameters();
-	SavingParameters.SuggestionText = NStr("en = 'It is recommended that you install 1C:Enterprise Extension before you save the external report or data processor to a file.';");
+	SavingParameters.SuggestionText = NStr("en = 'It is recommended that you install 1C:Enterprise Extension before you save the external report or data processor to a file.';tr = 'Harici bir veri işlemcisini (rapor) dosyaya kaydetmek için, 1C:Enterprise ile çalışmak için uzantıyı yükleyin.'");
 	SavingParameters.Dialog.Filter = AdditionalReportsAndDataProcessorsClientServer.SelectingAndSavingDialogFilter();
-	SavingParameters.Dialog.Title = NStr("en = 'Select file';");
+	SavingParameters.Dialog.Title = NStr("en = 'Select file';tr = 'Dosyayı belirtin'");
 	SavingParameters.Dialog.FilterIndex = ?(ExportingParameters.IsReport, 1, 2);
 	SavingParameters.Dialog.FullFileName = ExportingParameters.FileName;
 	

@@ -52,7 +52,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		EndIf;
 		
 		If Not ValueIsFilled(Encoding) Then
-			Encoding = NStr("en = 'Default';");
+			Encoding = NStr("en = 'Default';tr = 'Varsayılan'");
 		EndIf;
 	Else
 		Items.Encoding.Visible = False;
@@ -137,7 +137,7 @@ Procedure StandardReread(Command)
 		Return;
 	EndIf;
 	
-	QueryText = NStr("en = 'The data has been changed. Do you want to refresh the data?';");
+	QueryText = NStr("en = 'The data has been changed. Do you want to refresh the data?';tr = 'Veriler değiştirildi. Veriler yenilensin mi?'");
 	
 	NotifyDescription = New NotifyDescription("StandardRereadAnswerReceived", ThisObject);
 	ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.Yes);
@@ -205,7 +205,7 @@ Function ProcessWriteFileVersionCommand()
 	
 	If IsBlankString(Object.Description) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please specify the name of the file version.';"), , "Description", "Object");
+			NStr("en = 'Please specify the name of the file version.';tr = 'Devam etmek için dosya sürümün adını belirtin.'"), , "Description", "Object");
 		Return False;
 	EndIf;
 	
@@ -248,7 +248,7 @@ Function WriteFileVersion(Val ParameterObject = Undefined)
 	Except
 		
 		RollbackTransaction();
-		WriteLogEvent(NStr("en = 'Files.Error writing version of attachment';",
+		WriteLogEvent(NStr("en = 'Files.Error writing version of attachment';tr = 'Dosyalar. Ekli dosya kaydedilirken bir hata oluştu.'",
 			Common.DefaultLanguageCode()), EventLogLevel.Error, , ,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		

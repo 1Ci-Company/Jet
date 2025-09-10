@@ -196,7 +196,7 @@ EndProcedure
 Procedure RemoveFromGroup(Command)
 	
 	If Not ValueIsFilled(CurrentAccessGroup) Then
-		ShowMessageBox(, NStr("en = 'No access group is selected.';"));
+		ShowMessageBox(, NStr("en = 'No access group is selected.';tr = 'Erişim grubu seçilmedi.'"));
 		Return;
 	EndIf;
 	
@@ -210,7 +210,7 @@ Procedure ChangeGroup(Command)
 	FormParameters = New Structure;
 	
 	If Not ValueIsFilled(CurrentAccessGroup) Then
-		ShowMessageBox(, NStr("en = 'No access group is selected.';"));
+		ShowMessageBox(, NStr("en = 'No access group is selected.';tr = 'Erişim grubu seçilmedi.'"));
 		Return;
 		
 	ElsIf IBUserFull
@@ -221,7 +221,8 @@ Procedure ChangeGroup(Command)
 		OpenForm("Catalog.AccessGroups.ObjectForm", FormParameters);
 	Else
 		Raise(NStr("en = 'Insufficient rights to edit the access group.
-			|Only employees responsible for access group members and administrators can edit the access group.';"),
+			|Only employees responsible for access group members and administrators can edit the access group.';tr = 'Erişim grubunu düzenlemek için yetersiz haklar. 
+			|Erişim grubundan sorumlu kişi, katılımcıları ve yöneticisi erişim grubunu düzenleyebilir.'"),
 			ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -431,11 +432,13 @@ Procedure ChangeGroupContent(Val AccessGroup, Val Add, ErrorDescription = "")
 		If Add Then
 			ErrorDescription =
 				NStr("en = 'Insufficient rights to add the user to the access group.
-				           |Only employees responsible for access group members and administrators can add users to access groups.';");
+				           |Only employees responsible for access group members and administrators can add users to access groups.';tr = 'Kullanıcının erişim grubunu eklemek için yetersiz yetki,
+				           |(erişim grubu üyelerinden sorumlu değil ya da yönetici yetkisi yok).'");
 		Else
 			ErrorDescription =
 				NStr("en = 'Insufficient rights to remove the user from the access group.
-				           |Only employees responsible for access group members and administrators can remove users from access groups.';");
+				           |Only employees responsible for access group members and administrators can remove users from access groups.';tr = 'Kullanıcıyı erişim grubunundan çıkarmak için yetersiz yetki,
+				           |(erişim grubu üyelerinden sorumlu değil ya da yönetici yetkisi yok).'");
 		EndIf;
 		Return;
 	EndIf;
@@ -443,7 +446,8 @@ Procedure ChangeGroupContent(Val AccessGroup, Val Add, ErrorDescription = "")
 	If Not Add And Not UserIncludedInAccessGroup(CurrentAccessGroup) Then
 		ErrorDescription =
 			NStr("en = 'Cannot remove the user from the access group
-			           |as the user is not a direct member of the group.';");
+			           |as the user is not a direct member of the group.';tr = 'Kullanıcı, erişim grubuna dolaylı olarak dahil olduğundan, bu erişim grubundan
+			           | çıkarılamaz.'");
 		Return;
 	EndIf;
 	
@@ -455,7 +459,7 @@ Procedure ChangeGroupContent(Val AccessGroup, Val Add, ErrorDescription = "")
 		ActionsWithSaaSUser = ModuleUsersInternalSaaS.GetActionsWithSaaSUser();
 		
 		If Not ActionsWithSaaSUser.ChangeAdministrativeAccess Then
-			Raise(NStr("en = 'Insufficient access rights to edit administrators.';"),
+			Raise(NStr("en = 'Insufficient access rights to edit administrators.';tr = 'Yöneticilerin yapısını değiştirmek için yetersiz erişim hakları.'"),
 				ErrorCategory.AccessViolation);
 		EndIf;
 	EndIf;

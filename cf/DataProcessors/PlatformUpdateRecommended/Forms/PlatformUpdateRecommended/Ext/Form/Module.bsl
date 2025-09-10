@@ -14,7 +14,7 @@
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not Parameters.Property("OpenByScenario") Then
-		Raise NStr("en = 'The data processor cannot be opened manually.';");
+		Raise NStr("en = 'The data processor cannot be opened manually.';tr = 'Bu veri işlemcisi manuel kullanım için uygun değildir.'");
 	EndIf;
 	
 	SkipExit = Parameters.SkipExit;
@@ -33,12 +33,14 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	TextCondition = "";
 	If CommonClientServer.CompareVersions(Current, Min) < 0 Then
 		TextCondition = NStr("en = 'The app requires 1C:Enterprise version %1 or later.
-			|Current version is %2.';");
+			|Current version is %2.';tr = 'Uygulama, 1C:Enterprise %1 sürümü veya üstünü gerektirir.
+			|Mevcut sürüm %2.'");
 		CannotContinue = True;
 		VersionNumber = Min;
 	Else
 		TextCondition = NStr("en = 'The app requires 1C:Enterprise version %1 or later.
-			|Current version is %2.';");
+			|Current version is %2.';tr = 'Uygulama, 1C:Enterprise %1 sürümü veya üstünü gerektirir.
+			|Mevcut sürüm %2.'");
 	EndIf;
 	
 	Items.Version.Title = StringFunctionsClientServer.SubstituteParametersToString(
@@ -49,7 +51,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	If CannotContinue Then
 		Items.QueryText.Visible = False;
 		Items.FormNo.Visible     = False;
-		Title = NStr("en = '1C:Enterprise update required';");
+		Title = NStr("en = '1C:Enterprise update required';tr = '1C:Enterprise''ın güncellenmesi gerekiyor'");
 	EndIf;
 	
 EndProcedure

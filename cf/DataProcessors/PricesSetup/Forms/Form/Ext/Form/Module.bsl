@@ -72,7 +72,7 @@ Procedure ImportPricesFromFile(Command)
 	
 	ImportParameters = ImportDataFromFileClient.DataImportParameters();
 	ImportParameters.FullTabularSectionName = "PricesSetupAuxiliary.ProductPrices";
-	ImportParameters.Title = NStr("en = 'Import prices from file'");
+	ImportParameters.Title = NStr("en = 'Import prices from file'; tr = 'Fiyatları dosyadan içe aktar'");
 	
 	CallbackDescription = New CallbackDescription("ImportPricesFromFileEnd", ThisObject);
 	
@@ -97,7 +97,7 @@ EndProcedure
 Async Procedure FillInProcessing()
 	
 	If ProductPrices.Count() > 0 Then
-		QuestionText = NStr("en = 'The product list will be filled in again. Continue?'");
+		QuestionText = NStr("en = 'The product list will be filled in again. Continue?'; tr = 'Ürün listesi tekrar doldurulacak. Devam edilsin mi?'");
 		Response = Await DoQueryBoxAsync(QuestionText, QuestionDialogMode.YesNo);
 		If Response <> DialogReturnCode.Yes Then
 			Return;
@@ -106,7 +106,7 @@ Async Procedure FillInProcessing()
 	
 	ProductPrices.Clear();
 	
-	SourcePriceType = Await InputValueAsync(SourcePriceType, NStr("en = 'Select the source price type'"));
+	SourcePriceType = Await InputValueAsync(SourcePriceType, NStr("en = 'Select the source price type'; tr = 'Kaynak fiyat türünü seçin'"));
 	If ValueIsFilled(SourcePriceType) Then
 		FillInProcessingAtServer(SourcePriceType);
 	EndIf;
@@ -153,7 +153,7 @@ Procedure FillInProcessingAtServer(PriceTypeToCopy)
 	
 	QueryResult = Query.Execute();
 	If QueryResult.IsEmpty() Then
-		Common.MessageToUser(NStr("en = 'There are no prices for the selected price type.'"));
+		Common.MessageToUser(NStr("en = 'There are no prices for the selected price type.'; tr = 'Seçilen fiyat türü için hiç fiyat yok.'"));
 	Else
 		ProductPrices.Load(QueryResult.Unload());
 	EndIf;
@@ -164,13 +164,13 @@ EndProcedure
 Procedure ModifyProductPrices()
 	
 	If (PriceAdjustmentMethod = "IncByPercent" Or PriceAdjustmentMethod = "DecByPercent") And AdjustmentPercent = 0 Then
-		CommonClient.MessageToUser(NStr("en = 'Percent is not filled in.'"), ,
+		CommonClient.MessageToUser(NStr("en = 'Percent is not filled in.'; tr = 'Yüzde doldurulmadı.'"), ,
 			"AdjustmentPercent");
 		Return;
 	EndIf;
 	
 	If (PriceAdjustmentMethod = "IncByAmount" Or PriceAdjustmentMethod = "DecByAmount") And AdjustmentAmount = 0 Then
-		CommonClient.MessageToUser(NStr("en = 'Amount is not filled in.'"), ,
+		CommonClient.MessageToUser(NStr("en = 'Amount is not filled in.'; tr = 'Tutar doldurulmadı.'"), ,
 			"AdjustmentAmount");
 		Return;
 	EndIf;
@@ -201,17 +201,17 @@ EndProcedure
 Async Procedure SetPrices()
 	
 	If Not ValueIsFilled(PriceType) Then
-		CommonClient.MessageToUser(NStr("en = 'Price type is required.'"), , "PriceType");
+		CommonClient.MessageToUser(NStr("en = 'Price type is required.'; tr = 'Fiyat türü gerekli.'"), , "PriceType");
 		Return;
 	EndIf;
 	
 	If Not ValueIsFilled(EffectiveDate) Then
-		CommonClient.MessageToUser(NStr("en = 'Effective date is requred.'"), , "EffectiveDate");
+		CommonClient.MessageToUser(NStr("en = 'Effective date is requred.'; tr = 'Geçerlilik tarihi gerekli.'"), , "EffectiveDate");
 		Return;
 	EndIf;
 	
 	If CheckPricesExist() Then
-		QuestionText = NStr("en = 'As of %1, there are saved prices for %2 for products not included in the list. Setting the new prices will delete them. Continue?'");
+		QuestionText = NStr("en = 'As of %1, there are saved prices for %2 for products not included in the list. Setting the new prices will delete them. Continue?'; tr = '%1 itibarıyla, listede bulunmayan %2 ürün için kayıtlı fiyatlar var. Yeni fiyat belirlenirse bunlar silinecek. Devam edilsin mi?'");
 		QuestionText = StringFunctionsClientServer.SubstituteParametersToString(QuestionText,
 			Format(EffectiveDate, "DLF=D"),
 			PriceType);
@@ -283,13 +283,13 @@ Procedure SetPricesAtServer()
 	Cancel = False;
 	
 	While Selection.Next() Do
-		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 is duplicated.'"),
+		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 is duplicated.'; tr = '%1 çoğaltıldı.'"),
 			Selection.Product);
 		Common.MessageToUser(MessageText, , , , Cancel);
 	EndDo;
 	
 	If Cancel Then
-		Common.MessageToUser(NStr("en = 'Price changes are not applied.'"));
+		Common.MessageToUser(NStr("en = 'Price changes are not applied.'; tr = 'Fiyat değişiklikleri uygulanmadı.'"));
 		Return;
 	EndIf;
 	
@@ -302,7 +302,7 @@ Procedure SetPricesAtServer()
 		RecordSet.Write();
 	EndIf;
 	
-	Common.MessageToUser(NStr("en = 'Prices are set.'"));
+	Common.MessageToUser(NStr("en = 'Prices are set.'; tr = 'Fiyatlar belirlendi.'"));
 	
 EndProcedure
 
@@ -392,7 +392,7 @@ EndProcedure
 &AtClient
 Function ProductListClearQuestionText()
 	
-	Return NStr("en = 'The product list will be cleared. Continue?'");
+	Return NStr("en = 'The product list will be cleared. Continue?'; tr = 'Ürün listesi silinecek. Devam edilsin mi?'");
 	
 EndFunction
 

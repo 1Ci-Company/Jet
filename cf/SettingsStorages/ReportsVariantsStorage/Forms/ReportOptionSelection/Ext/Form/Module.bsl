@@ -126,9 +126,9 @@ Procedure ReportOptionsTreeBeforeDeleteRow(Item, Cancel)
 	EndIf;
 	
 	If Variant.PictureIndex = 4 Then
-		QueryText = NStr("en = 'Do you want to remove the deletion mark from ""%1""?';");
+		QueryText = NStr("en = 'Do you want to remove the deletion mark from ""%1""?';tr = 'Do you want to remove the deletion mark from ""%1""?'");
 	Else
-		QueryText = NStr("en = 'Do you want to mark ""%1"" for deletion?';");
+		QueryText = NStr("en = 'Do you want to mark ""%1"" for deletion?';tr = 'Do you want to mark ""%1"" for deletion?'");
 	EndIf;
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(QueryText, Variant.Description);
 	
@@ -247,7 +247,8 @@ Procedure SelectAndClose()
 	AdditionalParameters.Insert("VariantKey", Variant.VariantKey);
 	If Variant.PictureIndex = 4 Then
 		QueryText = NStr("en = 'Selected report option is marked for deletion.
-		|Do you want to select this report option?';");
+		|Do you want to select this report option?';tr = 'Selected report option is marked for deletion.
+		|Do you want to select this report option?'");
 		Handler = New NotifyDescription("SelectAndCloseCompletion", ThisObject, AdditionalParameters);
 		ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo, 60);
 	Else
@@ -271,7 +272,7 @@ Procedure OpenOptionForChange()
 	EndIf;
 	If Not OptionChangeRight(Variant, FullRightsToOptions) Then
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Insufficient rights to modify option ""%1"".';"), 
+			NStr("en = 'Insufficient rights to modify option ""%1"".';tr = 'Insufficient rights to modify option ""%1"".'"), 
 			Variant.Description);
 		Raise(WarningText, ErrorCategory.AccessViolation);
 	EndIf;
@@ -346,7 +347,7 @@ Procedure FillOptionsList()
 			TreeGroup = ReportOptionsTree.GetItems().Add();
 			TreeGroup.NumberOfGroup = OptionInfo.Order;
 			If OptionInfo.Order = 3 Then
-				TreeGroup.Description = NStr("en = 'Marked for deletion';");
+				TreeGroup.Description = NStr("en = 'Marked for deletion';tr = 'Marked for deletion'");
 				TreeGroup.PictureIndex = 1;
 				TreeGroup.AuthorPicture = -1;
 			EndIf;

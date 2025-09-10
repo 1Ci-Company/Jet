@@ -181,7 +181,7 @@ Procedure WhenActivatingTheReportResult(Form, Item) Export
 	If Items.HeadingAreaContextMenu.Visible Then 
 		
 		ButtonTitle = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Group by the %1 field';"), TitleProperties.Text);
+			NStr("en = 'Group by the %1 field';tr = '%1 alanına göre grupla'"), TitleProperties.Text);
 		
 		CommonClientServer.SetFormItemProperty(
 			Items, "HeadingAreaContextMenuGroupBySelectedField", "Title", ButtonTitle);
@@ -369,14 +369,14 @@ Procedure HighlightInRed(Form, Command, TitleProperties = Undefined, Value = Und
 		ColoringOptions.Condition.ComparisonType = DataCompositionComparisonType.Less;
 		ColoringOptions.Condition.RightValue = 0;
 		
-		ColoringOptions.Presentation = NStr("en = 'Make negative values red';");
+		ColoringOptions.Presentation = NStr("en = 'Make negative values red';tr = 'Eksi değerleri kırmızı ile vurgula'");
 		
 	Else
 		
 		ColoringOptions.Condition.ComparisonType = TypeOfComparisonTermsOfRegistration(Value);
 		ColoringOptions.Condition.RightValue = Value;
 		
-		ColoringOptions.Presentation = NStr("en = 'Highlight in red';");
+		ColoringOptions.Presentation = NStr("en = 'Highlight in red';tr = 'Kırmızı ile vurgula'");
 		
 	EndIf;
 	
@@ -424,14 +424,14 @@ Procedure HighlightInGreen(Form, Command, TitleProperties = Undefined, Value = U
 		ColoringOptions.Condition.ComparisonType = DataCompositionComparisonType.Greater;
 		ColoringOptions.Condition.RightValue = 0;
 		
-		ColoringOptions.Presentation = NStr("en = 'Make positive values green';");
+		ColoringOptions.Presentation = NStr("en = 'Make positive values green';tr = 'Artı değerleri yeşil ile vurgula'");
 		
 	Else
 		
 		ColoringOptions.Condition.ComparisonType = TypeOfComparisonTermsOfRegistration(Value);
 		ColoringOptions.Condition.RightValue = Value;
 		
-		ColoringOptions.Presentation = NStr("en = 'Highlight in green';");
+		ColoringOptions.Presentation = NStr("en = 'Highlight in green';tr = 'Yeşil ile vurgula'");
 		
 	EndIf;
 	
@@ -485,7 +485,7 @@ Procedure SetRowHeight(Form, Command, TitleProperties = Undefined,
 		HandlerParameters.Insert("FieldSizeParameters", LineHeightParameters);
 		
 		Handler = New NotifyDescription("AfterEnteringTheReportLineHeight", ThisObject, HandlerParameters);
-		ShowInputNumber(Handler, LineHeightParameters.Size, NStr("en = 'Row height';"), 5);
+		ShowInputNumber(Handler, LineHeightParameters.Size, NStr("en = 'Row height';tr = 'Satır yüksekliği'"), 5);
 		
 		Return;
 		
@@ -533,7 +533,7 @@ Procedure SetColumnWidth(Form, Command, TitleProperties = Undefined,
 		HandlerParameters.Insert("FieldSizeParameters", ColumnWidthParameters);
 		
 		Handler = New NotifyDescription("AfterEnteringTheWidthOfTheReportColumn", ThisObject, HandlerParameters);
-		ShowInputNumber(Handler, ColumnWidthParameters.Size, NStr("en = 'Column width';"), 5);
+		ShowInputNumber(Handler, ColumnWidthParameters.Size, NStr("en = 'Column width';tr = 'Sütün eni'"), 5);
 		
 		Return;
 		
@@ -655,7 +655,7 @@ Procedure DisableFilter(Form, TitleProperties, DetailsData = Undefined) Export
 	If Filter = Undefined Then 
 		
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'No filters by the ""%1"" field';"), TitleProperties.Text);
+			NStr("en = 'No filters by the ""%1"" field';tr = '""%1"" alanında filtreler eksik'"), TitleProperties.Text);
 		
 		ShowMessageBox(, WarningText);
 		Return;
@@ -736,7 +736,7 @@ Procedure RenameField(Form, Command, Title = "") Export
 		CurrentTitle = CurrentReportFieldTitle(ReportField, FieldDetails);
 		
 		DialogTitle = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Field header: %1';"),
+			NStr("en = 'Field header: %1';tr = 'Alan başlığı: %1'"),
 			?(FieldDetails = Undefined, String(ReportField), FieldDetails.Title));
 		
 		ShowInputString(Handler, CurrentTitle, DialogTitle);
@@ -1413,19 +1413,19 @@ EndProcedure
 Function TheSortTypeOfTheSectionIsAvailable(Command, TitleProperties)
 	
 	WarningText = "";
-	WarningTemplate = NStr("en = 'Field ""%1"" is already sorted by %2';");
+	WarningTemplate = NStr("en = 'Field ""%1"" is already sorted by %2';tr = '""%1"" alanı %2 göre zaten sıralandı'");
 	
 	If StrEndsWith(CommandAction(Command), "Ascending")
 		And Not TitleProperties.SortAsc Then 
 		
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			WarningTemplate, TitleProperties.Text, NStr("en = 'ascending';"));
+			WarningTemplate, TitleProperties.Text, NStr("en = 'ascending';tr = 'artan'"));
 		
 	ElsIf StrEndsWith(CommandAction(Command), "Descending")
 		And Not TitleProperties.SortDesc Then 
 		
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			WarningTemplate, TitleProperties.Text, NStr("en = 'descending';"));
+			WarningTemplate, TitleProperties.Text, NStr("en = 'descending';tr = 'azalan'"));
 		
 	EndIf;
 	
@@ -1612,7 +1612,7 @@ Procedure HighlightInYellow(Form, Command, TitleProperties = Undefined, Value = 
 	Appearance.Value = StyleItems.AttentionBackColor;
 	
 	ColoringOptions.Appearance.Add(Appearance);
-	ColoringOptions.Presentation = NStr("en = 'Highlight in yellow';");
+	ColoringOptions.Presentation = NStr("en = 'Highlight in yellow';tr = 'Sarı ile biçimlendir'");
 	
 	ColorizeTheReportSection(Form, ColoringOptions, TitleProperties);
 	
@@ -2409,7 +2409,7 @@ Function ReportFields(Form, Command, CollectionName)
 	EndIf;
 	
 	If ReportFields.FindByValue("More") = Undefined Then 
-		ReportFields.Add("More", NStr("en = 'More…';"));
+		ReportFields.Add("More", NStr("en = 'More…';tr = 'Daha fazla...'"));
 	EndIf;
 	
 	Return ReportFields;
@@ -2892,7 +2892,8 @@ Function IndexOfTheSelectedField(SourceFieldIndex, FinalCollectionOfFields, Fiel
 			Handler = New NotifyDescription("ContinueMovingTheFieldVertically", ThisObject, MovementParameters);
 			
 			QuestionTextTemplate = NStr("en = 'The grouping already contains a similar field: %1.
-				|Delete the field?';");
+				|Delete the field?';tr = 'Gruplama benzer alanı zaten içeriyor - %1.
+				|Alan silinsin mi?'");
 			
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
 				QuestionTextTemplate, ?(AvailableField = Undefined, Field, AvailableField.Title));
@@ -3017,22 +3018,22 @@ EndFunction
 Function HeadingAreaContextMenu()
 	
 	ContextMenu = New ValueList;
-	ContextMenu.Add(DataCompositionDetailsProcessingAction.OpenValue, NStr("en = 'Open';"));
+	ContextMenu.Add(DataCompositionDetailsProcessingAction.OpenValue, NStr("en = 'Open';tr = 'Aç'"));
 	
 	// Filter.
-	ContextMenu.Add("DisableFilter", NStr("en = 'Clear filter';"));
-	ContextMenu.Add("FilterCommand", NStr("en = 'Filter…';"),, PictureLib.DataCompositionFilter);
+	ContextMenu.Add("DisableFilter", NStr("en = 'Clear filter';tr = 'Filtreyi kaldır'"));
+	ContextMenu.Add("FilterCommand", NStr("en = 'Filter…';tr = 'Filtrele...'"),, PictureLib.DataCompositionFilter);
 	
 	// Sort.
-	ContextMenu.Add(DataCompositionSortDirection.Asc, NStr("en = 'Sort ascending';"),, PictureLib.SortRowsAsc);
-	ContextMenu.Add(DataCompositionSortDirection.Desc, NStr("en = 'Sort descending';"),, PictureLib.SortRowsDesc);
+	ContextMenu.Add(DataCompositionSortDirection.Asc, NStr("en = 'Sort ascending';tr = 'Artan sıralama'"),, PictureLib.SortRowsAsc);
+	ContextMenu.Add(DataCompositionSortDirection.Desc, NStr("en = 'Sort descending';tr = 'Azalan sıralama'"),, PictureLib.SortRowsDesc);
 	
 	// Apply appearance.
 	DesignSubmenu = New ValueList;
-	DesignSubmenu.Add("SetRowHeight", NStr("en = 'Row height…';"),, PictureLib.RowHeight);
-	DesignSubmenu.Add("SetColumnWidth", NStr("en = 'Column width…';"),, PictureLib.ColumnWidth);
+	DesignSubmenu.Add("SetRowHeight", NStr("en = 'Row height…';tr = 'Satır yüksekliği...'"),, PictureLib.RowHeight);
+	DesignSubmenu.Add("SetColumnWidth", NStr("en = 'Column width…';tr = 'Sütün eni...'"),, PictureLib.ColumnWidth);
 	
-	ContextMenu.Add(DesignSubmenu, NStr("en = 'Format';"),, PictureLib.DataCompositionConditionalAppearance);
+	ContextMenu.Add(DesignSubmenu, NStr("en = 'Format';tr = 'Biçimlendir'"),, PictureLib.DataCompositionConditionalAppearance);
 	
 	Return ContextMenu;
 	
@@ -3041,7 +3042,7 @@ EndFunction
 Function DataAreaContextMenu(TitleProperties, AvailableCompareTypes)
 	
 	ContextMenu = New ValueList;
-	ContextMenu.Add(DataCompositionDetailsProcessingAction.OpenValue, NStr("en = 'Open';"));
+	ContextMenu.Add(DataCompositionDetailsProcessingAction.OpenValue, NStr("en = 'Open';tr = 'Aç'"));
 	
 	If TypeOf(TitleProperties) <> Type("Structure") 
 	   Or TitleProperties.SectionOrder <> 1 Then
@@ -3055,29 +3056,29 @@ Function DataAreaContextMenu(TitleProperties, AvailableCompareTypes)
 	
 	// Filter.
 	SpecifyTheAvailableTypesOfComparison(AvailableCompareTypes);
-	ContextMenu.Add(AvailableCompareTypes, NStr("en = 'Filter';"),, PictureLib.DataCompositionFilter);
+	ContextMenu.Add(AvailableCompareTypes, NStr("en = 'Filter';tr = 'Filtrele...'"),, PictureLib.DataCompositionFilter);
 	
 	// Sort.
-	ContextMenu.Add(DataCompositionSortDirection.Asc, NStr("en = 'Sort ascending';"),, PictureLib.SortRowsAsc);
-	ContextMenu.Add(DataCompositionSortDirection.Desc, NStr("en = 'Sort descending';"),, PictureLib.SortRowsDesc);
+	ContextMenu.Add(DataCompositionSortDirection.Asc, NStr("en = 'Sort ascending';tr = 'Artan sıralama'"),, PictureLib.SortRowsAsc);
+	ContextMenu.Add(DataCompositionSortDirection.Desc, NStr("en = 'Sort descending';tr = 'Azalan sıralama'"),, PictureLib.SortRowsDesc);
 	
 	// Apply appearance.
 	DesignSubmenu = New ValueList;
 	
-	DesignSubmenu.Add("ClearAppearance", NStr("en = 'Clear appearance';"));
-	DesignSubmenu.Add("HighlightInRed", NStr("en = 'Red';"),, DesignImages.HighlightInRed);
-	DesignSubmenu.Add("HighlightInYellow", NStr("en = 'Yellow';"),, DesignImages.HighlightInYellow);
-	DesignSubmenu.Add("HighlightInGreen", NStr("en = 'Green';"),, DesignImages.HighlightInGreen);
-	DesignSubmenu.Add("FormatNegativeValues", NStr("en = 'Negative in red';"));
-	DesignSubmenu.Add("FormatPositiveValues", NStr("en = 'Positive in green';"));
-	DesignSubmenu.Add("SetRowHeight", NStr("en = 'Row height…';"),, PictureLib.RowHeight);
-	DesignSubmenu.Add("SetColumnWidth", NStr("en = 'Column width…';"),, PictureLib.ColumnWidth);
-	DesignSubmenu.Add("ApplyAppearanceMore", NStr("en = 'More…';"));
+	DesignSubmenu.Add("ClearAppearance", NStr("en = 'Clear appearance';tr = 'Biçimlendirmeyi temizle'"));
+	DesignSubmenu.Add("HighlightInRed", NStr("en = 'Red';tr = 'Kırmızı ile'"),, DesignImages.HighlightInRed);
+	DesignSubmenu.Add("HighlightInYellow", NStr("en = 'Yellow';tr = 'Sarı ile'"),, DesignImages.HighlightInYellow);
+	DesignSubmenu.Add("HighlightInGreen", NStr("en = 'Green';tr = 'Yeşil ile'"),, DesignImages.HighlightInGreen);
+	DesignSubmenu.Add("FormatNegativeValues", NStr("en = 'Negative in red';tr = 'Negatif değerleri kırmızı ile'"));
+	DesignSubmenu.Add("FormatPositiveValues", NStr("en = 'Positive in green';tr = 'Pozitif değerleri yeşil ile'"));
+	DesignSubmenu.Add("SetRowHeight", NStr("en = 'Row height…';tr = 'Satır yüksekliği...'"),, PictureLib.RowHeight);
+	DesignSubmenu.Add("SetColumnWidth", NStr("en = 'Column width…';tr = 'Sütün eni...'"),, PictureLib.ColumnWidth);
+	DesignSubmenu.Add("ApplyAppearanceMore", NStr("en = 'More…';tr = 'Daha fazla...'"));
 	
-	ContextMenu.Add(DesignSubmenu, NStr("en = 'Format';"),, PictureLib.DataCompositionConditionalAppearance);
+	ContextMenu.Add(DesignSubmenu, NStr("en = 'Format';tr = 'Biçimlendir'"),, PictureLib.DataCompositionConditionalAppearance);
 	
 	// Decrypt.
-	ContextMenu.Add("DecodeByDetailedRecords", NStr("en = 'Drill down by detailed records';"));
+	ContextMenu.Add("DecodeByDetailedRecords", NStr("en = 'Drill down by detailed records';tr = 'Ayrıntılı kayıtlara göre detaylandır'"));
 	
 	Return ContextMenu;
 	
@@ -3129,7 +3130,7 @@ Procedure ExecuteDecryption(ExecutedAction, ChosenActionParameter, AdditionalPar
 			And Not TitleProperties[ExecutedAction] Then 
 			
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Action ""%1"" is unavailable';"), Menu.FindByValue(ExecutedAction));
+				NStr("en = 'Action ""%1"" is unavailable';tr = '""%1"" işlemi yapılamıyor'"), Menu.FindByValue(ExecutedAction));
 			
 			ShowMessageBox(, MessageText);
 			
@@ -3261,7 +3262,7 @@ Procedure OpenReportForm(Form, OpeningParameters)
 		Form.ReportDetailsData, OpeningParameters.Details, OpeningParameters.Settings); 
 	
 	VariantPresentation = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '%1 (Details)';"), Form.CurrentVariantPresentation);
+		NStr("en = '%1 (Details)';tr = '%1 (Detaylandırma)'"), Form.CurrentVariantPresentation);
 	
 	FormParameters = New Structure;
 	FormParameters.Insert("Details", Details);
@@ -3566,7 +3567,7 @@ Function TheActionIsAvailable(Form, Command = Undefined, TitleProperties = Undef
 	If TypeOf(TitleProperties) <> Type("Structure")
 		Or CommandAction <> Undefined And Not TitleProperties[CommandAction] Then 
 		
-		ShowMessageBox(, NStr("en = 'Action is unavailable';"));
+		ShowMessageBox(, NStr("en = 'Action is unavailable';tr = 'İşlem yapılamıyor'"));
 		Return False;
 		
 	EndIf;
@@ -3580,7 +3581,7 @@ Function ActionOnTheFieldIsAvailable(Action, TitleProperties)
 	If Not TitleProperties[Action] Then 
 		
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Action is unavailable for the %1 field';"), TitleProperties.Text);
+			NStr("en = 'Action is unavailable for the %1 field';tr = '%1 alanı için işlem yapılamıyor'"), TitleProperties.Text);
 		
 		ShowMessageBox(, WarningText);
 		
@@ -3595,11 +3596,11 @@ EndFunction
 Procedure AskAboutUserNotification(NotifyDescription, UsersCount) Export 
 	
 	RepresentationOfTheNumberOfUsers = StringFunctionsClientServer.StringWithNumberForAnyLanguage(
-		NStr("en = '; %1 user; ; %1 users; %1 users; %1 users';"),
+		NStr("en = '; %1 user; ; %1 users; %1 users; %1 users';tr = '; %1 kullanıcı; ; %1 kullanıcılar; %1 kullanıcılar; %1 kullanıcılar'"),
 		UsersCount);
 	
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Do you want to notify in chat %1 that this option will be displayed on their report panel?';"),
+		NStr("en = 'Do you want to notify in chat %1 that this option will be displayed on their report panel?';tr = '%1 sohbetinde bu seçeneğin onların rapor panelinde görüntüleneceği hakkında bilgilendirilsin mi?'"),
 		RepresentationOfTheNumberOfUsers);
 	
 	ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo, 60, DialogReturnCode.No);
@@ -3670,7 +3671,7 @@ Procedure ChangeFormula(Form, Settings, DataPath, CollectionName = "SelectionAva
 	
 	If TypeOf(Formula) <> Type("DataCompositionUserFieldExpression") Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'You can edit field ""%1"" in the form of the settings for a technician on the User-defined fields tab';"),
+			NStr("en = 'You can edit field ""%1"" in the form of the settings for a technician on the User-defined fields tab';tr = '""%1"" alanını Kullanıcı tanımlı alanlar sekmesinde teknik uzman ayarları formunda düzenleyebilirsiniz.'"),
 			Formula.Title);
 		
 		ShowMessageBox(Undefined, MessageText);

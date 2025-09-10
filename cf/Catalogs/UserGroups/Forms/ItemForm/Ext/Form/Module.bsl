@@ -101,7 +101,7 @@ Procedure ContentDrag(Item, DragParameters, StandardProcessing, String, Field)
 	UserMessage = MoveUserToGroup(DragParameters.Value, Object.Ref);
 	If UserMessage <> Undefined Then
 		ShowUserNotification(
-			NStr("en = 'Move users';"), , UserMessage, PictureLib.DialogInformation);
+			NStr("en = 'Move users';tr = 'Kullanıcıları taşıyın'"), , UserMessage, PictureLib.DialogInformation);
 	EndIf;
 		
 EndProcedure
@@ -240,7 +240,7 @@ EndFunction
 Function ExtendedPickFormParameters()
 	
 	PickingParameters = UsersInternal.NewParametersOfExtendedPickForm();
-	PickingParameters.PickFormHeader = NStr("en = 'Pick group members';");
+	PickingParameters.PickFormHeader = NStr("en = 'Pick group members';tr = 'Grup üyeleri seç'");
 	
 	PickingParameters.SelectedUsers =
 		Object.Content.Unload(, "User").UnloadColumn("User");

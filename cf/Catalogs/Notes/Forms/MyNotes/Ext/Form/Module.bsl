@@ -35,7 +35,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter = Item.Filter.Items.Add(Type("DataCompositionFilterItem"));
 	ItemFilter.LeftValue = New DataCompositionField("SubjectPresentation");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.Equal;
-	ItemFilter.RightValue = NStr("en = 'not specified';");
+	ItemFilter.RightValue = NStr("en = 'not specified';tr = 'yapılmamış'");
 	
 	Item.Appearance.SetParameterValue("Text", "");
 	

@@ -292,7 +292,7 @@ Procedure SetTheCollectionName()
 	
 	If FieldsCollectionName = Undefined Then		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Mode parameter contains invalid value: %1.';"), String(Mode));		
+			NStr("en = 'Mode parameter contains invalid value: %1.';tr = 'Mode parameter contains invalid value: %1.'"), String(Mode));		
 	EndIf;
 	
 EndProcedure
@@ -390,10 +390,10 @@ Procedure SelectAndClose()
 	ClearMessages();
 	ListBox = ListOfAvailableFields(ThisObject).Field;
 	If TypeOf(ListBox.CurrentData) = Type("FormDataTreeItem") And ListBox.CurrentData.Folder Then
-		CommonClient.MessageToUser(NStr("en = 'Select a report field, not a group.';"));
+		CommonClient.MessageToUser(NStr("en = 'Select a report field, not a group.';tr = 'Select a report field, not a group.'"));
 		Return;
 	ElsIf TypeOf(ListBox.CurrentData) <> Type("FormDataTreeItem") Then
-		CommonClient.MessageToUser(NStr("en = 'Select a report field.';"));
+		CommonClient.MessageToUser(NStr("en = 'Select a report field.';tr = 'Select a report field.'"));
 		Return;
 	EndIf;
 	
@@ -461,7 +461,7 @@ Function NewFieldDescr()
 	
 	UserFields =  SettingsComposer.Settings.SelectionAvailableFields.Items.Find(New DataCompositionField("UserFields"));
 	If UserFields = Undefined Then
-		Return NStr("en = 'Field 1';");
+		Return NStr("en = 'Field 1';tr = 'Field 1'");
 	EndIf;
 	
 	For Each Field In UserFields.Items Do
@@ -469,13 +469,13 @@ Function NewFieldDescr()
 	EndDo;
 
 	For FieldNumber = 1 To 100 Do
-		FieldDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field %1';"), FieldNumber);
+		FieldDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field %1';tr = 'Field %1'"), FieldNumber);
 		If FieldHeaders[FieldDescription] = Undefined Then
 			Return FieldDescription;
 		EndIf;
 	EndDo;
 	
-	Return NStr("en = 'Field';");
+	Return NStr("en = 'Field';tr = 'Field'");
 	
 EndFunction
 
@@ -632,7 +632,7 @@ Function AdditionalFieldOfTheFormulaGroup()
 	FieldTable = FormulasConstructor.FieldTable();
 	Field = FieldTable.Add();
 	Field.Id = IDOfTheFormulaGroup();
-	Field.Presentation = NStr("en = 'Formulas';");
+	Field.Presentation = NStr("en = 'Formulas';tr = 'Formulas'");
 	Field.Order = 99;
 	
 	Return FormulasConstructor.FieldsCollection(FieldTable);
@@ -645,7 +645,7 @@ Function AdditionalFieldOfDetailedRecords()
 	FieldTable = FormulasConstructor.FieldTable();
 	Field = FieldTable.Add();
 	Field.Id = "DetailedRecords";
-	Field.Presentation = NStr("en = '<Detailed records>';");
+	Field.Presentation = NStr("en = '<Detailed records>';tr = '<Detailed records>'");
 	
 	Return FormulasConstructor.FieldsCollection(FieldTable);
 	

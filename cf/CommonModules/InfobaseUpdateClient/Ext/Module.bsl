@@ -48,8 +48,8 @@ Procedure BeforeStart(Parameters) Export
 	
 	If ClientParameters.Property("InfobaseLockedForUpdate") Then
 		Buttons = New ValueList();
-		Buttons.Add("Restart", NStr("en = 'Restart';"));
-		Buttons.Add("ExitApp",     NStr("en = 'Exit';"));
+		Buttons.Add("Restart", NStr("en = 'Restart';tr = 'Yeniden başlat'"));
+		Buttons.Add("ExitApp",     NStr("en = 'Exit';tr = 'Çıkış'"));
 		
 		QuestionParameters = New Structure;
 		QuestionParameters.Insert("DefaultButton", "Restart");
@@ -189,7 +189,7 @@ Procedure OnProcessCommand(ReportForm, Command, Result) Export
 		ElsIf Command.Name = "ProgressDeferredUpdateErrors" Then
 			LogFilter = New Structure;
 			LogFilter.Insert("Level", "Error");
-			LogFilter.Insert("EventLogEvent", NStr("en = 'Infobase update';", CommonClient.DefaultLanguageCode()));
+			LogFilter.Insert("EventLogEvent", NStr("en = 'Infobase update';tr = 'Infobase güncellemesi'", CommonClient.DefaultLanguageCode()));
 			LogFilter.Insert("StartDate", DetailsValue.StartUpdates);
 			EventLogClient.OpenEventLog(LogFilter);
 		EndIf;
@@ -232,7 +232,7 @@ Procedure OnProcessSpreadsheetDocumentSelection(ReportForm, Item, Area, Standard
 				StandardProcessing = False;
 				LogFilter = New Structure;
 				LogFilter.Insert("Level", "Error");
-				LogFilter.Insert("EventLogEvent", NStr("en = 'Infobase update';", CommonClient.DefaultLanguageCode()));
+				LogFilter.Insert("EventLogEvent", NStr("en = 'Infobase update';tr = 'Infobase güncellemesi'", CommonClient.DefaultLanguageCode()));
 				LogFilter.Insert("StartDate", DetailsValue.StartUpdates);
 				EventLogClient.OpenEventLog(LogFilter);
 			EndIf;
@@ -264,7 +264,10 @@ Procedure UnlockObjectToEdit(ObjectsArray, AdditionalParameters) Export
 	QueryText = NStr("en = 'Object data is locked because the application is not updated.
 		|Unlock data for editing responsibly, as it might corrupt the document.
 		|
-		|Unlock the data for editing?';");
+		|Unlock the data for editing?';tr = 'Programın yeni sürümüne geçildiğinden nesne verileri kilitlendi.
+		|Veriler doğru yazılmayabileceğinden, kilit açmanın yalnızca acil durumlarda kullanılması önerilir.
+		|
+		|Düzenleme için kilit açılsın mı?'");
 	Parameters = New Structure;
 	Parameters.Insert("ObjectsArray", ObjectsArray);
 	Parameters.Insert("Form", Undefined);
@@ -288,7 +291,7 @@ Procedure UnlockObjectToEditAfterQuestion(Result, Parameters) Export
 		Parameters.Form.Read();
 		ClearMessages();
 	Else
-		MessageText = NStr("en = 'Data is unlocked. To start editing, reopen the object form.';");
+		MessageText = NStr("en = 'Data is unlocked. To start editing, reopen the object form.';tr = 'Verilerin kilidi açıldı. Düzenleme için nesne kartı yeniden açılmalı.'");
 		ShowMessageBox(, MessageText);
 	EndIf;
 	
@@ -400,9 +403,9 @@ Procedure NotifyDeferredHandlersNotExecuted() Export
 		Return;
 	EndIf;
 	
-	ShowUserNotification(NStr("en = 'The application functionality is temporarily limited.';"),
+	ShowUserNotification(NStr("en = 'The application functionality is temporarily limited.';tr = 'Uygulama işlevselliği geçici olarak kısıtlandı.'"),
 		DataProcessorURL(),
-		NStr("en = 'Upgrade to the new version is still in progress.';"),
+		NStr("en = 'Upgrade to the new version is still in progress.';tr = 'Yeni sürüme güncelleme tamamlanmamış'"),
 		PictureLib.DialogExclamation);
 	
 EndProcedure
@@ -431,16 +434,16 @@ Procedure ProcessManualPatchCheckResult(Result, NotifyDescription) Export
 	
 	QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
 	QuestionParameters.PromptDontAskAgain = False;
-	QuestionParameters.Title = NStr("en = 'Check for patches';");
+	QuestionParameters.Title = NStr("en = 'Check for patches';tr = 'Yamaları kontrol et'");
 	QuestionParameters.Picture = PictureLib.Information;
 	
 	If Result.NumberOfCorrections = 0 Then
-		Message = NStr("en = 'No applicable patches found.';");
+		Message = NStr("en = 'No applicable patches found.';tr = 'Uygulanabilir yama bulunamadı.'");
 		StandardSubsystemsClient.ShowQuestionToUser(Undefined, Message, QuestionDialogMode.OK, QuestionParameters);
 		Return;
 	EndIf;
 	
-	Message = NStr("en = 'Found %1 patches. Do you want to install them?';");
+	Message = NStr("en = 'Found %1 patches. Do you want to install them?';tr = 'Bulunan düzeltmeler: %1. Kurulum yap?'");
 	Message = StringFunctionsClientServer.SubstituteParametersToString(Message, Result.NumberOfCorrections);
 	
 	QuestionParameters.Picture = PictureLib.DialogQuestion;
@@ -460,7 +463,7 @@ Procedure ProcessManualPatchInstallationResult(Result, AdditionalParameters) Exp
 	
 	QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
 	QuestionParameters.PromptDontAskAgain = False;
-	QuestionParameters.Title = NStr("en = 'Installing patches';");
+	QuestionParameters.Title = NStr("en = 'Installing patches';tr = 'Düzeltmeleri ayarlama'");
 	
 	If Result.Status = "Error" Then
 		StandardSubsystemsClient.OutputErrorInfo(
@@ -471,11 +474,11 @@ Procedure ProcessManualPatchInstallationResult(Result, AdditionalParameters) Exp
 	InstallResult = GetFromTempStorage(Result.ResultAddress);
 	If InstallResult.Error Then
 		ErrorText = InstallResult.BriefErrorDetails
-			+ Chars.LF + Chars.LF + NStr("en = 'For technical error details, see the event log.';");
+			+ Chars.LF + Chars.LF + NStr("en = 'For technical error details, see the event log.';tr = 'Sorunla ilgili teknik ayrıntılar için kayıt defterine bakın.'");
 		
 		Buttons = New ValueList;
-		Buttons.Add("EventLog", NStr("en = 'Event log';"));
-		Buttons.Add("Close", NStr("en = 'Close';"));
+		Buttons.Add("EventLog", NStr("en = 'Event log';tr = 'Olay günlüğü'"));
+		Buttons.Add("Close", NStr("en = 'Close';tr = 'Kapat'"));
 		QuestionParameters.Picture = PictureLib.DialogExclamation;
 		QuestionParameters.DefaultButton = "Close";
 		NotifyDescription = New NotifyDescription("HandlePatchInstallationError", ThisObject);

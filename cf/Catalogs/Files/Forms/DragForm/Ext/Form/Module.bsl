@@ -26,7 +26,7 @@ Procedure OnOpen(Cancel)
 	
 #If WebClient Then
 	WarningText =
-		NStr("en = 'File upload is not available in the web client. Please use the ""Add"" command in the file list.';");
+		NStr("en = 'File upload is not available in the web client. Please use the ""Add"" command in the file list.';tr = 'Web istemcisinde dosya içe aktarımı yapılamaz. Dosya listesinde ""Ekle"" komutunu kullanın.'");
 	ShowMessageBox(, WarningText);
 	Cancel = True;
 	Return;
@@ -40,7 +40,7 @@ Procedure OnOpen(Cancel)
 	EndDo;
 	
 	If DirectoriesOnly Then
-		Title = NStr("en = 'Upload folders';");
+		Title = NStr("en = 'Upload folders';tr = 'Klasörlerin içe aktarımı'");
 	EndIf;
 	
 EndProcedure
@@ -93,13 +93,13 @@ Procedure ImportFiles()
 	
 	If SelectedFiles.Count() = 0 Then
 		CommonClient.MessageToUser(
-			NStr("en = 'No files to add.';"), , "SelectedFiles");
+			NStr("en = 'No files to add.';tr = 'Eklenecek dosyalar yok.'"), , "SelectedFiles");
 		FieldsNotFilled = True;
 	EndIf;
 	
 	If FolderForAdding.IsEmpty() Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please select a folder.';"), , "FolderForAdding");
+			NStr("en = 'Please select a folder.';tr = 'Klasörü belirleyin.'"), , "FolderForAdding");
 		FieldsNotFilled = True;
 	EndIf;
 	

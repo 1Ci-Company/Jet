@@ -54,45 +54,47 @@ EndProcedure
 &AtClient
 Procedure SetErrorText()
 	Recommendations = New Array;
-	Recommendations.Add(NStr("en = 'Check scanner connection and try again.';"));
+	Recommendations.Add(NStr("en = 'Check scanner connection and try again.';tr = 'Tarayıcı bağlantısını kontrol edip tekrar deneyin.'"));
 	Recommendations.Add(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Specify an available scanner in the <a href = ""%1"">scanning settings</a>.';"),
+		NStr("en = 'Specify an available scanner in the <a href = ""%1"">scanning settings</a>.';tr = '<a href = ""%1"">Tarama ayarlarında</a> mevcut bir tarayıcı belirtin.'"),
 		"OpenSettings"));
 
 	If Not Parameters.ShowScannerDialog And Not CommonClient.IsLinuxClient() Then
-		Recommendations.Add(NStr("en = 'Switch to the <b>advanced settings</b>.';"));
+		Recommendations.Add(NStr("en = 'Switch to the <b>advanced settings</b>.';tr = '<b>Gelişmiş ayarlara</b> geç.'"));
 	EndIf;
 	
 	If Parameters.ShowScannerDialog 
 		Or Parameters.Resolution = PredefinedValue("Enum.ScannedImageResolutions.dpi1200") Then
-		Recommendations.Add(NStr("en = 'Reduce the scanner resolution to <b>600 dpi</b>.';"));
+		Recommendations.Add(NStr("en = 'Reduce the scanner resolution to <b>600 dpi</b>.';tr = 'Tarayıcı çözünürlüğünü <b>600 dpi</b>''a düşür.'"));
 	EndIf;
 
 	SystemInfo = New SystemInfo();
 	If SystemInfo.PlatformType = PlatformType.Windows_x86_64 Then
 		Recommendations.Add(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Install the <a href = ""%1"">1C:Enterprise thin client for Windows x86</a>.
-				|It supports more scanners and settings.';"), 
+				|It supports more scanners and settings.';tr = '<a href = ""%1"">Windows x86 için 1C:Enterprise ince istemci</a> yükleyin.
+				|Daha fazla tarayıcı ve ayar destekler.'"), 
 				"Run32BitClient"));
 	EndIf;
 
 	If Parameters.AssistanceRequiredMode Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Scanning is performed by %1.';"), 
+			NStr("en = 'Scanning is performed by %1.';tr = 'Tarama %1 tarafından yapıldı.'"), 
 			Parameters.ScannerName);
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Scanner ""%1"" is not found or disconnected.';"), 
+			NStr("en = 'Scanner ""%1"" is not found or disconnected.';tr = '""%1"" tarayıcısı bulunamadı veya bağlı değil.'"), 
 			Parameters.ScannerName);
 	EndIf;		
 
 	ErrorText = ErrorText + Chars.LF + Chars.LF 
-		+ NStr("en = 'Try the following solutions:';") + Chars.LF
+		+ NStr("en = 'Try the following solutions:';tr = 'Şu çözümleri deneyin:'") + Chars.LF
 		+ " • " + StrConcat(Recommendations, Chars.LF + " • ");
 	ErrorText = ErrorText + Chars.LF + Chars.LF 
 		+ StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'If the issue persists, contact 1C technical support
-				|and provide <a href = ""%1"">technical information</a> about the issue.';"), 
+				|and provide <a href = ""%1"">technical information</a> about the issue.';tr = 'Sorun devam ederse 1C teknik desteğine başvurun 
+				|ve sorunla ilgili <a href = ""%1"">teknik bilgileri</a> sağlayın.'"), 
 		"TechnicalInformation");
 	
 	Items.ErrorText.Title = StringFunctionsClient.FormattedString(ErrorText);

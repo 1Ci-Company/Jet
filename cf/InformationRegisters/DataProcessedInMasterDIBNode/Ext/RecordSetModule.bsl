@@ -35,7 +35,7 @@ Procedure BeforeWrite(Cancel, Replacing)
 			      And Not StandardSubsystemsCached.DIBUsed("WithFilter"))) Then
 		
 		Cancel = True;
-		ExceptionText = NStr("en = 'You can save data to %1 only when the deferred infobase update handler running in the root node is marked as completed.';");
+		ExceptionText = NStr("en = 'You can save data to %1 only when the deferred infobase update handler running in the root node is marked as completed.';tr = '%1 kayıt yalnızca kök ünitesinde yürütülen bekleyen bir veritabanı güncelleştirme işleyicisi çalıştırıldığında mümkündür.'");
 		ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, "InformationRegister.DataProcessedInMasterDIBNode");
 		Raise ExceptionText;
 		
@@ -114,5 +114,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

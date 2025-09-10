@@ -74,7 +74,7 @@ Procedure ListBeforeDeleteRow(Item, Cancel)
 
 	FileData = FilesOperationsInternalServerCall.FileData(Items.List.CurrentRow,,FileDataParameters);
 	If FileData.CurrentVersion = Items.List.CurrentRow Then
-		ShowMessageBox(, NStr("en = 'Cannot delete the active version.';"));
+		ShowMessageBox(, NStr("en = 'Cannot delete the active version.';tr = 'Aktif sürüm silinemez.'"));
 		Cancel = True;
 	EndIf;
 	

@@ -109,7 +109,7 @@ Procedure EnableEdit(Command)
 	EndDo;
 	
 	If Not ValueIsFilled(Result) Then
-		ShowMessageBox(, NStr("en = 'Please select at least one attribute.';"));
+		ShowMessageBox(, NStr("en = 'Please select at least one attribute.';tr = 'Lütfen en az bir öznitelik seçin.'"));
 		Return;
 	EndIf;
 	
@@ -196,7 +196,8 @@ Procedure AddBankingDetailsToForm(ItemsToAdd1)
 			Else
 				LabelTitle =
 					NStr("en = 'Before you change the attributes, we recommend that you check whether the object is used.
-					           |If the object is used, evaluate the consequences of the changes.';");
+					           |If the object is used, evaluate the consequences of the changes.';tr = 'Öznitelikleri değiştirmeden önce nesnenin kullanılıp kullanılmadığını kontrol edin.
+					           |Nesne kullanılıyorsa değişikliklerin sonuçlarını değerlendirin.'");
 			EndIf;
 			ItemProperties = FormElementNewProperties();
 			ItemProperties.IsLabel = True;
@@ -319,7 +320,7 @@ Function AreObjectsUsed()
 	RefsCount = References.Count();
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Unlock attributes: Check the object reference usage';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Unlock attributes: Check the object reference usage';tr = 'Özniteliklerin kilidini aç: Nesne referans kullanımını kontrol et'");
 	// In file mode, the job queue always runs in the background. The result is of low priority, the operation runs rarely.
 	// Therefore, locking the UI is excessive as the search for object references takes a long time.
 	ExecutionParameters.RunInBackground = True;
@@ -350,7 +351,7 @@ Procedure ValidateCompletion(Result, AdditionalParameters) Export
 	
 	AreObjectsUsed = GetFromTempStorage(Result.ResultAddress);
 	If TypeOf(AreObjectsUsed) <> Type("Boolean") Then
-		ShowMessageBox(, NStr("en = 'Cannot receive the check result. Please try again';"));
+		ShowMessageBox(, NStr("en = 'Cannot receive the check result. Please try again';tr = 'Kontrol sonucu alınamıyor. Lütfen tekrar deneyin'"));
 		Return;
 	EndIf;
 	
@@ -358,22 +359,26 @@ Procedure ValidateCompletion(Result, AdditionalParameters) Export
 		If RefsCount = 1 Then
 			MessageText =
 				NStr("en = 'The object is used elsewhere in the app.
-				           |Editing this object might lead to data inconsistency.';");
+				           |Editing this object might lead to data inconsistency.';tr = 'Nesne, uygulamanın başka bir yerinde kullanılıyor.
+				           |Bu nesneyi düzenlemek veri tutarsızlığına yol açabilir.'");
 		Else
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1 selected objects are used elsewhere in the app.
-				           |Editing these objects might lead to data inconsistency.';"),
+				           |Editing these objects might lead to data inconsistency.';tr = '%1 seçili nesne uygulamada başka yerlerde kullanılıyor.
+				           |Bu nesnelerin düzenlenmesi veri tutarsızlığına yol açabilir.'"),
 				RefsCount);
 		EndIf;
 	Else
 		If RefsCount = 1 Then
 			MessageText =
 				NStr("en = 'The object is not used in other places in the app.
-				           |You can allow editing it without the risk of data inconsistency.';");
+				           |You can allow editing it without the risk of data inconsistency.';tr = 'Nesne, uygulamanın başka yerlerinde kullanılmıyor.
+				           |Veri tutarsızlığı riski olmadan, düzenlemeye izin verebilirsiniz.'");
 		Else
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The selected objects (%1) are used in other places in the app.
-				           |You can allow editing them without the risk of data inconsistency.';"),
+				           |You can allow editing them without the risk of data inconsistency.';tr = 'Seçilen nesneler (%1) uygulamanın başka yerlerinde kullanılıyor.
+				           |Veri tutarsızlığı riski olmadan, düzenlemeye izin verebilirsiniz.'"),
 				RefsCount);
 		EndIf;
 	EndIf;

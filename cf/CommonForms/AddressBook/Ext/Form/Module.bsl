@@ -262,7 +262,7 @@ EndProcedure
 Procedure FindContactsExecute()
 	
 	If IsBlankString(SearchString) Then
-		CommonClient.MessageToUser(NStr("en = 'Please enter text to search for.';"),, "SearchString");
+		CommonClient.MessageToUser(NStr("en = 'Please enter text to search for.';tr = 'Lütfen, aranacak metni girin.'"),, "SearchString");
 		Return;
 	EndIf;
 	
@@ -377,7 +377,7 @@ Procedure SetContactAddressExecute()
 	
 	CurrentData = Items.EmailRecipients.CurrentData;
 	If CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select the recipient''s address in the list on the right.';"));
+		ShowMessageBox(, NStr("en = 'Select the recipient''s address in the list on the right.';tr = 'Sağdaki listede alıcının adresini seçin.'"));
 		Return;
 	EndIf;
 	
@@ -390,7 +390,7 @@ Procedure SetContactAddressExecute()
 	If Result.Count() = 0 Then
 		ShowMessageBox(, 
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The following contact does not have an email: ""%1"".';"),
+				NStr("en = 'The following contact does not have an email: ""%1"".';tr = 'Kişinin e-posta adresi yok: ""%1"".'"),
 				CurrentData.Contact));
 		Return;
 	EndIf;
@@ -737,7 +737,7 @@ Procedure SetDefaultGroup()
 	
 	DefaultGroup = Parameters.DefaultGroup;
 	If IsBlankString(DefaultGroup) Then
-		DefaultGroup = NStr("en = 'To';");
+		DefaultGroup = NStr("en = 'To';tr = 'Kime'");
 	EndIf;
 	
 EndProcedure 

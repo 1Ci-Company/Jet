@@ -42,11 +42,11 @@ Procedure BeforeWrite(Cancel)
 	
 	If Common.IsStandaloneWorkplace() Then
 		ErrorText =
-			NStr("en = 'To change the app mode (Standard or High-performance), go to the app in the service.';");
+			NStr("en = 'To change the app mode (Standard or High-performance), go to the app in the service.';tr = 'Uygulama modunu (Standart veya Yüksek performans) değiştirmek için servisteki uygulamaya gidin.'");
 		Raise ErrorText;
 	ElsIf Common.IsSubordinateDIBNode() Then
 		ErrorText =
-			NStr("en = 'The operation mode (standard or high-performance) can only be changed in the master node.';");
+			NStr("en = 'The operation mode (standard or high-performance) can only be changed in the master node.';tr = 'İşlem modu (standart veya yüksek performans) sadece ana düğümde değiştirilebilir.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -60,7 +60,7 @@ Procedure OnWrite(Cancel)
 	
 	If NewValue <> Value Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot change the %1 constant value in the %2 event subscription handlers.';"),
+			NStr("en = 'Cannot change the %1 constant value in the %2 event subscription handlers.';tr = '%2 olay aboneliği işleyicilerinde %1 sabitinin değeri değiştirilemiyor.'"),
 			"LimitAccessAtRecordLevelUniversally", "BeforeWrite");
 		Raise ErrorText;
 	EndIf;
@@ -88,5 +88,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

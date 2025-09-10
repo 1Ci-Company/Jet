@@ -52,7 +52,7 @@ Procedure ImportFile_(
 		ImportParameters = FileImportParameters();
 	ElsIf Not ImportParameters.Interactively
 		And IsBlankString(FileName) Then
-		Raise NStr("en = 'Import in non-interactive mode failed. The name of the file to import is not specified.';");
+		Raise NStr("en = 'Import in non-interactive mode failed. The name of the file to import is not specified.';tr = 'İnteraktif olmayan modda içe aktarım hatası. İçe aktarılacak dosyanın adı belirtilmedi.'");
 	EndIf;
 	
 	If Not ValueIsFilled(ImportParameters.FormIdentifier) Then
@@ -120,7 +120,7 @@ Procedure ImportFiles(
 		Or (TypeOf(FilesToUpload) = Type("Array")
 		And FilesToUpload.Count() = 0)) Then
 		
-		Raise NStr("en = 'Import in non-interactive mode failed. The files to import are not specified.';");
+		Raise NStr("en = 'Import in non-interactive mode failed. The files to import are not specified.';tr = 'İnteraktif olmayan modda içe aktarım hatası. İçe aktarılacak dosyalar belirtilmedi.'");
 		
 	EndIf;
 	
@@ -371,7 +371,7 @@ Procedure OpenFile(
 	If IsTempStorageURL(FileLocation1) Then
 		
 		If IsBlankString(FileName) Then
-			Raise NStr("en = 'The file name is not specified.';");
+			Raise NStr("en = 'The file name is not specified.';tr = 'Dosya adı belirtilmedi.'");
 		EndIf;
 		
 		PathToFile = TempFileFullName(FileName);
@@ -420,7 +420,7 @@ Procedure OpenExplorer(PathToDirectoryOrFile) Export
 	Notification = New NotifyDescription(
 		"OpenExplorerAfterCheckFileSystemExtension", FileSystemInternalClient, Context);
 		
-	SuggestionText = NStr("en = 'To open the folder, install 1C:Enterprise Extension.';");
+	SuggestionText = NStr("en = 'To open the folder, install 1C:Enterprise Extension.';tr = 'Klasörü açmak için 1C:Enterprise uzantısını yükleyin.'");
 	AttachFileOperationsExtension(Notification, SuggestionText, False);
 	
 EndProcedure
@@ -457,7 +457,8 @@ Procedure OpenURL(URL, Val Notification = Undefined) Export
 	
 	ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot open URL ""%1"".
-		           |The URL is invalid.';"),
+		           |The URL is invalid.';tr = '""%1"" URL''si açılamıyor.
+		           |URL geçersiz.'"),
 		URL);
 	
 	If Not FileSystemInternalClient.IsAllowedRef(URL) Then 
@@ -499,7 +500,7 @@ Procedure OpenURL(URL, Val Notification = Undefined) Export
 			"OpenURLAfterCheckFileSystemExtension", FileSystemInternalClient, Context);
 		
 		SuggestionText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'To open link %1, install 1C:Enterprise Extension.';"),
+			NStr("en = 'To open link %1, install 1C:Enterprise Extension.';tr = '%1 bağlantısını açmak için 1C:Enterprise uzantısını yükleyin.'"),
 			URL);
 		AttachFileOperationsExtension(Notification, SuggestionText, False);
 		
@@ -661,7 +662,7 @@ Procedure StartApplication(Val StartupCommand, Val ApplicationStartupParameters 
 	Notification = New NotifyDescription("StartApplicationAfterCheckFileSystemExtension", 
 		FileSystemInternalClient, Context);
 	AttachFileOperationsExtension(Notification, 
-		NStr("en = 'To create a temporary folder, install 1C:Enterprise Extension.';"), False);
+		NStr("en = 'To create a temporary folder, install 1C:Enterprise Extension.';tr = 'Geçici klasörü oluşturmak için 1C:Enterprise ile çalışma uzantısı yüklenmelidir.'"), False);
 	
 EndProcedure
 
@@ -687,7 +688,7 @@ Procedure PrintFromApplicationByFileName(FileToOpenName) Export
 			ThisObject, AdditionalParameters);
 		CheckIfTheLinuxProgramIsInstalled("Unoconv", NotifyDescription);
 	Else
-		ShowMessageBox(, NStr("en = 'You can print this type of files only from an application for Windows or Linux.';"));
+		ShowMessageBox(, NStr("en = 'You can print this type of files only from an application for Windows or Linux.';tr = 'Bu dosya türü yalnızca bir Windows veya Linux uygulamasından yazdırılabilir.'"));
 		Return;
 	EndIf;
 #EndIf
@@ -764,7 +765,7 @@ Procedure CreateTemporaryDirectory(Val Notification, Extension = "") Export
 	Notification = New NotifyDescription("CreateTemporaryDirectoryAfterCheckFileSystemExtension",
 		FileSystemInternalClient, Context);
 	AttachFileOperationsExtension(Notification, 
-		NStr("en = 'To create a temporary folder, install 1C:Enterprise Extension.';"), False);
+		NStr("en = 'To create a temporary folder, install 1C:Enterprise Extension.';tr = 'Geçici klasörü oluşturmak için 1C:Enterprise ile çalışma uzantısı yüklenmelidir.'"), False);
 	
 EndProcedure
 
@@ -942,7 +943,8 @@ Procedure ShortenFullFileNameToAllowedNTFSLength(FullFileName)
 	// Analyze the directory path length. 1 character is the minimum length of the directory name.
 	If PathLength > AllowedNTFSLength - ExtensionLength - 1 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'File path is too long:
-		|%1';"), FullFileName);
+		|%1';tr = 'Dosya yolu çok uzun:
+		|%1'"), FullFileName);
 	EndIf;
 	
 	BaseName = Mid(File.BaseName, 1, AllowedNTFSLength - PathLength - ExtensionLength - 1);
@@ -993,7 +995,12 @@ Procedure PrintFromTheApplicationByTheLinuxFileName(Result, Parameters) Export
 			|To do so, open the terminal and run:
 			|%2
 			|
-			|Alternatively, send a request to the administrator.';"),
+			|Alternatively, send a request to the administrator.';tr = 'Belgeyi yazdırmak için <a href=""%1"">Unoconv</a> yükleyin.
+			|
+			|Bunun için terminali açın ve şunu çalıştırın:
+			|%2
+			|
+			|Alternatif olarak, yöneticiye talep gönderebilirsiniz.'"),
 			"https://docs.moodle.org/404/en/Universal_Office_Converter_%28unoconv%29", 
 			"sudo apt update
 			|sudo apt install unoconv"));
@@ -1075,14 +1082,18 @@ Procedure PrintFromTheApplicationByTheLinuxFileNameCompletion(Result, Parameters
 				NStr("en = 'Set the default printer:
 					|1. In the terminal window, run ""%1"" and select a printer from the list.
 					|2. In the terminal window, run: %2 ""printer name"".
-					|Alternatively, send a request to the administrator.';"),
+					|Alternatively, send a request to the administrator.';tr = 'Varsayılan yazıcıyı ayarlayın:
+					|1. Terminal penceresinde ""%1"" çalıştırın ve listeden bir yazıcı seçin.
+					|2. Terminal penceresinde şunu çalıştırın: %2 ""yazıcı adı"".
+					|Alternatif olarak, yöneticiye talep gönderebilirsiniz.'"),
 					"lpstat -p -d",
 					"lpoptions -d");
 		EndIf;
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t print the file. Reason:
-				|%1';"),
+				|%1';tr = 'Dosya yazdırılamadı. Nedeni:
+				|%1'"),
 			ErrorDescription, Result.ReturnCode);
 		If Result.ReturnCode <> 0 Then
 			ErrorDescription = ErrorDescription 
@@ -1092,7 +1103,7 @@ Procedure PrintFromTheApplicationByTheLinuxFileNameCompletion(Result, Parameters
 			ErrorDescription = ErrorDescription + Chars.LF + Chars.LF + Recommendation;
 		EndIf;
 		
-		EventLogClient.AddMessageForEventLog(NStr("en = 'Standard subsystems';", 
+		EventLogClient.AddMessageForEventLog(NStr("en = 'Standard subsystems';tr = 'Standart alt sistemler'", 
 				CommonClient.DefaultLanguageCode()),
 			"Warning",,, True);
 		ShowMessageBox(, ErrorDescription);
@@ -1119,7 +1130,7 @@ Procedure GetTheFullNameOfTheTemporaryFile(Val Notification, Extension = "")
 	Notification = New NotifyDescription("GetTheNameOfATemporaryFileAfterCheckingTheFileExtension",
 		ThisObject, Context);
 	AttachFileOperationsExtension(Notification, 
-		NStr("en = 'To get a temporary file name, install 1C:Enterprise Extension.';"), False);
+		NStr("en = 'To get a temporary file name, install 1C:Enterprise Extension.';tr = 'Geçici dosya adı alabilmek için 1C:Enterprise uzantısını yükleyin.'"), False);
 	
 EndProcedure
 
@@ -1143,7 +1154,7 @@ Procedure GetTheNameOfATemporaryFileAfterCheckingTheFileExtension(ExtensionAttac
 		GetTheNameOfTheTemporaryFileAfterGettingTheTemporaryDirectory("", Context);
 #EndIf
 	Else
-		GetTheNameOfTheTemporaryFileNotifyAboutTheError(NStr("en = 'Cannot install 1C:Enterprise Extension.';"), 
+		GetTheNameOfTheTemporaryFileNotifyAboutTheError(NStr("en = 'Cannot install 1C:Enterprise Extension.';tr = '1C:Enterprise Extension ile çalışma için uzantı yüklenemedi.'"), 
 			Context);
 	EndIf;
 	

@@ -16,7 +16,7 @@ Function ValidateAddress(Address, AddressCheckParameters = Undefined) Export
 	
 	If TypeOf(Address) <> Type("String") Then
 		CheckResult.Result = "ContainsErrors";
-		CheckResult.ErrorList.Add("AddressFormat", NStr("en = 'Invalid address format';"));
+		CheckResult.ErrorList.Add("AddressFormat", NStr("en = 'Invalid address format';tr = 'Yanlış adres biçimi'"));
 		Return CheckResult;
 	EndIf;
 	
@@ -248,7 +248,8 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.ObjectsToLock = "Catalog.WorldCountries";
 	Handler.CheckProcedure  = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.Comment = NStr("en = 'Updates Countries details against the Country classifier.
-		|Until it is complete, some country names might not be shown correctly.';");
+		|Until it is complete, some country names might not be shown correctly.';tr = 'Ülke bilgilerini Ülke sınıflandırıcısına göre günceller.
+		|İşlem tamamlanana kadar bazı ülke adları yanlış görünebilir.'");
 
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		Handler.ExecutionPriorities = InfobaseUpdate.HandlerExecutionPriorities();
@@ -268,7 +269,8 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.ObjectsToLock = "Catalog.ContactInformationKinds";
 	Handler.CheckProcedure  = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.Comment = NStr("en = 'Updates contact information kinds.
-		|While the update is in progress, names of contact information kinds in documents might be displayed incorrectly.';");
+		|While the update is in progress, names of contact information kinds in documents might be displayed incorrectly.';tr = 'İleişim bilgisi türlerini günceller.
+		|Güncelleme sırasında belgelerdeki iletişim bilgilerinin adları yanlış görünebilir.'");
 	
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport") Then
 		Handler.ExecutionPriorities = InfobaseUpdate.HandlerExecutionPriorities();
@@ -307,18 +309,21 @@ EndProcedure
 Procedure OnDefineChecks(ChecksGroups, Checks) Export
 	
 	ChecksGroup = ChecksGroups.Add();
-	ChecksGroup.Description                 = NStr("en = 'Contact information';");
+	ChecksGroup.Description                 = NStr("en = 'Contact information';tr = 'İletişim bilgileri'");
 	ChecksGroup.Id                = "ContactInformation";
 	ChecksGroup.AccountingChecksContext = "_ContactInformation";
 	
 	Validation = Checks.Add();
 	Validation.GroupID          = "ContactInformation";
-	Validation.Description                 = NStr("en = 'Identifying incorrect contact information kind settings';");
-	Validation.Reasons                      = NStr("en = 'There are no contact information fields in the card or in the document, or a situation arises that blocks operations with them.';");
+	Validation.Description                 = NStr("en = 'Identifying incorrect contact information kind settings';tr = 'Yanlış iletişim bilgisi türü ayarlarını belirleme'");
+	Validation.Reasons                      = NStr("en = 'There are no contact information fields in the card or in the document, or a situation arises that blocks operations with them.';tr = 'Kartta veya belgede iletişim bilgileri alanı yok veya bunlarla çalışmayı engelleyen bir durum var.'");
 	Validation.Recommendation                 = NStr("en = 'Perform partial automatic restoration of contact information kinds (to do this, click the link below).
 	|
 	|For distributed infobases (DIB), run the repair procedure for the master node only.
-	|After that, perform synchronization with subordinate nodes.';");
+	|After that, perform synchronization with subordinate nodes.';tr = 'Kişi bilgisi türlerinin kısmi otomatik geri yüklenmesini gerçekleştirin (bunu yapmak için aşağıdaki bağlantıya tıklayın).
+	|
+	| Dağıtılmış infobase''de (DIB) çalışıyorsanız, düzeltme yalnızca ana düğümde çalıştırılmalıdır.
+	|Ardından bağımlı düğümlerle senkronize edin.'");
 	Validation.Id                = "ContactInformation.CheckAndCorrectContactInformationKinds";
 	Validation.HandlerChecks           = "ContactsManagerInternal.CheckContactInformationKinds";
 	Validation.GoToCorrectionHandler = "Catalog.ContactInformationKinds.Form.ContactInformationKindsCorrection";
@@ -771,7 +776,7 @@ Procedure CheckContactInformationKinds(Validation, CheckParameters) Export
 	
 	StringFromQuery = QueryResult.Select();
 	
-	CheckExecutionParameters = ModuleAccountingAudit.CheckExecutionParameters("ContactInformation", NStr("en = 'Contact information kinds';", Common.DefaultLanguageCode()));
+	CheckExecutionParameters = ModuleAccountingAudit.CheckExecutionParameters("ContactInformation", NStr("en = 'Contact information kinds';tr = 'İletişim bilgisi türleri'", Common.DefaultLanguageCode()));
 	ModuleAccountingAudit.ClearPreviousCheckResults(Validation, CheckExecutionParameters);
 	
 	CheckKind = ModuleAccountingAudit.CheckKind(CheckExecutionParameters);
@@ -785,7 +790,7 @@ Procedure CheckContactInformationKinds(Validation, CheckParameters) Export
 		Issue1 = ModuleAccountingAudit.IssueDetails(StringFromQuery.Ref, CheckParameters);
 		Issue1.CheckKind = CheckKind;
 		Issue1.IssueSummary = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The group that determines a contact information owner is required';"), StringFromQuery.Description);
+			NStr("en = 'The group that determines a contact information owner is required';tr = 'İletişim bilgilerinin sahibini tanımlayan grup doldurulmadı'"), StringFromQuery.Description);
 		
 		ModuleAccountingAudit.WriteIssue(Issue1, CheckParameters);
 		
@@ -849,7 +854,7 @@ Procedure UpdateExistingWorldCountries() Export
 		Except
 			RollbackTransaction();
 			Info = ErrorInfo();
-			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Error saving country %1 (code %2) while updating classifier, %3';"),
+			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Error saving country %1 (code %2) while updating classifier, %3';tr = 'Sınıflandırıcıyı güncellenirken %1 ülkesi (kod %2) kaydedilirken hata oluştu, %3'"),
 				Selection.Code, Selection.Description, ErrorProcessing.BriefErrorDescription(Info));
 			WriteLogEvent(InfobaseUpdate.EventLogEvent(),
 				EventLogLevel.Error,,,
@@ -993,7 +998,7 @@ Procedure ContactInformationValidationProcessing(Source, Cancel, CheckedAttribut
 		
 		If FoundRows.Count() = 0 Then
 			
-			Text = StringFunctionsClientServer.SubstituteParametersToString( NStr("en = 'Please fill in the ""%1"" field.';"),
+			Text = StringFunctionsClientServer.SubstituteParametersToString( NStr("en = 'Please fill in the ""%1"" field.';tr = '""%1"" gerekli.'"),
 				ContactInformationKind);
 			Messages.Add(Text);
 			
@@ -1005,7 +1010,7 @@ Procedure ContactInformationValidationProcessing(Source, Cancel, CheckedAttribut
 					Or (IsBlankString(ContactInformationRow.Value)
 					And IsBlankString(ContactInformationRow.FieldValues)) Then
 					
-					Text = StringFunctionsClientServer.SubstituteParametersToString( NStr("en = 'Please fill in the ""%1"" field.';"),
+					Text = StringFunctionsClientServer.SubstituteParametersToString( NStr("en = 'Please fill in the ""%1"" field.';tr = '""%1"" gerekli.'"),
 						ContactInformationRow.Kind);
 					Messages.Add(Text);
 					Break;
@@ -1103,7 +1108,7 @@ EndProcedure
 
 Function EventLogEvent() Export
 	
-	Return NStr("en = 'Contact information';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Contact information';tr = 'İletişim bilgileri'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -1251,7 +1256,7 @@ EndFunction
 Procedure UpdateAddressPresentation(Address, IncludeCountryInPresentation)
 	
 	If TypeOf(Address) <> Type("Structure") Then
-		Raise NStr("en = 'Cannot generate address. Invalid address type passed.';");
+		Raise NStr("en = 'Cannot generate address. Invalid address type passed.';tr = 'Bir adres görünümü oluşturmak için yanlış adres türü iletildi'");
 	EndIf;
 	
 	FilledLevelsList = New Array;
@@ -2020,7 +2025,7 @@ Function CheckContactsKindParameters(ContactInformationKind) Export
 	
 	If Not ValueIsFilled(ContactInformationKind.Description) Then
 		Result.HasErrors = True;
-		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""Description"" of the ""%1"" contact information kind is empty. The field is required.';"),
+		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""Description"" of the ""%1"" contact information kind is empty. The field is required.';tr = '""%1"" iletişim bilgisi türünün ""Tanım"" alanı boş. Bu alan gereklidir.'"),
 			String(ContactInformationKind.PredefinedKindName));
 		Return Result;
 	EndIf;
@@ -2031,7 +2036,7 @@ Function CheckContactsKindParameters(ContactInformationKind) Export
 	
 	If Not ValueIsFilled(ContactInformationKind.Type) Then
 		Result.HasErrors = True;
-		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""Type"" of the ""%1"" contact information kind is empty. The field is required.';"),
+		Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Field ""Type"" of the ""%1"" contact information kind is empty. The field is required.';tr = '""%1"" iletişim bilgisi türünün ""Tür"" alanı boş. Bu alan gereklidir.'"),
 			String(ContactInformationKind.Description));
 		Return Result;
 	EndIf;
@@ -2043,14 +2048,16 @@ Function CheckContactsKindParameters(ContactInformationKind) Export
 			And (ContactInformationKind.CheckValidity
 			Or ContactInformationKind.HideObsoleteAddresses) Then
 				Result.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Invalid address validation settings for the %1 contact information kind.
-					|Validation for this kind is not available.';"), String(ContactInformationKind.Description));
+					|Validation for this kind is not available.';tr = '%1 iletişim bilgisi türü için geçersiz adres doğrulama ayarları.
+					|Bu tür için doğrulama yapılamaz.'"), String(ContactInformationKind.Description));
 					Separator = Chars.LF;
 			EndIf;
 			
 		If ContactInformationKind.AllowMultipleValueInput
 			And ContactInformationKind.StoreChangeHistory Then
 				Result.ErrorText = Result.ErrorText + Separator + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Invalid address settings for the %1 contact information kind.
-					|Contact information does not support multiple entry if the Change history feature is selected.';"),
+					|Contact information does not support multiple entry if the Change history feature is selected.';tr = '%1 iletişim bilgisi türü için geçersiz adres ayarları.
+					|Değişiklik geçmişi özelliği seçildiğinde iletişim bilgisi birden fazla girişi desteklemez.'"),
 						String(ContactInformationKind.Description));
 		EndIf;
 	EndIf;
@@ -2107,7 +2114,7 @@ Procedure AddContactInformation(Object, ValueOrPresentation, ContactInformationK
 	ObjectMetadata = Metadata.FindByType(TypeOf(Object));
 	If ObjectMetadata = Undefined
 		Or ObjectMetadata.TabularSections.Find("ContactInformation") = Undefined Then
-		Raise NStr("en = 'Cannot add contact information. The object does not have a contact information table.';");
+		Raise NStr("en = 'Cannot add contact information. The object does not have a contact information table.';tr = 'İletişim bilgileri eklenemiyor. Nesnenin iletişim bilgleri tablosu yok.'");
 	EndIf;
 	
 	If IsContactInformationInJSONStructure Then
@@ -3071,7 +3078,7 @@ Function JSONStringToStructure1(Value) Export
 	Try
 		Result = ReadJSON(JSONReader,,,, "RestoreContactInformationFields", ContactsManagerInternal);
 	Except
-		ErrorText = NStr("en = 'An error occurred while converting contact information from JSON.';");
+		ErrorText = NStr("en = 'An error occurred while converting contact information from JSON.';tr = 'İletişim bilgilerini JSON biçiminden dönüştürme hatası.'");
 		WriteLogEvent(EventLogEvent(),
 			EventLogLevel.Error,,,
 			ErrorText + Chars.LF + String(Value));

@@ -22,19 +22,19 @@
 //
 Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	ModuleReportsOptions = Common.CommonModule("ReportsOptions");
-	ReportSettings.LongDesc = NStr("en = 'Duties and duty completion summary.';");
+	ReportSettings.LongDesc = NStr("en = 'Duties and duty completion summary.';tr = 'Görevler ve görev tamamlama özeti.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "JobsList");
-	OptionSettings.LongDesc = NStr("en = 'All duties for the specified period.';");
+	OptionSettings.LongDesc = NStr("en = 'All duties for the specified period.';tr = 'Belirtilen dönem için tüm görevler.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "JobsStatistics");
-	OptionSettings.LongDesc = NStr("en = 'Pivot chart of all duties that are completed, canceled, or in progress.';");
+	OptionSettings.LongDesc = NStr("en = 'Pivot chart of all duties that are completed, canceled, or in progress.';tr = 'Tamamlanmış, iptal edilmiş ve devam eden tüm görevlerin özet grafiği.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "CheckExecutionCyclesStatistics");
-	OptionSettings.LongDesc = NStr("en = 'Top 10 authors by average time of duty counterchecks.';");
+	OptionSettings.LongDesc = NStr("en = 'Top 10 authors by average time of duty counterchecks.';tr = 'Ortalama görev tekrar kontrol süresine göre ilk 10 oluşturan.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "DurationStatistics");
-	OptionSettings.LongDesc = NStr("en = 'Top 10 authors by average time of duty completion.';");
+	OptionSettings.LongDesc = NStr("en = 'Top 10 authors by average time of duty completion.';tr = 'Ortalama görev tamamlama süresine göre ilk 10 oluşturan.'");
 EndProcedure
 
 // End StandardSubsystems.ReportsOptions

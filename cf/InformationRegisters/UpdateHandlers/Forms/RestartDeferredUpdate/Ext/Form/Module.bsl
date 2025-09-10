@@ -12,7 +12,7 @@
 
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
-	Title = NStr("en = 'Restart deferred update';");
+	Title = NStr("en = 'Restart deferred update';tr = 'Ertelenmiş güncellemeyi yeniden başlatma'");
 EndProcedure
 
 #EndRegion
@@ -62,10 +62,10 @@ Procedure AfterSelectHandlers(Result, AdditionalParameters) Export
 	SelectedHandlers.LoadValues(Result);
 	
 	If SelectedHandlers.Count() = 0 Then
-		Items.HyperlinkSelectionHandlers.Title = NStr("en = 'Select handlers';");
+		Items.HyperlinkSelectionHandlers.Title = NStr("en = 'Select handlers';tr = 'İşleyicileri seç'");
 	Else
 		Items.HyperlinkSelectionHandlers.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Handlers selected: %1';"),
+			NStr("en = 'Handlers selected: %1';tr = 'İşleyiciler seçildi: %1'"),
 			SelectedHandlers.Count());
 	EndIf;
 	

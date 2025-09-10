@@ -134,7 +134,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 
 			ReportsOptions.CheckUsedTables(TablesToUse);
 		Except
-			ErrorText = NStr("en = 'Cannot identify referenced tables:';");
+			ErrorText = NStr("en = 'Cannot identify referenced tables:';tr = 'Kullanılan tablolar belirlenemedi:'");
 			ErrorText = ErrorText + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			ReportsOptions.WriteToLog(EventLogLevel.Error, ErrorText,
 				ReportSettings.OptionRef);
@@ -142,7 +142,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 
 	ReportsClientServer.DisplayReportState(
-		ThisObject, NStr("en = 'To run the report, click ""Generate"".';"));
+		ThisObject, NStr("en = 'To run the report, click ""Generate"".';tr = 'Raporu çalıştırmak için ""Oluştur""a tıklayın.'"));
 
 	SSLSubsystemsIntegration.OnCreateAtServerReportsOptions(ThisObject, Cancel, StandardProcessing);
 	ReportsOverridable.OnCreateAtServer(ThisObject, Cancel, StandardProcessing);
@@ -161,7 +161,7 @@ EndProcedure
 Procedure OnOpen(Cancel)
 #If WebClient Then
 	If ValueIsFilled(PathToExternalReportFileAtClient) Then
-		ErrorText = NStr("en = 'For this action, start the client application';");
+		ErrorText = NStr("en = 'For this action, start the client application';tr = 'Bu eylem için istemci uygulamasını başlatın'");
 		Raise ErrorText;
 	EndIf;
 #EndIf
@@ -378,7 +378,7 @@ Procedure OnLoadVariantAtServer(NewDCSettings)
 		ResourcePlacement = Report.SettingsComposer.Settings.OutputParameters.FindParameterValue(
 			New DataCompositionParameter("ResourcePlacement"));
 		If ResourcePlacement.Use And ResourcePlacement.Value = DataCompositionResourcesPlacement.Vertically Then
-			Items.DecorationEditResourcePlacement.Title = NStr("en = 'Horizontal';");
+			Items.DecorationEditResourcePlacement.Title = NStr("en = 'Horizontal';tr = 'Yatay'");
 		EndIf;
 	EndIf;
 
@@ -459,10 +459,10 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 		Value = SettingItem.Value; // StandardPeriod
 		If StartDate.AutoMarkIncomplete = True And Not ValueIsFilled(Value.StartDate)
 			And Not ValueIsFilled(Value.EndDate) Then
-			ErrorText = NStr("en = 'The period is not specified.';");
+			ErrorText = NStr("en = 'The period is not specified.';tr = 'Dönem belirtilmedi.'");
 			DataPath = StartDate.DataPath;
 		ElsIf Value.StartDate > Value.EndDate Then
-			ErrorText = NStr("en = 'Period end must be later than period start.';");
+			ErrorText = NStr("en = 'Period end must be later than period start.';tr = 'Dönem sonu, başlangıcından sonra olmalıdır'");
 			DataPath = EndDate.DataPath;
 		Else
 			Continue;
@@ -615,7 +615,7 @@ Procedure FactorExtendedTooltipURLProcessing(Item, FormattedStringURL,
 	If Items.AllSettings.Visible Then
 		GoToSettings(ReportSettings.EditOptionsAllowed);
 	Else
-		ShowMessageBox(, NStr("en = 'Advanced filter settings are not available';"));
+		ShowMessageBox(, NStr("en = 'Advanced filter settings are not available';tr = 'Filtrelerin genişletilmiş ayar olanakları kullanılamaz'"));
 	EndIf;
 
 EndProcedure
@@ -830,7 +830,7 @@ Procedure SendByEmail(Command)
 	StatePresentation = Items.ReportSpreadsheetDocument.StatePresentation;
 	If StatePresentation.Visible = True 
 		And StatePresentation.AdditionalShowMode = AdditionalShowMode.Irrelevance Then
-		QueryText = NStr("en = 'Report not generated. Do you want to generate the report?';");
+		QueryText = NStr("en = 'Report not generated. Do you want to generate the report?';tr = 'Rapor oluşturulmadı. Oluşturulsun mu?'");
 		Handler = New NotifyDescription("GenerateBeforeEmailing", ThisObject);
 		ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo, 60, DialogReturnCode.Yes);
 	Else
@@ -923,7 +923,7 @@ Procedure ImportSchema(Command)
 	NotifyDescription = New NotifyDescription("ImportSchemaAfterLocateFile", ThisObject);
 
 	ImportParameters = FileSystemClient.FileImportParameters();
-	ImportParameters.Dialog.Filter = NStr("en = 'XML files (*.xml) |*.xml';");
+	ImportParameters.Dialog.Filter = NStr("en = 'XML files (*.xml) |*.xml';tr = 'XML (*.xml) |*.xml dosyalar'");
 	ImportParameters.FormIdentifier = UUID;
 
 	FileSystemClient.ImportFile_(NotifyDescription, ImportParameters);
@@ -942,7 +942,7 @@ Procedure EditSchema(Command)
 	Designer = New DataCompositionSchemaWizard(DataCompositionSchema);
 	Designer.Edit(ThisObject);
 #Else
-	ShowMessageBox(, NStr("en = 'To edit composition schema, run the application in thick client mode.';"));
+	ShowMessageBox(, NStr("en = 'To edit composition schema, run the application in thick client mode.';tr = 'Düzen şemasını düzenlemek için uygulamayı kalın istemci modunda çalıştırın.'"));
 #EndIf
 EndProcedure
 
@@ -1013,7 +1013,7 @@ Procedure SaveReport(Command)
 	Dialog = New FileDialog(FileDialogMode.Save);
 	Dialog.Filter = AvailableFormatsForSavingTheReport(Context.IndexOfReportSavingFormats);
 	Dialog.Multiselect = False;
-	Dialog.Title = NStr("en = 'Save report result';");
+	Dialog.Title = NStr("en = 'Save report result';tr = 'Rapor sonucunun kaydedilmesi'");
 
 	Handler = New NotifyDescription("SaveReportAfterFilenameSelected", ThisObject, Context);
 	FileSystemClient.ShowSelectionDialog(Handler, Dialog);
@@ -1024,7 +1024,7 @@ EndProcedure
 Procedure SaveReportSnapshot(Command)
 
 	If ReportSettings.ResultProperties.SettingsComposer = Undefined Then
-		WarningText = NStr("en = 'Generate the report before saving the snapshot.';");
+		WarningText = NStr("en = 'Generate the report before saving the snapshot.';tr = 'Anlık görüntüyü kaydetmeden önce raporu oluşturun.'");
 		ShowMessageBox(, WarningText);
 		Return;
 	EndIf;
@@ -1274,7 +1274,7 @@ EndProcedure
 Procedure Attachable_ImportReportOption(Command)
 	FoundItems = AddedOptions.FindRows(New Structure("CommandName", Command.Name));
 	If FoundItems.Count() = 0 Then
-		ShowMessageBox(, NStr("en = 'The report option does not exist.';"));
+		ShowMessageBox(, NStr("en = 'The report option does not exist.';tr = 'Rapor seçeneği mevcut değil.'"));
 		Return;
 	EndIf;
 
@@ -1472,8 +1472,8 @@ Procedure GenerateReport()
 
 		If Warn Then
 			Buttons = New ValueList;
-			Buttons.Add("Continue", NStr("en = 'Continue';"));
-			Buttons.Add("Cancel", NStr("en = 'Cancel';"));
+			Buttons.Add("Continue", NStr("en = 'Continue';tr = 'Devam'"));
+			Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
 			QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
 			QuestionParameters.DefaultButton = "Cancel";
 			QuestionParameters.Title = Title;
@@ -1560,8 +1560,8 @@ Procedure AfterGenerate(Result, GenerationParameters) Export
 	
 	If Result = Undefined Then
 
-		ShowGenerationErrors(NStr("en = 'Report generation is canceled by the administrator';"));
-		ShowUserNotification(NStr("en = 'Report is not generated';"),
+		ShowGenerationErrors(NStr("en = 'Report generation is canceled by the administrator';tr = 'Raporun oluşturulması yönetici tarafından iptal edildi'"));
+		ShowUserNotification(NStr("en = 'Report is not generated';tr = 'Rapor düzenlenmedi'"),
 			?(Window <> Undefined, Window.GetURL(), Undefined), Title);
 
 	ElsIf Result.Status = "Completed2" Then
@@ -1573,13 +1573,13 @@ Procedure AfterGenerate(Result, GenerationParameters) Export
 		ReportSettings.ResultProperties.FormationTime = (CurrentUniversalDateInMilliseconds()
 			- GenerationParameters.FormationStartTime) / 1000;
 			
-		ShowUserNotification(NStr("en = 'Report is generated';"),
+		ShowUserNotification(NStr("en = 'Report is generated';tr = 'Rapor düzenlendi'"),
 			?(Window <> Undefined, Window.GetURL(), Undefined), Title);
 
 	ElsIf Result.Status = "Error" Then
 
 		ShowGenerationErrors(Result.BriefErrorDescription);
-		ShowUserNotification(NStr("en = 'Report is not generated';"),
+		ShowUserNotification(NStr("en = 'Report is not generated';tr = 'Rapor düzenlenmedi'"),
 			?(Window <> Undefined, Window.GetURL(), Undefined), Title);
 	EndIf;
 
@@ -1642,7 +1642,7 @@ Function ReportGenerationResult(Val GeneratingOnOpen, Directly, AfterWarning)
 	GenerationParameters = ReportGenerationParameters(ReportName, Directly);
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 	ExecutionParameters.BackgroundJobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Running report: %1';"), ReportName);
+		NStr("en = 'Running report: %1';tr = 'Raporun yürütülmesi: %1'"), ReportName);
 	ExecutionParameters.RunNotInBackground1 = Directly;
 
 	Result = TimeConsumingOperations.ExecuteInBackground("ReportsOptions.GenerateReportInBackground", GenerationParameters,
@@ -1655,7 +1655,7 @@ Function ReportGenerationResult(Val GeneratingOnOpen, Directly, AfterWarning)
 		ImportReportGenerationResult();
 	Else
 		ReportsClientServer.DisplayReportState(
-			ThisObject, NStr("en = 'Generating report…';"), PictureLib.TimeConsumingOperation48);
+			ThisObject, NStr("en = 'Generating report…';tr = 'Rapor oluşturuluyor...'"), PictureLib.TimeConsumingOperation48);
 	EndIf;
 	Return Result;
 
@@ -1724,7 +1724,7 @@ EndFunction
 &AtServer
 Procedure ImportReportGenerationResult()
 	If Not IsTempStorageURL(BackgroundJobStorageAddress) Then
-		ShowGenerationErrors(NStr("en = 'Cannot generate the report.';"));
+		ShowGenerationErrors(NStr("en = 'Cannot generate the report.';tr = 'Rapor oluşturulamadı'"));
 		Return;
 	EndIf;
 
@@ -1734,7 +1734,7 @@ Procedure ImportReportGenerationResult()
 	BackgroundJobStorageAddress = Undefined;
 
 	If Result = Undefined Then
-		ShowGenerationErrors(NStr("en = 'Cannot generate the report (empty result)';"));
+		ShowGenerationErrors(NStr("en = 'Cannot generate the report (empty result)';tr = 'Rapor düzenlenemedi (boş sonuç)'"));
 		Return;
 	EndIf;
 
@@ -2002,7 +2002,8 @@ EndProcedure
 Procedure ApplyPassedSettings(SettingsDescription)
 	If VariantModified Then
 		ShowMessageBox(, NStr("en = 'The report option was changed.
-			|Please save the changes before applying the settings.';"));
+			|Please save the changes before applying the settings.';tr = 'Rapor seçeneği değiştirildi.
+			|Ayarlar uygulanmadan önce değişiklikleri kaydedin.'"));
 		Return;
 	EndIf;
 
@@ -2194,9 +2195,9 @@ Function SuitableUniversalSearchValues(Query)
 	If SuitableValues.Count() = 0 Then
 
 		If StrLen(SearchParameters.SearchString) > 2 Then
-			Message = NStr("en = 'No matches found';");
+			Message = NStr("en = 'No matches found';tr = 'Eşleşmeler bulunamadı'");
 		Else
-			Message = NStr("en = 'Continue typing…';");
+			Message = NStr("en = 'Continue typing…';tr = 'Girişe devam edin...'");
 		EndIf;
 
 		FormattedMessage = New FormattedString(Message, , WebColors.MediumGray);
@@ -2515,9 +2516,9 @@ Procedure FindSuitableValuesBooleanUniversalSearch(SuitableValues, SearchFieldsB
 	
 	// Search by Boolean values.
 	// ACC:1391-off - Validate user input.
-	If StrCompare(SearchParameters.SearchString, NStr("en = 'Yes';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'True';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Enabled';")) = 0 Then
+	If StrCompare(SearchParameters.SearchString, NStr("en = 'Yes';tr = 'Evet'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'True';tr = 'True'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Enabled';tr = 'Etkin'")) = 0 Then
 		For Each FieldForSearch In SearchFields Do
 			SearchProperties = UniversalSearchProperties(FieldForSearch.Key, True, SearchParameters.ControlCharacters);
 			SearchOptions = New Array;
@@ -2525,9 +2526,9 @@ Procedure FindSuitableValuesBooleanUniversalSearch(SuitableValues, SearchFieldsB
 			ValuesSuitableForBoolean.Add(SearchOptions, ViewSearchResultClient(
 				FieldForSearch.Value, SearchProperties.ComparisonType, SearchProperties.RightValue));
 		EndDo;
-	ElsIf StrCompare(SearchParameters.SearchString, NStr("en = 'No';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'False';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Disabled';")) = 0 Then
+	ElsIf StrCompare(SearchParameters.SearchString, NStr("en = 'No';tr = 'Hayır'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'False';tr = 'False'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Disabled';tr = 'Devre dışı'")) = 0 Then
 		For Each FieldForSearch In SearchFields Do
 			SearchProperties = UniversalSearchProperties(FieldForSearch.Key, False, SearchParameters.ControlCharacters);
 			SearchOptions = New Array;
@@ -2552,12 +2553,12 @@ Procedure FindSuitableValuesStringUniversalSearch(SuitableValues, SearchFieldsBy
 	EndIf;
 	
 	// ACC:1391-off - Validate user input.
-	If StrCompare(SearchParameters.SearchString, NStr("en = 'Yes';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'True';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Enabled';")) = 0
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'No';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'False';")) = 0 
-		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Disabled';")) = 0 Then
+	If StrCompare(SearchParameters.SearchString, NStr("en = 'Yes';tr = 'Evet'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'True';tr = 'True'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Enabled';tr = 'Etkin'")) = 0
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'No';tr = 'Hayır'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'False';tr = 'False'")) = 0 
+		Or StrCompare(SearchParameters.SearchString, NStr("en = 'Disabled';tr = 'Devre dışı'")) = 0 Then
 		Return;
 	EndIf;
 	// ACC:1391-on
@@ -2883,7 +2884,7 @@ Function RepresentationOfTheUniversalLinkSearch(Data, FieldForSearch, Condition,
 
 	If ValueIsFilled(Data.AdditionalData) Then
 		ValuePresentation = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 (%2)';"), String(Data.Ref), Data.AdditionalData);
+			NStr("en = '%1 (%2)';tr = '%1 (%2)'"), String(Data.Ref), Data.AdditionalData);
 	EndIf;
 
 	ConditionFragment = StringFunctions.FormattedString(ConditionFragmentTemplate(Condition));
@@ -2942,7 +2943,7 @@ EndFunction
 Function ConditionFragmentTemplate(Condition)
 
 	Return StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '%1<span style=""color: %2"">%3</span>%4';"), " ", "HiddenReportOptionColor", 
+		NStr("en = '%1<span style=""color: %2"">%3</span>%4';tr = '%1<span style=""color: %2"">%3</span>%4'"), " ", "HiddenReportOptionColor", 
 			Lower(StrReplace(Condition, "<", "&lt;")), " ");
 
 EndFunction
@@ -2951,7 +2952,7 @@ EndFunction
 Function SearchStringFragmentTemplate(SearchString)
 
 	Return StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '<span style=""color: %1; font: %2"">%3</span>';"), "MyReportsOptionsColor", "ImportantLabelFont",
+		NStr("en = '<span style=""color: %1; font: %2"">%3</span>';tr = '<span style=""color: %1; font: %2"">%3</span>'"), "MyReportsOptionsColor", "ImportantLabelFont",
 		SearchString);
 
 EndFunction
@@ -3425,7 +3426,7 @@ Function PropertiesOfTheMenuOfLevelsOfGroupingsOfAComplexReport(IndexOfTheReport
 		Properties.CommandName = Items.ShowGroupsLevel.Name + GroupingLevel;
 		Properties.GroupingLevel = GroupingLevel;
 		Properties.RepresentationOfTheGroupingLevel = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 level';"), GroupingLevel);
+			NStr("en = '%1 level';tr = '%1 seviyesi'"), GroupingLevel);
 
 	EndDo;
 
@@ -3553,7 +3554,7 @@ Function ReportGroupingsBasedOnAFieldWithAHierarchicalGrouping(IndexOfTheReportS
 	FoundGrouping = ReportDimensions.FindRows(Search)[0];
 	IndexOfTheFoundGrouping = ReportDimensions.IndexOf(FoundGrouping);
 
-	GroupingViewTemplate = NStr("en = '%1 - level %2';");
+	GroupingViewTemplate = NStr("en = '%1 - level %2';tr = '%1 - seviye %2'");
 	FieldLevelWithHierarchicalGrouping = 0;
 
 	While TheNumberOfLevelsOfTheFieldWithHierarchicalGrouping > 0 Do
@@ -3770,7 +3771,7 @@ Procedure SaveReportAfterFilenameSelected(Result, Context) Export
 		OnCloseNotifyDescription = New NotifyDescription("AfterSaveFormatSelected", ThisObject, Context);
 		FormatsList = ListOfAvailableReportSaveFormats(Context.IndexOfReportSavingFormats);
 		DefaultFormat = FormatsList.FindByValue("mxl");
-		FormatsList.ShowChooseItem(OnCloseNotifyDescription, NStr("en = 'Select a save format';"),
+		FormatsList.ShowChooseItem(OnCloseNotifyDescription, NStr("en = 'Select a save format';tr = 'Kaydetme formatını seçin'"),
 			DefaultFormat);
 	Else
 		Context.Insert("FullNameOfTheReportFile", FullNameOfTheReportFile);
@@ -3809,7 +3810,7 @@ Procedure SaveReportAfterSavedReportResults(Result, FullNameOfTheReportFile) Exp
 	EndIf;
 
 	Handler = New NotifyDescription("SaveReportOnChooseReportFilename", ThisObject, FullNameOfTheReportFile);
-	ShowUserNotification(NStr("en = 'The report is saved to the file';"), Handler, FullNameOfTheReportFile);
+	ShowUserNotification(NStr("en = 'The report is saved to the file';tr = 'Rapor dosyaya kaydedildi'"), Handler, FullNameOfTheReportFile);
 
 EndProcedure
 
@@ -4032,7 +4033,7 @@ Procedure SetVisibilityAvailability()
 	EndIf;
 
 	If DetailsMode Then
-		Title = Title + " (" + NStr("en = 'Details';") + ")";
+		Title = Title + " (" + NStr("en = 'Details';tr = 'Ayrıntılar'") + ")";
 	EndIf;
 EndProcedure
 
@@ -4072,7 +4073,7 @@ Procedure LoadVariant(VariantKey, ClearStackSettings = True)
 
 	SetCurrentVariant(VariantKey);
 	ReportsClientServer.DisplayReportState(	ThisObject, 
-		NStr("en = 'Another report option is selected. To run the report, click ""Generate"".';"),
+		NStr("en = 'Another report option is selected. To run the report, click ""Generate"".';tr = 'Başka bir rapor seçeneği seçildi. Raporu almak için ""Oluştur""a tıklayın.'"),
 		PictureLib.DialogInformation);
 EndProcedure
 
@@ -4086,7 +4087,7 @@ Procedure DefineBehaviorInMobileClient()
 		Return;
 	EndIf;
 
-	Items.CommandsAndIndicators.Title = NStr("en = 'indicators';");
+	Items.CommandsAndIndicators.Title = NStr("en = 'indicators';tr = 'göstergeler'");
 	Items.Move(Items.CommandsAndIndicators, ThisObject, Items.PredefinedSettingsItems);
 	Items.MainGroup1.Visible = False;
 	Items.ReportSettingsGroup.Visible = False;
@@ -4310,11 +4311,11 @@ Function EventsSettings()
 	FindEventSettings(Items.ReportSpreadsheetDocument.ContextMenu, RefinementsEventSettings(), 
 		EventSettingsExceptions(), EventsSettings);
 
-	EventsSettings.Insert("FilterAndGenerate", NStr("en = 'Filter…';"));
+	EventsSettings.Insert("FilterAndGenerate", NStr("en = 'Filter…';tr = 'Filtrele...'"));
 	EventsSettings.Insert(ReportsOptionsInternalClientServer.NameEventFormSettings(), 
-		NStr("en = 'Advanced setting';"));
+		NStr("en = 'Advanced setting';tr = 'Gelişmiş ayar'"));
 	EventsSettings.Insert(ReportsOptionsInternalClientServer.EventNameQuickSettingsChangesContent(), 
-		NStr("en = 'Quick settings change';"));
+		NStr("en = 'Quick settings change';tr = 'Hızlı ayarların içerik değişimi'"));
 
 	Return EventsSettings;
 
@@ -4324,10 +4325,10 @@ EndFunction
 Function RefinementsEventSettings()
 
 	Prefixes = New Map;
-	Prefixes.Insert("HighlightInYellow", NStr("en = 'Highlight in yellow';"));
-	Prefixes.Insert("HighlightInRed", NStr("en = 'Highlight in red';"));
-	Prefixes.Insert("HighlightInGreen", NStr("en = 'Highlight in green';"));
-	Prefixes.Insert("ApplyAppearanceMore", NStr("en = 'Format (more)';"));
+	Prefixes.Insert("HighlightInYellow", NStr("en = 'Highlight in yellow';tr = 'Sarı ile vurgula'"));
+	Prefixes.Insert("HighlightInRed", NStr("en = 'Highlight in red';tr = 'Kırmızı ile vurgula'"));
+	Prefixes.Insert("HighlightInGreen", NStr("en = 'Highlight in green';tr = 'Yeşil ile vurgula'"));
+	Prefixes.Insert("ApplyAppearanceMore", NStr("en = 'Format (more)';tr = 'Format (diğer)'"));
 
 	Return Prefixes;
 
@@ -4425,7 +4426,7 @@ Procedure UpdateSettingsFormItemsAtServer(ParametersOfUpdate)
 			ParametersOfUpdate.Regenerate = False;
 		ElsIf ParametersOfUpdate.Regenerate Then
 			ReportsClientServer.DisplayReportState(
-				ThisObject, NStr("en = 'Generating report…';"), PictureLib.TimeConsumingOperation48);
+				ThisObject, NStr("en = 'Generating report…';tr = 'Rapor oluşturuluyor...'"), PictureLib.TimeConsumingOperation48);
 		ElsIf Not ReportCreated And (ParametersOfUpdate.VariantModified
 			Or ParametersOfUpdate.UserSettingsModified) Then
 
@@ -4551,7 +4552,7 @@ EndProcedure
 Procedure ShowGenerationErrors(ErrorInfo)
 	If TypeOf(ErrorInfo) = Type("ErrorInfo") Then
 		ErrorDescription = ErrorProcessing.BriefErrorDescription(ErrorInfo);
-		DetailErrorDescription = NStr("en = 'The report is not generated due to:';") + Chars.LF
+		DetailErrorDescription = NStr("en = 'The report is not generated due to:';tr = 'Rapor şu nedenle oluşturulamadı:'") + Chars.LF
 			+ ErrorProcessing.DetailErrorDescription(ErrorInfo);
 		If IsBlankString(ErrorDescription) Then
 			ErrorDescription = DetailErrorDescription;
@@ -4590,21 +4591,21 @@ EndFunction
 Procedure SaveAsNewOrOverwriteExistingReportOptionAndContinue(Command)
 
 	If Not Items.SaveOptionAs.Visible Then
-		ShowMessageBox(, NStr("en = 'Cannot perform the action as saving report options is unavailable.';"));
+		ShowMessageBox(, NStr("en = 'Cannot perform the action as saving report options is unavailable.';tr = 'Rapor seçenekleri kaydedilemediği için işlem gerçekleştirilemiyor.'"));
 		Return;
 	EndIf;
 
 	If Items.SaveVariant.Visible Then
 		Buttons = New ValueList;
-		Buttons.Add("SaveAndResume", NStr("en = 'Save and continue';"));
-		Buttons.Add("Cancel", NStr("en = 'Cancel';"));
+		Buttons.Add("SaveAndResume", NStr("en = 'Save and continue';tr = 'Kaydet ve devam et'"));
+		Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
 		QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
 		QuestionParameters.PromptDontAskAgain = False;
 		QuestionParameters.DefaultButton = "SaveAndResume";
 		QuestionParameters.Title = ReportCurrentOptionDescription;
 		StandardSubsystemsClient.ShowQuestionToUser(
 			New NotifyDescription("Attachable_CommandAfter", ThisObject, Command),
-			NStr("en = 'Do you want to save the report option?';"), Buttons, QuestionParameters);
+			NStr("en = 'Do you want to save the report option?';tr = 'Rapor seçeneği kaydedilsin mi?'"), Buttons, QuestionParameters);
 		Return;
 	Else
 		FormParameters = New Structure;
@@ -4648,7 +4649,7 @@ EndProcedure
 Procedure SaveReportOption(AfterAddedNew = False)
 
 	SaveReportOptionAtServer(AfterAddedNew);
-	ShowUserNotification(NStr("en = 'The report option is saved';"), 
+	ShowUserNotification(NStr("en = 'The report option is saved';tr = 'Rapor seçeneği kaydedildi'"), 
 		?(Window <> Undefined, Window.GetURL(), Undefined), Title);
 
 EndProcedure

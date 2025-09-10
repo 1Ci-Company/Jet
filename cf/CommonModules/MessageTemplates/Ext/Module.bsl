@@ -138,7 +138,7 @@ Function CreateTemplate(Description, TemplateParameters) Export
 
 	TemplateParameters.Insert("Description", Description);
 
-	EventLogEventName = NStr("en = 'Create a message template';", Common.DefaultLanguageCode());
+	EventLogEventName = NStr("en = 'Create a message template';tr = 'İleti şablonu oluştur'", Common.DefaultLanguageCode());
 
 	BeginTransaction();
 	Try

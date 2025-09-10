@@ -55,7 +55,7 @@ Function GenerateColumnDetails(Table, Columns = Undefined) Export
 					
 					If Common.IsEnum(MetadataObject) Then
 						ToolTipSet = New Array;
-						ToolTipSet.Add(NStr("en = 'Available options:';"));
+						ToolTipSet.Add(NStr("en = 'Available options:';tr = 'Mevcut seçenekler:'"));
 						For Each EnumOption In MetadataObject.EnumValues Do
 							ToolTipSet.Add(EnumOption.Presentation());
 						EndDo;
@@ -127,10 +127,10 @@ EndFunction
 //
 Function DescriptionOfTheUploadedDataForReferenceBooks(DataToImport, MappingObjectTypeDetails, ColumnHeaderOfTheMappingObject) Export
 		
-	DataToImport.Columns.Add("Id", New TypeDescription("Number"), NStr("en = '#';"));
+	DataToImport.Columns.Add("Id", New TypeDescription("Number"), NStr("en = '#';tr = '#'"));
 	DataToImport.Columns.Add("MappingObject", MappingObjectTypeDetails, ColumnHeaderOfTheMappingObject);
-	DataToImport.Columns.Add("RowMappingResult", New TypeDescription("String"), NStr("en = 'Result';"));
-	DataToImport.Columns.Add("ErrorDescription", New TypeDescription("String"), NStr("en = 'Reason';"));
+	DataToImport.Columns.Add("RowMappingResult", New TypeDescription("String"), NStr("en = 'Result';tr = 'Sonuç'"));
+	DataToImport.Columns.Add("ErrorDescription", New TypeDescription("String"), NStr("en = 'Reason';tr = 'Sebep'"));
 	DataToImport.Columns.Add("ConflictsList", New TypeDescription("ValueList"), "ConflictsList");
 	
 	Return DataToImport;
@@ -244,7 +244,7 @@ Function ImportFromFileParameters(MappingObjectName) Export
 EndFunction
 
 Function PresentationOfTextYesForBoolean() Export
-	Return NStr("en = 'Yes';");
+	Return NStr("en = 'Yes';tr = 'Evet'");
 EndFunction
 
 #EndRegion

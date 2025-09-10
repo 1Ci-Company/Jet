@@ -40,16 +40,16 @@ Function StandardUsersGroup(GroupName) Export
 		GroupID = Catalogs.ExternalUsersGroups.AllExternalUsersGroupID();
 		FullCatalogName = "Catalog.ExternalUsersGroups";
 		CatalogManager = Catalogs.ExternalUsersGroups;
-		GroupDescription = NStr("en = 'All external users';", Common.DefaultLanguageCode());
+		GroupDescription = NStr("en = 'All external users';tr = 'Tüm harici kullanıcılar'", Common.DefaultLanguageCode());
 		
 	ElsIf GroupName = "AllUsers" Then
 		GroupID = AllUsersGroupID();
 		FullCatalogName = "Catalog.UserGroups";
 		CatalogManager = Catalogs.UserGroups;
-		GroupDescription = NStr("en = 'All users';", Common.DefaultLanguageCode());
+		GroupDescription = NStr("en = 'All users';tr = 'Tüm kullanıcılar'", Common.DefaultLanguageCode());
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The standard group has unknown name ""%1"".';"), GroupName);
+			NStr("en = 'The standard group has unknown name ""%1"".';tr = 'Standart grubun adı bilinmiyor: ""%1"".'"), GroupName);
 		Raise ErrorText;
 	EndIf;
 	
@@ -232,7 +232,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 
 	Item = Items.Add();
 	Item.PredefinedDataName = "AllUsers";
-	Item.Description = NStr("en = 'All users';", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'All users';tr = 'Tüm kullanıcılar'", Common.DefaultLanguageCode());
 	
 EndProcedure
 

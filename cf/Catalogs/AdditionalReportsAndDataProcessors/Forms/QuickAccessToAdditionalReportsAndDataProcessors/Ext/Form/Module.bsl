@@ -13,7 +13,7 @@
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
-	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quick access to ""%1"" command';"), Parameters.CommandPresentation);
+	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quick access to ""%1"" command';tr = '""%1"" komutuna hızlı erişim'"), Parameters.CommandPresentation);
 	
 	FillTables();
 	

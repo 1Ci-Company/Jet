@@ -683,7 +683,7 @@ Function CreateAdministrator(IBUser = Undefined) Export
 	UsersInternal.CheckSafeModeIsDisabled("Users.CreateAdministrator");
 	
 	If Not Common.SeparatedDataUsageAvailable() Then
-		ErrorText = NStr("en = 'The ""Users"" catalog is unavailable in shared mode.';");
+		ErrorText = NStr("en = 'The ""Users"" catalog is unavailable in shared mode.';tr = 'Kullanıcı katalogu ayrılmamış modda kullanılamaz.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -696,7 +696,7 @@ Function CreateAdministrator(IBUser = Undefined) Export
 		If IBUsers.Count() = 0 Then
 			If Common.DataSeparationEnabled() Then
 				ErrorText =
-					NStr("en = 'Cannot automatically create the first administrator of the data area.';");
+					NStr("en = 'Cannot automatically create the first administrator of the data area.';tr = 'İlk veri alanı yöneticisi otomatik olarak oluşturulamıyor.'");
 				Raise ErrorText;
 			EndIf;
 			IBUser = InfoBaseUsers.CreateUser();
@@ -723,7 +723,11 @@ Function CreateAdministrator(IBUser = Undefined) Export
 				           |with ""Full access"" and ""System administrator"" roles are found.
 				           |
 				           |The users might have been created in Designer.
-				           |Assign ""Full access"" and ""System administrator"" roles to at least one user.';");
+				           |Assign ""Full access"" and ""System administrator"" roles to at least one user.';tr = 'Veri tabanı kullanıcı listesi boş değil, ancak Tam yetkiler ve Sistem Yöneticisi rolleri olan 
+				           |herhangi bir kullanıcı bulunamadı. 
+				           |
+				           |Muhtemelen kullanıcılar yapılandırıcıda oluşturuldu.
+				           | En az bir kullanıcı için Tam yetkiler ve Sistem Yönetici rolleri atayın.'");
 			Raise ErrorText;
 		EndIf;
 	Else
@@ -735,7 +739,13 @@ Function CreateAdministrator(IBUser = Undefined) Export
 				           |
 				           |The user was probably created in Designer.
 				           |To have a user created in the catalog automatically,
-				           |grant the infobase user both ""Full access"" and ""System administrator"" roles.';"),
+				           |grant the infobase user both ""Full access"" and ""System administrator"" roles.';tr = '""%1"" infobase kullanıcısıyla eşleştirilmiş 
+				           |bir kullanıcı katalogda oluşturulamıyor
+				           |çünkü ""Tam erişim"" ve ""Sistem yöneticisi"" rollerine sahip değil.
+				           |
+				           |Kullanıcı Designer''da oluşturulmuş olabilir.
+				           |Kullanıcının katalogda otomatik oluşturulması için
+				           |infobase kullanıcısına hem ""Tam erişim"" hem de ""Sistem yöneticisi"" rolünü verin.'"),
 				String(IBUser));
 			Raise ErrorText;
 		EndIf;
@@ -793,10 +803,10 @@ Function CreateAdministrator(IBUser = Undefined) Export
 			"IBUserDetails", IBUserDetails);
 		User.AdditionalProperties.Insert("CreateAdministrator",
 			?(IBUser = Undefined,
-			  NStr("en = 'The first administrator is created.';"),
+			  NStr("en = 'The first administrator is created.';tr = 'İlk yönetici oluşturuldu.'"),
 			  ?(UserCreated,
-			    NStr("en = 'The administrator is mapped to a new catalog user.';"),
-			    NStr("en = 'The administrator is mapped to an existing catalog user.';")) ) );
+			    NStr("en = 'The administrator is mapped to a new catalog user.';tr = 'Yönetici yeni katalog kullanıcısı ile karşılaştırılmıştır.'"),
+			    NStr("en = 'The administrator is mapped to an existing catalog user.';tr = 'Yönetici mevcut katalog kullanıcısı ile karşılaştırılmıştır.'")) ) );
 			
 		User.Write();
 	
@@ -863,7 +873,7 @@ EndFunction
 //
 Function UnspecifiedUserFullName() Export
 	
-	Return "<" + NStr("en = 'Not specified';") + ">";
+	Return "<" + NStr("en = 'Not specified';tr = 'Belirtilmemiş'") + ">";
 	
 EndFunction
 
@@ -1121,7 +1131,7 @@ Procedure SetIBUserProperies(Val NameOrID, Val PropertiesToUpdate,
 	If Not UserExists Then
 		If Not CreateNewOne Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Infobase user ""%1"" does not exist.';"),
+				NStr("en = 'Infobase user ""%1"" does not exist.';tr = 'Veritabanı kullanıcısı ""%1"" bulunamadı.'"),
 				NameOrID);
 			Raise ErrorText;
 		EndIf;
@@ -1129,7 +1139,7 @@ Procedure SetIBUserProperies(Val NameOrID, Val PropertiesToUpdate,
 	Else
 		If CreateNewOne Then
 			ErrorText = ErrorDescriptionOnWriteIBUser(
-				NStr("en = 'Cannot create infobase user ""%1"". The user already exists.';"),
+				NStr("en = 'Cannot create infobase user ""%1"". The user already exists.';tr = '%1 Infobase kullanıcısı zaten mevcut olduğundan oluşturulamıyor.'"),
 				PreviousProperties.Name,
 				PreviousProperties.UUID);
 			Raise ErrorText;
@@ -1143,7 +1153,7 @@ Procedure SetIBUserProperies(Val NameOrID, Val PropertiesToUpdate,
 			
 			If Not PreviousPasswordMatches Then
 				ErrorText = ErrorDescriptionOnWriteIBUser(
-					NStr("en = 'Couldn''t save infobase user ""%1"". The previous password is incorrect.';"),
+					NStr("en = 'Couldn''t save infobase user ""%1"". The previous password is incorrect.';tr = 'Veritabanı%1 kullanıcısı kaydedilirken, eski şifre yanlış şekilde belirtildi.'"),
 					PreviousProperties.Name,
 					PreviousProperties.UUID);
 				Raise ErrorText;
@@ -1182,7 +1192,8 @@ Procedure SetIBUserProperies(Val NameOrID, Val PropertiesToUpdate,
 		If ValueIsFilled(PasswordErrorText) Then
 			ErrorText = ErrorDescriptionOnWriteIBUser(
 				NStr("en = 'Couldn''t save properties of infobase user ""%1"". Reason:
-				           |%2.';"),
+				           |%2.';tr = '%1 veritabanın kullanıcısının özellikleri aşağıdaki nedenle kaydedilemedi: 
+				           |%2.'"),
 				IBUser.Name,
 				?(UserExists, PreviousProperties.UUID, Undefined),
 				PasswordErrorText);
@@ -1214,7 +1225,8 @@ Procedure SetIBUserProperies(Val NameOrID, Val PropertiesToUpdate,
 		Except
 			ErrorText = ErrorDescriptionOnWriteIBUser(
 				NStr("en = 'Couldn''t save properties of infobase user ""%1"". Reason:
-				           |%2.';"),
+				           |%2.';tr = '%1 veritabanın kullanıcısının özellikleri aşağıdaki nedenle kaydedilemedi: 
+				           |%2.'"),
 				IBUser.Name,
 				?(UserExists, PreviousProperties.UUID, Undefined),
 				ErrorInfo());
@@ -1255,7 +1267,7 @@ Procedure DeleteIBUser(Val NameOrID) Export
 	DeletedIBUserProperties = IBUserProperies(NameOrID);
 	If DeletedIBUserProperties = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Infobase user ""%1"" does not exist.';"),
+			NStr("en = 'Infobase user ""%1"" does not exist.';tr = 'Veritabanı kullanıcısı ""%1"" bulunamadı.'"),
 			NameOrID);
 		Raise ErrorText;
 	EndIf;
@@ -1267,7 +1279,8 @@ Procedure DeleteIBUser(Val NameOrID) Export
 	Except
 		ErrorText = ErrorDescriptionOnWriteIBUser(
 			NStr("en = 'Cannot delete infobase user ""%1"". Reason:
-			           |%2.';"),
+			           |%2.';tr = '""%1"" Infobase kullanıcısı silinemiyor. Nedeni:
+			           |%2.'"),
 			IBUser.Name,
 			IBUser.UUID,
 			ErrorInfo());
@@ -1334,7 +1347,8 @@ Procedure CopyIBUserProperties(Receiver,
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of parameter %1 or %2.
-			           |Common module: %4. Procedure: %3.';"),
+			           |Common module: %4. Procedure: %3.';tr = '%4 genel modülün %3 prosedüründe %1 veya %2
+			           | parametre değeri geçersiz.'"),
 			"Receiver",
 			"Source",
 			"CopyIBUserProperties",
@@ -1529,7 +1543,9 @@ Procedure CopyIBUserProperties(Receiver,
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'Couldn''t save the infobase user.
 								           |The username ""%1""
-								           |exceeds the limit of 64 characters.';"),
+								           |exceeds the limit of 64 characters.';tr = 'Veritabanı kullanıcı adı kaydedilirken bir hata oluştu.
+								           |""%1"" kullanıcı adı
+								           |64 karakter sınırını aşıyor.'"),
 								PropertyValue);
 							Raise ErrorText;
 							
@@ -1537,7 +1553,9 @@ Procedure CopyIBUserProperties(Receiver,
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'Couldn''t save the infobase user.
 								           |The username ""%1""
-								           |contains an illegal character (colon).';"),
+								           |contains an illegal character (colon).';tr = 'İnfobase kullanıcısı kaydedilirken hata oluştu.
+								           |""%1"" kullanıcı adı
+								           |izin verilmeyen karakter "":"" içeriyor.'"),
 								PropertyValue);
 							Raise ErrorText;
 						EndIf;
@@ -1885,7 +1903,7 @@ Procedure FindAmbiguousIBUsers(Val User,
 				EndIf;
 				
 				If CurrentIBUser = Undefined Then
-					LoginName = "<" + NStr("en = 'not found';") + ">";
+					LoginName = "<" + NStr("en = 'not found';tr = 'bulunamadı'") + ">";
 				Else
 					LoginName = CurrentIBUser.Name;
 				EndIf;
@@ -1893,12 +1911,14 @@ Procedure FindAmbiguousIBUsers(Val User,
 				If ServiceUserID Then
 					ErrorDescription = ErrorDescription + StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'The service user with ID ""%1""
-						           |is mapped to multiple catalog items:';"),
+						           |is mapped to multiple catalog items:';tr = '""%1"" kimliği olan servis kullanıcısı 
+						           | birden fazla katalog öğesi ile eşlendi:'"),
 						CurrentAmbiguousID);
 				Else
 					ErrorDescription = ErrorDescription + StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Infobase user ""%1"" with ID ""%2""
-						           |is mapped to multiple catalog items:';"),
+						           |is mapped to multiple catalog items:';tr = '""%2"" kimliği olan ""%1"" infobase kullanıcısı, 
+						           |birden fazla katalog öğesi ile eşlendi:'"),
 						LoginName,
 						CurrentAmbiguousID);
 				EndIf;
@@ -1911,7 +1931,7 @@ Procedure FindAmbiguousIBUsers(Val User,
 		Else
 			ErrorDescription = ErrorDescription + "- "
 				+ StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '""%1"" %2';"),
+					NStr("en = '""%1"" %2';tr = '""%1"" %2'"),
 					TableRow.User,
 					GetURL(TableRow.User)) + Chars.LF;
 		EndIf;
@@ -2180,7 +2200,7 @@ Procedure SetExternalReportsAndDataProcessorsOpenRight(OpenAllowed) Export
 		EndIf;
 		
 		SettingsDescription = New SettingsDescription;
-		SettingsDescription.Presentation = NStr("en = 'Security warning';");
+		SettingsDescription.Presentation = NStr("en = 'Security warning';tr = 'Güvenlik uyarısı'");
 		Common.CommonSettingsStorageSave(
 			"SecurityWarning", 
 			"UserAccepts", 
@@ -2448,12 +2468,14 @@ Procedure UpdateRegistrationSettingsForDataAccessEvents() Export
 			IsTruncatedUsageDetailsEnabled = False;
 		EndTry;
 		If IsTruncatedUsageDetailsEnabled Then
-			EventName = NStr("en = 'Users.Error setting up Access.Access event';",
+			EventName = NStr("en = 'Users.Error setting up Access.Access event';tr = 'Kullanıcılar.Erişim ayarlama hatası.Erişim olayı'",
 				Common.DefaultLanguageCode());
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The following non-existent fields or tables with fields
 				           |were removed from the ""Access.Access"" event usage:
-				           |%1';"),
+				           |%1';tr = 'Aşağıdaki mevcut olmayan alanlar veya alanlı tablolar
+				           |""Access.Access"" olay kullanımından çıkarıldı:
+				           |%1'"),
 				StrConcat(UnfoundFields, Chars.LF));
 			If Common.SubsystemExists("StandardSubsystems.UserMonitoring") Then
 				ModuleUserMonitoringInternal = Common.CommonModule("UserMonitoringInternal");
@@ -2541,14 +2563,14 @@ Function ErrorDescriptionOnWriteIBUser(ErrorTemplate,
 	
 	If WriteToLog Then
 		WriteLogEvent(
-			NStr("en = 'Users.Error saving infobase user';",
+			NStr("en = 'Users.Error saving infobase user';tr = 'Kullanıcılar. VT kullanıcı kayıt hatası'",
 			     Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			,
 			,
 			StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 				"""" + LoginName + """ (" + ?(ValueIsFilled(IBUserID),
-					NStr("en = 'New';"), String(IBUserID)) + ")",
+					NStr("en = 'New';tr = 'Yeni'"), String(IBUserID)) + ")",
 				?(TypeOf(ErrorInfo) = Type("ErrorInfo"),
 					ErrorProcessing.DetailErrorDescription(ErrorInfo), String(ErrorInfo))));
 	EndIf;

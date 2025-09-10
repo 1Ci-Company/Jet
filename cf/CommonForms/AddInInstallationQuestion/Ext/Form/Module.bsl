@@ -16,7 +16,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	If Not IsBlankString(Parameters.ExplanationText) Then
 		Items.DecorationNote.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = '%1
-			           |Do you want to install it?';"),
+			           |Do you want to install it?';tr = '%1
+			           |Yüklensin mi?'"),
 			Parameters.ExplanationText);
 	EndIf;
 	

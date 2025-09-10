@@ -24,7 +24,7 @@ Function FullName() Export
 	If ValueIsFilled(Settings.OtherToDoItemsTitle) Then
 		OtherToDoItemsTitle = Settings.OtherToDoItemsTitle;
 	Else
-		OtherToDoItemsTitle = NStr("en = 'Other to-do items';");
+		OtherToDoItemsTitle = NStr("en = 'Other to-do items';tr = 'Diğer yapılacak işler'");
 	EndIf;
 	
 	Return OtherToDoItemsTitle;

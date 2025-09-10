@@ -89,7 +89,7 @@ Function CalculationCellsIndicators(Val SpreadsheetDocument, SelectedAreas, UUID
 	EndIf;
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Cell indicator calculation';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Cell indicator calculation';tr = 'Hücre göstergelerinin hesaplanması'");
 	
 	Return TimeConsumingOperations.ExecuteFunction(
 		ExecutionParameters, 
@@ -208,7 +208,7 @@ Procedure CheckDisableStartupLogicRight(ClientProperties) Export
 	If Not LoginDataArea And Not AccessRight("Administration", Metadata)
 		Or LoginDataArea And Not AccessRight("DataAdministration", Metadata) Then
 		
-		ErrorText = NStr("en = 'Insufficient rights to perform the operation.';");
+		ErrorText = NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok.'");
 	Else
 		ErrorText = UsersInternal.ErrorCheckingTheRightsOfTheCurrentUserWhenLoggingIn();
 	EndIf;
@@ -223,15 +223,15 @@ EndProcedure
 Procedure WriteErrorToEventLogOnStartOrExit(Shutdown, Val Event, Val ErrorText) Export
 	
 	If Event = "Run" Then
-		EventName = NStr("en = 'Startup';", Common.DefaultLanguageCode());
+		EventName = NStr("en = 'Startup';tr = 'Başlatma'", Common.DefaultLanguageCode());
 		If Shutdown Then
-			ErrorDescriptionBeginning = NStr("en = 'Startup failed due to:';");
+			ErrorDescriptionBeginning = NStr("en = 'Startup failed due to:';tr = 'Şu nedenle başlatılamadı:'");
 		Else
-			ErrorDescriptionBeginning = NStr("en = 'Exception occurred during startup:';");
+			ErrorDescriptionBeginning = NStr("en = 'Exception occurred during startup:';tr = 'Başlatma sırasında istisna oluştu:'");
 		EndIf;
 	Else
-		EventName = NStr("en = 'Exit';", Common.DefaultLanguageCode());
-		ErrorDescriptionBeginning = NStr("en = 'Exception occurred while exiting the app:';");
+		EventName = NStr("en = 'Exit';tr = 'Çık'", Common.DefaultLanguageCode());
+		ErrorDescriptionBeginning = NStr("en = 'Exception occurred while exiting the app:';tr = 'Uygulamadan çıkılırken istisna oluştu:'");
 	EndIf;
 	
 	ErrorDescription = ErrorDescriptionBeginning + Chars.LF + Chars.LF + ErrorText;

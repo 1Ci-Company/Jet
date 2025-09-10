@@ -18,8 +18,8 @@ Var Measurement;
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
-	PresentationTruth = NStr("en = 'All report options';");
-	PresentationLies = NStr("en = 'Computers and tablets';");
+	PresentationTruth = NStr("en = 'All report options';tr = 'Tüm rapor seçenekleri'");
+	PresentationLies = NStr("en = 'Computers and tablets';tr = 'Bilgisayarlar ve tabletler'");
 	Items.DisplayAllReportOptions.EditFormat = "BF='" + PresentationLies + "'; BT='"
 		+ PresentationTruth + "'";
 	DefineBehaviorInMobileClient();
@@ -209,7 +209,7 @@ EndProcedure
 Function SearchStringIsTooShort(Text)
 	Text = TrimAll(Text);
 	If StrLen(Text) < 2 Then
-		ShowMessageBox(, NStr("en = 'Search text is too short.';"));
+		ShowMessageBox(, NStr("en = 'Search text is too short.';tr = 'Arama metni çok kısa.'"));
 		Return True;
 	EndIf;
 	
@@ -222,7 +222,7 @@ Function SearchStringIsTooShort(Text)
 		EndIf;
 	EndDo;
 	If Not HasNormalWord Then
-		ShowMessageBox(, NStr("en = 'Search words are too short.';"));
+		ShowMessageBox(, NStr("en = 'Search words are too short.';tr = 'Arama kelimeleri çok kısa.'"));
 		Return True;
 	EndIf;
 	
@@ -380,7 +380,7 @@ EndProcedure
 
 &AtClient
 Procedure ResetSettings(Command)
-	QueryText = NStr("en = 'Do you want to reset report assignment settings?';");
+	QueryText = NStr("en = 'Do you want to reset report assignment settings?';tr = 'Rapor yerleşimi ayarları sıfırlansın mı?'");
 	Handler = New NotifyDescription("ResetSettingsCompletion", ThisObject);
 	ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo, 60, DialogReturnCode.No);
 EndProcedure
@@ -708,7 +708,7 @@ Function UpdateReportPanelAtServer(Val Event = "")
 	Items.GroupReportsSnapshots.Visible = AccessRight("Edit", Metadata.InformationRegisters.ReportsSnapshots);
 	
 	// Title.
-	SetupModeSuffix = " (" + NStr("en = 'setting';") + ")";
+	SetupModeSuffix = " (" + NStr("en = 'setting';tr = 'ayarlar'") + ")";
 	SuffixIsDisplayed = (Right(Title, StrLen(SetupModeSuffix)) = SetupModeSuffix);
 	If SuffixIsDisplayed <> SetupMode Then
 		If SetupMode Then
@@ -760,8 +760,8 @@ Procedure DefineBehaviorInMobileClient()
 	Items.CommandBarRightGroup.Visible = False;
 	Items.MobileApplicationDetails.Visible = False;
 	
-	SearchSubstring = NStr("en = 'right-click the report and';");
-	ReplaceSubstring = NStr("en = 'in the context menu';");
+	SearchSubstring = NStr("en = 'right-click the report and';tr = 'farenin sağ tuşu ile rapora tıklayın ve'");
+	ReplaceSubstring = NStr("en = 'in the context menu';tr = 'bağlam menüsünde'");
 	
 	Items.QuickAccessTooltipWhenNotConfigured.Title =
 		StrReplace(Items.QuickAccessTooltipWhenNotConfigured.Title, SearchSubstring, ReplaceSubstring);
@@ -771,7 +771,7 @@ Procedure DefineBehaviorInMobileClient()
 	
 	Items.Move(Items.DisplayAllReportOptions, Items.TopBarMobileClient,
 		Items.ShowTooltips);
-	Items.DisplayAllReportOptions.Title = NStr("en = 'Show reports for computers and tablets';");
+	Items.DisplayAllReportOptions.Title = NStr("en = 'Show reports for computers and tablets';tr = 'Bilgisayarlar ve tabletler için raporları göster'");
 	Items.DisplayAllReportOptions.TitleLocation = FormItemTitleLocation.Right;
 	
 EndProcedure
@@ -839,7 +839,7 @@ EndFunction
 Procedure DefineSubsystemsAndTitle(Var_Parameters)
 	
 	TitleIsSet = Not IsBlankString(Var_Parameters.Title);
-	PanelTitle = ?(TitleIsSet, Var_Parameters.Title, NStr("en = 'Reports';"));
+	PanelTitle = ?(TitleIsSet, Var_Parameters.Title, NStr("en = 'Reports';tr = 'Raporlar'"));
 	
 	If Var_Parameters.SubsystemPath = ReportsOptionsClientServer.HomePageID() Then
 		CurrentSectionFullName = Var_Parameters.SubsystemPath;
@@ -893,7 +893,7 @@ Procedure DefineSubsystemsAndTitle(Var_Parameters)
 	TableRow = ApplicationSubsystems.Add();
 	TableRow.TagName    = "NonIncludedToSections";
 	TableRow.Name            = "NonIncludedToSections";
-	TableRow.Presentation  = NStr("en = 'Not included in sections';");
+	TableRow.Presentation  = NStr("en = 'Not included in sections';tr = 'Bölümlere dahil değil'");
 	TableRow.ItemNumber  = 0;
 	TableRow.SectionReference   = Catalogs.MetadataObjectIDs.EmptyRef();
 	TableRow.ParentReference = Catalogs.MetadataObjectIDs.EmptyRef();
@@ -903,12 +903,12 @@ Procedure DefineSubsystemsAndTitle(Var_Parameters)
 	
 	If Var_Parameters.SubsystemPath = "NonIncludedToSections" Then
 		CurrentSectionRef = Catalogs.MetadataObjectIDs.EmptyRef();
-		PanelTitle = NStr("en = 'Reports not included in sections';");
+		PanelTitle = NStr("en = 'Reports not included in sections';tr = 'Raporlar bölümlere dahil değil'");
 	EndIf;
 	
 	If CurrentSectionRef = Undefined Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Non-existent section ""%1"" specified in report panel. See %2.';"),
+			NStr("en = 'Non-existent section ""%1"" specified in report panel. See %2.';tr = 'Rapor paneli için var olmayan bir ""%1"" bölümü listelenir (bkz %2).'"),
 			Var_Parameters.SubsystemPath, "ReportsOptionsOverridable.DefineSectionsWithReportOptions");
 	EndIf;
 	
@@ -1014,14 +1014,14 @@ Procedure FillReportPanel(ResultAddress)
 		Items.OtherSectionsSearchResultsGroup.Visible = True;
 		If FillParameters.OtherSections.Count() = 0 Then
 			Label = Items.Insert("InOtherSections", Type("FormDecoration"), Items.OtherSectionsSearchResults);
-			Label.Title = NStr("en = 'Reports not found in other sections.';") + Chars.LF;
+			Label.Title = NStr("en = 'Reports not found in other sections.';tr = 'Raporlar diğer bölümlerde bulunmamaktadır.'") + Chars.LF;
 			Label.Height = 2;
 		EndIf;
 		For Each SectionReference In FillParameters.OtherSections Do
 			OutputSectionOptions(FillParameters, SectionReference);
 		EndDo;
 		If FillParameters.NotDisplayed > 0 Then // Show the note.
-			LabelTitle = NStr("en = 'Limited to first %1 reports. Please narrow your search.';");
+			LabelTitle = NStr("en = 'Limited to first %1 reports. Please narrow your search.';tr = 'Diğer bölümlerden ilk %1 raporlar görüntülenir, bir arama sorgusu belirtin.'");
 			LabelTitle = StringFunctionsClientServer.SubstituteParametersToString(LabelTitle, FillParameters.OutputLimit);
 			Label = Items.Insert("OutputLimitExceeded", Type("FormDecoration"), Items.OtherSectionsSearchResults);
 			Label.Title = LabelTitle;
@@ -1161,13 +1161,13 @@ Procedure OutputSectionOptions(FillParameters, SectionReference)
 			Label = Items.Insert("ReportListEmpty", Type("FormDecoration"), Items.NoGroupColumn1);
 			If ValueIsFilled(SearchString) Then
 				If FillParameters.CurrentSectionOnly Then
-					Label.Title = NStr("en = 'Reports not found.';");
+					Label.Title = NStr("en = 'Reports not found.';tr = 'Raporlar bulunamadı.'");
 				Else
-					Label.Title = NStr("en = 'Reports not found in current section.';");
+					Label.Title = NStr("en = 'Reports not found in current section.';tr = 'Mevcut bölümde raporlar bulunamadı.'");
 					Label.Height = 2;
 				EndIf;
 			Else
-				Label.Title = NStr("en = 'No reports in this section.';");
+				Label.Title = NStr("en = 'No reports in this section.';tr = 'Bu bölümde henüz bir rapor yok.'");
 			EndIf;
 			Items["QuickAccessHeader"].Visible  = False;
 			Items["QuickAccessFooter"].Visible = False;
@@ -1942,7 +1942,7 @@ Function AddSubsystemsGroup(FillParameters, OutputOrderRow, ToGroup)
 	
 	If HighlightingIsRequired Then
 		If OutputOrderRow.IsFollowUp Then
-			Suffix = NStr("en = '(continued)';");
+			Suffix = NStr("en = '(continued)';tr = '(devam)'");
 			If Not StrEndsWith(PresentationHighlighting.Value, Suffix) Then
 				PresentationHighlighting.Value = PresentationHighlighting.Value + " " + Suffix;
 			EndIf;
@@ -1962,7 +1962,7 @@ Function AddSubsystemsGroup(FillParameters, OutputOrderRow, ToGroup)
 		
 	Else
 		If OutputOrderRow.IsFollowUp Then
-			SubsystemPresentation = SubsystemPresentation + " " + NStr("en = '(continued)';");
+			SubsystemPresentation = SubsystemPresentation + " " + NStr("en = '(continued)';tr = '(devam)'");
 		EndIf;
 		
 		SubsystemsGroup1.ShowTitle = True;
@@ -2101,7 +2101,7 @@ Function AddReportOptionItems(FillParameters, Variant, ToGroup, NestingLevel = 0
 		Label.ToolTip = TrimAll(Variant.LongDesc);
 	EndIf;
 	If ValueIsFilled(Variant.Author) Then
-		Label.ToolTip = TrimL(Label.ToolTip + Chars.LF) + NStr("en = 'Author:';") + " " + TrimAll(String(Variant.Author));
+		Label.ToolTip = TrimL(Label.ToolTip + Chars.LF) + NStr("en = 'Author:';tr = 'Oluşturan:'") + " " + TrimAll(String(Variant.Author));
 	EndIf;
 	Label.SetAction("Click", "Attachable_OptionClick");
 	If Not Variant.Visible Then
@@ -2176,7 +2176,7 @@ Procedure DefineOptionTooltipContent(FillParameters, Variant, TooltipContent, La
 				If TooltipContent.Count() > 0 Then
 					TooltipContent.Add(Chars.LF);
 				EndIf;
-				TooltipContent.Add(NStr("en = 'Author:';") + " ");
+				TooltipContent.Add(NStr("en = 'Author:';tr = 'Oluşturan:'") + " ");
 				GenerateRowWithHighlighting(HighlightParameters.AuthorPresentation1, TooltipContent);
 				TooltipContent.Add(".");
 				TooltipIsOutput = True;
@@ -2185,7 +2185,7 @@ Procedure DefineOptionTooltipContent(FillParameters, Variant, TooltipContent, La
 				If TooltipContent.Count() > 0 Then
 					TooltipContent.Add(Chars.LF);
 				EndIf;
-				TooltipContent.Add(NStr("en = 'Saved setting:';") + " ");
+				TooltipContent.Add(NStr("en = 'Saved setting:';tr = 'Kaydedilmiş ayarlar:'") + " ");
 				GenerateRowWithHighlighting(HighlightParameters.UserSettingsDescriptions, TooltipContent);
 				TooltipContent.Add(".");
 				TooltipIsOutput = True;
@@ -2194,7 +2194,7 @@ Procedure DefineOptionTooltipContent(FillParameters, Variant, TooltipContent, La
 				If TooltipContent.Count() > 0 Then
 					TooltipContent.Add(Chars.LF);
 				EndIf;
-				TooltipContent.Add(NStr("en = 'Fields:';") + " ");
+				TooltipContent.Add(NStr("en = 'Fields:';tr = 'Alanlar:'") + " ");
 				GenerateRowWithHighlighting(HighlightParameters.FieldDescriptions, TooltipContent);
 				TooltipContent.Add(".");
 				TooltipIsOutput = True;
@@ -2203,7 +2203,7 @@ Procedure DefineOptionTooltipContent(FillParameters, Variant, TooltipContent, La
 				If TooltipContent.Count() > 0 Then
 					TooltipContent.Add(Chars.LF);
 				EndIf;
-				TooltipContent.Add(NStr("en = 'Settings:';") + " ");
+				TooltipContent.Add(NStr("en = 'Settings:';tr = 'Ayarlar:'") + " ");
 				GenerateRowWithHighlighting(HighlightParameters.FilterParameterDescriptions, TooltipContent);
 				TooltipContent.Add(".");
 				TooltipIsOutput = True;
@@ -2212,7 +2212,7 @@ Procedure DefineOptionTooltipContent(FillParameters, Variant, TooltipContent, La
 				If TooltipContent.Count() > 0 Then
 					TooltipContent.Add(Chars.LF);
 				EndIf;
-				TooltipContent.Add(NStr("en = 'Keywords:';") + " ");
+				TooltipContent.Add(NStr("en = 'Keywords:';tr = 'Anahtar kelimeler:'") + " ");
 				GenerateRowWithHighlighting(HighlightParameters.Keywords, TooltipContent);
 				TooltipContent.Add(".");
 				TooltipIsOutput = True;

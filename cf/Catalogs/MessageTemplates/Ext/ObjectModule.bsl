@@ -46,7 +46,7 @@ Procedure FillOnBasisOutgoingEmail(FillingData, FillingText, StandardProcessing)
 	Description                           = InfoAboutTemplate.Subject;
 	ForEmails        = True;
 	ForSMSMessages                     = False;
-	InputOnBasisParameterTypeFullName = NStr("en = 'Common';");
+	InputOnBasisParameterTypeFullName = NStr("en = 'Common';tr = 'Ortak'");
 	EmailTextType = Enums.EmailEditingMethods.NormalText;
 	
 	If Common.SubsystemExists("StandardSubsystems.EmailOperations") Then
@@ -129,5 +129,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

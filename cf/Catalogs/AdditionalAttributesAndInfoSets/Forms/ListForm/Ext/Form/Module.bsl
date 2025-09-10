@@ -453,7 +453,7 @@ Procedure ApplySetsAndPropertiesAppearance()
 	ConditionalAppearanceItem = PropertiesSets.ConditionalAppearance.Items.Add();
 	
 	AppearanceColorItem = ConditionalAppearanceItem.Appearance.Items.Find("Text");
-	AppearanceColorItem.Value = NStr("en = 'Sets';");
+	AppearanceColorItem.Value = NStr("en = 'Sets';tr = 'Kümeler'");
 	AppearanceColorItem.Use = True;
 	
 	DataFilterItem = ConditionalAppearanceItem.Filter.Items.Add(Type("DataCompositionFilterItem"));
@@ -582,11 +582,11 @@ Procedure SwitchSetsList()
 	
 	ListPresentation = "";
 	If PropertyKind = PredefinedValue("Enum.PropertiesKinds.AdditionalInfo") Then
-		ListPresentation = NStr("en = 'Unused additional information records';");
+		ListPresentation = NStr("en = 'Unused additional information records';tr = 'Kullanılmayan ek bilgiler'");
 	ElsIf PropertyKind = PredefinedValue("Enum.PropertiesKinds.AdditionalAttributes") Then
-		ListPresentation = NStr("en = 'Unused additional attributes';");
+		ListPresentation = NStr("en = 'Unused additional attributes';tr = 'Kullanılmayan ek öznitelikler'");
 	ElsIf PropertyKind = PredefinedValue("Enum.PropertiesKinds.Labels") Then
-		ListPresentation = NStr("en = 'Unused labels';");
+		ListPresentation = NStr("en = 'Unused labels';tr = 'Kullanılmayan etiketler'");
 	EndIf;
 	
 	CommonClientServer.SetDynamicListParameter(
@@ -618,17 +618,17 @@ Procedure ConfigureSetsDisplay()
 	MoveDownCommand              = Commands.Find("MoveDown");
 	
 	If PropertyKind = Enums.PropertiesKinds.AdditionalInfo Then
-		Title = NStr("en = 'Additional information records';");
+		Title = NStr("en = 'Additional information records';tr = 'Ek bilgi'");
 		
-		CreateButton.Title          = NStr("en = 'New item';");
-		ButtonCreateContext.Title = NStr("en = 'New item';");
-		CreateCommand.ToolTip         = NStr("en = 'Create a unique information record.';");
+		CreateButton.Title          = NStr("en = 'New item';tr = 'Yeni öğe'");
+		ButtonCreateContext.Title = NStr("en = 'New item';tr = 'Yeni öğe'");
+		CreateCommand.ToolTip         = NStr("en = 'Create a unique information record.';tr = 'Benzersiz bir bilgi kaydı oluştur.'");
 		
-		CopyCommand.ToolTip        = NStr("en = 'Create an information record by copying the current one.';");
-		ChangeCommand.ToolTip           = NStr("en = 'Change or open the information record.';");
-		MarkForDeletionCommand.ToolTip = NStr("en = 'Mark the information record for deletion (Del).';");
-		MoveUpCommand.ToolTip   = NStr("en = 'Move the information record up the list.';");
-		MoveDownCommand.ToolTip    = NStr("en = 'Move the information record down the list.';");
+		CopyCommand.ToolTip        = NStr("en = 'Create an information record by copying the current one.';tr = 'Mevcut olanı kopyalayarak bir bilgi kaydı oluştur.'");
+		ChangeCommand.ToolTip           = NStr("en = 'Change or open the information record.';tr = 'Bilgi kaydını değiştir veya aç.'");
+		MarkForDeletionCommand.ToolTip = NStr("en = 'Mark the information record for deletion (Del).';tr = 'Bilgi kaydını silmek için işaretle (Del).'");
+		MoveUpCommand.ToolTip   = NStr("en = 'Move the information record up the list.';tr = 'Bilgi kaydını listede yukarı taşı.'");
+		MoveDownCommand.ToolTip    = NStr("en = 'Move the information record down the list.';tr = 'Bilgi kaydını listede aşağı taşı.'");
 		
 		MetadataTabularSection =
 			Metadata.Catalogs.AdditionalAttributesAndInfoSets.TabularSections.AdditionalInfo;
@@ -638,27 +638,28 @@ Procedure ConfigureSetsDisplay()
 		Items.PropertiesRequiredToFill.Visible = False;
 		
 		Items.PropertiesValueType.ToolTip =
-			NStr("en = 'Available information record value types.';");
+			NStr("en = 'Available information record value types.';tr = 'Kullanılabilir bilgi kaydı değer türleri.'");
 		
 		Items.PropertiesCommonValues.ToolTip =
-			NStr("en = 'The information record inherits the master record''s list of values.';");
+			NStr("en = 'The information record inherits the master record''s list of values.';tr = 'Bilgi kaydı, ana kaydın değer listesini devralır.'");
 		
-		Items.ShowUnusedAttributes.Title = NStr("en = 'Show unused information records';");
+		Items.ShowUnusedAttributes.Title = NStr("en = 'Show unused information records';tr = 'Kullanılmayan bilgileri göster'");
 		
-		Items.PropertiesCommon.Title = NStr("en = 'Shared';");
+		Items.PropertiesCommon.Title = NStr("en = 'Shared';tr = 'Ortak'");
 		Items.PropertiesCommon.ToolTip = NStr("en = 'A shared additional information record.
-		                                              |It belongs to multiple sets.';");
+		                                              |It belongs to multiple sets.';tr = 'Paylaşımlı ek bilgi kaydı.
+		                                              |Birden fazla kümeye ait.'");
 	ElsIf PropertyKind = Enums.PropertiesKinds.Labels Then
-		Title = NStr("en = 'Labels';");
-		CreateButton.Title            = NStr("en = 'New item';");
-		ButtonCreateContext.Title = NStr("en = 'New item';");
-		CreateCommand.ToolTip          = NStr("en = 'Create a unique label';");
+		Title = NStr("en = 'Labels';tr = 'Etiketler'");
+		CreateButton.Title            = NStr("en = 'New item';tr = 'Yeni öğe'");
+		ButtonCreateContext.Title = NStr("en = 'New item';tr = 'Yeni öğe'");
+		CreateCommand.ToolTip          = NStr("en = 'Create a unique label';tr = 'Benzersiz etiket oluştur'");
 		
-		CopyCommand.ToolTip        = NStr("en = 'Create a new label by copying the current label';");
-		ChangeCommand.ToolTip           = NStr("en = 'Edit or open the current label';");
-		MarkForDeletionCommand.ToolTip = NStr("en = 'Mark the current label for deletion (Del)';");
-		MoveUpCommand.ToolTip   = NStr("en = 'Move the current label up';");
-		MoveDownCommand.ToolTip    = NStr("en = 'Move the current label down';");
+		CopyCommand.ToolTip        = NStr("en = 'Create a new label by copying the current label';tr = 'Mevuct etiketi kopyalayarak yeni etiket oluştur'");
+		ChangeCommand.ToolTip           = NStr("en = 'Edit or open the current label';tr = 'Mevcut etiketi düzenle veya aç'");
+		MarkForDeletionCommand.ToolTip = NStr("en = 'Mark the current label for deletion (Del)';tr = 'Mevcut etiketi silmek için işaretle (Del)'");
+		MoveUpCommand.ToolTip   = NStr("en = 'Move the current label up';tr = 'Mevcut etiketi yukarı taşı'");
+		MoveDownCommand.ToolTip    = NStr("en = 'Move the current label down';tr = 'Mevcut etiketi aşağı taşı'");
 		
 		MetadataTabularSection =
 			Metadata.Catalogs.AdditionalAttributesAndInfoSets.TabularSections.AdditionalAttributes;
@@ -670,29 +671,30 @@ Procedure ConfigureSetsDisplay()
 			Metadata.ChartsOfCharacteristicTypes.AdditionalAttributesAndInfo.Attributes.RequiredToFill.Tooltip;
 		
 		Items.PropertiesValueType.ToolTip =
-			NStr("en = 'Types of a value that you can enter when filling a label.';");
+			NStr("en = 'Types of a value that you can enter when filling a label.';tr = 'Etiket doldururken girebileceğiniz değer türleri'");
 		
 		Items.PropertiesCommonValues.ToolTip =
-			NStr("en = 'The label uses the list of master label values.';");
+			NStr("en = 'The label uses the list of master label values.';tr = 'Etiket, ana etiket değerleri listesini kullanıyor.'");
 		
-		Items.ShowUnusedAttributes.Title = NStr("en = 'Show unused labels';");
+		Items.ShowUnusedAttributes.Title = NStr("en = 'Show unused labels';tr = 'Kullanılmayan etiketleri göster'");
 		
-		Items.PropertiesCommon.Title = NStr("en = 'Common';");
+		Items.PropertiesCommon.Title = NStr("en = 'Common';tr = 'Ortak'");
 		Items.PropertiesCommon.ToolTip = NStr("en = 'A common label that is used in
-		                                              |several label sets.';");
+		                                              |several label sets.';tr = 'Birden fazla etiket kümesinde
+		                                              |kullanılan ortak etiket.'");
 		Items.Properties.Header = False;
 		Items.PropertiesValueType.Visible = False;
 	Else
-		Title = NStr("en = 'Additional attributes';");
-		CreateButton.Title            = NStr("en = 'New item';");
-		ButtonCreateContext.Title = NStr("en = 'New item';");
-		CreateCommand.ToolTip          = NStr("en = 'Create a unique attribute.';");
+		Title = NStr("en = 'Additional attributes';tr = 'Ek öznitelikler'");
+		CreateButton.Title            = NStr("en = 'New item';tr = 'Yeni öğe'");
+		ButtonCreateContext.Title = NStr("en = 'New item';tr = 'Yeni öğe'");
+		CreateCommand.ToolTip          = NStr("en = 'Create a unique attribute.';tr = 'Benzersiz öznitelik oluştur.'");
 		
-		CopyCommand.ToolTip        = NStr("en = 'Create an attribute by copying the current one.';");
-		ChangeCommand.ToolTip           = NStr("en = 'Change or open the attribute.';");
-		MarkForDeletionCommand.ToolTip = NStr("en = 'Mark the attribute for deletion (Del).';");
-		MoveUpCommand.ToolTip   = NStr("en = 'Move the attribute up the list.';");
-		MoveDownCommand.ToolTip    = NStr("en = 'Move the attribute down the list.';");
+		CopyCommand.ToolTip        = NStr("en = 'Create an attribute by copying the current one.';tr = 'Mevcut olanı kopyalayarak yeni öznitelik oluştur.'");
+		ChangeCommand.ToolTip           = NStr("en = 'Change or open the attribute.';tr = 'Özniteliği değiştir veya aç.'");
+		MarkForDeletionCommand.ToolTip = NStr("en = 'Mark the attribute for deletion (Del).';tr = 'Özniteliği silmek için işaretle (Del).'");
+		MoveUpCommand.ToolTip   = NStr("en = 'Move the attribute up the list.';tr = 'Mevcut özelliği yukarı taşı'");
+		MoveDownCommand.ToolTip    = NStr("en = 'Move the attribute down the list.';tr = 'Mevcut özelliği aşağı taşı.'");
 		
 		MetadataTabularSection =
 			Metadata.Catalogs.AdditionalAttributesAndInfoSets.TabularSections.AdditionalAttributes;
@@ -704,16 +706,17 @@ Procedure ConfigureSetsDisplay()
 			Metadata.ChartsOfCharacteristicTypes.AdditionalAttributesAndInfo.Attributes.RequiredToFill.Tooltip;
 		
 		Items.PropertiesValueType.ToolTip =
-			NStr("en = 'Available attribute value types.';");
+			NStr("en = 'Available attribute value types.';tr = 'Mevcut öznitelik değeri türleri.'");
 		
 		Items.PropertiesCommonValues.ToolTip =
-			NStr("en = 'The attribute inherits the master attribute''s list of values.';");
+			NStr("en = 'The attribute inherits the master attribute''s list of values.';tr = 'Öznitelik, ana öznitelik değerleri listesini kullanır.'");
 		
-		Items.ShowUnusedAttributes.Title = NStr("en = 'Show unused attributes';");
+		Items.ShowUnusedAttributes.Title = NStr("en = 'Show unused attributes';tr = 'Kullanılmayan öznitelikleri göster'");
 		
-		Items.PropertiesCommon.Title = NStr("en = 'Shared';");
+		Items.PropertiesCommon.Title = NStr("en = 'Shared';tr = 'Ortak'");
 		Items.PropertiesCommon.ToolTip = NStr("en = 'A shared additional attribute.
-		                                              |It belongs to multiple sets.';");
+		                                              |It belongs to multiple sets.';tr = 'Paylaşımlı ek öznitelik.
+		                                              |Birden fazla kümeye ait.'");
 	EndIf;
 	
 	Query = New Query;
@@ -809,30 +812,30 @@ Procedure ChangeDeletionMark()
 		
 		If PropertyKind = PredefinedValue("Enum.PropertiesKinds.AdditionalInfo") Then
 			If Not ShowUnusedAttributes Then
-				QueryText = NStr("en = 'Do you want to remove the information record from the set?';");
+				QueryText = NStr("en = 'Do you want to remove the information record from the set?';tr = 'Toplama setten hariç tutulsun mu?'");
 				
 			ElsIf Items.Properties.CurrentData.DeletionMark Then
-				QueryText = NStr("en = 'Do you want to clear the deletion mark from the information record?';");
+				QueryText = NStr("en = 'Do you want to clear the deletion mark from the information record?';tr = 'Bilgi kaydının silme işareti kaldırılsın mı?'");
 			Else
-				QueryText = NStr("en = 'Do you want to mark the information record for deletion?';");
+				QueryText = NStr("en = 'Do you want to mark the information record for deletion?';tr = 'Bilgi kaydı silinmek üzere işaretlensin mi?'");
 			EndIf;
 		ElsIf PropertyKind = PredefinedValue("Enum.PropertiesKinds.AdditionalAttributes") Then
 			If Not ShowUnusedAttributes Then
-				QueryText = NStr("en = 'Do you want to remove the attribute from the set?';");
+				QueryText = NStr("en = 'Do you want to remove the attribute from the set?';tr = 'Sahne malzemeleri setten çıkarılsın mı?'");
 				
 			ElsIf Items.Properties.CurrentData.DeletionMark Then
-				QueryText = NStr("en = 'Do you want to clear the deletion mark from the attribute?';");
+				QueryText = NStr("en = 'Do you want to clear the deletion mark from the attribute?';tr = 'Özniteliğin silme işareti kaldırılsın mı?'");
 			Else
-				QueryText = NStr("en = 'Do you want to mark the attribute for deletion?';");
+				QueryText = NStr("en = 'Do you want to mark the attribute for deletion?';tr = 'Öznitelik silinmek üzere işaretlensin mi?'");
 			EndIf;
 		ElsIf PropertyKind = PredefinedValue("Enum.PropertiesKinds.Labels") Then
 			If Not ShowUnusedAttributes Then
-				QueryText = NStr("en = 'Do you want to remove the label from the set?';");
+				QueryText = NStr("en = 'Do you want to remove the label from the set?';tr = 'Etiket kümeden çıkarılsın mı?'");
 				
 			ElsIf Items.Properties.CurrentData.DeletionMark Then
-				QueryText = NStr("en = 'Do you want to unmark the label for deletion?';");
+				QueryText = NStr("en = 'Do you want to unmark the label for deletion?';tr = 'Etiketin silme işareti kaldırılsın mı?'");
 			Else
-				QueryText = NStr("en = 'Do you want to mark the label for deletion?';");
+				QueryText = NStr("en = 'Do you want to mark the label for deletion?';tr = 'Etiket silinmek üzere işaretlensin mi?'");
 			EndIf;
 		EndIf;
 		
@@ -1031,21 +1034,33 @@ Procedure ExecuteCommandAtServer(Command, Parameter = Undefined)
 						           |has been changed by another user.
 						           |The new set of additional information records has been read.
 						           |
-						           |Please try again if required.';");
+						           |Please try again if required.';tr = 'Bilgi kayıtları kümesi başka bir kullanıcı tarafından
+						           |değiştirildiğinden eylem gerçekleştirilemedi.
+						           |Yeni ek bilgi kaydı kümesi okundu.
+						           |
+						           |Lütfen, gerekiyorsa tekrar deneyin.'");
 				ElsIf PropertyKind = Enums.PropertiesKinds.AdditionalAttributes Then
 					Raise
 						NStr("en = 'The action is not performed as the set of additional attributes
 						           |has been changed by another user.
 						           |The new set of additional attributes has been read.
 						           |
-						           |Please try again if required.';");
+						           |Please try again if required.';tr = 'Ek öznitelik kümesi başka bir kullanıcı tarafından
+						           |değiştirildiğinden eylem gerçekleştirilemedi.
+						           |Yeni ek öznitelik kümesi okundu.
+						           |
+						           |Lütfen, gerekiyorsa tekrar deneyin.'");
 				ElsIf PropertyKind = Enums.PropertiesKinds.Labels Then
 					Raise
 						NStr("en = 'The action is not performed as the set of labels
 						           |has been changed by another user.
 						           |The new set of labels has been read.
 						           |
-						           |Please try again if required.';");
+						           |Please try again if required.';tr = 'Etiket kümesi başka bir kullanıcı tarafından
+						           |değiştirildiğinden eylem gerçekleştirilemedi.
+						           |Yeni etiket kümesi okundu.
+						           |
+						           |Lütfen, gerekiyorsa tekrar deneyin.'");
 				EndIf;
 			EndIf;
 			

@@ -228,9 +228,9 @@ Procedure ListChoiceProcessing(Item, SelectionResult, StandardProcessing)
 		Return;
 	EndIf;
 	If AddOn.Total = 1 Then
-		NotificationTitle = NStr("en = 'The item added to the list.';");
+		NotificationTitle = NStr("en = 'The item added to the list.';tr = 'Öğe listeye eklendi'");
 	Else
-		NotificationTitle = NStr("en = 'The items added to the list.';");
+		NotificationTitle = NStr("en = 'The items added to the list.';tr = 'Öğeler listeye eklendi'");
 	EndIf;
 	ShowUserNotification(
 		NotificationTitle,

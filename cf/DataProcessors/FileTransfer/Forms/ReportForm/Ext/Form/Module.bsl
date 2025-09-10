@@ -14,7 +14,7 @@
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Parameters.Deduplication Then
-		Title = NStr("en = 'Invalid data found when deduplicating files';");
+		Title = NStr("en = 'Invalid data found when deduplicating files';tr = 'Dosyalar çoğaltılırken geçersiz veriler bulundu'");
 	EndIf;
 	Explanation = Parameters.Explanation;
 	

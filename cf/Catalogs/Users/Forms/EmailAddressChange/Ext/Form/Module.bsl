@@ -33,9 +33,12 @@ Procedure ChangeEmailAddress(Command)
 			NStr("en = 'The service user''s email address will be set.
 			           |Subscriber owners and administrators will no longer be able to change the user parameters.
 			           |
-			           |Do you want to set the email address?';");
+			           |Do you want to set the email address?';tr = 'Servis kullanıcısının e-posta adresi ayarlanacak.
+			           |Abone sahipleri ve yöneticileri kullanıcı parametrelerini artık değiştiremeyecek.
+			           |
+			           |E-posta adresi ayarlansın mı?'");
 	Else
-		QueryText = NStr("en = 'Do you want to change the email address?';");
+		QueryText = NStr("en = 'Do you want to change the email address?';tr = 'E-posta adresini değiştirmek istiyor musunuz?'");
 	EndIf;
 	
 	ShowQueryBox(

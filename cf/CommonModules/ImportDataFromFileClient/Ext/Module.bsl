@@ -82,7 +82,7 @@ EndProcedure
 Procedure FileImportDialog(CompletionNotification , FileName = "") Export
 	
 	ImportParameters = FileSystemClient.FileImportParameters();
-	ImportParameters.Dialog.Filter = NStr("en = 'All supported file formats (*.xls; *.xlsx; *.ods; *.mxl; *.csv)|*.xls;*.xlsx;*.ods;*.mxl;*.csv|Excel Workbook 97 (*.xls)|*.xls|Excel Workbook 2007 (*.xlsx)|*.xlsx|OpenDocument Spreadsheet (*.ods)|*.ods|Comma-separated values file(*.csv)|*.csv|Spreadsheet document (*.mxl)|*.mxl';");
+	ImportParameters.Dialog.Filter = NStr("en = 'All supported file formats (*.xls; *.xlsx; *.ods; *.mxl; *.csv)|*.xls;*.xlsx;*.ods;*.mxl;*.csv|Excel Workbook 97 (*.xls)|*.xls|Excel Workbook 2007 (*.xlsx)|*.xlsx|OpenDocument Spreadsheet (*.ods)|*.ods|Comma-separated values file(*.csv)|*.csv|Spreadsheet document (*.mxl)|*.mxl';tr = 'Tüm desteklenen dosya formatları (*.xls;*.xlsx;*.ods;*.mxl;*.csv)|*.xls;*.xlsx;*.ods;*.mxl;*.csv|Excel 97 kitabı (*.xls)|*.xls| Excel 2007 kitabı (*.xlsx)|*.xlsx|Elektronik tablo OpenDocument (*.ods)|*.ods|Virgüllerle ayrılmış değerler dosyası (*.csv)|*.csv|Tablo belgesi (*.mxl)|*.mxl'");
 	ImportParameters.FormIdentifier = CompletionNotification.Module.UUID;
 	
 	

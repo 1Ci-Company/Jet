@@ -591,11 +591,13 @@ Function ProcessActiveOperationResult(AdvancedOptions_, TimeConsumingOperation)
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'An error occurred when calling a notification about the progress of
 					           |the ""%1"" long-running operation:
-					           |%2';"),
+					           |%2';tr = '""%1"" uzun süreli işleminin 
+					           |ilerlemesi hakkında bildirim çağrılırken hata oluştu:
+					           |%2'"),
 					String(AdvancedOptions_.JobID),
 					ErrorProcessing.DetailErrorDescription(ErrorInfo));
 				EventLogClient.AddMessageForEventLog(
-					NStr("en = 'Long-running operations.Error calling the event handler';",
+					NStr("en = 'Long-running operations.Error calling the event handler';tr = 'Uzun süreli işlemler.Olay işleyicisi çağırma hatası'",
 						CommonClient.DefaultLanguageCode()),
 					"Error",
 					ErrorText);
@@ -696,11 +698,13 @@ Procedure NotifyOfLongRunningOperationEnd(CallbackOnCompletion, Result, JobID)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An error occurred when calling a notification about the completion of
 			           |the ""%1"" long-running operation:
-			           |%2';"),
+			           |%2';tr = '""%1"" uzun süreli işleminin 
+			           |tamamlanması hakkında bildirim çağrılırken hata oluştu:
+			           |%2'"),
 			String(JobID),
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Long-running operations.Error calling the event handler';",
+			NStr("en = 'Long-running operations.Error calling the event handler';tr = 'Uzun süreli işlemler.Olay işleyicisi çağırma hatası'",
 				CommonClient.DefaultLanguageCode()),
 			"Error", ErrorText,, True);
 		StandardSubsystemsClient.OutputErrorInfo(ErrorInfo)
@@ -760,13 +764,13 @@ Procedure CheckParametersWaitForCompletion(Val TimeConsumingOperation, Val Callb
 			"IdleParameters", IdleParameters, Type("Structure"), PropertyTypes);
 			
 		VerificationMessage = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Parameter %1 must be equal to or greater than 1';"), "IdleParameters.Interval");
+			NStr("en = 'Parameter %1 must be equal to or greater than 1';tr = '%1 parametresi 1''den fazla ya da bir olmalıdır'"), "IdleParameters.Interval");
 		
 		CommonClientServer.Validate(IdleParameters.Interval = 0 Or IdleParameters.Interval >= 1,
 			VerificationMessage, "TimeConsumingOperationsClient.WaitCompletion");
 			
 		VerificationMessage = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'If parameter %1 is set to %2, parameter %3 is not supported';"),
+			NStr("en = 'If parameter %1 is set to %2, parameter %3 is not supported';tr = '%1 parametresi %2''da ayarlandıysa, %3 parametresi desteklenmez'"),
 			"IdleParameters.OutputIdleWindow",
 			"True",
 			"IdleParameters.ExecutionProgressNotification");
@@ -802,7 +806,7 @@ Procedure ShowNotification(UserNotification, FormOwner = Undefined) Export
 		AlertStatus = ?(Notification.Important, UserNotificationStatus.Important, UserNotificationStatus.Information);
 	EndIf;
 	
-	ShowUserNotification(?(Notification.Text <> Undefined, Notification.Text, NStr("en = 'Operation completed.';")), 
+	ShowUserNotification(?(Notification.Text <> Undefined, Notification.Text, NStr("en = 'Operation completed.';tr = 'Eylem tamamlandı'")), 
 		NotificationURL, NotificationComment, Notification.Picture, AlertStatus);
 
 EndProcedure

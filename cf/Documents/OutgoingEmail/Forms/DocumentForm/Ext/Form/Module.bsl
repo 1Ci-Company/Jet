@@ -65,7 +65,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.WarningAboutUnsentEmailsLabel.Title = StatusOfSendingEmails.WarningText;
 	
 	If Common.IsMobileClient() Then
-		Items.SpecifyContacts.Title                  = NStr("en = 'Save emails to Address Book';");
+		Items.SpecifyContacts.Title                  = NStr("en = 'Save emails to Address Book';tr = 'Adresleri Adres Defteri''ne kaydet'");
 		Items.SpecifyContacts.Representation                = ButtonRepresentation.Text;
 		Items.LeftGroup1.ItemsAndTitlesAlign = ItemsAndTitlesAlignVariant.ItemsRightTitlesLeft;
 		Items.Subject.TitleLocation                     = FormItemTitleLocation.Top;
@@ -304,7 +304,7 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 			Cancel                = True;
 			StandardProcessing = False;
 			
-			QueryText = NStr("en = 'The data has been changed. Save the changes?';");
+			QueryText = NStr("en = 'The data has been changed. Save the changes?';tr = 'Veriler değiştirildi. Değişiklikler kaydedilsin mi?'");
 			AdditionalParameters = New Structure;
 			AdditionalParameters.Insert("FilesToEditArray", FilesToEditArray);
 			NotificationAfterClosingPrompt = New NotifyDescription("AfterQuestionOnClose", ThisObject, AdditionalParameters);
@@ -815,7 +815,7 @@ Procedure RecipientsListBeforeEditEnd(Item, NewRow, CancelEdit, Cancel)
 	Filter = New Structure("Address", Address);
 	FoundRows = RecipientsList.FindRows(Filter);
 	If FoundRows.Count() > 1 Then
-		ErrorTextTemplate = NStr("en = 'You already added %1.';");
+		ErrorTextTemplate = NStr("en = 'You already added %1.';tr = '%1 zaten eklendi.'");
 		CommonClient.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(ErrorTextTemplate, Address)
 			,, "RecipientsList[" + Format(RecipientsList.IndexOf(FoundRows[0]), "NG=0") + "].Presentation");
 		Cancel = True;
@@ -905,13 +905,13 @@ Procedure SendForwardExecute(Command)
 	If RecipientsList.Count() = 0 Then
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'Specify at least one email recipient.';"),, "RecipientsList");
+			NStr("en = 'Specify at least one email recipient.';tr = 'En az bir e-posta alıcısı belirtin.'"),, "RecipientsList");
 		Return;
 		
 	ElsIf (RecipientsList.Count() = 1 And IsBlankString(RecipientsList[0].Address)) Then
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'Specify at least one email recipient.';"),, "RecipientsList[0].Presentation");
+			NStr("en = 'Specify at least one email recipient.';tr = 'En az bir e-posta alıcısı belirtin.'"),, "RecipientsList[0].Presentation");
 		Return;
 		
 	EndIf;
@@ -998,9 +998,9 @@ Procedure ImportanceHigh(Command)
 	
 	Object.Importance = PredefinedValue("Enum.InteractionImportanceOptions.High");
 	Items.SeverityGroup.Picture = PictureLib.ImportanceHigh;
-	Items.SeverityGroup.ToolTip = NStr("en = 'High importance';");
+	Items.SeverityGroup.ToolTip = NStr("en = 'High importance';tr = 'Yüksek önem'");
 	Items.DecorationImportance.Picture = PictureLib.ImportanceHigh;
-	Items.DecorationImportance.ToolTip = NStr("en = 'High importance';");
+	Items.DecorationImportance.ToolTip = NStr("en = 'High importance';tr = 'Yüksek önem'");
 	Modified = True;
 	
 EndProcedure
@@ -1010,9 +1010,9 @@ Procedure ImportanceNormal(Command)
 	
 	Object.Importance = PredefinedValue("Enum.InteractionImportanceOptions.Ordinary");
 	Items.SeverityGroup.Picture = PictureLib.ImportanceNotSpecified;
-	Items.SeverityGroup.ToolTip = NStr("en = 'Normal importance';");
+	Items.SeverityGroup.ToolTip = NStr("en = 'Normal importance';tr = 'Normal önem'");
 	Items.DecorationImportance.Picture = PictureLib.ImportanceNotSpecified;
-	Items.DecorationImportance.ToolTip = NStr("en = 'Normal importance';");
+	Items.DecorationImportance.ToolTip = NStr("en = 'Normal importance';tr = 'Normal önem'");
 	Modified = True;
 	
 EndProcedure
@@ -1022,9 +1022,9 @@ Procedure ImportanceLow(Command)
 	
 	Object.Importance = PredefinedValue("Enum.InteractionImportanceOptions.Low");
 	Items.SeverityGroup.Picture = PictureLib.ImportanceLow;
-	Items.SeverityGroup.ToolTip = NStr("en = 'Low importance';");
+	Items.SeverityGroup.ToolTip = NStr("en = 'Low importance';tr = 'Düşük önem'");
 	Items.DecorationImportance.Picture = PictureLib.ImportanceLow;
-	Items.DecorationImportance.ToolTip = NStr("en = 'Low importance';");
+	Items.DecorationImportance.ToolTip = NStr("en = 'Low importance';tr = 'Düşük önem'");
 	Modified = True;
 	
 EndProcedure
@@ -1121,7 +1121,7 @@ Function CheckAddresseesListFilling1()
 	Cancel = False;
 	AddressesByPresentations = New Map;
 	AddressesByValues = New Map;
-	ErrorTextTemplate = NStr("en = 'You already added %1.';");
+	ErrorTextTemplate = NStr("en = 'You already added %1.';tr = '%1 zaten eklendi.'");
 	
 	For Each AddressLine In RecipientsList Do
 		
@@ -1198,21 +1198,21 @@ Procedure DoDisplayImportance()
 
 	If Object.Importance = Enums.InteractionImportanceOptions.High Then
 		Items.SeverityGroup.Picture = PictureLib.ImportanceHigh;
-		Items.SeverityGroup.ToolTip = NStr("en = 'High importance';");
+		Items.SeverityGroup.ToolTip = NStr("en = 'High importance';tr = 'Yüksek önem'");
 		Items.DecorationImportance.Picture = PictureLib.ImportanceHigh;
-		Items.DecorationImportance.ToolTip = NStr("en = 'High importance';");
+		Items.DecorationImportance.ToolTip = NStr("en = 'High importance';tr = 'Yüksek önem'");
 		
 	ElsIf Object.Importance = Enums.InteractionImportanceOptions.Low Then
 		Items.SeverityGroup.Picture = PictureLib.ImportanceLow;
-		Items.SeverityGroup.ToolTip = NStr("en = 'Low importance';");
+		Items.SeverityGroup.ToolTip = NStr("en = 'Low importance';tr = 'Düşük önem'");
 		Items.DecorationImportance.Picture = PictureLib.ImportanceLow;
-		Items.DecorationImportance.ToolTip = NStr("en = 'Low importance';");
+		Items.DecorationImportance.ToolTip = NStr("en = 'Low importance';tr = 'Düşük önem'");
 		
 	Else
 		Items.SeverityGroup.Picture = PictureLib.ImportanceNotSpecified;
-		Items.SeverityGroup.ToolTip = NStr("en = 'Normal importance';");
+		Items.SeverityGroup.ToolTip = NStr("en = 'Normal importance';tr = 'Normal önem'");
 		Items.DecorationImportance.Picture = PictureLib.ImportanceNotSpecified;
-		Items.DecorationImportance.ToolTip = NStr("en = 'Normal importance';");
+		Items.DecorationImportance.ToolTip = NStr("en = 'Normal importance';tr = 'Normal önem'");
 	EndIf;
 
 EndProcedure
@@ -1613,7 +1613,7 @@ Procedure AttachIncomingBaseEmailAsAttachmentIfNecessary(CurrentObject)
 		
 		FileParameters = FilesOperations.FileAddingOptions();
 		FileParameters.FilesOwner = CurrentObject.Ref;
-		FileParameters.BaseName = NStr("en = 'Forwarded message';");
+		FileParameters.BaseName = NStr("en = 'Forwarded message';tr = 'Yönlendirilmiş ileti'");
 		FileParameters.ExtensionWithoutPoint = "html";
 		FileParameters.ModificationTimeUniversal = Undefined;
 		
@@ -1636,7 +1636,7 @@ Procedure AttachmentProperties(Command)
 	If CurrentData.Ref = Undefined Then
 		AdditionalParameters = New Structure("CurrentIndexInCollection", CurrentIndexInCollection);
 		OnCloseNotifyHandler = New NotifyDescription("QuestionOfFileRecordAfterClose", ThisObject, AdditionalParameters);
-		QueryText = NStr("en = 'You can access the file''s properties after you save the file. Save it now?';");
+		QueryText = NStr("en = 'You can access the file''s properties after you save the file. Save it now?';tr = 'Dosya kaydedildikten sonra özelliklerine erişilebilir. Dosya kaydedilsin mi?'");
 		ShowQueryBox(OnCloseNotifyHandler, QueryText, QuestionDialogMode.YesNo);
 	Else
 		OpenAttachmentProperties(CurrentIndexInCollection);
@@ -1818,27 +1818,27 @@ EndFunction
 &AtServer
 Function GenerateOutgoingMessagePlainText(SelectionIncomingEmailData, CurrentObject)
 
-	StringHeader1 = NStr("en = '-----Forwarded message-----';");
+	StringHeader1 = NStr("en = '-----Forwarded message-----';tr = '-----Yönlendirilen ileti-----'");
 	
-	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'From';") + ": "+ SelectionIncomingEmailData.SenderPresentation
+	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'From';tr = 'Kimden'") + ": "+ SelectionIncomingEmailData.SenderPresentation
 		          + ?(SelectionIncomingEmailData.MetadataObjectName = "IncomingEmail",
 		          "[" + SelectionIncomingEmailData.SenderAddress +"]",
 		          "");
 		
-	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'Sent on';") + ": " 
+	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'Sent on';tr = 'Gönderildi'") + ": " 
 	              + Format(SelectionIncomingEmailData.Date,"DLF=DT");
 	
-	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'To';") + ": " 
+	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'To';tr = 'Kime'") + ": " 
 	    + Interactions.GetIncomingEmailRecipientsPresentations(SelectionIncomingEmailData.EmailRecipients.Unload());
 		
 	CCRecipientsTable = SelectionIncomingEmailData.CCRecipients.Unload();
 	
 	If CCRecipientsTable.Count() > 0 Then
-		StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'Cc';") + ": "
+		StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'Cc';tr = 'Cc'") + ": "
 		+ Interactions.GetIncomingEmailRecipientsPresentations(CCRecipientsTable);
 	EndIf;
 	
-	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'Subject';") + ": " + SelectionIncomingEmailData.Subject;
+	StringHeader1 = StringHeader1 + Chars.LF+ NStr("en = 'Subject';tr = 'Konu'") + ": " + SelectionIncomingEmailData.Subject;
 	
 	// Transforming an HTML text to a plain text if necessary.
 	If SelectionIncomingEmailData.TextType <> Enums.EmailTextTypes.PlainText Then
@@ -2222,21 +2222,22 @@ Procedure SendExecute()
 	FoundRows = AvailableAccountsForSending.FindRows(New Structure("Account", Object.Account));
 	If FoundRows.Count() = 0 Then
 		CommonClient.MessageToUser(
-			NStr("en = 'The selected account cannot be used to send mail.';"),, "SenderPresentation", "Object");
+			NStr("en = 'The selected account cannot be used to send mail.';tr = 'Seçilen hesap e-posta göndermek için kullanılamaz.'"),, "SenderPresentation", "Object");
 		Return;
 	EndIf;
 	
 	If FoundRows[0].DeleteAfterSend Then
 			
 		ButtonsList = New ValueList;
-		ButtonsList.Add(DialogReturnCode.Yes, NStr("en = 'Send';"));
-		ButtonsList.Add(DialogReturnCode.No, NStr("en = 'Send and save';"));
-		ButtonsList.Add(DialogReturnCode.Cancel, NStr("en = 'Cancel';"));
+		ButtonsList.Add(DialogReturnCode.Yes, NStr("en = 'Send';tr = 'Gönder'"));
+		ButtonsList.Add(DialogReturnCode.No, NStr("en = 'Send and save';tr = 'Gönder ve kaydet'"));
+		ButtonsList.Add(DialogReturnCode.Cancel, NStr("en = 'Cancel';tr = 'İptal'"));
 		
 		QueryText = NStr("en = 'This email account doesn''t store sent messages in the app.
-		                    |Do you want to continue?';");
+		                    |Do you want to continue?';tr = 'Bu hesap için, gönderilen e-postaların kaydedilmesi gerekmiyor.
+		                    |Devam edilsin mi?'");
 		CloseNotificationHandler = New NotifyDescription("PromptForNotSavingSentEmail", ThisObject);
-		ShowQueryBox(CloseNotificationHandler,QueryText, ButtonsList,, DialogReturnCode.Yes, NStr("en = 'Send message';"));
+		ShowQueryBox(CloseNotificationHandler,QueryText, ButtonsList,, DialogReturnCode.Yes, NStr("en = 'Send message';tr = 'Mesaj gönder'"));
 	Else
 		SendMailClient();
 	EndIf;
@@ -2256,9 +2257,9 @@ EndProcedure
 Procedure SetButtonTitleByDefault()
 	
 	If Object.EmailStatus = Enums.OutgoingEmailStatuses.Sent Then
-		Items.Send.Title = NStr("en = 'Forward';");
+		Items.Send.Title = NStr("en = 'Forward';tr = 'Yönlendir'");
 	ElsIf Object.EmailStatus = Enums.OutgoingEmailStatuses.Outgoing Then
-		Items.Send.Title = NStr("en = 'Send now';");
+		Items.Send.Title = NStr("en = 'Send now';tr = 'Şimdi gönder'");
 	ElsIf Object.EmailStatus = Enums.OutgoingEmailStatuses.Draft Then
 		If Common.FileInfobase() Then
 			EmailOperationSettings = Interactions.EmailOperationSettings();
@@ -2267,7 +2268,7 @@ Procedure SetButtonTitleByDefault()
 			EndIf;
 		EndIf;
 		
-		Items.Send.Title = NStr("en = 'Send';");
+		Items.Send.Title = NStr("en = 'Send';tr = 'Gönder'");
 		
 	EndIf;
 	
@@ -2552,7 +2553,7 @@ EndProcedure
 
 &AtClient
 Procedure ShowEmailAddressRequiredMessage()
-	ShowMessageBox(, NStr("en = 'Enter an email address';"));
+	ShowMessageBox(, NStr("en = 'Enter an email address';tr = 'E-posta adresi girin'"));
 EndProcedure
 
 &AtServer
@@ -2707,7 +2708,7 @@ Procedure SendMailClient()
 	
 	If Result.AttachmentError Then
 		EmailOperationsClient.ReportConnectionError(Object.Account, 
-			NStr("en = 'The message is not sent';"), Result.MessageText);
+			NStr("en = 'The message is not sent';tr = 'E-posta gönderilmedi'"), Result.MessageText);
 	Else
 		ShowMessageBox(, Result.MessageText);
 	EndIf;

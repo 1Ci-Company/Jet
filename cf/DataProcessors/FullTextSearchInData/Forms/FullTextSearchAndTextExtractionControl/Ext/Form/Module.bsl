@@ -39,10 +39,10 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		If Common.FileInfobase() Then
 			ChoiceList = Items.ExtractFilesTextsAtWindowsServer.ChoiceList;
-			ChoiceList[0].Presentation = NStr("en = 'All workstations run on Windows.';");
+			ChoiceList[0].Presentation = NStr("en = 'All workstations run on Windows.';tr = 'Tüm iş istasyonları Windows işletim sistemi altında çalışır'");
 			
 			ChoiceList = Items.ExtractFilesTextsAtLinuxServer.ChoiceList;
-			ChoiceList[0].Presentation = NStr("en = 'One or more workstations run on Linux.';");
+			ChoiceList[0].Presentation = NStr("en = 'One or more workstations run on Linux.';tr = 'Bir ya da birkaç iş istasyonu Linux OS altında çalışır'");
 		EndIf;
 		
 		// Form attributes values.
@@ -52,9 +52,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		FillScheduledJobInfo("TextExtraction");
 	Else
 		AutoTitle = False;
-		Title = NStr("en = 'Full-text search management';");
+		Title = NStr("en = 'Full-text search management';tr = 'Tam metin aramayı yönet'");
 		Items.SectionDetails.Title =
-			NStr("en = 'Full-text search toggle, search index update.';");
+			NStr("en = 'Full-text search toggle, search index update.';tr = 'Tam metin aramanın etkinleştirilmesi ve devre dışı bırakılması, tam metin arama dizininin güncellenmesi.'");
 	EndIf;
 	
 	// Update items states.
@@ -118,7 +118,7 @@ EndProcedure
 &AtClient
 Procedure UpdateIndex(Command)
 	UpdateIndexServer();
-	ShowUserNotification(NStr("en = 'Full-text search';"),, NStr("en = 'Index has been updated';"));
+	ShowUserNotification(NStr("en = 'Full-text search';tr = 'Tam metin arama'"),, NStr("en = 'Index has been updated';tr = 'Dizin başarı ile güncellendi'"));
 EndProcedure
 
 &AtClient
@@ -127,7 +127,11 @@ Procedure ClearIndex(Command)
 		|will not be able to use the full-text search.
 		|To enable the full-text search, update the index.
 		|
-		|Continue?';");
+		|Continue?';tr = 'Arama indeksi temizlenecek 
+		|ve tam metin araması yapamayacaksınız.
+		|Tam metin aramasını etkinleştirmek için indeksi güncelleyin.
+		|
+		|Devam edilsin mi?'");
 	
 	Handler = New NotifyDescription("ClearTheIndexAfterAnsweringTheQuestion", ThisObject);
 	ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.Yes);
@@ -137,7 +141,7 @@ EndProcedure
 Procedure CheckIndex(Command)
 	ClearMessages();
 	CheckIndexServer();
-	ShowUserNotification(NStr("en = 'Full-text search';"),, NStr("en = 'Index is up to date';"));
+	ShowUserNotification(NStr("en = 'Full-text search';tr = 'Tam metin arama'"),, NStr("en = 'Index is up to date';tr = 'Dizin doğru veri içermektedir'"));
 EndProcedure
 
 &AtClient
@@ -161,10 +165,10 @@ Procedure Attachable_OnChangeAttribute(Item, ShouldRefreshInterface = True)
 	
 	If Result.Property("CannotEnableFullTextSearchMode") Then
 		// Display a warning message.
-		QueryText = NStr("en = 'To change the full-text search mode, close all sessions, except for the current user session.';");
+		QueryText = NStr("en = 'To change the full-text search mode, close all sessions, except for the current user session.';tr = 'Tam metin arama modunu değiştirmek için mevcut kullanıcı dışındaki tüm kullanıcı oturumlarını kapatın.'");
 		
 		Buttons = New ValueList;
-		Buttons.Add("ActiveUsers", NStr("en = 'Active users';"));
+		Buttons.Add("ActiveUsers", NStr("en = 'Active users';tr = 'Aktif kullanıcılar'"));
 		Buttons.Add(DialogReturnCode.Cancel);
 		
 		Handler = New NotifyDescription("OnChangeAttributeAfterAnswerToQuestion", ThisObject);
@@ -236,7 +240,7 @@ Procedure ClearTheIndexAfterAnsweringTheQuestion(Result, AdditionalParameters) E
 	
 	If Result = DialogReturnCode.Yes Then
 		ClearIndexServer();
-		ShowUserNotification(NStr("en = 'Full-text search';"),, NStr("en = 'Index has been cleaned up';"));
+		ShowUserNotification(NStr("en = 'Full-text search';tr = 'Tam metin arama'"),, NStr("en = 'Index has been cleaned up';tr = 'Dizin başarı ile temizlendi'"));
 	EndIf;
 	
 EndProcedure
@@ -262,7 +266,7 @@ Procedure CheckIndexServer()
 		IndexContainsCorrectData = FullTextSearch.CheckIndex();
 	Except
 		ErrorMessageText = 
-			NStr("en = 'Cannot check index status. The index is being updated or cleaned up.';");
+			NStr("en = 'Cannot check index status. The index is being updated or cleaned up.';tr = 'Dizin doğrulama şu anda mümkün değildir, çünkü temizleme veya güncelleme yapılır.'");
 		Common.MessageToUser(ErrorMessageText);
 		FullTextSearchServer.LogRecord(EventLogLevel.Warning, 
 			"", ErrorInfo());
@@ -333,7 +337,7 @@ Function SaveAttributeValue(DataPathAttribute)
 				EndIf;
 			Except
 				WriteLogEvent(
-					NStr("en = 'Full-text search';", Common.DefaultLanguageCode()),
+					NStr("en = 'Full-text search';tr = 'Tam metin arama'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error,
 					,
 					,
@@ -381,16 +385,16 @@ Procedure SetAvailability(DataPathAttribute = "", IndexChecked = False)
 			IndexUpdateDate = FullTextSearch.UpdateDate();
 			IndexTrue = (State = "SearchAllowed");
 			If IndexChecked And Not IndexContainsCorrectData Then
-				IndexStatus = NStr("en = 'Cleanup and update required';");
+				IndexStatus = NStr("en = 'Cleanup and update required';tr = 'Temizleme ve güncelleme gerekir'");
 			ElsIf IndexTrue Then
-				IndexStatus = NStr("en = 'No update required';");
+				IndexStatus = NStr("en = 'No update required';tr = 'Güncelleme gerekmiyor'");
 			Else
-				IndexStatus = NStr("en = 'Update required';");
+				IndexStatus = NStr("en = 'Update required';tr = 'Güncelleme gerekiyor'");
 			EndIf;
 		Else
 			IndexUpdateDate = '00010101';
 			IndexTrue = False;
-			IndexStatus = NStr("en = 'Full-text search is disabled';");
+			IndexStatus = NStr("en = 'Full-text search is disabled';tr = 'Tam metin araması devre dışı'");
 		EndIf;
 		IndexedDataMaxSize = FullTextSearch.GetMaxIndexedDataSize() / 1048576;
 		LimitMaxIndexedDataSize = IndexedDataMaxSize <> 0;
@@ -413,7 +417,7 @@ Procedure SetAvailability(DataPathAttribute = "", IndexChecked = False)
 			SchedulePresentation = String(InformationRecords.Schedule);
 			SchedulePresentation = Upper(Left(SchedulePresentation, 1)) + Mid(SchedulePresentation, 2);
 		Else
-			SchedulePresentation = NStr("en = 'Automatic text extraction is not scheduled.';");
+			SchedulePresentation = NStr("en = 'Automatic text extraction is not scheduled.';tr = 'Metinlerin otomatik olarak alınması başarısız.'");
 		EndIf;
 		Items.EditScheduledJob.ExtendedTooltip.Title = SchedulePresentation;
 	EndIf;

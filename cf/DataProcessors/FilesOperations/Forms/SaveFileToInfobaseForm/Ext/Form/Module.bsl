@@ -21,13 +21,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		CreateNewVersion = True;
 		Items.CreateNewVersion.Enabled = Parameters.CreateNewVersionAvailability;
 		If Not Parameters.CreateNewVersionAvailability Then
-			Items.CreateNewVersion.ToolTip = NStr("en = 'Settings for saving the attached file version are specified by its author and cannot be changed.';");
+			Items.CreateNewVersion.ToolTip = NStr("en = 'Settings for saving the attached file version are specified by its author and cannot be changed.';tr = 'Eklenmiş dosya versiyonunun kaydetme yapılandırması yazan tarafından yapılmıştır ve değiştirilemez.'");
 			Items.CreateNewVersion.ToolTipRepresentation = ToolTipRepresentation.Button;
 		EndIf;
 	Else
 		CreateNewVersion = False;
 		Items.CreateNewVersion.Enabled = False;
-		Items.CreateNewVersion.ToolTip = NStr("en = 'Versions for this attachment are disabled.';");
+		Items.CreateNewVersion.ToolTip = NStr("en = 'Versions for this attachment are disabled.';tr = 'Bu ekli dosya için sürümler devre dışı.'");
 		Items.CreateNewVersion.ToolTipRepresentation = ToolTipRepresentation.Button;
 	EndIf;
 	

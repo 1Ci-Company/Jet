@@ -14,7 +14,7 @@
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not ValueIsFilled(Parameters.DirectoryOnHardDrive) Then
-		Raise NStr("en = 'The data processor cannot be opened manually.';");
+		Raise NStr("en = 'The data processor cannot be opened manually.';tr = 'Bu veri işlemcisi manuel kullanım için uygun değildir.'");
 	EndIf;
 	
 	FilesGroup = Parameters.FilesGroup;
@@ -52,10 +52,10 @@ Procedure SelectedDirectoryStartChoice(Item, ChoiceData, StandardProcessing)
 	
 	OpenFileDialog.Directory = Directory;
 	OpenFileDialog.FullFileName = "";
-	Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+	Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 	OpenFileDialog.Filter = Filter;
 	OpenFileDialog.Multiselect = False;
-	OpenFileDialog.Title = NStr("en = 'Select directory';");
+	OpenFileDialog.Title = NStr("en = 'Select directory';tr = 'Dizini seçin'");
 	If OpenFileDialog.Choose() Then
 		
 		If DirectoriesChoice = True Then 
@@ -79,14 +79,14 @@ Procedure ImportExecute()
 	If IsBlankString(Directory) Then
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'Select a folder for import.';"), , "Directory");
+			NStr("en = 'Select a folder for import.';tr = 'İçe aktarım klasörü seçili değil.'"), , "Directory");
 		Return;
 		
 	EndIf;
 	
 	If FolderForAdding.IsEmpty() Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please select a folder.';"), , "FolderForAdding");
+			NStr("en = 'Please select a folder.';tr = 'Klasörü belirleyin.'"), , "FolderForAdding");
 		Return;
 	EndIf;
 	

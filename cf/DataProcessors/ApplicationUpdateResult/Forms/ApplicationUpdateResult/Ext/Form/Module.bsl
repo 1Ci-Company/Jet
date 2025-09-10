@@ -25,7 +25,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Items.MinimalUserActivityPeriodHintGroup.Visible = False;
 		Items.WhereToFindThisFormHint.Title = 
 			NStr("en = 'To view the progress of processing app data,
-		               |go to Quick menu > Information > Release notes.';");
+		               |go to Quick menu > Information > Release notes.';tr = 'Uygulama verilerinin işlenme ilerlemesini görmek için
+		               |Hızlı menü > Bilgi > Sürüm notları''na gidin.'");
 		
 	EndIf;
 	
@@ -48,7 +49,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			Format(UpdateEndTime, "DLF=T"),
 			UpdateInfo.UpdateDuration);
 	Else
-		UpdateCompletedTitle = NStr("en = 'The application is updated to version %1.';");
+		UpdateCompletedTitle = NStr("en = 'The application is updated to version %1.';tr = 'Uygulama %1 sürümüne güncellendi'");
 		Items.UpdateCompletedInformation.Title = StringFunctionsClientServer.SubstituteParametersToString(UpdateCompletedTitle, Metadata.Version);
 	EndIf;
 	
@@ -71,7 +72,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		MessageText = UpdateResultMessage();
 		Items.UpdateStatus.CurrentPage = Items.UpdateCompleted;
 		
-		TitleTemplate1 = NStr("en = 'Additional data processing procedures were completed on %1 at %2.';");
+		TitleTemplate1 = NStr("en = 'Additional data processing procedures were completed on %1 at %2.';tr = 'Ek veri işlemci prosedürleri %1''da saat %2''da tamamlandı.'");
 		Items.DeferredUpdateCompletedInformation.Title = 
 		StringFunctionsClientServer.SubstituteParametersToString(TitleTemplate1, 
 			Format(UpdateInfo.DeferredUpdatesEndTime, "DLF=D"),
@@ -125,7 +126,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.OpenDeferredHandlersList.Title = MessageText;
 	Items.InformationTitle.Title = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Additional data processing procedures required for upgrade to version %1 are in progress.
-			|Operations with this data are temporarily restricted.';"), Metadata.Version);
+			|Operations with this data are temporarily restricted.';tr = '%1 sürümü için ek veri işleme prosedürleri gerçekleştiriliyor.
+			|Bu verilerle çalışmak geçici olarak sınırlıdır.'"), Metadata.Version);
 	
 	Items.FormRelaunchDeferredUpdate.Visible = Not Common.IsSubordinateDIBNode()
 		And ThereHandlersWithParallelExecutionMode()
@@ -134,7 +136,10 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	TroubleHintWithData = NStr("en = 'When the application is updating, data issues might prevent the processing.
 		|If additional data processing procedures fail, do the following:
 		| • Open the issue list and follow the recommendations.
-		| • Follow the link <b>Some of the update procedures are not completed</b> and click <b>Run</b> to resume additional data processing procedures.';");
+		| • Follow the link <b>Some of the update procedures are not completed</b> and click <b>Run</b> to resume additional data processing procedures.';tr = 'Veri sorunları, yeni bir sürüme yükseltme sırasında bunların işlenmesine müdahale edebilir. 
+		|Ek veri işleme prosedürlerinin yürütülmesi bir hatayla sonuçlandıysa, şunları yapmanız gerekir: 
+		| sorun listesine gitmeli ve bunları rapordaki önerilere göre düzeltmelisiniz; 
+		|köprüyü izlemeniz gereken ek veri işleme prosedürlerini<b> gerçekleştirmeye devam edin Tüm prosedürler tamamlanamadı ...</b>ve formun altındaki<b> Çalıştır düğmesini tıklayın</b>.'");
 	TroubleHintWithData = StringFunctions.FormattedString(TroubleHintWithData);
 	Items.Problemswithdata.ExtendedTooltip.Title = TroubleHintWithData;
 	Items.IssuesDataCompleted.ExtendedTooltip.Title = TroubleHintWithData;
@@ -267,7 +272,7 @@ Procedure ExplanationUpdateNotRunningURLProcessing(Item, FormattedStringURL, Sta
 		EndIf;
 	ElsIf FormattedStringURL = "Enable" Then
 		EnableScheduledJob();
-		MessageText = NStr("en = 'Duty is enabled. The status will refresh soon.';");
+		MessageText = NStr("en = 'Duty is enabled. The status will refresh soon.';tr = 'İş etkin. Güncelleme durumu yakında güncellenecektir.'");
 		ShowMessageBox(, MessageText);
 	EndIf;
 	
@@ -338,7 +343,7 @@ Procedure ProblemSituationsClick(Item)
 	LogFilter = New Structure;
 	LogFilter.Insert("StartDate", DeferredUpdateStartTime);
 	LogFilter.Insert("Level", Levels);
-	LogFilter.Insert("EventLogEvent", NStr("en = 'Infobase update';", CommonClient.DefaultLanguageCode()));
+	LogFilter.Insert("EventLogEvent", NStr("en = 'Infobase update';tr = 'Infobase güncellemesi'", CommonClient.DefaultLanguageCode()));
 	EventLogClient.OpenEventLog(LogFilter, ThisObject);
 EndProcedure
 
@@ -527,7 +532,7 @@ EndProcedure
 &AtServer
 Procedure RefreshUpdateCompletedPage(UpdateInfo)
 	
-	TitleTemplate1 = NStr("en = 'Additional data processing procedures were completed on %1 at %2.';");
+	TitleTemplate1 = NStr("en = 'Additional data processing procedures were completed on %1 at %2.';tr = 'Ek veri işlemci prosedürleri %1''da saat %2''da tamamlandı.'");
 	MessageText = UpdateResultMessage();
 	
 	Items.DeferredUpdateCompletedInformation.Title = 
@@ -554,12 +559,12 @@ Function UpdateResultMessage()
 			Items.SwitchToDeferredHandlersListGroup.Visible = False;
 			MessageText = "";
 		Else
-			MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All update procedures are completed (%1).';"), Progress.CompletedHandlersCount);
+			MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All update procedures are completed (%1).';tr = 'Tüm güncelleme prosedürleri başarıyla tamamlandı (%1)'"), Progress.CompletedHandlersCount);
 		EndIf;
 		Items.CompletedPicture.Picture = PictureLib.Success32;
 		UpdateCompletedSuccessful = True;
 	Else
-		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Some of the update procedures are not completed (%1 out of %2 completed)';"), 
+		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Some of the update procedures are not completed (%1 out of %2 completed)';tr = 'Bazı prosedürler gerçekleşmedi ( %1, %2 dışında gerçekleşti)'"), 
 			Progress.CompletedHandlersCount, Progress.TotalHandlerCount);
 		Items.CompletedPicture.Picture = PictureLib.DialogStop;
 	EndIf;
@@ -577,7 +582,7 @@ Procedure ShowUpdateStatus(UpdateCompleted = False)
 	EndIf;
 	
 	Items.UpdateStatusInformation.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Completed: %1 out of %2.';"),
+		NStr("en = 'Completed: %1 out of %2.';tr = 'Tamamlanan: %1 / %2.'"),
 		Progress.CompletedHandlersCount,
 		Progress.TotalHandlerCount);
 	
@@ -591,9 +596,9 @@ Procedure UpdateInformationOnIssues()
 	// Display information about the handler issue.
 	NumberofProblemsInHandlers = ProblemSituationsInUpdateHandlers();
 	If NumberofProblemsInHandlers <> 0 And Not UpdateCompletedSuccessful Then
-		TextIndicator = NStr("en = 'Handler issues found';");
+		TextIndicator = NStr("en = 'Handler issues found';tr = 'İşleyicilerle ilgili sorunlar'");
 	Else
-		TextIndicator = NStr("en = 'No handler issues found';");
+		TextIndicator = NStr("en = 'No handler issues found';tr = 'İşleyicilerle ilgili sorun bulunamadı'");
 	EndIf;
 	
 	Items.ProblemSituations.Title = TextIndicator; // On the update progress page.
@@ -609,10 +614,10 @@ Procedure UpdateInformationOnIssues()
 		Items.GroupIndicationofProblemswithDataCompleted.Visible = False;
 	EndIf;
 	If NumberofProblemswithData <> 0 Then
-		TextIndicator = NStr("en = 'Data issues (%1)';");
+		TextIndicator = NStr("en = 'Data issues (%1)';tr = 'Veri sorunları (%1)'");
 		TextIndicator = StringFunctionsClientServer.SubstituteParametersToString(TextIndicator, NumberofProblemswithData);
 	Else
-		TextIndicator = NStr("en = 'No data issues found';");
+		TextIndicator = NStr("en = 'No data issues found';tr = 'Veri sorunları bulunamadı'");
 	EndIf;
 	
 	Items.Problemswithdata.Title = TextIndicator; // On the update progress page.
@@ -765,14 +770,18 @@ Procedure ChangeScheduleAfterSetUpSchedule(NewSchedule, AdditionalParameters) Ex
 			Notification = New NotifyDescription("ChangeScheduleAfterQuery", ThisObject, NewSchedule);
 			
 			QuestionButtons = New ValueList;
-			QuestionButtons.Add("SetUpSchedule", NStr("en = 'Set schedule';"));
-			QuestionButtons.Add("RecommendedSettings1", NStr("en = 'Use recommended settings';"));
+			QuestionButtons.Add("SetUpSchedule", NStr("en = 'Set schedule';tr = 'Takvimi yapılandır'"));
+			QuestionButtons.Add("RecommendedSettings1", NStr("en = 'Use recommended settings';tr = 'Önerilen ayarları kur'"));
 			
 			MessageText = NStr("en = 'Additional data processing procedures are executed in small batches.
 				|To have them executed correctly, specify the repeat interval.
 				|
 				|In the schedule settings window, click the ""Daily"" tab
-				|and fill in the ""Repeat after"" field.';");
+				|and fill in the ""Repeat after"" field.';tr = 'Ek veri işleme prosedürleri küçük partilerde yürütülür.
+				|Bunların doğru şekilde yürütülmesi için tekrarlama aralığını belirtin.
+				|
+				|Program ayarları penceresinde ""Günlük"" sekmesine tıklayın
+				|ve ""Tekrarla"" alanını doldurun.'");
 			ShowQueryBox(Notification, MessageText, QuestionButtons,, "SetUpSchedule");
 		Else
 			SetDeferredUpdateSchedule(NewSchedule);
@@ -832,15 +841,15 @@ Procedure ProcessPatchInstallResult(PatchInfo)
 	
 	If PatchInfo.Unspecified > 0 Then
 		InstalledSuccessfully = TotalPatchCount - PatchInfo.Unspecified;
-		Ref = New FormattedString(NStr("en = 'Cannot install the patches';"),,,, "UnsuccessfulInstallation");
-		PatchesLabel = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '(%1 out of %2).';"), InstalledSuccessfully, TotalPatchCount);
+		Ref = New FormattedString(NStr("en = 'Cannot install the patches';tr = 'Düzeltmeler yüklenemedi'"),,,, "UnsuccessfulInstallation");
+		PatchesLabel = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '(%1 out of %2).';tr = '(%2 den %1)'"), InstalledSuccessfully, TotalPatchCount);
 		PatchesLabel = New FormattedString(Ref, " ", PatchesLabel);
 		Items.InstalledPatchesGroup.CurrentPage = Items.PatchesInstallationErrorGroup;
 		Items.PatchesErrorInformation.Title = PatchesLabel;
 	Else
-		Ref = New FormattedString(NStr("en = 'The patches';"),,,, "InstalledPatches");
+		Ref = New FormattedString(NStr("en = 'The patches';tr = 'Düzeltmeler (yamalar)'"),,,, "InstalledPatches");
 		PatchesLabel = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'are installed (%1).';"), TotalPatchCount);
+			NStr("en = 'are installed (%1).';tr = 'başarıyla kuruldu (%1)'"), TotalPatchCount);
 		PatchesLabel = New FormattedString(Ref, " ", PatchesLabel);
 		Items.PatchesInstalledInformation.Title = PatchesLabel;
 	EndIf;
@@ -988,17 +997,19 @@ Procedure CheckPerformDeferredUpdate(UpdateInfo)
 		EndDo;
 		
 		MessageText = NStr("en = 'Scheduled job <b>Deferred update</b> is active but not running.
-			|Probably, the scheduled job lock is enabled.';");
+			|Probably, the scheduled job lock is enabled.';tr = 'Zamanlanmış görev<b>Gecikmeli güncelleme</b> etkin ancak 
+			|çalışmıyor. Zamanlanmış görevlerin yürütülmesinin engellenmesi muhtemelen etkinleştirilmiştir.'");
 		Messages.Add(StrConcat(StrSplit(MessageText, Chars.LF), " "));
 		If Common.SubsystemExists("StandardSubsystems.UsersSessions") Then
-			Messages.Add(NStr("en = '<a href=""%1"">Check scheduled job lock</a>';"));
+			Messages.Add(NStr("en = '<a href=""%1"">Check scheduled job lock</a>';tr = '<a href=""%1"">Zamanlanmış görevlerin kilitlenmesini kontrol et</a>'"));
 			IdentifierHyperlinks = "CheckLock";
 		EndIf;
 	Else
 		MessageText = NStr("en = 'Additional procedures of data processing are not running
-			|because the <b>Deferred update</b> scheduled job is disabled.';");
+			|because the <b>Deferred update</b> scheduled job is disabled.';tr = 'Ek veri işleme prosedürleri gerçekleştirilmez, 
+			|çünkü zamanlanmış görev devre dışı bırakılmış <b>Gecikmeli güncelleme</b>.'");
 		Messages.Add(StrConcat(StrSplit(MessageText, Chars.LF), " "));
-		Messages.Add(NStr("en = '<a href=""%1"">Enable</a>';"));
+		Messages.Add(NStr("en = '<a href=""%1"">Enable</a>';tr = '<a href=""%1"">Aç</a>'"));
 		IdentifierHyperlinks = "Enable";
 	EndIf;
 	MessageText = StringFunctions.FormattedString(StrConcat(Messages, Chars.LF), IdentifierHyperlinks);

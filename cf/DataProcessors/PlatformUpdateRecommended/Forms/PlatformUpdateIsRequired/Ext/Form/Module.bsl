@@ -25,7 +25,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	ClarificationRestart = "";
 	If Not Common.FileInfobase()
 		Or Common.IsWebClient() Then
-		Refinement = NStr("en = 'Contact the administrator.';");
+		Refinement = NStr("en = 'Contact the administrator.';tr = 'Yöneticiye başvurun.'");
 	EndIf;
 	
 	If Not Common.IsLinuxClient()
@@ -36,7 +36,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		If ValueIsFilled(PlatformDirectory) Then
 			Items.FormRestart.Visible = True;
 			Items.FormRestart.DefaultButton = True;
-			ClarificationRestart = Chars.LF + Chars.LF + NStr("en = 'Run the app on the supported 1C:Enterprise version (click <b>Restart</b>).';");
+			ClarificationRestart = Chars.LF + Chars.LF + NStr("en = 'Run the app on the supported 1C:Enterprise version (click <b>Restart</b>).';tr = 'Uygulamayı desteklenen 1C:Enterprise sürümünde çalıştırın (<b>Yeniden başlat</b>''a tıklayın).'");
 		EndIf;
 	EndIf;
 	

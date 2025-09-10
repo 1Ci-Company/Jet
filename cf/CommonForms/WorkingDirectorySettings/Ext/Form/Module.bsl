@@ -22,7 +22,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Common.IsMobileClient() Then
 		CommandBarLocation = FormCommandBarLabelLocation.Auto;
-		Items.CleanUpWorkingDirectory.Title = NStr("en = 'Clear working directory';");
+		Items.CleanUpWorkingDirectory.Title = NStr("en = 'Clear working directory';tr = 'Temizle'");
 		Items.UserWorkingDirectory.TitleLocation = FormItemTitleLocation.Top;
 	EndIf;
 	
@@ -59,7 +59,7 @@ Procedure UserWorkingDirectoryStartChoice(Item, ChoiceData, StandardProcessing)
 	
 	// Selecting a new path to a working directory.
 	DirectoryName = UserWorkingDirectory;
-	Title = NStr("en = 'Select working directory';");
+	Title = NStr("en = 'Select working directory';tr = 'Çalışma dizini seç'");
 	If Not FilesOperationsInternalClient.ChoosePathToWorkingDirectory(DirectoryName, Title, False) Then
 		Return;
 	EndIf;
@@ -101,7 +101,10 @@ Procedure CleanUpLocalFileCache(Command)
 		NStr("en = 'All files except for ones locked for editing
 		           |will be deleted from the working directory.
 		           |
-		           |Do you want to continue?';");
+		           |Do you want to continue?';tr = 'Çalışma dizininden, 
+		           |düzenleme için kullanılan dosyalar hariç tüm dosyaları silinecektir. 
+		           |
+		           |Devam etmek istiyor musunuz?'");
 	Handler = New NotifyDescription("ClearLocalFileCacheCompletionAfterAnswerQuestionContinue", ThisObject);
 	ShowQueryBox(Handler, QueryText, QuestionDialogMode.YesNo);
 	
@@ -163,7 +166,7 @@ Procedure CleanUpLocalFileCacheCompletion(Result, ExecutionParameters) Export
 	
 	UpdateWorkDirectoryCurrentStatus();
 	
-	ShowUserNotification(NStr("en = 'Working directory';"),, NStr("en = 'The working directory is cleared.';"));
+	ShowUserNotification(NStr("en = 'Working directory';tr = 'Çalışma dizini'"),, NStr("en = 'The working directory is cleared.';tr = 'Çalışma dizinini temizleme başarıyla tamamlandı.'"));
 	
 EndProcedure
 

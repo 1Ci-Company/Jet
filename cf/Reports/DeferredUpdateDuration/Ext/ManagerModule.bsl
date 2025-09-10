@@ -27,8 +27,9 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "DeferredUpdateDuration");
 	OptionSettings.LongDesc = NStr("en = 'The duration of additional data processing procedures
-		|with grouping by update order.';");
-	OptionSettings.SearchSettings.Keywords = NStr("en = 'Deferred update duration';");
+		|with grouping by update order.';tr = 'Güncelleme sırasına göre gruplamalı 
+		|ek veri işleme prosedürlerinin süresi.'");
+	OptionSettings.SearchSettings.Keywords = NStr("en = 'Deferred update duration';tr = 'Ertelenmiş güncelleme süresi'");
 EndProcedure
 
 // End StandardSubsystems.ReportsOptions

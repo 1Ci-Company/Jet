@@ -268,14 +268,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) the files: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) the files: %1';tr = 'Dosyalar işlenemedi (atlandı): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), 
 			EventLogLevel.Information, , ,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Yet another batch of files is processed: %1';"),
+				NStr("en = 'Yet another batch of files is processed: %1';tr = 'Dosyaların bir grubu daha işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

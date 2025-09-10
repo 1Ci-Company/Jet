@@ -78,7 +78,7 @@ Procedure PrepareDataToRecord() Export
 	
 	ReceivingParameters = Undefined;
 	If Not AdditionalProperties.Property("ReceivingParameters", ReceivingParameters) Then
-		Raise NStr("en = 'The data getting parameters are not defined.';");
+		Raise NStr("en = 'The data getting parameters are not defined.';tr = 'Veri girişi parametreleri belirtilmemiş'");
 	EndIf;
 	
 	DataToWrite = Unload();
@@ -98,7 +98,8 @@ Procedure ThrowControlException()
 	
 	Raise StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'The %1 resource of the %2 information register record cannot be changed
-			|inside the record transaction from the session with separation enabled.';"),
+			|inside the record transaction from the session with separation enabled.';tr = 'Bölünme etkin olan oturumdan yazma işlemi içerisinde %2
+			| bilgi kayıt defterinin %1 kaynak değişimine izin verilmiyor.'"),
 		"Data", "ProgramInterfaceCache");
 	
 EndProcedure
@@ -114,5 +115,5 @@ PreparedData1 = False;
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

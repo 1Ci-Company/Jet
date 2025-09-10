@@ -349,7 +349,7 @@ Function ObjectPresentationForReportOutput(Selection)
 	If Common.IsDocument(ObjectMetadata) Then
 		If (Selection.DocumentAmount <> 0) And (Selection.DocumentAmount <> NULL) Then
 			ObjectPresentation = ObjectPresentation
-				+ " " + NStr("en = 'in the amount of';")
+				+ " " + NStr("en = 'in the amount of';tr = 'tutarında'")
 				+ " " + Selection.DocumentAmount
 				+ " " + Selection.Currency;
 		EndIf;
@@ -427,7 +427,7 @@ Procedure UpdateHierarchicalTree()
 
 	If Not MainDocumentAvailable() Then
 		
-		MessageText = NStr("en = 'The source document is no longer available.';");
+		MessageText = NStr("en = 'The source document is no longer available.';tr = 'Tabiiyet yapısıyla ilgili raporun oluşturulduğu belge artık erişilemiyor.'");
 		Common.MessageToUser(MessageText);
 		Return;
 		
@@ -1188,19 +1188,19 @@ Function DeletionMarkEditScenario(SelectedItems, StatisticsBySelectedItems)
 			ItemPresentation = StatisticsBySelectedItems.NoDeletionMark[Item];
 			
 			Scenario.Check = True;
-			Scenario.Notification = NStr("en = 'Deletion mark set';");
+			Scenario.Notification = NStr("en = 'Deletion mark set';tr = 'Silme işareti yerleştirildi'");
 			Scenario.Explanation = ItemPresentation;
 			Scenario.DoQueryBox = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Do you want to mark %1 for deletion?';"), ItemPresentation);
+				NStr("en = 'Do you want to mark %1 for deletion?';tr = '""%1"" silinmek üzere işaretlensin mi?'"), ItemPresentation);
 			
 		Else
 			
 			ItemPresentation = StatisticsBySelectedItems.WithDeletionMark[Item];
 			
-			Scenario.Notification = NStr("en = 'Deletion mark cleared';");
+			Scenario.Notification = NStr("en = 'Deletion mark cleared';tr = 'Silme işareti kaldırıldı'");
 			Scenario.Explanation = ItemPresentation;
 			Scenario.DoQueryBox = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Do you want to clear the deletion mark from ""%1""?';"), ItemPresentation);
+				NStr("en = 'Do you want to clear the deletion mark from ""%1""?';tr = '""%1"" için silme işareti kaldırılsın mı?'"), ItemPresentation);
 			
 		EndIf;
 		
@@ -1211,15 +1211,15 @@ Function DeletionMarkEditScenario(SelectedItems, StatisticsBySelectedItems)
 		If ObjectsMarkedForDeletionCount = 0 Then 
 			
 			Scenario.Check = True;
-			Scenario.DoQueryBox = NStr("en = 'Do you want to mark the selected items for deletion?';");
+			Scenario.DoQueryBox = NStr("en = 'Do you want to mark the selected items for deletion?';tr = 'Seçilen öğeler silinmek üzere işaretlensin mi?'");
 			Scenario.Notification = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Deletion mark set (%1)';"), SelectedItemsCount);
+				NStr("en = 'Deletion mark set (%1)';tr = 'Silme işareti ayarlandı (%1)'"), SelectedItemsCount);
 		
 		ElsIf ObjectsMarkedForDeletionCount = SelectedItemsCount Then 
 			
-			Scenario.DoQueryBox = NStr("en = 'Clear marks for deletion of the selected items?';");
+			Scenario.DoQueryBox = NStr("en = 'Clear marks for deletion of the selected items?';tr = 'Seçili öğelerin silme işareti kaldırılsın mı?'");
 			Scenario.Notification = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Deletion mark cleared (%1)';"), SelectedItemsCount);
+				NStr("en = 'Deletion mark cleared (%1)';tr = 'Silme işareti kaldırıldı (%1)'"), SelectedItemsCount);
 			
 		Else
 			
@@ -1289,7 +1289,7 @@ Function ChangeItemsDeletionMark(SelectedItems, Check)
 		Except
 			
 			RollbackTransaction();
-			WriteLogEvent(NStr("en = 'Related documents.Change deletion mark';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Related documents.Change deletion mark';tr = 'Bağlı belgeler.Silme işaretinin değiştirilmesi'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,, Item,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			Errors.Add(ErrorProcessing.BriefErrorDescription(ErrorInfo()));
@@ -1328,14 +1328,14 @@ Procedure ChangeDocumentsPosting(Mode)
 	
 	If ProcessedDocumentsCount = 1 Then 
 		Document = SelectedDocuments[0];
-		Notification = NStr("en = 'Change';");
+		Notification = NStr("en = 'Change';tr = 'Değişiklik'");
 		Ref = GetURL(Document);
 		Explanation = ProcessedDocuments[Document];
 	Else
 		Ref = "";
 		Explanation = Title;
 		Notification = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Change (%1)';"), ProcessedDocumentsCount);
+			NStr("en = 'Change (%1)';tr = 'Değişiklik (%1)'"), ProcessedDocumentsCount);
 	EndIf;
 	
 	ShowUserNotification(Notification, Ref, Explanation, PictureLib.DialogInformation);
@@ -1399,7 +1399,7 @@ Function ProcessedDocuments(SelectedDocuments, Mode, Errors)
 		Except
 			
 			RollbackTransaction();
-			WriteLogEvent(NStr("en = 'Related documents.Post documents';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Related documents.Post documents';tr = 'Bağlı belgeler.Belgenin onaylanması'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,, Document,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			Errors.Add(ErrorProcessing.BriefErrorDescription(ErrorInfo()));
@@ -1424,9 +1424,11 @@ Procedure WarnAboutAnErrorWhenChangingElements(Errors, Scenario)
 	Else
 		WarningTemplate = ?(Scenario = "DeletionMark", 
 			NStr("en = 'Cannot change the following document deletion mark:
-				|%1';"),
+				|%1';tr = 'Belgelerin silme işareti değiştirilemedi:
+				|%1'"),
 			NStr("en = 'Cannot post the documents:
-				|%1';"));
+				|%1';tr = 'Belgeler onaylanmadı:
+				|%1'"));
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
 			WarningTemplate, StrConcat(ErrorsAreMinimized, Chars.LF));
 	EndIf;

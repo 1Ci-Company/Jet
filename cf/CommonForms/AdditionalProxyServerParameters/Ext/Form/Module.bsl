@@ -150,7 +150,7 @@ Function ValidateExceptionServerAddresses()
 		If IsBlankString(InvalidChars) Then
 			Continue;
 		EndIf;
-		MessageText = StrReplace(NStr("en = 'The address contains illegal characters: %1';"),
+		MessageText = StrReplace(NStr("en = 'The address contains illegal characters: %1';tr = 'Adres geçersiz karakterler içeriyor: %1'"),
 			"%1", InvalidChars);
 		IndexAsString = StrReplace(String(ExceptionsAddresses.IndexOf(StrAddress)), Char(160), "");
 		CommonClient.MessageToUser(MessageText,	,

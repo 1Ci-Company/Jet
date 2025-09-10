@@ -22,7 +22,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		SetKeyToSaveWindowPosition();
 	Else
 		Items.Pages.CurrentPage = Items.SettingsCheckInProgress;
-		Items.FormClose.Title = NStr("en = 'Cancel';");
+		Items.FormClose.Title = NStr("en = 'Cancel';tr = 'İptal'");
 		Items.FormGoToSettings.Visible = False;
 	EndIf;
 	
@@ -122,7 +122,7 @@ Procedure ProcessResult(Result, AdditionalParameters) Export
 		Return;
 	EndIf;
 	
-	Items.FormClose.Title = NStr("en = 'Close';");
+	Items.FormClose.Title = NStr("en = 'Close';tr = 'Kapat'");
 	
 	If Result.Status = "Error" Then
 		StandardSubsystemsClient.OutputErrorInfo(

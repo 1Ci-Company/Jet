@@ -501,7 +501,7 @@ Procedure InitializeTheForm()
 	SubjectString = Common.SubjectString(Object.SubjectOf);
 
 	If Object.MainTask = Undefined Or Object.MainTask.IsEmpty() Then
-		MainTaskString = NStr("en = 'not specified';");
+		MainTaskString = NStr("en = 'not specified';tr = 'yapılmamış'");
 	Else
 		MainTaskString = String(Object.MainTask);
 	EndIf;
@@ -600,7 +600,7 @@ Function JobStatusMessage(Form)
 			Format(Form.Object.CompletedOn, "DLF=DT"), 
 			Format(Form.Object.CompletedOn, "DLF=D"));
 		TextString = ?(Form.Object.Completed2, 
-			NStr("en = 'The duty is completed on %1.';"), NStr("en = 'The duty is canceled on %1.';"));
+			NStr("en = 'The duty is completed on %1.';tr = 'Görev %1''de tamamlanmıştır.'"), NStr("en = 'The duty is canceled on %1.';tr = 'Görev %1 tarihinde iptal edildi.'"));
 		StateText = StringFunctionsClientServer.SubstituteParametersToString(TextString, EndDateAsString);
 
 		For Each Item In Form.Items Do
@@ -612,13 +612,13 @@ Function JobStatusMessage(Form)
 
 	ElsIf Form.Object.Started Then
 		StateText = ?(Form.ChangeJobsBackdated, 
-			NStr("en = 'Changes to the wording, priority, author, deadlines, and revision will take into effect immediately for the previous task.';"),
-			NStr("en = 'Changes to the wording, priority, author, deadlines, and revision will not apply to the previous task.';"));
+			NStr("en = 'Changes to the wording, priority, author, deadlines, and revision will take into effect immediately for the previous task.';tr = 'Görevin ifade biçimi, önceliği, oluşturanı, bitiş tarihi ve kontrol süresi ile ilgili değişiklikler önceden atanan görevlerle ilgili olarak hemen devreye girecektir.'"),
+			NStr("en = 'Changes to the wording, priority, author, deadlines, and revision will not apply to the previous task.';tr = 'Görevin ifade biçimi, önceliği, oluşturanı, bitiş tarihi ve kontrol süresi ile ilgili değişiklikler önceden atanan görevde yansımayacaktır.'"));
 	ElsIf Form.Defer Then
 		DeferredStartDateAsString = ?(Form.UseDateAndTimeInTaskDeadlines, Format(Form.DeferredStartDate,
 			"DLF=DT"), Format(Form.DeferredStartDate, "DLF=D"));
 		StateText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The duty will be started on <a href=""%1"">%2</a>';"), "OpenDeferredStartSetup",
+			NStr("en = 'The duty will be started on <a href=""%1"">%2</a>';tr = 'İş çalıştırılacak <a href=""%1"">%2</a>'"), "OpenDeferredStartSetup",
 			DeferredStartDateAsString);
 	EndIf;
 
@@ -637,7 +637,7 @@ Procedure CheckDeferredProcessEndDate(ObjectToCheck, Cancel)
 
 	If ObjectToCheck.TaskDueDate < DeferredStartDate Then
 		Common.MessageToUser(
-			NStr("en = 'The duty deadline must be later than the start date.';"),, 
+			NStr("en = 'The duty deadline must be later than the start date.';tr = 'İşin uygulama süresi geciktirilen başlangıç tarihinden önce olamaz. '"),, 
 			"TaskDueDate", "Object.TaskDueDate");
 	EndIf;
 
@@ -663,17 +663,17 @@ Function FormKeyAttributesAreFilledIn()
 
 	FormAttributesAreFilledIn = True;
 	If Not ValueIsFilled(Object.Performer) Then
-		CommonClient.MessageToUser(NStr("en = 'Assignee is required.';"),, 
+		CommonClient.MessageToUser(NStr("en = 'Assignee is required.';tr = 'Atanan gerekli.'"),, 
 			"Performer", "Object.Performer");
 		FormAttributesAreFilledIn = False;
 	EndIf;
 	If Not ValueIsFilled(Object.Description) Then
-		CommonClient.MessageToUser(NStr("en = 'Duty is required.';"),, 
+		CommonClient.MessageToUser(NStr("en = 'Duty is required.';tr = 'Görev gerekli.'"),, 
 			"Performer", "Object.Description");
 		FormAttributesAreFilledIn = False;
 	EndIf;
 	If Not ValueIsFilled(Object.TaskDueDate) Then
-		CommonClient.MessageToUser(NStr("en = 'Due date is required.';"),,
+		CommonClient.MessageToUser(NStr("en = 'Due date is required.';tr = 'Bitiş tarihi gerekli.'"),,
 			"TaskDueDate", "Object.TaskDueDate");
 		FormAttributesAreFilledIn = False;
 	EndIf;

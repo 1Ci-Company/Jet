@@ -116,7 +116,7 @@ Procedure ReadEventLogEvents(ReportParameters, StorageAddress) Export
 		And ValueIsFilled(StartDate) And ValueIsFilled(EventLogFilterAtClient.EndDate);
 		
 	If FilterDatesSpecified And StartDate > EndDate Then
-		Raise NStr("en = 'Invalid event log filter settings. The start date is later than the end date.';");
+		Raise NStr("en = 'Invalid event log filter settings. The start date is later than the end date.';tr = 'Olay günlüğünün filtre ayarları yanlış. Başlangıç tarihi bitiş tarihinden ileri.'");
 	EndIf;
 	ServerTimeOffset = ServerTimeOffset();
 	
@@ -223,7 +223,7 @@ Procedure ReadEventLogEvents(ReportParameters, StorageAddress) Export
 					If CommonAttribute.DataSeparation = Metadata.ObjectProperties.CommonAttributeDataSeparation.DontUse Then
 						Continue;
 					EndIf;
-					SeparatorPresentation = CommonAttribute.Presentation() + " = " + NStr("en = '<Not set>';");
+					SeparatorPresentation = CommonAttribute.Presentation() + " = " + NStr("en = '<Not set>';tr = '<Belirlenmedi>'");
 					SeparatorValue = CommonAttribute.Name + "=";
 					SeparatedDataAttributeList.Add(SeparatorValue, SeparatorPresentation);
 				EndDo;
@@ -276,13 +276,13 @@ Procedure ReadEventLogEvents(ReportParameters, StorageAddress) Export
 		SetPrivilegedMode(True);
 		// Refine the user name.
 		If LogEvent.User = New UUID("00000000-0000-0000-0000-000000000000") Then
-			LogEvent.UserName = NStr("en = '<Undefined>';");
+			LogEvent.UserName = NStr("en = '<Undefined>';tr = '<Tanımsız>'");
 			
 		ElsIf LogEvent.UserName = "" Then
 			LogEvent.UserName = Users.UnspecifiedUserFullName();
 			
 		ElsIf InfoBaseUsers.FindByUUID(LogEvent.User) = Undefined Then
-			LogEvent.UserName = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 <Deleted>';"), LogEvent.UserName);
+			LogEvent.UserName = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 <Deleted>';tr = '%1<Silindi>'"), LogEvent.UserName);
 		EndIf;
 		
 		If ModuleSaaSOperations <> Undefined Then
@@ -375,22 +375,22 @@ Procedure GenerateFilterPresentation(FilterPresentation, EventLogFilter,
 		
 		// Changing restrictions for some of presentations.
 		If Upper(RestrictionName) = Upper("ApplicationName") Then
-			RestrictionName = NStr("en = 'Application';");
+			RestrictionName = NStr("en = 'Application';tr = 'Ek'");
 		ElsIf Upper(RestrictionName) = Upper("TransactionStatus") Then
-			RestrictionName = NStr("en = 'Transaction status';");
+			RestrictionName = NStr("en = 'Transaction status';tr = 'İşlem durumu'");
 		ElsIf Upper(RestrictionName) = Upper("DataPresentation") Then
-			RestrictionName = NStr("en = 'Data presentation';");
+			RestrictionName = NStr("en = 'Data presentation';tr = 'Veri sunumu'");
 		ElsIf Upper(RestrictionName) = Upper("ServerName") Then
-			RestrictionName = NStr("en = 'Production server';");
+			RestrictionName = NStr("en = 'Production server';tr = 'Üretim sunucusu'");
 		ElsIf Upper(RestrictionName) = Upper("PrimaryIPPort") Then
-			RestrictionName = NStr("en = 'IP port';");
+			RestrictionName = NStr("en = 'IP port';tr = 'Ana IP portu'");
 		ElsIf Upper(RestrictionName) = Upper("SyncPort") Then
-			RestrictionName = NStr("en = 'Auxiliary IP port';");
+			RestrictionName = NStr("en = 'Auxiliary IP port';tr = 'Yardımcı IP port'");
 		ElsIf Upper(RestrictionName) = Upper("SessionDataSeparation") Then
 			If StandardSeparatorsOnly() Then
-				RestrictionName = NStr("en = 'Data area';");
+				RestrictionName = NStr("en = 'Data area';tr = 'Veri alanı'");
 			Else
-				RestrictionName = NStr("en = 'Session data separation';");
+				RestrictionName = NStr("en = 'Session data separation';tr = 'Oturum veri ayırma'");
 			EndIf;
 		EndIf;
 		
@@ -402,7 +402,7 @@ Procedure GenerateFilterPresentation(FilterPresentation, EventLogFilter,
 	EndDo;
 	
 	If IsBlankString(FilterPresentation) Then
-		FilterPresentation = NStr("en = 'Not set';");
+		FilterPresentation = NStr("en = 'Not set';tr = 'Gönderilmedi'");
 	EndIf;
 	
 EndProcedure
@@ -727,8 +727,8 @@ Function TreeWithStructureData(EventData, KeysPresentation = Undefined,
 	EndIf;
 	
 	Tree = New ValueTree;
-	Tree.Columns.Add("Property", New TypeDescription("String"), NStr("en = 'Property';"));
-	Tree.Columns.Add("Value", New TypeDescription("String"), NStr("en = 'Value';"));
+	Tree.Columns.Add("Property", New TypeDescription("String"), NStr("en = 'Property';tr = 'Özellik'"));
+	Tree.Columns.Add("Value", New TypeDescription("String"), NStr("en = 'Value';tr = 'Değer'"));
 	Tree.Columns.Add("IsPropertyWithoutPresentation", New TypeDescription("Boolean"));
 	Tree.Columns.Add("ThereIsValue", New TypeDescription("Boolean"));
 	
@@ -833,7 +833,7 @@ EndProcedure
 //
 Function ValuePresentation(Var_Key, Value)
 	
-	FormatString = NStr("en = 'NZ=0; DLF=DT; DE=''01.01.0001 00:00:00''';");
+	FormatString = NStr("en = 'NZ=0; DLF=DT; DE=''01.01.0001 00:00:00''';tr = 'NZ=0; DLF=DT; DE=''01.01.0001 00:00:00'''");
 	
 	If TypeOf(Value) <> Type("Array") Then
 		If Upper(Var_Key) = Upper("EventName") And StrStartsWith(Value, "_$") Then
@@ -878,7 +878,7 @@ Function RoleTable(Roles) Export
 	
 	IBUserRoles1 = New ValueTable;
 	IBUserRoles1.Columns.Add("Exists");
-	IBUserRoles1.Columns.Add("Presentation",, NStr("en = 'Presentation';"));
+	IBUserRoles1.Columns.Add("Presentation",, NStr("en = 'Presentation';tr = 'Gösterim'"));
 	
 	For Each FullNameOfTheRole In Roles Do
 		NameParts = StrSplit(FullNameOfTheRole, ".", False);
@@ -912,599 +912,599 @@ Function StructuresKeysPresentation()
 	
 	// _$Access$_.*
 	Result.Insert(Lower("Right"),
-		NStr("en = 'Access right';"));
+		NStr("en = 'Access right';tr = 'Erişim yetkisi'"));
 	
 	Result.Insert(Lower("Action"),
-		NStr("en = 'Action';"));
+		NStr("en = 'Action';tr = 'Eylem'"));
 	
 	// _$Debug$_.*
 	Result.Insert(Lower("DebuggingServerUser"),
-		NStr("en = 'Debug server user';"));
+		NStr("en = 'Debug server user';tr = 'Hata ayıklama sunucusu kullanıcısı'"));
 	
 	Result.Insert(Lower("DebugItemType"),
-		NStr("en = 'Debug item type';"));
+		NStr("en = 'Debug item type';tr = 'Hata ayıklama öğe türü'"));
 	
 	Result.Insert(Lower("Expression"),
-		NStr("en = 'Expression';"));
+		NStr("en = 'Expression';tr = 'İfade'"));
 	
 	// _$InfoBase$_.AdditionalAuthenticationSettingsUpdate
 	Result.Insert(Lower("PasswordRecoveryMethod"),
-		NStr("en = 'Password recovery method';"));
+		NStr("en = 'Password recovery method';tr = 'Şifre kurtarma yöntemi'"));
 	
 	Result.Insert(Lower("PasswordRecoveryURL"),
-		NStr("en = 'Password recovery URL';"));
+		NStr("en = 'Password recovery URL';tr = 'Şifre kurtarma gezinme bağlantısı'"));
 	
 	Result.Insert(Lower("HelpURL"),
-		NStr("en = 'Help URL';"));
+		NStr("en = 'Help URL';tr = 'Yardım gezinme bağlantısı'"));
 	
 	Result.Insert(Lower("ShowHelpHyperlink"),
-		NStr("en = 'Show Help URL';"));
+		NStr("en = 'Show Help URL';tr = 'Yardım URL''sini göster'"));
 	
 	Result.Insert(Lower("VerificationCodeLength"),
-		NStr("en = 'Confirmation code length';"));
+		NStr("en = 'Confirmation code length';tr = 'Onay kodu uzunluğu'"));
 	
 	Result.Insert(Lower("MaxUnsuccessfulVerificationCodeValidationAttemptsCount"),
-		NStr("en = 'Limit for unsuccessful code entries';"));
+		NStr("en = 'Limit for unsuccessful code entries';tr = 'Başarısız kod girişi limiti'"));
 	
 	Result.Insert(Lower("VerificationCodeRefreshRequestLockDuration"),
-		NStr("en = 'Confirmation code cooldown time';"));
+		NStr("en = 'Confirmation code cooldown time';tr = 'Onay kodu bekleme süresi'"));
 	
 	Result.Insert(Lower("SMTPServerAddress"),
-		NStr("en = 'SMTP server address';"));
+		NStr("en = 'SMTP server address';tr = 'SMTP sunucu adresi'"));
 	
 	Result.Insert(Lower("SMTPUser"),
-		NStr("en = 'SMTP user';"));
+		NStr("en = 'SMTP user';tr = 'SMTP kullanıcısı'"));
 	
 	Result.Insert(Lower("SMTPPasswordChanged"),
-		NStr("en = 'SMTP password changed';"));
+		NStr("en = 'SMTP password changed';tr = 'SMTP şifresi değiştirildi'"));
 	
 	Result.Insert(Lower("SMTPPort"),
-		NStr("en = 'SMTP port';"));
+		NStr("en = 'SMTP port';tr = 'SMTP portu'"));
 	
 	Result.Insert(Lower("SenderName"),
-		NStr("en = 'Sender name';"));
+		NStr("en = 'Sender name';tr = 'Gönderen adı'"));
 	
 	Result.Insert(Lower("Title"),
-		NStr("en = 'Header';"));
+		NStr("en = 'Header';tr = 'Üst bilgi'"));
 	
 	Result.Insert(Lower("HTMLMessageText"),
-		NStr("en = 'HTML message body';"));
+		NStr("en = 'HTML message body';tr = 'HTML ileti gövdesi'"));
 	
 	Result.Insert(Lower("UseSSL"),
-		NStr("en = 'SSL user';"));
+		NStr("en = 'SSL user';tr = 'SSL kullanıcısı'"));
 	
 	Result.Insert(Lower("AllowSaveCredentialsForReAuthentication"),
-		NStr("en = 'Allow save credentials for auto-login';"));
+		NStr("en = 'Allow save credentials for auto-login';tr = 'Otomatik giriş için kimlik bilgilerinin kaydedilmesine izin ver'"));
 	
 	Result.Insert(Lower("SaveCredentialsForReAuthenticationByDefault"),
-		NStr("en = 'Save credentials for auto-login by default';"));
+		NStr("en = 'Save credentials for auto-login by default';tr = 'Varsayılan olarak otomatik giriş için kimlik bilgilerini kaydet'"));
 	
 	Result.Insert(Lower("SavedCredentialsLifetime"),
-		NStr("en = 'Credentials lifetime';"));
+		NStr("en = 'Credentials lifetime';tr = 'Kimlik bilgilerinin kullanım süresi'"));
 	
 	// _$InfoBase$_.AdministrationParametersChange
 	Result.Insert(Lower("LockScheduledJobs"),
-		NStr("en = 'Scheduled job lock';"));
+		NStr("en = 'Scheduled job lock';tr = 'Planlı iş kilidi'"));
 	
 	Result.Insert(Lower("SessionsLockEnabled"),
-		NStr("en = 'Session startup lock enabled';"));
+		NStr("en = 'Session startup lock enabled';tr = 'Oturum başlatma kilidi etkin'"));
 	
 	Result.Insert(Lower("LockBeginTime"),
-		NStr("en = 'Lock start time';"));
+		NStr("en = 'Lock start time';tr = 'Kilit başlangıcı'"));
 	
 	Result.Insert(Lower("LockEndTime"),
-		NStr("en = 'Lock end time';"));
+		NStr("en = 'Lock end time';tr = 'Kilit sonu'"));
 	
 	Result.Insert(Lower("DelayConfigurationExportByWorkProcessWithoutActiveUsers"),
-		NStr("en = 'Delay for importing configuration by an idle process';"));
+		NStr("en = 'Delay for importing configuration by an idle process';tr = 'Boşta işlemle yapılandırmayı içe aktarma gecikmesi'"));
 	
 	Result.Insert(Lower("RestrictLocalSpeechRecognition"),
-		NStr("en = 'Restrict local speech recognition';"));
+		NStr("en = 'Restrict local speech recognition';tr = 'Yerel ses tanımayı kısıtla'"));
 	
 	Result.Insert(Lower("InfoBaseID"),
-		NStr("en = 'Infobase ID';"));
+		NStr("en = 'Infobase ID';tr = 'Infobase ID''si'"));
 	
 	Result.Insert(Lower("DataBaseName"),
-		NStr("en = 'Database name';"));
+		NStr("en = 'Database name';tr = 'Veritabanı adı'"));
 	
 	Result.Insert(Lower("SessionStartPermissionCode"),
-		NStr("en = 'Access code for session startup';"));
+		NStr("en = 'Access code for session startup';tr = 'Oturum başlatma için erişim kodu'"));
 	
 	Result.Insert(Lower("MaxStartupShiftForScheduledJobsWithoutActiveUsers"),
-		NStr("en = 'Maximum startup offset for idle scheduled jobs';"));
+		NStr("en = 'Maximum startup offset for idle scheduled jobs';tr = 'Boşta planlı işler için maksimum başlatma ofseti'"));
 	
 	Result.Insert(Lower("MaxRuntimeForScheduledJobsWithoutActiveUsers"),
-		NStr("en = 'Minimal startup period for idle scheduled jobs';"));
+		NStr("en = 'Minimal startup period for idle scheduled jobs';tr = 'Boşta planlı işler için minimum başlatma dönemi'"));
 	
 	Result.Insert(Lower("ExternalSessionManagementRequired"),
-		NStr("en = 'Mandatory external session management';"));
+		NStr("en = 'Mandatory external session management';tr = 'Zorunlu harici oturum yönetimi'"));
 	
 	Result.Insert(Lower("LongDesc"),
-		NStr("en = 'Details';"));
+		NStr("en = 'Details';tr = 'Ayrıntılar'"));
 	
 	Result.Insert(Lower("LockParameter"),
-		NStr("en = 'Lock parameter';"));
+		NStr("en = 'Lock parameter';tr = 'Kilitleme parametresi'"));
 	
 	Result.Insert(Lower("DatabaseUserPassword"),
-		NStr("en = 'Database user password';"));
+		NStr("en = 'Database user password';tr = 'Veritabanı kullanıcı şifresi'"));
 	
 	Result.Insert(Lower("DatabaseUser"),
-		NStr("en = 'Database user';"));
+		NStr("en = 'Database user';tr = 'Veritabanı Kullanıcı'"));
 	
 	Result.Insert(Lower("SafeModeSecurityProfile"),
-		NStr("en = 'Safe mode security profile';"));
+		NStr("en = 'Safe mode security profile';tr = 'Güvenli mod güvenlik profili'"));
 	
 	Result.Insert(Lower("AllowLicenseDistribution"),
-		NStr("en = 'Allow issuing licenses';"));
+		NStr("en = 'Allow issuing licenses';tr = 'Lisans vermeye izin ver'"));
 	
 	Result.Insert(Lower("ReserveWorkingProcesses"),
-		NStr("en = 'Working process reservation';"));
+		NStr("en = 'Working process reservation';tr = 'İş süreci rezervasyonu'"));
 	
 	Result.Insert(Lower("DataBaseServer"),
-		NStr("en = 'Database server';"));
+		NStr("en = 'Database server';tr = 'Veritabanı sunucusu'"));
 	
 	Result.Insert(Lower("DateOffset"),
-		NStr("en = 'Dates offset';"));
+		NStr("en = 'Dates offset';tr = 'Mahsup tarihi'"));
 	
 	Result.Insert(Lower("CreateDatabase"),
-		NStr("en = 'Create database';"));
+		NStr("en = 'Create database';tr = 'Veritabanı oluştur'"));
 	
 	Result.Insert(Lower("LockMessage"),
-		NStr("en = 'Lock message';"));
+		NStr("en = 'Lock message';tr = 'Kilit mesajı'"));
 	
 	Result.Insert(Lower("ExternalSessionManagementConnectionString"),
-		NStr("en = 'String of external session management parameters';"));
+		NStr("en = 'String of external session management parameters';tr = 'Harici oturum yönetimi parametrelerinin dizesi'"));
 	
 	Result.Insert(Lower("DBMS"),
-		NStr("en = 'DBMS';"));
+		NStr("en = 'DBMS';tr = 'DBMS'"));
 	
 	Result.Insert(Lower("ConnectionsSecurityLevel"),
-		NStr("en = 'Connection security level';"));
+		NStr("en = 'Connection security level';tr = 'Bağlantı güvenlik seviyesi'"));
 	
 	// _$InfoBase$_.ConfigUpdate*
 	Result.Insert(Lower("Vendor"),
-		NStr("en = 'Vendor';"));
+		NStr("en = 'Vendor';tr = 'Sağlayıcı'"));
 	
 	// _$InfoBase$_.ConfigExtensionUpdate
 	Result.Insert(Lower("Version"),
-		NStr("en = 'Version';"));
+		NStr("en = 'Version';tr = 'Sürüm'"));
 	
 	// _$InfoBase$_.DBConfigUpdate
 	Result.Insert(Lower("ExclusiveMode"),
-		NStr("en = 'Exclusive mode';"));
+		NStr("en = 'Exclusive mode';tr = 'Özel mod'"));
 	
 	// _$InfoBase$_.DBConfigExtension*
 	Result.Insert(Lower("Active"),
-		NStr("en = 'Active';"));
+		NStr("en = 'Active';tr = 'Aktif'"));
 	
 	Result.Insert(Lower("SafeMode"),
-		NStr("en = 'Safe mode';"));
+		NStr("en = 'Safe mode';tr = 'Güvenli mod'"));
 	
 	Result.Insert(Lower("SecurityProfile"),
-		NStr("en = 'Security profile';"));
+		NStr("en = 'Security profile';tr = 'Güvenlik profili'"));
 	
 	Result.Insert(Lower("UseDefaultRolesForAllUsers"),
-		NStr("en = 'Use main roles for all users';"));
+		NStr("en = 'Use main roles for all users';tr = 'Tüm kullanıcılar için ana rolleri kullan'"));
 	
 	Result.Insert(Lower("UsedInDistributedInfoBase"),
-		NStr("en = 'Used in a distributed infobase';"));
+		NStr("en = 'Used in a distributed infobase';tr = 'Dağıtılmış infobase''de kullanılıyor'"));
 	
 	Result.Insert(Lower("Purpose"),
-		NStr("en = 'Used on';"));
+		NStr("en = 'Used on';tr = 'Kullanım alanı'"));
 	
 	Result.Insert(Lower("Scope"),
-		NStr("en = 'Scope';"));
+		NStr("en = 'Scope';tr = 'Kapsam'"));
 	
 	Result.Insert(Lower("DefaultRoles"),
-		NStr("en = 'Default roles';"));
+		NStr("en = 'Default roles';tr = 'Varsayılan roller'"));
 	
 	Result.Insert(Lower("Synonym"),
-		NStr("en = 'Synonym';"));
+		NStr("en = 'Synonym';tr = 'Eş anlamlı'"));
 	
 	Result.Insert(Lower("UUID"),
-		NStr("en = 'UUID';"));
+		NStr("en = 'UUID';tr = 'UUID'"));
 	
 	Result.Insert(Lower("HashSum"),
-		NStr("en = 'Hash';"));
+		NStr("en = 'Hash';tr = 'Karma'"));
 	
 	// _$InfoBase$_.EventLogReduce
 	Result.Insert(Lower("Date"),
-		NStr("en = 'Date';"));
+		NStr("en = 'Date';tr = 'Tarih'"));
 	
 	// _$InfoBase$_.EventLogSettingsUpdateError
 	Result.Insert(Lower("Levels"),
-		NStr("en = 'Levels';"));
+		NStr("en = 'Levels';tr = 'Seviyeler'"));
 	
 	Result.Insert(Lower("SeparationPeriod"),
-		NStr("en = 'Separation period';"));
+		NStr("en = 'Separation period';tr = 'Ayırma dönemi'"));
 	
 	Result.Insert(Lower("EventLogFormat"),
-		NStr("en = 'Event log format';"));
+		NStr("en = 'Event log format';tr = 'Olay günlüğü formatı'"));
 	
 	Result.Insert(Lower("EventName"),
-		NStr("en = 'Event name';"));
+		NStr("en = 'Event name';tr = 'Olay adı'"));
 	
 	Result.Insert(Lower("RegistrableEvent"),
-		NStr("en = 'Event loggable';"));
+		NStr("en = 'Event loggable';tr = 'Olay kaydedilebilir'"));
 	
 	// _$InfoBase$_.ExclusiveModeChange
 	Result.Insert(Lower("AllowTerminationAtSessionStart"),
-		NStr("en = 'Allow exit on startup';"));
+		NStr("en = 'Allow exit on startup';tr = 'Başlatmada çıkışa izin ver'"));
 	
 	// _$InfoBase$_.ParametersUpdate
 	Result.Insert(Lower("DataLockTimeout"),
-		NStr("en = 'Data lock wait time';"));
+		NStr("en = 'Data lock wait time';tr = 'Veri kilidi bekleme süresi'"));
 	
 	Result.Insert(Lower("UserPasswordsMaxLifetime"),
-		NStr("en = 'Maximum password lifetime';"));
+		NStr("en = 'Maximum password lifetime';tr = 'Maksimum parola kullanım süresi'"));
 	
 	Result.Insert(Lower("UserPasswordsMinLifetime"),
-		NStr("en = 'Minimum password lifetime';"));
+		NStr("en = 'Minimum password lifetime';tr = 'Minimum parola kullanım süresi'"));
 	
 	Result.Insert(Lower("UserPasswordsMinLength"),
-		NStr("en = 'Minimum password length';"));
+		NStr("en = 'Minimum password length';tr = 'Minimum parola uzunluğu'"));
 	
 	Result.Insert(Lower("UserPasswordReuseLimit"),
-		NStr("en = 'Prevent re-use of recent passwords';"));
+		NStr("en = 'Prevent re-use of recent passwords';tr = 'En son parolaların yeniden kullanılmasını engelle'"));
 	
 	Result.Insert(Lower("UserPasswordComplexityCheck"),
-		NStr("en = 'Password complexity check';"));
+		NStr("en = 'Password complexity check';tr = 'Şifre karmaşıklık kontrolü'"));
 	
 	Result.Insert(Lower("UserPasswordExpirationNotificationPeriod"),
-		NStr("en = 'Password expiration notification lead';"));
+		NStr("en = 'Password expiration notification lead';tr = 'Şifre sona erme tarihi bildirimi'"));
 	
 	Result.Insert(Lower("PassiveSessionHibernateTime"),
-		NStr("en = 'Idle session sleep timeout';"));
+		NStr("en = 'Idle session sleep timeout';tr = 'Boşta oturum uyku zaman aşımı'"));
 	
 	Result.Insert(Lower("HibernateSessionTerminateTime"),
-		NStr("en = 'Sleeping session termination timeout';"));
+		NStr("en = 'Sleeping session termination timeout';tr = 'Uyku oturumu sonlandırma zaman aşımı'"));
 	
 	Result.Insert(Lower("InactiveSessionTerminationTime"),
-		NStr("en = 'Inactive session termination timeout';"));
+		NStr("en = 'Inactive session termination timeout';tr = 'Pasif oturum sonlandırma zaman aşımı'"));
 	
 	Result.Insert(Lower("NotificationLeadTimeBeforeInactiveSessionTermination"),
-		NStr("en = 'Lead time for inactive session termination notification';"));
+		NStr("en = 'Lead time for inactive session termination notification';tr = 'Etkin olmayan oturum sonlandırma bildirimi için ön süre'"));
 	
 	Result.Insert(Lower("TotalRecalcJobCount"),
-		NStr("en = 'Number of totals recalculation tasks';"));
+		NStr("en = 'Number of totals recalculation tasks';tr = 'Toplamları yeniden hesaplama görevlerinin sayısı'"));
 	
 	Result.Insert(Lower("MaxUnsuccessfulAttemptsCount"),
-		NStr("en = 'Limit of unsuccessful attempts';"));
+		NStr("en = 'Limit of unsuccessful attempts';tr = 'Başarısız deneme limiti'"));
 	
 	Result.Insert(Lower("LockDuration"),
-		NStr("en = 'Lock duration';"));
+		NStr("en = 'Lock duration';tr = 'Kilitleme süresi'"));
 	
 	Result.Insert(Lower("UserNameAdditionCodes"),
-		NStr("en = 'Username addition codes';"));
+		NStr("en = 'Username addition codes';tr = 'Kullanıcı adı ekleme kodları'"));
 	
 	// _$InfoBase$_.RegionalSettingsChange
 	Result.Insert(Lower("UseCurrentSessionSettings"),
-		NStr("en = 'Use current session settings';"));
+		NStr("en = 'Use current session settings';tr = 'Mevcut oturum ayarlarını kullan'"));
 	
 	Result.Insert(Lower("LocalizationCode"),
-		NStr("en = 'Localization code';"));
+		NStr("en = 'Localization code';tr = 'Yerelleştirme kodu'"));
 	
 	Result.Insert(Lower("FirstDayOfWeek"),
-		NStr("en = 'First day of the week';"));
+		NStr("en = 'First day of the week';tr = 'Haftanın ilk günü'"));
 	
 	Result.Insert(Lower("BooleanTruePresentation"),
-		NStr("en = 'Logical ""True"" presentation';"));
+		NStr("en = 'Logical ""True"" presentation';tr = '""True"" mantıksal ifadesinin gösterimi'"));
 	
 	Result.Insert(Lower("BooleanFalsePresentation"),
-		NStr("en = 'Logical ""False"" presentation';"));
+		NStr("en = 'Logical ""False"" presentation';tr = '""False"" mantıksal ifadesinin gösterimi'"));
 	
 	Result.Insert(Lower("NegativeNumberPresentation"),
-		NStr("en = 'Negative numbers presentation';"));
+		NStr("en = 'Negative numbers presentation';tr = 'Eksi sayı gösterimi'"));
 	
 	Result.Insert(Lower("NumbersDigitGroupSeparator"),
-		NStr("en = 'Digit grouping separator';"));
+		NStr("en = 'Digit grouping separator';tr = 'Basamak gruplama ayırıcısı'"));
 	
 	Result.Insert(Lower("NumbersDecimalSeparator"),
-		NStr("en = 'Decimal separator';"));
+		NStr("en = 'Decimal separator';tr = 'Ondalık ayırıcı'"));
 	
 	Result.Insert(Lower("NumbersDigitGroupFormat"),
-		NStr("en = 'Digit grouping format';"));
+		NStr("en = 'Digit grouping format';tr = 'Basamak gruplama formatı'"));
 	
 	Result.Insert(Lower("TimePresentationFormat"),
-		NStr("en = 'Time format';"));
+		NStr("en = 'Time format';tr = 'Saat formatı'"));
 	
 	Result.Insert(Lower("DatePresentationFormat"),
-		NStr("en = 'Date format';"));
+		NStr("en = 'Date format';tr = 'Tarih formatı'"));
 	
 	// _$InfoBase$_.RoleUpdate
 	Result.Insert(Lower("Rights"),
-		NStr("en = 'Access rights';"));
+		NStr("en = 'Access rights';tr = 'Erişim yetkileri'"));
 	
 	Result.Insert(Lower("AccessEnabled"),
-		NStr("en = 'Access granted';"));
+		NStr("en = 'Access granted';tr = 'Erişim verildi'"));
 	
 	Result.Insert(Lower("AccessDisabled"),
-		NStr("en = 'Access denied';"));
+		NStr("en = 'Access denied';tr = 'Erişim reddedildi'"));
 	
 	Result.Insert(Lower("Restrictions"),
-		NStr("en = 'Restrictions';"));
+		NStr("en = 'Restrictions';tr = 'Kısıtlamalar'"));
 	
 	Result.Insert(Lower("RestrictionTemplates"),
-		NStr("en = 'Restriction templates';"));
+		NStr("en = 'Restriction templates';tr = 'Kısıtlama şablonları'"));
 	
 	Result.Insert(Lower("ItemsAdded"),
-		NStr("en = 'Added';"));
+		NStr("en = 'Added';tr = 'Eklendi'"));
 	
 	Result.Insert(Lower("ItemsChanged"),
-		NStr("en = 'Modified';"));
+		NStr("en = 'Modified';tr = 'Değiştirildi'"));
 	
 	Result.Insert(Lower("ItemsDeleted"),
-		NStr("en = 'Deleted';"));
+		NStr("en = 'Deleted';tr = 'Silindi'"));
 	
 	Result.Insert(Lower("Description"),
-		NStr("en = 'Description';"));
+		NStr("en = 'Description';tr = 'Tanım'"));
 	
 	Result.Insert(Lower("TemplateText"),
-		NStr("en = 'Template text';"));
+		NStr("en = 'Template text';tr = 'Şablon metni'"));
 	
 	// _$InfoBase$_.SecurityProfileChange
 	Result.Insert(Lower("ClusterAdmin"),
-		NStr("en = 'Cluster administrator';"));
+		NStr("en = 'Cluster administrator';tr = 'Küme yöneticisi'"));
 	
 	Result.Insert(Lower("CryptoAvailable"),
-		NStr("en = 'Access to cryptography';"));
+		NStr("en = 'Access to cryptography';tr = 'Şifrelemeye erişim'"));
 	
 	Result.Insert(Lower("ModulesAvailableForExtension"),
-		NStr("en = 'Extensible modules';"));
+		NStr("en = 'Extensible modules';tr = 'Genişletilebilir modüller'"));
 	
 	Result.Insert(Lower("ModulesNotAvailableForExtension"),
-		NStr("en = 'Non-extensible modules';"));
+		NStr("en = 'Non-extensible modules';tr = 'Genişletilemeyen modüller'"));
 	
 	Result.Insert(Lower("COMObjectFullAccess"),
-		NStr("en = 'Full access to COM objects';"));
+		NStr("en = 'Full access to COM objects';tr = 'COM nesnelerine tam erişim'"));
 	
 	Result.Insert(Lower("AddInFullAccess"),
-		NStr("en = 'Full access to add-ins';"));
+		NStr("en = 'Full access to add-ins';tr = 'Eklentilere tam erişim'"));
 	
 	Result.Insert(Lower("ExternalModuleFullAccess"),
-		NStr("en = 'Full access to external modules';"));
+		NStr("en = 'Full access to external modules';tr = 'Harici modüllere tam erişim'"));
 	
 	Result.Insert(Lower("ExternalApplicationsFullAccess"),
-		NStr("en = 'Unlimited access to external apps';"));
+		NStr("en = 'Unlimited access to external apps';tr = 'Harici uygulamalara sınırsız erişim'"));
 	
 	Result.Insert(Lower("InternetResourcesFullAccess"),
-		NStr("en = 'Full access to online resources';"));
+		NStr("en = 'Full access to online resources';tr = 'Çevrimiçi kaynaklara tam erişim'"));
 	
 	Result.Insert(Lower("FileSystemFullAccess"),
-		NStr("en = 'Full access to file system';"));
+		NStr("en = 'Full access to file system';tr = 'Dosya sistemine tam erişim'"));
 	
 	Result.Insert(Lower("FullPrivilegedMode"),
-		NStr("en = 'Unlimited privileged mode';"));
+		NStr("en = 'Unlimited privileged mode';tr = 'Sınırsız ayrıcalıklı mod'"));
 	
 	Result.Insert(Lower("SafeModeProfile"),
-		NStr("en = 'Security mode profile';"));
+		NStr("en = 'Security mode profile';tr = 'Güvenlik modu profili'"));
 	
 	Result.Insert(Lower("AllowExternalCodeExecutionInUnsafeMode"),
-		NStr("en = 'Allow executing external code in unsafe mode';"));
+		NStr("en = 'Allow executing external code in unsafe mode';tr = 'Güvenli olmayan modda harici kod yürütülmesine izin ver'"));
 	
 	Result.Insert(Lower("AllowAccessRightsExtension"),
-		NStr("en = 'Allow extension of access rights';"));
+		NStr("en = 'Allow extension of access rights';tr = 'Erişim yetkilerinin genişletilmesine izin ver'"));
 	
 	Result.Insert(Lower("AccessRightsExtensionLimitingRoles"),
-		NStr("en = 'Roles that restrict extension of access rights';"));
+		NStr("en = 'Roles that restrict extension of access rights';tr = 'Erişim yetkilerinin genişletilmesini kısıtlayan roller'"));
 	
 	Result.Insert(Lower("PrivilegedModeRoles"),
-		NStr("en = 'Privileged mode roles';"));
+		NStr("en = 'Privileged mode roles';tr = 'Ayrıcalıklı mod rolleri'"));
 	
 	Result.Insert(Lower("AllowedCOMClasses"),
-		NStr("en = 'Allowed COM classes';"));
+		NStr("en = 'Allowed COM classes';tr = 'İzin verilen COM sınıfları'"));
 	
 	Result.Insert(Lower("AllowedVirtualDirs"),
-		NStr("en = 'Allowed virtual directories';"));
+		NStr("en = 'Allowed virtual directories';tr = 'İzin verilen sanal dizinler'"));
 	
 	Result.Insert(Lower("WritingAllowed"),
-		NStr("en = 'Writing is allowed';"));
+		NStr("en = 'Writing is allowed';tr = 'Kaydetme izni var'"));
 	
 	Result.Insert(Lower("Alias"),
-		NStr("en = 'Alias';"));
+		NStr("en = 'Alias';tr = 'Unvan'"));
 	
 	Result.Insert(Lower("ReadingAllowed"),
-		NStr("en = 'Reading is allowed';"));
+		NStr("en = 'Reading is allowed';tr = 'Okuma izni var'"));
 	
 	Result.Insert(Lower("AllowedAddIns"),
-		NStr("en = 'Allowed add-ins';"));
+		NStr("en = 'Allowed add-ins';tr = 'İzin verilen eklentiler'"));
 	
 	Result.Insert(Lower("AllowedExternalModules"),
-		NStr("en = 'Allowed external modules';"));
+		NStr("en = 'Allowed external modules';tr = 'İzin verilen harici modüller'"));
 	
 	Result.Insert(Lower("AllowedExternalApps"),
-		NStr("en = 'Allowed external apps';"));
+		NStr("en = 'Allowed external apps';tr = 'İzin verilen harici uygulamalar'"));
 	
 	Result.Insert(Lower("AllowedInternetResources"),
-		NStr("en = 'Allowed internet resources';"));
+		NStr("en = 'Allowed internet resources';tr = 'İzin verilen internet kaynakları'"));
 	
 	Result.Insert(Lower("Address"),
-		NStr("en = 'Address';"));
+		NStr("en = 'Address';tr = 'Adres'"));
 	
 	Result.Insert(Lower("Port"),
-		NStr("en = 'Port';"));
+		NStr("en = 'Port';tr = 'Port'"));
 	
 	Result.Insert(Lower("Protocol"),
-		NStr("en = 'Protocol';"));
+		NStr("en = 'Protocol';tr = 'Protokol'"));
 	
 	Result.Insert(Lower("PrivilegedModeAllowed"),
-		NStr("en = 'Allow setting privileged mode';"));
+		NStr("en = 'Allow setting privileged mode';tr = 'Ayrıcalıklı modu ayarlamaya izin ver'"));
 	
 	// _$InfoBase$_.SessionLockChange*
 	Result.Insert(Lower("KeyCode"),
-		NStr("en = 'Access code';"));
+		NStr("en = 'Access code';tr = 'Erişim kodu'"));
 	
 	Result.Insert(Lower("End"),
-		NStr("en = 'End';"));
+		NStr("en = 'End';tr = 'Son'"));
 	
 	Result.Insert(Lower("Parameter"),
-		NStr("en = 'Parameter';"));
+		NStr("en = 'Parameter';tr = 'Parametre'"));
 	
 	Result.Insert(Lower("Message"),
-		NStr("en = 'Message';"));
+		NStr("en = 'Message';tr = 'Mesaj'"));
 	
 	Result.Insert(Lower("Use"),
-		NStr("en = 'Set';"));
+		NStr("en = 'Set';tr = 'Ayarla'"));
 	
 	// _$InfoBase$_.UserPasswordPolicy*
 	Result.Insert(Lower("PasswordMaxEffectivePeriod"),
-		NStr("en = 'Maximum password lifetime';"));
+		NStr("en = 'Maximum password lifetime';tr = 'Maksimum parola kullanım süresi'"));
 	
 	Result.Insert(Lower("PasswordMinEffectivePeriod"),
-		NStr("en = 'Minimum password lifetime';"));
+		NStr("en = 'Minimum password lifetime';tr = 'Minimum parola kullanım süresi'"));
 	
 	Result.Insert(Lower("PasswordMinLength"),
-		NStr("en = 'Minimum password length';"));
+		NStr("en = 'Minimum password length';tr = 'Minimum parola uzunluğu'"));
 	
 	Result.Insert(Lower("PasswordReuseLimit"),
-		NStr("en = 'Prevent re-use of recent passwords';"));
+		NStr("en = 'Prevent re-use of recent passwords';tr = 'En son parolaların yeniden kullanılmasını engelle'"));
 	
 	Result.Insert(Lower("PasswordStrengthCheck"),
-		NStr("en = 'Password complexity check';"));
+		NStr("en = 'Password complexity check';tr = 'Şifre karmaşıklık kontrolü'"));
 	
 	Result.Insert(Lower("PasswordExpirationNotificationPeriod"),
-		NStr("en = 'Password expiration notification lead';"));
+		NStr("en = 'Password expiration notification lead';tr = 'Şifre sona erme tarihi bildirimi'"));
 	
 	Result.Insert(Lower("ActionUponAuthenticationIfPasswordsNonCompliant"),
-		NStr("en = 'Action if password doesn''t meet requirements';"));
+		NStr("en = 'Action if password doesn''t meet requirements';tr = 'Şifre gereksinimleri karşılamadığında eylem'"));
 	
 	Result.Insert(Lower("PasswordCompromiseCheck"),
-		NStr("en = 'Leaked password check';"));
+		NStr("en = 'Leaked password check';tr = 'Sızdırılmış şifre kontrolü'"));
 	
 	// _$OpenIDProvider$_.*
 	Result.Insert(Lower("RelyingPartyURL"),
-		NStr("en = 'Relying party URL';"));
+		NStr("en = 'Relying party URL';tr = 'Güvenen taraf URL''si'"));
 	
 	// _$Session$_.Authentication*
 	Result.Insert(Lower("CurrentOSUser"),
-		NStr("en = 'Current OS user';"));
+		NStr("en = 'Current OS user';tr = 'Mevcut İşletim Sistemi Kullanıcısı'"));
 	
 	Result.Insert(Lower("AuthenticationMethod"),
-		NStr("en = 'Authentication method';"));
+		NStr("en = 'Authentication method';tr = 'Kimlik doğrulama yöntemi'"));
 	
 	Result.Insert(Lower("UsernameAdditionCode"),
-		NStr("en = 'Username addition code';"));
+		NStr("en = 'Username addition code';tr = 'Kullanıcı adı ekleme kodu'"));
 	
 	Result.Insert(Lower("UserIDAtOpenIDProvider"),
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 provider user ID';"), "OpenID"));
+			NStr("en = '%1 provider user ID';tr = '%1 sağlayıcı kullanıcı ID''si'"), "OpenID"));
 	
 	Result.Insert(Lower("IssuerOfAccessToken"),
-		NStr("en = 'Access token emitter';"));
+		NStr("en = 'Access token emitter';tr = 'Erişim belirteci yayıcı'"));
 	
 	Result.Insert(Lower("AccessTokenID"),
-		NStr("en = 'Access token ID';"));
+		NStr("en = 'Access token ID';tr = 'Erişim belirteci ID''si'"));
 	
 	Result.Insert(Lower("OpenIDProviderURL"),
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 provider URL';"), "OpenID"));
+			NStr("en = '%1 provider URL';tr = '%1 sağlayıcı URL''si'"), "OpenID"));
 	
 	// _$Session$_.ExternalDataProcessorConnect*
 	Result.Insert(Lower("Path"),
-		NStr("en = 'Path';"));
+		NStr("en = 'Path';tr = 'Yol'"));
 	
 	Result.Insert(Lower("LanguageCode"),
-		NStr("en = 'Language code';"));
+		NStr("en = 'Language code';tr = 'Dil kodu'"));
 	
 	// _$Session$_.AddInAttach*
 	Result.Insert(Lower("Location"),
-		NStr("en = 'Location';"));
+		NStr("en = 'Location';tr = 'Konum'"));
 	
 	Result.Insert(Lower("Type"),
-		NStr("en = 'Type';"));
+		NStr("en = 'Type';tr = 'Tür'"));
 	
 	Result.Insert(Lower("AttachmentType"),
-		NStr("en = 'Connection type';"));
+		NStr("en = 'Connection type';tr = 'Bağlantı türü'"));
 	
 	// _$User$_.*
 	Result.Insert(Lower("Email"),
-		NStr("en = 'Email address';"));
+		NStr("en = 'Email address';tr = 'E-posta adresi'"));
 	
 	Result.Insert(Lower("OpenIDAuthentication"),
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 authentication';"), "OpenID"));
+			NStr("en = '%1 authentication';tr = '%1 kimlik doğrulaması'"), "OpenID"));
 	
 	Result.Insert(Lower("OpenIDConnectAuthentication"),
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 authentication';"), "OpenID-Connect"));
+			NStr("en = '%1 authentication';tr = '%1 kimlik doğrulaması'"), "OpenID-Connect"));
 	
 	Result.Insert(Lower("QRCodeAuthentication"),
-		NStr("en = 'QR code authentication';"));
+		NStr("en = 'QR code authentication';tr = 'QR kod kimlik doğrulaması'"));
 	
 	Result.Insert(Lower("OSAuthentication"),
-		NStr("en = 'OS authentication';"));
+		NStr("en = 'OS authentication';tr = 'OS (İşletim sistemi) doğrulama'"));
 	
 	Result.Insert(Lower("StandardAuthentication"),
-		NStr("en = '1C:Enterprise authentication';"));
+		NStr("en = '1C:Enterprise authentication';tr = '1C:Enterprise doğrulama'"));
 	
 	Result.Insert(Lower("AccessTokenAuthentication"),
-		NStr("en = 'Access token authentication';"));
+		NStr("en = 'Access token authentication';tr = 'Erişim belirteci kimlik doğrulaması'"));
 	
 	Result.Insert(Lower("PasswordSettingDate"),
-		NStr("en = 'Password set date';"));
+		NStr("en = 'Password set date';tr = 'Şifre belirleme tarihi'"));
 	
 	Result.Insert(Lower("CannotRecoveryPassword"),
-		NStr("en = 'User cannot recover password';"));
+		NStr("en = 'User cannot recover password';tr = 'Kullanıcı parolayı kurtaramaz'"));
 	
 	Result.Insert(Lower("CannotChangePassword"),
-		NStr("en = 'User cannot change password';"));
+		NStr("en = 'User cannot change password';tr = 'Kullanıcının şifreyi değiştirmesi yasaktır'"));
 	
 	Result.Insert(Lower("UnsafeActionProtection"),
-		NStr("en = 'Unsafe action protection';"));
+		NStr("en = 'Unsafe action protection';tr = 'Güvenli olmayan eylem koruması'"));
 	
 	Result.Insert(Lower("Name"),
-		NStr("en = 'Name';"));
+		NStr("en = 'Name';tr = 'Ad'"));
 	
 	Result.Insert(Lower("PasswordPolicyName"),
-		NStr("en = 'Password policy name';"));
+		NStr("en = 'Password policy name';tr = 'Şifre politikası adı'"));
 	
 	Result.Insert(Lower("UserMapKeys"),
-		NStr("en = 'User map keys';"));
+		NStr("en = 'User map keys';tr = 'Kullanıcı eşleştirme anahtarları'"));
 	
 	Result.Insert(Lower("SecondAuthenticationFactorSettings"),
-		NStr("en = 'Second authentication factor settings';"));
+		NStr("en = 'Second authentication factor settings';tr = 'İkinci kimlik doğrulama faktörü ayarları'"));
 	
 	Result.Insert(Lower("SecondAuthenticationFactorSettingsProcessing"),
-		NStr("en = 'Second authentication factor settings processing';"));
+		NStr("en = 'Second authentication factor settings processing';tr = 'İkinci kimlik doğrulama faktörü ayarlarını işleme'"));
 	
 	Result.Insert(Lower("PasswordChanged"),
-		NStr("en = 'Password is changed';"));
+		NStr("en = 'Password is changed';tr = 'Parola değiştirildi'"));
 	
 	Result.Insert(Lower("PasswordNonCompliant"),
-		NStr("en = 'Password does not meet requirements';"));
+		NStr("en = 'Password does not meet requirements';tr = 'Şifre, gereksinimleri karşılamıyor'"));
 	
 	Result.Insert(Lower("PasswordIsSet"),
-		NStr("en = 'Password is set';"));
+		NStr("en = 'Password is set';tr = 'Parola belirlendi'"));
 	
 	Result.Insert(Lower("ShowInList"),
-		NStr("en = 'Show in list';"));
+		NStr("en = 'Show in list';tr = 'Listede göster'"));
 	
 	Result.Insert(Lower("FullName"),
-		NStr("en = 'Full name';"));
+		NStr("en = 'Full name';tr = 'Tam adı'"));
 	
 	Result.Insert(Lower("OSUser"),
-		NStr("en = 'OS user';"));
+		NStr("en = 'OS user';tr = 'OS Kullanıcısı'"));
 	
 	Result.Insert(Lower("RunMode"),
-		NStr("en = 'Run mode';"));
+		NStr("en = 'Run mode';tr = 'Çalışma modu'"));
 	
 	Result.Insert(Lower("DefaultInterface"),
-		NStr("en = 'Main interface';"));
+		NStr("en = 'Main interface';tr = 'Ana arayüz'"));
 	
 	Result.Insert(Lower("Roles"),
-		NStr("en = 'Roles';"));
+		NStr("en = 'Roles';tr = 'Roller'"));
 	
 	Result.Insert(Lower("PasswordHashAlgorithmType"),
-		NStr("en = 'Password hashing algorithm type';"));
+		NStr("en = 'Password hashing algorithm type';tr = 'Şifre karma algoritması türü'"));
 	
 	Result.Insert(Lower("Language"),
-		NStr("en = 'Language';"));
+		NStr("en = 'Language';tr = 'Dil'"));
 	
 	Result.Insert(Lower("Users"),
-		NStr("en = 'Users';"));
+		NStr("en = 'Users';tr = 'Kullanıcılar'"));
 	
 	Result.Insert(Lower("DataSeparation"),
-		NStr("en = 'Data separation';"));
+		NStr("en = 'Data separation';tr = 'Veri ayırma'"));
 	
 	Return Result;
 	
@@ -1534,7 +1534,7 @@ Function StringDelimitersList(SeparatorLine) Export
 	
 	ListItem = List.FindByValue("");
 	If ListItem <> Undefined Then
-		ListItem.Presentation = NStr("en = '<Not set>';");
+		ListItem.Presentation = NStr("en = '<Not set>';tr = '<Belirlenmedi>'");
 	EndIf;
 	
 	Return List;
@@ -1677,11 +1677,11 @@ Procedure AddRestrictionToFilterPresentation(EventLogFilter, FilterPresentation,
 	
 	If RestrictionName = "Event" And RestrictionList.Count() > 5 Then
 		
-		Restriction = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Events (%1)';"), RestrictionList.Count());
+		Restriction = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Events (%1)';tr = 'Olaylar (%1)'"), RestrictionList.Count());
 		
 	ElsIf RestrictionName = "Session" And RestrictionList.Count() > 3 Then
 		
-		Restriction = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Sessions (%1)';"), RestrictionList.Count());
+		Restriction = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Sessions (%1)';tr = 'Oturumlar (%1)'"), RestrictionList.Count());
 		
 	Else
 		
@@ -1701,12 +1701,12 @@ Procedure AddRestrictionToFilterPresentation(EventLogFilter, FilterPresentation,
 				And IsBlankString(Restriction) Then
 				
 				If RestrictionName = "Session" Then
-					RestrictionPresentation = NStr("en = 'Session';");
+					RestrictionPresentation = NStr("en = 'Session';tr = 'Oturum'");
 				Else
-					RestrictionPresentation = NStr("en = 'Level';");
+					RestrictionPresentation = NStr("en = 'Level';tr = 'Seviye'");
 				EndIf;
 				
-				Restriction = NStr("en = '%1: %2';");
+				Restriction = NStr("en = '%1: %2';tr = '%1: %2'");
 				Restriction = StringFunctionsClientServer.SubstituteParametersToString(Restriction, RestrictionPresentation, RestrictionValue);
 			Else
 				Restriction = Restriction + RestrictionValue;

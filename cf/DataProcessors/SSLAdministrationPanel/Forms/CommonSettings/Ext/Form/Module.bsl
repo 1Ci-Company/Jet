@@ -395,11 +395,11 @@ Procedure UseCloudSignatureServiceOnChange(Item)
 		
 		TheNotificationIsAsFollows = New NotifyDescription("CheckIfDSSUsageEnabled", ThisObject, CycleParameters);
 		ListOfCommands = New ValueList;
-		ListOfCommands.Add("OK", NStr("en = 'Confirm';"));
-		ListOfCommands.Add("None", NStr("en = 'Cancel';"), True);
-		QueryText = NStr("en = 'Attention. If you plan to use the DSS signature service to generate a qualified digital signature, set it up on your own to meet the <a href = ""%1"">requirements</a> for such signature.';") 
+		ListOfCommands.Add("OK", NStr("en = 'Confirm';tr = 'Onayla'"));
+		ListOfCommands.Add("None", NStr("en = 'Cancel';tr = 'İptal'"), True);
+		QueryText = NStr("en = 'Attention. If you plan to use the DSS signature service to generate a qualified digital signature, set it up on your own to meet the <a href = ""%1"">requirements</a> for such signature.';tr = 'Dikkat. Dijital imza oluşturmak için dijital imza servisi (DSS) kullanmak istiyorsanız kurulumunu kendiniz yaparak dijital imza <a href = ""%1"">gereksinimlerini</a> karşılayın. '") 
 			+ Chars.LF + Chars.LF
-			+ NStr("en = 'Do you confirm the service use?';");
+			+ NStr("en = 'Do you confirm the service use?';tr = 'Servisin kullanılmasını onaylıyor musunuz?'");
 			
 		QueryText = StringFunctionsClient.FormattedString(QueryText, AddressOfArticleAboutDSSService());
 		
@@ -409,7 +409,7 @@ Procedure UseCloudSignatureServiceOnChange(Item)
 			QueryText,
 			ListOfCommands,
 			,
-			NStr("en = 'Additional settings are required';"));
+			NStr("en = 'Additional settings are required';tr = 'Ek ayarlar gerekiyor'"));
 			
 	Else
 		Attachable_OnChangeAttribute(Item);
@@ -578,7 +578,7 @@ Procedure InfobasePublicationURLStartChoiceCompletion(Var_AttributeName)
 		InfobasePublicationURLStartChoiceAtServer(Var_AttributeName, InfoBaseConnectionString());
 		Attachable_OnChangeAttribute(Items[Var_AttributeName]);
 	Else
-		ShowMessageBox(, NStr("en = 'Cannot populate the field. The client application is not connected over the web server.';"));
+		ShowMessageBox(, NStr("en = 'Cannot populate the field. The client application is not connected over the web server.';tr = 'İstemci uygulaması web sunucusu üzerinden bağlı olmadığından alan otomatik olarak doldurulamadı.'"));
 	EndIf;
 	
 EndProcedure

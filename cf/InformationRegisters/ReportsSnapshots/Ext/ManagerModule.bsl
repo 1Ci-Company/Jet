@@ -149,7 +149,7 @@ Procedure UpdateUserReportsSnapshots(FillParameters, StorageAddress) Export
 		Generation1 = ReportsOptions.GenerateReport(ReportGenerationParameters, True, False);
 		
 		If Not Generation1.Success Then
-			WriteLogEvent(NStr("en = 'Update report snapshots';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Update report snapshots';tr = 'Rapor anlık görüntülerini güncelle'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			Common.MetadataObjectByID(Selection.Report),
 			Selection.Variant,

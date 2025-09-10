@@ -73,7 +73,9 @@ Procedure BeforeWrite(Cancel)
 			Raise
 				NStr("en = 'The predefined access group ""Administrators""
 				           |can be changed only if you have the ""Full access"" role
-				           |or in privileged mode.';");
+				           |or in privileged mode.';tr = '""Yöneticiler"" öntanımlı erişim grubunun
+				           | değiştirilebilmesi için ""Tam erişim"" rolü 
+				           |veya ayrıcalıklı mod gereklidir.'");
 		EndIf;
 		
 		// Checking whether the access group contains regular users only.
@@ -84,7 +86,11 @@ Procedure BeforeWrite(Cancel)
 					           |can contain only users.
 					           |
 					           |User groups, external users, and
-					           |external user groups are not allowed.';");
+					           |external user groups are not allowed.';tr = '""Yöneticiler"" öntanımlı erişim grubu 
+					           |sadece kullanıcı içerebilir.
+					           |
+					           |Kullanıcı gruplarına, harici kullanıcılara 
+					           |ve harici kullanıcı gruplarına izin verilmez.'");
 			EndIf;
 		EndDo;
 		
@@ -92,7 +98,8 @@ Procedure BeforeWrite(Cancel)
 	ElsIf Profile = AccessManagement.ProfileAdministrator() Then
 		Raise
 			NStr("en = 'Only the predefined access group ""Administrators""
-			           |can have the predefined profile ""Administrator.""';");
+			           |can have the predefined profile ""Administrator.""';tr = 'Sadece ""Yöneticiler"" öntanımlı erişim grubu
+			           |""Yönetici"" öntanımlı profiline sahip olabilir.'");
 	EndIf;
 	
 	// Automatically setting attributes for the personal access group.
@@ -348,5 +355,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

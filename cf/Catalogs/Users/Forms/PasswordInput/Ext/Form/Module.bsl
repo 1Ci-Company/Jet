@@ -12,7 +12,7 @@
 
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
-	Title =  NStr("en = 'Enter your current password';");
+	Title =  NStr("en = 'Enter your current password';tr = 'Geçerli şifreyi girin'");
 	AutoTitle = False;
 EndProcedure
 

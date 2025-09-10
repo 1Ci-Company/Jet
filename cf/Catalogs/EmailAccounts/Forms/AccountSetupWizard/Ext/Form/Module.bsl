@@ -43,11 +43,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.KeepMessagesOnServer.Visible = CanReceiveEmails;
 	
 	Items.AccountSettingsTitle.Title = ?(ContextMode,
-		NStr("en = 'To send messages, set up the email account.';"),
-		NStr("en = 'Enter email settings';"));
+		NStr("en = 'To send messages, set up the email account.';tr = 'İleti göndermek için e-posta hesabını ayarlayın.'"),
+		NStr("en = 'Enter email settings';tr = 'E-posta ayarlarını girin'"));
 		
 	Items.AccountSettingsTitle.Visible = ContextMode;
-	Title = NStr("en = 'Account setup';");
+	Title = NStr("en = 'Account setup';tr = 'Hesap ayarı'");
 	
 	UseForReceiving = Not ContextMode And CanReceiveEmails;
 	UseForSending = True;
@@ -157,7 +157,7 @@ EndProcedure
 Procedure ProtocolOnChange(Item)
 	SetItemsVisibility();
 	Items.IncomingMailServer.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '%1 server';"), Protocol);
+		NStr("en = '%1 server';tr = 'Sunucu %1'"), Protocol);
 EndProcedure
 
 &AtClient
@@ -304,12 +304,12 @@ EndProcedure
 
 &AtClient
 Procedure ShowQueryBoxBeforeCloseForm()
-	QueryText = NStr("en = 'Changes are not saved. Close the form?';");
+	QueryText = NStr("en = 'Changes are not saved. Close the form?';tr = 'Girilen veriler kaydedilmeyecektir. Form kapatılsın mı?'");
 	NotifyDescription = New NotifyDescription("CloseFormConfirmed", ThisObject);
 	Buttons = New ValueList;
-	Buttons.Add("Close", NStr("en = 'Close';"));
-	Buttons.Add(DialogReturnCode.Cancel, NStr("en = 'Do not close';"));
-	ShowQueryBox(NotifyDescription, QueryText, Buttons, , DialogReturnCode.Cancel, NStr("en = 'Account setup';"));
+	Buttons.Add("Close", NStr("en = 'Close';tr = 'Kapat'"));
+	Buttons.Add(DialogReturnCode.Cancel, NStr("en = 'Do not close';tr = 'Kapatmayın'"));
+	ShowQueryBox(NotifyDescription, QueryText, Buttons, , DialogReturnCode.Cancel, NStr("en = 'Account setup';tr = 'Hesap ayarı'"));
 EndProcedure
 
 &AtClient
@@ -356,7 +356,7 @@ Procedure GotoNextPage(Command = Undefined)
 			If Not ValueIsFilled(RedirectAddress) 
 				Or ValueIsFilled(AuthorizationSettings) And Not ValueIsFilled(AuthorizationSettings.AuthorizationAddress)
 				Or IsWebClient() And Not AvailableAuthorizationByCode() Then
-				ErrorsMessages = NStr("en = 'Email service authorization settings are not found. Use password authorization.';");
+				ErrorsMessages = NStr("en = 'Email service authorization settings are not found. Use password authorization.';tr = 'Posta hizmeti yetkilendirme ayarları bulunamadı. Parola doğrulamasını kullanın.'");
 				ValidationCompletedWithErrors = True;
 				AuthenticationOption = "Password";
 				NextPage = Items.UserAccountSetup;
@@ -568,7 +568,7 @@ Function Permissions()
 				"SMTP",
 				OutgoingMailServer,
 				OutgoingMailServerPort,
-				NStr("en = 'Email.';")));
+				NStr("en = 'Email.';tr = 'E-posta.'")));
 	EndIf;
 	
 	If UseForReceiving Then
@@ -577,7 +577,7 @@ Function Permissions()
 				Protocol,
 				IncomingMailServer,
 				IncomingMailServerPort,
-				NStr("en = 'Email.';")));
+				NStr("en = 'Email.';tr = 'E-posta.'")));
 	EndIf;
 	
 	Return Result;
@@ -590,9 +590,9 @@ Procedure CheckFillingOnAccountSettingsPage(Cancel)
 	ClearMessages();
 	
 	If IsBlankString(Email) Then
-		CommonClient.MessageToUser(NStr("en = 'Email address required';"), , "Email", , Cancel);
+		CommonClient.MessageToUser(NStr("en = 'Email address required';tr = 'E-posta adresi gerekli'"), , "Email", , Cancel);
 	ElsIf Not CommonClientServer.EmailAddressMeetsRequirements(Email, True) Then
-		CommonClient.MessageToUser(NStr("en = 'Invalid email address';"), , "Email", , Cancel);
+		CommonClient.MessageToUser(NStr("en = 'Invalid email address';tr = 'Geçersiz e-posta adresi'"), , "Email", , Cancel);
 	EndIf;
 	
 EndProcedure
@@ -605,25 +605,25 @@ Procedure SetCurrentPageItems()
 	// NextButton
 	If CurrentPage = Items.AccountConfigured Then
 		If ContextMode Then
-			ButtonNextTitle = NStr("en = 'Continue';");
+			ButtonNextTitle = NStr("en = 'Continue';tr = 'Devam'");
 		Else
-			ButtonNextTitle = NStr("en = 'Close';");
+			ButtonNextTitle = NStr("en = 'Close';tr = 'Kapat'");
 		EndIf;
 	Else
 		If CurrentPage = Items.UserAccountSetup
 			And ValidationCompletedWithErrors Or CurrentPage = Items.TechnicalDetailsOfError Then
-				ButtonNextTitle = NStr("en = 'Retry';");
+				ButtonNextTitle = NStr("en = 'Retry';tr = 'Tekrarla'");
 		ElsIf CurrentPage = Items.UserAccountSetup
 			And SetupMethod = "Automatically" Then
 			If ContextMode Or Reconfigure Then
-				ButtonNextTitle = NStr("en = 'Setup';");
+				ButtonNextTitle = NStr("en = 'Setup';tr = 'Ayar'");
 			Else
-				ButtonNextTitle = NStr("en = 'Create';");
+				ButtonNextTitle = NStr("en = 'Create';tr = 'Oluştur'");
 			EndIf;
 		ElsIf CurrentPage = Items.ValidatingAccountSettings Then
-			ButtonNextTitle = NStr("en = 'Skip test';");
+			ButtonNextTitle = NStr("en = 'Skip test';tr = 'Testi atla'");
 		Else
-			ButtonNextTitle = NStr("en = 'Next >';");
+			ButtonNextTitle = NStr("en = 'Next >';tr = 'İleri >'");
 		EndIf;
 	EndIf;
 	
@@ -645,9 +645,9 @@ Procedure SetCurrentPageItems()
 		And ValidationCompletedWithErrors Or Not ContextMode And Not Reconfigure And CurrentPage = Items.AccountConfigured);
 		
 	If Not ContextMode And CurrentPage = Items.AccountConfigured Then
-		Items.GoToSettingsButton.Title = NStr("en = 'Settings';");
+		Items.GoToSettingsButton.Title = NStr("en = 'Settings';tr = 'Ayarlara git'");
 	Else
-		Items.GoToSettingsButton.Title = NStr("en = 'Manual setup';");
+		Items.GoToSettingsButton.Title = NStr("en = 'Manual setup';tr = 'Manuel ayar'");
 	EndIf;
 
 	
@@ -664,7 +664,8 @@ Procedure SetCurrentPageItems()
 	If CurrentPage = Items.AccountConfigured Then
 		Items.AccountConfiguredLabel.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Email account
-				|%1 is set up successfully.';"), Email);
+				|%1 is set up successfully.';tr = 'Posta kurulumu
+				|%1 başarıyla tamamlandı.'"), Email);
 	EndIf;
 	
 	If CurrentPage = Items.Authorization 
@@ -852,7 +853,7 @@ Procedure NewAccount1()
 		CommitTransaction();
 	Except
 		RollbackTransaction();
-		WriteLogEvent(NStr("en = 'Email management';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Email management';tr = 'E-posta yönetimi'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error, , AccountRef, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		Raise;
 	EndTry;
@@ -922,7 +923,8 @@ EndFunction
 Procedure SetUpConnectionParametersAutomatically()
 	
 	ErrorsMessages = NStr("en = 'Couldn''t configure email server settings.
-	|Please provide settings manually.';");
+	|Please provide settings manually.';tr = 'E-posta sunucu ayarları yapılandırılamadı.
+	|Lütfen ayarları manuel olarak girin.'");
 	
 	ValidationCompletedWithErrors = False;
 	
@@ -941,7 +943,7 @@ EndProcedure
 Function StartSearchAccountSettings()
 	
 	ExecutionParameters = TimeConsumingOperations.FunctionExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Look up mail server settings';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Look up mail server settings';tr = 'E-posta sunucusu ayarları arama'");
 	
 	Return TimeConsumingOperations.ExecuteFunction(ExecutionParameters, "Catalogs.EmailAccounts.DefineAccountSettings",
 		Email, PasswordForReceivingEmails, UseForSending, UseForReceiving);
@@ -1062,7 +1064,7 @@ Procedure LoginAtMailServer()
 		EndIf;
 		
 		Items.ExplanationByConfirmationCode.Title = StringFunctionsClient.FormattedString(NStr(
-			"en = 'Authorize on the <a href=""%1"">email service page</a> and enter the received code in the field below:';"),
+			"en = 'Authorize on the <a href=""%1"">email service page</a> and enter the received code in the field below:';tr = '<a href=""%1"">E-posta hizmeti sayfasına</a> giriş yapın ve alınan kodu aşağıdaki alana girin:'"),
 			QueryAuthorizationString);
 		Items.AuthorizationOptions.CurrentPage = Items.OperatingSystemBrowser;
 
@@ -1134,7 +1136,7 @@ Function ParametersAuthorizationRequest()
 
 	If IsWebClient() Then
 		If Not ValueIsFilled(AuthorizationSettings.DeviceRegistrationAddress) Then
-			QueryOptions.Insert("device_name", NStr("en = '1C:Enterprise';"));
+			QueryOptions.Insert("device_name", NStr("en = '1C:Enterprise';tr = '1C:Enterprise'"));
 		EndIf;
 		QueryOptions.Insert("device_id", DeviceID);
 	EndIf;
@@ -1211,7 +1213,7 @@ Procedure OnReceiveMailServerResponse(ParametersString1, KeyReceiptAddress)
 		ErrorsMessages = DescriptionErrorsMailServerAuthorization(ErrorCode, ErrorText);
 		ValidationCompletedWithErrors = True;
 	ElsIf QueryID <> Response["state"] Then
-		ErrorsMessages = NStr("en = 'Cannot authorize on the mail server. Incorrect response ID.';");
+		ErrorsMessages = NStr("en = 'Cannot authorize on the mail server. Incorrect response ID.';tr = 'E-posta sunucusunda doğrulama yapılamadı. Yanlış yanıt kimliği.'");
 		ValidationCompletedWithErrors = True;
 	ElsIf Not GetAccessKeysToMailServer(AuthorizationCode, KeyReceiptAddress) Then
 		ValidationCompletedWithErrors = True;
@@ -1275,11 +1277,13 @@ Function GetAccessKeysToMailServer(AuthorizationCode, KeyReceiptAddress, Applica
 	If ValueIsFilled(ErrorCode) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get access keys to the %1 email account due to:
-			|%2';"), Email, ErrorText);
+			|%2';tr = 'Aşağıdaki nedenlerden dolayı %1 posta hesabına erişim anahtarları alınamadı:
+			|%2'"), Email, ErrorText);
 			
 		TechnicalDetails = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Server response:
-			|%1';"), QueryResult.ServerResponse1);
+			|%1';tr = 'Sunucu yanıtı:
+			|%1'"), QueryResult.ServerResponse1);
 			
 		WriteLogEvent(EmailOperationsInternal.EventNameAuthorizationByProtocolOAuth(),
 			EventLogLevel.Error, , , ErrorText + Chars.LF + TechnicalDetails);
@@ -1288,11 +1292,13 @@ Function GetAccessKeysToMailServer(AuthorizationCode, KeyReceiptAddress, Applica
 	ElsIf Not QueryResult.QueryCompleted Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get access keys to the %1 email account due to:
-			|Request failed.';"), Email);
+			|Request failed.';tr = 'Aşağıdaki nedenlerden dolayı %1 posta hesabına erişim anahtarları alınamadı:
+			|Sorgu gerçekleştirilmedi.'"), Email);
 			
 		TechnicalDetails = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Server response:
-			|%1';"), QueryResult.ServerResponse1);
+			|%1';tr = 'Sunucu yanıtı:
+			|%1'"), QueryResult.ServerResponse1);
 			
 		WriteLogEvent(EmailOperationsInternal.EventNameAuthorizationByProtocolOAuth(),
 			EventLogLevel.Error, , , ErrorText + Chars.LF + TechnicalDetails);
@@ -1334,7 +1340,8 @@ Function DescriptionErrorsMailServerAuthorization(Val ErrorCode, Val ErrorText)
 	
 	Result = StringFunctionsClientServer.SubstituteParametersToString(NStr(
 		"en = 'Authorization on the email server failed:
-		|%1';"), Result);
+		|%1';tr = 'Posta sunucusunda oturum açılamadı:
+		|%1'"), Result);
 	
 	Return Result;
 	
@@ -1418,11 +1425,13 @@ Function GetAuthorizationParametersInWebClient(KeyReceiptAddress)
 	If ValueIsFilled(ErrorCode) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get access keys to the %1 email account due to:
-			|%2';"), Email, ErrorText);
+			|%2';tr = 'Aşağıdaki nedenlerden dolayı %1 posta hesabına erişim anahtarları alınamadı:
+			|%2'"), Email, ErrorText);
 			
 		TechnicalDetails = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Server response:
-			|%1';"), QueryResult.ServerResponse1);
+			|%1';tr = 'Sunucu yanıtı:
+			|%1'"), QueryResult.ServerResponse1);
 			
 		WriteLogEvent(EmailOperationsInternal.EventNameAuthorizationByProtocolOAuth(),
 			EventLogLevel.Error, , , ErrorText + Chars.LF + TechnicalDetails);
@@ -1432,11 +1441,13 @@ Function GetAuthorizationParametersInWebClient(KeyReceiptAddress)
 	ElsIf Not QueryResult.QueryCompleted Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get access keys to the %1 email account due to:
-			|Request failed.';"), Email);
+			|Request failed.';tr = 'Aşağıdaki nedenlerden dolayı %1 posta hesabına erişim anahtarları alınamadı:
+			|Sorgu gerçekleştirilmedi.'"), Email);
 			
 		TechnicalDetails = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Server response:
-			|%1';"), QueryResult.ServerResponse1);
+			|%1';tr = 'Sunucu yanıtı:
+			|%1'"), QueryResult.ServerResponse1);
 			
 		WriteLogEvent(EmailOperationsInternal.EventNameAuthorizationByProtocolOAuth(),
 			EventLogLevel.Error, , , ErrorText + Chars.LF + TechnicalDetails);
@@ -1502,11 +1513,13 @@ Function GetDeviceAccessKey()
 	If ValueIsFilled(ErrorCode) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get access keys to the %1 email account due to:
-			|%2';"), Email, ErrorText);
+			|%2';tr = 'Aşağıdaki nedenlerden dolayı %1 posta hesabına erişim anahtarları alınamadı:
+			|%2'"), Email, ErrorText);
 			
 		TechnicalDetails = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Server response:
-			|%1';"), QueryResult.ServerResponse1);
+			|%1';tr = 'Sunucu yanıtı:
+			|%1'"), QueryResult.ServerResponse1);
 			
 		WriteLogEvent(EmailOperationsInternal.EventNameAuthorizationByProtocolOAuth(),
 			EventLogLevel.Error, , , ErrorText + Chars.LF + TechnicalDetails);
@@ -1515,11 +1528,13 @@ Function GetDeviceAccessKey()
 	ElsIf Not QueryResult.QueryCompleted Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot get access keys to the %1 email account due to:
-			|Request failed.';"), Email);
+			|Request failed.';tr = 'Aşağıdaki nedenlerden dolayı %1 posta hesabına erişim anahtarları alınamadı:
+			|Sorgu gerçekleştirilmedi.'"), Email);
 			
 		TechnicalDetails = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Server response:
-			|%1';"), QueryResult.ServerResponse1);
+			|%1';tr = 'Sunucu yanıtı:
+			|%1'"), QueryResult.ServerResponse1);
 			
 		WriteLogEvent(EmailOperationsInternal.EventNameAuthorizationByProtocolOAuth(),
 			EventLogLevel.Error, , , ErrorText + Chars.LF + TechnicalDetails);
@@ -1552,7 +1567,7 @@ Procedure CheckTheFillingOfTheBankingDetails(Item, Cancel)
 	
 	If Item.Visible And Not ValueIsFilled(ThisObject[AttributeName]) Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Enter %1';"), Item.Title);
+			NStr("en = 'Enter %1';tr = '%1 girin'"), Item.Title);
 			
 		CommonClient.MessageToUser(
 			MessageText, , AttributeName, , Cancel);
@@ -1579,7 +1594,8 @@ Procedure AdjustCurrentPageElementsOnOpening()
 	If OnlyAuthorization Then
 		If Not ValueIsFilled(AuthorizationSettings) Then
 			Close(NStr("en = 'Cannot find authorization settings for the specified email address.
-			|Use username and password authorization.';"));
+			|Use username and password authorization.';tr = 'Belirtilen e-posta adresi için yetkilendirme ayarları bulunamadı
+			|. Oturum açma ve parola doğrulamasını kullanın.'"));
 			Return;
 		EndIf;
 		SetTextsExplanationsByRegistrationApplication();

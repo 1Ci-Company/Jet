@@ -82,7 +82,7 @@ Procedure StartChangingTheSelectedOnesWithAnAlert(BulkEditParameters, NotifyDesc
 	
 	If BulkEditParameters.ObjectsArray.Count() = 0 Then
 		
-		ShowMessageBox(, NStr("en = 'Cannot run the command for the object.';"));
+		ShowMessageBox(, NStr("en = 'Cannot run the command for the object.';tr = 'Komut, belirtilen nesne için yürütülemiyor.'"));
 		
 	Else
 		
@@ -104,7 +104,7 @@ EndProcedure
 Procedure StartEditSelectedItems(BulkEditParameters)
 	
 	If BulkEditParameters.ObjectsArray.Count() = 0 Then
-		ShowMessageBox(, NStr("en = 'Cannot run the command for the object.';"));
+		ShowMessageBox(, NStr("en = 'Cannot run the command for the object.';tr = 'Komut, belirtilen nesne için yürütülemiyor.'"));
 	Else
 		OpenForm("DataProcessor.BatchEditAttributes.Form", BulkEditParameters);
 	EndIf;

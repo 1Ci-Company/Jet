@@ -459,7 +459,7 @@ Function DefaultSettings()
 	
 	SubsystemSettings = New Structure;
 	SubsystemSettings.Insert("UnlockCommandPlacement",
-		NStr("en = 'You can release the lock later in <b>Administration > Support and service</b>.';"));
+		NStr("en = 'You can release the lock later in <b>Administration > Support and service</b>.';tr = 'Kilidi daha sonra <b>Yönetim > Destek ve hizmet</b> bölümünde kaldırabilirsiniz.'"));
 	
 	Return SubsystemSettings;
 	
@@ -471,7 +471,7 @@ Procedure RaiseIfNoAdministrationRights() Export
 	If Common.DataSeparationEnabled()
 		And Common.SeparatedDataUsageAvailable() Then
 		If Not Users.IsFullUser() Then
-			Raise NStr("en = 'Access violation.';");
+			Raise NStr("en = 'Access violation.';tr = 'Erişim hakkı ihlali.'");
 		EndIf;
 	Else
 		If Not PrivilegedMode() Then
@@ -682,7 +682,7 @@ Function ExecuteScheduledJobManually(Val Job) Export
 			ExecutionParameters.BackgroundJobPresentation = ScheduledJobPresentation(Job);
 		EndIf;
 	Else
-		BackgroundJobDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Manual start: %1';"), ScheduledJobPresentation(Job));
+		BackgroundJobDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Manual start: %1';tr = 'Manuel olarak başlat: %1'"), ScheduledJobPresentation(Job));
 		// Long-running operations are not used because the scheduled job method is called.
 		BackgroundJob = ConfigurationExtensions.ExecuteBackgroundJobWithDatabaseExtensions(Job.Metadata.MethodName, Job.Parameters, String(Job.UUID), BackgroundJobDescription);
 		ExecutionParameters.BackgroundJobIdentifier = String(BackgroundJob.UUID);
@@ -753,7 +753,7 @@ EndFunction
 // Returns the text "<not defined>".
 Function TextUndefined() Export
 	
-	Return NStr("en = '<not defined>';");
+	Return NStr("en = '<not defined>';tr = '<belirlenmedi>'");
 	
 EndFunction
 
@@ -802,11 +802,11 @@ Procedure CancelBackgroundJob(Id) Export
 	If BackgroundJobArray.Count() = 1 Then
 		BackgroundJob = BackgroundJobArray[0];
 	Else
-		Raise NStr("en = 'The background job does not exist.';");
+		Raise NStr("en = 'The background job does not exist.';tr = 'Arka plan görevi mevcut değil.'");
 	EndIf;
 	
 	If BackgroundJob.State <> BackgroundJobState.Active Then
-		Raise NStr("en = 'The job is not running. It cannot be canceled.';");
+		Raise NStr("en = 'The job is not running. It cannot be canceled.';tr = 'İş tamamlanamıyor, iptal edilemez.'");
 	EndIf;
 	
 	BackgroundJob.Cancel();

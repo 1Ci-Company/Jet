@@ -19,7 +19,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			.GetBackgroundJobProperties(Parameters.Id);
 		
 		If BackgroundJobProperties = Undefined Then
-			Raise(NStr("en = 'The background job was not found.';"));
+			Raise(NStr("en = 'The background job was not found.';tr = 'Arka plan işi bulunamadı.'"));
 		EndIf;
 		
 		MessagesToUserAndErrorDescription = ScheduledJobsInternal

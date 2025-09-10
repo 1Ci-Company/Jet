@@ -37,11 +37,11 @@ Procedure BeforeWrite(Cancel)
 	
 	If DetailsOfOwner.CurrentVersion = Ref Then
 		If DeletionMark = True And DetailsOfOwner.DeletionMark <> True Then
-			Raise NStr("en = 'Cannot delete the active version.';");
+			Raise NStr("en = 'Cannot delete the active version.';tr = 'Aktif sürüm silinemez.'");
 		EndIf;
 	ElsIf ParentVersion.IsEmpty() Then
 		If DeletionMark = True And DetailsOfOwner.DeletionMark <> True Then
-			Raise NStr("en = 'Cannot delete the first version.';");
+			Raise NStr("en = 'Cannot delete the first version.';tr = 'İlk sürüm silinemez.'");
 		EndIf;
 	ElsIf DeletionMark = True And DetailsOfOwner.DeletionMark <> True Then
 		// For the versions that are children of the marked one, 
@@ -89,5 +89,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

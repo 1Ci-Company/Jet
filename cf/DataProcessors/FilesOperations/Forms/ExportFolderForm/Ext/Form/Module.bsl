@@ -76,7 +76,7 @@ EndProcedure
 Procedure SaveFolder()
 	
 	If IsBlankString(FolderForExport) Or FolderForExport = GetPathSeparator() Then
-		ShowMessageBox(, NStr("en = 'Select a folder.';"));
+		ShowMessageBox(, NStr("en = 'Select a folder.';tr = 'Klasörü belirtin.'"));
 		Return;
 	EndIf;
 	
@@ -90,7 +90,8 @@ Procedure SaveFolder()
 	If Not DumpDirectory.Exists() Then
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Folder ""%1"" is not found.
-			           |Please select another folder.';"),
+			           |Please select another folder.';tr = 'Klasör ""%1"" bulunamadı. 
+			           | Başka klasör seçin.'"),
 			FolderForExport));
 		Return;
 	EndIf;
@@ -107,13 +108,14 @@ Procedure SaveFolder()
 		Try
 			CreateDirectory(FullExportPath);
 			If Not DumpDirectory.Exists() Then
-				Raise NStr("en = 'The created subfolder is not found.';");
+				Raise NStr("en = 'The created subfolder is not found.';tr = 'Başarı ile oluşturulan alt klasör bulunamadı.'");
 			EndIf;
 		Except
 			ErrorInfo = ErrorInfo();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot create subfolder ""%1"" in folder ""%2"". Reason:
-				           |%3';"),
+				           |%3';tr = 'Aşağıdaki nedenle ""%1"" klasöründe ""%2"" alt klasör oluşturulamadı: 
+				           |%3'"),
 				String(WhatToSave),
 				FolderForExport,
 				ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -138,10 +140,11 @@ Procedure SaveFolderCompletion(Result, ExecutionParameters) Export
 		PathToSave = FolderForExport;
 		CommonServerCall.CommonSettingsStorageSave("ExportFolderName", "ExportFolderName",  PathToSave);
 		
-		ShowUserNotification(NStr("en = 'Export folder';"),,
+		ShowUserNotification(NStr("en = 'Export folder';tr = 'Klasörü dışa aktar'"),,
 		             StringFunctionsClientServer.SubstituteParametersToString(
 		               NStr("en = 'The ""%1"" folder is exported
-		                          |to the ""%2"" directory on the computer.';"),
+		                          |to the ""%2"" directory on the computer.';tr = '""%1"" klasörü
+		                          |bilgisayardaki ""%2"" dizinine aktarıldı.'"),
 		               String(WhatToSave), String(FolderForExport) ) );
 		
 		Close();
@@ -395,7 +398,8 @@ Procedure CreateSubdirectory(ExecutionParameters)
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot create the ""%1"" directory due to:
-				|%2';"),
+				|%2';tr = '""%1"" dizini şu nedenle oluşturulamadı:
+				|%2'"),
 			ExecutionParameters.SaveFileBaseDirectory,
 			ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
@@ -514,7 +518,11 @@ Procedure ProcessFilesTree9(ExecutionParameters)
 			           |""%1""
 			           |is found instead of a folder.
 			           |
-			           |Do you want to download the file again?';"),
+			           |Do you want to download the file again?';tr = '""%1""
+			           |dosyasıyla aynı ada sahip klasör zaten var. 
+			           |
+			           |
+			           |Dosya dışa aktarımı tekrarlansın mı?'"),
 			ExecutionParameters.FullFileName);
 		FilesOperationsInternalClient.SetLockingFormFlag(ExecutionParameters, True);
 		Handler = New NotifyDescription("ProcessFilesTree10", ThisObject, ExecutionParameters);
@@ -579,7 +587,12 @@ Procedure ProcessFilesTree11(ExecutionParameters)
 					           |The existing file size is %3 bytes, last modified on %4.
 					           |The stored file size is %5 bytes, last modified on %6.
 					           |
-					           |Do you want to overwrite the existing file with the file from the storage?';"),
+					           |Do you want to overwrite the existing file with the file from the storage?';tr = '""%1"" klasörü zaten
+					           |""%2"" dosyasını içermektedir.
+					           |%4 üzerindeki dosyanın boyutu %3 bayttır.
+					           |Değiştirme tarihi %6 olarak kaydedilmiş dosyanın boyutu %5 bayttır.
+					           |
+					           |Varolan dosya dosya deposundan bir dosya ile değiştirilsin mi?'"),
 					ExecutionParameters.SaveFileBaseDirectory,
 					ExecutionParameters.FileNameWithExtension,
 					ExecutionParameters.FileOnHardDrive.Size(),
@@ -733,7 +746,10 @@ Procedure ProcessFilesTree15(ErrorInfo, ExecutionParameters)
 		NStr("en = 'Cannot save the file
 		           |""%1""
 		           |due to:
-		           |%2';"),
+		           |%2';tr = '""%1"" dosyası
+		           |şu nedenle 
+		           |kaydedilemedi:
+		           |%2'"),
 		ExecutionParameters.FullFileName,
 		ErrorProcessing.BriefErrorDescription(ErrorInfo));
 	

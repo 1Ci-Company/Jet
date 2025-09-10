@@ -33,7 +33,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 		Items.GroupExternalUsers.Visible = False;
 		Items.SectionDetails.Title =
-			NStr("en = 'Manage users, configure access groups, grant access to external users, and manage user settings.';");
+			NStr("en = 'Manage users, configure access groups, grant access to external users, and manage user settings.';tr = 'Kullanıcı yönetimi, erişim gruplarının ayarlanması, harici kullanıcılara erişim verilmesi, kullanıcı ayarlarının yönetilmesi.'");
 	EndIf;
 	
 	If StandardSubsystemsServer.IsBaseConfigurationVersion()
@@ -69,9 +69,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	   And Items.Find("ShouldRegisterChangesInAccessRights") <> Undefined Then
 		
 		Items.ShouldRegisterChangesInAccessRights.Title =
-			NStr("en = 'Log changes in user group membership';");
+			NStr("en = 'Log changes in user group membership';tr = 'Kullanıcı grubu üyeliğinde kayıt değişiklikleri'");
 		Items.ShouldRegisterChangesInAccessRights.ExtendedTooltip.Title =
-			NStr("en = 'Logging events of changes in user group membership.';");
+			NStr("en = 'Logging events of changes in user group membership.';tr = 'Kullanıcı grubu üyeliğinde değişiklik olaylarının kaydedilmesi.'");
 	EndIf;
 	
 	If Not Common.SubsystemExists("StandardSubsystems.PeriodClosingDates") Then
@@ -169,7 +169,11 @@ Procedure UseExternalUsersOnChange(Item)
 			           |
 			           |The user list in the startup dialog will be cleared
 			           |(attribute ""Show in choice list"" will be cleared and hidden from all user profiles).
-			           |';");
+			           |';tr = 'Harici kullanıcı erişimine izin vermek istiyor musunuz?
+			           |
+			           |Bu, kimlik doğrulama penceresinde kullanıcı seçim listesini temizler
+			           |(""Seçim listesinde göster"" özniteliği
+			           |tüm kullanıcı profillerinden temizlenir ve gizlenir).'");
 		
 		ShowQueryBox(
 			New NotifyDescription(
@@ -183,7 +187,10 @@ Procedure UseExternalUsersOnChange(Item)
 			NStr("en = 'Do you want to deny external user access?
 			           |
 			           |Attribute ""Login allowed"" will be cleared
-			           |in all external user cards.';");
+			           |in all external user cards.';tr = 'Harici kullanıcı erişimi engellensin mi?
+			           |
+			           |Bu, tüm harici kullanıcı kartlarında
+			           |""Giriş yapabilir"" özniteliğini temizler.'");
 		
 		ShowQueryBox(
 			New NotifyDescription(
@@ -204,19 +211,28 @@ Procedure LimitAccessAtRecordLevelUniversallyOnChange(Item)
 			NStr("en = 'Do you want to enable the high-performance access restriction mode?
 			           |
 			           |The settings will take effect after the first update.
-			           |To monitor the progress, click ""RLS access update progress"".';");
+			           |To monitor the progress, click ""RLS access update progress"".';tr = 'Yüksek performans erişim kısıtlama modunu etkinleştirmek istiyor musunuz?
+			           |
+			           |Ayarlar ilk güncellemeden sonra geçerlilik kazanır.
+			           |İlerlemeyi takip etmek için ""RLS erişim güncelleme ilerlemesi""ne tıklayın.'");
 	ElsIf ConstantsSet.LimitAccessAtRecordLevel Then
 		QueryText =
 			NStr("en = 'Do you want to disable the high-performance access restriction mode?
 			           |
 			           |This will initiate the ""Populate data for access restriction"" scheduled job to populate data in batches.
-			           |You can monitor the progress in the event log.';");
+			           |You can monitor the progress in the event log.';tr = 'Yüksek performans erişim kısıtlama modunu devre dışı bırakmak istiyor musunuz?
+			           |
+			           |Bu işlem, ""Erişim kısıtlaması için verileri doldur"" planlı işinin verileri partiler halinde çoğaltmasını başlatacak.
+			           |İlerlemeyi olay günlüğünde takip edebilirsiniz.'");
 	Else
 		QueryText =
 			NStr("en = 'Do you want to disable the high-performance access restriction mode?
 			           |
 			           |This will initiate the ""Populate data for access restriction"" scheduled job to populate some data in batches.
-			           |You can monitor the progress in the event log.';");
+			           |You can monitor the progress in the event log.';tr = 'Yüksek performans erişim kısıtlama modunu devre dışı bırakmak istiyor musunuz?
+			           |
+			           |Bu işlem, ""Erişim kısıtlaması için verileri doldur"" planlı işinin bazı verileri partiler halinde çoğaltmasını başlatacak.
+			           |İlerlemeyi olay günlüğünde takip edebilirsiniz.'");
 	EndIf;
 	
 	If ValueIsFilled(QueryText) Then
@@ -240,12 +256,16 @@ Procedure LimitAccessAtRecordLevelOnChange(Item)
 			           |To monitor the progress, click ""RLS access update progress"".
 			           |
 			           |This might slow down the app and take
-			           |from seconds to a few hours depending on the data volume.';");
+			           |from seconds to a few hours depending on the data volume.';tr = 'Erişim grubu ayarları kademeli olarak yürürlüğe girecek.
+			           |İlerlemeyi takip etmek için ""RLS erişim güncelleme ilerlemesi""ne tıklayın.
+			           |
+			           |Bu işlem, uygulamayı yavaşlatabilir 
+			           |ve veri hacmine bağlı olarak birkaç saniye ila birkaç saat sürebilir.'");
 		If ConstantsSet.LimitAccessAtRecordLevel Then
-			QueryText = NStr("en = 'Do you want to enable record-level access restrictions?';")
+			QueryText = NStr("en = 'Do you want to enable record-level access restrictions?';tr = 'Kayıt düzeyinde erişim kısıtlaması etkinleştirilsin mi?'")
 				+ Chars.LF + Chars.LF + QueryText;
 		Else
-			QueryText = NStr("en = 'Do you want to disable record-level access restrictions?';")
+			QueryText = NStr("en = 'Do you want to disable record-level access restrictions?';tr = 'Kayıt düzeyinde erişim kısıtlaması kapatılsın mı?'")
 				+ Chars.LF + Chars.LF + QueryText;
 		EndIf;
 		
@@ -256,7 +276,12 @@ Procedure LimitAccessAtRecordLevelOnChange(Item)
 			           |This will initiate the ""Populate data for access restriction"" scheduled job to populate data in batches.
 			           |You can monitor the progress in the event log.
 			           |
-			           |The processing might slow down the app and take from seconds to a few hours depending on the data volume.';");
+			           |The processing might slow down the app and take from seconds to a few hours depending on the data volume.';tr = 'Kayıt seviyesinde erişim kısıtlamasını etkinleştirmek istiyor musunuz?
+			           |
+			           |Bu işlem, ""Erişim kısıtlaması için verileri doldur"" planlı işinin verileri partileri halinde çoğaltmasını başlatacak.
+			           |İlerlemeyi olay günlüğünde görebilirsiniz.
+			           |
+			           |Bu işlem uygulamayı yavaşlatabilir ve veri hacmine bağlı olarak birkaç saniyeden birkaç saatte kadar sürebilir.'");
 	Else
 		QueryText = "";
 	EndIf;

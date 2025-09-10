@@ -175,13 +175,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t process (skipped) some external user information records: %1
-			|%2';"), ObjectsWithIssuesCount, StrConcat(ErrorList, Chars.LF));
+			|%2';tr = 'Bazı kullanıcı bilgileri işlenemedi (atlandı): %1
+			|%2'"), ObjectsWithIssuesCount, StrConcat(ErrorList, Chars.LF));
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.Users,,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Yet another batch of user information records is processed: %1';"),
+				NStr("en = 'Yet another batch of user information records is processed: %1';tr = 'Başka bir kullanıcı bilgisi grubu işlendi:%1'"),
 				ObjectsProcessed));
 	EndIf;
 	

@@ -35,7 +35,7 @@
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not Parameters.Property("OpenByScenario") Then
-		Raise NStr("en = 'The data processor cannot be opened manually.';");
+		Raise NStr("en = 'The data processor cannot be opened manually.';tr = 'Bu veri işlemcisi manuel kullanım için uygun değildir.'");
 	EndIf;
 	
 	// Form settings.
@@ -206,9 +206,9 @@ Procedure AddressOnDateOnChange(Item)
 		
 		
 		If ValueIsFilled(Result.ValidTo) Then
-			TextHistoricalAddress = " " + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'valid until %1';"), Format(Result.ValidTo - 10, "DLF=DD"));
+			TextHistoricalAddress = " " + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'valid until %1';tr = '%1 kadar geçerli'"), Format(Result.ValidTo - 10, "DLF=DD"));
 		Else
-			TextHistoricalAddress = NStr("en = 'valid as of today.';");
+			TextHistoricalAddress = NStr("en = 'valid as of today.';tr = 'hala geçerli.'");
 		EndIf;
 		Items.AddressStillValid.Title = TextHistoricalAddress;
 	Else
@@ -711,9 +711,9 @@ Procedure DisplayInformationAboutAddressValidityDate(ValidFrom)
 				And IsBlankString(Result.CurrentRow.Presentation) Then
 					Items.HistoricalAddressGroup.Visible = False;
 			ElsIf ValueIsFilled(Result.ValidTo) Then
-				TextHistoricalAddress = " " + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'valid until %1';"), Format(Result.ValidTo - 10, "DLF=DD"));
+				TextHistoricalAddress = " " + StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'valid until %1';tr = '%1 kadar geçerli'"), Format(Result.ValidTo - 10, "DLF=DD"));
 			Else
-				TextHistoricalAddress = NStr("en = 'valid as of today.';");
+				TextHistoricalAddress = NStr("en = 'valid as of today.';tr = 'hala geçerli.'");
 			EndIf;
 			DisplayRecordsCountInHistoryChange();
 		EndIf;
@@ -730,12 +730,12 @@ Procedure DisplayRecordsCountInHistoryChange()
 	Filter = New Structure("Kind", ContactInformationKindDetails(ThisObject).Ref);
 	FoundRows = ContactInformationAdditionalAttributesDetails.FindRows(Filter);
 	If FoundRows.Count() > 1 Then
-		Items.ChangeHistoryHyperlink.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Change history (%1)';"), FoundRows.Count());
+		Items.ChangeHistoryHyperlink.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Change history (%1)';tr = 'Değişiklik geçmişi (%1)'"), FoundRows.Count());
 		Items.ChangeHistoryHyperlink.Visible = True;
 	ElsIf FoundRows.Count() = 1 And IsBlankString(FoundRows[0].FieldValues) Then
 		Items.ChangeHistoryHyperlink.Visible = False;
 	Else
-		Items.ChangeHistoryHyperlink.Title = NStr("en = 'Change history';");
+		Items.ChangeHistoryHyperlink.Title = NStr("en = 'Change history';tr = 'Değişiklik geçmişi'");
 		Items.ChangeHistoryHyperlink.Visible = True;
 	EndIf;
 
@@ -908,7 +908,7 @@ EndFunction
 &AtClientAtServerNoContext
 Function TheBeginningOfTheAccounting()
 	
-	Return NStr("en = 'accounting start date';");
+	Return NStr("en = 'accounting start date';tr = 'kayıt başlangıcı'");
 	
 EndFunction
 

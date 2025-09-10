@@ -17,7 +17,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	DataSeparationEnabled = Common.DataSeparationEnabled();
 	If Not Users.IsFullUser(, Not DataSeparationEnabled) Then
-		Raise(NStr("en = 'Insufficient rights to access the infobase user list.';"),
+		Raise(NStr("en = 'Insufficient rights to access the infobase user list.';tr = 'Veritabanı kullanıcı listesini açmak için yetersiz haklar.'"),
 			ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -142,15 +142,18 @@ Procedure CancelMapping(Command)
 	EndIf;
 	
 	Buttons = New ValueList;
-	Buttons.Add("CancelMapping", NStr("en = 'Clear mapping';"));
-	Buttons.Add("KeepMapping", NStr("en = 'Keep mapping';"));
+	Buttons.Add("CancelMapping", NStr("en = 'Clear mapping';tr = 'Eşleştirmeyi kaldır'"));
+	Buttons.Add("KeepMapping", NStr("en = 'Keep mapping';tr = 'Eşleştirmeyi bırak'"));
 	
 	ShowQueryBox(
 		New NotifyDescription("CancelMappingFollowUp", ThisObject),
 		NStr("en = 'Do you want to clear the mapping between the infobase user and the application user?
 		           |
 		           |It is required in rare cases when a mapping is incorrect
-		           |(for example, an infobase update might generate an incorrect mapping). It is recommended that you never clear correct mappings.';"),
+		           |(for example, an infobase update might generate an incorrect mapping). It is recommended that you never clear correct mappings.';tr = 'Aramada bir bilgi bankası kullanıcısının bir kullanıcıyla ilişkisini iptal edin.
+		           |
+		           |Eşleşmeyi kaldırma nadiren gereklidir - yalnızca eşleşme doğru şekilde gerçekleştirilmediyse, örneğin,
+		           |bilgi tabanını güncellerken, başka bir nedenle eşlemeyi iptal etmeniz önerilmez.'"),
 		Buttons,
 		,
 		"KeepMapping");
@@ -271,8 +274,8 @@ Procedure SetConditionalAppearance()
 	ItemFilter.ComparisonType = DataCompositionComparisonType.Equal;
 	ItemFilter.RightValue = True;
 
-	Item.Appearance.SetParameterValue("Text", NStr("en = '<No data>';"));
-	Item.Appearance.SetParameterValue("Format", NStr("en = 'BF=No; BT=Yes';"));
+	Item.Appearance.SetParameterValue("Text", NStr("en = '<No data>';tr = '<Veri yok>'"));
+	Item.Appearance.SetParameterValue("Format", NStr("en = 'BF=No; BT=Yes';tr = 'BF=Hayır; BT=Evet'"));
 
 	//
 
@@ -284,7 +287,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter = Item.Filter.Items.Add(Type("DataCompositionFilterItem"));
 	ItemFilter.LeftValue = New DataCompositionField("IBUsers.OSUser");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.NotFilled;
-	Item.Appearance.SetParameterValue("Format", NStr("en = 'BF=; BT=Yes';"));
+	Item.Appearance.SetParameterValue("Format", NStr("en = 'BF=; BT=Yes';tr = 'BF=; BT=Evet'"));
 
 EndProcedure
 
@@ -452,7 +455,7 @@ Procedure DeleteCurrentIBUser(DeleteRow = False)
 	
 	ShowQueryBox(
 		New NotifyDescription("DeleteCurrentIBUserCompletion", ThisObject, DeleteRow),
-		NStr("en = 'Do you want to delete the infobase user?';"),
+		NStr("en = 'Do you want to delete the infobase user?';tr = 'Veritabanı kullanıcısı silinsin mi?'"),
 		QuestionDialogMode.YesNo);
 	
 EndProcedure
@@ -478,7 +481,7 @@ Procedure MapIBUser(WithNew = False)
 	If UsersTypes.Count() > 1 Then
 		UsersTypes.ShowChooseItem(
 			New NotifyDescription("MapIBUserForItemType", ThisObject, WithNew),
-			NStr("en = 'Select data type';"),
+			NStr("en = 'Select data type';tr = 'Veri türünü seçin'"),
 			UsersTypes[0]);
 	Else
 		MapIBUserForItemType(UsersTypes[0], WithNew);

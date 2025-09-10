@@ -213,7 +213,7 @@ EndProcedure
 Procedure LongDescStartChoice(Item, ChoiceData, StandardProcessing)
 	StandardProcessing = False;
 	CommonClient.ShowCommentEditingForm(Item.EditText, ThisObject, "LongDesc",
-		NStr("en = 'Details';"));
+		NStr("en = 'Details';tr = 'Açıklama'"));
 EndProcedure
 
 &AtClient

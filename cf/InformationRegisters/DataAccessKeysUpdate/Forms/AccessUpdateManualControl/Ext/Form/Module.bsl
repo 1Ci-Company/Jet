@@ -68,7 +68,7 @@ Procedure AccessUpdateObjectStartChoice(Item, ChoiceData, StandardProcessing)
 	
 	AccessUpdateObjectsTypes.ShowChooseItem(
 		New NotifyDescription("BeginSelectUpdateObjectFollowUp", ThisObject),
-		NStr("en = 'Select data type';"),
+		NStr("en = 'Select data type';tr = 'Veri türünü seçin'"),
 		CurrentTypeItem);
 	
 EndProcedure
@@ -81,7 +81,7 @@ EndProcedure
 Procedure ShowAccessToObject(Command)
 	
 	If Not ValueIsFilled(AccessUpdateObject) Then
-		ShowMessageBox(, NStr("en = 'Please select an object.';"));
+		ShowMessageBox(, NStr("en = 'Please select an object.';tr = 'Nesneyi seçin.'"));
 		Return;
 	EndIf;
 	
@@ -101,19 +101,19 @@ Procedure ScheduleListsAccessUpdate(Command)
 	   And Not UpdateAccessKeysRights
 	   And Not DeleteObsoleteInternalData Then
 	
-		ShowMessageBox(, NStr("en = 'Please select at least one update kind.';"));
+		ShowMessageBox(, NStr("en = 'Please select at least one update kind.';tr = 'En az bir güncelleme türü seçin.'"));
 		Return;
 	EndIf;
 	
 	If Not ScheduleListsAccessUpdateAtServer() Then
-		ShowMessageBox(, NStr("en = 'Please select at least one list.';"));
+		ShowMessageBox(, NStr("en = 'Please select at least one list.';tr = 'En az bir liste seçin.'"));
 		Return;
 	EndIf;
 	
 	Notify("Write_DataAccessKeysUpdate", New Structure, Undefined);
 	Notify("Write_UsersAccessKeysUpdate", New Structure, Undefined);
 	
-	ShowUserNotification(NStr("en = 'The update is scheduled.';"));
+	ShowUserNotification(NStr("en = 'The update is scheduled.';tr = 'Güncelleme planlandı.'"));
 	
 EndProcedure
 
@@ -125,7 +125,7 @@ EndProcedure
 Function UpdateAccessToObjectAtServer()
 	
 	If Not ValueIsFilled(AccessUpdateObject) Then
-		Return NStr("en = 'Please select an object.';");
+		Return NStr("en = 'Please select an object.';tr = 'Nesneyi seçin.'");
 	EndIf;
 	
 	FullName = AccessUpdateObject.Metadata().FullName();
@@ -152,21 +152,21 @@ Procedure UpdateAccessToObjectForUsersKind(ObjectReference, FullName, Transactio
 	Text = Text + ?(Text = "", "", Chars.LF + Chars.LF);
 	If ForExternalUsers Then
 		If RestrictionParameters.AccessDenied Then
-			Text = Text + NStr("en = 'For external users (access denied):';");
+			Text = Text + NStr("en = 'For external users (access denied):';tr = 'Harici kullanıcılar için (erişim yasaklandı):'");
 			
 		ElsIf RestrictionParameters.RestrictionDisabled Then
-			Text = Text + NStr("en = 'For external users (restriction disabled):';");
+			Text = Text + NStr("en = 'For external users (restriction disabled):';tr = 'Harici kullanıcılar için (kısıtlama devre dışı bırakıldı):'");
 		Else
-			Text = Text + NStr("en = 'For external users:';");
+			Text = Text + NStr("en = 'For external users:';tr = 'Harici kullanıcılar için:'");
 		EndIf;
 	Else
 		If RestrictionParameters.AccessDenied Then
-			Text = Text + NStr("en = 'For users (access denied):';");
+			Text = Text + NStr("en = 'For users (access denied):';tr = 'Kullanıcılar için (erişim yasaklandı):'");
 			
 		ElsIf RestrictionParameters.RestrictionDisabled Then
-			Text = Text + NStr("en = 'For users (restriction disabled):';");
+			Text = Text + NStr("en = 'For users (restriction disabled):';tr = 'Kullanıcılar için (kısıtlama devre dışı bırakıldı):'");
 		Else
-			Text = Text + NStr("en = 'For users:';");
+			Text = Text + NStr("en = 'For users:';tr = 'Kullanıcılar için:'");
 		EndIf;
 	EndIf;
 	
@@ -181,38 +181,38 @@ Procedure UpdateAccessToObjectForUsersKind(ObjectReference, FullName, Transactio
 	If RestrictionParameters.DoNotWriteAccessKeys Then
 		If RestrictionParameters.AccessDenied
 		 Or RestrictionParameters.RestrictionDisabled Then
-			Text = Text + Chars.LF + NStr("en = 'Update not required. Objects of this type don''t require access keys.';");
+			Text = Text + Chars.LF + NStr("en = 'Update not required. Objects of this type don''t require access keys.';tr = 'Güncelleme gerekmiyor. Bu türde nesnelere erişim anahtarları gerekmiyor.'");
 		Else
-			Text = Text + Chars.LF + NStr("en = 'Update not required. Objects of this type use the owner''s access key.';");
+			Text = Text + Chars.LF + NStr("en = 'Update not required. Objects of this type use the owner''s access key.';tr = 'Güncelleme gerekmiyor. Bu türde nesneler sahipinin erişim anahtarlarını kullanıyor.'");
 		EndIf;
 		Return;
 	EndIf;
 	
 	If SourceAccessKeyObsolete Then
-		Text = Text + Chars.LF + NStr("en = 'The object access key is updated.';");
+		Text = Text + Chars.LF + NStr("en = 'The object access key is updated.';tr = '1. Nesneye erişim anahtarı güncellendi.'");
 	Else
-		Text = Text + Chars.LF + NStr("en = '1. Update is not required. The object access key is not expired.';");
+		Text = Text + Chars.LF + NStr("en = '1. Update is not required. The object access key is not expired.';tr = '1. Güncelleme gerekmiyor. Nesnenin erişim anahtarı hala geçerli.'");
 	EndIf;
 	
 	If HasRightsChanges Then
 		If RestrictionParameters.HasUsersRestriction Then
 			If ForExternalUsers Then
-				Text = Text + Chars.LF + NStr("en = '2. Rights to the access key are updated for external users and access groups.';");
+				Text = Text + Chars.LF + NStr("en = '2. Rights to the access key are updated for external users and access groups.';tr = '2. Harici kullanıcıların veya erişim gruplarının erişim anahtarı yetkileri güncellendi.'");
 			Else
-				Text = Text + Chars.LF + NStr("en = '2. Rights to the access key are updated for users and access groups.';");
+				Text = Text + Chars.LF + NStr("en = '2. Rights to the access key are updated for users and access groups.';tr = '2. Kullanıcıların veya erişim gruplarının erişim anahtarı yetkileri güncellendi.'");
 			EndIf;
 		Else
-			Text = Text + Chars.LF + NStr("en = '2. Rights to the access key are updated for access groups.';");
+			Text = Text + Chars.LF + NStr("en = '2. Rights to the access key are updated for access groups.';tr = '2. Erişim grubunda erişin anahtarl yetkileri güncellendi.'");
 		EndIf;
 	Else
 		If RestrictionParameters.HasUsersRestriction Then
 			If ForExternalUsers Then
-				Text = Text + Chars.LF + NStr("en = '2. Update is not required. Rights to the access key for external users and access groups are current.';");
+				Text = Text + Chars.LF + NStr("en = '2. Update is not required. Rights to the access key for external users and access groups are current.';tr = '2. Güncelleme gerekmiyor. Harici kullanıcıların ve erişim grubunun anahtar yetkileri hala geçerli.'");
 			Else
-				Text = Text + Chars.LF + NStr("en = '2. Update is not required. Rights to the access key for users and access groups are current.';");
+				Text = Text + Chars.LF + NStr("en = '2. Update is not required. Rights to the access key for users and access groups are current.';tr = '2. Güncelleme gerekmiyor. Kullanıcıların ve erişim grubunun anahtar yetkileri hala geçerli.'");
 			EndIf;
 		Else
-			Text = Text + Chars.LF + NStr("en = '2. Update is not required. Rights to the access key for access groups are current.';");
+			Text = Text + Chars.LF + NStr("en = '2. Update is not required. Rights to the access key for access groups are current.';tr = '2. Güncelleme gerekmiyor. Erişim grubunun anahtar yetkileri hala geçerli.'");
 		EndIf;
 	EndIf;
 	

@@ -66,7 +66,7 @@ Procedure AssignPerformers(Command)
 	
 	Purpose = Items.List.CurrentData;
 	If Purpose = Undefined Then
-		ShowMessageBox(,NStr("en = 'Select a role in the list.';"));
+		ShowMessageBox(,NStr("en = 'Select a role in the list.';tr = 'Listeden rol seçin.'"));
 		Return;
 	EndIf;
 	
@@ -117,13 +117,13 @@ Procedure RefreshItemsData()
 	ListObject.Sort("Role");
 	For Each ListLine In ListObject Do
 		If ListLine.Assignees = 0 Then
-			ListLine.PerformersString = ?(ListLine.ExternalRole, NStr("en = 'specified in another app';"), NStr("en = 'not specified';"));
+			ListLine.PerformersString = ?(ListLine.ExternalRole, NStr("en = 'specified in another app';tr = 'başka bir uygulamada belirtildi'"), NStr("en = 'not specified';tr = 'belirtilmedi'"));
 			ListLine.Picture = ?(ListLine.ExternalRole, -1, 1);
 		ElsIf ListLine.Assignees = 1 Then
 			ListLine.PerformersString = String(BusinessProcessesAndTasksServer.SelectPerformer(MainAddressingObject, ListLine.RoleRef));
 			ListLine.Picture = -1;
 		Else
-			ListLine.PerformersString = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 user(s)';"), String(ListLine.Assignees) );
+			ListLine.PerformersString = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 user(s)';tr = '%1 kullanıcı'"), String(ListLine.Assignees) );
 			ListLine.Picture = -1;
 		EndIf;
 	EndDo;

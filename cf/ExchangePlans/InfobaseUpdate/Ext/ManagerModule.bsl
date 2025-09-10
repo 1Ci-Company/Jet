@@ -54,7 +54,7 @@ Function NodeInQueue(Queue, Temporary = False) Export
 	
 	If TypeOf(Queue) <> Type("Number") Or Queue = 0 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot get the node of exchange plan %1 because the position in queue is not provided.';"),
+			NStr("en = 'Cannot get the node of exchange plan %1 because the position in queue is not provided.';tr = 'Sıradaki pozisyonu verilmediği için %1 değişim planının düğümü alınamadı.'"),
 			"InfobaseUpdate");
 	EndIf;
 	
@@ -93,7 +93,7 @@ Function NodeInQueue(Queue, Temporary = False) Export
 				ObjectNode.Queue = Queue;
 				ObjectNode.Temporary = Temporary;
 				ObjectNode.SetNewCode(QueueString);
-				ObjectNode.Description = QueueString + ?(Temporary, " " + NStr("en = 'New for restart';"), "");
+				ObjectNode.Description = QueueString + ?(Temporary, " " + NStr("en = 'New for restart';tr = 'Yeniden başlatma için yeni'"), "");
 				ObjectNode.Write();
 				Node = ObjectNode.Ref;
 			EndIf;

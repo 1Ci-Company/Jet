@@ -198,7 +198,7 @@ Function CommonModule(Name) Export
 	// when contacting the modules with a server call).
 	If TypeOf(Module) <> Type("CommonModule") Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Common module ""%1"" does not exist.';"), 
+			NStr("en = 'Common module ""%1"" does not exist.';tr = ' ""%1"" ortak modülü mevcut değil.'"), 
 			Name);
 	EndIf;
 	
@@ -541,7 +541,7 @@ Function CheckCommandParameterType(Val Parameter, Val ExpectedType) Export
 	EndIf;
 	
 	If Not Result Then
-		ShowMessageBox(,NStr("en = 'The object does not support this type of operations.';"));
+		ShowMessageBox(,NStr("en = 'The object does not support this type of operations.';tr = 'Seçilen öğe için işlem yapılamaz.'"));
 	EndIf;
 	
 	Return Result;
@@ -605,7 +605,7 @@ Procedure ShowFormClosingConfirmation(
 	
 	If Exit Then
 		If WarningTextOnExit = "" Then // Parameter from BeforeClose is passed.
-			WarningTextOnExit = NStr("en = 'The data has been changed. All changes will be lost.';");
+			WarningTextOnExit = NStr("en = 'The data has been changed. All changes will be lost.';tr = 'Veriler değişti. Tüm değişiklikler kaybolacak.'");
 		EndIf;
 		Return;
 	EndIf;
@@ -843,7 +843,7 @@ Procedure ShowCommentEditingForm(
 		CommonInternalClient, 
 		Context);
 	
-	FormCaption = ?(Title <> Undefined, Title, NStr("en = 'Comment';"));
+	FormCaption = ?(Title <> Undefined, Title, NStr("en = 'Comment';tr = 'YORUM'"));
 	
 	ShowMultilineTextEditingForm(Notification, MultilineText, FormCaption);
 	
@@ -1265,7 +1265,7 @@ EndProcedure
 Function EstablishExternalConnectionWithInfobase(Parameters) Export
 	
 	ConnectionNotAvailable = IsLinuxClient() Or IsMacOSClient();
-	BriefErrorDetails = NStr("en = 'Only Windows clients support direct infobase connections.';");
+	BriefErrorDetails = NStr("en = 'Only Windows clients support direct infobase connections.';tr = 'Windows OS kapsamında bir istemcideki veritabanına doğrudan bağlantı mevcut değildir.'");
 	
 	Return CommonInternalClientServer.EstablishExternalConnectionWithInfobase(Parameters, ConnectionNotAvailable, BriefErrorDetails);
 	

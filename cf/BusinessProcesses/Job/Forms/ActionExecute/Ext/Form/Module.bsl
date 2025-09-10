@@ -56,7 +56,7 @@ Procedure BeforeWriteAtServer(Cancel, CurrentObject, WriteParameters)
 
 	If Not JobCompleted And Not ValueIsFilled(CurrentObject.ExecutionResult) Then
 		Common.MessageToUser(
-			NStr("en = 'Please tell why you decline the task.';"),, 
+			NStr("en = 'Please tell why you decline the task.';tr = 'Görevin reddedilmesinin sebebini belirtin.'"),, 
 			"Object.ExecutionResult",, Cancel);
 		Return;
 	EndIf;

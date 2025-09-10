@@ -15,7 +15,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not Parameters.Property("User", User) Then
 		Common.MessageToUser(NStr(
-			"en = 'The report snapshot list is available only from a report form or report panel.';"), , , , Cancel);
+			"en = 'The report snapshot list is available only from a report form or report panel.';tr = 'Rapor anlık görüntüsü listesine sadece rapor formundan veya rapor panelinden erişilebilir.'"), , , , Cancel);
 		Return;
 	EndIf;
 	
@@ -132,8 +132,8 @@ Function UpdateReportsSnapshotsAtServer(RowsIDs)
 	FillParameters.Insert("ReportsSnapshots", UserReportsSnapshots);
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Update user report snapshots';");
-	ExecutionParameters.RefinementErrors = NStr("en = 'Cannot update the report snapshots due to:';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Update user report snapshots';tr = 'Kullanıcı rapor anlık görüntülerini güncelle'");
+	ExecutionParameters.RefinementErrors = NStr("en = 'Cannot update the report snapshots due to:';tr = 'Rapor anlık görüntüleri şu nedenle güncellenemedi:'");
 	
 	ExecutionResult = TimeConsumingOperations.ExecuteInBackground(
 		"InformationRegisters.ReportsSnapshots.UpdateUserReportsSnapshots",
@@ -165,8 +165,8 @@ Procedure AfterReportsSnapshotsUpdated(Result, AdditionalParameters) Export
 		Return;
 	EndIf;
 
-	NotificationText1 = NStr("en = 'Report snapshots are updated.';");
-	ShowUserNotification(NStr("en = 'Snapshots updated';"), , NotificationText1);
+	NotificationText1 = NStr("en = 'Report snapshots are updated.';tr = 'Rapor anlık görüntüleri güncellendi.'");
+	ShowUserNotification(NStr("en = 'Snapshots updated';tr = 'Anlık görüntüler güncellendi'"), , NotificationText1);
 	
 	FillReportsSnapshots();
 	

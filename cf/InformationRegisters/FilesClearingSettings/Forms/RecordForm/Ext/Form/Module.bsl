@@ -32,7 +32,7 @@ EndProcedure
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
-	Title = NStr("en = 'File cleanup settings:';")
+	Title = NStr("en = 'File cleanup settings:';tr = 'Dosya temizleme ayarları:'")
 		+ " " + Record.FileOwner;
 	
 	If AttributesArrayWithDateType.Count() = 0 Then
@@ -223,7 +223,7 @@ Procedure AddToFilterIntervalException(Val ValueSelected)
 	FilterByInterval.RightValue = ValueSelected.IntervalException;
 	PresentationOfAttributeWithDateType = AttributesArrayWithDateType.FindByValue(ValueSelected.DateTypeAttribute).Presentation;
 	PresentationText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Clean up after %1 days since %2';"), 
+		NStr("en = 'Clean up after %1 days since %2';tr = '%2 itibarıyla %1 gün sonra temizle'"), 
 		ValueSelected.IntervalException, PresentationOfAttributeWithDateType);
 	FilterByInterval.Presentation = PresentationText;
 

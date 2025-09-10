@@ -65,7 +65,7 @@ Procedure UpdateRegisterDataInBackground(HasChanges)
 	
 	CurrentSession = GetCurrentInfoBaseSession();
 	JobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Access management: Update access restriction parameters (from session %1 started on %2)';",
+		NStr("en = 'Access management: Update access restriction parameters (from session %1 started on %2)';tr = 'Erişim yönetimi: Erişim kısıtlama parametrelerini güncelle (%2 tarihinde başlatılan %1 oturumundan)'",
 			Common.DefaultLanguageCode()),
 		Format(CurrentSession.SessionNumber, "NG="),
 		Format(CurrentSession.SessionStarted, "DLF=DT"));
@@ -77,22 +77,22 @@ Procedure UpdateRegisterDataInBackground(HasChanges)
 	
 	ProcedureName = "InformationRegisters.AccessRestrictionParameters.HandlerForLongTermUpdateOperationInBackground";
 	TimeConsumingOperation = TimeConsumingOperations.ExecuteInBackground(ProcedureName, Undefined, OperationParametersList);
-	ErrorTitle = NStr("en = 'Cannot update access restriction parameters due to:';") + Chars.LF;
+	ErrorTitle = NStr("en = 'Cannot update access restriction parameters due to:';tr = 'Erişim kısıtlama parametreleri güncellenemedi çünkü:'") + Chars.LF;
 	
 	If TimeConsumingOperation.Status <> "Completed2" Then
 		If TimeConsumingOperation.Status = "Error" Then
 			ErrorText = TimeConsumingOperation.DetailErrorDescription;
 		ElsIf TimeConsumingOperation.Status = "Canceled" Then
-			ErrorText = NStr("en = 'The background job is canceled.';");
+			ErrorText = NStr("en = 'The background job is canceled.';tr = 'Arka plan görevi iptal edildi.'");
 		Else
-			ErrorText = NStr("en = 'Background job error';");
+			ErrorText = NStr("en = 'Background job error';tr = 'Arka plan görevinin çalışma hatası'");
 		EndIf;
 		Raise ErrorTitle + ErrorText;
 	EndIf;
 	
 	Result = GetFromTempStorage(TimeConsumingOperation.ResultAddress);
 	If TypeOf(Result) <> Type("Structure") Then
-		ErrorText = NStr("en = 'Background job did not return the result';");
+		ErrorText = NStr("en = 'Background job did not return the result';tr = 'Arka plan görevi sonuç vermedi'");
 		Raise ErrorTitle + ErrorText;
 	EndIf;
 	

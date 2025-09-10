@@ -51,8 +51,8 @@ Function AuthorizeTheCurrentUserWhenLoggingIn(RegisterInLog) Export
 		If RegisterInLog Then
 			AuthorizationError = AuthorizationNotCompletedMessageTextWithLineBreak()
 				+ ?(Users.IsFullUser(,, False),
-					NStr("en = 'For more information, see the event log.';"),
-					NStr("en = 'Please contact the administrator.';"));
+					NStr("en = 'For more information, see the event log.';tr = 'Ayrıntılı bilgi için olay günlüğüne bakın.'"),
+					NStr("en = 'Please contact the administrator.';tr = 'Yöneticiye başvurun.'"));
 		EndIf;
 	EndTry;
 	
@@ -102,7 +102,10 @@ Function AuthenticateCurrentUser(OnStart = False, RegisterInLog = False) Export
 				NStr("en = 'Couldn''t set session parameter for user ""%1"". Reason:
 				           |%2
 				           |
-				           |Please contact the administrator.';"),
+				           |Please contact the administrator.';tr = '%1 oturum parametresi aşağıdaki nedenle belirlenemedi: 
+				           |""%2"". 
+				           |
+				           | Yöneticiye başvurun.'"),
 				"CurrentUser", "%1");
 			Return AuthorizationErrorBriefPresentationAfterRegisterInLog(ErrorInfo,
 				ErrorTemplate, RegisterInLog);
@@ -130,7 +133,7 @@ Function AuthenticateCurrentUser(OnStart = False, RegisterInLog = False) Export
 		// IBUser is found in the catalog.
 		If OnStart And AdministratorRolesAvailable() Then
 			SSLSubsystemsIntegration.OnCreateAdministrator(FoundUser,
-				NStr("en = 'Administrator roles were detected during the user authorization.';"));
+				NStr("en = 'Administrator roles were detected during the user authorization.';tr = 'Kullanıcı yetkilendirildiğinde yönetici rolleri bulundu.'"));
 		EndIf;
 		Return SessionParametersSettingResult(RegisterInLog);
 	EndIf;
@@ -155,7 +158,11 @@ Function AuthenticateCurrentUser(OnStart = False, RegisterInLog = False) Export
 			           |because this user is not in the user list.
 			           |
 			           |To manage users and their rights, use the Users list
-			           |and do not use Designer.';"),
+			           |and do not use Designer.';tr = 'Kullanıcı listesinde kullanıcı olarak kayıtlı olmadıkları için 
+			           |Yönetici olarak kullanıcı olarak başlatılamıyor. 
+			           |Bir liste ve kullanıcı hakları ayarını korumak için, 
+			           |Kullanıcılar listesini kullanın, 
+			           |1C: İşletme yapılandırma modu kullanılmamalıdır.'"),
 			, RegisterInLog);
 	EndIf;
 	
@@ -168,7 +175,11 @@ Function AuthenticateCurrentUser(OnStart = False, RegisterInLog = False) Export
 			           |""%1"".
 			           |
 			           |Please use the Users list and do not use Designer
-			           |to manage users and their rights.';"),
+			           |to manage users and their rights.';tr = 'Yönetici listeye otomatik olarak kaydedilemiyor. Nedeni:
+			           |""%1"".
+			           |
+			           |Kullanıcıları ve yetkilerini yönetmek için lütfen Designer''ı değil,
+			           |Kullanıcılar listesini kullanın.'"),
 			RegisterInLog);
 	EndTry;
 	
@@ -178,7 +189,12 @@ Function AuthenticateCurrentUser(OnStart = False, RegisterInLog = False) Export
 		           |The user is added to the list.
 		           |
 		           |To manage users and their rights, use the Users list
-		           |and do not use Designer.';");
+		           |and do not use Designer.';tr = 'Kullanıcı listesinde olmayan ""Tam erişim""
+		           |rolüne sahip kullanıcı adına oturum başlatıldı.
+		           |Kullanıcı listeye eklendi.
+		           |
+		           |Kullanıcıları ve yetkilerini Designer''da değil,
+		           |Kullanıcılar listesinde yönetin.'");
 	
 	SSLSubsystemsIntegration.AfterWriteAdministratorOnAuthorization(Comment);
 	
@@ -186,11 +202,13 @@ Function AuthenticateCurrentUser(OnStart = False, RegisterInLog = False) Export
 		Comment =
 			NStr("en = 'Session started on behalf of the user with ""Full access"" role
 			           |that was not in the user list.
-			           |The user is added to the list.';");
+			           |The user is added to the list.';tr = 'Kullanıcı listesinde olmayan ""Tam erişim""
+			           |rolüne sahip kullanıcı adına oturum başlatıldı.
+			           |Kullanıcı listeye eklendi'");
 	EndIf;
 	
 	WriteLogEvent(
-		NStr("en = 'Users.Administrator registered in Users catalog';",
+		NStr("en = 'Users.Administrator registered in Users catalog';tr = 'Kullanıcılar. Yönetici Kullanıcı kataloğunda kayıtlı'",
 		     Common.DefaultLanguageCode()),
 		EventLogLevel.Warning,
 		Metadata.Catalogs.Users,
@@ -344,7 +362,9 @@ Function ErrorInsufficientRightsForAuthorization(RegisterInLog = True) Export
 	Return AuthorizationErrorBriefPresentationAfterRegisterInLog(
 		NStr("en = 'Insufficient rights to log in.
 		           |
-		           |Please contact the administrator.';"),
+		           |Please contact the administrator.';tr = 'Giriş yapma yetkisi yok.
+		           |
+		           |Lütfen yöneticiye başvurun.'"),
 		, RegisterInLog);
 	
 EndFunction
@@ -486,7 +506,8 @@ Procedure ProcessRolesInterface(Action, Parameters) Export
 	Else
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Error in procedure %1.
-			           |Invalid value of parameter ""Action"": ""%2"".';"),
+			           |Invalid value of parameter ""Action"": ""%2"".';tr = '%1 prosedüründe hata.
+			           |""Eylem"" parametresinin değeri geçersiz: ""%2"".'"),
 			"UsersInternal.ProcessRolesInterface",
 			Action);
 		Raise ErrorText;
@@ -574,7 +595,7 @@ Function UnspecifiedUserProperties() Export
 	
 	Properties.Insert("FullName", Users.UnspecifiedUserFullName());
 	
-	Properties.Insert("FullNameForSearch", "<" + NStr("en = 'Not specified';") + ">");
+	Properties.Insert("FullNameForSearch", "<" + NStr("en = 'Not specified';tr = 'Belirtilmemiş'") + ">");
 	
 	// Searching for infobase user by UUID.
 	Query = New Query;
@@ -852,7 +873,7 @@ Procedure CheckRoleAssignment(RolesAssignment = Undefined, CheckEverything = Fal
 	EndIf;
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in procedure %1 of common module %2.';"),
+		NStr("en = 'Error in procedure %1 of common module %2.';tr = '%2 genel modülünün %1 prosedüründe hata oluştu.'"),
 		"OnDefineRoleAssignment",
 		"UsersOverridable");
 	
@@ -866,7 +887,8 @@ Procedure CheckRoleAssignment(RolesAssignment = Undefined, CheckEverything = Fal
 			If Role = Undefined Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Role ""%1""
-						           | specified in assignment %2 does not exist in metadata.';"),
+						           | specified in assignment %2 does not exist in metadata.';tr = '%2 atamasında belirtilen ""%1"" rolü
+						           | metaverilerde mevcut değil .'"),
 						KeyAndValue.Key, RolesAssignmentDetails.Key);
 				If ErrorList = Undefined Then
 					ErrorText = ErrorText + Chars.LF + Chars.LF + ErrorDescription;
@@ -883,7 +905,8 @@ Procedure CheckRoleAssignment(RolesAssignment = Undefined, CheckEverything = Fal
 				EndIf;
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Role ""%1"" is specified in multiple assignments:
-					           |%2 and %3.';"),
+					           |%2 and %3.';tr = '""%1"" rolü birden fazla amaçta belirtilmiştir: 
+					           |%2, %3.'"),
 					Role.Name, RolesAssignmentDetails.Key, AssignmentDetails.Key);
 				If ErrorList = Undefined Then
 					ErrorText = ErrorText + Chars.LF + Chars.LF + ErrorDescription;
@@ -903,10 +926,10 @@ Procedure CheckRoleAssignment(RolesAssignment = Undefined, CheckEverything = Fal
 	UnavailableRights.Add("DataAdministration");
 	
 	CheckRoleRightsList(UnavailableRights, Purpose.ForExternalUsersOnly, ErrorText,
-		NStr("en = 'Errors were found while checking external user roles:';"), ErrorList);
+		NStr("en = 'Errors were found while checking external user roles:';tr = 'Roller doğrulanırken yalnızca harici kullanıcılar için hatalar bulundu:'"), ErrorList);
 	
 	CheckRoleRightsList(UnavailableRights, Purpose.BothForUsersAndExternalUsers, ErrorText,
-		NStr("en = 'Errors were found while checking both user and external user roles:';"), ErrorList);
+		NStr("en = 'Errors were found while checking both user and external user roles:';tr = 'Roller doğrulanırken kullanıcılar ve harici kullanıcılar için hatalar bulundu:'"), ErrorList);
 	
 	// Check user roles.
 	If Common.DataSeparationEnabled() Or CheckEverything Then
@@ -931,7 +954,7 @@ Procedure CheckRoleAssignment(RolesAssignment = Undefined, CheckEverything = Fal
 		
 		Shared_Data = Shared_Data();
 		CheckRoleRightsList(UnavailableRights, Roles, ErrorText,
-			NStr("en = 'Errors were found while checking application user roles:';"), ErrorList, Shared_Data);
+			NStr("en = 'Errors were found while checking application user roles:';tr = 'Roller doğrulanırken uygulama kullanıcıları için hatalar bulundu:'"), ErrorList, Shared_Data);
 	EndIf;
 	If Not Common.DataSeparationEnabled() Or CheckEverything Then
 		Roles = New Map;
@@ -948,10 +971,10 @@ Procedure CheckRoleAssignment(RolesAssignment = Undefined, CheckEverything = Fal
 		UnavailableRights.Add("UpdateDataBaseConfiguration");
 		
 		CheckRoleRightsList(UnavailableRights, Roles, ErrorText,
-			NStr("en = 'Errors were found while checking user roles:';"), ErrorList);
+			NStr("en = 'Errors were found while checking user roles:';tr = 'Roller doğrulanırken kullanıcılar için hatalar bulundu:'"), ErrorList);
 		
 		CheckRoleRightsList(UnavailableRights, Purpose.BothForUsersAndExternalUsers, ErrorText,
-			NStr("en = 'Errors were found while checking both user and external user roles:';"), ErrorList);
+			NStr("en = 'Errors were found while checking both user and external user roles:';tr = 'Roller doğrulanırken kullanıcılar ve harici kullanıcılar için hatalar bulundu:'"), ErrorList);
 	EndIf;
 	
 	If ValueIsFilled(ErrorText) Then
@@ -1387,7 +1410,7 @@ EndFunction
 //
 Function EventNameChangeAdditionalForLogging() Export
 	
-	Return NStr("en = 'Users.Change (additional)';",
+	Return NStr("en = 'Users.Change (additional)';tr = 'Kullanıcılar.Değiştir (ek)'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -1397,7 +1420,7 @@ EndFunction
 //
 Function NameOfLogEventUserGroupsMembersChanged() Export
 	
-	Return NStr("en = 'Users.Change user group membership';",
+	Return NStr("en = 'Users.Change user group membership';tr = 'Kullanıcılar.Kullanıcı grubu üyeliğini değiştir'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -1407,7 +1430,7 @@ EndFunction
 //
 Function NameOfLogEventExternalUserGroupsMembersChanged() Export
 	
-	Return NStr("en = 'Users.Change external user group membership';",
+	Return NStr("en = 'Users.Change external user group membership';tr = 'Kullanıcılar.Harici kullanıcı grubu üyeliğini değiştir'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -1452,7 +1475,7 @@ Function RepresentationOfTheReference(Ref) Export
 	
 	If Not ValueIsFilled(Result) Then
 		Result = "<" + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Empty reference: ""%1""';", Common.DefaultLanguageCode()), TypeOf(Ref)) + ">";
+			NStr("en = 'Empty reference: ""%1""';tr = 'Boş referans: ""%1""'", Common.DefaultLanguageCode()), TypeOf(Ref)) + ">";
 	EndIf;
 	
 	Return Result;
@@ -1521,7 +1544,7 @@ Procedure CheckSafeModeIsDisabled(NameOfAProcedureOrAFunction) Export
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Action ""%1"" not supported in safe mode.';"),
+		NStr("en = 'Action ""%1"" not supported in safe mode.';tr = '""%1"" eylemi güvenli modda desteklenmiyor.'"),
 		NameOfAProcedureOrAFunction);
 	
 	Raise(ErrorText, ErrorCategory.ConfigurationError);
@@ -1663,7 +1686,7 @@ Procedure RegisterRefs(RefsKind, Val RefsToAdd) Export
 	RefsKindProperties = UsersInternalCached.RefKindsProperties().Get(RefsKind);
 	If RefsKindProperties = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'In procedure ""%3"", parameter ""%2"" has invalid value: %1.';"),
+			NStr("en = 'In procedure ""%3"", parameter ""%2"" has invalid value: %1.';tr = '""%3"" prosedüründe ""%2"" parametresinin değeri geçersiz: %1.'"),
 			RefsKind, "RefsKind", "RegisterRefs");
 		Raise ErrorText;
 	EndIf;
@@ -1739,7 +1762,7 @@ Function RegisteredRefs(RefsKind) Export
 	RefsKindProperties = UsersInternalCached.RefKindsProperties().Get(RefsKind);
 	If RefsKindProperties = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'In function ""%3"", parameter ""%2"" has invalid value: %1.';"),
+			NStr("en = 'In function ""%3"", parameter ""%2"" has invalid value: %1.';tr = '%3Fonksiyonun erişilmeyen ""%1"" parametre%2 değeri.'"),
 			RefsKind, "RefsKind", "RegisteredRefs");
 		Raise ErrorText;
 	EndIf;
@@ -1863,14 +1886,14 @@ Procedure OnFillAccessKinds(AccessKinds) Export
 	
 	AccessKind = AccessKinds.Add();
 	AccessKind.Name                    = "Users";
-	AccessKind.Presentation          = NStr("en = 'Users';");
+	AccessKind.Presentation          = NStr("en = 'Users';tr = 'Kullanıcılar'");
 	AccessKind.ValuesType            = Type("CatalogRef.Users");
 	AccessKind.ValuesGroupsType       = Type("CatalogRef.UserGroups");
 	AccessKind.MultipleValuesGroups = True; // Should be True, special case.
 	
 	AccessKind = AccessKinds.Add();
 	AccessKind.Name                    = "ExternalUsers";
-	AccessKind.Presentation          = NStr("en = 'External users';");
+	AccessKind.Presentation          = NStr("en = 'External users';tr = 'Harici kullanıcılar'");
 	AccessKind.ValuesType            = Type("CatalogRef.ExternalUsers");
 	AccessKind.ValuesGroupsType       = Type("CatalogRef.ExternalUsersGroups");
 	AccessKind.MultipleValuesGroups = True; // Should be True, special case.
@@ -2218,7 +2241,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 		Handler.Id = New UUID("d553f38f-196b-4fb7-ac8e-34ffb7025ab5");
 		Handler.UpdateDataFillingProcedure = "Catalogs.Users.RegisterDataToProcessForMigrationToNewVersion";
 		Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
-		Handler.Comment = NStr("en = 'Fill in email to recover passwords from user contact information.';");
+		Handler.Comment = NStr("en = 'Fill in email to recover passwords from user contact information.';tr = 'Kullanıcıların iletişim bilgilerinden şifreleri kurtarmak için e-posta doldurma.'");
 		Handler.ObjectsToRead    = "Catalog.Users";
 		Handler.ObjectsToChange  = "Catalog.Users";
 		Handler.ObjectsToLock = "Catalog.Users";
@@ -2244,7 +2267,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 			Handler.Id = New UUID("002f8ac6-dfe6-4d9f-be48-ce3c331aea82");
 			Handler.UpdateDataFillingProcedure = "Catalogs.ExternalUsers.RegisterDataToProcessForMigrationToNewVersion";
 			Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
-			Handler.Comment = NStr("en = 'Fill in email to recover passwords from contact information of external users.';");
+			Handler.Comment = NStr("en = 'Fill in email to recover passwords from contact information of external users.';tr = 'Harici kullanıcıların iletişim bilgilerinden şifreleri kurtarmak için e-posta doldurma.'");
 			
 			ItemsToRead = New Array;
 			For Each ExternalUserType In TypesOfExternalUsers Do
@@ -2283,7 +2306,10 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 		NStr("en = '- Move obsolete ""(not used) Infobase user properties"" attribute values from the ""Users"" and ""External users"" catalogs to the ""User details"" information register.
 		           |- Update the ""State picture number"" attribute value in the ""User details"" information register.
 		           |- Delete records with non-existing users and external users from the ""User details"" information register.
-		           |- Reset unnecessary %1authentication and inactive user authentication.';"),
+		           |- Reset unnecessary %1authentication and inactive user authentication.';tr = '- Eski ""(kullanılmayan) Infobase kullanıcı özellikleri"" öznitelik değerlerini ""Kullanıcılar"" ve ""Harici kullanıcılar"" kataloglarından ""Kullanıcı bilgileri"" bilgi kaydına taşıyın.
+		           |- ""Kullanıcı bilgileri"" bilgi kaydında ""Durum resmi numarası"" özniteliğinin değerini güncelleyin.
+		           |- Mevcut olmayan kullanıcılar ve harici kullanıcılar içeren kayıtları ""Kullanıcı bilgileri"" bilgi kaydından silin.
+		           |- Gereksiz %1 kimlik doğrulama bilgilerini ve aktif olmayan kullanıcı kimlik doğrulama bilgilerini sıfırlayın.'"),
 		"OpenID-Connect");
 	
 	Handler = Handlers.Add();
@@ -2292,13 +2318,13 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.InitialFilling = True;
 	Handler.ExecutionMode = "Seamless";
 	Handler.Procedure = "UsersInternal.MoveDesignerPasswordLengthAndComplexitySettings";
-	Handler.Comment = NStr("en = 'Specify and transfer user authorization settings';");
+	Handler.Comment = NStr("en = 'Specify and transfer user authorization settings';tr = 'Kullanıcı kimlik doğrulama ayarlarını belirt ve transfer et'");
 	
 	Handler = Handlers.Add();
 	Handler.Version = "3.1.10.65";
 	Handler.ExecutionMode = "Seamless";
 	Handler.Procedure = "UsersInternal.FillUserGroupsHierarchy";
-	Handler.Comment = NStr("en = 'Filling ""User group hierarchy"" information register';");
+	Handler.Comment = NStr("en = 'Filling ""User group hierarchy"" information register';tr = '""Kullanıcı grubu hiyerarşisi"" bilgi kaydını doldurma'");
 	
 EndProcedure
 
@@ -2421,7 +2447,7 @@ Procedure OnFillToDoList(ToDoList) Export
 			ToDoItem.Id  = IDUsers;
 			ToDoItem.HasToDoItems       = OfInvalidUsers > 0;
 			ToDoItem.Count     = OfInvalidUsers;
-			ToDoItem.Presentation  = NStr("en = 'Invalid users data';");
+			ToDoItem.Presentation  = NStr("en = 'Invalid users data';tr = 'Kullanıcılar hakkında yanlış bilgi'");
 			ToDoItem.Form          = "Catalog.Users.Form.InfoBaseUsers";
 			ToDoItem.Owner       = Section;
 		EndIf;
@@ -2459,15 +2485,15 @@ Procedure OnFillExternalAttributes(KindsOfObjectsToChange, ExternalAttributes) E
 	EndIf;
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "StandardAuthentication",
-		NStr("en = '1C:Enterprise authentication';"), BooleanType));
+		NStr("en = '1C:Enterprise authentication';tr = '1C:Enterprise doğrulama'"), BooleanType));
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "OpenIDAuthentication",
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 authentication';"), "OpenID"), BooleanType));
+			NStr("en = '%1 authentication';tr = '%1 kimlik doğrulaması'"), "OpenID"), BooleanType));
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "OpenIDConnectAuthentication",
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 authentication';"), "OpenID-Connect"), BooleanType));
+			NStr("en = '%1 authentication';tr = '%1 kimlik doğrulaması'"), "OpenID-Connect"), BooleanType));
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "AccessTokenAuthentication",
 		RegisterMetadata.Attributes.AccessTokenAuthentication.Presentation(), BooleanType));
@@ -2500,14 +2526,14 @@ Procedure OnFillExternalAttributes(KindsOfObjectsToChange, ExternalAttributes) E
 		RegisterMetadata.Resources.UserMustChangePasswordOnAuthorization.Presentation(), BooleanType));
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "UnlimitedValidityPeriod",
-		NStr("en = 'Non-expiring access';"), BooleanType));
+		NStr("en = 'Non-expiring access';tr = 'Sona ermeyen erişim'"), BooleanType));
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "ValidityPeriod",
-		NStr("en = 'Access will expire';"),
+		NStr("en = 'Access will expire';tr = 'Erişim sona erecek'"),
 		RegisterMetadata.Resources.ValidityPeriod.Type));
 	
 	ExternalAttributes.Add(NewExternalAttribute(Prefix + "InactivityPeriodBeforeDenyingAuthorization",
-		NStr("en = 'Deny login after inactivity (days)';"),
+		NStr("en = 'Deny login after inactivity (days)';tr = 'Eylesizlikten (gün) sonra girişi engelle'"),
 		RegisterMetadata.Resources.InactivityPeriodBeforeDenyingAuthorization.Type));
 	
 EndProcedure
@@ -2695,7 +2721,10 @@ Procedure SessionParametersSetting(Val ParameterName, SpecifiedParameters) Expor
 			NStr("en = 'Couldn''t set session parameter for user ""%1"". Reason:
 			           |%2
 			           |
-			           |Please contact the administrator.';"),
+			           |Please contact the administrator.';tr = '%1 oturum parametresi aşağıdaki nedenle belirlenemedi: 
+			           |""%2"". 
+			           |
+			           | Yöneticiye başvurun.'"),
 			"CurrentUser",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		Raise ErrorText;
@@ -3668,7 +3697,7 @@ Function CanChangePassword(User, AdditionalParameters = Undefined) Export
 		
 		If Not ActionsWithSaaSUser.EditPassword Then
 			AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Service: Insufficient rights to change password for user ""%1.""';"), User));
+				NStr("en = 'Service: Insufficient rights to change password for user ""%1.""';tr = 'Servis: ""%1"" kullanıcısı için şifre değiştirme yetkisi yok.'"), User));
 			Return False;
 		EndIf;
 	EndIf;
@@ -3689,7 +3718,7 @@ Function CanChangePassword(User, AdditionalParameters = Undefined) Export
 	   And UserAttributes.Invalid <> False Then
 		
 		AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'User ""%1"" is inactive.';"), User));
+			NStr("en = 'User ""%1"" is inactive.';tr = '""%1"" kullanıcısı aktif değil.'"), User));
 		Return False;
 	EndIf;
 	
@@ -3702,7 +3731,7 @@ Function CanChangePassword(User, AdditionalParameters = Undefined) Export
 	   And IBUser = Undefined Then
 		
 		AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'There is no account for user ""%1.""';"), User));
+			NStr("en = 'There is no account for user ""%1.""';tr = '""%1"" kullanıcının hesabı mevcut değil.'"), User));
 		Return False;
 	EndIf;
 	
@@ -3718,7 +3747,7 @@ Function CanChangePassword(User, AdditionalParameters = Undefined) Export
 	   And Not AccessLevel.AuthorizationSettings2 Then
 		
 		AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Insufficient rights to change password for user ""%1"".';"), User));
+			NStr("en = 'Insufficient rights to change password for user ""%1"".';tr = '""%1"" kullanıcı şifresinin değişikliği için haklar yetersizdir.'"), User));
 		Return False;
 	EndIf;
 	
@@ -3729,13 +3758,14 @@ Function CanChangePassword(User, AdditionalParameters = Undefined) Export
 		If AccessLevel.AuthorizationSettings2 Then
 			If AdditionalParameters.Property("IncludeCannotChangePasswordProperty") Then
 				AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'User ""%1"" cannot change password.';"), User));
+					NStr("en = 'User ""%1"" cannot change password.';tr = '""%1"" kullanıcı şifresinin değişikliği için yasak oluşturuldu.'"), User));
 				Return False;
 			EndIf;
 		Else
 			AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'User ""%1"" cannot change password.
-				           |Please contact the administrator.';"), User));
+				           |Please contact the administrator.';tr = '""%1"" kullanıcı şifresinin değişikliği için yasak oluşturuldu. 
+				           | Yöneticiye başvurun.'"), User));
 			Return False;
 		EndIf;
 	EndIf;
@@ -3784,10 +3814,10 @@ Function CanChangePassword(User, AdditionalParameters = Undefined) Export
 	
 	NumberAndSubject = Format(DaysCount, "NG=") + " "
 		+ UsersInternalClientServer.IntegerSubject(DaysCount,
-			"", NStr("en = 'day,days,,,0';"));
+			"", NStr("en = 'day,days,,,0';tr = 'gün, gün, gün,,,,,,0'"));
 	
 	AdditionalParameters.Insert("ErrorText", StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'You can change the password in %1.';"), NumberAndSubject));
+		NStr("en = 'You can change the password in %1.';tr = 'Şifre yalnızca %1 sonra değiştirilebilir.'"), NumberAndSubject));
 	
 	Return False;
 	
@@ -3861,7 +3891,7 @@ Function ProcessNewPassword(Parameters) Export
 			PreviousPassword, AdditionalParameters.IBUserID);
 		
 		If Not Parameters.PreviousPasswordMatches Then
-			Return NStr("en = 'The previous password is incorrect.';");
+			Return NStr("en = 'The previous password is incorrect.';tr = 'Eski şifre yanlış belirtilmiştir.'");
 		EndIf;
 	EndIf;
 	
@@ -3955,14 +3985,15 @@ Function ProcessNewPassword(Parameters) Export
 		ErrorInfo = ErrorInfo();
 		If CallFromChangePasswordForm Then
 			WriteLogEvent(
-				NStr("en = 'Users.Password change error';",
+				NStr("en = 'Users.Password change error';tr = 'Kullanıcılar. Şifre değiştirme hatası'",
 				     Common.DefaultLanguageCode()),
 				EventLogLevel.Error,
 				Metadata.FindByType(TypeOf(User)),
 				User,
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot change password for user ""%1"". Reason:
-					           |%2';"),
+					           |%2';tr = '""%1"" kullanıcı şifresi 
+					           |%2 nedeniyle silinemedi'"),
 					User, ErrorProcessing.DetailErrorDescription(ErrorInfo)));
 			Parameters.Insert("ErrorSavedToEventLog");
 		EndIf;
@@ -3985,7 +4016,11 @@ Function NewPasswordHint() Export
 		           |- Has at least 7 characters.
 		           |- Contains at least 3 out of 4 character types: uppercase
 		           |and lowercase letters, numbers, and special characters.
-		           |- Is not identical to the username.';");
+		           |- Is not identical to the username.';tr = 'Güvenli şifre: - 
+		           |en az 7 karakterden oluşur;
+		           |-4 karakter türünden herhangi 3''nü içerir: büyük harfler, 
+		           |küçük harfler, sayılar, özel karakterler; 
+		           |- adıyla eşleşmez (giriş için).'");
 	
 EndFunction
 
@@ -4006,14 +4041,16 @@ Function HintUserMustChangePasswordOnAuthorization(ForExternalUsers) Export
 	If Not IsFullUser Then
 		ToolTip =
 			NStr("en = 'You can apply password length and complexity requirements.
-			           |For details, contact the administrator.';");
+			           |For details, contact the administrator.';tr = 'Parola uzunluğu ve karmaşıklık gereksinimleri ayrı ayrı belirlenir.
+			           |Ayrıntılar için lütfen yöneticinize başvurun.'");
 		Return New FormattedString(ToolTip);
 	EndIf;
 	
 	If Not Users.CommonAuthorizationSettingsUsed() Then
 		ToolTip =
 			NStr("en = 'You can apply password length and complexity requirements.
-			           |See ""Administration"" – ""Infobase parameters"" in Designer.';");
+			           |See ""Administration"" – ""Infobase parameters"" in Designer.';tr = 'Parola uzunluğu ve karmaşıklık gereksinimleri ayrı ayrı belirlenir.
+			           |Yönetim menüsündeki yapılandırıcıdaki bilgi bankası ayarlarına bkz.'");
 		Return New FormattedString(ToolTip);
 	EndIf;
 	
@@ -4024,22 +4061,28 @@ Function HintUserMustChangePasswordOnAuthorization(ForExternalUsers) Export
 			ToolTip =
 				NStr("en = 'You can set password length and complexity requirements.
 				           |To do this, go to <b>Administration</b> > <b>Users and rights settings</b>.
-				           |Click <a href = ""%1"">Login settings</a> and select <b>For external users</b>.';");
+				           |Click <a href = ""%1"">Login settings</a> and select <b>For external users</b>.';tr = 'Şifrelerin uzunluğunu ve karmaşıklık derecesini ayarlayabilirsiniz.
+				           |Bunun için, <b>Yönetim</b> > <b>Kullanıcılar ve yetki ayarları</b>''na gidin.
+				           |<a href = ""%1"">Giriş ayarları</a>''nda <b>Harici kullanıcılar için</b>''i seçin.'");
 		Else
 			ToolTip =
 				NStr("en = 'You can set password length and complexity requirements.
-				           |To do this, go to <a href = ""%1"">Login settings</a> and select <b>For external users</b>.';");
+				           |To do this, go to <a href = ""%1"">Login settings</a> and select <b>For external users</b>.';tr = 'Şifrelerin uzunluğunu ve karmaşıklık derecesini ayarlayabilirsiniz.
+				           |Bunun için, <a href = ""%1"">Giriş ayarları</a>''nda <b>Harici kullanıcılar için</b>''i seçin.'");
 		EndIf;
 	Else
 		If HasAdministrationSection Then
 			ToolTip =
 				NStr("en = 'You can set password length and complexity requirements.
 				           |To do this, go to <b>Administration</b> > <b>Users and rights settings</b>.
-				           |Click <a href = ""%1"">Login settings</a> and select <b>For users</b>.';");
+				           |Click <a href = ""%1"">Login settings</a> and select <b>For users</b>.';tr = 'Şifrelerin uzunluğunu ve karmaşıklık derecesini ayarlayabilirsiniz.
+				           |Bunun için, <b>Yönetim</b> > <b>Kullanıcılar ve yetki ayarları</b>''na gidin.
+				           |<a href = ""%1"">Giriş ayarları</a>''nda <b>Kullanıcılar için</b>''i seçin.'");
 		Else
 			ToolTip =
 				NStr("en = 'You can set password length and complexity requirements.
-				           |To do this, go to <a href = ""%1"">Login settings</a> and select <b>For users</b>.';");
+				           |To do this, go to <a href = ""%1"">Login settings</a> and select <b>For users</b>.';tr = 'Şifrelerin uzunluğunu ve karmaşıklık derecesini ayarlayabilirsiniz.
+				           |Bunun için, <a href = ""%1"">Giriş ayarları</a>''nda <b>Kullanıcılar için</b>''i seçin.'");
 		EndIf;
 	EndIf;
 	
@@ -4477,7 +4520,7 @@ Procedure StartIBUserProcessing(UserObject,
 	
 	ProcessingParameters.Insert("DeleteUserFromCatalog", DeleteUserFromCatalog);
 	ProcessingParameters.Insert("InsufficientRightsMessageText",
-		NStr("en = 'Insufficient rights to change infobase user.';"));
+		NStr("en = 'Insufficient rights to change infobase user.';tr = 'Veritabanı kullanıcısını değiştirmek için yetersiz haklar.'"));
 	
 	If AdditionalProperties.Property("CopyingValue")
 	   And ValueIsFilled(AdditionalProperties.CopyingValue)
@@ -4557,7 +4600,8 @@ Procedure StartIBUserProcessing(UserObject,
 	If Not IBUserDetails.Property("Action") Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
-			           |Parameter %2 is missing property %3.';"),
+			           |Parameter %2 is missing property %3.';tr = '""%1"" kullanıcısı kaydedilemiyor.
+			           |%2 parametresinde %3 özelliği belirtilmemiş.'"),
 			UserObject.Ref, "IBUserDetails", "Action");
 		Raise ErrorText;
 	EndIf;
@@ -4568,7 +4612,9 @@ Procedure StartIBUserProcessing(UserObject,
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
 			           |Parameter %2 has invalid value in property %4:
-			           |""%3"".';"),
+			           |""%3"".';tr = '""%1"" kullanıcısı kaydedilirken hata oluştu.
+			           |%2 parametresinin %4 özelliğindeki değer geçersiz:
+			           |""%3"".'"),
 			UserObject.Ref,
 			"IBUserDetails",
 			IBUserDetails.Action,
@@ -4593,7 +4639,9 @@ Procedure StartIBUserProcessing(UserObject,
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Couldn''t save user ""%1"".
 				           |The user in the catalog is already mapped
-				           |with an infobase user.';"),
+				           |with an infobase user.';tr = '""%1"" kullanıcısı kaydedilemiyor.
+				           |Katalogdaki kullanıcı infobase kullanıcısı ile
+				           |zaten eşlendi.'"),
 				UserObject.Description);
 			Raise ErrorText;
 		EndIf;
@@ -4609,7 +4657,10 @@ Procedure StartIBUserProcessing(UserObject,
 				NStr("en = 'Couldn''t save user ""%1"".
 				           |The infobase user is already mapped
 				           |with a user in catalog
-				           |""%2"".';"),
+				           |""%2"".';tr = 'Kullanıcı kaydedilirken bir hata oluştu ""%1"". 
+				           |VT kullanıcısı, "
+" rehberindeki başka kullanıcı ile daha önce eşleştirildiği için 
+				           |""%2""rehberindeki bu kullanıcı ile eşleştirilemez.'"),
 				FoundUser,
 				UserObject.Description);
 			Raise ErrorText;
@@ -4942,7 +4993,9 @@ Function CreateFirstAdministratorRequired(Val IBUserDetails,
 				Text =
 					NStr("en = 'You are adding the first user to the list of application users.
 					           |Therefore, the user will be automatically granted ""Full access"" and ""System administrator"" roles.
-					           |Do you want to continue?';");
+					           |Do you want to continue?';tr = 'Uygulama kullanıcıların listesine ilk kullanıcı eklendiğinden dolayı, 
+					           |kendisine ""Sistem yöneticisi"" ve ""Tam haklar"" rolleri otomatik olarak atanacaktır. 
+					           | Devam et?'");
 				
 				If Not CannotEditRoles() Then
 					Return True;
@@ -4957,7 +5010,9 @@ Function CreateFirstAdministratorRequired(Val IBUserDetails,
 			Text =
 				NStr("en = 'The first infobase user must be a full access user.
 				           |External users cannot have full access.
-				           |Before creating an external user, create an administrator in the Users catalog.';");
+				           |Before creating an external user, create an administrator in the Users catalog.';tr = 'İlk uygulama kullanıcısı ""Tam erişim"" rolüne sahip bir yönetici olmalıdır. 
+				           |Bu rol harici kullanıcılara verilemez. 
+				           |Lütfen Kullanıcılar kataloğunda ilk kullanıcıyı oluşturun.'");
 			Return True;
 		EndIf;
 	EndIf;
@@ -5020,17 +5075,17 @@ Function CheckIBUserDetails(Val IBUserDetails, Cancel, IsExternalUser) Export
 		If IsBlankString(Name) Then
 			// The settings storage uses only the first 64 characters of the infobase user name.
 			Common.MessageToUser(
-				NStr("en = 'The username is required.';"),, "Name",,Cancel);
+				NStr("en = 'The username is required.';tr = 'İsim (giriş için) girilmedi.'"),, "Name",,Cancel);
 			
 		ElsIf StrLen(Name) > 64 Then
 			// In web authentication, the username and the password are colon-delimited.
 			// 
 			Common.MessageToUser(
-				NStr("en = 'The username exceeds 64 characters.';"),,"Name",,Cancel);
+				NStr("en = 'The username exceeds 64 characters.';tr = 'Kullanıcı adı 64 karakterden uzun olamaz.'"),,"Name",,Cancel);
 			
 		ElsIf StrFind(Name, ":") > 0 Then
 			Common.MessageToUser(
-				NStr("en = 'The username contains an illegal character "":"".';"),,"Name",,Cancel);
+				NStr("en = 'The username contains an illegal character "":"".';tr = 'Kullanıcı adı yanlış karakter "":"" içeriyor.'"),,"Name",,Cancel);
 		Else
 			SetPrivilegedMode(True);
 			IBUser = InfoBaseUsers.FindByName(Name);
@@ -5047,10 +5102,10 @@ Function CheckIBUserDetails(Val IBUserDetails, Cancel, IsExternalUser) Export
 				If FoundUser = Undefined
 				 Or Not Users.IsFullUser() Then
 					
-					ErrorText = NStr("en = 'The username is not unique.';");
+					ErrorText = NStr("en = 'The username is not unique.';tr = 'Kullanıcı adı benzersiz değil.'");
 				Else
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'The username is not unique. It belongs to user ""%1"".';"),
+						NStr("en = 'The username is not unique. It belongs to user ""%1"".';tr = 'İsim ""%1"" kullanıcı tarafından zaten kullanılıyor.'"),
 						String(FoundUser));
 				EndIf;
 				
@@ -5106,7 +5161,7 @@ Function CheckIBUserDetails(Val IBUserDetails, Cancel, IsExternalUser) Export
 			
 			If IsPasswordSet Or CheckBlankPassword Then
 				Common.MessageToUser(
-					NStr("en = 'Set a password.';"),, "ChangePassword",, Cancel);
+					NStr("en = 'Set a password.';tr = 'Şifre belirle.'"),, "ChangePassword",, Cancel);
 			EndIf;
 		EndIf;
 	EndIf;
@@ -5123,7 +5178,8 @@ Function CheckIBUserDetails(Val IBUserDetails, Cancel, IsExternalUser) Export
 			Except
 				Common.MessageToUser(
 					NStr("en = 'The operating system username must have the following format:
-					           |""\\Domain Name\Username"".';"),,"OSUser",,Cancel);
+					           |""\\Domain Name\Username"".';tr = 'Sabit kıymetler kullanıcısı 
+					           |""\\Alan adı\Kullanıcı adı"" biçimde olmalıdır.'"),,"OSUser",,Cancel);
 			EndTry;
 			SetPrivilegedMode(False);
 		EndIf;
@@ -5137,7 +5193,7 @@ Function CheckIBUserDetails(Val IBUserDetails, Cancel, IsExternalUser) Export
 		   And IsBlankString(IBUserDetails.Email) Then
 				
 				Common.MessageToUser(
-					NStr("en = 'Email to recover the password is not filled in.';"),,
+					NStr("en = 'Email to recover the password is not filled in.';tr = 'Şifre kurtarma için elektronik posta eksik.'"),,
 					"ContactInformation",,Cancel);
 		EndIf;
 		
@@ -6603,13 +6659,16 @@ Procedure UpdateExternalUsersRoles(Val ExternalUsersArray = Undefined) Export
 				NStr("en = 'Role ""%2"" of external user group ""%3""
 				          |was not found in metadata while updating roles
 				          |of external user ""%1"".
-				          |';"),
+				          |';tr = '
+				          |""%1""
+				          | harici kullanıcının rolleri güncellenirken ""%3"" harici kullanıcı grubu ""%2""
+				          | rolü mevcut değil.'"),
 				TrimAll(ExternalUser),
 				Selection.Role,
 				String(Selection.ExternalUsersGroup));
 			
 			WriteLogEvent(
-				NStr("en = 'Users.Role is not found in the metadata.';",
+				NStr("en = 'Users.Role is not found in the metadata.';tr = 'Kullanıcılar. Rol meta verilerde bulunamadı'",
 				     Common.DefaultLanguageCode()),
 				EventLogLevel.Error,
 				,
@@ -6724,7 +6783,7 @@ Function AuthorizationObjectIsInUse(Val AuthorizationObjectRef,
 	
 	If AuthorizationObjectProperties.Used Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'An external user mapped to object ""%1"" already exists.';"),
+			NStr("en = 'An external user mapped to object ""%1"" already exists.';tr = '""%1"" nesnesiyle eşleştirilmiş bir harici kullanıcı zaten mevcut.'"),
 			AuthorizationObjectRef);
 	EndIf;
 	
@@ -6963,10 +7022,10 @@ Function MoveUserToNewGroup(UsersArray, SourceGroup,
 	
 	If MovedUsersArray.Count() = 0 And UnmovedUsersArray.Count() = 0 Then
 		If UsersArray.Count() = 1 Then
-			MessageText = NStr("en = 'User ""%1"" is already included in group ""%2.""';");
+			MessageText = NStr("en = 'User ""%1"" is already included in group ""%2.""';tr = '""%1"" Kullanıcısı zaten ""%2"" grubunun bir üyesidir.'");
 			UserToMoveName = String(UsersArray[0]);
 		Else
-			MessageText = NStr("en = 'All selected users are already included in group ""%2.""';");
+			MessageText = NStr("en = 'All selected users are already included in group ""%2.""';tr = 'Seçilen tüm kullanıcılar zaten ""%2"" grubuna dahil.'");
 			UserToMoveName = "";
 		EndIf;
 		GroupDescription = String(DestinationGroup1);
@@ -7173,12 +7232,14 @@ Function CreateUserMessage(UsersArray, DestinationGroup1,
 			If UserTypeMatchesGroup Then
 				UserMessage = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot add user ""%1"" to group ""%2""
-					           |because the group has ""All users of the specified types"" option selected.';"),
+					           |because the group has ""All users of the specified types"" option selected.';tr = '""%1"" kullanıcı, ""%2"" grubuna dahil edilemez, 
+					           | çünkü grupta ""Belirlenen türdeki tüm kullanıcılar"" özelliği mevcuttur.'"),
 					SubjectOf, GroupDescription) + Chars.LF;
 			Else
 				UserMessage = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot add user ""%1"" to group ""%2""
-					           |because the group contains only %3.';"),
+					           |because the group contains only %3.';tr = '""%1"" kullanıcısı ""%2"" grubuna dahil edilemez, 
+					           | çünkü sadece %3 onun üyeleri arasına dahil edilmiştir.'"),
 					SubjectOf, GroupDescription, AuthorizationObjectTypePresentation) + Chars.LF;
 			EndIf;
 		Else
@@ -7187,7 +7248,9 @@ Function CreateUserMessage(UsersArray, DestinationGroup1,
 			UserMessage = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot add some users to group ""%1""
 				           |because the group contains only %2
-				           |or it has ""All users of the specified types"" option selected.';"),
+				           |or it has ""All users of the specified types"" option selected.';tr = 'Tüm kullanıcılar, yalnızca 
+				           | üyelerinin içeriğinde yer aldığından dolayı %2 gruba dahil edilemez 
+				           | ""%1"" veya grupta ""Belirtilen türde tüm kullanıcılar"" onay kutusu bulunur.'"),
 				GroupDescription,
 				AuthorizationObjectTypePresentation);
 		EndIf;
@@ -7205,29 +7268,29 @@ Function CreateUserMessage(UsersArray, DestinationGroup1,
 		If DestinationGroup1 = Users.AllUsersGroup()
 		 Or DestinationGroup1 = ExternalUsers.AllExternalUsersGroup() Then
 			
-			UserMessage = NStr("en = '""%1"" is excluded from group ""%2.""';");
+			UserMessage = NStr("en = '""%1"" is excluded from group ""%2.""';tr = '""%1"" ""%2"" grubundan çıkartıldı'");
 			GroupDescription = String(SourceGroup);
 			
 		ElsIf Move Then
-			UserMessage = NStr("en = '""%1"" is moved to group ""%2.""';");
+			UserMessage = NStr("en = '""%1"" is moved to group ""%2.""';tr = '""%1"" ""%2"" grubuna taşındı'");
 		Else
-			UserMessage = NStr("en = '""%1"" is added to group ""%2.""';");
+			UserMessage = NStr("en = '""%1"" is added to group ""%2.""';tr = '""%1"" ""%2"" grubuna dahil edildi'");
 		EndIf;
 		
 	ElsIf UsersCount > 1 Then
 		
 		StringObject = Format(UsersCount, "NFD=0") + " "
 			+ UsersInternalClientServer.IntegerSubject(UsersCount,
-				"", NStr("en = 'user, users,,,0';"));
+				"", NStr("en = 'user, users,,,0';tr = 'kullanıcı, kullanıcılar, kullanıcılar,,,,,,0'"));
 		
 		If DestinationGroup1 = Users.AllUsersGroup() Then
-			UserMessage = NStr("en = '%1 are excluded from group ""%2.""';");
+			UserMessage = NStr("en = '%1 are excluded from group ""%2.""';tr = '""%1"" ""%2"" grubundan çıkartıldılar'");
 			GroupDescription = String(SourceGroup);
 			
 		ElsIf Move Then
-			UserMessage = NStr("en = '%1 are moved to group ""%2.""';");
+			UserMessage = NStr("en = '%1 are moved to group ""%2.""';tr = '""%1"" ""%2"" grubuna taşındılar'");
 		Else
-			UserMessage = NStr("en = '%1 are added to group ""%2.""';");
+			UserMessage = NStr("en = '%1 are added to group ""%2.""';tr = '""%1"" ""%2"" grubuna dahil edildiler'");
 		EndIf;
 		
 	EndIf;
@@ -7482,7 +7545,9 @@ Function ListOfUsersToUpdate(IBSUsersByMail, QueryResult)
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot assign recovery email ""%2"" for user %1.
 			           |It is already assigned to user
-			           |%3 (%4)';"),
+			           |%3 (%4)';tr = '%2
+			           | şifre kurtarma e-postası 
+			           |%3 (%4) kullanıcısı için kullanıldığından ""%1"" kullanıcı için belirlenemez'"),
 			String(UserToUpdate.Ref),
 			UserInfo.Email,
 			UserInfo.Name,
@@ -7693,7 +7758,7 @@ Function UpdateEmailForPasswordRecovery(UserRef, AuthorizationObject = Undefined
 		ErrorText = ErrorProcessing.DetailErrorDescription(ErrorInfo);
 		If ValueIsFilled(EmailForPasswordRecovery)
 			 And StrFind(ErrorText, EmailForPasswordRecovery) > 0 Then
-				Refinement = NStr("en = 'Email address %1 is already occupied by another user and cannot be used to restore the password.';");
+				Refinement = NStr("en = 'Email address %1 is already occupied by another user and cannot be used to restore the password.';tr = '%1 e-posta adresi başka bir kullanıcı tarafından kullanılıyor ve şifre kurtarma için kullanılamaz.'");
 				Refinement = StringFunctionsClientServer.SubstituteParametersToString(Refinement, EmailForPasswordRecovery);
 				InfobaseUpdate.FileIssueWithData(UserRef, Refinement);
 		EndIf;
@@ -8166,14 +8231,14 @@ Function ObjectCollectionsByKind(ObjectKind)
 		
 	ElsIf ObjectKind = "Constant" Then
 		Fields = New Array;
-		Fields.Add(NewFieldDescription("Value", NStr("en = 'Value';")));
+		Fields.Add(NewFieldDescription("Value", NStr("en = 'Value';tr = 'Değer'")));
 		AddCollection(Result, "StandardAttributes",, Fields);
 		
 	ElsIf ObjectKind = "Sequence" Then
 		Fields = New Array;
-		Fields.Add(NewFieldDescription("Recorder",   NStr("en = 'Recorder';")));
-		Fields.Add(NewFieldDescription("Period",        NStr("en = 'Period';")));
-		Fields.Add(NewFieldDescription("PointInTime", NStr("en = 'Point in time';")));
+		Fields.Add(NewFieldDescription("Recorder",   NStr("en = 'Recorder';tr = 'Kaydedici'")));
+		Fields.Add(NewFieldDescription("Period",        NStr("en = 'Period';tr = 'Dönem'")));
+		Fields.Add(NewFieldDescription("PointInTime", NStr("en = 'Point in time';tr = 'Zamanda nokta'")));
 		AddCollection(Result, "StandardAttributes",, Fields);
 		AddCollection(Result, "Dimensions");
 		
@@ -8434,7 +8499,7 @@ Procedure FillSettingsLists(Parameters, StorageAddress) Export
 	If Parameters.InfoBaseUser <> UserName()
 	   And Not AccessRight("DataAdministration", Metadata) Then
 		
-		ErrorText = NStr("en = 'Insufficient rights to view user settings.';");
+		ErrorText = NStr("en = 'Insufficient rights to view user settings.';tr = 'Kullanıcı ayarlarını almak için haklar yetersizdir.'");
 		Raise(ErrorText, ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -8649,13 +8714,16 @@ Function CurrentUserInfoRecordErrorTextTemplate()
 		NStr("en = 'Couldn''t save the current user details. Reason:
 		           |%1
 		           |
-		           |Please contact the administrator.';");
+		           |Please contact the administrator.';tr = 'Aşağıdaki nedenle mevcut kullanıcı hakkındaki bilgiler kaydedilemedi: 
+		           |%1
+		           |
+		           | Yöneticiye başvurun.'");
 	
 EndFunction
 
 Function AuthorizationNotCompletedMessageTextWithLineBreak()
 	
-	Return NStr("en = 'The authorization was not completed. The application will be closed.';")
+	Return NStr("en = 'The authorization was not completed. The application will be closed.';tr = 'Yetkilendirme yapılamadı. Sistemin çalışması tamamlanacaktır.'")
 		+ Chars.LF + Chars.LF;
 	
 EndFunction
@@ -8667,7 +8735,7 @@ Function CurrentUserSessionParameterValues()
 	EndIf;
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Couldn''t set session parameter for user ""%1"".';"),
+		NStr("en = 'Couldn''t set session parameter for user ""%1"".';tr = '%1 oturumun parametresi belirlenemedi.'"),
 		"CurrentUser") + Chars.LF;
 	
 	BeginTransaction();
@@ -8696,7 +8764,7 @@ Function CurrentUserSessionParameterValues()
 		
 		Return ErrorTitle + UserNotFoundInCatalogMessageText(
 				UserInfo.UserName) + Chars.LF
-			+ NStr("en = 'Internal user search error.';");
+			+ NStr("en = 'Internal user search error.';tr = 'Kullanıcıyı ararken bir iç hata oluştu.'");
 	EndIf;
 	
 	Values = New Structure;
@@ -8711,7 +8779,8 @@ Function CurrentUserUnavailableInSessionWithoutSeparatorsMessageText()
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Couldn''t get session parameter for user ""%1"".
-		           |Not all session delimiters are specified.';"),
+		           |Not all session delimiters are specified.';tr = 'Geçersiz %1 oturumu parametre girişi, 
+		           |tüm ayırıcıların belirlenmediği oturumdur.'"),
 		"CurrentUser");
 	
 EndFunction
@@ -8770,7 +8839,7 @@ Function FindCurrentUserInCatalog()
 	If Selection.Next() Then
 		
 		If Not ExternalUsers.UseExternalUsers() Then
-			Raise NStr("en = 'External users are disabled.';");
+			Raise NStr("en = 'External users are disabled.';tr = 'Harici kullanıcılar devre dışı.'");
 		EndIf;
 		
 		Result.CurrentUser        = Catalogs.Users.EmptyRef();
@@ -8880,12 +8949,17 @@ Function UserNotFoundInCatalogMessageText(UserName)
 			NStr("en = 'User ""%1"" does not exist in the
 			           |""Users"" and ""External users"" catalogs.
 			           |
-			           |Contact your administrator.';");
+			           |Contact your administrator.';tr = '""%1"" kullanıcısı 
+			           |""Kullanıcılar"" ve ""Harici kullanıcılar"" kataloglarında mevcut değil.
+			           |
+			           |Yöneticinize başvurun.'");
 	Else
 		ErrorMessageTemplate =
 			NStr("en = 'User ""%1"" does not exist in the ""Users"" catalog.
 			           |
-			           |Contact your administrator.';");
+			           |Contact your administrator.';tr = '""%1"" kullanıcısı ""Kullanıcılar"" kataloğunda mevcut değil.
+			           |
+			           |Yöneticinize başvurun.'");
 	EndIf;
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(ErrorMessageTemplate, UserName);
@@ -8980,7 +9054,7 @@ EndFunction
 
 Function EventNameLoginErrorForTheLogLog()
 	
-	Return NStr("en = 'Users.Authorization error';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Users.Authorization error';tr = 'Kullanıcılar. Uygulamaya giriş hatası'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -9159,18 +9233,18 @@ Function CheckUserRights(IBUser, CheckMode, IsExternalUser,
 		EndIf;
 		
 		If RolesAssignment.ForSystemAdministratorsOnly.Get(NameOfRole) <> Undefined Then
-			TemplateText = NStr("en = '""%1"" (for system administrators only)';");
+			TemplateText = NStr("en = '""%1"" (for system administrators only)';tr = '""%1"" (sadece sistem yöneticileri için)'");
 		
 		ElsIf DataSeparationEnabled
 		        And RolesAssignment.ForSystemUsersOnly.Get(NameOfRole) <> Undefined Then
 			
-			TemplateText = NStr("en = '""%1"" (for system users only)';");
+			TemplateText = NStr("en = '""%1"" (for system users only)';tr = '""%1"" (sadece sistem kullanıcıları için)'");
 			
 		ElsIf RolesAssignment.ForExternalUsersOnly.Get(NameOfRole) <> Undefined Then
-			TemplateText = NStr("en = '""%1"" (for external users only)';");
+			TemplateText = NStr("en = '""%1"" (for external users only)';tr = '""%1"" (sadece harici kullanıcılar için)'");
 			
 		Else // This is an external user.
-			TemplateText = NStr("en = '""%1"" (for users only)';");
+			TemplateText = NStr("en = '""%1"" (for users only)';tr = '""%1"" (sadece kullanıcılar için)'");
 		EndIf;
 		
 		UnavailableRolesToAdd = UnavailableRolesToAdd
@@ -9188,12 +9262,14 @@ Function CheckUserRights(IBUser, CheckMode, IsExternalUser,
 			If StrLineCount(UnavailableRolesToAdd) = 1 Then
 				AuthorizationRegistrationText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Authorization denied for user ""%1"". The user has an unavailable role:
-					           |%2';"),
+					           |%2';tr = 'Erişilemeyen bir rolle %1kullanıcı oturum açma girişimi:
+					           |%2.'"),
 				IBUser.FullName, UnavailableRolesToAdd);
 			Else
 				AuthorizationRegistrationText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Authorization denied for user ""%1"". The user has unavailable roles:
-					           |%2';"),
+					           |%2';tr = 'Erişilemeyen rollerle %1 kullanıcı oturum açma girişimi:
+					           |%2.'"),
 				IBUser.FullName, UnavailableRolesToAdd);
 			EndIf;
 			WriteLogEvent(EventNameLoginErrorForTheLogLog(),
@@ -9202,7 +9278,8 @@ Function CheckUserRights(IBUser, CheckMode, IsExternalUser,
 		
 		AuthorizationMessageText =
 			NStr("en = 'Authorization denied due to unavailable roles.
-			           |Please contact the administrator.';");
+			           |Please contact the administrator.';tr = 'Erişilemeyen rollerden dolayı giriş yapılamadı. 
+			           | Yöneticinize başvurun.'");
 		
 		If RaiseException1 Then
 			Raise AuthorizationMessageText;
@@ -9215,18 +9292,20 @@ Function CheckUserRights(IBUser, CheckMode, IsExternalUser,
 		If StrLineCount(UnavailableRolesToAdd) = 1 And ValueIsFilled(UnavailableRolesToAdd) Then
 			AddingRegistrationText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot assign the following unavailable role to user ""%1"":
-				           |%2.';"),
+				           |%2.';tr = '""%1"" kullanıcısına şu rol atanamıyor:
+				           |%2.'"),
 				IBUser.FullName, UnavailableRolesToAdd);
 				
 		ElsIf StrLineCount(UnavailableRolesToAdd) > 1 Then
 			AddingRegistrationText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot assign the following unavailable roles to user ""%1"":
-				           |%2.';"),
+				           |%2.';tr = '""%1"" kullanıcısına şu roller atanamıyor:
+				           |%2.'"),
 				IBUser.FullName, UnavailableRolesToAdd);
 		Else
 			AddingRegistrationText = "";
 		EndIf;
-		EventName = NStr("en = 'Users.Error setting roles for infobase user';",
+		EventName = NStr("en = 'Users.Error setting roles for infobase user';tr = 'Kullanıcılar. Veritabanındaki kullanıcısına roller atanırken bir hata oluştu'",
 			Common.DefaultLanguageCode());
 		
 		WriteLogEvent(EventName, EventLogLevel.Error, , IBUser,
@@ -9236,13 +9315,15 @@ Function CheckUserRights(IBUser, CheckMode, IsExternalUser,
 	If StrLineCount(UnavailableRolesToAdd) = 1 And ValueIsFilled(UnavailableRolesToAdd) Then
 		AddingMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot assign the following unavailable role to user ""%1"":
-			           |%2.';"),
+			           |%2.';tr = '""%1"" kullanıcısına şu rol atanamıyor:
+			           |%2.'"),
 			IBUser.FullName, UnavailableRolesToAdd);
 		
 	ElsIf StrLineCount(UnavailableRolesToAdd) > 1 Then
 		AddingMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot assign the following unavailable roles to user ""%1"":
-			           |%2.';"),
+			           |%2.';tr = '""%1"" kullanıcısına şu roller atanamıyor:
+			           |%2.'"),
 			IBUser.FullName, UnavailableRolesToAdd);
 	Else
 		AddingMessageText = "";
@@ -9311,14 +9392,19 @@ Procedure CopySettings(SettingsManager, UserNameSource, UserNameDestination, Wra
 				           |with the ""%3"" object key and
 				           |the ""%4"" setting key.
 				           |Reason:
-				           |%5';"),
+				           |%5';tr = 'Ayar ""%1"" kullanıcısından 
+				           |""%3"" nesne anahtarı ve 
+				           |""%4"" ayar anahtarı olan 
+				           |""%2"" kullanıcısına kopyalanırken ayar değeri içe aktarılamadı.
+				           |Nedeni:
+				           |%5'"),
 				UserNameSource,
 				UserNameDestination,
 				ObjectKey,
 				SettingsKey,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			WriteLogEvent(
-				NStr("en = 'Users.Copy settings';",
+				NStr("en = 'Users.Copy settings';tr = 'Kullanıcılar.Ayarları kopyala'",
 				     Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				Comment);
@@ -9335,7 +9421,10 @@ Procedure CopySettings(SettingsManager, UserNameSource, UserNameDestination, Wra
 				NStr("en = 'Cannot copy the setting to the user due to:
 				           |%1
 				           |
-				           |For more information, see the event log.';"),
+				           |For more information, see the event log.';tr = 'Ayar şu nedenle kullanıcıya kopyalanamıyor:
+				           |%1
+				           |
+				           |Ayrıntılı bilgi için olay günlüğüne bakın.'"),
 				ErrorProcessing.BriefErrorDescription(ErrorInfo));
 			Raise ErrorText;
 		EndTry;
@@ -9436,7 +9525,7 @@ Procedure CheckRoleRightsList(UnavailableRights, RolesDetails, GeneralErrorText,
 		For Each UnavailableRight In UnavailableRights Do
 			If AccessRight(UnavailableRight, Metadata, Role) Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Role ""%1"" contains unavailable right %2.';"),
+					NStr("en = 'Role ""%1"" contains unavailable right %2.';tr = 'Rol ""%1"" erişilmeyen hak içerir %2.'"),
 					Role, UnavailableRight);
 				If ErrorList = Undefined Then
 					ErrorText = ErrorText + Chars.LF + ErrorDescription;
@@ -9455,7 +9544,7 @@ Procedure CheckRoleRightsList(UnavailableRights, RolesDetails, GeneralErrorText,
 			EndIf;
 			If AccessRight("Update", MetadataObject, Role) Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Role ""%1"" contains the ""Update"" right for shared object %2.';"),
+					NStr("en = 'Role ""%1"" contains the ""Update"" right for shared object %2.';tr = '""%1"" rolü %2 ortak nesnesi için ""Güncelleme"" yetkisine sahip.'"),
 					Role, MetadataObject.FullName());
 				If ErrorList = Undefined Then
 					ErrorText = ErrorText + Chars.LF + ErrorDescription;
@@ -9468,7 +9557,7 @@ Procedure CheckRoleRightsList(UnavailableRights, RolesDetails, GeneralErrorText,
 			EndIf;
 			If AccessRight("Insert", MetadataObject, Role) Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Role ""%1"" contains the ""Insert"" right for shared object %2.';"),
+					NStr("en = 'Role ""%1"" contains the ""Insert"" right for shared object %2.';tr = 'Rol ""%1"" Bölünmeyen nesnenin eklenmesi %2 hakkını içerir.'"),
 					Role, MetadataObject.FullName());
 				If ErrorList = Undefined Then
 					ErrorText = ErrorText + Chars.LF + ErrorDescription;
@@ -9478,7 +9567,7 @@ Procedure CheckRoleRightsList(UnavailableRights, RolesDetails, GeneralErrorText,
 			EndIf;
 			If AccessRight("Delete", MetadataObject, Role) Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Role ""%1"" contains the ""Delete"" right for shared object %2.';"),
+					NStr("en = 'Role ""%1"" contains the ""Delete"" right for shared object %2.';tr = '""%1"" rolü %2 ortak nesnesi için ""Silme"" hakkına sahip.'"),
 					Role, MetadataObject.FullName());
 				If ErrorList = Undefined Then
 					ErrorText = ErrorText + Chars.LF + ErrorDescription;
@@ -9658,7 +9747,7 @@ EndFunction
 
 Function EventNameChangeLoginSettingsAdditionalForLogging() Export
 	
-	Return NStr("en = 'Users.Change login settings (additional)';",
+	Return NStr("en = 'Users.Change login settings (additional)';tr = 'Kullanıcılar.Giriş ayarlarını değiştir (ek)'",
 		Common.DefaultLanguageCode());
 	
 EndFunction
@@ -10193,7 +10282,7 @@ Function PasswordChangeRequired(ErrorDescription = "", OnStart = False, Register
 				
 				If RegisterInLog Then
 					WriteLogEvent(
-						NStr("en = 'Users.Authorization error';",
+						NStr("en = 'Users.Authorization error';tr = 'Kullanıcılar. Uygulamaya giriş hatası'",
 						     Common.DefaultLanguageCode()),
 						EventLogLevel.Error,
 						Metadata.FindByType(TypeOf(CurrentUser)),
@@ -10204,7 +10293,7 @@ Function PasswordChangeRequired(ErrorDescription = "", OnStart = False, Register
 			Else
 				If RegisterInLog Then
 					WriteLogEvent(
-						NStr("en = 'Users.Last activity date update error';",
+						NStr("en = 'Users.Last activity date update error';tr = 'Kullanıcılar. Son aktivite tarihi güncelleme hatası'",
 						     Common.DefaultLanguageCode()),
 						EventLogLevel.Error,
 						Metadata.FindByType(TypeOf(CurrentUser)),
@@ -10376,7 +10465,7 @@ Procedure UpdateLastUserActivityDate(Parameters, IBUsersIDs)
 			ErrorInfo = ErrorInfo();
 			ErrorTextTemplate = CurrentUserInfoRecordErrorTextTemplate();
 			WriteLogEvent(
-				NStr("en = 'Users.Last activity date update error';",
+				NStr("en = 'Users.Last activity date update error';tr = 'Kullanıcılar. Son aktivite tarihi güncelleme hatası'",
 				     Common.DefaultLanguageCode()),
 				EventLogLevel.Error,
 				Metadata.FindByType(TypeOf(CurrentUser)),
@@ -10505,18 +10594,18 @@ Function PasswordComplianceError(Password, IBUser) Export
 			MinPasswordLength = PasswordPolicy.PasswordMinLength;
 		EndIf;
 		Return StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The new password must contain at least %1 characters.';"),
+			NStr("en = 'The new password must contain at least %1 characters.';tr = 'Yeni şifredeki karakter sayısı en az %1 olmalıdır.'"),
 			Format(MinPasswordLength, "NG="));
 	EndIf;
 	
 	If Errors.Find(PasswordPolicyComplianceCheckResult.DoesNotSatisfyComplexityRequirements) <> Undefined Then
-		Return NStr("en = 'The password does not meet the password complexity requirements.';")
+		Return NStr("en = 'The password does not meet the password complexity requirements.';tr = 'Şifre karmaşıklık gereksinimlerine uygun değildir.'")
 			+ Chars.LF + Chars.LF
 			+ NewPasswordHint();
 	EndIf;
 	
 	If Errors.Find(PasswordPolicyComplianceCheckResult.DoesNotSatisfyReuseLimitRequirements) <> Undefined Then
-		Return NStr("en = 'The new password has been used before.';");
+		Return NStr("en = 'The new password has been used before.';tr = 'Yeni parola daha önce kullanılmıştır.'");
 	EndIf;
 	
 	Return "";
@@ -10898,7 +10987,8 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
-			           |Cannot modify attribute ""IsInternal"" in event subscriptions.';"),
+			           |Cannot modify attribute ""IsInternal"" in event subscriptions.';tr = '""%1"" kullanıcısı kaydedilemedi.
+			           |Olay aboneliklerinde ""IsInternal"" özniteliği değiştirilemez.'"),
 			UserObject.Ref);
 		Raise ErrorText;
 	EndIf;
@@ -10906,7 +10996,8 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 	If AttributesToLock.Prepared <> UserObject.Prepared Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
-			           |Cannot modify attribute ""Prepared"" in event subscriptions.';"),
+			           |Cannot modify attribute ""Prepared"" in event subscriptions.';tr = '""%1"" kullanıcısı kaydedilirken hata oluştu.
+			           |Hazırlanan özellik, olay aboneliklerinde değiştirilemez.'"),
 			UserObject.Ref);
 		Raise ErrorText;
 	EndIf;
@@ -10915,7 +11006,9 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
 			           |Cannot modify attribute ""%2"" in event subscriptions.
-			           |The attribute updates automatically.';"),
+			           |The attribute updates automatically.';tr = '""%1"" Kullanıcı yazılırken bir hata oluştu. 
+			           |Olay aboneliklerindeki ""%2"" özniteliğini değiştirilemiyor. 
+			           |Öznitelik güncelleme otomatik olarak gerçekleştirilir.'"),
 			UserObject.Ref,
 			"IBUserID");
 		Raise ErrorText;
@@ -10927,7 +11020,9 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
 			           |Cannot modify attribute ""%2"" in event subscriptions.
-			           |The attribute updates automatically.';"),
+			           |The attribute updates automatically.';tr = '""%1"" Kullanıcı yazılırken bir hata oluştu. 
+			           |Olay aboneliklerindeki ""%2"" özniteliğini değiştirilemiyor. 
+			           |Öznitelik güncelleme otomatik olarak gerçekleştirilir.'"),
 			UserObject.Ref,
 			"DeleteInfobaseUserProperties");
 		Raise ErrorText;
@@ -10941,7 +11036,8 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
-			           |Cannot mark for deletion users who are allowed to log in.';"),
+			           |Cannot mark for deletion users who are allowed to log in.';tr = '""%1"" kullanıcısı kaydedilemedi.
+			           |Giriş izni olan kullanıcılar silinmek üzere işaretlenemez.'"),
 			UserObject.Ref);
 		Raise ErrorText;
 	EndIf;
@@ -10952,7 +11048,8 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
-			           |Cannot mark users who are allowed to log in as ""Inactive"".';"),
+			           |Cannot mark users who are allowed to log in as ""Inactive"".';tr = '""%1"" kullanıcısı kaydedilemedi.
+			           |Giriş izni olan kullanıcılar ""İnaktif"" olarak işaretlenemez.'"),
 			UserObject.Ref);
 		Raise ErrorText;
 	EndIf;
@@ -10963,7 +11060,8 @@ Procedure CheckUserAttributeChanges(UserObject, ProcessingParameters)
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t save user ""%1"".
-			           |Cannot mark users who are allowed to log in as ""Requires approval"".';"),
+			           |Cannot mark users who are allowed to log in as ""Requires approval"".';tr = '""%1"" kullanıcısı kaydedilemedi.
+			           |Giriş izni olan kullanıcılar ""Onay gerekiyor"" olarak işaretlenemez.'"),
 			UserObject.Ref);
 		Raise ErrorText;
 	EndIf;
@@ -11196,16 +11294,21 @@ Procedure DisableInactiveAndOverdueUsers(ForAuthorizedUsersOnly = False,
 					CommentTemplate =
 						NStr("en = 'Cannot clear the ""Login allowed"" flag
 						           |for user ""%1"" with expired access. Reason:
-						           |%2';");
+						           |%2';tr = 'Erişimi sona eren ""%1"" kullanıcısı için
+						           |""Giriş izni var"" onay kutusu temizlenemiyor. Nedeni:
+						           |%2'");
 				Else
 					CommentTemplate =
 						NStr("en = 'Cannot clear the ""Login allowed"" flag
 						           |for user ""%1"" with inactivity timeout reached.
 						           |Reason:
-						           |%2';");
+						           |%2';tr = 'Eylemsizlik zaman aşımına ulaşan ""%1"" kullanıcısı için
+						           |""Giriş izni var"" onay kutusu temizlenemiyor.
+						           |Nedeni:
+						           |%2'");
 				EndIf;
 				WriteLogEvent(
-					NStr("en = 'Users.Automatic authorization denial error';",
+					NStr("en = 'Users.Automatic authorization denial error';tr = 'Kullanıcılar. Uygulamaya giriş otomatik olarak yasaklanmıştır'",
 					     Common.DefaultLanguageCode()),
 					EventLogLevel.Error,
 					Metadata.FindByType(TypeOf(User)),
@@ -11236,7 +11339,7 @@ Procedure CheckCanSignIn(AuthorizationError)
 	EndIf;
 	
 	AuthorizationError = AuthorizationNotCompletedMessageTextWithLineBreak()
-		+ NStr("en = 'Your account is disabled. Please contact the administrator.';");
+		+ NStr("en = 'Your account is disabled. Please contact the administrator.';tr = 'Hesabınız kapatılmıştır. Yöneticiye başvurun.'");
 	
 EndProcedure
 

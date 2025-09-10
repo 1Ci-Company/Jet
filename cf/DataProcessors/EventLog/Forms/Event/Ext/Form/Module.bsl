@@ -67,7 +67,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Items.SessionDataSeparation.Visible = SeparationVisibility;
 	EndIf;
 	
-	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1, %2';"), 
+	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1, %2';tr = '%1, %2'"), 
 		Parameters.Level, Date);
 	
 	// Enabling the open button for the metadata list.
@@ -101,10 +101,10 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		If EventData <> Undefined Then
 			If EventData.Property("Right") Then
-				Items.DataPresentation.Title = NStr("en = 'Access denied';");
+				Items.DataPresentation.Title = NStr("en = 'Access denied';tr = 'Erişim reddedildi'");
 				DataPresentation = EventData.Right;
 			Else
-				Items.DataPresentation.Title = NStr("en = 'Action denied';");
+				Items.DataPresentation.Title = NStr("en = 'Action denied';tr = 'Eylem reddedildi'");
 				DataPresentation = EventData.Action;
 				If EventData.Property("Data") And EventData.Data <> Undefined Then
 					CreateFormTable("DataTable", "DataTable", EventData.Data);
@@ -164,7 +164,7 @@ Procedure CommentOpening(Item, StandardProcessing)
 	If ValueIsFilled(Comment) Then
 		Text = New TextDocument;
 		Text.SetText(Comment);
-		Text.Show(Title + " (" + NStr("en = 'Comment';") + ")");
+		Text.Show(Title + " (" + NStr("en = 'Comment';tr = 'Yorum'") + ")");
 		StandardProcessing = False;
 	EndIf;
 	
@@ -205,11 +205,12 @@ Procedure DataTableChoice(Item, RowSelected, Field, StandardProcessing)
 			
 		ElsIf Ref <> Undefined Then
 			Value = "<" + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Empty reference: %1';"), TypeOf(Ref)) + ">";
+				NStr("en = 'Empty reference: %1';tr = 'Boş referans: %1'"), TypeOf(Ref)) + ">";
 		Else
 			Value = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Failed to retrieve the reference from the row. The reference type might be invalid:
-				           |%1';"), Value);
+				           |%1';tr = 'Satırdan referans alınamadı. Referans türü geçersiz olabilir:
+				           |%1'"), Value);
 		EndIf;
 	ElsIf StrStartsWith(Value, "e1cib/") Then
 		FileSystemClient.OpenURL(Value);

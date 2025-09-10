@@ -197,7 +197,7 @@ Procedure FillAttachmentsAndGenerateHTMLTextBasedOnAttachmentEmail(AttachmentEma
 	NewMailMessage.SetSourceData(RawData);
 	
 	If NewMailMessage.ParseStatus = InternetMailMessageParseStatus.ErrorsDetected Then
-		Common.MessageToUser(NStr("en = 'Cannot parse the message.';"));
+		Common.MessageToUser(NStr("en = 'Cannot parse the message.';tr = 'İleti ayrıştırılamıyor.'"));
 		Return;
 	EndIf;
 	
@@ -411,7 +411,7 @@ Procedure GenerateBaseEmailString();
 		
 	EndIf;
 	
-	StringHeader = New FormattedString(NStr("en = 'Mail attachment:';"));
+	StringHeader = New FormattedString(NStr("en = 'Mail attachment:';tr = 'E-posta eki:'"));
 	EmailPresentation = Interactions.EmailPresentation( BaseEmailSubject, BaseEmailDate);
 	If EmailBasis = Undefined Then
 		StringText = New FormattedString(EmailPresentation);

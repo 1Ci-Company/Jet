@@ -57,7 +57,7 @@ Procedure BeforeWrite(Cancel)
 	If ValueIsFilled(MainTask) 
 		And Common.ObjectAttributeValue(MainTask, "BusinessProcess") = Ref Then
 
-		Raise NStr("en = 'A task that belongs to the duty cannot be specified as the main task.';");
+		Raise NStr("en = 'A task that belongs to the duty cannot be specified as the main task.';tr = 'İş süreci görevi ana görev olarak belirlenemez.'");
 
 	EndIf;
 
@@ -331,7 +331,7 @@ EndFunction
 
 Function TaskDescriptionForCheck()
 
-	TaskDescription = NStr("en = 'Check';");
+	TaskDescription = NStr("en = 'Check';tr = 'Doğrula'");
 	Return ?(IsBlankString(TaskDescription), "", TaskDescription + ": ") + Description;
 
 EndFunction
@@ -349,9 +349,11 @@ Function CompletePointExecutionResult(Val TaskRef)
 
 	StringFormat = ?(TaskData.Executed, 
 		NStr("en = '%1, %2 completed the task:
-			|%3';") + Chars.LF, 
+			|%3';tr = '%1, %2 görevi tamamladı:
+			|%3'") + Chars.LF, 
 		NStr("en = '%1, %2 rejected the task:
-			|%3';") + Chars.LF);
+			|%3';tr = '%1, %2 görevi reddetti:
+			|%3'") + Chars.LF);
 
 	Comment = TrimAll(TaskData.ExecutionResult);
 	Comment = ?(IsBlankString(Comment), "", Comment + Chars.LF);
@@ -366,14 +368,17 @@ Function ValidatePointExecutionResult(Val TaskRef)
 
 	If Not Accepted Then
 		StringFormat = NStr("en = '%1, %2 sent the task back for revision:
-							|%3';") + Chars.LF;
+							|%3';tr = '%1, %2 görevi tekrar revizyona gönderdi:
+							|%3'") + Chars.LF;
 
 	Else
 		StringFormat = ?(Completed2, 
 			NStr("en = '%1, %2 confirmed task completion:
-				|%3';") + Chars.LF, 
+				|%3';tr = '%1, %2 görevin tamamlandığını doğruladı:
+				|%3'") + Chars.LF, 
 			NStr("en = '%1, %2 confirmed task cancellation:
-			   |%3';") + Chars.LF);
+			   |%3';tr = '%1, %2 görevin iptal edildiğini doğruladı:
+			   |%3'") + Chars.LF);
 	EndIf;
 
 	TaskData = Common.ObjectAttributesValues(TaskRef,
@@ -418,5 +423,5 @@ EndProcedure
 #EndRegion
 
 #Else
-	Raise NStr("en = 'Invalid object call on the client.';");
+	Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

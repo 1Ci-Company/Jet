@@ -72,7 +72,7 @@ EndFunction
 Function GetProxy(Val URLOrProtocol) Export
 	
 #If WebClient Then
-	Raise NStr("en = 'Web client does not support proxy server.';");
+	Raise NStr("en = 'Web client does not support proxy server.';tr = 'Web istemcisi proxy sunucusunu desteklemiyor.'");
 #Else
 	
 	AcceptableProtocols = New Map();
@@ -169,7 +169,7 @@ Function ProxySettingsState() Export
 	
 	Result = New Structure;
 	Result.Insert("ProxyConnection", False);
-	Result.Insert("Presentation", NStr("en = 'Web client does not support proxy server.';"));
+	Result.Insert("Presentation", NStr("en = 'Web client does not support proxy server.';tr = 'Web istemcisi proxy sunucusunu desteklemiyor.'"));
 	Return Result;
 	
 #Else

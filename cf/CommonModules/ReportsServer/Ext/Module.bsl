@@ -97,7 +97,7 @@ Procedure InitializeSettingsComposer(SettingsComposer, Schema, Report = Undefine
 	Try
 		SettingsComposer.Initialize(New DataCompositionAvailableSettingsSource(Schema));
 	Except
-		EventName = NStr("en = 'Settings Composer failed to initialize.';",
+		EventName = NStr("en = 'Settings Composer failed to initialize.';tr = 'Veri toplama için bağlayıcı ayarları başlatılırken hata oluştu.'",
 			Common.DefaultLanguageCode());
 		
 		MetadataObject = Undefined;
@@ -170,7 +170,7 @@ Procedure OutputCommand(ReportForm, CommandOrCommands, GroupType, ToGroupBeginni
 		BeforeWhatToInsert = ?(ToGroupBeginning, ReportForm.Items.NewWindow, Undefined);
 	Else
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value is passed in parameter %2 on calling procedure %1.';"),
+			NStr("en = 'Invalid value is passed in parameter %2 on calling procedure %1.';tr = '""%1"" prosedürü çağrıldığında ""%2"" parametrenin değeri kullanılamıyor.'"),
 			"ReportsServer.OutputCommand",
 			"GroupType");
 	EndIf;
@@ -1214,7 +1214,7 @@ Function ReportObject(Id) Export
 		Kind = Upper(ObjectDetails[0]);
 		Name = ObjectDetails[1];
 	Else
-		Raise StrReplace(NStr("en = 'Report %1 has invalid name.';"), "%1", FullName);
+		Raise StrReplace(NStr("en = 'Report %1 has invalid name.';tr = '""%1"" tam rapor adı geçersiz.'"), "%1", FullName);
 	EndIf;
 	
 	If Kind = "REPORT" Then
@@ -1222,7 +1222,7 @@ Function ReportObject(Id) Export
 	ElsIf Kind = "EXTERNALREPORT" Then
 		Return ExternalReports.Create(Name); // ACC:553 Only for external reports, which are not attached to the "Additional reports and data processors" subsystem. The call is safe as all external reports go through security checks when being attached.
 	Else
-		Raise StrReplace(NStr("en = '%1 is not a report.';"), "%1", FullName);
+		Raise StrReplace(NStr("en = '%1 is not a report.';tr = '""%1"" rapor değildir.'"), "%1", FullName);
 	EndIf;
 EndFunction
 
@@ -1679,7 +1679,7 @@ Procedure RegroupSettingsFormItems(Form, Val ItemsHierarchyNode, ItemsProperties
 		
 		If Group = Undefined Then 
 			Group = SettingsFormItemsGroup(Form, ItemsHierarchyNode, GroupName);
-			Group.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Row %1';"), NumberOfGroup);
+			Group.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Row %1';tr = 'Satır %1'"), NumberOfGroup);
 		EndIf;
 		
 		FillPropertyValues(Group, GroupProperties,, "Group, Title");
@@ -1793,7 +1793,7 @@ Procedure AddColumnMargins(Form, SettingsItems, ItemsHierarchyNode)
 		ColumnFieldGroup = SettingsFormItemsGroup(Form, ItemsHierarchyNode, GroupName);
 		
 		ColumnFieldGroup.Group = Column.Group;
-		ColumnFieldGroup.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The %1 column fields';"), ColumnNumber);
+		ColumnFieldGroup.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The %1 column fields';tr = '%1 sütün alanı'"), ColumnNumber);
 		
 		ColumnFields = Column.ChildItems;
 		NumberOfColumnFields = ColumnFields.Count();
@@ -2518,7 +2518,7 @@ Procedure DistributeSettingsFormItems(Form, Val Group, SettingsItems)
 		If Column = Undefined Then 
 			Column = SettingsFormItemsGroup(Form, Group, ColumnName);
 			Column.Title = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Column %1';"), ColumnNumber);
+				NStr("en = 'Column %1';tr = 'Sütün %1'"), ColumnNumber);
 			
 			If InputFieldsOnly Then 
 				Column.Group = ChildFormItemsGroup.AlwaysHorizontal;
@@ -2571,7 +2571,7 @@ Function SettingsFormItemsHierarchy(Form, Parent, Signs, LineNumber, ColumnNumbe
 	RowName = Parent.Name + "String" + LineNumber;
 	String = SettingsFormItemsGroup(Form, Parent, RowName);
 	String.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Row %1.%2';"), ColumnNumber, LineNumber);
+		NStr("en = 'Row %1.%2';tr = 'Satır %1.%2'"), ColumnNumber, LineNumber);
 	
 	If Not Signs.IsList Then 
 		String.Group = ChildFormItemsGroup.AlwaysHorizontal;
@@ -2584,7 +2584,7 @@ Function SettingsFormItemsHierarchy(Form, Parent, Signs, LineNumber, ColumnNumbe
 	ColumnName = String.Name + "Column1";
 	Column = SettingsFormItemsGroup(Form, String, ColumnName);
 	Column.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Column %1.%2.1';"), ColumnNumber, LineNumber);
+		NStr("en = 'Column %1.%2.1';tr = 'Sütün %1.%2.1'"), ColumnNumber, LineNumber);
 	
 	Column.Group = ChildFormItemsGroup.AlwaysHorizontal;
 	
@@ -2875,9 +2875,9 @@ Function PeriodElementHeader(Property, SettingItemTitle, ShouldOutputPeriodTitle
 	EndIf;
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '%1 (date %2)';"),
+		NStr("en = '%1 (date %2)';tr = '%1 (tarih %2)'"),
 		SettingItemTitle,
-		?(StrEndsWith(Lower(Property), Lower("StartDate")), NStr("en = 'start';"), NStr("en = 'end';")));
+		?(StrEndsWith(Lower(Property), Lower("StartDate")), NStr("en = 'start';tr = 'başlangıç'"), NStr("en = 'end';tr = 'bitiş'")));
 	
 EndFunction
 
@@ -2893,11 +2893,11 @@ Procedure AddAPeriodShiftCommand(Form, Group, NameTemplate, ThisIsTheStandardRep
 	If ShiftDirection > 0 Then 
 		Command.Action = "Attachable_MoveThePeriodForward";
 		Command.Title = ">";
-		Command.ToolTip = NStr("en = 'Move forward';");
+		Command.ToolTip = NStr("en = 'Move forward';tr = 'İleriye taşı'");
 	Else
 		Command.Action = "Attachable_MoveThePeriodBack";
 		Command.Title = "<";
-		Command.ToolTip = NStr("en = 'Move back';");
+		Command.ToolTip = NStr("en = 'Move back';tr = 'Geriye taşı'");
 	EndIf;
 	
 	Button = Form.Items.Find(TagName);
@@ -2918,7 +2918,7 @@ Procedure AddPeriodChoiceCommand(Form, Group, NameTemplate, Period, ThisIsTheSta
 		Command = Form.Commands.Add(TagName);
 	EndIf;
 	Command.Action = "Attachable_SelectPeriod";
-	Command.Title = NStr("en = 'Select period…';");
+	Command.Title = NStr("en = 'Select period…';tr = 'Dönem seç...'");
 	Command.ToolTip = Command.Title;
 	Command.Representation = ButtonRepresentation.Picture;
 	Command.Picture = PictureLib.InputFieldSelect;
@@ -3052,7 +3052,7 @@ Procedure AddListItems(Form, SettingItem, SettingItemDetails, ListName, Attribut
 		ListFields = Items.Add(List.Name + "Columns", Type("FormGroup"), List);
 		ListFields.Type = FormGroupType.ColumnGroup;
 		ListFields.Group = ColumnsGroup.InCell;
-		ListFields.Title = NStr("en = 'Fields';");
+		ListFields.Title = NStr("en = 'Fields';tr = 'Alanlar'");
 		ListFields.ShowTitle = False;
 		
 		TaggingField = Items.Add(ListName + "Check", Type("FormField"), ListFields);
@@ -3139,7 +3139,7 @@ Procedure AddListCommands(Form, SettingItem, SettingsItems, ListName)
 	Indent.Visible = True;
 	
 	CommandName = ListName + "Pickup";
-	CommandTitle = NStr("en = 'Pick';");
+	CommandTitle = NStr("en = 'Pick';tr = 'Seç'");
 	AddListCommand(Form, TitleGroup, CommandName, CommandTitle, "Attachable_List_Pick");
 	
 	If TypeOf(SettingItem.ValueType) <> Type("TypeDescription")
@@ -3158,7 +3158,7 @@ Procedure AddListCommands(Form, SettingItem, SettingsItems, ListName)
 	If HasReferenceType Then
 		
 		CommandName = ListName + ReportsClientServer.PasteFromClipboardCommandName();
-		CommandTitle = NStr("en = 'Paste from clipboard…';");
+		CommandTitle = NStr("en = 'Paste from clipboard…';tr = 'Panodan yapıştır...'");
 		AddListCommand(Form, TitleGroup, CommandName, CommandTitle,
 			"Attachable_List_PasteFromClipboard", PictureLib.PasteFromClipboard);
 			

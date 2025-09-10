@@ -50,7 +50,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		// Adding the filter by users added by the person responsible for the list.
 		CommonClientServer.SetDynamicListFilterItem(
 			UsersList, "Prepared", True, ,
-			NStr("en = 'Users are submitted for authorization';"), False,
+			NStr("en = 'Users are submitted for authorization';tr = 'Kullanıcılar doğrulamaya gönderildi'"), False,
 			DataCompositionSettingsItemViewMode.Normal);
 	EndIf;
 	
@@ -129,7 +129,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 				Items.UsersList.SearchOnInput = SearchInTableOnInput.DontUse;
 				Items.UserGroups.SearchOnInput = SearchInTableOnInput.DontUse;
 				CurrentItem = Items.SelectedUsersAndGroupsList;
-				Items.EndAndClose.Title = NStr("en = 'Complete and close';");
+				Items.EndAndClose.Title = NStr("en = 'Complete and close';tr = 'Tamamla ve kapat'");
 			EndIf;
 			
 			If StoredParameters.UsersGroupsSelection Then
@@ -206,7 +206,7 @@ Procedure OnOpen(Cancel)
 #If MobileClient Then
 	If StoredParameters.UseGroups Then
 		Items.GroupsGroup.Title = ?(Items.UserGroups.CurrentData = Undefined,
-			NStr("en = 'User groups';"),
+			NStr("en = 'User groups';tr = 'Kullanıcı grupları'"),
 			String(Items.UserGroups.CurrentData.Ref));
 	EndIf;
 #EndIf
@@ -425,7 +425,8 @@ Procedure UserGroupsDrag(Item, DragParameters, StandardProcessing, String, Field
 	If SelectHierarchy Then
 		ShowMessageBox(,
 			NStr("en = 'To allow dragging users to groups, clear the
-			           |""Show users that belong to subgroups"" check box.';"));
+			           |""Show users that belong to subgroups"" check box.';tr = 'Bir kullanıcıyı gruplara sürüklemek için devre dışı bırakın
+			           |""Alt grupların kullanıcılarını göster"" onay kutusu.'"));
 		Return;
 	EndIf;
 	
@@ -448,17 +449,17 @@ Procedure UserGroupsDrag(Item, DragParameters, StandardProcessing, String, Field
 	If UsersCount = 1 Then
 		If ActionExcludeUser Then
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Do you want to remove user ""%1"" from group ""%2""?';"),
+				NStr("en = 'Do you want to remove user ""%1"" from group ""%2""?';tr = '""%1"" kullanıcısı ""%2"" grubundan çıkarılsın mı?'"),
 				String(DragParameters.Value[0]),
 				String(Items.UserGroups.CurrentRow));
 			
 		ElsIf Not GroupMarkedForDeletion Then
 			If AddToGroup Then
-				Template = NStr("en = 'Do you want to add user ""%1"" to group ""%2""?';");
+				Template = NStr("en = 'Do you want to add user ""%1"" to group ""%2""?';tr = '""Alt kullanıcılarını göster"" onay kutusu ""%1"" gruba ""%2""?'");
 			ElsIf Move Then
-				Template = NStr("en = 'Do you want to move user ""%1"" to group ""%2""?';");
+				Template = NStr("en = 'Do you want to move user ""%1"" to group ""%2""?';tr = 'Kullanıcıyı taşı ""%1"" gruba ""%2""?'");
 			Else
-				Template = NStr("en = 'Do you want to copy user ""%1"" to group ""%2""?';");
+				Template = NStr("en = 'Do you want to copy user ""%1"" to group ""%2""?';tr = 'Kullanıcıyı Kopyala ""%1"" gruba ""%2""?'");
 			EndIf;
 			
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -467,11 +468,11 @@ Procedure UserGroupsDrag(Item, DragParameters, StandardProcessing, String, Field
 				String(String));
 		Else
 			If AddToGroup Then
-				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add user ""%2"" to the group?';");
+				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add user ""%2"" to the group?';tr = 'Grup ""%1"" silinmek üzere işaretlenmiştir. Kullanıcıyı Etkinleştir""%2""bu gruba?'");
 			ElsIf Move Then
-				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move user ""%2"" to the group?';");
+				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move user ""%2"" to the group?';tr = 'Grup ""%1"" silinmek üzere işaretlenmiştir. ""%2"" kullanıcısı bu gruba taşınsın mı?'");
 			Else
-				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy user ""%2"" to the group?';");
+				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy user ""%2"" to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. ""%2"" kullanıcısı bu gruba kopyalansın mı?'");
 			EndIf;
 			
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -483,17 +484,17 @@ Procedure UserGroupsDrag(Item, DragParameters, StandardProcessing, String, Field
 	Else
 		If ActionExcludeUser Then
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Do you want to remove %1 users from group ""%2""?';"),
+				NStr("en = 'Do you want to remove %1 users from group ""%2""?';tr = '%1 kullanıcıları ""%2"" grubundan çıkarılsın mı?'"),
 				UsersCount,
 				String(Items.UserGroups.CurrentRow));
 			
 		ElsIf Not GroupMarkedForDeletion Then
 			If AddToGroup Then
-				Template = NStr("en = 'Do you want to add %1 users to group ""%2""?';");
+				Template = NStr("en = 'Do you want to add %1 users to group ""%2""?';tr = '""%2"" grubuna users(%1) dahil edilsin mi?'");
 			ElsIf Move Then
-				Template = NStr("en = 'Do you want to move %1 users to group ""%2""?';");
+				Template = NStr("en = 'Do you want to move %1 users to group ""%2""?';tr = 'Kullanıcılar(%1) ""%2"" grubuna taşınsın mı?'");
 			Else
-				Template = NStr("en = 'Do you want to copy %1 users to group ""%2""?';");
+				Template = NStr("en = 'Do you want to copy %1 users to group ""%2""?';tr = 'Kullanıcılar (%1) ""%2"" grubuna kopyalansın mı?'");
 			EndIf;
 			
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -502,11 +503,11 @@ Procedure UserGroupsDrag(Item, DragParameters, StandardProcessing, String, Field
 				String(String));
 		Else
 			If AddToGroup Then
-				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add %2 users to the group?';");
+				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add %2 users to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. Kullanıcılar (%2) bu gruba dahil edilsin mi?'");
 			ElsIf Move Then
-				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move %2 users to the group?';");
+				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move %2 users to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. Kullanıcılar(%2) bu gruba taşınsın mı?'");
 			Else
-				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy %2 users to the group?';");
+				Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy %2 users to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. Kullanıcılar (%2) bu gruba kopyalansın mı?'");
 			EndIf;
 			
 			QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -844,13 +845,16 @@ Procedure LockInvalidUsersInCollaborationSystem(Command)
 	If Not IsBlankString(ProcessingResult) Then
 		MessageTemplate = NStr("en = 'Cannot disable users due to:
 			|
-			|%1';");
+			|%1';tr = 'Kullanıcılar şu nedenle devre dışı bırakılamıyor:
+			|
+			|%1'");
 		ShowMessageBox(,
 			StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, ProcessingResult),,
-			NStr("en = 'Cannot disable users';"));
+			NStr("en = 'Cannot disable users';tr = 'Kullanıcılar devre dışı bırakılamıyor'"));
 	Else
 		Status(NStr("en = 'Inactive users are
-			|disabled.';"),,,PictureLib.Success32);
+			|disabled.';tr = 'Aktif olmayan kullanıcılar
+			|devre dışı bırakıldı.'"),,,PictureLib.Success32);
 	EndIf;
 EndProcedure
 
@@ -863,7 +867,7 @@ Function BlockInvalidUsersInTheInteractionSystemOnTheServer()
 		BlockingResult = ModuleConversationsInternal.BlockAnInteractionSystemUser(InvalidUser);
 		If BlockingResult <> Undefined Then
 			Result = ErrorProcessing.BriefErrorDescription(BlockingResult);
-			WriteLogEvent(NStr("en = 'Conversations.Disable inactive users';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Conversations.Disable inactive users';tr = 'Sohbetler.Pasif kullanıcıları devre dışı bırak'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorProcessing.DetailErrorDescription(BlockingResult));
 		EndIf;
@@ -937,7 +941,10 @@ Procedure FillContactInformation(Form, CurrentUser)
 	Template = NStr("en = '%1
 	|
 	|Phone: %2
-	|Email: %3';");
+	|Email: %3';tr = '%1
+	|
+	|Telefon: %2
+	|E-posta: %3'");
 	
 	Department = CommonClientServer.StructureProperty(UserContactInformation, "Department", "");
 	UserName = CommonClientServer.StructureProperty(UserContactInformation, "Description", "");
@@ -1178,7 +1185,7 @@ Procedure ChangeExtendedPickFormParameters()
 		// Making the titles of UsersList and UserGroups lists visible.
 		Items.UserGroups.TitleLocation          = FormItemTitleLocation.Top;
 		Items.UsersList.TitleLocation           = FormItemTitleLocation.Top;
-		Items.UsersList.Title                    = NStr("en = 'Users in group';");
+		Items.UsersList.Title                    = NStr("en = 'Users in group';tr = 'Gruptaki kullanıcılar'");
 		Items.SelectGroup.Visible                         = StoredParameters.UsersGroupsSelection;
 	Else
 		Items.CancelUserSelection.Visible             = True;
@@ -1191,9 +1198,9 @@ EndProcedure
 Procedure SetTitleOfSelectedUsersAndGroups()
 	
 	If StoredParameters.UseGroups Then
-		Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users and groups';");
+		Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users and groups';tr = 'Seçilmiş kullanıcılar ve gruplar'");
 	Else
-		Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users';");
+		Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users';tr = 'Seçilmiş kullanıcılar'");
 	EndIf;
 	
 EndProcedure
@@ -1302,14 +1309,14 @@ Procedure ConfigureUserGroupsUsageForm(GroupUsageChanged = False,
 			// Pick mode.
 			If UsersGroupsSelection Then
 				Title = ?(StoredParameters.AdvancedPick, StoredParameters.PickFormHeader,
-					NStr("en = 'Pick users and groups';"));
+					NStr("en = 'Pick users and groups';tr = 'Kullanıcıları ve grupları seç'"));
 				CommonClientServer.SetFormItemProperty(Items,
-					"SelectUser", "Title", NStr("en = 'Select users';"));
+					"SelectUser", "Title", NStr("en = 'Select users';tr = 'Kullanıcıları seç'"));
 				CommonClientServer.SetFormItemProperty(Items,
-					"SelectUsersGroup", "Title", NStr("en = 'Select groups';"));
+					"SelectUsersGroup", "Title", NStr("en = 'Select groups';tr = 'Grupları seçin'"));
 			Else
 				Title = ?(StoredParameters.AdvancedPick, StoredParameters.PickFormHeader,
-					NStr("en = 'Pick users';"));
+					NStr("en = 'Pick users';tr = 'Kullanıcıları seç'"));
 				
 				If StoredParameters.AdvancedPick
 				   And ValueIsFilled(StoredParameters.PickingCompletionButtonTitle) Then
@@ -1321,12 +1328,12 @@ Procedure ConfigureUserGroupsUsageForm(GroupUsageChanged = False,
 		Else
 			// Selection mode.
 			If UsersGroupsSelection Then
-				Title = NStr("en = 'Select user or group';");
+				Title = NStr("en = 'Select user or group';tr = 'Kullanıcı veya grubu seçin'");
 				
 				CommonClientServer.SetFormItemProperty(Items,
-					"SelectUser", "Title", NStr("en = 'Select user';"));
+					"SelectUser", "Title", NStr("en = 'Select user';tr = 'Kullanıcı seçin'"));
 			Else
-				Title = NStr("en = 'Select user';");
+				Title = NStr("en = 'Select user';tr = 'Kullanıcı seçin'");
 			EndIf;
 		EndIf;
 	EndIf;
@@ -1353,7 +1360,7 @@ Procedure UserGroupsAfterActivateRow()
 #If MobileClient Then
 	If Not StoredParameters.AdvancedPick Then
 		Items.GroupsGroup.Title = ?(Items.UserGroups.CurrentData = Undefined,
-			NStr("en = 'User groups';"),
+			NStr("en = 'User groups';tr = 'Kullanıcı grupları'"),
 			String(Items.UserGroups.CurrentData.Ref));
 		CurrentItem = Items.UsersList;
 	EndIf;
@@ -1406,7 +1413,7 @@ Procedure UserGroupsDragCompletion(Response, AdditionalParameters) Export
 	
 	If UserMessage.HasErrors = False Then
 		ShowUserNotification(
-			NStr("en = 'Move users';"), , UserMessage.Message, PictureLib.DialogInformation);
+			NStr("en = 'Move users';tr = 'Kullanıcıları taşıyın'"), , UserMessage.Message, PictureLib.DialogInformation);
 	Else
 		ShowMessageBox(,UserMessage.Message);
 	EndIf;

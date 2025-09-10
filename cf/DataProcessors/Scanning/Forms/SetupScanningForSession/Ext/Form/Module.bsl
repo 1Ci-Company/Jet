@@ -36,7 +36,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.GroupJPGQuantity.Visible = (ScannedImageFormat = JPGFormat);
 	Items.TIFFDeflation.Visible = (ScannedImageFormat = TIFFormat);
 	
-	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';"), JPGQuality);
+	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';tr = 'Kalite (%1)'"), JPGQuality);
 	InstallHints();
 	
 EndProcedure
@@ -66,7 +66,7 @@ EndProcedure
 
 &AtClient
 Procedure JPGQualityOnChange(Item)
-	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';"), JPGQuality);
+	Items.JPGQuality.Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Quality (%1)';tr = 'Kalite (%1)'"), JPGQuality);
 EndProcedure
 
 &AtClient

@@ -55,7 +55,7 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	   And Object.Description = PersonalAccessGroupsDescription Then
 		
 		Common.MessageToUser(
-			NStr("en = 'The description is reserved.';"),
+			NStr("en = 'The description is reserved.';tr = 'Tanım rezerve edildi.'"),
 			,
 			"Object.Description",
 			,

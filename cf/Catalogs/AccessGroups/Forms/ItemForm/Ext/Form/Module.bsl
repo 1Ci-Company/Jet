@@ -60,7 +60,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			ActionsWithSaaSUser = ModuleUsersInternalSaaS.GetActionsWithSaaSUser(
 				Undefined, ActionsWithSaaSUser);
 			If Not ActionsWithSaaSUser.ChangeAdministrativeAccess Then
-				Raise(NStr("en = 'Insufficient access rights to edit administrators.';"), 
+				Raise(NStr("en = 'Insufficient access rights to edit administrators.';tr = 'Yöneticilerin yapısını değiştirmek için yetersiz erişim hakları.'"), 
 					ErrorCategory.AccessViolation);
 			EndIf;
 		Except
@@ -118,7 +118,9 @@ Procedure OnOpen(Cancel)
 			New NotifyDescription("OnOpenAfterAdministratorProfileInstallationConfirmation", ThisObject),
 			NStr("en = 'The ""Administrators"" access group must have the ""Administrator"" profile.
 			           |
-			           |Do you want to assign the profile to the access group? If you select ""No"", the group will be read-only.';"),
+			           |Do you want to assign the profile to the access group? If you select ""No"", the group will be read-only.';tr = '""Yöneticiler"" erişim grubu ""Yönetici"" profiline sahip olmalı.
+			           |
+			           |Profili erişim grubuna atamak ister misiniz? ""Hayır""ı seçerseniz, grup salt okunur olacak.'"),
 			QuestionDialogMode.YesNo,
 			,
 			DialogReturnCode.No);
@@ -135,7 +137,9 @@ Procedure OnOpen(Cancel)
 				New NotifyDescription("OnOpenAfterAccessKindUpdateConfirmation", ThisObject),
 				NStr("en = 'The access kinds of the access group''s profile were changed.
 				           |
-				           |Do you want to update the access kinds in the access group? If you select ""No"", the group will be read-only.';"),
+				           |Do you want to update the access kinds in the access group? If you select ""No"", the group will be read-only.';tr = 'Erişim grubu profilinin erişim türleri değiştirildi.
+				           |
+				           |Erişim grubundaki erişim türlerini güncellemek istiyor musunuz? ""Hayır""ı seçerseniz, grup salt okunur olacak.'"),
 				QuestionDialogMode.YesNo,
 				,
 				DialogReturnCode.No);
@@ -296,7 +300,8 @@ Procedure AfterWrite(WriteParameters)
 		ShowMessageBox(
 			New NotifyDescription("AfterWriteCompletion", ThisObject, WriteParameters),
 			NStr("en = 'The access group does not affect its members'' rights
-			           |as its profile is marked for deletion.';"));
+			           |as its profile is marked for deletion.';tr = 'Erişim grubunun profili silinmek üzere işaretlendiğinden, 
+			           |üyelerinin yetkilerini etkilemez.'"));
 	Else
 		AfterWriteCompletion(WriteParameters);
 	EndIf;
@@ -417,19 +422,19 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 		If Not ValueIsFilled(Member) Then
 			CommonClientServer.AddUserError(Errors,
 				"GroupUsers[%1].User",
-				SpecifyMessage(NStr("en = 'The user is not selected.';"), Member),
+				SpecifyMessage(NStr("en = 'The user is not selected.';tr = 'Kullanıcı seçilmedi.'"), Member),
 				"GroupUsers",
 				LineNumber,
-				SpecifyMessage(NStr("en = 'The user is not selected in line #%1.';"), Member));
+				SpecifyMessage(NStr("en = 'The user is not selected in line #%1.';tr = '#%1 satırında kullanıcı seçilmedi.'"), Member));
 		EndIf;
 		If ValueIsFilled(ValidityPeriod) And ValidityPeriod <= BegOfDay Then
-			DueDate = Format(ValidityPeriod, NStr("en = 'DLF=D';"));
+			DueDate = Format(ValidityPeriod, NStr("en = 'DLF=D';tr = 'DLF=D'"));
 			CommonClientServer.AddUserError(Errors,
 				"GroupUsers[%1].User",
-				SpecifyMessage(NStr("en = 'Membership of %2 should expire tomorrow or later.';"), DueDate),
+				SpecifyMessage(NStr("en = 'Membership of %2 should expire tomorrow or later.';tr = '%2 üyeliği yarın veya daha sonra sona ermelidir.'"), DueDate),
 				"GroupUsers",
 				LineNumber,
-				SpecifyMessage(NStr("en = 'Membership of %2 (line %1) should expire tomorrow or later.';"), DueDate));
+				SpecifyMessage(NStr("en = 'Membership of %2 (line %1) should expire tomorrow or later.';tr = '%2 üyeliği (satır %1) yarın veya daha sonra sona ermelidir.'"), DueDate));
 		EndIf;
 		If Not ValueIsFilled(Member) Then
 			Continue;
@@ -442,19 +447,19 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 		If FoundValues.Count() > 1 Then
 			
 			If TypeOf(CurrentRow.User) = Type("CatalogRef.Users") Then
-				SingleErrorText      = NStr("en = 'Duplicate user: ""%2"".';");
-				SeveralErrorsText = NStr("en = 'Duplicate user ""%2"" in line #%1.';");
+				SingleErrorText      = NStr("en = 'Duplicate user: ""%2"".';tr = 'Kopya kullanıcı: ""%2"".'");
+				SeveralErrorsText = NStr("en = 'Duplicate user ""%2"" in line #%1.';tr = '%1 satırında kopya kullanıcı: ""%2"".'");
 				
 			ElsIf TypeOf(CurrentRow.User) = Type("CatalogRef.ExternalUsers") Then
-				SingleErrorText      = NStr("en = 'Duplicate external user: ""%2"".';");
-				SeveralErrorsText = NStr("en = 'Duplicate external user ""%2"" in line #%1.';");
+				SingleErrorText      = NStr("en = 'Duplicate external user: ""%2"".';tr = 'Kopya harici kullanıcı: ""%2"".'");
+				SeveralErrorsText = NStr("en = 'Duplicate external user ""%2"" in line #%1.';tr = '%1 satırında kopya harici kullanıcı ""%2"".'");
 				
 			ElsIf TypeOf(CurrentRow.User) = Type("CatalogRef.UserGroups") Then
-				SingleErrorText      = NStr("en = 'Duplicate user group: ""%2"".';");
-				SeveralErrorsText = NStr("en = 'Duplicate user group ""%2"" in line #%1.';");
+				SingleErrorText      = NStr("en = 'Duplicate user group: ""%2"".';tr = 'Kopya kullanıcı grubu: ""%2"".'");
+				SeveralErrorsText = NStr("en = 'Duplicate user group ""%2"" in line #%1.';tr = '%1 satırında kopya kullanıcı grubu ""%2"".'");
 			Else
-				SingleErrorText      = NStr("en = 'Duplicate external user group: ""%2"".';");
-				SeveralErrorsText = NStr("en = 'Duplicate external user group ""%2"" in line #%1.';");
+				SingleErrorText      = NStr("en = 'Duplicate external user group: ""%2"".';tr = 'Kopya harici kullanıcı grubu: ""%2"".'");
+				SeveralErrorsText = NStr("en = 'Duplicate external user group ""%2"" in line #%1.';tr = '%1 satırında kopya harici kullanıcı grubu ""%2"".'");
 			EndIf;
 			
 			CommonClientServer.AddUserError(Errors,
@@ -470,15 +475,15 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 		   And TypeOf(CurrentRow.User) <> Type("CatalogRef.Users") Then
 			
 			If TypeOf(CurrentRow.User) = Type("CatalogRef.ExternalUsers") Then
-				SingleErrorText      = NStr("en = 'External user ""%2"" cannot be a member of the predefined access group ""Administrators"".';");
-				SeveralErrorsText = NStr("en = 'External user ""%2"" in line #%1 cannot be a member of the predefined access group ""Administrators"".';");
+				SingleErrorText      = NStr("en = 'External user ""%2"" cannot be a member of the predefined access group ""Administrators"".';tr = '""%2"" harici kullanıcısı ""Yöneticiler"" öntanımlı erişim grubunun üyesi olamaz.'");
+				SeveralErrorsText = NStr("en = 'External user ""%2"" in line #%1 cannot be a member of the predefined access group ""Administrators"".';tr = '%1 satırındaki ""%2"" harici kullanıcısı ""Yöneticiler"" öntanımlı erişim grubunun üyesi olamaz.'");
 				
 			ElsIf TypeOf(CurrentRow.User) = Type("CatalogRef.UserGroups") Then
-				SingleErrorText      = NStr("en = 'User group ""%2"" cannot be a member of the predefined access group ""Administrators"".';");
-				SeveralErrorsText = NStr("en = 'User group ""%2"" in line #%1 cannot be a member of the predefined access group ""Administrators"".';");
+				SingleErrorText      = NStr("en = 'User group ""%2"" cannot be a member of the predefined access group ""Administrators"".';tr = '""%2"" kullanıcı grubu öntanımlı ""Yöneticiler"" erişim grubuna ait olamaz.'");
+				SeveralErrorsText = NStr("en = 'User group ""%2"" in line #%1 cannot be a member of the predefined access group ""Administrators"".';tr = '%1 satırındaki ""%2"" kullanıcı grubu öntanımlı ""Yöneticiler"" erişim grubuna ait olamaz.'");
 			Else
-				SingleErrorText      = NStr("en = 'External user group ""%2"" cannot be a member of the predefined access group ""Administrators"".';");
-				SeveralErrorsText = NStr("en = 'External user group ""%2"" in line #%1 cannot be a member of the predefined access group ""Administrators"".';");
+				SingleErrorText      = NStr("en = 'External user group ""%2"" cannot be a member of the predefined access group ""Administrators"".';tr = '""%2"" harici kullanıcı grubu öntanımlı ""Yöneticiler"" erişim grubuna ait olamaz.'");
+				SeveralErrorsText = NStr("en = 'External user group ""%2"" in line #%1 cannot be a member of the predefined access group ""Administrators"".';tr = '%1 satırındaki ""%2"" harici kullanıcı grubu öntanımlı ""Yöneticiler"" erişim grubuna ait olamaz.'");
 			EndIf;
 			
 			CommonClientServer.AddUserError(Errors,
@@ -494,21 +499,21 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 			
 			If TypeOf(CurrentRow.User) = Type("CatalogRef.Users") Then
 				If ProhibitedUser.IsInternal Then
-					SingleErrorText      = NStr("en = 'Rights (roles) of utility user ""%2"" cannot be changed interactively.';");
-					SeveralErrorsText = NStr("en = 'Rights (roles) on line %1 of utility user ""%2"" cannot be changed interactively.';");
+					SingleErrorText      = NStr("en = 'Rights (roles) of utility user ""%2"" cannot be changed interactively.';tr = '""%2"" yardımcı kullanıcısının yetkileri (rolleri) etkileşimli olarak değiştirilemez.'");
+					SeveralErrorsText = NStr("en = 'Rights (roles) on line %1 of utility user ""%2"" cannot be changed interactively.';tr = '""%2"" yardımcı kullanıcısının %1 satırındaki yetkileri (rolleri) etkileşimli olarak değiştirilemez.'");
 				Else
-					SingleErrorText      = NStr("en = 'User ""%2"" cannot be a member as it does not have the required type.';");
-					SeveralErrorsText = NStr("en = 'User ""%2"" in line #%1 cannot be a member as it does not have the required type.';");
+					SingleErrorText      = NStr("en = 'User ""%2"" cannot be a member as it does not have the required type.';tr = '""%2"" kullanıcısı gerekli türe sahip olmadığından üye olamaz.'");
+					SeveralErrorsText = NStr("en = 'User ""%2"" in line #%1 cannot be a member as it does not have the required type.';tr = '%1 satırındaki ""%2"" kullanıcısı gerekli türe sahip olmadığından üye olamaz.'");
 				EndIf;
 			ElsIf TypeOf(CurrentRow.User) = Type("CatalogRef.UserGroups") Then
-				SingleErrorText      = NStr("en = 'User group ""%2"" cannot be a member as it does not have the required type.';");
-				SeveralErrorsText = NStr("en = 'User group ""%2"" in line #%1 cannot be a member as it does not have the required type.';");
+				SingleErrorText      = NStr("en = 'User group ""%2"" cannot be a member as it does not have the required type.';tr = '""%2"" kullanıcı grubu gerekli türe sahip olmadığından üye olamaz.'");
+				SeveralErrorsText = NStr("en = 'User group ""%2"" in line #%1 cannot be a member as it does not have the required type.';tr = '%1 satırındaki ""%2"" kullanıcı grubu gerekli türe sahip olmadığından üye olamaz.'");
 			ElsIf TypeOf(CurrentRow.User) = Type("CatalogRef.ExternalUsers") Then
-				SingleErrorText      = NStr("en = 'External user ""%2"" cannot be a member as it does not have the required type.';");
-				SeveralErrorsText = NStr("en = 'External user ""%2"" in line #%1 cannot be a member as it does not have the required type.';");
+				SingleErrorText      = NStr("en = 'External user ""%2"" cannot be a member as it does not have the required type.';tr = '""%2"" harici kullanıcısı gerekli türe sahip olmadığından üye olamaz.'");
+				SeveralErrorsText = NStr("en = 'External user ""%2"" in line #%1 cannot be a member as it does not have the required type.';tr = '%1 satırındaki ""%2"" harici kullanıcısı gerekli türe sahip olmadığından üye olamaz.'");
 			Else // External user group.
-				SingleErrorText      = NStr("en = 'External user group ""%2"" cannot be a member as it does not have the required type.';");
-				SeveralErrorsText = NStr("en = 'External user group ""%2"" in line #%1 cannot be a member as it does not have the required type.';");
+				SingleErrorText      = NStr("en = 'External user group ""%2"" cannot be a member as it does not have the required type.';tr = '""%2"" harici kullanıcı grubu gerekli türe sahip olmadığından üye olamaz.'");
+				SeveralErrorsText = NStr("en = 'External user group ""%2"" in line #%1 cannot be a member as it does not have the required type.';tr = '%1 satırındaki ""%2"" harici kullanıcı grubu gerekli türe sahip olmadığından üye olamaz.'");
 			EndIf;
 			
 			CommonClientServer.AddUserError(Errors,
@@ -652,12 +657,16 @@ Procedure UsersBeforeDeleteRow(Item, Cancel)
 			ShowMessageBox(,
 				NStr("en = 'Cannot remove users from the list.
 				           |The purpose of the list is to display users
-				           |that inherit rights from access groups.';"));
+				           |that inherit rights from access groups.';tr = 'Kullanıcılar listeden çıkarılamıyor.
+				           |Listenin amacı, erişim gruplarından 
+				           |yetki devralan kullanıcıları göstermektir.'"));
 		Else
 			ShowMessageBox(,
 				NStr("en = 'Cannot remove external users from the list.
 				           |The purpose of the list is to display external users
-				           |that inherit rights from external user access groups.';"));
+				           |that inherit rights from external user access groups.';tr = 'Harici kullanıcılar listeden çıkarılamıyor.
+				           |Listenin amacı, harici kullanıcı erişim gruplarından 
+				           |yetki devralan harici kullanıcıları göstermektir.'"));
 		EndIf;
 	EndIf;
 	
@@ -1136,7 +1145,7 @@ Procedure InitialSettingsOnReadAndCreate(CurrentObject)
 			// Preparing for personal access group mode.
 			AutoTitle = False;
 			Title = AccessManagementInternalClientServer.PresentationAccessGroups(CurrentObject)
-				+ " " + NStr("en = '(Access group)';");
+				+ " " + NStr("en = '(Access group)';tr = '(Erişim grubu)'");
 			
 			Filter = New Structure("User", CurrentObject.User);
 			FoundRows = CurrentObject.Users.FindRows(Filter);
@@ -1221,7 +1230,7 @@ Procedure UpdateAssignment()
 		EndDo;
 	EndIf;
 	
-	Items.Users.ToolTip = NStr("en = 'Allowed members:';") + " " + PurposePresentation;
+	Items.Users.ToolTip = NStr("en = 'Allowed members:';tr = 'İzin verilen üyeler:'") + " " + PurposePresentation;
 	
 EndProcedure
 
@@ -1417,7 +1426,7 @@ Procedure ShowTypeSelectionUsersOrExternalUsers(ContinuationHandler)
 						"ShowTypeSelectionUsersOrExternalUsersCompletion",
 						ThisObject,
 						ContinuationHandler),
-						NStr("en = 'Select data type';"),
+						NStr("en = 'Select data type';tr = 'Veri türünü seçin'"),
 						UserTypesList[0]);
 				Else
 					ExecuteNotifyProcessing(ContinuationHandler, ExternalUsersSelectionAndPickup);
@@ -1517,11 +1526,11 @@ Procedure SelectPickUsersCompletion(ExternalUsersSelectionAndPickup, Pick) Expor
 		FormParameters.Insert("Purpose", Purpose.UnloadValues());
 		
 		If Not UseExternalUsers Then
-			ShowMessageBox(, NStr("en = 'External users are disabled in the settings.';"));
+			ShowMessageBox(, NStr("en = 'External users are disabled in the settings.';tr = 'Harici kullanıcılar ayarlarda devre dışı bırakıldı.'"));
 		ElsIf ExternalUsersCatalogAvailable Then
 			OpenForm("Catalog.ExternalUsers.ChoiceForm", FormParameters, Items.Users);
 		Else
-			Raise(NStr("en = 'Insufficient rights to select external users.';"),
+			Raise(NStr("en = 'Insufficient rights to select external users.';tr = 'Harici kullanıcıları seçmek için yetersiz hak.'"),
 				ErrorCategory.AccessViolation);
 		EndIf;
 	Else
@@ -1534,7 +1543,7 @@ EndProcedure
 Function ExtendedPickFormParameters(ExternalUsersSelectionAndPickup)
 	
 	PickingParameters = UsersInternal.NewParametersOfExtendedPickForm();
-	PickingParameters.PickFormHeader = NStr("en = 'Pick access group members';");
+	PickingParameters.PickFormHeader = NStr("en = 'Pick access group members';tr = 'Erişim grubu üyelerini seç'");
 	
 	CollectionItems = GroupUsers.GetItems();
 	

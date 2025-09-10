@@ -296,13 +296,13 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some message templates: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) some message templates: %1';tr = 'Bazı ileti şablonları işlenemedi (atlandı): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.MessageTemplates,,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'A batch of message templates is processed: %1';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'A batch of message templates is processed: %1';tr = 'İleti şablonları grubu işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

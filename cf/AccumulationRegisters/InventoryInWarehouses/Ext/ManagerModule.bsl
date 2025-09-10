@@ -39,13 +39,13 @@ Procedure NegativeBalanceControl(Ref, AdditionalProperties, Cancel) Export
 			WarehouseSelection = Result.Select(QueryResultIteration.ByGroups);
 			While WarehouseSelection.Next() Do
 				
-				MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Insufficient quantity on %1'"),
+				MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Insufficient quantity on %1'; tr = '%1 miktarı yetersiz'"),
 					WarehouseSelection.Warehouse);
 				Common.MessageToUser(MessageText, Ref, , , Cancel);
 				
 				Selection = WarehouseSelection.Select();
 				While Selection.Next() Do
-					MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Product: %1, shortage %2 %3'"),
+					MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Product: %1, shortage %2 %3'; tr = 'Ürün: %1, eksiklik %2 %3'"),
 						Selection.Product,
 						Selection.Shortage,
 						Selection.Unit);

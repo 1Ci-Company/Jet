@@ -110,7 +110,7 @@ Procedure WriteSettingsOnClient()
 	
 	If PostponedProcessStart <> DeferredProcessStartOnOpen Then 
 		
-		NotificationText1 = ?(PostponedProcessStart, NStr("en = 'Deferred start:';"), NStr("en = 'Deferred start canceled:';"));
+		NotificationText1 = ?(PostponedProcessStart, NStr("en = 'Deferred start:';tr = 'Ertelenmiş başlangıç:'"), NStr("en = 'Deferred start canceled:';tr = 'Ertelenmiş başlangıç iptal edildi:'"));
 		ProcessURL = GetURL(BusinessProcess);
 		
 		ShowUserNotification(
@@ -187,7 +187,7 @@ Procedure UpdateTimeSelectionList()
 	DateEmpty = BegOfDay(DeferredStartDate);
 	
 	For Indus = 1 To 48 Do
-		Items.DeferredStartDateTime.ChoiceList.Add(DateEmpty, Format(DateEmpty, NStr("en = 'DF=HH:mm';")));
+		Items.DeferredStartDateTime.ChoiceList.Add(DateEmpty, Format(DateEmpty, NStr("en = 'DF=HH:mm';tr = 'DF=HH:mm'")));
 		DateEmpty = DateEmpty + 1800;
 	EndDo;
 	
@@ -197,7 +197,7 @@ EndProcedure
 Function IntevalText(StartDate, EndDate)
 
 	If StartDate > EndDate Then
-		Return NStr("en = 'Duty start date is in the past.';");
+		Return NStr("en = 'Duty start date is in the past.';tr = 'Görev başlangıç tarihi geçmişte.'");
 	EndIf;	
 	
 	If UseDateAndTimeInTaskDeadlines Then
@@ -218,24 +218,24 @@ Function IntevalText(StartDate, EndDate)
 	If UseDateAndTimeInTaskDeadlines Then
 		If NumberOfDays > 0 And NumberOfHours > 0 Then
 			DateDiff = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The duty will be started in %1 days and %2 hours.';"),
+				NStr("en = 'The duty will be started in %1 days and %2 hours.';tr = 'Görev %1 gün, %2 saat sonra başlayacak.'"),
 				String(NumberOfDays),
 				String(NumberOfHours));
 		ElsIf NumberOfDays > 0 Then
 			DateDiff = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The duty will be started in %1 days.';"), String(NumberOfDays));
+				NStr("en = 'The duty will be started in %1 days.';tr = 'Görev %1 gün sonra başlayacak.'"), String(NumberOfDays));
 		ElsIf NumberOfHours > 0 Then
 			DateDiff = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The duty will be started in %1 hours.';"), String(NumberOfHours));
+				NStr("en = 'The duty will be started in %1 hours.';tr = 'Görev %1 saat sonra başlayacak.'"), String(NumberOfHours));
 		Else
-			DateDiff = NStr("en = 'The duty will be started in less than an hour.';");
+			DateDiff = NStr("en = 'The duty will be started in less than an hour.';tr = 'Görevin başlamasına 1 saatten az kaldı.'");
 		EndIf;
 	Else
 		If NumberOfDays > 0 Then
 			DateDiff = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The duty will be started in %1 days.';"), String(NumberOfDays));
+				NStr("en = 'The duty will be started in %1 days.';tr = 'Görev %1 gün sonra başlayacak.'"), String(NumberOfDays));
 		Else
-			DateDiff = NStr("en = 'The duty will be started in less than a day.';");
+			DateDiff = NStr("en = 'The duty will be started in less than a day.';tr = 'Görevin başlamasına 1 günden az kaldı.'");
 		EndIf;
 	EndIf;
 	
@@ -334,13 +334,13 @@ Function FormIsFilledInCorrectly()
 	ClearMessages();
 	
 	If PostponedProcessStart And DeferredStartDate < CurrentServerDate Then
-		CommonClient.MessageToUser(NStr("en = 'Date and time of the deferred start must be greater than the current date.';"),,
+		CommonClient.MessageToUser(NStr("en = 'Date and time of the deferred start must be greater than the current date.';tr = 'Ertelenmiş başlangıç tarihi ve saati mevcut tarihten ileri olmalı.'"),,
 			"DeferredStartDate");
 		FilledInCorrectly = False;
 	EndIf;
 		
 	If PostponedProcessStart And DeferredStartDate > TaskDueDate Then
-		CommonClient.MessageToUser(NStr("en = 'Date and time of the deferred start must be less than the duty due date.';"),,
+		CommonClient.MessageToUser(NStr("en = 'Date and time of the deferred start must be less than the duty due date.';tr = 'Ertelenmiş başlangıcın tarihi ve saati, görevin bitiş tarihinden önce olmalıdır.'"),,
 			"DeferredStartDate");
 		FilledInCorrectly = False;
 	EndIf;

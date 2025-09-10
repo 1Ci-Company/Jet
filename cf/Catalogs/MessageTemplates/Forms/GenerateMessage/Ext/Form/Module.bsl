@@ -30,11 +30,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If MessageKind = "SMSMessage" Then
 		ForSMSMessages = True;
-		Title = NStr("en = 'Text templates';");
+		Title = NStr("en = 'Text templates';tr = 'SMS şablonları'");
 	ElsIf MessageKind = "MailMessage" Then
 		ForEmails = True;
 	Else
-		Title = NStr("en = 'Message templates';");
+		Title = NStr("en = 'Message templates';tr = 'İleti şablonları'");
 	EndIf;
 	
 	If Not AccessRight("Update", Metadata.Catalogs.MessageTemplates) Then
@@ -47,7 +47,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If ChoiceMode Or MessageKind = "Arbitrary" Then
 		Items.FormGenerateAndSend.Visible = False;
-		Items.FormGenerate.Title = NStr("en = 'Select';");
+		Items.FormGenerate.Title = NStr("en = 'Select';tr = 'Seç'");
 	ElsIf PrepareTemplate Then
 		Items.FormGenerateAndSend.Visible = False;
 	EndIf;
@@ -368,7 +368,7 @@ Procedure AfterGenerateAndSendMessage(Result, SendOptions)
 		Close();
 	Else
 		Notification = New NotifyDescription("AfterQuestionOnOpenMessageForm", ThisObject, SendOptions);
-		ErrorDescription = Result.ErrorDescription + Chars.LF + NStr("en = 'Do you want to open the message?';");
+		ErrorDescription = Result.ErrorDescription + Chars.LF + NStr("en = 'Do you want to open the message?';tr = 'İletiyi açmak istiyor musunuz?'");
 		ShowQueryBox(Notification, ErrorDescription, QuestionDialogMode.YesNo);
 	EndIf;
 
@@ -534,7 +534,7 @@ Procedure FillAvailableTemplatesList()
 	If Not ChoiceMode And Not PrepareTemplate Then
 		FirstRow = Templates.Insert(0);
 		FirstRow.Name = "<NoTemplate>";
-		FirstRow.Presentation = NStr("en = '<No template>';");
+		FirstRow.Presentation = NStr("en = '<No template>';tr = '<Şablonsuz>'");
 	EndIf;
 	
 	If Templates.Count() = 0 Then
@@ -732,8 +732,8 @@ Procedure SIgnFiles(Result, SendOptions)
 		DataDetails = New Structure;
 		DataDetails.Insert("ShowComment", False);
 		If FilesToSign.Count() > 1 Then
-			DataDetails.Insert("Operation",            NStr("en = 'Sign files';"));
-			DataDetails.Insert("DataTitle",     NStr("en = 'Files';"));
+			DataDetails.Insert("Operation",            NStr("en = 'Sign files';tr = 'Dosyaları imzala'"));
+			DataDetails.Insert("DataTitle",     NStr("en = 'Files';tr = 'Dosyalar'"));
 			
 			DataSet = New Array;
 			For Each File In FilesToSign Do
@@ -748,8 +748,8 @@ Procedure SIgnFiles(Result, SendOptions)
 			DataDetails.Insert("SetPresentation", "Files (%1)");
 		Else
 			File = FilesToSign[0];
-			DataDetails.Insert("Operation",        NStr("en = 'Sign a file';"));
-			DataDetails.Insert("DataTitle", NStr("en = 'File';"));
+			DataDetails.Insert("Operation",        NStr("en = 'Sign a file';tr = 'Dosya imzala'"));
+			DataDetails.Insert("DataTitle", NStr("en = 'File';tr = 'Dosya'"));
 			DataDetails.Insert("Presentation", File.Presentation);
 			DataDetails.Insert("Data", File.AddressInTempStorage);
 			DataDetails.Insert("PrintObject", SubjectOf);

@@ -43,7 +43,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Items.List.Representation = TableRepresentation.List;
 		AutoTitle = False;
 		
-		Title = NStr("en = 'Access groups';");
+		Title = NStr("en = 'Access groups';tr = 'Erişim grupları'");
 		
 		CommonClientServer.SetFormItemProperty(Items,
 			"FormCreateFolder", "Visible", False);
@@ -75,10 +75,10 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			// Pick mode.
 			Items.List.SelectionMode = TableSelectionMode.MultiRow;
 			
-			Title = NStr("en = 'Pick access groups';");
+			Title = NStr("en = 'Pick access groups';tr = 'Erişim gruplarını seç'");
 		Else
 			Items.List.MultipleChoice = False;
-			Title = NStr("en = 'Select access group';");
+			Title = NStr("en = 'Select access group';tr = 'Erişim grubu seç'");
 		EndIf;
 	EndIf;
 	
@@ -140,7 +140,7 @@ Procedure ListValueChoice(Item, Value, StandardProcessing)
 	
 	If Value = PersonalAccessGroupsParent Then
 		StandardProcessing = False;
-		ShowMessageBox(, NStr("en = 'The group can contain only personal access groups.';"));
+		ShowMessageBox(, NStr("en = 'The group can contain only personal access groups.';tr = 'Grup sadece kişisel erişim grupları içerebilir.'"));
 	EndIf;
 	
 EndProcedure
@@ -153,14 +153,15 @@ Procedure ListBeforeAddRow(Item, Cancel, Copy, Parent, Var_Group)
 		Cancel = True;
 		
 		If Var_Group Then
-			ShowMessageBox(, NStr("en = 'The group cannot contain subgroups.';"));
+			ShowMessageBox(, NStr("en = 'The group cannot contain subgroups.';tr = 'Grup alt gruplar içeremez.'"));
 			
 		ElsIf SimplifiedAccessRightsSetupInterface Then
 			ShowMessageBox(,
 				NStr("en = 'Personal access groups
-				           |can be created only in the ""Access rights"" form.';"));
+				           |can be created only in the ""Access rights"" form.';tr = 'Kişisel erişim grubu yalnızca 
+				           |""Erişim yetkileri"" formunda oluşturulabilir.'"));
 		Else
-			ShowMessageBox(, NStr("en = 'Personal access groups are disabled.';"));
+			ShowMessageBox(, NStr("en = 'Personal access groups are disabled.';tr = 'Kişisel erişim grupları devre dışı.'"));
 		EndIf;
 		
 	ElsIf Not Var_Group
@@ -170,7 +171,8 @@ Procedure ListBeforeAddRow(Item, Cancel, Copy, Parent, Var_Group)
 		
 		ShowMessageBox(,
 			NStr("en = 'Personal access groups can be created
-			           |only in the ""Access rights"" form.';"));
+			           |only in the ""Access rights"" form.';tr = 'Kişisel erişim grubu yalnızca 
+			           |""Erişim yetkileri"" formunda oluşturulabilir.'"));
 	EndIf;
 	
 EndProcedure
@@ -218,11 +220,11 @@ Procedure ListDrag(Item, DragParameters, StandardProcessing, String, Field)
 	
 	If String = PersonalAccessGroupsParent Then
 		StandardProcessing = False;
-		ShowMessageBox(, NStr("en = 'This folder is for personal access groups only.';"));
+		ShowMessageBox(, NStr("en = 'This folder is for personal access groups only.';tr = 'Bu klasör sadece kişisel erişim grupları içindir.'"));
 		
 	ElsIf DragParameters.Value = PersonalAccessGroupsParent Then
 		StandardProcessing = False;
-		ShowMessageBox(, NStr("en = 'Cannot move a personal access groups folder.';"));
+		ShowMessageBox(, NStr("en = 'Cannot move a personal access groups folder.';tr = 'Kişisel erişim grupları klasörü taşınamaz.'"));
 	EndIf;
 	
 EndProcedure

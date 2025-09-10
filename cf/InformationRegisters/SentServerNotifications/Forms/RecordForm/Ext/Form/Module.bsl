@@ -17,7 +17,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	Store = FormAttributeToValue("Record").NotificationContent;
 	Items.PageContent.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Content (size, bytes: %1)';"),
+		NStr("en = 'Content (size, bytes: %1)';tr = 'İçerik (boyut, bayt: %1)'"),
 		String(Base64Value(XMLString(Store)).Size()));
 	
 	StorageContents = Store.Get();

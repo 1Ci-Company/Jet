@@ -229,7 +229,7 @@ Function ParametersOfSearchForSimilarStrings(AttachAddInSSL = True) Export
 		FuzzySearch1 = Common.AttachAddInFromTemplate("FuzzyStringMatchExtension", 
 			"CommonTemplate.StringSearchAddIn");
 		If FuzzySearch1 = Undefined Then
-			Raise NStr("en = 'Cannot attach the fuzzy search add-in. See the Event log for details.';");
+			Raise NStr("en = 'Cannot attach the fuzzy search add-in. See the Event log for details.';tr = 'Bulanık arama eklentisi eklenemedi. Ayrıntılar için olay günlüğüne bakın.'");
 		EndIf;
 	EndIf;
 	Result.Insert("SearchAddIn", FuzzySearch1);
@@ -311,7 +311,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 		Kind = AttachableCommandsKinds.Add();
 		Kind.Name         = "Administration";
 		Kind.SubmenuName  = "Service";
-		Kind.Title   = NStr("en = 'Tools';");
+		Kind.Title   = NStr("en = 'Tools';tr = 'Araçlar'");
 		Kind.Order     = 80;
 		Kind.Picture    = PictureLib.ServiceSubmenu;
 		Kind.Representation = ButtonRepresentation.PictureAndText;	
@@ -332,7 +332,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 			Command = Commands.Add();
 			Command.Kind = "Administration";
 			Command.Importance = "SeeAlso";
-			Command.Presentation = NStr("en = 'Merge selected items…';");
+			Command.Presentation = NStr("en = 'Merge selected items…';tr = 'Seçilenleri birleştir...'");
 			Command.WriteMode = "NotWrite";
 			Command.VisibilityInForms = "ListForm";
 			Command.MultipleChoice = True;
@@ -343,7 +343,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 			Command = Commands.Add();
 			Command.Kind = "Administration";
 			Command.Importance = "SeeAlso";
-			Command.Presentation = NStr("en = 'Replace selected items…';");
+			Command.Presentation = NStr("en = 'Replace selected items…';tr = 'Seçilenler değiştir...'");
 			Command.WriteMode = "NotWrite";
 			Command.VisibilityInForms = "ListForm";
 			Command.MultipleChoice = True;
@@ -514,7 +514,7 @@ EndProcedure
 // Subsystem presentation. It is used for writing to the event log and in other places.
 Function SubsystemDescription(ForUser) Export
 	LanguageCode = ?(ForUser, Common.DefaultLanguageCode(), "");
-	Return NStr("en = 'Duplicate cleaner';", LanguageCode);
+	Return NStr("en = 'Duplicate cleaner';tr = 'Kopyaları arama ve silme'", LanguageCode);
 EndFunction
 
 // Parameters:
@@ -599,7 +599,7 @@ Procedure AddSubordinateObjectsLinks(SubordinateObjectsLinks, LinkRow)
 			
 		Else 
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Link field %1 does not exist in metadata object %2';"), 
+				NStr("en = 'Link field %1 does not exist in metadata object %2';tr = '%2 metaveri nesnesinde %1 iletişim alanı mevcut değil'"), 
 				AttributeName, SubordinateObjectName);
 			Raise ErrorDescription;
 		EndIf;

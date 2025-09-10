@@ -24,7 +24,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 	If Parameters.FileOwner = Undefined Then
 		Raise NStr("en = 'You can view the list of attachments
-		                             |only in the owner object form.';");
+		                             |only in the owner object form.';tr = 'Ekli dosya listesi sadece 
+		                             |sahip nesne formunda görüntülenebilir.'");
 	EndIf;
 	
 	OwnerType = TypeOf(Parameters.FileOwner);
@@ -63,7 +64,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	If Parameters.ChoiceMode Then
 		StandardSubsystemsServer.SetFormAssignmentKey(ThisObject, "SelectionPick");
 		WindowOpeningMode = FormWindowOpeningMode.LockOwnerWindow;
-		Title = NStr("en = 'Select attachment';");
+		Title = NStr("en = 'Select attachment';tr = 'Ekli dosya seç'");
 	Else
 		Items.List.ChoiceMode = False;
 	EndIf;
@@ -157,7 +158,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 
 	If Common.IsMobileClient() Then
 		Items.AddSubmenu.Representation = ButtonRepresentation.Picture;
-		Items.AddFileFromScanner.Title = NStr("en = 'From device camera…';");
+		Items.AddFileFromScanner.Title = NStr("en = 'From device camera…';tr = 'Cihazın kamerasından...'");
 	EndIf;
 	
 	FilesOperationsOverridable.OnCreateFilesListForm(ThisObject);
@@ -561,13 +562,13 @@ Procedure SetDeletionMark(Command)
 	CurrentData = CurrentData();
 	If SelectedRows.Count() = 1 Then
 		QuestionTemplate = ?(CurrentData.DeletionMark,
-			NStr("en = 'Do you want to clear the deletion mark from ""%1""?';"),
-			NStr("en = 'Do you want to mark ""%1"" for deletion?';"));
+			NStr("en = 'Do you want to clear the deletion mark from ""%1""?';tr = '""%1"" için silme işareti kaldırılsın mı?'"),
+			NStr("en = 'Do you want to mark ""%1"" for deletion?';tr = '""%1"" silinmek üzere işaretlensin mi?'"));
 		QueryText = StringFunctionsClientServer.SubstituteParametersToString(QuestionTemplate, CurrentData.Description);
 	Else
 		QueryText = ?(CurrentData.DeletionMark,
-			NStr("en = 'Do you want to clear the deletion mark from the selected files?';"),
-			NStr("en = 'Do you want to mark the selected files for deletion?';"));
+			NStr("en = 'Do you want to clear the deletion mark from the selected files?';tr = 'Seçili dosyaların silme işareti kaldırılsın mı?'"),
+			NStr("en = 'Do you want to mark the selected files for deletion?';tr = 'Seçilen dosyalar silinmek üzere işaretlensin mi?'"));
 	EndIf;
 	AdditionalParameters = New Structure("Files", SelectedRows);
 	Notification = New NotifyDescription("SetDeletionMarkCompletion", ThisObject, AdditionalParameters);
@@ -677,7 +678,8 @@ EndProcedure
 Procedure ImportFiles(Command)
 #If WebClient Then
 		WarningText =  NStr("en = 'The web client does not support file upload.
-		                                  |Please use the ""Create"" button in the file list.';");
+		                                  |Please use the ""Create"" button in the file list.';tr = 'Web istemcide dosya içe aktarma desteklenmez. 
+		                                  |Dosyalar listesinde Oluştur komutunu kullanın.'");
 		ShowMessageBox(, WarningText);
 		Return;
 #EndIf
@@ -714,16 +716,17 @@ Procedure ImportFolder(Command)
 	
 #If WebClient Then
 		WarningText = NStr("en = 'The web client does not support folder upload.
-			                             |Please use the ""Create"" button in the file list.';");
+			                             |Please use the ""Create"" button in the file list.';tr = 'Web istemcide klasörler içe aktarılamaz.
+			                             |Dosyalar listesinde Oluştur komutunu kullanın.'");
 		ShowMessageBox(, WarningText);
 		Return;
 #EndIf
 	
 	OpenFileDialog = New FileDialog(FileDialogMode.ChooseDirectory);
 	OpenFileDialog.FullFileName = "";
-	OpenFileDialog.Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+	OpenFileDialog.Filter = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 	OpenFileDialog.Multiselect = False;
-	OpenFileDialog.Title = NStr("en = 'Select directory';");
+	OpenFileDialog.Title = NStr("en = 'Select directory';tr = 'Dizini seçin'");
 	If Not OpenFileDialog.Choose() Then
 		Return;
 	EndIf;
@@ -1868,13 +1871,13 @@ Procedure UpdatePreview1()
 		Except
 			// If the file does not exist, an exception will be called.
 			FileDataURL         = Undefined;
-			NonselectedPictureText = NStr("en = 'Preview is not available. Reason:';") + Chars.LF + ErrorProcessing.BriefErrorDescription(ErrorInfo());
+			NonselectedPictureText = NStr("en = 'Preview is not available. Reason:';tr = 'Ön izleme aşağıdaki nedenle imkansız:'") + Chars.LF + ErrorProcessing.BriefErrorDescription(ErrorInfo());
 		EndTry;
 		
 	Else
 		
 		FileDataURL         = Undefined;
-		NonselectedPictureText = NStr("en = 'No data to preview';");
+		NonselectedPictureText = NStr("en = 'No data to preview';tr = 'Ön gösterilecek veri yok'");
 		
 	EndIf;
 	
@@ -1903,14 +1906,14 @@ Procedure UpdateCloudServiceNote()
 				SynchronizationInfo.Service, SynchronizationInfo.Href);
 				
 			Items.DecorationNote.Title = StringFunctions.FormattedString(
-				NStr("en = 'The files are stored in cloud service <a href=""%1"">%2</a>.';"),
+				NStr("en = 'The files are stored in cloud service <a href=""%1"">%2</a>.';tr = 'Dosyalarla çalışma bulut hizmetinde yürütülüyor <a href=""%1"">%2</a>.'"),
 				String(FolderAddressInCloudService), String(SynchronizationInfo.AccountDescription1));
 			
 			Items.DecorationPictureSyncStatus.Visible = Not SynchronizationInfo.IsSynchronized;
 			Items.DecorationSyncDate.ToolTipRepresentation =?(SynchronizationInfo.IsSynchronized, ToolTipRepresentation.None, ToolTipRepresentation.Button);
 			
 			Items.DecorationSyncDate.Title = StringFunctions.FormattedString(
-				NStr("en = 'Synchronized on: <a href=""%1"">%2</a>';"),
+				NStr("en = 'Synchronized on: <a href=""%1"">%2</a>';tr = 'Senkronize edildi: <a href=""%1"">%2</a>'"),
 				"OpenJournal", Format(SynchronizationInfo.SynchronizationDate, "DLF=DD"));
 			
 		EndIf;

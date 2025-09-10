@@ -15,7 +15,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	ContactInformationKind = Parameters.ContactInformationKind;
 	If Not ValueIsFilled(ContactInformationKind) Then
-		Raise NStr("en = 'Cannot execute command for the object. Contact information is invalid.';");
+		Raise NStr("en = 'Cannot execute command for the object. Contact information is invalid.';tr = 'İletişim bilgileri yanlış uygulandığı için belirtilen nesne için komut yürütülemiyor.'");
 	EndIf;
 	ContactInformationType = Enums.ContactInformationTypes.WebPage;
 	

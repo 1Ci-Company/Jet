@@ -141,7 +141,7 @@ Procedure ContinueCountdown()
 	Else
 		If TimeoutButtonName <> "" Then
 			NewTitle = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 (%2 seconds remaining)';"),
+				NStr("en = '%1 (%2 seconds remaining)';tr = '%1 (%2 saniye kaldı)'"),
 				TimeoutButtonTitle,
 				String(TimeoutCounter));
 				
@@ -267,24 +267,24 @@ Function StandardSet(Buttons)
 	Result = New ValueList;
 	
 	If Buttons = "QuestionDialogMode.YesNo" Then
-		Result.Add("DialogReturnCode.Yes",  NStr("en = 'Yes';"));
-		Result.Add("DialogReturnCode.None", NStr("en = 'No';"));
+		Result.Add("DialogReturnCode.Yes",  NStr("en = 'Yes';tr = 'Evet'"));
+		Result.Add("DialogReturnCode.None", NStr("en = 'No';tr = 'Hayır'"));
 	ElsIf Buttons = "QuestionDialogMode.YesNoCancel" Then
-		Result.Add("DialogReturnCode.Yes",     NStr("en = 'Yes';"));
-		Result.Add("DialogReturnCode.None",    NStr("en = 'No';"));
-		Result.Add("DialogReturnCode.Cancel", NStr("en = 'Cancel';"));
+		Result.Add("DialogReturnCode.Yes",     NStr("en = 'Yes';tr = 'Evet'"));
+		Result.Add("DialogReturnCode.None",    NStr("en = 'No';tr = 'Hayır'"));
+		Result.Add("DialogReturnCode.Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
 	ElsIf Buttons = "QuestionDialogMode.OK" Then
-		Result.Add("DialogReturnCode.OK", NStr("en = 'OK';"));
+		Result.Add("DialogReturnCode.OK", NStr("en = 'OK';tr = 'Tamam'"));
 	ElsIf Buttons = "QuestionDialogMode.OKCancel" Then
-		Result.Add("DialogReturnCode.OK",     NStr("en = 'OK';"));
-		Result.Add("DialogReturnCode.Cancel", NStr("en = 'Cancel';"));
+		Result.Add("DialogReturnCode.OK",     NStr("en = 'OK';tr = 'Tamam'"));
+		Result.Add("DialogReturnCode.Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
 	ElsIf Buttons = "QuestionDialogMode.RetryCancel" Then
-		Result.Add("DialogReturnCode.Retry", NStr("en = 'Retry';"));
-		Result.Add("DialogReturnCode.Cancel",    NStr("en = 'Cancel';"));
+		Result.Add("DialogReturnCode.Retry", NStr("en = 'Retry';tr = 'Tekrarla'"));
+		Result.Add("DialogReturnCode.Cancel",    NStr("en = 'Cancel';tr = 'İptal'"));
 	ElsIf Buttons = "QuestionDialogMode.AbortRetryIgnore" Then
-		Result.Add("DialogReturnCode.Abort",   NStr("en = 'Abort';"));
-		Result.Add("DialogReturnCode.Retry",  NStr("en = 'Retry';"));
-		Result.Add("DialogReturnCode.Ignore", NStr("en = 'Ignore';"));
+		Result.Add("DialogReturnCode.Abort",   NStr("en = 'Abort';tr = 'Durdur'"));
+		Result.Add("DialogReturnCode.Retry",  NStr("en = 'Retry';tr = 'Tekrarla'"));
+		Result.Add("DialogReturnCode.Ignore", NStr("en = 'Ignore';tr = 'Atlamak'"));
 	EndIf;
 	
 	Return Result;

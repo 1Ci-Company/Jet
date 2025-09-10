@@ -322,7 +322,7 @@ Procedure RenameField(Command)
 	If Not ValueIsFilled(FieldPresentation) Then 
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'Enter new field header';"),, "FieldPresentation");
+			NStr("en = 'Enter new field header';tr = 'Enter new field header'"),, "FieldPresentation");
 		Return;
 		
 	EndIf;
@@ -369,7 +369,7 @@ Procedure SetRowHeight(Command)
 	If Not ValueIsFilled(RowHeight) Then 
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'Enter row height';"),, "RowHeight");
+			NStr("en = 'Enter row height';tr = 'Enter row height'"),, "RowHeight");
 		Return;
 		
 	EndIf;
@@ -385,7 +385,7 @@ Procedure SetColumnWidth(Command)
 	If Not ValueIsFilled(ColumnWidth) Then 
 		
 		CommonClient.MessageToUser(
-			NStr("en = 'Enter column width';"),, "ColumnWidth");
+			NStr("en = 'Enter column width';tr = 'Enter column width'"),, "ColumnWidth");
 		Return;
 		
 	EndIf;
@@ -441,7 +441,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter.LeftValue = New DataCompositionField("Values.Value");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.NotFilled;
 	
-	Item.Appearance.SetParameterValue("Text", NStr("en = '(Empty)';"));
+	Item.Appearance.SetParameterValue("Text", NStr("en = '(Empty)';tr = '(Empty)'"));
 	
 	ItemField = Item.Fields.Items.Add();
 	ItemField.Field = New DataCompositionField(Items.ValuesValue.Name);
@@ -473,7 +473,7 @@ Procedure Initialize()
 	
 	FieldTitle = TitleProperties.Text;
 	Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Field setting: %1';"), FieldTitle);
+		NStr("en = 'Field setting: %1';tr = 'Field setting: %1'"), FieldTitle);
 	
 	FieldPresentation = FieldTitle;
 	FirstLinesToReadCount = 500;
@@ -677,11 +677,11 @@ Function StartFillingInTheValues(JobID)
 	Items.WaitingStatuses.CurrentPage = Items.WaitingForFilling;
 	
 	Items.TimeConsumingOperationPresentation.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Reading field lines: %1';"), FieldPresentation);
+		NStr("en = 'Reading field lines: %1';tr = 'Reading field lines: %1'"), FieldPresentation);
 	
 	MethodParameters = TimeConsumingOperations.FunctionExecutionParameters(JobID);
-	MethodParameters.BackgroundJobDescription = NStr("en = 'Fill in filter by value';");
-	MethodParameters.RefinementErrors = NStr("en = 'Cannot fill in filter by value due to:';");
+	MethodParameters.BackgroundJobDescription = NStr("en = 'Fill in filter by value';tr = 'Fill in filter by value'");
+	MethodParameters.RefinementErrors = NStr("en = 'Cannot fill in filter by value due to:';tr = 'Cannot fill in filter by value due to:'");
 	
 	FillingResult = TimeConsumingOperations.ExecuteFunction(
 		MethodParameters,
@@ -748,7 +748,7 @@ Procedure AfterFillingInTheValues(Result, AdditionalParameters) Export
 	
 	If Result.Status = "Error" Then
 		
-		CommentTemplate = NStr("en = 'Cannot fill in filter by value due to: %1';");	
+		CommentTemplate = NStr("en = 'Cannot fill in filter by value due to: %1';tr = 'Cannot fill in filter by value due to: %1'");	
 		Items.WaitingStatuses.CurrentPage = Items.FillError;
 		Items.FillErrorDescription.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			CommentTemplate, Result.BriefErrorDescription);
@@ -1234,7 +1234,8 @@ Procedure ToSpecifyAFilterCondition(Filter, Cancel)
 		Cancel = True;
 		
 		WarningText = NStr("en = 'The list contains both groups and items.
-			|Select only groups or only items.';");
+			|Select only groups or only items.';tr = 'The list contains both groups and items.
+			|Select only groups or only items.'");
 		
 		ShowMessageBox(, WarningText);
 		Return;
@@ -1370,10 +1371,10 @@ Procedure ShowStatisticsOfFillingInValues()
 	EndIf;
 	
 	Items.FilterByValueStatistics.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'The first %1 values are displayed.';"), Values.Count());
+		NStr("en = 'The first %1 values are displayed.';tr = 'The first %1 values are displayed.'"), Values.Count());
 	
 	Items.OutputAllReportSectionValues.ExtendedTooltip.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '%1 unique values out of the first %2 lines of the report are displayed. The total number of lines in the report section is %3.';"),
+		NStr("en = '%1 unique values out of the first %2 lines of the report are displayed. The total number of lines in the report section is %3.';tr = '%1 unique values out of the first %2 lines of the report are displayed. The total number of lines in the report section is %3.'"),
 		Values.Count(),
 		FirstLinesToReadCount,
 		LinesInReportSectionCount);

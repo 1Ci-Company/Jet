@@ -28,7 +28,7 @@ Procedure OnEnableSecurityProfiles() Export
 	
 	WriteLogEvent(EventLogEvent(),
 		EventLogLevel.Warning, Metadata.Constants.ProxyServerSetting,,
-		NStr("en = 'Since a security profile is enabled, the proxy server settings are reverted to the default ones.';"));
+		NStr("en = 'Since a security profile is enabled, the proxy server settings are reverted to the default ones.';tr = 'Güvenlik profillerini etkinleştirirken, proxy sunucu ayarları varsayılan değerlere sıfırlandı.'"));
 	
 EndProcedure
 
@@ -43,14 +43,14 @@ Procedure OnFillPermissionsToAccessExternalResources(PermissionsRequests) Export
 	// and "GetFilesFromInternetInternal.ServerRouteTraceLog".
 	If Common.IsWindowsServer() Then
 		Permissions.Add(ModuleSafeModeManager.PermissionToUseOperatingSystemApplications("cmd /S /C ""%(ping %)%""",
-			NStr("en = 'Permission for ping';", Common.DefaultLanguageCode())));
+			NStr("en = 'Permission for ping';tr = 'Ping için izin'", Common.DefaultLanguageCode())));
 		Permissions.Add(ModuleSafeModeManager.PermissionToUseOperatingSystemApplications("cmd /S /C ""%(tracert %)%""",
-			NStr("en = 'Permission for tracert.';", Common.DefaultLanguageCode())));
+			NStr("en = 'Permission for tracert.';tr = 'Tracert için izin.'", Common.DefaultLanguageCode())));
 	ElsIf Common.IsLinuxServer() Then
 		Permissions.Add(ModuleSafeModeManager.PermissionToUseOperatingSystemApplications("ping % % % % %",
-			NStr("en = 'Permission for ping';", Common.DefaultLanguageCode())));
+			NStr("en = 'Permission for ping';tr = 'Ping için izin'", Common.DefaultLanguageCode())));
 		Permissions.Add(ModuleSafeModeManager.PermissionToUseOperatingSystemApplications("traceroute % % % % %",
-			NStr("en = 'Permission for traceroute.';", Common.DefaultLanguageCode())));
+			NStr("en = 'Permission for traceroute.';tr = 'Traceroute için izin.'", Common.DefaultLanguageCode())));
 	EndIf;
 	
 	PermissionsRequests.Add(
@@ -70,7 +70,7 @@ EndProcedure
 Procedure SaveServerProxySettings(Val Settings) Export
 	
 	If Not Users.IsFullUser(, True) Then
-		Raise(NStr("en = 'Insufficient rights to perform the operation.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok'"), ErrorCategory.AccessViolation);
 	EndIf;
 	
 	SetPrivilegedMode(True);
@@ -287,7 +287,11 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 				           |Reason:
 				           |%4
 				           |Diagnostics result:
-				           |%5';"),
+				           |%5';tr = '%1 dosyası %2 sunucusundan alınamadı:%3.
+				           |Nedeni:
+				           |%4
+				           |Tanılama sonuçları:
+				           |%5'"),
 				URL, Server, Format(Port, "NG="),
 				ErrorProcessing.BriefErrorDescription(ErrorInfo()),
 				DiagnosticsResult.ErrorDescription);
@@ -298,9 +302,13 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 					           |
 					           |Trace parameters:
 					           |Secure connection: %2
-					           |Timeout: %3';"),
+					           |Timeout: %3';tr = '%1
+					           |
+					           |İzleme:
+					           |Güvenli bağlantı: %2
+					           |Zaman aşımı: %3'"),
 					ErrorText,
-					Format(Join.SecureConnection <> Undefined, NStr("en = 'BF=No; BT=Yes';")),
+					Format(Join.SecureConnection <> Undefined, NStr("en = 'BF=No; BT=Yes';tr = 'BF=Hayır; BT=Evet'")),
 					Format(Join.Timeout, "NG=0"));
 					
 				WriteErrorToEventLog(ErrorMessage);
@@ -362,7 +370,12 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 				|%3
 				|
 				|Diagnostics result:
-				|%4';");
+				|%4';tr = 'Sunucu ile HTTP-bağlantı yapılamadı %1:%2
+				|nedenle:
+				|%3
+				|
+				|Tanılama sonuçları:
+				|%4'");
 			
 			RedirectionPresentations = RedirectionPresentations(Redirections);
 			If Not IsBlankString(RedirectionPresentations) Then
@@ -394,25 +407,26 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 				Or HTTPResponse.StatusCode = 308 Then // 308 Permanent Redirect
 				
 				If Redirections.Count() > 7 Then
-					Raise(NStr("en = 'Redirections limit exceeded.';"), ErrorCategory.NetworkError);
+					Raise(NStr("en = 'Redirections limit exceeded.';tr = 'Tekrar yönlendirme sayısı arttı.'"), ErrorCategory.NetworkError);
 				EndIf;
 					
 				NewURL1 = StandardSubsystemsServer.HTTPHeadersInLowercase(HTTPResponse.Headers)["location"];
 				If NewURL1 = Undefined Then 
-					Raise(NStr("en = 'Invalid redirection: no ""Location"" header in the HTTP response.';"),
+					Raise(NStr("en = 'Invalid redirection: no ""Location"" header in the HTTP response.';tr = 'Yanlış yönlendirme, ""Konum"" yanıtının HTTP üstbilgisi eksik.'"),
 						ErrorCategory.NetworkError);
 				EndIf;
 				
 				NewURL1 = TrimAll(NewURL1);
 				If IsBlankString(NewURL1) Then
-					Raise(NStr("en = 'Invalid redirection: blank ""Location"" header in the HTTP response.';"),
+					Raise(NStr("en = 'Invalid redirection: blank ""Location"" header in the HTTP response.';tr = 'Yanlış yönlendirme, ""Konum"" yanıtının HTTP üstbilgisi boş.'"),
 						ErrorCategory.NetworkError);
 				EndIf;
 				
 				If Redirections.Find(NewURL1) <> Undefined Then
 					Raise(StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Circular redirect.
-									|Redirect to %1 was attempted earlier.';"),
+									|Redirect to %1 was attempted earlier.';tr = 'Döngüsel yönlendirme. 
+									|Daha önce zaten devam etmeye %1çalışıyor.'"),
 						NewURL1),
 						ErrorCategory.NetworkError);
 				EndIf;
@@ -440,7 +454,8 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 					
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Web server response has not changed since your last request:
-						           |%1';"),
+						           |%1';tr = 'Web sunucusunun yanıtı son sorgunuzdan bu yana değişmedi:
+						           |%1'"),
 						HTTPConnectionCodeDetails(HTTPResponse.StatusCode));
 					
 					AddServerResponseBody(PathForSaving, ErrorText);
@@ -451,7 +466,8 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 					
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Unsupported web server response:
-						           |%1';"),
+						           |%1';tr = 'Desteklenmeyen web sunucusu yanıtı:
+						           |%1'"),
 						HTTPConnectionCodeDetails(HTTPResponse.StatusCode));
 					
 					AddServerResponseBody(PathForSaving, ErrorText);
@@ -461,7 +477,8 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 					
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Web server request failed:
-						           |%1';"),
+						           |%1';tr = 'Web sunucusu talebi başarısız:
+						           |%1'"),
 						HTTPConnectionCodeDetails(HTTPResponse.StatusCode));
 					
 					AddServerResponseBody(PathForSaving, ErrorText);
@@ -471,7 +488,8 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 					
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Web server is overwhelmed, disconnected, or under maintenance:
-						           |%1';"),
+						           |%1';tr = 'Web sunucusu aşırı yüklü, bağlı değil veya bakım yapılıyor:
+						           |%1'"),
 						HTTPConnectionCodeDetails(HTTPResponse.StatusCode));
 					
 					AddServerResponseBody(PathForSaving, ErrorText);
@@ -485,7 +503,9 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 			
 			ErrorTemplate = NStr("en = 'Cannot get file %1 from server %2.%3
 				|Reason:
-				|%4';");
+				|%4';tr = '%1 dosyası %2 sunucusundan alınamadı.%3
+				|Nedeni:
+				|%4'");
 			
 			RedirectionPresentations = RedirectionPresentations(Redirections);
 			If Not IsBlankString(RedirectionPresentations) Then
@@ -502,11 +522,16 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 					           |Trace parameters:
 					           |Secure connection: %2
 					           |Timeout: %3
-					           |OS authentication: %4';"),
+					           |OS authentication: %4';tr = '%1
+					           |
+					           |İzleme:
+					           |Güvenli bağlantı: %2
+					           |Zaman aşımı: %3
+					           |Sabit kıymetlerin doğrulaması: %4'"),
 					ErrorText,
-					Format(Join.SecureConnection <> Undefined, NStr("en = 'BF=No; BT=Yes';")),
+					Format(Join.SecureConnection <> Undefined, NStr("en = 'BF=No; BT=Yes';tr = 'BF=Hayır; BT=Evet'")),
 					Format(Join.Timeout, "NG=0"),
-					Format(Join.UseOSAuthentication, NStr("en = 'BF=No; BT=Yes';")));
+					Format(Join.UseOSAuthentication, NStr("en = 'BF=No; BT=Yes';tr = 'BF=Hayır; BT=Evet'")));
 				
 				AddHTTPHeaders(HTTPRequest, ErrorMessage);
 				AddHTTPHeaders(HTTPResponse, ErrorMessage);
@@ -533,7 +558,7 @@ Function GetFileFromInternet(Val URL, Val SavingSetting, Val ConnectionSetting,
 		Return FileGetResult(True, PathForSaving, HTTPResponse);
 	Else
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'File save location is not specified for ""%1"".';"), "GetFileFromInternet"),
+			NStr("en = 'File save location is not specified for ""%1"".';tr = '""%1"" için dosya kaydetme konumu belirtilmedi.'"), "GetFileFromInternet"),
 			ErrorCategory.ConfigurationError);
 	EndIf;
 	
@@ -614,75 +639,77 @@ EndFunction
 Function HTTPConnectionCodeDetails(StatusCode)
 	
 	If StatusCode = 304 Then // Not Modified
-		Details = NStr("en = 'There is no need to retransmit the requested resources.';");
+		Details = NStr("en = 'There is no need to retransmit the requested resources.';tr = 'Talep edilen kaynaklar tekrar aktarılmaz.'");
 	ElsIf StatusCode = 400 Then // Bad Request
-		Details = NStr("en = 'Couldn''t process the request.';");
+		Details = NStr("en = 'Couldn''t process the request.';tr = 'Talep yerine getirilemez.'");
 	ElsIf StatusCode = 401 Then // Unauthorized
-		Details = NStr("en = 'The server denied authorization.';");
+		Details = NStr("en = 'The server denied authorization.';tr = 'Sunucudaki doğrulama girişimi reddedildi.'");
 	ElsIf StatusCode = 402 Then // Payment Required
-		Details = NStr("en = 'Payment is required.';");
+		Details = NStr("en = 'Payment is required.';tr = 'Ödeme gerekli.'");
 	ElsIf StatusCode = 403 Then // Forbidden
-		Details = NStr("en = 'No access to the requested resource.';");
+		Details = NStr("en = 'No access to the requested resource.';tr = 'Sorgulanan kaynak erişilemez.'");
 	ElsIf StatusCode = 404 Then // Not Found
-		Details = NStr("en = 'The requested resource does not exist on the server.';");
+		Details = NStr("en = 'The requested resource does not exist on the server.';tr = 'Sorgulanan kaynak sunucuda mevcut değil.'");
 	ElsIf StatusCode = 405 Then // Method Not Allowed
-		Details = NStr("en = 'The server does not support the request method.';");
+		Details = NStr("en = 'The server does not support the request method.';tr = 'Sorgu yöntemi sunucu tarafından desteklenmez.'");
 	ElsIf StatusCode = 406 Then // Not Acceptable
-		Details = NStr("en = 'The server does not support the requested data format.';");
+		Details = NStr("en = 'The server does not support the requested data format.';tr = 'Sorgulanan veri formatı sunucu tarafından desteklenmez.'");
 	ElsIf StatusCode = 407 Then // Proxy Authentication Required
-		Details = NStr("en = 'Proxy server authentication error.';");
+		Details = NStr("en = 'Proxy server authentication error.';tr = 'Proxy sunucu doğrulama hatası'");
 	ElsIf StatusCode = 408 Then // Request Timeout
-		Details = NStr("en = 'Request timeout.';");
+		Details = NStr("en = 'Request timeout.';tr = 'İstemciden aktarım sunucusu zaman aşımına uğradı.'");
 	ElsIf StatusCode = 409 Then // Conflict
-		Details = NStr("en = 'Cannot execute the request due to an access conflict.';");
+		Details = NStr("en = 'Cannot execute the request due to an access conflict.';tr = 'Sorgu, kaynak çakışması nedeniyle gerçekleştirilemez.'");
 	ElsIf StatusCode = 410 Then // Gone
-		Details = NStr("en = 'The resource is no longer available on the server.';");
+		Details = NStr("en = 'The resource is no longer available on the server.';tr = 'Sunucudaki kaynak taşındı.'");
 	ElsIf StatusCode = 411 Then // Length Required
-		Details = NStr("en = 'The ""Content-length"" request header is not specified.';");
+		Details = NStr("en = 'The ""Content-length"" request header is not specified.';tr = 'Sunucu, sorgu başlığında ""İçerik uzunluğu"" belirtilmesini gerektirir.'");
 	ElsIf StatusCode = 412 Then // Precondition Failed
-		Details = NStr("en = 'The request is not applicable to the resource.';");
+		Details = NStr("en = 'The request is not applicable to the resource.';tr = 'Sorgu kaynağa uygulanmaz'");
 	ElsIf StatusCode = 413 Then // Request Entity Too Large
-		Details = NStr("en = 'The server cannot process the request because the data volume is too large.';");
+		Details = NStr("en = 'The server cannot process the request because the data volume is too large.';tr = 'Sunucu işlemeyi reddediyor, aktarılan verilerin hacmi fazladır.'");
 	ElsIf StatusCode = 414 Then // Request-URL Too Long
-		Details = NStr("en = 'The cannot process the request because the URL is too long.';");
+		Details = NStr("en = 'The cannot process the request because the URL is too long.';tr = 'Sunucu işlemeyi reddediyor, URL aşırı uzun.'");
 	ElsIf StatusCode = 415 Then // Unsupported Media-Type
-		Details = NStr("en = 'A part of the request has unsupported format.';");
+		Details = NStr("en = 'A part of the request has unsupported format.';tr = 'Sunucu, sorgunun bir kısmının desteklenmeyen bir biçimde yapıldığını fark etti'");
 	ElsIf StatusCode = 416 Then // Requested Range Not Satisfiable
-		Details = NStr("en = 'A part of the requested resource cannot be provided.';");
+		Details = NStr("en = 'A part of the requested resource cannot be provided.';tr = 'İstenen kaynağın bir kısmı sağlanamaz'");
 	ElsIf StatusCode = 417 Then // Expectation Failed
-		Details = NStr("en = 'The server cannot provide a response to the specified request.';");
+		Details = NStr("en = 'The server cannot provide a response to the specified request.';tr = 'Sunucu, belirtilen sorgu yanıtını sağlayamaz.'");
 	ElsIf StatusCode = 429 Then // Too Many Requests
-		Details = NStr("en = 'Too many requests in a short amount of time.';");
+		Details = NStr("en = 'Too many requests in a short amount of time.';tr = 'Kısa sürede çok fazla sorgu.'");
 	ElsIf StatusCode = 500 Then // Internal Server Error
-		Details = NStr("en = 'Internal online server error.';");
+		Details = NStr("en = 'Internal online server error.';tr = 'Dahili çevrimiçi sunucu hatası.'");
 	ElsIf StatusCode = 501 Then // Not Implemented
-		Details = NStr("en = 'The server does not support the request method.';");
+		Details = NStr("en = 'The server does not support the request method.';tr = 'Sorgu yöntemi sunucu tarafından desteklenmez.'");
 	ElsIf StatusCode = 502 Then // Bad Gateway
 		Details = NStr("en = 'The server received an invalid response from the upstream server
-		                         |while acting as a gateway or proxy server.';");
+		                         |while acting as a gateway or proxy server.';tr = 'Ağ geçidi veya proxy rolü konuşan sunucu, 
+		                         |üst düzey bir sunucudan geçersiz bir yanıt iletisi aldı.'");
 	ElsIf StatusCode = 503 Then // Server Unavailable
-		Details = NStr("en = 'Server is temporarily unavailable.';");
+		Details = NStr("en = 'Server is temporarily unavailable.';tr = 'Sunucu geçici olarak kullanılamıyor.'");
 	ElsIf StatusCode = 504 Then // Gateway Timeout
 		Details = NStr("en = 'The server did not receive a timely response from the upstream server
-		                         |while acting as a gateway or proxy server.';");
+		                         |while acting as a gateway or proxy server.';tr = 'Ağ geçidi veya proxy rolündeki sunucu, 
+		                         |geçerli sorguyu tamamlamak için bir üst sunucudan yanıt beklemedi.'");
 	ElsIf StatusCode = 505 Then // HTTP Version Not Supported
-		Details = NStr("en = 'The server does not support HTTP version specified in the request.';");
+		Details = NStr("en = 'The server does not support HTTP version specified in the request.';tr = 'Sunucu HTTP protokolünün sorguda belirtilen sürümünü desteklemiyor'");
 	ElsIf StatusCode = 506 Then // Variant Also Negotiates
-		Details = NStr("en = 'The server cannot process a request because it is configured incorrectly.';");
+		Details = NStr("en = 'The server cannot process a request because it is configured incorrectly.';tr = 'Sunucu düzgün yapılandırılmamış ve isteği işleyemiyor.'");
 	ElsIf StatusCode = 507 Then // Insufficient Storage
-		Details = NStr("en = 'Not enough space on the server to run the request.';");
+		Details = NStr("en = 'Not enough space on the server to run the request.';tr = 'Sunucu isteği gerçekleştirmek için yeterli alan yok.'");
 	ElsIf StatusCode = 509 Then // Bandwidth Limit Exceeded
-		Details = NStr("en = 'The server exceeded the bandwidth limit.';");
+		Details = NStr("en = 'The server exceeded the bandwidth limit.';tr = 'Sunucu, ayrılan trafik tüketim kısıtlamasını aştı.'");
 	ElsIf StatusCode = 510 Then // Not Extended
-		Details = NStr("en = 'The server requires additional request details.';");
+		Details = NStr("en = 'The server requires additional request details.';tr = 'Sunucu, işlenen sorgu hakkında daha fazla bilgi gerektirir.'");
 	ElsIf StatusCode = 511 Then // Network Authentication Required
-		Details = NStr("en = 'Authorization on the server is required.';");
+		Details = NStr("en = 'Authorization on the server is required.';tr = 'Sunucuda yetkilendirme gereklidir.'");
 	Else 
-		Details = NStr("en = '<Unknown status code>.';");
+		Details = NStr("en = '<Unknown status code>.';tr = '<Bilinmeyen durum kodu>.'");
 	EndIf;
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '[%1] %2';"), 
+		NStr("en = '[%1] %2';tr = '[%1] %2'"), 
 		StatusCode, 
 		Details);
 	
@@ -696,7 +723,8 @@ Function RedirectionPresentations(Redirections)
 
 	Return StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Redirected (%1):
-					|%2';"),
+					|%2';tr = 'Yeniden yönlendirildi (%1):
+					|%2'"),
 		Redirections.Count(),
 		StrConcat(Redirections, Chars.LF));
 
@@ -711,7 +739,10 @@ Procedure AddServerResponseBody(PathToFile, ErrorText)
 			NStr("en = '%1
 			           |
 			           |Message from web server:
-			           |%2';"),
+			           |%2';tr = '%1
+			           |
+			           |Web sunucusundan mesaj:
+			           |%2'"),
 			ErrorText,
 			ServerResponseBody);
 	EndIf;
@@ -737,7 +768,11 @@ Procedure AddHTTPHeaders(Object, ErrorText)
 			           |
 			           |HTTP request:
 			           |Resource address: %2
-			           |Headers: %3';"),
+			           |Headers: %3';tr = '%1
+			           |
+			           |HTTP sorgu:
+			           |Kaynağın adresi: %2
+			           |Başlıklar: %3'"),
 			ErrorText,
 			Object.ResourceAddress,
 			HTTPHeadersPresentation(Object.Headers));
@@ -747,7 +782,11 @@ Procedure AddHTTPHeaders(Object, ErrorText)
 			           |
 			           |HTTP response:
 			           |Response code: %2
-			           |Headers: %3';"),
+			           |Headers: %3';tr = '%1
+			           |
+			           |HTTP cevap:
+			           |Cevap kodu: %2
+			           |Başlıklar: %3'"),
 			ErrorText,
 			Object.StatusCode,
 			HTTPHeadersPresentation(Object.Headers));
@@ -762,7 +801,8 @@ Function HTTPHeadersPresentation(Headers)
 	For Each Title In Headers Do 
 		HeadersPresentation = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = '%1
-			           |%2: %3';"), 
+			           |%2: %3';tr = '%1
+			           |%2: %3'"), 
 			HeadersPresentation,
 			Title.Key, Title.Value);
 	EndDo;
@@ -788,13 +828,16 @@ Function InternetProxyPresentation(Proxy, Protocol = Undefined)
 		EndIf;
 		
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1: %2:%3';"), Upper(Protocol), Server, Format(Port, "NG=")));
+			NStr("en = '%1: %2:%3';tr = '%1: %2:%3'"), Upper(Protocol), Server, Format(Port, "NG=")));
 	Else
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Address: %1:%2
 			           |HTTP:    %3:%4
 			           |HTTPS:   %5:%6
-			           |FTP:     %7:%8';"),
+			           |FTP:     %7:%8';tr = 'Adres:  %1:%2
+			           |HTTP:   %3:%4
+			           |Secure: %5:%6
+			           |FTP:    %7:%8'"),
 			Proxy.Server(),        Format(Proxy.Port(),        "NG="),
 			Proxy.Server("http"),  Format(Proxy.Port("http"),  "NG="),
 			Proxy.Server("https"), Format(Proxy.Port("https"), "NG="),
@@ -802,26 +845,27 @@ Function InternetProxyPresentation(Proxy, Protocol = Undefined)
 	EndIf;
 		
 	If Proxy.UseOSAuthentication("") Then 
-		Log.Add(NStr("en = 'OS authentication.';"));
+		Log.Add(NStr("en = 'OS authentication.';tr = 'İşletim sistemi kimlik doğrulaması kullanılır'"));
 	Else 
 		User = Proxy.User("");
 		Password = Proxy.Password("");
-		PasswordState = ?(IsBlankString(Password), NStr("en = '<not specified>';"), NStr("en = '********';"));
+		PasswordState = ?(IsBlankString(Password), NStr("en = '<not specified>';tr = '<belirtilmemiş>'"), NStr("en = '********';tr = '********'"));
 		
-		Log.Add(NStr("en = 'Authentication with username and password.';"));
+		Log.Add(NStr("en = 'Authentication with username and password.';tr = 'Kullanıcı adı ve şifre kimlik doğrulaması kullanılır'"));
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'User: %1
-			           |Password: %2';"),
+			           |Password: %2';tr = 'Kullanıcı: %1
+			           |Parola: %2'"),
 			User,
 			PasswordState));
 	EndIf;
 	
 	If Proxy.BypassProxyOnLocal Then 
-		Log.Add(NStr("en = 'Bypass proxy for local addresses.';"));
+		Log.Add(NStr("en = 'Bypass proxy for local addresses.';tr = 'Yerel URL''ler için baypas proxy''si'"));
 	EndIf;
 	
 	If Proxy.BypassProxyOnAddresses.Count() > 0 Then 
-		Log.Add(NStr("en = 'Bypass proxy for the following addresses:';"));
+		Log.Add(NStr("en = 'Bypass proxy for the following addresses:';tr = 'Aşağıdaki adresler için kullanma:'"));
 		For Each AddressToExclude In Proxy.BypassProxyOnAddresses Do
 			Log.Add(AddressToExclude);
 		EndDo;
@@ -928,7 +972,7 @@ EndProcedure
 
 Function EventLogEvent()
 	
-	Return NStr("en = 'Network download';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Network download';tr = 'İnternetten dosya al'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -957,13 +1001,13 @@ Function ProxySettingsState(Val Protocol = Undefined) Export
 	Log = New Array;
 	
 	If ProxySettings = Undefined Then 
-		Log.Add(NStr("en = 'The proxy server parameters are not specified in the infobase. System proxy server are used instead.';"));
+		Log.Add(NStr("en = 'The proxy server parameters are not specified in the infobase. System proxy server are used instead.';tr = 'Proxy sunucunun ayarları IB''de belirtilmemiştir (sistem proxy ayarları kullanılır).'"));
 	ElsIf Not ProxySettings.Get("UseProxy") Then
-		Log.Add(NStr("en = 'Proxy server parameters in the infobase: Do not use proxy server.';"));
+		Log.Add(NStr("en = 'Proxy server parameters in the infobase: Do not use proxy server.';tr = 'Proxy sunucunun IB''deki ayarları: Proxy sunucusu kullanılamaz.'"));
 	ElsIf ProxySettings.Get("UseSystemSettings") Then
-		Log.Add(NStr("en = 'Proxy server parameters in the infobase: Use system proxy server settings.';"));
+		Log.Add(NStr("en = 'Proxy server parameters in the infobase: Use system proxy server settings.';tr = 'Proxy sunucunun IB''deki ayarları: Proxy sunucunun sistem ayarlarını kullan.'"));
 	Else
-		Log.Add(NStr("en = 'Proxy server parameters in the infobase: Use other proxy server settings.';"));
+		Log.Add(NStr("en = 'Proxy server parameters in the infobase: Use other proxy server settings.';tr = 'Proxy sunucunun IB''deki ayarları: Proxy sunucunun sistem diğer ayarlarını kullan.'"));
 	EndIf;
 	
 	If Proxy = Undefined Then 
@@ -973,7 +1017,7 @@ Function ProxySettingsState(Val Protocol = Undefined) Export
 	ProxyConnection = Not IsBlankString(Proxy.Server(Protocol)) Or Not IsBlankString(Proxy.Server());
 	
 	If ProxyConnection Then 
-		Log.Add(NStr("en = 'Connecting via proxy server:';"));
+		Log.Add(NStr("en = 'Connecting via proxy server:';tr = 'Bağlantı proxy sunucusu üzerinden yapılıyor:'"));
 		Log.Add(InternetProxyPresentation(Proxy, Protocol));
 	EndIf;
 	
@@ -989,19 +1033,19 @@ EndFunction
 Function DiagnosticsLocationPresentation() Export
 	
 	If Common.DataSeparationEnabled() Then
-		Return NStr("en = 'Attempting connection on a remote 1C:Enterprise server (SaaS).';");
+		Return NStr("en = 'Attempting connection on a remote 1C:Enterprise server (SaaS).';tr = 'Bağlantı, 1C:Enterprise''nin sunucusunda İnternet üzerinden yapılıyor.'");
 	Else 
 		If Common.FileInfobase() Then
 			If Common.ClientConnectedOverWebServer() Then 
 				Return StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Attempting connection from a file infobase on web server <%1>.';"), ComputerName());
+					NStr("en = 'Attempting connection from a file infobase on web server <%1>.';tr = 'Bağlantı, web sunucusundaki Infobase''dan yapılıyor <%1>.'"), ComputerName());
 			Else 
 				Return StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Attempting connection from a file infobase on computer <%1>.';"), ComputerName());
+					NStr("en = 'Attempting connection from a file infobase on computer <%1>.';tr = 'Bağlantı, bilgisayardaki Infobase''dan yapılıyor <%1>.'"), ComputerName());
 			EndIf;
 		Else
 			Return StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Attempting connection on 1C:Enterprise server <%1>.';"), ComputerName());
+				NStr("en = 'Attempting connection on 1C:Enterprise server <%1>.';tr = 'Bağlantı, 1C:Enterprise sunucusunda <%1> yapılıyor.'"), ComputerName());
 		EndIf;
 	EndIf;
 	
@@ -1031,7 +1075,10 @@ Function CheckServerAvailability(ServerAddress) Export
 			NStr("en = 'Cannot check whether the ""%1"" Internet resource is available due to:
 				|%2
 				|
-				|using the ""%3"" command.';"), 
+				|using the ""%3"" command.';tr = '""%1"" İnternet kaynağın erişebilirliği şu sebeple kontrol edilemedi:
+				|%2
+				|
+				| ""%3"" komutu ile.'"), 
 				ServerAddress, ErrorProcessing.BriefErrorDescription(ErrorInfo()), CommandString);
 		Return Result; 
 	EndTry;	
@@ -1054,11 +1101,11 @@ Function CheckServerAvailability(ServerAddress) Export
 	Log = New Array;
 	If Available Then
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Remote server %1 is available:';"), 
+			NStr("en = 'Remote server %1 is available:';tr = 'Uzak sunucu %1 kullanılamaz:'"), 
 			ServerAddress));
 	Else
 		Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Remote server %1 is unavailable:';"), 
+			NStr("en = 'Remote server %1 is unavailable:';tr = 'Uzak sunucu %1 kullanılamaz:'"), 
 			ServerAddress));
 	EndIf;
 	
@@ -1094,7 +1141,7 @@ Function ServerRouteTraceLog(ServerAddress) Export
 	
 	Log = New Array;
 	Log.Add(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Tracing route to remote server %1:';"), ServerAddress));
+		NStr("en = 'Tracing route to remote server %1:';tr = '%1 Uzak sunucuya rota izleme:'"), ServerAddress));
 	
 	Log.Add("> " + CommandString);
 	Log.Add(Result.OutputStream);

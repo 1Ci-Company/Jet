@@ -56,7 +56,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		ElsIf ValueIsFilled(Parameters.Key) Then
 			ObjectValue = Parameters.Key.GetObject();
 		Else
-			Raise NStr("en = 'You cannot create a file group.';");
+			Raise NStr("en = 'You cannot create a file group.';tr = 'Dosya grubu oluşturamazsınız.'");
 		EndIf;
 		
 	EndIf;
@@ -92,7 +92,7 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 		
 		Cancel = True;
 		ResponseNotification = New NotifyDescription("CloseFormAfterAnswerQuestion", ThisObject);
-		ShowQueryBox(ResponseNotification, NStr("en = 'The data has been changed. Do you want to save the changes?';"), QuestionDialogMode.YesNoCancel);
+		ShowQueryBox(ResponseNotification, NStr("en = 'The data has been changed. Do you want to save the changes?';tr = 'Veriler değiştirildi. Değişiklikleri kaydetmek istiyor musunuz?'"), QuestionDialogMode.YesNoCancel);
 		
 	EndIf;
 	
@@ -128,7 +128,7 @@ Procedure StandardReread(Command)
 		Return;
 	EndIf;
 	
-	QueryText = NStr("en = 'The data has been changed. Do you want to refresh the data?';");
+	QueryText = NStr("en = 'The data has been changed. Do you want to refresh the data?';tr = 'Veriler değiştirildi. Veriler yenilensin mi?'");
 	
 	NotifyDescription = New NotifyDescription("StandardRereadAnswerReceived", ThisObject);
 	ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.Yes);
@@ -198,7 +198,7 @@ Procedure SetUpFormObject(Val NewObject)
 		EndIf;
 	EndDo;
 	
-	CreatedStatus = StringFunctions.FormattedString(NStr("en = '<a href=""%1"">%2</a>';"),
+	CreatedStatus = StringFunctions.FormattedString(NStr("en = '<a href=""%1"">%2</a>';tr = '<a href=""%1"">%2</a>'"),
 		GetURL(ThisObject["Object"].Author), String(ThisObject["Object"].Author));
 	
 	RefreshInformationAboutChange();
@@ -220,9 +220,9 @@ Procedure RefreshTitle()
 	CurrentRefToFile = CurrentRefToFileServer();
 	If ValueIsFilled(CurrentRefToFile) Then
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 (File group)';"), String(CurrentRefToFile));
+			NStr("en = '%1 (File group)';tr = '%1 (Dosya grubu)'"), String(CurrentRefToFile));
 	Else
-		Title = NStr("en = 'File group (Create)';")
+		Title = NStr("en = 'File group (Create)';tr = 'Dosya grubu (Oluştur)'")
 	EndIf;
 	
 EndProcedure
@@ -234,7 +234,7 @@ Function HandleFileRecordCommand()
 	
 	If IsBlankString(ThisObject.Object.Description) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'To proceed, please provide the file name.';"), , "Description", "Object");
+			NStr("en = 'To proceed, please provide the file name.';tr = 'Devam etmek için dosya adını belirtin.'"), , "Description", "Object");
 		Return False;
 	EndIf;
 	
@@ -287,7 +287,7 @@ Function WriteFile(Val ParameterObject = Undefined)
 	Except
 		
 		RollbackTransaction();
-		WriteLogEvent(NStr("en = 'Files.Error writing group of attachments';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Files.Error writing group of attachments';tr = 'Dosyalar. Ekli dosyalar grubunun kayıt hatası'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorProcessing.DetailErrorDescription(ErrorInfo()) );
 		Raise;
 		
@@ -327,7 +327,7 @@ EndProcedure
 &AtServer
 Procedure RefreshInformationAboutChange()
 	
-	ChangedStatus = StringFunctions.FormattedString(NStr("en = '<a href=""%1"">%2</a>';"),
+	ChangedStatus = StringFunctions.FormattedString(NStr("en = '<a href=""%1"">%2</a>';tr = '<a href=""%1"">%2</a>'"),
 		GetURL(ThisObject.Object.ChangedBy), String(ThisObject.Object.ChangedBy));
 	
 EndProcedure

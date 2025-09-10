@@ -27,7 +27,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.ForReceiving.Visible = CanReceiveEmails;
 	
 	If Not CanReceiveEmails Then
-		Items.ForSending.Title = NStr("en = 'Use this account to send mail';");
+		Items.ForSending.Title = NStr("en = 'Use this account to send mail';tr = 'E-posta göndermek için kullan'");
 	EndIf;
 	
 	Items.AccountAvailabilityGroup.Enabled = Users.IsFullUser();
@@ -46,8 +46,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Items.AuthenticationMethodMailService.Visible = False;
 		
 		Items.AuthenticationPassword.ChoiceList.Clear();
-		Items.AuthenticationPassword.ChoiceList.Add("OAuth", NStr("en = 'Authorize in the email service';"));
-		Items.AuthenticationPassword.ChoiceList.Add("Password", NStr("en = 'Use password';"));
+		Items.AuthenticationPassword.ChoiceList.Add("OAuth", NStr("en = 'Authorize in the email service';tr = 'E-posta hizmetine giriş'"));
+		Items.AuthenticationPassword.ChoiceList.Add("Password", NStr("en = 'Use password';tr = 'Şifre kullanmak'"));
 		
 		Items.Password.HorizontalStretch = True;
 		Items.Password.TitleLocation = FormItemTitleLocation.Auto;
@@ -75,7 +75,7 @@ EndProcedure
 Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	If UserAccountKind = "Personal1" And Not ValueIsFilled(Object.AccountOwner) Then 
 		Cancel = True;
-		MessageText = NStr("en = 'Select the account owner.';");
+		MessageText = NStr("en = 'Select the account owner.';tr = 'Hesap sahibini seçin.'");
 		Common.MessageToUser(MessageText, , "Object.AccountOwner");
 	EndIf;
 EndProcedure
@@ -178,22 +178,22 @@ EndProcedure
 Procedure ShowCorrectionMethod(WayFix, AdditionalParameters = Undefined) Export
 
 	If WayFix = "EnableUseAuthorizationSMTP" Then
-		CommonClient.MessageToUser(NStr("en = 'Enable authorization on the outgoing mail server.';"),
+		CommonClient.MessageToUser(NStr("en = 'Enable authorization on the outgoing mail server.';tr = 'Giden posta sunucusunda kimlik doğrulamayı etkinleştirin.'"),
 			Object.Ref, , "Object.AuthorizationRequiredOnSendEmails");
 	ElsIf WayFix = "Readjust" Then
-		CommonClient.MessageToUser(NStr("en = 'To reconfigure your account, click ""Reconfigure"".';"),
+		CommonClient.MessageToUser(NStr("en = 'To reconfigure your account, click ""Reconfigure"".';tr = 'Hesabınızı yeniden yapılandırmak için ""Yeniden yapılandır""a tıklayın.'"),
 			Object.Ref);
 	ElsIf WayFix = "UseSTARTTLSForIncomingMail" Then
-		CommonClient.MessageToUser(NStr("en = 'Switch encryption to STARTTLS (for incoming emails).';"),
+		CommonClient.MessageToUser(NStr("en = 'Switch encryption to STARTTLS (for incoming emails).';tr = 'Şifrelemeyi STARTTLS olarak değiştirin (gelen posta için).'"),
 			Object.Ref, "EncryptOnReceiveMail");
 	ElsIf WayFix = "RefillLoginPassword" Then
-		CommonClient.MessageToUser(NStr("en = 'Try clearing and entering a username again.';"),
+		CommonClient.MessageToUser(NStr("en = 'Try clearing and entering a username again.';tr = 'Giriş bilgilerinizi silip yeniden girmeyi deneyin.'"),
 			Object.Ref, , "Object.User");
 	ElsIf WayFix = "RefillPassword" Then
-		CommonClient.MessageToUser(NStr("en = 'Enter your password';"),
+		CommonClient.MessageToUser(NStr("en = 'Enter your password';tr = 'Şifrenizi girin'"),
 			Object.Ref, "Password");
 	ElsIf WayFix = "FillinMailAddress" Then
-		CommonClient.MessageToUser(NStr("en = 'Check email address.';"),
+		CommonClient.MessageToUser(NStr("en = 'Check email address.';tr = 'E-posta adresinizi kontrol edin.'"),
 			Object.Ref, "Object.Email");
 	EndIf;
 	
@@ -221,7 +221,7 @@ Procedure ProtocolOnChange(Item)
 	EndIf;
 	
 	Items.IncomingMailServer.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = '%1 server';"), Object.ProtocolForIncomingMail);
+		NStr("en = '%1 server';tr = 'Sunucu %1'"), Object.ProtocolForIncomingMail);
 		
 	POPIsUsed = Object.ProtocolForIncomingMail = "POP";
 	Items.KeepMessagesOnServer.Visible = POPIsUsed And CanReceiveEmails;
@@ -237,9 +237,9 @@ EndProcedure
 Procedure SetGroupTypeAuthorizationRequired(Form, POPIsUsed)
 	
 	If POPIsUsed Then
-		Form.Items.AuthorizationRequiredOnSendMail.Title = NStr("en = 'Outgoing server (POP) requires authentication';");
+		Form.Items.AuthorizationRequiredOnSendMail.Title = NStr("en = 'Outgoing server (POP) requires authentication';tr = 'Giden e-posta sunucusu (POP) doğrulama gerektiriyor'");
 	Else
-		Form.Items.AuthorizationRequiredOnSendMail.Title = NStr("en = 'Outgoing server (SMTP) requires authentication';");
+		Form.Items.AuthorizationRequiredOnSendMail.Title = NStr("en = 'Outgoing server (SMTP) requires authentication';tr = 'Giden e-posta sunucusu (SMTP) doğrulama gerektiriyor'");
 	EndIf;
 
 	Form.Items.AuthorizationOnSendMail.Visible = POPIsUsed;
@@ -534,7 +534,7 @@ Function Permissions()
 				"SMTP",
 				Object.OutgoingMailServer,
 				Object.OutgoingMailServerPort,
-				NStr("en = 'Email.';")));
+				NStr("en = 'Email.';tr = 'E-posta.'")));
 	EndIf;
 	
 	If Object.UseForReceiving Then
@@ -543,7 +543,7 @@ Function Permissions()
 				Object.ProtocolForIncomingMail,
 				Object.IncomingMailServer,
 				Object.IncomingMailServerPort,
-				NStr("en = 'Email.';")));
+				NStr("en = 'Email.';tr = 'E-posta.'")));
 	EndIf;
 	
 	Return Result;
@@ -613,7 +613,7 @@ Procedure OnCompleteSetup(Result, OnlyAuthorization) Export
 #Else
 			Items.Password.Enabled = Not Object.EmailServiceAuthorization;
 #EndIf
-			WarningText = NStr("en = 'Authorization in the email service failed.';");
+			WarningText = NStr("en = 'Authorization in the email service failed.';tr = 'Posta hizmetinde oturum açılamadı.'");
 			If TypeOf(Result) = Type("String") Then
 				WarningText = WarningText + Chars.LF + Result;
 			EndIf;
@@ -638,7 +638,7 @@ Procedure FillSettings()
 	Items.KeepMessagesOnServer.Visible = Object.ProtocolForIncomingMail = "POP" And CanReceiveEmails;
 	
 	Items.IncomingMailServer.Title = StringFunctionsClientServer.SubstituteParametersToString(
-	NStr("en = '%1 server';"), Object.ProtocolForIncomingMail);
+	NStr("en = '%1 server';tr = 'Sunucu %1'"), Object.ProtocolForIncomingMail);
 	
 	DeleteMailFromServer = Object.KeepMailAtServerPeriod > 0;
 	If Not DeleteMailFromServer Then

@@ -33,13 +33,13 @@ Procedure OnFillToDoList(ToDoList) Export
 	ToDoRow					= ToDoList.Add();
 	ToDoRow.ID				= RowID;
 	ToDoRow.HasToDoItems	= (RemindersCount > 0);
-	ToDoRow.Presentation	= NStr("en = 'My reminders'");
+	ToDoRow.Presentation	= NStr("en = 'My reminders'; tr = 'Hatırlatıcılarım'");
 	ToDoRow.Owner			= DataProcessors.ToDoList;
 	
 	ToDoRow					= ToDoList.Add();
 	ToDoRow.ID				= "MyReminders";
 	ToDoRow.HasToDoItems	= (RemindersCount > 0);
-	ToDoRow.Presentation	= NStr("en = 'All reminders'");
+	ToDoRow.Presentation	= NStr("en = 'All reminders'; tr = 'Tüm hatırlatıcılar'");
 	ToDoRow.Count			= RemindersCount;
 	ToDoRow.Form			= "InformationRegister.UserReminders.Form.MyReminders";
 	ToDoRow.Owner			= RowID;

@@ -113,7 +113,9 @@ Async Function AttachAddInSSLAsync(Context) Export
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot apply add-in ""%1"" in the client application
 				           |due to:
-				           |Either %2 or %3 must be specified.';"), 
+				           |Either %2 or %3 must be specified.';tr = '""%1"" harici bileşeni 
+				           | istemci uygulamasına şu sebeple bağlanılamadı:
+				           | Aynı zamanda %2 ve %3 belirtilemez.'"), 
 				Context.Location, "Id", "ObjectsCreationIDs");
 		Else
 			// If an add-in has multiple object classes, "Id" is used only to
@@ -212,7 +214,10 @@ Async Function AttachAddInSSLAsync(Context) Export
 			NStr("en = 'Cannot attach add-in ""%1"" on the client
 			           |%2
 			           |Reason:
-			           |%3';"),
+			           |%3';tr = '""%1"" eklentisi istemciye eklenemedi
+			           |%2
+			           | Sebep:
+			           |%3'"),
 			Context.Id,
 			Context.Location,
 			ErrorProcessing.BriefErrorDescription(ErrorInfo()));
@@ -237,7 +242,9 @@ Procedure AttachAddInSSL(Context) Export
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot apply add-in ""%1"" in the client application
 				           |due to:
-				           |Either %2 or %3 must be specified.';"), 
+				           |Either %2 or %3 must be specified.';tr = '""%1"" harici bileşeni 
+				           | istemci uygulamasına şu sebeple bağlanılamadı:
+				           | Aynı zamanda %2 ve %3 belirtilemez.'"), 
 				Context.Location, "Id", "ObjectsCreationIDs");
 		Else
 			// If an add-in has multiple object classes, "Id" is used only to
@@ -334,7 +341,7 @@ Procedure AttachAddInSSLNotifyOnError(ErrorDescription, Context, ShouldLogError 
 	
 	If Not IsBlankString(ErrorDescription) And ShouldLogError Then
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Attaching add-in on the client';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Attaching add-in on the client';tr = 'İstemcide harici bileşenin eklenmesi'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorDescription,, True);
 	EndIf;
 		
@@ -363,7 +370,7 @@ Function AddInAttachmentError(ErrorDescription, ShouldLogError = True) Export
 	
 	If Not IsBlankString(ErrorDescription) And ShouldLogError Then
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Attaching add-in on the client';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Attaching add-in on the client';tr = 'İstemcide harici bileşenin eklenmesi'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorDescription,, True);
 	EndIf;
 		
@@ -434,14 +441,14 @@ Async Function InstallAddInSSLAsync(Context) Export
 	If SymbolicName = Undefined Then 
 		
 		ExplanationText =  ?(IsBlankString(Context.ExplanationText),
-			NStr("en = 'Do you want to install the add-in?';"), Context.ExplanationText);
+			NStr("en = 'Do you want to install the add-in?';tr = 'Harici bileşenler kurulsun mu?'"), Context.ExplanationText);
 		
 		ButtonsList = New ValueList;
-		ButtonsList.Add(DialogReturnCode.Yes,  NStr("en = 'Install and continue';"));
-		ButtonsList.Add(DialogReturnCode.No, NStr("en = 'Cancel';"));
+		ButtonsList.Add(DialogReturnCode.Yes,  NStr("en = 'Install and continue';tr = 'Yükle ve devam et'"));
+		ButtonsList.Add(DialogReturnCode.No, NStr("en = 'Cancel';tr = 'İptal'"));
 		
 		Response = Await DoQueryBoxAsync(ExplanationText, ButtonsList,,
-			DialogReturnCode.Yes, NStr("en = 'Install add-in';"));
+			DialogReturnCode.Yes, NStr("en = 'Install add-in';tr = 'Harici bileşenin yüklenmesi'"));
 
 		If Response = DialogReturnCode.Yes Then
 			Try
@@ -457,7 +464,10 @@ Async Function InstallAddInSSLAsync(Context) Export
 					NStr("en = 'Cannot install add-in ""%1"" on the client
 					           |%2
 					           |Reason:
-					           |%3';"),
+					           |%3';tr = 'İstemciye ""%1"" eklentisi yüklenemiyor. 
+					           |%2
+					           | Sebep: 
+					           |%3'"),
 					Context.Id,
 					Context.Location,
 					ErrorProcessing.BriefErrorDescription(ErrorInfo()));
@@ -494,11 +504,11 @@ Function ApplicationKind() Export
 	SystemInfo = New SystemInfo();
 	Result = "";
 #If WebClient Then
-	Result = NStr("en = 'Web client';") + SystemInfo.UserAgentInformation;
+	Result = NStr("en = 'Web client';tr = 'Web istemcisi'") + SystemInfo.UserAgentInformation;
 #ElsIf ThickClientOrdinaryApplication Or ThickClientManagedApplication Then
-	Result = NStr("en = 'Thick client';");
+	Result = NStr("en = 'Thick client';tr = 'Donatımlı istemci'");
 #ElsIf ThinClient Then
-	Result = NStr("en = 'Thin client';");
+	Result = NStr("en = 'Thin client';tr = 'İnce istemci'");
 #EndIf
 	Return Result + " (" + SystemInfo.PlatformType + ")";
 
@@ -780,7 +790,7 @@ Procedure ConfirmFormClosing() Export
 	
 	Notification = New NotifyDescription("ConfirmFormClosingCompletion", ThisObject, Parameters);
 	If IsBlankString(Parameters.WarningText) Then
-		QueryText = NStr("en = 'The data has been changed. Do you want to save the changes?';");
+		QueryText = NStr("en = 'The data has been changed. Do you want to save the changes?';tr = 'Veriler değiştirildi. Değişiklikleri kaydetmek istiyor musunuz?'");
 	Else
 		QueryText = Parameters.WarningText;
 	EndIf;
@@ -935,7 +945,8 @@ Procedure AttachAddInSSLAfterAttachmentAttempt(Attached, Context) Export
 			Result = AddInAttachmentResult();
 			ErrorText =  StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot attach the %1 add-in.
-				|It might not have been installed.';"), Context.Id);
+				|It might not have been installed.';tr = '%1 eklentisi eklenemiyor.
+				|Yüklenmemiş olabilir.'"), Context.Id);
 			
 			Result.ErrorDescription = ErrorText;
 			
@@ -966,7 +977,12 @@ Procedure AfterTemplateAddInCheckedForCompatibility(Result, Context) Export
 						 |
 						 |Technical details:
 						 |%3
-						 |Method %4 returned False.';"), Context.Id, Result,
+						 |Method %4 returned False.';tr = '""%1"" eklentisi uygulanamıyor.
+						 |%2.
+						 |
+						 |Teknik bilgiler:
+						 |%3
+						 |%4 yöntemi False değeri verdi.'"), Context.Id, Result,
 			Context.Location, "BeginAttachingAddIn");
 	Else
 		ErrorText =  StringFunctionsClientServer.SubstituteParametersToString(
@@ -975,7 +991,12 @@ Procedure AfterTemplateAddInCheckedForCompatibility(Result, Context) Export
 						 |
 						 |Technical details:
 						 |%3
-						 |Method %4 returned False.';"), Context.Id, ApplicationKind(), Context.Location,
+						 |Method %4 returned False.';tr = '""%1"" harici bileşen bağlanamadı.
+						 |Bileşen %2istemci uygulaması için tasarlanmamış olabilir.
+						 |
+						 |Teknik bilgi:
+						 |%3
+						 |Yöntem %4 Yanlışı geri getirdi.'"), Context.Id, ApplicationKind(), Context.Location,
 			"BeginAttachingAddIn");
 	EndIf;
 
@@ -1043,7 +1064,10 @@ Procedure AttachAddInSSLOnProcessError(ErrorInfo, StandardProcessing, Context) E
 		NStr("en = 'Cannot attach add-in ""%1"" on the client
 		           |%2
 		           |Reason:
-		           |%3';"),
+		           |%3';tr = '""%1"" eklentisi istemciye eklenemedi
+		           |%2
+		           | Sebep:
+		           |%3'"),
 		Context.Id,
 		Context.Location,
 		ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -1062,7 +1086,7 @@ Function NewAddInObject(Context)
 		Try
 			Attachable_Module = New("AddIn." + Context.SymbolicName + "." + Context.Id);
 			If Attachable_Module = Undefined Then 
-				Raise NStr("en = 'The New operator returned Undefined.';");
+				Raise NStr("en = 'The New operator returned Undefined.';tr = 'Operatör Yeni iade etti Belirsiz'");
 			EndIf;
 		Except
 			Attachable_Module = Undefined;
@@ -1075,7 +1099,10 @@ Function NewAddInObject(Context)
 				NStr("en = 'Cannot create an object for add-in ""%1"" attached on the client
 				           |%2
 				           |Reason:
-				           |%3';"),
+				           |%3';tr = 'İstemciye eklenmiş ""%1"" eklentisi için nesnesi oluşturulamadı
+				           |%2
+				           |Sebep:
+				           |%3'"),
 				Context.Id,
 				Context.Location,
 				ErrorText);
@@ -1090,7 +1117,7 @@ Function NewAddInObject(Context)
 			Try
 				Attachable_Module = New("AddIn." + Context.SymbolicName + "." + ObjectID);
 				If Attachable_Module = Undefined Then 
-					Raise NStr("en = 'The New operator returned Undefined.';");
+					Raise NStr("en = 'The New operator returned Undefined.';tr = 'Operatör Yeni iade etti Belirsiz'");
 				EndIf;
 			Except
 				Attachable_Module = Undefined;
@@ -1103,7 +1130,10 @@ Function NewAddInObject(Context)
 					NStr("en = 'Cannot create object ""%1"" for add-in ""%2"" attached on the client
 					           |%3
 					           |Reason:
-					           |%4';"),
+					           |%4';tr = 'Sunucuda bağlanan ""%2"" harici bileşenin nesnesi ""%1"" oluşturulamadı, 
+					           |%3
+					           | Nedeni:
+					           |%4'"),
 					ObjectID,
 					Context.Id,
 					Context.Location,
@@ -1175,7 +1205,10 @@ Procedure InstallAddInSSLOnProcessError(ErrorInfo, StandardProcessing, Context) 
 		NStr("en = 'Cannot install add-in ""%1"" on the client
 		           |%2
 		           |Reason:
-		           |%3';"),
+		           |%3';tr = 'İstemciye ""%1"" eklentisi yüklenemiyor. 
+		           |%2
+		           | Sebep: 
+		           |%3'"),
 		Context.Id,
 		Context.Location,
 		ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -1212,7 +1245,10 @@ Procedure CheckTheLocationOfTheComponent(Id, Location)
 			NStr("en = 'Cannot attach the %1 add-in in the client application
 			           |due to:
 			           |Add-in
-			           |%2 location is incorrect';"),
+			           |%2 location is incorrect';tr = '%1 harici bileşeni istemci uygulamasında
+			           |şu sebeple bağlanamadı:
+			           |%2 harici bileşeninin
+			           |konumu yanlış belirtildi'"),
 			Id, Location);
 	EndIf;
 
@@ -1284,7 +1320,8 @@ Async Function AttachAddInSSLAfterAttachmentAttemptAsync(Attached, Context)
 			Result = AddInAttachmentResult();
 			ErrorText =  StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot attach the %1 add-in.
-				|It might not have been installed.';"), Context.Id);
+				|It might not have been installed.';tr = '%1 eklentisi eklenemiyor.
+				|Yüklenmemiş olabilir.'"), Context.Id);
 			
 			Result.ErrorDescription = ErrorText;
 			
@@ -1300,12 +1337,18 @@ Async Function AttachAddInSSLAfterAttachmentAttemptAsync(Attached, Context)
 						 |
 						 |Technical details:
 						 |%3
-						 |Method %4 returned False.';"), Context.Id, AddInCompatibilityError,
+						 |Method %4 returned False.';tr = '""%1"" eklentisi uygulanamıyor.
+						 |%2.
+						 |
+						 |Teknik bilgiler:
+						 |%3
+						 |%4 yöntemi False değeri verdi.'"), Context.Id, AddInCompatibilityError,
 					Context.Location, "AttachAddInAsync");
 					
 				WarningText =  StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t attach add-in ""%1"".
-						 |%2.';"), Context.Id, AddInCompatibilityError);
+						 |%2.';tr = '""%1"" eklentisi eklenemiyor.
+						 |%2.'"), Context.Id, AddInCompatibilityError);
 					
 				Await DoMessageBoxAsync(WarningText);
 			Else
@@ -1315,7 +1358,12 @@ Async Function AttachAddInSSLAfterAttachmentAttemptAsync(Attached, Context)
 					 |
 					 |Technical details:
 					 |%3
-					 |Method %4 returned False.';"), Context.Id, ApplicationKind(), Context.Location,
+					 |Method %4 returned False.';tr = '""%1"" harici bileşen bağlanamadı.
+					 |Bileşen %2istemci uygulaması için tasarlanmamış olabilir.
+					 |
+					 |Teknik bilgi:
+					 |%3
+					 |Yöntem %4 Yanlışı geri getirdi.'"), Context.Id, ApplicationKind(), Context.Location,
 					"AttachAddInAsync");
 			EndIf;
 			
@@ -1505,7 +1553,8 @@ Procedure RegisterCOMConnectorOnCheckRegistration(Result, Context) Export
 				CommonInternalClient, Context);
 			QueryText = 
 				NStr("en = 'To complete the reregistration of comcntr, restart the app.
-				           |Restart now?';");
+				           |Restart now?';tr = 'comcntr kaydını tamamlamak için uygulamayı yeniden başlatın.
+				           |Şimdi yeniden başlatılsın mı?'");
 			ShowQueryBox(Notification, QueryText, QuestionDialogMode.YesNo);
 		Else 
 			Notification = Context.Notification;
@@ -1517,25 +1566,26 @@ Procedure RegisterCOMConnectorOnCheckRegistration(Result, Context) Export
 		
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot register the comcntr component.
-			           |Regsvr32 error code: %1';"),
+			           |Regsvr32 error code: %1';tr = 'comcntr bileşeni kaydedilemiyor.
+			           |Regsvr32 hata kodu: %1'"),
 			ReturnCode);
 			
 		If ReturnCode = 1 Then
-			MessageText = MessageText + " " + NStr("en = 'An error occurred upon parsing a command line.';");
+			MessageText = MessageText + " " + NStr("en = 'An error occurred upon parsing a command line.';tr = 'Komut istemi ayrıştırma hatası.'");
 		ElsIf ReturnCode = 2 Then
-			MessageText = MessageText + " " + NStr("en = 'An error occurred upon initializing a COM library.';");
+			MessageText = MessageText + " " + NStr("en = 'An error occurred upon initializing a COM library.';tr = 'COM kütüphanesinin başlatma hatası.'");
 		ElsIf ReturnCode = 3 Then
-			MessageText = MessageText + " " + NStr("en = 'An error occurred upon loading a module from a COM library.';");
+			MessageText = MessageText + " " + NStr("en = 'An error occurred upon loading a module from a COM library.';tr = 'COM kütüphanesinden modül indirilirken hata oluştu.'");
 		ElsIf ReturnCode = 4 Then
-			MessageText = MessageText + " " + NStr("en = 'An error occurred upon getting the address of a function or a variable from a COM-library.';");
+			MessageText = MessageText + " " + NStr("en = 'An error occurred upon getting the address of a function or a variable from a COM-library.';tr = 'COM kütüphanesinden bir fonksiyonun veya değişkenin adresi alınırken hata oluştu.'");
 		ElsIf ReturnCode = 5 Then
-			MessageText = MessageText + " " + NStr("en = 'An error occurred upon executing the registration function.';");
+			MessageText = MessageText + " " + NStr("en = 'An error occurred upon executing the registration function.';tr = 'Kayıt işlevi yürütülürken hata oluştu.'");
 		Else 
 			MessageText = MessageText + Chars.LF + ErrorDescription;
 		EndIf;
 		
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Registration of comcntr component';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Registration of comcntr component';tr = 'Comcntr bileşen kaydı'", CommonClient.DefaultLanguageCode()),
 			"Error",
 			MessageText,,
 			True);
@@ -1983,7 +2033,7 @@ Procedure CheckFileSystemExtensionAttachedCompletion(ExtensionAttached, Addition
 	
 	MessageText = AdditionalParameters.WarningText;
 	If IsBlankString(MessageText) Then
-		MessageText = NStr("en = 'Cannot perform the operation because 1C:Enterprise Extension is not installed.';")
+		MessageText = NStr("en = 'Cannot perform the operation because 1C:Enterprise Extension is not installed.';tr = '1C:Enterprise ile çalışma uzantısı yüklü olmadığı için işlem gerçekleştirilemiyor.'")
 	EndIf;
 	ShowMessageBox(, MessageText);
 	

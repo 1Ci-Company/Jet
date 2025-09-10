@@ -148,7 +148,7 @@ EndFunction
 Procedure ContinueCommandExecution(ExecutionParameters)
 	
 	If ExecutionParameters.Form.ReadOnly And ExecutionParameters.CommandDetails.ChangesSelectedObjects Then
-		ShowMessageBox(, NStr("en = 'To perform this action, you must allow editing in the form.';"));
+		ShowMessageBox(, NStr("en = 'To perform this action, you must allow editing in the form.';tr = 'Bu işlemi yürütmek için formda düzenlemeye izin verilmelidir.'"));
 		Return;
 	EndIf;
 	
@@ -159,7 +159,7 @@ Procedure ContinueCommandExecution(ExecutionParameters)
 	If ExecutionParameters.FilesOperationsRequired Then
 		ExecutionParameters.FilesOperationsRequired = False;
 		Handler = New NotifyDescription("ContinueExecutionCommandAfterSetFileExtension", ThisObject, ExecutionParameters);
-		MessageText = NStr("en = 'To continue, install 1C:Enterprise Extension.';");
+		MessageText = NStr("en = 'To continue, install 1C:Enterprise Extension.';tr = 'Devam etmek için 1C:Enterprise uzantısını yükleyin.'");
 		FileSystemClient.AttachFileOperationsExtension(Handler, MessageText);
 		Return;
 	EndIf;
@@ -173,12 +173,14 @@ Procedure ContinueCommandExecution(ExecutionParameters)
 			Buttons = New ValueList;
 			If ExecutionParameters.PostingRequired Then
 				QuestionTemplate = NStr("en = 'The document will be posted in order to run the ""%1"" command.
-					|Do you want to continue?';");
-				Buttons.Add(DialogReturnCode.OK, NStr("en = 'Post and continue';"));
+					|Do you want to continue?';tr = '""%1"" komutunun yürütülmesi için belge kaydedilecek.
+					|Devam etmek istiyor musunuz?'");
+				Buttons.Add(DialogReturnCode.OK, NStr("en = 'Post and continue';tr = 'Kaydet ve devam et'"));
 			Else
 				QuestionTemplate = NStr("en = 'To run the ""%1"" command,
-					|the data will be saved. Do you want to continue?';");
-				Buttons.Add(DialogReturnCode.OK, NStr("en = 'Save and continue';"));
+					|the data will be saved. Do you want to continue?';tr = '""%1""
+					| komutun yürütülmesi için veriler kaydedilecektir. Devam etmek istiyor musunuz?'");
+				Buttons.Add(DialogReturnCode.OK, NStr("en = 'Save and continue';tr = 'Kaydet ve devam et'"));
 			EndIf;
 			Buttons.Add(DialogReturnCode.Cancel);
 			
@@ -201,21 +203,21 @@ Procedure ContinueCommandExecution(ExecutionParameters)
 		If DocumentsInfo.Unposted.Count() > 0 Then
 			If DocumentsInfo.HasRightToPost Then
 				If DocumentsInfo.Unposted.Count() = 1 Then
-					QueryText = NStr("en = 'Cannot run the command for unposted documents. Do you want to post the document and continue?';");
+					QueryText = NStr("en = 'Cannot run the command for unposted documents. Do you want to post the document and continue?';tr = 'Komutu yürütmek için belgeyi önce onaylayın . Belge onaylansın ve devam edilsin mi?'");
 				Else
-					QueryText = NStr("en = 'Cannot run the command for unposted documents. Do you want to post the document and continue?';");
+					QueryText = NStr("en = 'Cannot run the command for unposted documents. Do you want to post the document and continue?';tr = 'Komutu yürütmek için belgeyi önce onaylayın . Belge onaylansın ve devam edilsin mi?'");
 				EndIf;
 				ExecutionParameters.UnpostedDocuments = DocumentsInfo.Unposted;
 				Handler = New NotifyDescription("ContinueCommandExecutionAfterConfirmPosting", ThisObject, ExecutionParameters);
 				Buttons = New ValueList;
-				Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Continue';"));
+				Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Continue';tr = 'Devam'"));
 				Buttons.Add(DialogReturnCode.Cancel);
 				ShowQueryBox(Handler, QueryText, Buttons);
 			Else
 				If DocumentsInfo.Unposted.Count() = 1 Then
-					WarningText = NStr("en = 'Cannot run the command for unposted documents. You are not authorized to post the document.';");
+					WarningText = NStr("en = 'Cannot run the command for unposted documents. You are not authorized to post the document.';tr = 'Komutu yürütmek için belgeyi önce onaylayın. Belge onaylanması için yetersiz yetki.'");
 				Else
-					WarningText = NStr("en = 'Cannot run the command for unposted documents. You are not authorized to post the document.';");
+					WarningText = NStr("en = 'Cannot run the command for unposted documents. You are not authorized to post the document.';tr = 'Komutu yürütmek için belgeyi önce onaylayın. Belge onaylanması için yetersiz yetki.'");
 				EndIf;
 				Raise(WarningText, ErrorCategory.AccessViolation);
 			EndIf;
@@ -312,7 +314,7 @@ Procedure ContinueCommandExecutionAfterConfirmPosting(Response, Context) Export
 	
 	ClearMessages();
 	UnpostedDocumentsData = CommonServerCall.PostDocuments(Context.UnpostedDocuments);
-	MessageTemplate = NStr("en = 'Document %1 is not posted: %2';");
+	MessageTemplate = NStr("en = 'Document %1 is not posted: %2';tr = '%1 belgesi kaydedilmedi: %2'");
 	UnpostedDocuments = New Array;
 	For Each DocumentInformation In UnpostedDocumentsData Do
 		CommonClient.MessageToUser(
@@ -345,14 +347,14 @@ Procedure ContinueCommandExecutionAfterConfirmPosting(Response, Context) Export
 	
 	If UnpostedDocuments.Count() > 0 Then
 		// Asking the user whether the procedure execution must be continued even if there are unposted documents.
-		DialogText = NStr("en = 'Failed to post one or several documents.';");
+		DialogText = NStr("en = 'Failed to post one or several documents.';tr = 'Bir veya birkaç belge onaylanmaz.'");
 		
 		DialogButtons = New ValueList;
 		If Context.ReferencesArrray.Count() = 0 Then
-			DialogButtons.Add(DialogReturnCode.Cancel, NStr("en = 'OK';"));
+			DialogButtons.Add(DialogReturnCode.Cancel, NStr("en = 'OK';tr = 'Tamam'"));
 		Else
-			DialogText = DialogText + " " + NStr("en = 'Continue?';");
-			DialogButtons.Add(DialogReturnCode.Ignore, NStr("en = 'Continue';"));
+			DialogText = DialogText + " " + NStr("en = 'Continue?';tr = 'Devam et?'");
+			DialogButtons.Add(DialogReturnCode.Ignore, NStr("en = 'Continue';tr = 'Devam'"));
 			DialogButtons.Add(DialogReturnCode.Cancel);
 		EndIf;
 		
@@ -476,7 +478,7 @@ Function SelectedObjects(Source, CommandDetails)
 	EndIf;
 	
 	If Not ValueIsFilled(Result) And CommandDetails.WriteMode <> "NotWrite" Then
-		Raise NStr("en = 'Cannot run the command for the object.';");
+		Raise NStr("en = 'Cannot run the command for the object.';tr = 'Komut, belirtilen nesne için yürütülemiyor.'");
 	EndIf;
 	
 	Return Result;

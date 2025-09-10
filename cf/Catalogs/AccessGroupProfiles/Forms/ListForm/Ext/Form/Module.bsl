@@ -33,9 +33,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			Items.List.MultipleChoice = True;
 			Items.List.SelectionMode = TableSelectionMode.MultiRow;
 			
-			Title = NStr("en = 'Pick access group profiles';");
+			Title = NStr("en = 'Pick access group profiles';tr = 'Erişim grubu profillerini seç'");
 		Else
-			Title = NStr("en = 'Select access group profile';");
+			Title = NStr("en = 'Select access group profile';tr = 'Erişim grubu profilini seç'");
 		EndIf;
 	Else
 		Items.List.ChoiceMode = False;
@@ -85,7 +85,7 @@ Procedure UsersKindStartChoice(Item, ChoiceData, StandardProcessing)
 	NotifyDescription = New NotifyDescription("AfterAssignmentChoice", ThisObject);
 	
 	UsersInternalClient.SelectPurpose(ThisObject,
-		NStr("en = 'Select profile assignment';"), True, True, NotifyDescription);
+		NStr("en = 'Select profile assignment';tr = 'Profil amaçlarının seçimi'"), True, True, NotifyDescription);
 	
 EndProcedure
 

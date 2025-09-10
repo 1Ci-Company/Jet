@@ -228,18 +228,18 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 			If String.IsNonExistingRole Then
 				CommonClientServer.AddUserError(Errors,
 					"Roles[%1].RolesSynonym",
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" is not found in the metadata.';"), String.Synonym),
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" is not found in the metadata.';tr = '""%1"" rolü metaveride bulunamadı.'"), String.Synonym),
 					"Roles",
 					TreeItems.IndexOf(String),
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" in line #%2 is not found in the metadata.';"), String.Synonym, "%1"));
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" in line #%2 is not found in the metadata.';tr = ' %2dizesindeki ""%1"" rolü metaverilerde bulunamadı.'"), String.Synonym, "%1"));
 			EndIf;
 			If String.IsUnavailableRole Then
 				CommonClientServer.AddUserError(Errors,
 					"Roles[%1].RolesSynonym",
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" is not available for profile assignment.';"), String.Synonym),
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" is not available for profile assignment.';tr = '""%1"" rolü profil atamak için kullanılamaz.'"), String.Synonym),
 					"Roles",
 					TreeItems.IndexOf(String),
-					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" in line #%2 is not available for profile assignment.';"), String.Synonym, "%1"));
+					StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Role ""%1"" in line #%2 is not available for profile assignment.';tr = '%2satırındaki ""%1"" rolü, profil ataması için kullanılamaz.'"), String.Synonym, "%1"));
 			EndIf;
 		EndDo;
 	EndIf;
@@ -448,7 +448,7 @@ Procedure RolesCheckOnChange(Item)
 		
 	ElsIf StandardExtensionRoles.Get(TableRow.Name) <> Undefined Then
 		TableRow.Check = Not TableRow.Check;
-		ShowMessageBox(, NStr("en = '1C:Enterprise automatically deletes extensions'' standard roles.';"));
+		ShowMessageBox(, NStr("en = '1C:Enterprise automatically deletes extensions'' standard roles.';tr = 'Standart uzantı rolleri otomatik olarak eklenir ve kaldırılır.'"));
 	Else
 		ProcessRolesInterface("UpdateRoleComposition");
 	EndIf;
@@ -484,7 +484,7 @@ Procedure RestoreByInitialFilling(Command)
 	
 	ShowQueryBox(
 		New NotifyDescription("RestoreByInitialFillingFollowUp", ThisObject),
-		NStr("en = 'Do you want to restore the profile to the initial settings?';"),
+		NStr("en = 'Do you want to restore the profile to the initial settings?';tr = 'Profil başlangıçtaki ayarlara geri yüklensin mi?'"),
 		QuestionDialogMode.YesNo);
 	
 EndProcedure
@@ -534,7 +534,7 @@ EndProcedure
 &AtClient
 Procedure SelectPurpose(Command)
 	NotifyDescription = New NotifyDescription("AfterAssignmentChoice", ThisObject);
-	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select access group profile assignment';"),,, NotifyDescription);
+	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select access group profile assignment';tr = 'Erişim grubu profili ataması seç'"),,, NotifyDescription);
 EndProcedure
 
 &AtClient
@@ -624,14 +624,16 @@ Procedure RestoreByInitialFillingCompletion(Response, Context) Export
 	If UpdateAccessGroups Then
 		Text =
 			NStr("en = 'Profile ""%1"" has been restored.
-			           |The access groups are updated.';");
+			           |The access groups are updated.';tr = '""%1"" profili geri yüklendi.
+			           |Erişim grupları güncellendi.'");
 	Else
 		Text =
 			NStr("en = 'Profile ""%1"" has been restored.
-			           |The access groups are not updated.';");
+			           |The access groups are not updated.';tr = '""%1"" profili geri yüklendi.
+			           |Erişim grupları güncellenmedi.'");
 	EndIf;
 	
-	ShowUserNotification(NStr("en = 'Profile restored';"),
+	ShowUserNotification(NStr("en = 'Profile restored';tr = 'Profil geri yüklendi'"),
 		GetURL(Object.Ref),
 		StringFunctionsClientServer.SubstituteParametersToString(Text, Object.Description));
 	
@@ -694,7 +696,10 @@ Function QuestionTextUpdateProfileAccessGroups()
 		NStr("en = 'Do you want to update the access groups that use the profile?
 		           |
 		           |Irrelevant access kinds will be deleted and
-		           |the missing access kinds will be added.';");
+		           |the missing access kinds will be added.';tr = 'Bu profili kullanan erişim gruplarını güncellemek ister misiniz?
+		           |
+		           |İlgisiz erişim türleri silinecek ve 
+		           |eksik erişim türleri eklenecek.'");
 		
 EndFunction
 

@@ -320,7 +320,7 @@ Procedure SetHeader()
 	Title = Parameters.Title;
 	
 	If Not ValueIsFilled(Title) Then 
-		Title = NStr("en = 'Appearance';");
+		Title = NStr("en = 'Appearance';tr = 'Appearance'");
 	EndIf;
 	
 EndProcedure
@@ -347,12 +347,12 @@ Function TheDesignElementIsTheOriginalOne()
 		
 		DesignSource = Appearance(ThisObject);
 		If DesignSource = Undefined Then
-			Raise NStr("en = 'The report node does not exist.';");
+			Raise NStr("en = 'The report node does not exist.';tr = 'The report node does not exist.'");
 		EndIf;
 		
 		DesignElementSource = DesignSource.GetObjectByID(DCID);
 		If DesignElementSource = Undefined Then
-			Raise NStr("en = 'The conditional appearance item does not exist.';");
+			Raise NStr("en = 'The conditional appearance item does not exist.';tr = 'The conditional appearance item does not exist.'");
 		EndIf;
 		
 		AppearanceItem = ReportsClientServer.CopyRecursive(Appearance, DesignElementSource, Appearance.Items, 0, New Map);
@@ -740,7 +740,7 @@ Procedure AddAdditionalField(List)
 	EndIf;
 	
 	List.SortByPresentation();
-	List.Add(AdditionalField(), NStr("en = 'More…';"),, PictureLib.IsEmpty);
+	List.Add(AdditionalField(), NStr("en = 'More…';tr = 'More…'"),, PictureLib.IsEmpty);
 	
 EndProcedure
 

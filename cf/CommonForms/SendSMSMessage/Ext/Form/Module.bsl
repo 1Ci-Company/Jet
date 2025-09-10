@@ -13,7 +13,7 @@
 &AtServer
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
-	OutboundMessageStatus = NStr("en = 'Sending message…';");
+	OutboundMessageStatus = NStr("en = 'Sending message…';tr = 'Mesaj gönderiliyor...'");
 	MessageText = Parameters.Text;
 	
 	PhoneNumbers = New Array;
@@ -35,9 +35,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	RecipientsNumbers = StrConcat(PhoneNumbers, ", ");
 	
-	TitleTemplate1 = NStr("en = 'Text message to: %1';");
+	TitleTemplate1 = NStr("en = 'Text message to: %1';tr = 'SMS alıcısı: %1'");
 	If PhoneNumbers.Count() > 1 Then
-		TitleTemplate1 = NStr("en = 'Text message to: %1';");
+		TitleTemplate1 = NStr("en = 'Text message to: %1';tr = 'SMS alıcısı: %1'");
 	EndIf;
 	
 	Title = StringFunctionsClientServer.SubstituteParametersToString(TitleTemplate1, RecipientsNumbers);
@@ -66,7 +66,7 @@ EndProcedure
 Procedure Send(Command)
 	
 	If StrLen(MessageText) = 0 Then
-		ShowMessageBox(, NStr("en = 'Enter a message text';"));
+		ShowMessageBox(, NStr("en = 'Enter a message text';tr = 'Mesaj metni girin'"));
 		Return;
 	EndIf;
 	
@@ -123,7 +123,8 @@ Procedure SendSMS()
 		Items.Pages.CurrentPage = Items.MessageNotSentPage;
 		
 		MessageTemplate = NStr("en = 'Couldn''t send the text message.
-		|%1.';");
+		|%1.';tr = 'SMS gönderilemedi.
+		|%1.'");
 		
 		Items.MessageNotSentText.Title = FormattedString(StringFunctionsClientServer.SubstituteParametersToString(
 			MessageTemplate, SendingResult.ErrorDescription));
@@ -147,7 +148,8 @@ Procedure CheckDeliveryStatus()
 	Items.DeliveryStatusCheckGroup.Visible = StatusCheckCompleted;
 	
 	StateTemplate = NStr("en = 'The message is sent. Delivery status:
-		|%1';");
+		|%1';tr = 'Mesaj gönderildi. İleti durumu:
+		|%1'");
 	Items.MessageSentText.Title = StringFunctionsClientServer.SubstituteParametersToString(
 		StateTemplate, DeliveryResult.LongDesc);
 	
@@ -172,13 +174,13 @@ EndProcedure
 Function DeliveryStatus(MessageID)
 	
 	DeliveryStatuses = New Map;
-	DeliveryStatuses.Insert("Error", NStr("en = 'no connection to the text message service owner';"));
-	DeliveryStatuses.Insert("Pending", NStr("en = 'Provider queued message for delivery';"));
-	DeliveryStatuses.Insert("Sending2", NStr("en = 'Provider is delivering message';"));
-	DeliveryStatuses.Insert("Sent", NStr("en = 'Provider sent the message';"));
-	DeliveryStatuses.Insert("NotSent", NStr("en = 'Provider did not send message';"));
-	DeliveryStatuses.Insert("Delivered", NStr("en = 'Message is delivered';"));
-	DeliveryStatuses.Insert("NotDelivered", NStr("en = 'Message is not delivered';"));
+	DeliveryStatuses.Insert("Error", NStr("en = 'no connection to the text message service owner';tr = 'SMS sahibine bağlantı yok'"));
+	DeliveryStatuses.Insert("Pending", NStr("en = 'Provider queued message for delivery';tr = 'Sağlayıcı, mesajı teslim etmek üzere sıraya aldı'"));
+	DeliveryStatuses.Insert("Sending2", NStr("en = 'Provider is delivering message';tr = 'Sağlayıcı, mesajı teslim ediyor'"));
+	DeliveryStatuses.Insert("Sent", NStr("en = 'Provider sent the message';tr = 'Sağlayıcı, mesajı gönderdi'"));
+	DeliveryStatuses.Insert("NotSent", NStr("en = 'Provider did not send message';tr = 'Sağlayıcı, mesajı göndermedi'"));
+	DeliveryStatuses.Insert("Delivered", NStr("en = 'Message is delivered';tr = 'Mesaj teslim edildi'"));
+	DeliveryStatuses.Insert("NotDelivered", NStr("en = 'Message is not delivered';tr = 'Mesaj teslim edilmedi'"));
 	
 	DeliveryResult = New Structure("Status, LongDesc");
 	DeliveryResult.Status = SendSMSMessage.DeliveryStatus(MessageID);

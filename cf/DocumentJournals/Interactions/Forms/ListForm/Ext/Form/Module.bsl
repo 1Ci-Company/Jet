@@ -503,7 +503,7 @@ Procedure FoldersBeforeAddRow(Item, Cancel, Copy, Parent, Var_Group)
 	EndIf;
 	
 	If CurrentData.HasEditPermission = 0 Then
-		Raise(NStr("en = 'Insufficient rights to create a folder.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to create a folder.';tr = 'Klasör oluşturmak için gerekli yetkiler yok.'"), ErrorCategory.AccessViolation);
 	EndIf;
 		
 	ParametersStructure1 = New Structure;
@@ -533,7 +533,7 @@ Procedure FoldersBeforeDeleteRow(Item, Cancel)
 	EndIf;
 	
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Delete the ""%1"" folder and move all its contents to the ""Trash"" folder?';"),
+		NStr("en = 'Delete the ""%1"" folder and move all its contents to the ""Trash"" folder?';tr = '""%1"" klasörü silinip içeriği ""Silinenler"" klasörüne taşınsın mı?'"),
 			String(CurrentData.Value));
 	
 	AdditionalParameters = New Structure("CurrentData", CurrentData);
@@ -886,19 +886,19 @@ Procedure SendReceiveEmailExecute(Command)
 	EndIf;
 	
 	If SendReceiveEmailInProgress Then
-		MessageText = NStr("en = 'Mail synchronization in progress.';");
+		MessageText = NStr("en = 'Mail synchronization in progress.';tr = 'E-posta senkronizasyonu devam ediyor.'");
 		CommonClient.MessageToUser(MessageText);
 		Return;
 	EndIf;
 	
 	If DateOfPreviousEmailReceiptSending + 15 > CommonClient.SessionDate() Then
-		MessageText = NStr("en = 'It''s been less than 15 seconds since the last mail sync. Try again later.';");
+		MessageText = NStr("en = 'It''s been less than 15 seconds since the last mail sync. Try again later.';tr = 'Son e-posta senkronizasyonunun üzerinden 15 saniyeden az süre geçti. Daha sonra tekrar deneyin.'");
 		CommonClient.MessageToUser(MessageText);
 		Return;
 	EndIf;
 	
 	If DateOfPreviousExecutionOfSendReceiveEmailCommand + 15 > CommonClient.SessionDate() Then
-		MessageText = NStr("en = 'It''s been less than 15 seconds since you run mail sync. Try again later.';");
+		MessageText = NStr("en = 'It''s been less than 15 seconds since you run mail sync. Try again later.';tr = 'E-posta senkronizasyonu yapılalı 15 saniyeden az süre geçti. Daha sonra tekrar deneyin.'");
 		CommonClient.MessageToUser(MessageText);
 		Return;
 	EndIf;
@@ -915,7 +915,7 @@ Procedure Reply(Command)
 	If CorrectChoice(Items.List.Name, True) Then
 		CurrentInteraction = Items.List.CurrentData.Ref;
 		If TypeOf(CurrentInteraction) <> Type("DocumentRef.IncomingEmail") Then
-			ShowMessageBox(, NStr("en = 'You can use ""Reply"" only for incoming messages.';"));
+			ShowMessageBox(, NStr("en = 'You can use ""Reply"" only for incoming messages.';tr = '""Yanıtla"" seçeneği sadece gelen iletiler için kullanılabilir.'"));
 			Return;
 		EndIf;
 	Else
@@ -934,7 +934,7 @@ Procedure ReplyToAll(Command)
 	If CorrectChoice(Items.List.Name, True) Then
 		CurrentInteraction = Items.List.CurrentData.Ref;
 		If TypeOf(CurrentInteraction) <> Type("DocumentRef.IncomingEmail") Then
-			ShowMessageBox(, NStr("en = 'You can use ""Reply all"" only for incoming messages.';"));
+			ShowMessageBox(, NStr("en = 'You can use ""Reply all"" only for incoming messages.';tr = '""Tümünü yanıtla"" sadece gelen iletiler için kullanılabilir.'"));
 			Return;
 		EndIf;
 	Else
@@ -954,7 +954,7 @@ Procedure ForwardMail(Command)
 		CurrentInteraction = Items.List.CurrentData.Ref;
 		If TypeOf(CurrentInteraction) <> Type("DocumentRef.OutgoingEmail") 
 			And TypeOf(CurrentInteraction) <> Type("DocumentRef.IncomingEmail") Then
-			ShowMessageBox(, NStr("en = 'You can use ""Forward"" only for mail messages.';"));
+			ShowMessageBox(, NStr("en = 'You can use ""Forward"" only for mail messages.';tr = '""İlet"" seçeneği sadece e-posta iletileri için kullanılabilir.'"));
 			Return;
 		EndIf;
 	Else
@@ -1136,7 +1136,7 @@ Procedure AddToTabs(Command)
 	
 	CurrentItemName = CurrentItem.Name;
 	If StrStartsWith(CurrentItemName, "List") And Not CorrectChoice(CurrentItemName) Then
-		ShowMessageBox(, NStr("en = 'Select an item you want to add to bookmarks.';"));
+		ShowMessageBox(, NStr("en = 'Select an item you want to add to bookmarks.';tr = 'Yer işaretlerine eklemek istediğiniz öğeyi seçin.'"));
 		Return;
 	EndIf;
 	
@@ -1166,7 +1166,7 @@ Procedure AddToTabs(Command)
 	EndIf;
 	
 	If ItemToAdd1 = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select an item you want to add to bookmarks.';"));
+		ShowMessageBox(, NStr("en = 'Select an item you want to add to bookmarks.';tr = 'Yer işaretlerine eklemek istediğiniz öğeyi seçin.'"));
 		Return;
 	EndIf;
 	
@@ -1175,7 +1175,7 @@ Procedure AddToTabs(Command)
 		ShowMessageBox(, Result.ErrorMessageText1);
 		Return;
 	EndIf;
-	ShowUserNotification(NStr("en = 'Items added to bookmarks:';"),
+	ShowUserNotification(NStr("en = 'Items added to bookmarks:';tr = 'Yer işaretlerine eklenenler:'"),
 		Result.ItemURL, Result.ItemPresentation, PictureLib.DialogInformation);
 	
 EndProcedure
@@ -1192,7 +1192,7 @@ Procedure DeferReviewExecute(Command)
 	
 	AdditionalParameters = New Structure("CurrentItemName", Undefined);
 	OnCloseNotifyHandler = New NotifyDescription("ProcessingDateChoiceOnCompletion", ThisObject, AdditionalParameters);
-	ShowInputDate(OnCloseNotifyHandler, ProcessingDate, NStr("en = 'Snooze till';"), DateFractions.DateTime);
+	ShowInputDate(OnCloseNotifyHandler, ProcessingDate, NStr("en = 'Snooze till';tr = 'Ertele'"), DateFractions.DateTime);
 	
 EndProcedure
 
@@ -1208,7 +1208,7 @@ Procedure DeferListReview(Command)
 	
 	AdditionalParameters = New Structure("CurrentItemName", CurrentItemName);
 	OnCloseNotifyHandler = New NotifyDescription("ProcessingDateChoiceOnCompletion", ThisObject, AdditionalParameters);
-	ShowInputDate(OnCloseNotifyHandler, ProcessingDate, NStr("en = 'Snooze till';"), DateFractions.DateTime);
+	ShowInputDate(OnCloseNotifyHandler, ProcessingDate, NStr("en = 'Snooze till';tr = 'Ertele'"), DateFractions.DateTime);
 
 EndProcedure
 
@@ -1294,10 +1294,10 @@ Procedure MoveToFolder(Command)
 	If CurrentItemName = "Folders" Then
 		If TypeOf(FoldersCurrentData.Value) = Type("CatalogRef.EmailAccounts") 
 			Or FoldersCurrentData.PredefinedFolder Then
-			ShowMessageBox(, NStr("en = 'Cannot execute the command on this object';"));
+			ShowMessageBox(, NStr("en = 'Cannot execute the command on this object';tr = 'Komut bu nesneye uygulanamaz'"));
 			Return;
 		ElsIf FoldersCurrentData.HasEditPermission = 0 Then
-			Raise(NStr("en = 'Insufficient rights to edit folders.';"), ErrorCategory.AccessViolation);
+			Raise(NStr("en = 'Insufficient rights to edit folders.';tr = 'Klasörleri düzenleme yetkisi yok.'"), ErrorCategory.AccessViolation);
 		EndIf;
 	EndIf;
 	
@@ -1411,7 +1411,7 @@ Procedure ForwardAsAttachment(Command)
 	
 	Else
 		
-		MessageText = NStr("en = 'You can forward as an attachment only messages you sent or received.';");
+		MessageText = NStr("en = 'You can forward as an attachment only messages you sent or received.';tr = 'Sadece gönderdiğiniz veya aldığınız iletileri ekli dosya olarak iletebilirsiniz.'");
 		ShowMessageBox(, MessageText); 
 		
 	EndIf;
@@ -1587,11 +1587,11 @@ Procedure OnChangeStatusServer(Val UpdateNavigationPanel)
 	DateForFilter = CurrentSessionDate();
 	InteractionsClientServer.QuickFilterListOnChange(ThisObject, "Status", DateForFilter);
 	
-	TitleTemplate1 = NStr("en = 'Status: %1';");
+	TitleTemplate1 = NStr("en = 'Status: %1';tr = 'Durum: %1'");
 	StatusWasFound = Interactions.StatusesList().FindByValue(Status);
 	If StatusWasFound = Undefined Then
 		Status = "All";
-		StatusPresentation = NStr("en = 'All items';");
+		StatusPresentation = NStr("en = 'All items';tr = 'Tüm öğeler'");
 	Else
 		StatusPresentation = StatusWasFound.Presentation;
 	EndIf;
@@ -1837,7 +1837,7 @@ Procedure ChangeFilterList(TableName, DataForProcessing)
 		FieldName                    = "SubjectOf";
 		FilterItemCompareType = DataCompositionComparisonType.Equal;
 		RightValue             = DataForProcessing.Value;
-		FilterName = NStr("en = 'Topic';");
+		FilterName = NStr("en = 'Topic';tr = 'Konu'");
 		FilterValue = DataForProcessing.Value;
 		
 	ElsIf TableName = "Folders" Then
@@ -1859,14 +1859,14 @@ Procedure ChangeFilterList(TableName, DataForProcessing)
 				FieldName                    = "Folder";
 				FilterItemCompareType = DataCompositionComparisonType.Equal;
 				RightValue             = DataForProcessing.Value;
-				FilterName = NStr("en = 'Folder';");
+				FilterName = NStr("en = 'Folder';tr = 'Klasör'");
 				
 			Else
 				
 				FieldName                    = "Account";
 				FilterItemCompareType = DataCompositionComparisonType.Equal;
 				RightValue             = DataForProcessing.Value;
-				FilterName = NStr("en = 'Email account';");
+				FilterName = NStr("en = 'Email account';tr = 'Hesap'");
 				
 			EndIf;
 		
@@ -1875,7 +1875,7 @@ Procedure ChangeFilterList(TableName, DataForProcessing)
 		FieldName                    = "Contact";
 		FilterItemCompareType = DataCompositionComparisonType.Equal;
 		RightValue             = DataForProcessing.Value;
-		FilterName = NStr("en = 'Contact';");
+		FilterName = NStr("en = 'Contact';tr = 'Kişi'");
 		FilterValue = DataForProcessing.Value;
 		
 	ElsIf TableName = "Properties" Then
@@ -1887,7 +1887,7 @@ Procedure ChangeFilterList(TableName, DataForProcessing)
 			
 			FilterItemCompareType = DataCompositionComparisonType.NotFilled;
 			RightValue             = "";
-			FilterValue = NStr("en = 'Not specified';");
+			FilterValue = NStr("en = 'Not specified';tr = 'Belirtilmedi'");
 			
 		Else
 			
@@ -1902,7 +1902,7 @@ Procedure ChangeFilterList(TableName, DataForProcessing)
 		FieldName =  "Ref.[" + String(DataForProcessing.Value) + "]";
 		FilterItemCompareType = DataCompositionComparisonType.Equal;
 		RightValue             = True;
-		FilterName      = NStr("en = 'Category';");
+		FilterName      = NStr("en = 'Category';tr = 'Kategori'");
 		FilterValue = String(DataForProcessing.Value);
 		
 	ElsIf TableName = "Tabs" Then
@@ -1921,7 +1921,7 @@ Procedure ChangeFilterList(TableName, DataForProcessing)
 		
 		CopyFilter(FilterGroup,SettingsComposer.Settings.Filter);
 		NavigationPanelTitle   = StringFunctionsClientServer.SubstituteParametersToString(
-			TitleTemplate1, NStr("en = 'Bookmark';"), DataForProcessing.Value);
+			TitleTemplate1, NStr("en = 'Bookmark';tr = 'Yer işareti'"), DataForProcessing.Value);
 		
 		Return;
 		
@@ -2049,12 +2049,12 @@ Procedure ManageVisibilityOnSwitchNavigationPanel()
 	ChangeNavigationPanelDisplayCommand = Commands.Find("EditNavigationPanelView");
 	If NavigationPanelHidden Then
 		Items.EditNavigationPanelView.Picture = PictureLib.RightArrow;
-		ChangeNavigationPanelDisplayCommand.ToolTip = NStr("en = 'Show navigation panel';");
-		ChangeNavigationPanelDisplayCommand.Title = NStr("en = 'Show navigation panel';");
+		ChangeNavigationPanelDisplayCommand.ToolTip = NStr("en = 'Show navigation panel';tr = 'Gezinme panelini göster'");
+		ChangeNavigationPanelDisplayCommand.Title = NStr("en = 'Show navigation panel';tr = 'Gezinme panelini göster'");
 	Else
 		Items.EditNavigationPanelView.Picture = PictureLib.LeftArrow;
-		ChangeNavigationPanelDisplayCommand.ToolTip = NStr("en = 'Hide navigation panel';");
-		ChangeNavigationPanelDisplayCommand.Title = NStr("en = 'Hide navigation panel';");
+		ChangeNavigationPanelDisplayCommand.ToolTip = NStr("en = 'Hide navigation panel';tr = 'Gezinme panelini gizle'");
+		ChangeNavigationPanelDisplayCommand.Title = NStr("en = 'Hide navigation panel';tr = 'Gezinme panelini gizle'");
 	EndIf;
 	
 	SetNavigationPanelViewTitle();
@@ -2074,15 +2074,15 @@ Procedure SetNavigationPanelViewTitle(FilterValue = Undefined)
 	
 	If NavigationPanelHidden Then
 		Items.SelectNavigationOption.Title = ?(IsBlankString(NavigationPanelTitle), 
-		                                              NStr("en = 'Not specified';"),
+		                                              NStr("en = 'Not specified';tr = 'Belirtilmedi'"),
 		                                              NavigationPanelTitle);
 		Items.SelectNavigationOption.ToolTip = ?(IsBlankString(NavigationPanelTitle),
-		                                              NStr("en = 'Not specified';") + NavigationPanelTitleTooltip,
+		                                              NStr("en = 'Not specified';tr = 'Belirtilmedi'") + NavigationPanelTitleTooltip,
 		                                              NavigationPanelTitleTooltip);
 	Else
 	
 		If Items.NavigationPanelPages.CurrentPage = Items.PropertiesPage Then
-			Items.SelectNavigationOption.Title = NStr("en = 'By';") + " " + CurrentPropertyPresentation;
+			Items.SelectNavigationOption.Title = NStr("en = 'By';tr = 'Görünüm'") + " " + CurrentPropertyPresentation;
 			FoundRows = AddlAttributesPropertiesTable.FindRows(New Structure("AddlAttributeInfo",
 			                                                          CurrentPropertyOfNavigationPanel));
 			If FoundRows.Count() > 0 Then
@@ -2091,38 +2091,38 @@ Procedure SetNavigationPanelViewTitle(FilterValue = Undefined)
 
 		ElsIf Items.NavigationPanelPages.CurrentPage = Items.TabsPage Then
 			
-			Items.SelectNavigationOption.Title = NStr("en = 'By bookmark';");
+			Items.SelectNavigationOption.Title = NStr("en = 'By bookmark';tr = 'Yer işaretlerine göre'");
 			Items.SetNavigationMethodByTabs.Check = True;
 			
 		ElsIf Items.NavigationPanelPages.CurrentPage = Items.EmailSubjectPage Then
 			
-			Items.SelectNavigationOption.Title = NStr("en = 'By topic';");
+			Items.SelectNavigationOption.Title = NStr("en = 'By topic';tr = 'Konulara göre'");
 			Items.SetNavigationMethodBySubject.Check = True;
 			
 		ElsIf Items.NavigationPanelPages.CurrentPage = Items.ContactPage Then
 			
-			Items.SelectNavigationOption.Title = NStr("en = 'By contact';");
+			Items.SelectNavigationOption.Title = NStr("en = 'By contact';tr = 'Kişilere göre'");
 			Items.SetNavigationMethodByContact.Check = True;
 			
 		ElsIf Items.NavigationPanelPages.CurrentPage = Items.FoldersPage Then
 			
-			Items.SelectNavigationOption.Title = NStr("en = 'By folder';");
+			Items.SelectNavigationOption.Title = NStr("en = 'By folder';tr = 'Klasörlere göre'");
 			Items.SetNavigationMethodByFolders.Check = True;
 			
 		ElsIf Items.NavigationPanelPages.CurrentPage = Items.CategoriesPage Then
 			
-			Items.SelectNavigationOption.Title = NStr("en = 'By category';");
+			Items.SelectNavigationOption.Title = NStr("en = 'By category';tr = 'Kategorilere göre'");
 			Items["AdditionalButtonCategoryNavigationOptionSelection"].Check = True;
 			
 		EndIf;
 		
-		Items.SelectNavigationOption.ToolTip = NStr("en = 'Select navigation option';");
+		Items.SelectNavigationOption.ToolTip = NStr("en = 'Select navigation option';tr = 'Gezinme seçeneğini seçin'");
 		
 	EndIf;
 	
 	Items.NavigationPanelGroup.Title = ?(IsBlankString(NavigationPanelTitle), 
-	                                           NStr("en = 'Filter not set';"),
-	                                           NStr("en = 'Filter set';"));
+	                                           NStr("en = 'Filter not set';tr = 'Filtre kurulmadı'"),
+	                                           NStr("en = 'Filter set';tr = 'Filtre ayarlandı'"));
 	
 EndProcedure
 
@@ -2136,7 +2136,7 @@ Procedure AddRowAll(FormDataCollection, PictureNumber = 0)
 	EndIf;
 	
 	NewRow.Value = "AllValues";
-	NewRow.Presentation = NStr("en = 'All';");
+	NewRow.Presentation = NStr("en = 'All';tr = 'Tümü'");
 	NewRow.PictureNumber = PictureNumber;
 	
 EndProcedure
@@ -2352,7 +2352,7 @@ Procedure FillPropertiesTree(CommandName = "")
 	
 	Query.SetParameter("Property",              CurrentPropertyOfNavigationPanel);
 	Query.SetParameter("NotSpecified",              "NotSpecified");
-	Query.SetParameter("NotSpecifiedPresentation", NStr("en = 'Not specified';"));
+	Query.SetParameter("NotSpecifiedPresentation", NStr("en = 'Not specified';tr = 'Belirtilmedi'"));
 	
 	Result = Query.Execute();
 	Tree = Result.Unload(QueryResultIteration.ByGroupsWithHierarchy);
@@ -2941,8 +2941,8 @@ Procedure AddRowsToNavigationTree(ParentString, ParentRow, ExecuteCheck1 = True,
 		If InteractionsClientServer.IsInteraction(String.Value) Then
 			DetailsRow = String.Rows[0];
 			NewRow.Presentation = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1, %2 %3';"),
-				?(IsBlankString(DetailsRow.Subject),NStr("en = 'Subject not specified';"), DetailsRow.Subject),
+				NStr("en = '%1, %2 %3';tr = '%1, %2 %3'"),
+				?(IsBlankString(DetailsRow.Subject),NStr("en = 'Subject not specified';tr = 'Konu belirtilmedi'"), DetailsRow.Subject),
 				Format(DetailsRow.Date, "DLF=DT"),
 				?(String.NotReviewed = 0 Or Not UseReviewedFlag, "","(" + String(String.NotReviewed) + ")"));
 			NewRow.PictureNumber = DetailsRow.PictureNumber;
@@ -3106,7 +3106,7 @@ Procedure AfterFillNavigationPanel(SetDontTestNavigationPanelActivationFlag = Tr
 		CurrentData = Properties.FindByID(Items.Properties.CurrentRow);
 		
 		If CurrentData = Undefined Then
-			Items.Properties.CurrentRow = FindStringInFormDataTree(Properties,NStr("en = 'All';"),"Value",False);
+			Items.Properties.CurrentRow = FindStringInFormDataTree(Properties,NStr("en = 'All';tr = 'Tümü'"),"Value",False);
 			CurrentData = Properties.FindByID(Items.Properties.CurrentRow);
 		EndIf;
 		
@@ -3121,7 +3121,7 @@ Procedure AfterFillNavigationPanel(SetDontTestNavigationPanelActivationFlag = Tr
 		CurrentData = Categories.FindByID(Items.Categories.CurrentRow);
 		
 		If CurrentData = Undefined Then
-			Items.Categories.CurrentRow = FindRowInCollectionFormData(Categories,NStr("en = 'All';"),"Value");
+			Items.Categories.CurrentRow = FindRowInCollectionFormData(Categories,NStr("en = 'All';tr = 'Tümü'"),"Value");
 			CurrentData = Categories.FindByID(Items.Categories.CurrentRow);
 		EndIf;
 		
@@ -3215,7 +3215,7 @@ Procedure AddToNavigationPanel()
 			Type("FormButton"), Items.SelectNavigationOption);
 		ItemButtonSubmenu.Type = FormButtonType.CommandBarButton;
 		ItemButtonSubmenu.CommandName = NewCommand.Name;
-		ItemButtonSubmenu.Title = NStr("en = 'By';") + " " + Selection.Presentation;
+		ItemButtonSubmenu.Title = NStr("en = 'By';tr = 'Ekle'") + " " + Selection.Presentation;
 			
 			NewRow = AddlAttributesPropertiesTable.Add();
 			NewRow.SequenceNumber = Indus;
@@ -3238,7 +3238,7 @@ Procedure AddToNavigationPanel()
 			Type("FormButton"), Items.SelectNavigationOption);
 		ItemButtonSubmenu.Type = FormButtonType.CommandBarButton;
 		ItemButtonSubmenu.CommandName = NewCommand.Name;
-		ItemButtonSubmenu.Title = NStr("en = 'By categories';");
+		ItemButtonSubmenu.Title = NStr("en = 'By categories';tr = 'Kategorilere göre'");
 	
 	EndIf;
 	
@@ -3534,15 +3534,15 @@ Function AddToTabsServer(Val DataForProcessing, FormItemName)
 		EndDo;
 		
 		If InteractionsList.Count() = 0 Then
-			Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';");
+			Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';tr = 'Yer işaretlerine eklemek istediğiniz öğeyi seçin.'");
 			Return Result;
 		EndIf;
 		
 		CommonClientServer.AddCompositionItem(SettingsComposer.Settings.Filter,
 			"Ref", DataCompositionComparisonType.InList, InteractionsList);
-		TabDescription = ?(OnlyEmail, NStr("en = 'Favorite Mails';"), NStr("en = 'Favorite interactions';"));
+		TabDescription = ?(OnlyEmail, NStr("en = 'Favorite Mails';tr = 'Favori E-postalar'"), NStr("en = 'Favorite interactions';tr = 'Sık kullanılan etkileşimler'"));
 		If InteractionsList.Count() > 1 Then
-			Text = ?(OnlyEmail, NStr("en = 'Selected mails (%1)';"), NStr("en = 'Selected interactions (%1)';"));
+			Text = ?(OnlyEmail, NStr("en = 'Selected mails (%1)';tr = 'Seçili e-postalar (%1)'"), NStr("en = 'Selected interactions (%1)';tr = 'Seçili etkileşimler (%1)'"));
 			Result.ItemPresentation = StringFunctionsClientServer.SubstituteParametersToString(Text, InteractionsList.Count());
 		Else
 			Result.ItemPresentation = Common.SubjectString(InteractionsList[0].Value);
@@ -3551,7 +3551,7 @@ Function AddToTabsServer(Val DataForProcessing, FormItemName)
 	Else
 		
 		If DataForProcessing.Value = "AllValues" Then
-			Result.ErrorMessageText1 = NStr("en = 'Cannot create a bookmark without a filter.';");
+			Result.ErrorMessageText1 = NStr("en = 'Cannot create a bookmark without a filter.';tr = 'Filtresiz yer işareti oluşturulamıyor.'");
 			Return Result;
 		EndIf;
 		
@@ -3559,7 +3559,7 @@ Function AddToTabsServer(Val DataForProcessing, FormItemName)
 		    InteractionsClientServer.DynamicListFilter(List).Items,
 		    "FIlterNavigationPanel");
 		If FilterGroupByNavigationPanel = Undefined Then
-			Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';");
+			Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';tr = 'Yer işaretlerine eklemek istediğiniz öğeyi seçin.'");
 			Return Result;
 		EndIf;
 		
@@ -3567,12 +3567,12 @@ Function AddToTabsServer(Val DataForProcessing, FormItemName)
 		If FormItemName = "NavigationPanelSubjects" Then
 			
 			If Common.RefTypeValue(DataForProcessing.Value) Then
-				TabDescription       = NStr("en = 'Topic';") + " = " + String(DataForProcessing.Value); 
-				Text = ?(OnlyEmail, NStr("en = 'Mails on topic %1';"), NStr("en = 'Interactions on topic %1';"));
+				TabDescription       = NStr("en = 'Topic';tr = 'Konu'") + " = " + String(DataForProcessing.Value); 
+				Text = ?(OnlyEmail, NStr("en = 'Mails on topic %1';tr = '%1 konulu e-postalar'"), NStr("en = 'Interactions on topic %1';tr = '%1 konulu etkileşimler'"));
 				Result.ItemPresentation = StringFunctionsClientServer.SubstituteParametersToString(Text, Common.SubjectString(DataForProcessing.Value));
 				Result.ItemURL = GetURL(DataForProcessing.Value);
 			Else
-				Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';");
+				Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';tr = 'Yer işaretlerine eklemek istediğiniz öğeyi seçin.'");
 				Return Result;
 			EndIf;
 			
@@ -3582,41 +3582,41 @@ Function AddToTabsServer(Val DataForProcessing, FormItemName)
 			
 			If TypeOf(DataForProcessing.Value) = Type("String") 
 				And DataForProcessing.Value = "NotSpecified" Then
-				TabDescription       = CurrentPropertyDescription + " " + NStr("en = 'not specified';");
-				Result.ItemPresentation = ?(OnlyEmail, NStr("en = 'Mail messages';"), NStr("en = 'Interactions';"));
+				TabDescription       = CurrentPropertyDescription + " " + NStr("en = 'not specified';tr = 'belirtilmedi'");
+				Result.ItemPresentation = ?(OnlyEmail, NStr("en = 'Mail messages';tr = 'E-postalar'"), NStr("en = 'Interactions';tr = 'Etkileşimler'"));
 			Else
 				TabDescription       = CurrentPropertyDescription + " = " + String(DataForProcessing.Value);
 				Result.ItemPresentation = ?(OnlyEmail, 
-				                                   NStr("en = 'Mail messages with the property: %1';"), 
-				                                   NStr("en = 'Interactions with the property: %1';"));
+				                                   NStr("en = 'Mail messages with the property: %1';tr = 'Şu özelliğe sahip e-postalar: %1'"), 
+				                                   NStr("en = 'Interactions with the property: %1';tr = 'Şu özelliğe sahip etkileşimler: %1'"));
 				Result.ItemPresentation = 
 					StringFunctionsClientServer.SubstituteParametersToString(Result.ItemPresentation, DataForProcessing.Value);
 			EndIf;
 			
 		ElsIf FormItemName = "Categories" Then
 			
-			TabDescription       = NStr("en = 'Included in category';") + " " + String(DataForProcessing.Value);
-			Result.ItemPresentation = ?(OnlyEmail, NStr("en = 'Mail messages in category: %1';"), NStr("en = 'Interactions in category: %1';"));
+			TabDescription       = NStr("en = 'Included in category';tr = 'Kategoriye ait'") + " " + String(DataForProcessing.Value);
+			Result.ItemPresentation = ?(OnlyEmail, NStr("en = 'Mail messages in category: %1';tr = 'Şu kategoriden e-postalar: %1'"), NStr("en = 'Interactions in category: %1';tr = 'Şu kategoriden etkileşimler: %1'"));
 			Result.ItemPresentation = 
 				StringFunctionsClientServer.SubstituteParametersToString(Result.ItemPresentation, DataForProcessing.Value);
 			
 		ElsIf FormItemName = "NavigationPanelContacts" Then
 			
 			If Common.RefTypeValue(DataForProcessing.Value) Then
-				TabDescription       = NStr("en = 'Contact';") + " = " + String(DataForProcessing.Value); 
-				Text = ?(OnlyEmail, NStr("en = 'Email conversations with: %1';"), NStr("en = 'Interactions with: %1';"));
+				TabDescription       = NStr("en = 'Contact';tr = 'Kişi'") + " = " + String(DataForProcessing.Value); 
+				Text = ?(OnlyEmail, NStr("en = 'Email conversations with: %1';tr = '%1 ile e-posta yazışmaları'"), NStr("en = 'Interactions with: %1';tr = '%1 ile etkileşimler'"));
 				Result.ItemPresentation = 
 					StringFunctionsClientServer.SubstituteParametersToString(Text, Common.SubjectString(DataForProcessing.Value));
 				Result.ItemURL = GetURL(DataForProcessing.Value);
 			Else
-				Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';");
+				Result.ErrorMessageText1 = NStr("en = 'Select an item you want to add to bookmarks.';tr = 'Yer işaretlerine eklemek istediğiniz öğeyi seçin.'");
 				Return Result;
 			EndIf;
 
 		ElsIf FormItemName = "Folders" Then
 			
-			TabDescription       = NStr("en = 'In folder';") + " " + String(DataForProcessing.Value);
-			Result.ItemPresentation = ?(OnlyEmail, NStr("en = 'Mail messages in folder: %1';"), NStr("en = 'Interactions in folder: %1';"));
+			TabDescription       = NStr("en = 'In folder';tr = 'Klasörde'") + " " + String(DataForProcessing.Value);
+			Result.ItemPresentation = ?(OnlyEmail, NStr("en = 'Mail messages in folder: %1';tr = 'Şu klasördeki e-postalar: %1'"), NStr("en = 'Interactions in folder: %1';tr = 'Şu klasördeki etkileşimler: %1'"));
 			Result.ItemPresentation = StringFunctionsClientServer.SubstituteParametersToString(Result.ItemPresentation, DataForProcessing.Value);
 			
 		EndIf;
@@ -3638,7 +3638,7 @@ Function AddToTabsServer(Val DataForProcessing, FormItemName)
 	
 	While Selection.Next() Do
 		If ValueInXML(SettingsComposer.GetSettings()) =  ValueInXML(Selection.SettingsComposer.Get()) Then
-			Result.ErrorMessageText1 = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'A bookmark with the same settings already exists: %1';"),
+			Result.ErrorMessageText1 = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'A bookmark with the same settings already exists: %1';tr = 'Bu ayarlara sahip bir yer işareti zaten var: %1'"),
 				Selection.Description);
 			Return Result;
 		EndIf;
@@ -3844,9 +3844,9 @@ Procedure ExecuteFullTextSearch()
 	If Not Result.HasError  Then
 		AdvancedSearch = True;
 		NotificationText1 = StringFunctionsClientServer.SubstituteParametersToString(
-			?(OnlyEmail, NStr("en = 'Found emails: %1.';"), NStr("en = 'Found business interactions: %1.';")), 
+			?(OnlyEmail, NStr("en = 'Found emails: %1.';tr = 'Bulunan e-postalar: %1.'"), NStr("en = 'Found business interactions: %1.';tr = 'Bulunan iş etkileşimleri: %1.'")), 
 			String(Result.FoundItemsCount2));
-		ShowUserNotification(NStr("en = 'Search results';"),, NotificationText1);
+		ShowUserNotification(NStr("en = 'Search results';tr = 'Arama sonuçları'"),, NotificationText1);
 		CurrentData = Items.List.CurrentData;
 		If CurrentData <> Undefined Then
 			FillInTheDescriptionFoundByFullTextSearch(Items.List.CurrentData.Ref);
@@ -3913,7 +3913,7 @@ Function InteractionSearchResultFullTextSearch()
 		
 		Result.HasError = True;
 		Result.ErrorID = "TooManyResults";
-		Result.ErrorText = NStr("en = 'Too many results. Please narrow your search.';");
+		Result.ErrorText = NStr("en = 'Too many results. Please narrow your search.';tr = 'Çok fazla sonuç var, aramanızı netleştirin'");
 		Return Result;
 		
 	EndIf;
@@ -3929,7 +3929,7 @@ Function InteractionSearchResultFullTextSearch()
 		
 		Result.HasError          = True;
 		Result.ErrorID = "FoundNothing";
-		Result.ErrorText         = NStr("en = 'No result found.';");
+		Result.ErrorText         = NStr("en = 'No result found.';tr = 'Sonuç bulunamadı.'");
 		Return Result;
 
 	EndIf;
@@ -3976,7 +3976,7 @@ Function InteractionSearchResultFullTextSearch()
 		
 		Result.HasError          = True;
 		Result.ErrorID = "FoundNothing";
-		Result.ErrorText         = NStr("en = 'No result found.';");
+		Result.ErrorText         = NStr("en = 'No result found.';tr = 'Sonuç bulunamadı.'");
 		Return Result;
 	EndIf;
 	
@@ -4020,9 +4020,9 @@ Procedure FillInTheDescriptionFoundByFullTextSearch(Interaction)
 
 	TableRowWithDetails = DetailsString[0];
 	If InteractionsClientServer.IsAttachedInteractionsFile(TableRowWithDetails.Value) Then
-		TextFound = NStr("en = 'Found in attachment %1.';");
+		TextFound = NStr("en = 'Found in attachment %1.';tr = '%1 ekinde bulundu.'");
 	Else
-		TextFound = NStr("en = 'Found in %1.';");
+		TextFound = NStr("en = 'Found in %1.';tr = 'Burada bulundu: %1.'");
 	EndIf;
 	
 	DetailsFoundByFullTextSearch = StringFunctionsClientServer.SubstituteParametersToString(TextFound,
@@ -4274,10 +4274,10 @@ EndProcedure
 Procedure GenerateImportantContactsOnlyDecoration()
 	
 	If ImportantContactsOnly Then
-		TitleText = StringFunctions.FormattedString(NStr("en = 'Show topics of filtered interactions. <a href = ""%1"">Click to change</a>.';"), 
+		TitleText = StringFunctions.FormattedString(NStr("en = 'Show topics of filtered interactions. <a href = ""%1"">Click to change</a>.';tr = 'Filtreli etkileşimlerin konularını göster. <a href = ""%1"">Değiştirmek için tıklayın</a>.'"), 
 		                                                        "ChangeImportantContactsOnly");
 	Else
-		TitleText = StringFunctions.FormattedString(NStr("en = 'Show all topics. <a href = ""%1"">Click to change</a>.';"),
+		TitleText = StringFunctions.FormattedString(NStr("en = 'Show all topics. <a href = ""%1"">Click to change</a>.';tr = 'Tüm konuları göster. <a href = ""%1"">Değiştirmek için tıklayın</a>.'"),
 		                                                        "ChangeImportantContactsOnly");
 	EndIf;
 	
@@ -4289,10 +4289,10 @@ EndProcedure
 Procedure GenerateImportantSubjectsOnlyDecoration()
 	
 	If ImportantSubjectsOnly Then
-		TitleText = StringFunctions.FormattedString(NStr("en = 'Show topics of filtered interactions. <a href = ""%1"">Click to change</a>.';"), 
+		TitleText = StringFunctions.FormattedString(NStr("en = 'Show topics of filtered interactions. <a href = ""%1"">Click to change</a>.';tr = 'Filtreli etkileşimlerin konularını göster. <a href = ""%1"">Değiştirmek için tıklayın</a>.'"), 
 		                                                        "ChangeImportantSubjectsOnly");
 	Else
-		TitleText = StringFunctions.FormattedString(NStr("en = 'Show all topics. <a href = ""%1"">Click to change</a>.';"), 
+		TitleText = StringFunctions.FormattedString(NStr("en = 'Show all topics. <a href = ""%1"">Click to change</a>.';tr = 'Tüm konuları göster. <a href = ""%1"">Değiştirmek için tıklayın</a>.'"), 
 		                                                        "ChangeImportantSubjectsOnly");
 	EndIf;
 	

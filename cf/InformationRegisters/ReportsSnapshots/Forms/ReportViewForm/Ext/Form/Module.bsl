@@ -136,7 +136,7 @@ Procedure ReadReportSnapshot()
 	If RecordManager.Selected() Then
 		If RecordManager.ReportUpdateError Then
 			Common.MessageToUser(NStr(
-				"en = 'An error occurred when saving the report snapshot: save the snapshot again.';"));
+				"en = 'An error occurred when saving the report snapshot: save the snapshot again.';tr = 'Rapor anlık görüntüsü kaydedilirken hata oluştu: Anlık görüntüyü tekrar kaydedin.'"));
 		Else
 			ReportResult = RecordManager.ReportResult.Get();
 			If TypeOf(ReportResult) = Type("SpreadsheetDocument") Then
@@ -145,15 +145,15 @@ Procedure ReadReportSnapshot()
 				RecordManager.Write();
 			Else
 				Common.MessageToUser(NStr(
-					"en = 'An error occurred when reading the report snapshot: the data is incorrect.';"));
+					"en = 'An error occurred when reading the report snapshot: the data is incorrect.';tr = 'Rapor anlık görüntüsü okunurken hata oluştu: Veriler yanlış.'"));
 			EndIf;
 		EndIf;
 		UpdateDate = RecordManager.UpdateDate;
 	Else
-		Common.MessageToUser(NStr("en = 'An error occurred when reading the report snapshot: the report is deleted.';"));
+		Common.MessageToUser(NStr("en = 'An error occurred when reading the report snapshot: the report is deleted.';tr = 'Rapor anlık görüntüsü okunurken hata oluştu: Rapor silindi.'"));
 	EndIf;
 	
-	Title = NStr("en = 'Last updated';") + ": " + UpdateDate;
+	Title = NStr("en = 'Last updated';tr = 'Son güncelleme'") + ": " + UpdateDate;
 	
 EndProcedure
 

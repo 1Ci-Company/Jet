@@ -78,7 +78,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 	If EndDate < StartDate Then
 
 		Common.MessageToUser(
-			NStr("en = 'End date cannot be earlier than Start date.';"),
+			NStr("en = 'End date cannot be earlier than Start date.';tr = 'Bitiş tarihi, Başlangıç tarihinden önce olamaz.'"),
 			,
 			"EndDate",
 			,
@@ -113,5 +113,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

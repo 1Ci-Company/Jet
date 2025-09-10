@@ -19,7 +19,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	FillFileStorageNames();
 	
 	If FileStorageNames.Count() = 0 Then
-		Raise NStr("en = 'Cannot find the file storages.';");
+		Raise NStr("en = 'Cannot find the file storages.';tr = 'Dosya depoları bulunamadı.'");
 		
 	ElsIf FileStorageNames.Count() = 1 Then
 		Items.FileStoragePresentation.Visible = False;

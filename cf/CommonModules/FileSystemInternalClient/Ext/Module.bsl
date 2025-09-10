@@ -19,7 +19,7 @@ Procedure ShowPutFileOnAttachFileSystemExtension(ExtensionAttached, Context) Exp
 	
 	If Not ExtensionAttached
 		And Not Interactively Then
-		Raise NStr("en = 'Cannot upload the file because 1C:Enterprise Extension is not installed.';");
+		Raise NStr("en = 'Cannot upload the file because 1C:Enterprise Extension is not installed.';tr = '1C:Enterprise uzantısı yüklü olmadığı için dosya yüklenemiyor.'");
 	EndIf;
 		
 	Try
@@ -38,7 +38,7 @@ Procedure ShowPutFileOnAttachFileSystemExtension(ExtensionAttached, Context) Exp
 		ErrorInfo = ErrorInfo();
 		ErrorDescription = ErrorInfo.Cause.Description;
 		If StrFind(ErrorDescription, "32(0x00000020)") Then 
-			ShowMessageBox(NotifyDescription, NStr("en = 'Complete the operation with the file in another application.';"), , NStr("en = 'The file is opened in another application';"));
+			ShowMessageBox(NotifyDescription, NStr("en = 'Complete the operation with the file in another application.';tr = 'İşlemi başka bir uygulamadaki dosya ile tamamla.'"), , NStr("en = 'The file is opened in another application';tr = 'Dosya başka bir uygulamada açıldı'"));
 		Else
 			Raise ErrorDescription;
 		EndIf;
@@ -267,7 +267,7 @@ Procedure OpenFileInViewer(PathToFile, Val Notification = Undefined,
 	Notification = New NotifyDescription(
 		"OpenFileInViewerAfterCheckFileSystemExtension", ThisObject, Context);
 	
-	SuggestionText = NStr("en = 'To open the file, install 1C:Enterprise Extension.';");
+	SuggestionText = NStr("en = 'To open the file, install 1C:Enterprise Extension.';tr = 'Dosyayı açmak için 1C:Enterprise uzantısını yükleyin.'");
 	FileSystemClient.AttachFileOperationsExtension(Notification, SuggestionText, False);
 	
 EndProcedure
@@ -285,7 +285,7 @@ Procedure OpenFileInViewerAfterCheckFileSystemExtension(ExtensionAttached, Conte
 		
 	Else
 		
-		ErrorDescription = NStr("en = 'Cannot open the file because 1C:Enterprise Extension is not installed.';");
+		ErrorDescription = NStr("en = 'Cannot open the file because 1C:Enterprise Extension is not installed.';tr = '1C:Enterprise Extension yüklü olmadığı için dosya açılamıyor.'");
 		OpenFileInViewerNotifyOnError(ErrorDescription, Context);
 		
 	EndIf;
@@ -307,7 +307,8 @@ Procedure OpenFileInViewerAfterCheckIfExists(Exists, Context) Export
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The file to open does not exist:
-			           |%1';"),
+			           |%1';tr = 'Açılan dosya mevcut değil:
+			           |%1'"),
 			FileInfo3.FullName);
 		OpenFileInViewerNotifyOnError(ErrorDescription, Context);
 		
@@ -327,7 +328,8 @@ Procedure OpenFileInViewerAfterCheckIsFIle(IsFile, Context) Export
 			
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The file name is missing extension:
-				           |%1.';"),
+				           |%1.';tr = 'Dosya adında uzantı eksik:
+				           |%1.'"),
 				FileInfo3.FullName);
 			
 			OpenFileInViewerNotifyOnError(ErrorDescription, Context);
@@ -339,7 +341,8 @@ Procedure OpenFileInViewerAfterCheckIsFIle(IsFile, Context) Export
 			
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Opening executable files is disabled:
-				           |%1.';"),
+				           |%1.';tr = 'Yürütülebilir dosyaların açılması devre dışı bırakıldı:
+				           |%1.'"),
 				FileInfo3.FullName);
 			
 			OpenFileInViewerNotifyOnError(ErrorDescription, Context);
@@ -359,7 +362,8 @@ Procedure OpenFileInViewerAfterCheckIsFIle(IsFile, Context) Export
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The file to open does not exist:
-			           |%1';"),
+			           |%1';tr = 'Açılan dosya mevcut değil:
+			           |%1'"),
 			FileInfo3.FullName);
 			
 		OpenFileInViewerNotifyOnError(ErrorDescription, Context);
@@ -530,7 +534,7 @@ Procedure OpenExplorerAfterCheckFileSystemExtension(ExtensionAttached, Context) 
 			"OpenExplorerOnProcessError", ThisObject);
 		FileInfo3.BeginCheckingExistence(Notification);
 	Else
-		ErrorDescription = NStr("en = 'To open the folder, install 1C:Enterprise Extension.';");
+		ErrorDescription = NStr("en = 'To open the folder, install 1C:Enterprise Extension.';tr = 'Klasörü açmak için 1C:Enterprise uzantısını yükleyin.'");
 		OpenExplorerNotifyOnError(ErrorDescription, Context);
 	EndIf;
 	
@@ -549,7 +553,8 @@ Procedure OpenExplorerAfterCheckIfExists(Exists, Context) Export
 	Else 
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The directory to be opened in the Explorer, does not exist:
-			           |""%1""';"),
+			           |""%1""';tr = 'Gezginde açılması gereken katalog mevcut değil:
+			           |""%1""'"),
 			FileInfo3.FullName);
 		OpenExplorerNotifyOnError(ErrorDescription, Context);
 	EndIf;
@@ -618,7 +623,7 @@ Procedure OpenURLAfterCheckFileSystemExtension(ExtensionAttached, Context) Expor
 		
 	Else
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot follow link ""%1"" because 1C:Enterprise Extension is not installed.';"),
+			NStr("en = 'Cannot follow link ""%1"" because 1C:Enterprise Extension is not installed.';tr = '1C:Enterprise uzantısı yüklü olmadığı için ""%1"" bağlantısı açılamıyor.'"),
 			URL);
 		OpenURLNotifyOnError(ErrorDescription, Context);
 	EndIf;
@@ -738,7 +743,7 @@ Procedure StartApplicationAfterCheckFileSystemExtension(ExtensionAttached, Conte
 		EndIf;
 		
 	Else
-		ErrorDescription = NStr("en = 'Cannot start the app because 1C:Enterprise Extension is not installed.';");
+		ErrorDescription = NStr("en = 'Cannot start the app because 1C:Enterprise Extension is not installed.';tr = '1C:Enterprise uzantısı yüklü olmadığı için uygulama başlatılamıyor.'");
 		StartApplicationNotifyOnError(ErrorDescription, Context);
 	EndIf;
 	
@@ -761,7 +766,9 @@ Procedure StartApplicationAfterCheckIfExists(Exists, Context) Export
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t start %1
 			           | as the folder does not exist:
-			           |%2';"),
+			           |%2';tr = '%1 başlatılamadı
+			           | çünkü klasör mevcut değil:
+			           |%2'"),
 			CommandString, CurrentDirectory);
 		StartApplicationNotifyOnError(ErrorDescription, Context);
 	EndIf;
@@ -781,7 +788,9 @@ Procedure StartApplicationAfterCheckIsDirectory(IsDirectory, Context) Export
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t start %1
 			           | as the specified object is not a folder:
-			           |%2';"),
+			           |%2';tr = '%1 başlatılamadı 
+			           | çünkü belirtilen nesne bir klasör değil:
+			           |%2'"),
 			CommandString, CurrentDirectory);
 		StartApplicationNotifyOnError(ErrorDescription, Context);
 	EndIf;
@@ -881,20 +890,25 @@ Procedure StartApplicationAfterStartApplication(ReturnCode, Context) Export
 	If Context.WaitForCompletion And ReturnCode = Undefined Then
 		Result.ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An unexpected error occurred upon the startup of
-				|%1';"),
+				|%1';tr = '%1
+				|başlatılırken beklenmeyen bir hata oluştu'"),
 			Context.CommandString);
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An unexpected error occurred upon the startup:
 				|Command line: %1
 				|Directory: %2
 				|Return code: %3
-				|Wait for completion: %4';"),
+				|Wait for completion: %4';tr = 'Başlatma sırasında hata oluştu:
+				|Komut satırı: %1
+				|Dizin: %2
+				|Dönüş kodu: %3
+				|Tamamlanmasını bekleyin: %4'"),
 			Context.CommandString,
 			Context.CurrentDirectory,
 			Context.ReturnCode,
 			Context.WaitForCompletion);
 		EventLogClient.AddMessageForEventLog(
-			NStr("en = 'Standard subsystems';", CommonClient.DefaultLanguageCode()),
+			NStr("en = 'Standard subsystems';tr = 'Standart alt sistemler'", CommonClient.DefaultLanguageCode()),
 			"Error", ErrorDescription);
 	Else
 		Result.ApplicationStarted = True;
@@ -958,14 +972,18 @@ Procedure StartApplicationWithFullRights(Context)
 	ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot start %1.
 		           |Reason:
-		           |The web client does not support starting apps with elevated privileges.';"),
+		           |The web client does not support starting apps with elevated privileges.';tr = '%1 başlatılamıyor.
+		           |Nedeni:
+		           |Web istemcisi uygulamaların artırılmış ayrıcalıklarla başlatılmasını desteklemiyor.'"),
 		Context.CommandString);
 	StartApplicationNotifyOnError(ErrorDescription, Context);
 #ElsIf MobileClient Then
 	ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Couldn''t start %1.
 		           |Reason:
-		           |The web client does not support starting apps with elevated privileges.';"),
+		           |The web client does not support starting apps with elevated privileges.';tr = '%1 başlatılamadı.
+		           |Nedeni:
+		           |Web istemcisi uygulamaların artırılmış ayrıcalıklarla başlatılmasını desteklemiyor.'"),
 		Context.CommandString);
 	StartApplicationNotifyOnError(ErrorDescription, Context);
 #Else
@@ -978,7 +996,9 @@ Procedure StartApplicationWithFullRights(Context)
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t start %1.
 			           |Reason:
-			           |Starting apps with elevated privileges is supported for Windows and Linux only.';"),
+			           |Starting apps with elevated privileges is supported for Windows and Linux only.';tr = '%1 başlatılamadı.
+			           |Nedeni:
+			           |Uygulamaların artırılmış ayrıcalıklarla başlatılması sadece Windows ve Linux için destekleniyor.'"),
 			Context.CommandString);
 		StartApplicationNotifyOnError(ErrorDescription, Context);
 	EndIf;
@@ -1256,7 +1276,7 @@ Procedure CreateTemporaryDirectoryAfterCheckFileSystemExtension(ExtensionAttache
 			"CreateTemporaryDirectoryOnProcessError", ThisObject);
 		BeginGettingTempFilesDir(Notification);
 	Else
-		CreateTemporaryDirectoryNotifyOnError(NStr("en = 'Cannot install 1C:Enterprise Extension.';"), Context);
+		CreateTemporaryDirectoryNotifyOnError(NStr("en = 'Cannot install 1C:Enterprise Extension.';tr = '1C:Enterprise Extension ile çalışma için uzantı yüklenemedi.'"), Context);
 	EndIf;
 	
 EndProcedure

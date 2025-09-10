@@ -41,7 +41,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	StatePresentation = Items.NoSearchPerformed.StatePresentation;
 	StatePresentation.Visible = True;
 	StatePresentation.Text = NStr("en = 'You did not run duplicate search yet.
-	                                  |Set filter criteria and select Find duplicates.';");
+	                                  |Set filter criteria and select Find duplicates.';tr = 'Henüz kopya araması yapmadınız.
+	                                  |Filtre kriterlerini belirleyin ve Kopyaları bul''u seçin.'");
 	
 	StatePresentation = Items.Searching.StatePresentation;
 	StatePresentation.Visible = True;
@@ -54,7 +55,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	StatePresentation = Items.DuplicatesNotFound.StatePresentation;
 	StatePresentation.Visible = True;
 	StatePresentation.Text = NStr("en = 'No duplicates found by the specified criteria.
-	                                        |Edit the filter criteria and select Find duplicates.';");
+	                                        |Edit the filter criteria and select Find duplicates.';tr = 'Belirtilen kriterlerle kopya bulunamadı.
+	                                        |Filtre kriterlerini değiştirip Kopyaları bul''u seçin.'");
 	
 	// Settings autosave.
 	SavedInSettingsDataModified = True;
@@ -65,61 +67,61 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	// 1. Search was not performed.
 	SearchStep = AddWizardStep(Items.NoSearchPerformedStep);
 	SearchStep.BackButton.Visible = False;
-	SearchStep.NextButton.Title = NStr("en = 'Find duplicates >';");
-	SearchStep.NextButton.ToolTip = NStr("en = 'Find duplicates by the specified criteria.';");
-	SearchStep.CancelButton.Title = NStr("en = 'Close';");
-	SearchStep.CancelButton.ToolTip = NStr("en = 'Close the form without duplicate search.';");
+	SearchStep.NextButton.Title = NStr("en = 'Find duplicates >';tr = 'Kopyaları bul >'");
+	SearchStep.NextButton.ToolTip = NStr("en = 'Find duplicates by the specified criteria.';tr = 'Belirtilen kriterlere göre kopya bul.'");
+	SearchStep.CancelButton.Title = NStr("en = 'Close';tr = 'Kapat'");
+	SearchStep.CancelButton.ToolTip = NStr("en = 'Close the form without duplicate search.';tr = 'Kopya araması olmadan formu kapat.'");
 	
 	// 2. Long-running search.
 	Step = AddWizardStep(Items.PerformSearchStep);
 	Step.BackButton.Visible = False;
 	Step.NextButton.Visible = False;
-	Step.CancelButton.Title = NStr("en = 'Cancel';");
-	Step.CancelButton.ToolTip = NStr("en = 'Cancel duplicate search.';");
+	Step.CancelButton.Title = NStr("en = 'Cancel';tr = 'İptal'");
+	Step.CancelButton.ToolTip = NStr("en = 'Cancel duplicate search.';tr = 'Kopya aramayı iptal et.'");
 	
 	// 3. Process search results and selecting main items.
 	Step = AddWizardStep(Items.MainItemSelectionStep);
 	Step.BackButton.Visible = False;
-	Step.NextButton.Title = NStr("en = 'Delete duplicates >';");
-	Step.NextButton.ToolTip = NStr("en = 'Delete duplicates';");
+	Step.NextButton.Title = NStr("en = 'Delete duplicates >';tr = 'Kopyaları sil >'");
+	Step.NextButton.ToolTip = NStr("en = 'Delete duplicates';tr = 'Kopyaları sil'");
 	Step.WhenYouClickNext = "StepSelectTheMainElementWhenYouClickNext";
-	Step.CancelButton.Title = NStr("en = 'Close';");
-	Step.CancelButton.ToolTip = NStr("en = 'Close the form without duplicate search.';");
+	Step.CancelButton.Title = NStr("en = 'Close';tr = 'Kapat'");
+	Step.CancelButton.ToolTip = NStr("en = 'Close the form without duplicate search.';tr = 'Kopya araması olmadan formu kapat.'");
 	
 	// 4. Long-running deletion of duplicates.
 	Step = AddWizardStep(Items.DeletionStep);
 	Step.BackButton.Visible = False;
 	Step.NextButton.Visible = False;
-	Step.CancelButton.Title = NStr("en = 'Cancel';");
-	Step.CancelButton.ToolTip = NStr("en = 'Cancel duplicate deletion.';");
+	Step.CancelButton.Title = NStr("en = 'Cancel';tr = 'İptal'");
+	Step.CancelButton.ToolTip = NStr("en = 'Cancel duplicate deletion.';tr = 'Kopyaların silinmesini iptal et.'");
 	
 	// 5. Successful deletion.
 	Step = AddWizardStep(Items.SuccessfulDeletionStep);
-	Step.BackButton.Title = NStr("en = 'Search again';");
-	Step.BackButton.ToolTip = NStr("en = 'Start a new duplicate search.';");
+	Step.BackButton.Title = NStr("en = 'Search again';tr = 'Tekrar ara'");
+	Step.BackButton.ToolTip = NStr("en = 'Start a new duplicate search.';tr = 'Yeni bir kopya araması başlat.'");
 	Step.NextButton.Visible = False;
 	Step.CancelButton.DefaultButton = True;
-	Step.CancelButton.Title = NStr("en = 'Close';");
+	Step.CancelButton.Title = NStr("en = 'Close';tr = 'Kapat'");
 	
 	// 6. Incomplete deletion.
 	Step = AddWizardStep(Items.UnsuccessfulReplacementsStep);
 	Step.BackButton.Visible = False;
-	Step.NextButton.Title = NStr("en = 'Delete again >';");
-	Step.NextButton.ToolTip = NStr("en = 'Delete duplicates';");
-	Step.CancelButton.Title = NStr("en = 'Close';");
+	Step.NextButton.Title = NStr("en = 'Delete again >';tr = 'Tekrar sil >'");
+	Step.NextButton.ToolTip = NStr("en = 'Delete duplicates';tr = 'Kopyaları sil'");
+	Step.CancelButton.Title = NStr("en = 'Close';tr = 'Kapat'");
 	
 	// 7. No duplicates found.
 	Step = AddWizardStep(Items.DuplicatesNotFoundStep);
 	Step.BackButton.Visible = False;
-	Step.NextButton.Title = NStr("en = 'Find duplicates >';");
-	Step.NextButton.ToolTip = NStr("en = 'Find duplicates by the specified criteria.';");
-	Step.CancelButton.Title = NStr("en = 'Close';");
+	Step.NextButton.Title = NStr("en = 'Find duplicates >';tr = 'Kopyaları bul >'");
+	Step.NextButton.ToolTip = NStr("en = 'Find duplicates by the specified criteria.';tr = 'Belirtilen kriterlere göre kopya bul.'");
+	Step.CancelButton.Title = NStr("en = 'Close';tr = 'Kapat'");
 	
 	// 8 Runtime errors.
 	Step = AddWizardStep(Items.ErrorOccurredStep);
 	Step.BackButton.Visible = False;
 	Step.NextButton.Visible = False;
-	Step.CancelButton.Title = NStr("en = 'Close';");
+	Step.CancelButton.Title = NStr("en = 'Close';tr = 'Kapat'");
 	
 	// Update form items.
 	WizardSettings.CurrentStep = SearchStep;
@@ -156,14 +158,14 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 	Cancel = True;
 	CurrentPage = Items.WizardSteps.CurrentPage;
 	If CurrentPage = Items.PerformSearchStep Then
-		QueryText = NStr("en = 'Do you want to stop search and close the form?';");
+		QueryText = NStr("en = 'Do you want to stop search and close the form?';tr = 'Aramayı durdurup formu kapatmak istiyor musunuz?'");
 	ElsIf CurrentPage = Items.DeletionStep Then
-		QueryText = NStr("en = 'Do you want to stop deletion and close the form?';");
+		QueryText = NStr("en = 'Do you want to stop deletion and close the form?';tr = 'Silmeyi durdurup formu kapatmak istiyor musunuz?'");
 	EndIf;
 	
 	Buttons = New ValueList;
-	Buttons.Add(DialogReturnCode.Abort, NStr("en = 'Cancel operation';"));
-	Buttons.Add(DialogReturnCode.No,      NStr("en = 'Continue operation';"));
+	Buttons.Add(DialogReturnCode.Abort, NStr("en = 'Cancel operation';tr = 'İşlemi iptal et'"));
+	Buttons.Add(DialogReturnCode.No,      NStr("en = 'Continue operation';tr = 'İptal etmemek'"));
 	
 	Handler = New NotifyDescription("AfterConfirmCancelJob", ThisObject);
 	ShowQueryBox(Handler, QueryText, Buttons, , DialogReturnCode.No);
@@ -369,14 +371,14 @@ Procedure UpdateCandidateUsageInstances(Val RowID)
 		EndDo;
 		
 		LongDesc = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Found %2 duplicates for %1.';"),
+			NStr("en = 'Found %2 duplicates for %1.';tr = '%1 için %2 kopya bulundu.'"),
 			OriginalDescription, CurrentRow.Count);
 		If MarkedForDeletionAndNotUsed Then
 			LongDesc = LongDesc + Chars.LF
-				+ NStr("en = 'All duplicates are marked for deletion and there are no references to them, so deleting duplicates is no longer required.';");
+				+ NStr("en = 'All duplicates are marked for deletion and there are no references to them, so deleting duplicates is no longer required.';tr = 'Ancak bunların tümü silinmek üzere işaretlenmiştir ve kullanılmamaktadır, dolayısıyla kopyaların kaldırılması artık gerekli değildir.'");
 		EndIf;
 				
-		Items.DetailsGroup1.Title = NStr("en = 'Information records:';");
+		Items.DetailsGroup1.Title = NStr("en = 'Information records:';tr = 'Bilgi:'");
 		Items.CurrentDuplicatesGroupDetails.Title = LongDesc;
 		Items.UsageInstancesPages.CurrentPage = Items.GroupDetails;
 		Return;
@@ -390,13 +392,13 @@ Procedure UpdateCandidateUsageInstances(Val RowID)
 	
 	If CurrentRow.Count = 0 Then
 		Items.CurrentDuplicatesGroupDetails.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 has no occurrences';"), 
+			NStr("en = '%1 has no occurrences';tr = '%1 örneği yok'"), 
 			CurrentRow.Description);
-		Items.DetailsGroup1.Title = NStr("en = 'Information records:';");
+		Items.DetailsGroup1.Title = NStr("en = 'Information records:';tr = 'Bilgi:'");
 		Items.UsageInstancesPages.CurrentPage = Items.GroupDetails;
 	Else
 		Items.DetailsGroup1.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Occurrences of ""%1"" (%2):';"), 
+			NStr("en = 'Occurrences of ""%1"" (%2):';tr = '""%1"" (%2) örnekleri:'"), 
 			CurrentRow.Description,
 			CurrentRow.Count);
 		
@@ -461,7 +463,7 @@ Procedure UpdateUnprocessedItemsUsageInstancesDuplicates(Val DataString1)
 	
 	If RowData.GetParent() = Undefined Or RowData.Main Then
 		UnprocessedItemsUsageInstances.Clear();
-		Items.CurrentDuplicatesGroupDetails1.Title = NStr("en = 'To view details, select the duplicate that caused the issue.';");
+		Items.CurrentDuplicatesGroupDetails1.Title = NStr("en = 'To view details, select the duplicate that caused the issue.';tr = 'Ayrıntıları görmek için, soruna yol açan kopyayı seçin.'");
 		Items.UnprocessedItemsUsageInstancesPages.CurrentPage = Items.UnprocessedItemsGroupDetails;
 		Return;
 	EndIf;
@@ -469,7 +471,7 @@ Procedure UpdateUnprocessedItemsUsageInstancesDuplicates(Val DataString1)
 	If RowData.Count = 0 Then
 		UnprocessedItemsUsageInstances.Clear();
 		Items.CurrentDuplicatesGroupDetails1.Title = 
-			NStr("en = 'Cannot replace the selected duplicate as it is impossible to replace other duplicates.';");
+			NStr("en = 'Cannot replace the selected duplicate as it is impossible to replace other duplicates.';tr = 'Seçilen kopya, diğer kopyaların değiştirilememesi nedeniyle değiştirilmedi.'");
 		Items.UnprocessedItemsUsageInstancesPages.CurrentPage = Items.UnprocessedItemsGroupDetails;
 	Else
 		ErrorsTable = GetFromTempStorage(ReplacementResultAddress); // See Common.ReplaceReferences
@@ -481,7 +483,7 @@ Procedure UpdateUnprocessedItemsUsageInstancesDuplicates(Val DataString1)
 		UnprocessedItemsUsageInstances.Load(Data);
 		
 		Items.ProbableDuplicateUsageInstances.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot replace some of the duplicates (%1).';"), 
+			NStr("en = 'Cannot replace some of the duplicates (%1).';tr = 'Kopyalardan bazıları değiştirilemedi (%1).'"), 
 			RowData.Count);
 		Items.UnprocessedItemsUsageInstancesPages.CurrentPage = Items.UnprocessedItemsUsageInstanceDetails;
 	EndIf;
@@ -607,7 +609,7 @@ EndProcedure
 &AtClient
 Procedure RefreshPossibleDuplicatesStatus()
 
-	GroupTitle = NStr("en = 'The replacement of duplicates might have generated duplicates in other lists (%1)';");
+	GroupTitle = NStr("en = 'The replacement of duplicates might have generated duplicates in other lists (%1)';tr = 'Çalışma sürecinde, diğer listelerde kopyalar olabilir (%1)'");
 	UnprocessedItemsCount = PossibleDuplicates.FindRows(New Structure("Processed", False)).Count();
 	Items.GroupPossibleDuplicates.Title = StringFunctionsClientServer.SubstituteParametersToString(GroupTitle, UnprocessedItemsCount);
 	Items.GroupPossibleDuplicates.Visible = UnprocessedItemsCount > 0;	
@@ -719,7 +721,7 @@ EndProcedure
 &AtClient
 Procedure More(Command)
 	Items.DetailsGroup1.Visible = Not Items.DetailsGroup1.Visible;
-	Items.MoreDetails.Title = ?(Items.DetailsGroup1.Visible, NStr("en = '<< Hide';"), NStr("en = 'Details >>';"));
+	Items.MoreDetails.Title = ?(Items.DetailsGroup1.Visible, NStr("en = '<< Hide';tr = '<< Gizle'"), NStr("en = 'Details >>';tr = 'Daha fazla >>'"));
 EndProcedure
 
 #EndRegion
@@ -773,14 +775,14 @@ Function AddWizardStep(Val Page)
 	StepDescription.PageName = Page.Name;
 	
 	StepDescription.BackButton = WizardButton();
-	StepDescription.BackButton.Title = NStr("en = '< Back';");
+	StepDescription.BackButton.Title = NStr("en = '< Back';tr = '< Geri'");
 	
 	StepDescription.NextButton = WizardButton();
 	StepDescription.NextButton.DefaultButton = True;
-	StepDescription.NextButton.Title = NStr("en = 'Next >';");
+	StepDescription.NextButton.Title = NStr("en = 'Next >';tr = 'İleri >'");
 	
 	StepDescription.CancelButton = WizardButton();
-	StepDescription.CancelButton.Title = NStr("en = 'Cancel';");
+	StepDescription.CancelButton.Title = NStr("en = 'Cancel';tr = 'İptal'");
 	
 	WizardSettings.Steps.Add(StepDescription);
 	
@@ -815,9 +817,9 @@ Procedure GoToWizardStep1(Val StepOrIndexOrFormGroup)
 	ElsIf Type = Type("Number") Then
 		StepIndex = StepOrIndexOrFormGroup;
 		If StepIndex < 0 Then
-			Raise NStr("en = 'Attempt to go back from the first step.';");
+			Raise NStr("en = 'Attempt to go back from the first step.';tr = 'İlk sihirbaz adımını aşma girişimi'");
 		ElsIf StepIndex > WizardSettings.Steps.UBound() Then
-			Raise NStr("en = 'Attempt to go next from the last step.';");
+			Raise NStr("en = 'Attempt to go next from the last step.';tr = 'Son sihirbaz adımını aşma girişimi'");
 		EndIf;
 		StepDescription = WizardSettings.Steps[StepIndex];
 	Else
@@ -831,7 +833,7 @@ Procedure GoToWizardStep1(Val StepOrIndexOrFormGroup)
 		EndDo;
 		If Not StepFound Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Step %1 is not found.';"),
+				NStr("en = 'Step %1 is not found.';tr = 'Adım ""%1"" bulunamadı.'"),
 				RequiredPageName);
 		EndIf;
 	EndIf; 
@@ -859,17 +861,17 @@ Procedure OnActivateWizardStep()
 		// Filter rule presentation.
 		FilterRulesPresentation = String(PrefilterComposer.Settings.Filter);
 		If IsBlankString(FilterRulesPresentation) Then
-			FilterRulesPresentation = NStr("en = 'All items';");
+			FilterRulesPresentation = NStr("en = 'All items';tr = 'Tüm öğeler'");
 		EndIf;
 		
 		// Search rule presentation.
-		Conjunction = " " + NStr("en = 'AND';") + " ";
+		Conjunction = " " + NStr("en = 'AND';tr = 'VE'") + " ";
 		RulesText = "";
 		For Each Rule In SearchRules Do
 			If Rule.Rule = "Equal" Then
-				Comparison = Rule.AttributeRepresentation + " " + NStr("en = 'attributes are identical';");
+				Comparison = Rule.AttributeRepresentation + " " + NStr("en = 'attributes are identical';tr = 'öznitelikler eşdeğer'");
 			ElsIf Rule.Rule = "Like" Then
-				Comparison = Rule.AttributeRepresentation + " " + NStr("en = 'attributes are similar';");
+				Comparison = Rule.AttributeRepresentation + " " + NStr("en = 'attributes are similar';tr = 'öznitelikler benzer'");
 			Else
 				Continue;
 			EndIf;
@@ -884,11 +886,11 @@ Procedure OnActivateWizardStep()
 			EndDo;
 		EndIf;
 		If IsBlankString(RulesText) Then
-			RulesText = NStr("en = 'No rules set';");
+			RulesText = NStr("en = 'No rules set';tr = 'Kural belirlenmedi'");
 		EndIf;
 		
 		If HideInsignificantDuplicates Then
-			RulesRow = NStr("en = 'hide duplicates that are marked for deletion and never referred';");
+			RulesRow = NStr("en = 'hide duplicates that are marked for deletion and never referred';tr = 'kullanım yerleri olmadan silinmek üzere işaretlileri göstermemek'");
 			RulesText = ?(RulesText = "", "", RulesText + Conjunction) + RulesRow;
 		EndIf;
 		
@@ -924,10 +926,10 @@ Procedure OnActivateWizardStep()
 		Items.Header.Enabled = False;
 		
 		If PossibleDuplicateSelected Then
-			Items.WizardStepBack.Title = NStr("en = 'New search';");
+			Items.WizardStepBack.Title = NStr("en = 'New search';tr = 'Yeni arama'");
 			Items.WizardStepBack.DefaultButton = True;
 		Else
-			Items.WizardStepBack.Title = NStr("en = 'Search again';");
+			Items.WizardStepBack.Title = NStr("en = 'Search again';tr = 'Tekrar ara'");
 			Items.WizardStepBack.DefaultButton = False;
 		EndIf;
 		
@@ -939,12 +941,12 @@ Procedure OnActivateWizardStep()
 		
 		Items.Header.Enabled = True;
 		If IsBlankString(DuplicatesSearchErrorDescription) Then
-			Message = NStr("en = 'No duplicates found by the specified parameters.';");
+			Message = NStr("en = 'No duplicates found by the specified parameters.';tr = 'Belirtilen parametrelere göre kopya bulunamadı.'");
 		Else	
 			Message = DuplicatesSearchErrorDescription;
 		EndIf;	
 		Items.DuplicatesNotFound.StatePresentation.Text = Message + Chars.LF 
-			+ NStr("en = 'Edit the criteria and select Find duplicates.';");
+			+ NStr("en = 'Edit the criteria and select Find duplicates.';tr = 'Kriterleri değiştirin ve ""Kopyaları bul""a tıklayın.'");
 		
 	ElsIf CurrentPage = Items.ErrorOccurredStep Then
 		
@@ -966,7 +968,7 @@ Procedure WizardStepNext()
 	If CurrentPage = Items.NoSearchPerformedStep Then
 		
 		If IsBlankString(DuplicatesSearchArea) Then
-			ShowMessageBox(, NStr("en = 'Select a search location';"));
+			ShowMessageBox(, NStr("en = 'Select a search location';tr = 'Arama konumu seçin'"));
 			Return;
 		EndIf;
 		
@@ -1067,7 +1069,8 @@ Procedure StepSelectTheMainElementWhenYouClickNext(DescriptionOfTheNextStep, Add
 		ShowQueryBox(
 			ResponseHandler1, 
 			NStr("en = 'Not all duplicates found are displayed. All duplicates found will be processed.
-			|Start processing the duplicates?';"), QuestionDialogMode.YesNo);
+			|Start processing the duplicates?';tr = 'Bulunan tüm kopyalar görüntülenmedi. Bulunan tüm kopyalar işlenecektir. 
+			|Kopyaları işlemeye başlansın mı?'"), QuestionDialogMode.YesNo);
 	Else
 			
 		ExecuteNotifyProcessing(AdditionalParameters.CompletionHandler, DescriptionOfTheNextStep);
@@ -1259,7 +1262,7 @@ Procedure UpdateFoundDuplicatesStateDetails()
 	
 	If IsBlankString(DuplicatesSearchErrorDescription) Then
 		LongDesc = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Selected duplicates: %1 out of %2.';"),
+			NStr("en = 'Selected duplicates: %1 out of %2.';tr = 'Seçilen kopyalar: %1 / %2.'"),
 			TotalFoundDuplicates, TotalItems);
 	Else	
 		LongDesc = DuplicatesSearchErrorDescription;
@@ -1268,18 +1271,18 @@ Procedure UpdateFoundDuplicatesStateDetails()
 	If HasMarkedObjectsDeletionSubsystem Then
 	
 		If DeletionMethod = "Check" Then
-			ToolTipText = NStr("en = 'The selected items will be <a href = ""[Action]"">marked for deletion</a> and replaced with the original items (the original items are marked with an arrow icon).';");
+			ToolTipText = NStr("en = 'The selected items will be <a href = ""[Action]"">marked for deletion</a> and replaced with the original items (the original items are marked with an arrow icon).';tr = 'Seçilen öğeler <a href = ""[Action]"">silinmek üzere işaretlenecek</a> ve orijinalleri ile değiştirilecek (orijinaller okla işaretlenmiştir).'");
 			RowParameters = New Structure("Action", "DeletionMethod");
 			ToolTipText = StringFunctionsClientServer.InsertParametersIntoString(ToolTipText, RowParameters);
 		Else
-			ToolTipText = NStr("en = 'The selected items will be <a href = ""[Action]"">deleted permanently</a> and replaced with the original items (the original items are marked with an arrow icon).';");
+			ToolTipText = NStr("en = 'The selected items will be <a href = ""[Action]"">deleted permanently</a> and replaced with the original items (the original items are marked with an arrow icon).';tr = 'Seçilen öğeler <a href = ""[Action]""> kalıcı olarak silinecek </a>ve orijinalleri ile değiştirilecektir (okla işaretlenmiştir).'");
 			RowParameters = New Structure("Action", "DeletionMethod");
 			ToolTipText = StringFunctionsClientServer.InsertParametersIntoString(ToolTipText, RowParameters);
 		EndIf;
 		
 	Else
 		
-		ToolTipText = NStr("en = 'The selected items will be marked for deletion and replaced with the original items, which are marked with an arrow.';");
+		ToolTipText = NStr("en = 'The selected items will be marked for deletion and replaced with the original items, which are marked with an arrow.';tr = 'Seçilen öğeler silinmek üzere işaretlenecek ve orijinalleri ile değiştirilecektir (okla işaretlenmiştir).'");
 		
 	EndIf;
 	FoundDuplicatesStateDetails = StringFunctionsClient.FormattedString(LongDesc + Chars.LF + ToolTipText);
@@ -1481,8 +1484,8 @@ Procedure OnCreateAtServerDataInitialization(FormSettings)
 		ChoiceList.Add(TableRow.FullName, TableRow.ListPresentation, , PictureOfTheView);
 	EndDo;
 	
-	AllComparisonOptions.Add("Equal",   NStr("en = 'Match';"));
-	AllComparisonOptions.Add("Like", NStr("en = 'Fuzzy match';"));
+	AllComparisonOptions.Add("Equal",   NStr("en = 'Match';tr = 'Eşleşme'"));
+	AllComparisonOptions.Add("Like", NStr("en = 'Fuzzy match';tr = 'Bulanık eşleşme'"));
 EndProcedure
 
 &AtServer
@@ -1547,7 +1550,7 @@ Procedure SetConditionalAppearance()
 	AppearanceFilter.ComparisonType = DataCompositionComparisonType.Equal;
 	AppearanceFilter.RightValue = 0;
 	
-	AppearanceItem.Appearance.SetParameterValue("Text", NStr("en = '-';"));
+	AppearanceItem.Appearance.SetParameterValue("Text", NStr("en = '-';tr = '-'"));
 	
 	AppearanceField = AppearanceItem.Fields.Items.Add();
 	AppearanceField.Field = New DataCompositionField("FoundDuplicatesCount");
@@ -1733,10 +1736,10 @@ Function FindAndDeleteDuplicates()
 	CurrentPage = Items.WizardSteps.CurrentPage;
 	If CurrentPage = Items.PerformSearchStep Then
 		
-		Items.Searching.StatePresentation.Text = NStr("en = 'Searching for duplicates…';");
+		Items.Searching.StatePresentation.Text = NStr("en = 'Searching for duplicates…';tr = 'Kopyalar aranıyor...'");
 
 		ProcedureName = FormAttributeToValue("Object").Metadata().FullName() + ".ObjectModule.BackgroundSearchForDuplicates";
-		MethodDescription = NStr("en = 'Duplicate cleaner: Find duplicates';");
+		MethodDescription = NStr("en = 'Duplicate cleaner: Find duplicates';tr = 'Kopya temizleyici: Kopyaları bul'");
 		ProcedureParameters.Insert("DuplicatesSearchArea",     DuplicatesSearchArea);
 		ProcedureParameters.Insert("MaxDuplicates", 1500);
 		SearchRulesArray = New Array;
@@ -1757,14 +1760,14 @@ Function FindAndDeleteDuplicates()
 		
 		DeletionParameters = DuplicatesPurgeParameters();
 		If DeletionParameters.Count() = 0 Then
-			Common.MessageToUser(NStr("en = 'Select at least one duplicate group.';"),, "FoundDuplicates");
+			Common.MessageToUser(NStr("en = 'Select at least one duplicate group.';tr = 'En az bir grup kopya seçin.'"),, "FoundDuplicates");
 			Return Undefined;
 		EndIf;
 		
-		Items.Deletion.StatePresentation.Text = NStr("en = 'Processing duplicates…';");
+		Items.Deletion.StatePresentation.Text = NStr("en = 'Processing duplicates…';tr = 'Kopyalar işleniyor...'");
 		
 		ProcedureName = FormAttributeToValue("Object").Metadata().FullName() + ".ObjectModule.BackgroundDuplicateDeletion";
-		MethodDescription = NStr("en = 'Duplicate cleaner: Delete duplicates';");
+		MethodDescription = NStr("en = 'Duplicate cleaner: Delete duplicates';tr = 'Kopya temizleyici: Kopyaları sil'");
 		
 		StartSettings1 = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 		StartSettings1.BackgroundJobDescription = MethodDescription;
@@ -1774,7 +1777,7 @@ Function FindAndDeleteDuplicates()
 		
 	Else
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Incorrect operation: %1.';"), String(CurrentPage));
+			NStr("en = 'Incorrect operation: %1.';tr = 'Yanlış işlem: %1.'"), String(CurrentPage));
 	EndIf;
 	
 EndFunction
@@ -1794,13 +1797,13 @@ Procedure FindAndRemoveDuplicatesProgress(Result, AdditionalParameters) Export
 	CurrentPage = Items.WizardSteps.CurrentPage;
 	If CurrentPage = Items.PerformSearchStep Then
 		
-		Message = NStr("en = 'Searching for duplicates…';");
+		Message = NStr("en = 'Searching for duplicates…';tr = 'Kopyalar aranıyor...'");
 		If Result.Progress.Text = "CalculateUsageInstances" Then 
-			Message = NStr("en = 'Searching for duplicate occurrences…';");
+			Message = NStr("en = 'Searching for duplicate occurrences…';tr = 'Kopya örnekleri aranıyor...'");
 		ElsIf Result.Progress.Percent > 0 Then
 			Message = Message + " " 
 				+ StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '(%1 locations found)';"), Result.Progress.Percent);
+					NStr("en = '(%1 locations found)';tr = '(%1 konum bulundu)'"), Result.Progress.Percent);
 		EndIf;
 		Items.Searching.StatePresentation.Text = Message;
 		
@@ -1819,7 +1822,7 @@ Procedure FindAndRemoveDuplicatesProgress(Result, AdditionalParameters) Export
 				Message = ProgressText(ProgressParameters, Result.Progress.Text);
 			EndIf;
 		Else	
-			Message = NStr("en = 'Processing duplicates…';");
+			Message = NStr("en = 'Processing duplicates…';tr = 'Kopyalar işleniyor...'");
 		EndIf;
 		
 		Items.Deletion.StatePresentation.Text = Message;
@@ -1831,7 +1834,7 @@ EndProcedure
 &AtServer
 Function ProgressText(Val ProgressParameters, Val SourceProgressText)
 	
-	ThisIsReplacement = StrStartsWith(SourceProgressText, NStr("en = 'Replacing duplicates';"));
+	ThisIsReplacement = StrStartsWith(SourceProgressText, NStr("en = 'Replacing duplicates';tr = 'Kopya değiştirme'"));
 	ProgressAttributeName = ?(ThisIsReplacement, "ProcessedItemsCount", "DeletedItemsCount");
 	Filter = New Structure;
 	Filter.Insert("SessionNumber", ProgressParameters.SessionNumber);
@@ -1853,13 +1856,14 @@ Function ProgressText(Val ProgressParameters, Val SourceProgressText)
 	EndIf;
 	
 	ProgressText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Replacing duplicates… Processed (%1 out of %2)';"),
+		NStr("en = 'Replacing duplicates… Processed (%1 out of %2)';tr = 'Kopyalar değiştiriliyor… İşlenen (%1 / %2)'"),
 		ProcessedTotalCount,
 		SelectedCountTotal);
 	If DeletionMethod = "Directly" Then
 		ProgressText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = '%1
-			|Deleting duplicates... Processed (%2 out of %3)';"),
+			|Deleting duplicates... Processed (%2 out of %3)';tr = '%1
+			|Kopyalar siliniyor... İşlenen (%2 / %3)'"),
 			ProgressText,
 			DeletedTotalCount,
 			SelectedCountTotal);
@@ -1886,9 +1890,9 @@ Procedure FindAndDeleteDuplicatesCompletion(Result, AdditionalParameters) Export
 	If Result.Status <> "Completed2" Then
 		// Background job is completed with error.
 		If CurrentPage = Items.PerformSearchStep Then
-			Brief1 = NStr("en = 'Cannot find duplicates. Reason:';");
+			Brief1 = NStr("en = 'Cannot find duplicates. Reason:';tr = 'Şu nedenle kopyalar bulunamadı:'");
 		ElsIf CurrentPage = Items.DeletionStep Then
-			Brief1 = NStr("en = 'Cannot delete the duplicates. Reason:';");
+			Brief1 = NStr("en = 'Cannot delete the duplicates. Reason:';tr = 'Kopyaların silinmesi şu nedenle başarısız oldu:'");
 		EndIf;
 		Brief1 = Brief1 + Chars.LF + Result.BriefErrorDescription;
 		More = Brief1 + Chars.LF + Chars.LF + Result.DetailErrorDescription;
@@ -1997,7 +2001,7 @@ Function FillDuplicatesSearchResults(Val ResultAddress)
 	ValueToFormAttribute(FoundDuplicatesTree, "FoundDuplicates");
 	
 	ProbableDuplicateUsageInstances.Clear();
-	Items.CurrentDuplicatesGroupDetails.Title = NStr("en = 'No duplicates found';");
+	Items.CurrentDuplicatesGroupDetails.Title = NStr("en = 'No duplicates found';tr = 'Çiftler bulunamadı'");
 	
 	If IsTempStorageURL(UsageInstancesAddress) Then
 		DeleteFromTempStorage(UsageInstancesAddress);
@@ -2053,14 +2057,15 @@ Function FillDuplicatesDeletionResults(Val ResultAddress)
 			If LastCandidate = Undefined Then
 				FoundDuplicatesStateDetails = New FormattedString(
 					StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'All %1 duplicates have been merged.';"),
+						NStr("en = 'All %1 duplicates have been merged.';tr = '%1 kopyanın tümü birleştirildi.'"),
 						ProcessedItemsTotal));
 			Else
 				LastCandidateAsString = Common.SubjectString(LastCandidate);
 				FoundDuplicatesStateDetails = New FormattedString(
 					StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'All %1 duplicates have been merged
-							|into %2.';"),
+							|into %2.';tr = '%1 kopyanın tümü birleştirildi:
+							|%2.'"),
 						ProcessedItemsTotal, LastCandidateAsString));
 			EndIf;
 		Else
@@ -2068,7 +2073,8 @@ Function FillDuplicatesDeletionResults(Val ResultAddress)
 			FoundDuplicatesStateDetails = New FormattedString(
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'All %1 duplicates have been merged.
-						|Number of resulted items: %2.';"),
+						|Number of resulted items: %2.';tr = '%1 kopyanın tümü birleştirildi.
+						|Ortaya çıkan öğe sayısı: %2.'"),
 					ProcessedItemsTotal,
 					MainItemsTotal));
 		EndIf;
@@ -2413,7 +2419,7 @@ EndProcedure
 // Used as a filter ID.
 &AtServer
 Function RepresentationOfTheSelectedPlaceOfUse()
-	Return NStr("en = 'Items that can include duplicates';");
+	Return NStr("en = 'Items that can include duplicates';tr = 'Kopyaların mümkün olduğu öğeler'");
 EndFunction
 
 #EndRegion

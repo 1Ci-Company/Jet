@@ -181,8 +181,8 @@ Procedure Save(Command)
 	
 	SavingParameters = FileSystemClient.FileSavingParameters();
 	SavingParameters.SuggestionText = SuggestionText();
-	SavingParameters.Dialog.Filter = NStr("en = 'Archive (*.zip)|*.zip';");
-	SavingParameters.Dialog.Title = NStr("en = 'Select file';");
+	SavingParameters.Dialog.Filter = NStr("en = 'Archive (*.zip)|*.zip';tr = 'Archive (*.zip)|*.zip'");
+	SavingParameters.Dialog.Title = NStr("en = 'Select file';tr = 'Select file'");
 	SavingParameters.Dialog.FullFileName = FileName;
 	
 	For Each ReportOptionDetails In ReportsOptionsDetails Do 
@@ -274,12 +274,12 @@ Procedure FillInTheDescriptionOfTheReportOptions()
 	If ReportsOptionsDetails.Count() > 1 Then
 		
 		Items.SaveOptions.CurrentPage = Items.MultipleReportsOptions;
-		Title = NStr("en = 'Save report options to file';");
+		Title = NStr("en = 'Save report options to file';tr = 'Save report options to file'");
 		
 	ElsIf ReportsOptionsDetails.Count() = 1 Then
 		
 		Items.SaveOptions.CurrentPage = Items.OneReportOption;
-		Title = NStr("en = 'Save report option to file';");
+		Title = NStr("en = 'Save report option to file';tr = 'Save report option to file'");
 		
 	EndIf;
 	
@@ -336,7 +336,7 @@ Procedure FillReportOptionDetails(ReportVariant, DataOfTheReportVariant,
 	If Report.DataCompositionSchema = Undefined Then 
 		ReportsOptionsDetails.Delete(ReportOptionDetails);
 		Common.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Report option ""%1"" cannot be saved.';"), DataOfTheReportVariant.Presentation));
+			NStr("en = 'Report option ""%1"" cannot be saved.';tr = 'Report option ""%1"" cannot be saved.'"), DataOfTheReportVariant.Presentation));
 		Return;
 	EndIf;
 	
@@ -370,7 +370,7 @@ Procedure ReadUserSettings()
 		Items.CommandBarPersonalSettings.Visible = False;
 		Items.PersonalSettings.ReadOnly = True;
 		Items.PersonalSettings.Enabled = False;
-		PersonalSettings.Add("", NStr("en = 'The report has no personal settings.';"));
+		PersonalSettings.Add("", NStr("en = 'The report has no personal settings.';tr = 'The report has no personal settings.'"));
 		Return;
 	EndIf;
 	
@@ -467,7 +467,7 @@ Procedure CompressReportOptionSettingsCompletion(Files, AdditionalParameters) Ex
 		Explanation = DirectoryName;
 	EndIf;
 	
-	ShowUserNotification(NStr("en = 'Report option saved to file';"),, Explanation);
+	ShowUserNotification(NStr("en = 'Report option saved to file';tr = 'Report option saved to file'"),, Explanation);
 	
 EndProcedure
 
@@ -617,7 +617,7 @@ EndProcedure
 &AtClient
 Function SuggestionText()
 	
-	Return NStr("en = 'It is recommended that you install 1C:Enterprise Extension before you save the report option to a file.';");
+	Return NStr("en = 'It is recommended that you install 1C:Enterprise Extension before you save the report option to a file.';tr = 'It is recommended that you install 1C:Enterprise Extension before you save the report option to a file.'");
 	
 EndFunction
 

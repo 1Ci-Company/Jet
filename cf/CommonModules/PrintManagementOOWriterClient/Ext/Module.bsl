@@ -37,7 +37,7 @@ Function InitializeOOWriterPrintForm(Val Template = Undefined) Export
 		ServiceManager = New COMObject(ObjectName);
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'An error occurred when connecting to service ""%1"".';", CommonClient.DefaultLanguageCode()), ObjectName)
+			NStr("en = 'An error occurred when connecting to service ""%1"".';tr = '""%1"" hizmetiyle iletişim kurulurken hata oluştu.'", CommonClient.DefaultLanguageCode()), ObjectName)
 			+ Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			
 		EventLogClient.AddMessageForEventLog(EventLogEvent(), "Error",
@@ -51,7 +51,7 @@ Function InitializeOOWriterPrintForm(Val Template = Undefined) Export
 		Desktop = ServiceManager.CreateInstance(ObjectName);
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'An error occurred when starting service ""%1"".';", CommonClient.DefaultLanguageCode()), ObjectName)
+			NStr("en = 'An error occurred when starting service ""%1"".';tr = '""%1"" hizmeti başlatılırken hata oluştu.'", CommonClient.DefaultLanguageCode()), ObjectName)
 			+ Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			
 		EventLogClient.AddMessageForEventLog(EventLogEvent(), "Error",
@@ -112,7 +112,7 @@ Function GetOOWriterTemplate(Val BinaryTemplateData1, TempFileName) Export
 		ServiceManager = New COMObject(ObjectName);
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'An error occurred when connecting to service ""%1"".';", CommonClient.DefaultLanguageCode()), ObjectName)
+			NStr("en = 'An error occurred when connecting to service ""%1"".';tr = '""%1"" hizmetiyle iletişim kurulurken hata oluştu.'", CommonClient.DefaultLanguageCode()), ObjectName)
 			+ Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		
 		EventLogClient.AddMessageForEventLog(EventLogEvent(), "Error",
@@ -125,7 +125,7 @@ Function GetOOWriterTemplate(Val BinaryTemplateData1, TempFileName) Export
 		Desktop = ServiceManager.CreateInstance(ObjectName);
 	Except
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'An error occurred when starting service ""%1"".';", CommonClient.DefaultLanguageCode()), ObjectName)
+			NStr("en = 'An error occurred when starting service ""%1"".';tr = '""%1"" hizmeti başlatılırken hata oluştu.'", CommonClient.DefaultLanguageCode()), ObjectName)
 			+ Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			
 		EventLogClient.AddMessageForEventLog(EventLogEvent(), "Error",
@@ -472,7 +472,7 @@ Function GetAreaStartPosition(Val xDocument, Val AreaName)
 	xSearchDescr.SearchWords = True;
 	xFound = xDocument.findFirst(xSearchDescr);
 	If xFound = Undefined Then
-		Raise NStr("en = 'Cannot find where template begins:';") + " " + AreaName;	
+		Raise NStr("en = 'Cannot find where template begins:';tr = 'Şablon alanı başlangıcı bulunamadı:'") + " " + AreaName;	
 	EndIf;
 	Return xFound.End;
 	
@@ -488,7 +488,7 @@ Function GetAreaEndPosition(Val xDocument, Val AreaName)
 	xSearchDescr.SearchWords = True;
 	xFound = xDocument.findFirst(xSearchDescr);
 	If xFound = Undefined Then
-		Raise NStr("en = 'Cannot find where template ends:';") + " " + AreaName;	
+		Raise NStr("en = 'Cannot find where template ends:';tr = 'Şablon alanının sonu bulunamadı:'") + " " + AreaName;	
 	EndIf;
 	Return xFound.Start;
 	
@@ -531,20 +531,21 @@ Function GetComSafeArray()
 EndFunction
 
 Function EventLogEvent()
-	Return NStr("en = 'Print';");
+	Return NStr("en = 'Print';tr = 'Yazdır'");
 EndFunction
 
 Procedure FailedToGeneratePrintForm(ErrorInfo)
 #If WebClient Or MobileClient Then
-	ClarificationText = NStr("en = 'Use thin client to generate this print from.';");
+	ClarificationText = NStr("en = 'Use thin client to generate this print from.';tr = 'Bu yazdırma formunu oluşturmak için ince istemci kullanın.'");
 #Else
 	ClarificationText = StringFunctionsClientServer.SubstituteParametersToString(NStr(
-		"en = 'To output print forms in %1 format, %2 must be installed.';"),
+		"en = 'To output print forms in %1 format, %2 must be installed.';tr = 'Yazdırma formları %1 biçiminde çıkarmak için bilgisayarınızda %2 yüklü olmalıdır.'"),
 		"OpenOffice.org Writer", "OpenOffice.org");
 #EndIf
 	ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot generate print form: %1.
-			|%2';"),
+			|%2';tr = 'Yazdırma formu oluşturulamadı: %1. 
+			|%2'"),
 		ErrorProcessing.BriefErrorDescription(ErrorInfo), ClarificationText);
 	Raise ExceptionText;
 EndProcedure

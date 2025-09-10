@@ -16,7 +16,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	RecordStructure = Undefined;
 	If Parameters.RecordStructure = Undefined Then
 		Common.MessageToUser(NStr(
-			"en = 'You can view a report snapshot only from the list of user report snapshots.';"), , , , Cancel);
+			"en = 'You can view a report snapshot only from the list of user report snapshots.';tr = 'Rapor anlık görüntüsü sadece kullanıcı rapor anlık görüntüleri listesinden görüntülenebilir.'"), , , , Cancel);
 		Return;
 	EndIf;
 
@@ -28,9 +28,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	FillPropertyValues(Record, Parameters.RecordStructure);
 	Record.Read();
 	If Not Record.Selected() Then
-		Common.MessageToUser(NStr("en = 'No record is found by the specified parameters.';"), , , , Cancel);
+		Common.MessageToUser(NStr("en = 'No record is found by the specified parameters.';tr = 'Belirtilen parametrelere uygun kayıt bulunamadı.'"), , , , Cancel);
 	ElsIf Record.ReportUpdateError Then
-		Common.MessageToUser(NStr("en = 'Report snapshot is not generated.';"), , , , Cancel);
+		Common.MessageToUser(NStr("en = 'Report snapshot is not generated.';tr = 'Rapor anlık görüntüsü oluşturulamadı.'"), , , , Cancel);
 	EndIf;
 	If Cancel Then
 		Return;
@@ -41,7 +41,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		TabDocument.Put(ReportResult);
 	Else
 		Common.MessageToUser(NStr(
-			"en = 'An error occurred when reading the report snapshot: the data is incorrect.';"), , , , Cancel);
+			"en = 'An error occurred when reading the report snapshot: the data is incorrect.';tr = 'Rapor anlık görüntüsü okunurken hata oluştu: Veriler yanlış.'"), , , , Cancel);
 	EndIf;
 
 	If Not Cancel Then

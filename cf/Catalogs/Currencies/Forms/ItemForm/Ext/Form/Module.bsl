@@ -221,7 +221,7 @@ Procedure FillInTheCurrencyRegistrationParametersSubmenu()
 			Command.Title = StringFunctionsClientServer.SubstituteParametersToString("%1...", 
 				CurrencyRateOperationsInternal.LanguagePresentation(LanguageCode));
 		Else
-			Command.Title = NStr("en = 'In other languages…';");
+			Command.Title = NStr("en = 'In other languages…';tr = 'Diğer dillerde...'");
 		EndIf;
 
 		Command.Action = "Attachable_OpenCurrencyRegistrationParametersForm";

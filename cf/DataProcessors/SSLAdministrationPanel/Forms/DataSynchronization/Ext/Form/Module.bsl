@@ -294,7 +294,7 @@ EndFunction
 Procedure SetVisibility1()
 	
 	If DataSeparationEnabled Then
-		Items.SectionDetails.Title = NStr("en = 'Sync data with my applications.';");
+		Items.SectionDetails.Title = NStr("en = 'Sync data with my applications.';tr = 'Uygulamalarım ile veri senkronizasyonu'");
 	EndIf;
 	
 	If SubsystemExistsDataExchange Then
@@ -311,7 +311,7 @@ Procedure SetVisibility1()
 			Items.UseDataSynchronizationGroup.Visible   = False;
 			Items.TemporaryServerClusterDirectoriesGroup.Visible = False;
 			
-			Items.DistributedInfobaseNodePrefix.Title = NStr("en = 'Prefix in this application';");
+			Items.DistributedInfobaseNodePrefix.Title = NStr("en = 'Prefix in this application';tr = 'Bu uygulamadaki önek'");
 			
 			Items.PerformanceMonitorGroup.Visible = False;
 		Else
@@ -335,7 +335,8 @@ Procedure SetVisibility1()
 			And SectionsProperties.ImportRestrictionDatesImplemented Then
 			Items.UseImportForbidDates.ExtendedTooltip.Title =
 				NStr("en = 'Importing closed period data from other applications is restricted.
-				           |This has no effect on importing data from standalone computers.';");
+				           |This has no effect on importing data from standalone computers.';tr = 'Diğer uygulamalardan geçmiş dönemlerin veri indirme engeli.
+				           |Çevrimdışı çalışma alanlarından veri içe aktarımını etkilemez.'");
 		EndIf;
 	Else
 		Items.ImportRestrictionDatesGroup.Visible = False;

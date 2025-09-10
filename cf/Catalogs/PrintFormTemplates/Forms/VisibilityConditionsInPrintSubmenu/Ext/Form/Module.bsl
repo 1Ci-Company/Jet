@@ -77,14 +77,14 @@ Procedure BeforeWrite(Cancel, WriteParameters)
 		RowIndex = VisibilityConditions.IndexOf(Condition);
 		If Not ValueIsFilled(Condition.ComparisonType) Then
 			
-			MessageText = NStr("en = 'Specify a comparison type';");
+			MessageText = NStr("en = 'Specify a comparison type';tr = 'Karşılaştırma türünü belirtin'");
 			Field = StringFunctionsClientServer.SubstituteParametersToString("VisibilityConditions[%1].ViewComparisonView", Format(RowIndex, "NG=0;"));
 			
 			CommonClient.MessageToUser(MessageText, , Field, , Cancel);
 		EndIf;
 		
 		If Not ValueIsFilled(Condition.Field) Then
-			MessageText = NStr("en = 'Select a field';");
+			MessageText = NStr("en = 'Select a field';tr = 'Alan seçin'");
 			Field = StringFunctionsClientServer.SubstituteParametersToString("VisibilityConditions[%1].FieldPresentation", Format(RowIndex, "NG=0;"));
 			
 			CommonClient.MessageToUser(MessageText, , Field, , Cancel);
@@ -240,12 +240,12 @@ EndProcedure
 Function RepresentationsViewsComparisons()
 	
 	Result = New Map();
-	Result.Insert("Equal", NStr("en = 'Equal to';"));
-	Result.Insert("NotEqual", NStr("en = 'Not equal to';"));
-	Result.Insert("Filled", NStr("en = 'Filled';"));
-	Result.Insert("NotFilled", NStr("en = 'Not filled';"));
-	Result.Insert("InList", NStr("en = 'In list';"));
-	Result.Insert("NotInList", NStr("en = 'Not in list';"));
+	Result.Insert("Equal", NStr("en = 'Equal to';tr = 'Eşit'"));
+	Result.Insert("NotEqual", NStr("en = 'Not equal to';tr = 'Eşit değil'"));
+	Result.Insert("Filled", NStr("en = 'Filled';tr = 'Dolduruldu'"));
+	Result.Insert("NotFilled", NStr("en = 'Not filled';tr = 'Doldurulmadı'"));
+	Result.Insert("InList", NStr("en = 'In list';tr = 'Listede'"));
+	Result.Insert("NotInList", NStr("en = 'Not in list';tr = 'Listede değil'"));
 	
 	Return Result;
 	

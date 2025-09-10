@@ -107,7 +107,7 @@ EndProcedure
 
 &AtClient
 Procedure UpdateSelectedCount()
-	SelectButtonText = NStr("en = 'Select';");
+	SelectButtonText = NStr("en = 'Select';tr = 'Seç'");
 	SelectedCount = SelectedItems().Count();
 	If SelectedCount > 0 Then
 		SelectButtonText = SelectButtonText + " (" + SelectedCount + ")";

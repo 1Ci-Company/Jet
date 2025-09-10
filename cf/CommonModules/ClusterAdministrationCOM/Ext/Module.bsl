@@ -151,7 +151,8 @@ Procedure CheckAdministrationParameters(Val ClusterAdministrationParameters, Val
 			Except
 				ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot connect to the server cluster from computer %1. Reason:
-						|%2.';"),
+						|%2.';tr = '%1 bilgisayarından sunucu kümesine şu sebeple bağlantı kurulamadı:
+						|%2'"),
 					ComputerName(), ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 				If Common.IsWindowsServer() Then 
 					If ConnectionAttempt = 1 Then
@@ -165,7 +166,10 @@ Procedure CheckAdministrationParameters(Val ClusterAdministrationParameters, Val
 					NStr("en = 'If you get the ""Class not registered"" or comcntr version mismatch error,
 						|register comcntr on computer %1. Contact the administrator for assistance.
 						|To register the comcntr component, run the regsvr32.exe comcntr.dll command
-						|using a Windows account under which 1C:Enterprise server runs.';"),
+						|using a Windows account under which 1C:Enterprise server runs.';tr = '""Class not registered"" (Sınıf kayıtlı değil) veya comcntr sürüm uyuşmazlığı hatası alırsanız,
+						|%1 bilgisayarında comcntr kaydı girin. Yardım için yöneticiye başvurun.
+						|comcntr bileşenini kaydetmek için, 1C:Enterprise sunucusunun çalıştığı 
+						|Windows hesabını kullanarak regsvr32.exe comcntr.dll komutunu yürütün.'"),
 					ComputerName());
 				Raise ExceptionText
 				
@@ -361,7 +365,7 @@ Procedure DeleteInfobaseSessions(Val ClusterAdministrationParameters, Val IBAdmi
 	
 	If Not AllSessionsTerminated Then
 	
-		Raise NStr("en = 'Cannot delete sessions.';");
+		Raise NStr("en = 'Cannot delete sessions.';tr = 'Oturumlar silinemiyor.'");
 		
 	EndIf;
 	
@@ -487,7 +491,7 @@ Procedure TerminateInfobaseConnections(Val ClusterAdministrationParameters, Val 
 	
 	If Not AllConnectionsTerminated Then
 	
-		Raise NStr("en = 'Cannot close connections.';");
+		Raise NStr("en = 'Cannot close connections.';tr = 'Bağlantılar kapatılamıyor.'");
 		
 	EndIf;
 	
@@ -845,11 +849,11 @@ EndProcedure
 Function COMConnector()
 	
 	If SafeMode() <> False Then
-		Raise NStr("en = 'Safe mode does not support cluster administration.';");
+		Raise NStr("en = 'Safe mode does not support cluster administration.';tr = 'Kümenin yönetilmesi güvenli modda kullanılamaz'");
 	EndIf;
 	
 	If Common.DataSeparationEnabled() Then
-		Raise NStr("en = 'SaaS mode does not support cluster administration.';");
+		Raise NStr("en = 'SaaS mode does not support cluster administration.';tr = 'Hizmet modelinde, uygulama infobase''nin küme yönetimi işlevlerini gerçekleştirmesine izin verilmez.'");
 	EndIf;
 	
 	Return New COMObject(CommonClientServer.COMConnectorName());
@@ -868,9 +872,12 @@ Function RegisterCOMConnector(Val Message = "")
 		NStr("en = '%1The comcntr component is reregistered on computer %2.
 			|Command: %3
 			|Return code:%4, message:
-			|%5';"), 
+			|%5';tr = '%1comcntr bileşeni bilgisayara tekrar kaydedildi %2.
+			|Komut: %3
+			|Dönüş kodu:%4, mesaj:
+			|%5'"), 
 		Message, ComputerName(), CommandText, RunResult.ReturnCode, RunResult.OutputStream);
-	WriteLogEvent(NStr("en = 'Connect to server cluster';", Common.DefaultLanguageCode()),
+	WriteLogEvent(NStr("en = 'Connect to server cluster';tr = 'Sunucu kümesine bağlan'", Common.DefaultLanguageCode()),
 		?(RunResult.ReturnCode = 0, EventLogLevel.Information, EventLogLevel.Warning),,, 
 		Comment);
 	Return RunResult.ReturnCode = 0;
@@ -893,7 +900,7 @@ Function GetCluster(IServerAgentConnection, Val ClusterPort, Val ClusterAdminist
 		EndIf;
 	EndDo;
 	
-	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cluster %2 does not exist on production server %1';"),
+	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cluster %2 does not exist on production server %1';tr = '%2 kümesi, %1 üretim sunucusunda mevcut değil'"),
 		IServerAgentConnection.ConnectionString,
 		ClusterPort);
 	
@@ -911,7 +918,7 @@ Function WorkingProcessesConnections(COMConnector, IServerAgentConnection, Clust
 	EndDo;
 	
 	If Result.Count() = 0 Then
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'There are no active working processes on server cluster %1:%2.';"),
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'There are no active working processes on server cluster %1:%2.';tr = '%1 sunucu kümesinde:%2 etkin işlemler mevcut değil.'"),
 			Cluster.HostName,
 			Format(Cluster.MainPort, "NG=0"));
 	EndIf;
@@ -927,7 +934,7 @@ Function GetIBDetails(IServerAgentConnection, Cluster, Val NameInCluster)
 		EndIf;
 	EndDo;
 	
-	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Infobase ""%3"" does not exist on server cluster %1:%2';"),
+	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Infobase ""%3"" does not exist on server cluster %1:%2';tr = '%1 sunucu kümesinde:%2 ""%3"" infobase mevcut değil'"),
 		Cluster.HostName,
 		Format(Cluster.MainPort, "NG=0"),
 		NameInCluster);
@@ -962,11 +969,11 @@ Function GetIB(WorkingProcessesConnections, Cluster, Val NameInCluster, Val IBAd
 	
 	If InfobaseFound Then	
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Incorrect administrator name or password for infobase %1, server cluster %2:%3 (name: ""%4"").';"),
+			NStr("en = 'Incorrect administrator name or password for infobase %1, server cluster %2:%3 (name: ""%4"").';tr = 'Sunucu kümesinin veritabanı yöneticisinin kullanıcı adı veya şifresi yanlıştır %2:%3 veritabanı %1 (isim: ""%4"").'"),
 			NameInCluster, Cluster.HostName, Cluster.MainPort, IBAdministratorName);
 	Else		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Infobase ""%3"" does not exist on server cluster %1:%2';"),
+			NStr("en = 'Infobase ""%3"" does not exist on server cluster %1:%2';tr = '%1 sunucu kümesinde:%2 ""%3"" infobase mevcut değil'"),
 			Cluster.HostName, Format(Cluster.MainPort, "NG=0"), NameInCluster);
 	EndIf;
 		
@@ -1068,7 +1075,7 @@ Function GetSecurityProfile(IServerAgentConnection, Cluster, ProfileName)
 		EndIf;
 	EndDo;
 	
-	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile ""%3"" does not exist on server cluster %1:%2';"),
+	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile ""%3"" does not exist on server cluster %1:%2';tr = '%1 sunucu kümesinde:%2 ""%3"" güvenlik profili mevcut değil'"),
 		Cluster.HostName,
 		Format(Cluster.MainPort, "NG=0"),
 		ProfileName);

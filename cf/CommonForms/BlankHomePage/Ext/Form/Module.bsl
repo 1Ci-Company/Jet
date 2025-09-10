@@ -19,7 +19,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			           |using the startup parameter <b>%1</b>.
 			           |
 			           |It is strongly recommended that you do not allow normal user operation in this mode
-			           |as it will result in data losses or mismatches.';"),
+			           |as it will result in data losses or mismatches.';tr = 'Infobase''de kimlik doğrulama otomatik test amacıyla 
+			           |<b>%1</b> başlatma parametresi kullanılarak gerçekleştirildi.
+			           |
+			           |Veri kaybına veya tutarsızlığına yol açabileceğinden
+			           |bu modda normal kullanıcı çalışmasına izin vermemeniz önerilir.'"),
 			"DisableSystemStartupLogic"));
 	
 EndProcedure
@@ -33,7 +37,7 @@ Procedure OnOpen(Cancel)
 	
 	Items.TestMode.Visible = True;
 	
-	TestModeTitle = "{" + NStr("en = 'Testing';") + "} ";
+	TestModeTitle = "{" + NStr("en = 'Testing';tr = 'Test'") + "} ";
 	CurrentTitle = ClientApplication.GetCaption();
 	
 	If StrStartsWith(CurrentTitle, TestModeTitle) Then

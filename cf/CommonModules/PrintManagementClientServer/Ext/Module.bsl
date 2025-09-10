@@ -11,7 +11,7 @@
 #Region Internal
 
 Function TagNameCondition() Export
-	Return NStr("en = 'v8 Condition';");
+	Return NStr("en = 'v8 Condition';tr = 'v8 Koşulu'");
 EndFunction
 
 #EndRegion

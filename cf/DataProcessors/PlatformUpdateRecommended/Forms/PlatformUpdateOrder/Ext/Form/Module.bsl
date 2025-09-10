@@ -17,7 +17,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		"UpdateProcedureForTheFileBase", "ClientServerInfobaseUpdateOrder");
 	
 	If Parameters.IsApplicationUninstallation Then
-		Title = NStr("en = 'Version deletion procedure';");
+		Title = NStr("en = 'Version deletion procedure';tr = 'Sürüm silme prosedürü'");
 		TemplateName = "ProcedureForDeletingPlatform";
 	EndIf;
 	

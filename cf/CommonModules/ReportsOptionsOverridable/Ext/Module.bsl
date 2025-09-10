@@ -69,10 +69,10 @@ EndProcedure
 //
 Procedure DefineSectionsWithReportOptions(Sections) Export
 	
-	Sections.Add(Metadata.Subsystems.Sales, NStr("en = 'Sales reports'"));
-	Sections.Add(Metadata.Subsystems.Purchases, NStr("en = 'Purchases reports'"));
-	Sections.Add(Metadata.Subsystems.Warehouses, NStr("en = 'Warehouses reports'"));
-	Sections.Add(Metadata.Subsystems.CashManagement, NStr("en = 'Cash management reports'"));
+	Sections.Add(Metadata.Subsystems.Sales, NStr("en = 'Sales reports'; tr = 'Satış raporları'"));
+	Sections.Add(Metadata.Subsystems.Purchases, NStr("en = 'Purchases reports'; tr = 'Satın alma raporları'"));
+	Sections.Add(Metadata.Subsystems.Warehouses, NStr("en = 'Warehouses reports'; tr = 'Ambar raporları'"));
+	Sections.Add(Metadata.Subsystems.CashManagement, NStr("en = 'Cash management reports'; tr = 'Finans raporları'"));
 	
 EndProcedure
 
@@ -195,58 +195,58 @@ Procedure CustomizeReportsOptions(Settings) Export
 	
 	// Sales reports
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CustomerBalance, "CustomerBalance");
-	OptionSettings.LongDesc = NStr("en = 'Amounts due from customers and advances paid by customers'");
+	OptionSettings.LongDesc = NStr("en = 'Amounts due from customers and advances paid by customers'; tr = 'Müşterilerin borç tutarları ve ödedikleri avanslar'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CustomerBalance, "CustomerBalanceContext");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.PriceList, "PriceList");
-	OptionSettings.LongDesc = NStr("en = 'List of product prices by price type'");
+	OptionSettings.LongDesc = NStr("en = 'List of product prices by price type'; tr = 'Fiyat türüne göre ürün fiyatı listesi'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.ProfitOnSales, "ProfitOnSales");
-	OptionSettings.LongDesc = NStr("en = 'Cost, revenue, and profit from product sales'");
+	OptionSettings.LongDesc = NStr("en = 'Cost, revenue, and profit from product sales'; tr = 'Maliyet, gelir ve ürün satışlarından kar'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "Default");
-	OptionSettings.LongDesc = NStr("en = 'Amount and VAT from product sales by customer'");
+	OptionSettings.LongDesc = NStr("en = 'Amount and VAT from product sales by customer'; tr = 'Müşteriye göre ürün satışı tutarı ve KDV''si'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "SalesContext");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "SalesByDate");
-	OptionSettings.LongDesc = NStr("en = 'Chart of sales amounts by date'");
+	OptionSettings.LongDesc = NStr("en = 'Chart of sales amounts by date'; tr = 'Tarihe göre satış tutarları grafiği'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Sales, "SalesByProduct");
-	OptionSettings.LongDesc = NStr("en = 'Chart of sales quanitities by product '");
+	OptionSettings.LongDesc = NStr("en = 'Chart of sales quanitities by product '; tr = 'Ürüne göre satış miktarları grafiği'");
 	
 	// Purchases reports
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.SupplierBalance, "SupplierBalance");
-	OptionSettings.LongDesc = NStr("en = 'Amounts due to suppliers and advances paid to suppliers'");
+	OptionSettings.LongDesc = NStr("en = 'Amounts due to suppliers and advances paid to suppliers'; tr = 'Tedarikçilere olan borç tutarları ve onlara ödenen avanslar'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.SupplierBalance, "SupplierBalanceContext");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Purchases, "Default");
-	OptionSettings.LongDesc = NStr("en = 'Amount and VAT from product purchases by supplier'");
+	OptionSettings.LongDesc = NStr("en = 'Amount and VAT from product purchases by supplier'; tr = 'Tedarikçiye göre ürün satışı tutarı ve KDV''si'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.Purchases, "PurchasesContext");
 	OptionSettings.Enabled = False;
 	
 	// Warehouses reports
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.StockStatement, "StockStatement");
-	OptionSettings.LongDesc = NStr("en = 'Opening balance, receipt, consumption, closing balance by products'");
+	OptionSettings.LongDesc = NStr("en = 'Opening balance, receipt, consumption, closing balance by products'; tr = 'Ürünlere göre açılış bakiyesi, alınan, tüketim, kapanış bakiyesi'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.StockStatement, "StockStatementContext");
 	OptionSettings.Enabled = False;
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.AvailableStock, "Default");
-	OptionSettings.LongDesc = NStr("en = 'Product stock balances by warehouse'");
+	OptionSettings.LongDesc = NStr("en = 'Product stock balances by warehouse'; tr = 'Ambara göre ürün stok bakiyeleri'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.AvailableStock, "AvailableStockContext");
 	OptionSettings.Enabled = False;
 	
 	// Cash management reports
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CashStatement, "CashStatement");
-	OptionSettings.LongDesc = NStr("en = 'Opening balance, inflow, outflow, closing balance by cash or bank accounts'");
+	OptionSettings.LongDesc = NStr("en = 'Opening balance, inflow, outflow, closing balance by cash or bank accounts'; tr = 'Kasa veya banka hesaplarına göre açılış bakiyesi, giriş, çıkış ve kapanış bakiyesi'");
 	
 	OptionSettings = ReportsOptions.OptionDetails(Settings, Metadata.Reports.CashStatement, "CashStatementContext");
 	OptionSettings.Enabled = False;

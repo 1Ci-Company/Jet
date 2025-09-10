@@ -54,8 +54,8 @@ Procedure SetUpDynamicList()
 	
 	FilesOwner = Parameters.FilesOwner;
 	
-	ErrorTitle = NStr("en = 'An error occurred when configuring the dynamic list of attachments.';");
-	ErrorEnd = NStr("en = 'Cannot configure the dynamic list.';");
+	ErrorTitle = NStr("en = 'An error occurred when configuring the dynamic list of attachments.';tr = 'Ekli dosyaların dinamik listesi yapılandırılırken hata oluştu.'");
+	ErrorEnd = NStr("en = 'Cannot configure the dynamic list.';tr = 'Bu durumda, dinamik liste yapılandırılamaz.'");
 	FilesStorageCatalogName = FilesOperationsInternal.FileStoringCatalogName(
 		FilesOwner, "", ErrorTitle, ErrorEnd);
 	

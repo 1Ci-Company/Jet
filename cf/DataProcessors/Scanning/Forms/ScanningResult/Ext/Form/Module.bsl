@@ -369,7 +369,7 @@ EndProcedure
 Procedure ScanErrorTextURLProcessing(Item, FormattedStringURL, StandardProcessing)
 	If FormattedStringURL = "TechnicalInformation" Then
 		AfterTechnicalInfoReceived = New NotifyDescription("AfterTechnicalInfoReceived", ThisObject);
-		FilesOperationsInternalClient.GetTechnicalInformation(NStr("en = 'The last scan attempt failed.';"),
+		FilesOperationsInternalClient.GetTechnicalInformation(NStr("en = 'The last scan attempt failed.';tr = 'Son tarama girişimi başarısız oldu.'"),
 			AfterTechnicalInfoReceived);
 		StandardProcessing = False;
 	EndIf;
@@ -378,8 +378,8 @@ EndProcedure
 &AtClient
 Procedure AssistanceRequiredClick(Item)
 	
-	FilesOperationsInternalClient.ShowScanError(ThisObject, NStr("en = 'Scanning problem';"), 
-		NStr("en = 'Help opened from the scanner dialog.';"), True);
+	FilesOperationsInternalClient.ShowScanError(ThisObject, NStr("en = 'Scanning problem';tr = 'Tarama sorunu'"), 
+		NStr("en = 'Help opened from the scanner dialog.';tr = 'Yardım bölümü tarayıcı penceresinden açıldı.'"), True);
 		
 EndProcedure
 
@@ -542,71 +542,71 @@ Procedure TransformCalculationsToParametersAndGetPresentation()
 		If ShouldSaveAsPDF Then
 			PictureFormat = String(ScannedImageFormat);
 			
-			Presentation = Presentation + NStr("en = 'Save as:';") + " ";
+			Presentation = Presentation + NStr("en = 'Save as:';tr = 'Farklı kaydet:'") + " ";
 			Presentation = Presentation + "PDF";
 			Presentation = Presentation + ". ";
-			Presentation = Presentation + NStr("en = 'Scanning format:';") + " ";
+			Presentation = Presentation + NStr("en = 'Scanning format:';tr = 'Tarama biçimi:'") + " ";
 			Presentation = Presentation + PictureFormat;
 			Presentation = Presentation + ". ";
 		Else	
 			PictureFormat = String(ScannedImageFormat);
-			Presentation = Presentation + NStr("en = 'Save as:';") + " ";
+			Presentation = Presentation + NStr("en = 'Save as:';tr = 'Farklı kaydet:'") + " ";
 			Presentation = Presentation + PictureFormat;
 			Presentation = Presentation + ". ";
 		EndIf;
 		
 
 		If Upper(PictureFormat) = "JPG" Then
-			Presentation = Presentation +  NStr("en = 'Quality:';") + " " + String(JPGQuality) + ". ";
+			Presentation = Presentation +  NStr("en = 'Quality:';tr = 'Kalite:'") + " " + String(JPGQuality) + ". ";
 		EndIf;	
 		
 		If Upper(PictureFormat) = "TIF" Then
-			Presentation = Presentation +  NStr("en = 'Compression:';") + " " + String(TIFFCompressionEnum) + ". ";
+			Presentation = Presentation +  NStr("en = 'Compression:';tr = 'Sıkıştırma:'") + " " + String(TIFFCompressionEnum) + ". ";
 		EndIf;
 		
-		Presentation = Presentation + NStr("en = 'Save as a multipage image:';") + " ";
+		Presentation = Presentation + NStr("en = 'Save as a multipage image:';tr = 'Çok sayfalı görsel olarak kaydet:'") + " ";
 		Presentation = Presentation + String(MultipageStorageFormat);
 		Presentation = Presentation + ". ";
 		
 		If Resolution <> -1 Then
 			Presentation = Presentation + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Resolution: %1 dpi. %2.';") + " ",
+				NStr("en = 'Resolution: %1 dpi. %2.';tr = 'Çözünürlük: %1 dpi. %2.'") + " ",
 				String(Resolution), String(ColorDepthEnum));
 		Else
 			Presentation = Presentation + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Resolution: Not set. Color scale: %2.';") + " ",
+				NStr("en = 'Resolution: Not set. Color scale: %2.';tr = 'Çözünürlük: Ayarlanmadı. Renk skalası: %2.'") + " ",
 				String(ColorDepthEnum));
 		EndIf;
 		
 		If Not RotationEnum.IsEmpty() Then
-			Presentation = Presentation +  NStr("en = 'Rotation:';")+ " " + String(RotationEnum) + ". ";
+			Presentation = Presentation +  NStr("en = 'Rotation:';tr = 'Dönme'")+ " " + String(RotationEnum) + ". ";
 		EndIf;	
 		
 		If Not PaperSizeEnum.IsEmpty() Then
-			Presentation = Presentation +  NStr("en = 'Paper size:';") + " " + String(PaperSizeEnum) + ". ";
+			Presentation = Presentation +  NStr("en = 'Paper size:';tr = 'Kağıt boyutu:'") + " " + String(PaperSizeEnum) + ". ";
 		EndIf;	
 		
 		If DuplexScanning Then
-			Presentation = Presentation +  NStr("en = 'Scan both sides';") + ". ";
+			Presentation = Presentation +  NStr("en = 'Scan both sides';tr = 'Çift taraflı tarama'") + ". ";
 		EndIf;	
 		
 		If DocumentAutoFeeder Then
-			Presentation = Presentation +  NStr("en = 'Autofeed';") + ". ";
+			Presentation = Presentation +  NStr("en = 'Autofeed';tr = 'Otomatik besleme'") + ". ";
 		EndIf;	
 	Else
 		If ShouldSaveAsPDF Then
 			PictureFormat = String(ScannedImageFormat);
 			
-			Presentation = Presentation + NStr("en = 'Save as:';") + " ";
+			Presentation = Presentation + NStr("en = 'Save as:';tr = 'Farklı kaydet:'") + " ";
 			Presentation = Presentation + "PDF";
 			Presentation = Presentation + ". ";
 		EndIf;
 		
-		Presentation = Presentation + NStr("en = 'Save as a multipage image:';") + " ";
+		Presentation = Presentation + NStr("en = 'Save as a multipage image:';tr = 'Çok sayfalı görsel olarak kaydet:'") + " ";
 		Presentation = Presentation + String(MultipageStorageFormat);
 		Presentation = Presentation + ". ";
 		
-		Presentation = Presentation + NStr("en = 'Scan settings are set in the scanner dialog box.';");
+		Presentation = Presentation + NStr("en = 'Scan settings are set in the scanner dialog box.';tr = 'Tarama ayarları tarayıcı iletişim penceresinde yapılır.'");
 		
 	EndIf;
 	
@@ -622,7 +622,7 @@ Procedure ExternalEvent(Source, Event, Data)
 #If Not WebClient And Not MobileClient Then
 	If Source = "TWAIN" Then
 		FilesOperationsInternalClient.WriteScanLog("ScannerEvent", 
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Event %1, data %2';"), Event, Data));
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Event %1, data %2';tr = 'Olay %1, veri %2'"), Event, Data));
 	EndIf;
 	
 	If Source = "TWAIN" And Event = "ImageAcquired" Then
@@ -667,7 +667,7 @@ Procedure ExternalEvent(Source, Event, Data)
 			GrowingImageNumber = 1;
 		EndIf;
 			
-		TableRow.Presentation = NStr("en = 'Image';") + String(GrowingImageNumber);
+		TableRow.Presentation = NStr("en = 'Image';tr = 'Görsel'") + String(GrowingImageNumber);
 		GrowingImageNumber = GrowingImageNumber + 1;
 		
 		If RowsNumberBeforeAdd = 0 Then
@@ -704,12 +704,12 @@ Procedure ExternalEvent(Source, Event, Data)
 			CurrentDate = CurrentDate(); // ACC:143 - "CurrentDate" to calculate the time interval
 			If CurrentDate < StartScanning_ + 3 And TableOfFiles.Count() = 0 Then
 				ErrorPresentation = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Scanning is canceled (event %1) in %2 sec. See %3';"), Event, 
+					NStr("en = 'Scanning is canceled (event %1) in %2 sec. See %3';tr = 'Tarama iptal edildi (olay %1), %2 sn. Bkz. %3'"), Event, 
 					CurrentDate - StartScanning_, "ImageScan.log");
 				FilesOperationsInternalClient.WriteScanLog("ScannerEvent" + "." + Event, 
 					ErrorPresentation, True);
 				FilesOperationsInternalClient.ShowScanError(ThisObject, 
-					NStr("en = 'Cannot scan the document';"), ErrorPresentation);
+					NStr("en = 'Cannot scan the document';tr = 'Belge taranamıyor'"), ErrorPresentation);
 			Else
 				Context = New Structure;
 				Context.Insert("CloseForm", TableOfFiles.Count() = 0);
@@ -757,7 +757,8 @@ Function MessageTextOfTransformToPDFError(ResultFile)
 	
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = '""%1"" doesn''t exist.
-		           |Make sure that your computer has ImageMagick installed and check the scan settings.';"),
+		           |Make sure that your computer has ImageMagick installed and check the scan settings.';tr = '""%1"" mevcut değil.
+		           |Bilgisayarınızda ImageMagick yüklü olduğundan emin olun ve tarama ayarlarını kontrol edin.'"),
 		ResultFile);
 		
 	Return MessageText;
@@ -819,7 +820,7 @@ Procedure SaveAfterMergingCompletion(Context)
 	EndIf;
 	
 	
-	Result.ErrorText = NStr("en = 'Couldn''t save the scanned file.';");
+	Result.ErrorText = NStr("en = 'Couldn''t save the scanned file.';tr = 'Taranmış dosya kaydedilemedi.'");
 	
 	AcceptCompletion(Result, ExecutionParameters);
 EndProcedure
@@ -982,12 +983,14 @@ Procedure SaveAsSeparateFilesRecursively(Context)
 			If Context.ErrorsCount = 1 Then
 				WarningText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t save the file. Reason:
-						|%1';"),
+						|%1';tr = 'Dosya 
+						|%1 nedeniyle kaydedilemedi.'"),
 					Context.FullTextOfAllErrors);
 			Else
 				WarningText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t save some files (%1):
-						|%2';"),
+						|%2';tr = 'Bazı dosyalar (%1) kaydedilemedi: 
+						|%2'"),
 					String(Context.ErrorsCount), Context.FullTextOfAllErrors);
 			EndIf;
 			StandardSubsystemsClient.ShowQuestionToUser(Undefined, WarningText, QuestionDialogMode.OK);

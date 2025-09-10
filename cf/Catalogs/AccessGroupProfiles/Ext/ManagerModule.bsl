@@ -382,7 +382,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id = ProfileID;
 		ToDoItem.HasToDoItems      = IncompatibleAccessGroupsProfilesCount > 0;
-		ToDoItem.Presentation = NStr("en = 'Profiles incompatible with the current version';");
+		ToDoItem.Presentation = NStr("en = 'Profiles incompatible with the current version';tr = 'Mevcut sürümle uyumlu olmayan profiller'");
 		ToDoItem.Count    = IncompatibleAccessGroupsProfilesCount;
 		ToDoItem.Owner      = Section;
 		
@@ -390,7 +390,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem.Id = "AccessGroupProfiles";
 		ToDoItem.HasToDoItems      = IncompatibleAccessGroupsProfilesCount > 0;
 		ToDoItem.Important        = True;
-		ToDoItem.Presentation = NStr("en = 'Access group profiles';");
+		ToDoItem.Presentation = NStr("en = 'Access group profiles';tr = 'Erişim grubu profilleri'");
 		ToDoItem.Count    = IncompatibleAccessGroupsProfilesCount;
 		ToDoItem.Form         = "Catalog.AccessGroupProfiles.ListForm";
 		ToDoItem.FormParameters= New Structure("ProfilesWithRolesMarkedForDeletion", True);
@@ -534,7 +534,7 @@ Function ProfileAdministrator() Export
 			ProfileObject.SuppliedDataID = Id;
 		Else
 			ProfileByName = ProfileByName(
-				NStr("en = 'Administrator';", Common.DefaultLanguageCode()));
+				NStr("en = 'Administrator';tr = 'Yönetici'", Common.DefaultLanguageCode()));
 			If ValueIsFilled(ProfileByName) Then
 				ProfileObject = ProfileByName.GetObject();
 			Else
@@ -631,7 +631,8 @@ Function SuppliedProfileByID(Id, RaiseExceptionIfMissingInDatabase = False, With
 	If ProfileProperties = Undefined Or ProfileProperties.IsFolder And WithoutFolders Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot find profile with ID:
-			           |%1.';"),
+			           |%1.';tr = 'Bu ID''ye sahip profil bulunamadı:
+			           |%1.'"),
 			String(Id));
 		Raise ErrorText;
 	EndIf;
@@ -660,7 +661,8 @@ Function SuppliedProfileByID(Id, RaiseExceptionIfMissingInDatabase = False, With
 	If RaiseExceptionIfMissingInDatabase Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Built-in profile with this id does not exist:
-			           |%1';"),
+			           |%1';tr = 'Bu ID''ye sahip yerleşik profil mevcut değil:
+			           |%1'"),
 			String(Id));
 		Raise ErrorText;
 	EndIf;
@@ -764,7 +766,8 @@ Function SuppliedProfileChanged(Profile) Export
 		If RoleMetadata = Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Role ""%2"" specified in built-in profile
-				           |""%1"" does not exist.';"),
+				           |""%1"" does not exist.';tr = '""%1"" yerleşik profilinde belirtilen 
+				           |""%2"" rolü mevcut değil.'"),
 				ProfileProperties.Description,
 				Role);
 			Raise ErrorText;
@@ -2063,7 +2066,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 
 	Item = Items.Add();
 	Item.PredefinedDataName = "Administrator";
-	Item.Description = NStr("en = 'Administrator';", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'Administrator';tr = 'Yönetici'", Common.DefaultLanguageCode());
 	Item.SuppliedDataID =
 		New UUID(AdministratorProfileID());
 	
@@ -2131,7 +2134,13 @@ Procedure FillAdministratorProfile(AdministratorProfileDetails, ExcludeDetails =
 			           |- Delete objects marked for deletion.
 			           |- Edit the configuration (in rare cases).
 			           |
-			           |It is recommended that you do not use it for regular operations in the information system.';");
+			           |It is recommended that you do not use it for regular operations in the information system.';tr = 'Şunlar için tasarlanmıştır: 
+			           |- bilgi sisteminin işletim ve bakım parametrelerinin ayarlanması,
+			           | - diğer kullanıcıların erişim haklarının ayarlanması, 
+			           |- işaretli nesnelerin silinmesi,
+			           | - nadir durumlarda yapılandırmada değişiklik yapılması.
+			           |
+			           | Bilgi sisteminde normal çalışma için kullanılmaması tavsiye edilir.'");
 	EndIf;
 	
 	FillPropertyValues(AdministratorProfileDetails,
@@ -2139,7 +2148,7 @@ Procedure FillAdministratorProfile(AdministratorProfileDetails, ExcludeDetails =
 	
 	AdministratorProfileDetails.Name           = "Administrator";
 	AdministratorProfileDetails.Id = AdministratorProfileID();
-	AdministratorProfileDetails.Description  = NStr("en = 'Administrator';", Common.DefaultLanguageCode());
+	AdministratorProfileDetails.Description  = NStr("en = 'Administrator';tr = 'Yönetici'", Common.DefaultLanguageCode());
 	AdministratorProfileDetails.Roles.Add("SystemAdministrator");
 	AdministratorProfileDetails.Roles.Add("FullAccess");
 	AdministratorProfileDetails.LongDesc = LongDesc;
@@ -2156,7 +2165,7 @@ Procedure FillInTheProfilesFolderAdditionalProfiles(FolderDescription_)
 	FolderDescription_ = AccessManagement.NewDescriptionOfTheAccessGroupProfilesFolder();
 	FolderDescription_.Name           = "AdditionalProfiles";
 	FolderDescription_.Id = "69a066e7-ce81-11eb-881c-b06ebfbf08c7";
-	FolderDescription_.Description  = NStr("en = 'Additional profiles';", Common.DefaultLanguageCode());
+	FolderDescription_.Description  = NStr("en = 'Additional profiles';tr = 'Ek profiller'", Common.DefaultLanguageCode());
 	
 EndProcedure
 
@@ -2179,7 +2188,8 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'In common module ""%2"",
-		           |procedure ""%1"" contains invalid values.';"),
+		           |procedure ""%1"" contains invalid values.';tr = '%2Ortak modül prosedüründe belirtilen geçersiz değerler%1
+		           |.'"),
 		"OnFillSuppliedAccessGroupProfiles",
 		"AccessManagementOverridable")
 		+ Chars.LF
@@ -2192,7 +2202,10 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 			NStr("en = 'In parameter ""%1"", 
 			           |property ""%2"" is set to ""False"".
 			           |Property ""%3""
-			           |must be ""False"", too.';"),
+			           |must be ""False"", too.';tr = '%1Özellik parametresi 
+			           |Yalnış %2olarak ayarlandığında, 
+			           |özelliğin de Yalnış %3olarak ayarlanması gerekir
+			           |.'"),
 			"ParametersOfUpdate",
 			"UpdateModifiedProfiles",
 			"DenyProfilesChange");
@@ -2217,16 +2230,16 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 		
 		If Not ValueIsFilled(ProfileDetails.Id) Then
 			ErrorTemplate = ?(IsFolder,
-				NStr("en = 'Property ""%2"" is not specified for profile folder ""%1"".';"),
-				NStr("en = 'Property ""%2"" is not specified for profile ""%1"".';"));
+				NStr("en = 'Property ""%2"" is not specified for profile folder ""%1"".';tr = 'Profil klasörü açıklamasında ""%1"" özellik doldurulmadı%2.'"),
+				NStr("en = 'Property ""%2"" is not specified for profile ""%1"".';tr = '""%1"" profilinin açıklamasında özellik doldurulmadı%2.'"));
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 				?(ValueIsFilled(ProfileDetails.Name), ProfileDetails.Name, ProfileDetails.Description),
 				"Id");
 			Raise ErrorText;
 		ElsIf Not StringFunctionsClientServer.IsUUID(ProfileDetails.Id) Then
 			ErrorTemplate = ?(IsFolder,
-				NStr("en = 'Profile folder ""%1"" contains invalid ID: ""%2"".';"),
-				NStr("en = 'Profile ""%1"" contains invalid ID: ""%2"".';"));
+				NStr("en = 'Profile folder ""%1"" contains invalid ID: ""%2"".';tr = '""%1"" profil klasörünün açıklaması yanlış bir tanımlayıcı içeriyor: ""%2"".'"),
+				NStr("en = 'Profile ""%1"" contains invalid ID: ""%2"".';tr = '""%1"" profil açıklamasında yanlış ""%2"" kimliği belirtildi.'"));
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 				?(ValueIsFilled(ProfileDetails.Name), ProfileDetails.Name, ProfileDetails.Description),
 				ProfileDetails.Id);
@@ -2243,7 +2256,7 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 		
 		If AllIDs.Get(Upper(ProfileProperties.Id)) <> Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'In another profile or profile folder, property ""%2"" already contains value ""%1"".';"),
+				NStr("en = 'In another profile or profile folder, property ""%2"" already contains value ""%1"".';tr = '""%1"" Özellik değeri%2, başka bir profilin veya profil klasörünün açıklamasında zaten kullanılıyor.'"),
 				ProfileProperties.Id, "Id");
 			Raise ErrorText;
 		EndIf;
@@ -2252,20 +2265,20 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 		
 		If IsFolder And Not ValueIsFilled(ProfileProperties.Name) Then
 			ErrorText =  ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Property ""%2"" is not specified for profile folder ""%1"".';"),
+				NStr("en = 'Property ""%2"" is not specified for profile folder ""%1"".';tr = 'Profil klasörü açıklamasında ""%1"" özellik doldurulmadı%2.'"),
 				?(ValueIsFilled(ProfileDetails.Description), ProfileDetails.Description, ProfileDetails.Id),
 				"Name");
 			Raise ErrorText;
 		ElsIf ValueIsFilled(ProfileProperties.Name) Then
 			If TrimAll(ProfileProperties.Name) <> ProfileProperties.Name Then
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'In a profile or profile folder, property ""%2"" has value ""%1"" with non-printable characters.';"),
+					NStr("en = 'In a profile or profile folder, property ""%2"" has value ""%1"" with non-printable characters.';tr = 'Profil veya profil klasörü özelliğinin ""%1"" değeri%2 yazdırılamayan karakterler içeriyor.'"),
 					ProfileProperties.Name, "Name");
 				Raise ErrorText;
 			EndIf;
 			If AllNames.Get(Upper(ProfileProperties.Name)) <> Undefined Then
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'In another profile or profile folder, property ""%2"" already contains value ""%1"".';"),
+					NStr("en = 'In another profile or profile folder, property ""%2"" already contains value ""%1"".';tr = '""%1"" Özellik değeri%2, başka bir profilin veya profil klasörünün açıklamasında zaten kullanılıyor.'"),
 					ProfileProperties.Name, "Name");
 				Raise ErrorText;
 			EndIf;
@@ -2295,9 +2308,11 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 		EndIf;
 		ErrorTemplate = ?(ProfileDetails.Is_Directory,
 			NStr("en = 'In the details of profile folder ""%1"",
-			           |property ""%2"" contains a non-existent name ""%3"".';"),
+			           |property ""%2"" contains a non-existent name ""%3"".';tr = '""%1"" profil klasörünün açıklamasında, ""%3"" profil klasörünün var olmayan adı özellikte%2
+			           | belirtilir.'"),
 			NStr("en = 'In the details of profile ""%1"",
-			           |property ""%2"" contains a non-existent name ""%3"".';"));
+			           |property ""%2"" contains a non-existent name ""%3"".';tr = 'Özellikteki ""%1"" profilinin açıklamasında, ""%3"" profilleri klasörünün%2
+			           | var olmayan bir adı belirtilir.'"));
 		ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 			?(ValueIsFilled(ProfileDetails.Name), ProfileDetails.Name, ProfileDetails.Description),
 			"Parent", ProfileDetails.Parent);
@@ -2332,7 +2347,9 @@ Function VerifiedSuppliedSessionProfiles(AccessKindsProperties = Undefined, Hash
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In the details of profile folder ""%1"", property ""%2""
 				           |contains profile folder name ""%3""
-				           |that causes a circular dependency: ""%4"".';"),
+				           |that causes a circular dependency: ""%4"".';tr = '""%1"" profil klasörünün açıklamasında, özellik%2
+				           |, döngüsel bir bağımlılık oluşturan ""%3"" 
+				           | profil klasörünün adını içerir: ""%4"".'"),
 				?(ValueIsFilled(ProfileDetails.Name), ProfileDetails.Name, ProfileDetails.Description),
 				"Parent",
 				ProfileDetails.Parent,
@@ -2447,7 +2464,12 @@ Procedure PrepareThePurposeOfTheSuppliedProfile(ProfileProperties, ProfileDetail
 					           |An assignment with the following properties is expected:
 					           |- The type is ""%4"".
 					           |- It is based on a value specified in the %5 type collection.
-					           |- It is based on a value from the %6 type collection, except for the %7 type.';"),
+					           |- It is based on a value from the %6 type collection, except for the %7 type.';tr = '""%1"" profilinin bilgilerinde ""%2 (%3)""
+					           |geçersiz bir atama belirtildi.
+					           |Şu özelliklere sahip bir atama bekleniyor:
+					           |- Türü ""%4"".
+					           |- %5 tür koleksiyonunda belirtilen bir değere bağlı.
+					           |- %6 tür koleksiyonundan bir değere bağlı (%7 türü hariç).'"),
 					?(ValueIsFilled(ProfileDetails.Name),
 						ProfileDetails.Name, ProfileDetails.Id),
 					String(Type),
@@ -2484,7 +2506,8 @@ Procedure PrepareTheRolesOfTheSuppliedProfile(ProfileProperties, ProfileDetails,
 		If AllRoles.Get(Role) = Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Role ""%3"" provided in profile
-				           |""%1 (%2)"" does not exist.';"),
+				           |""%1 (%2)"" does not exist.';tr = 'Profil açıklamasında ""%1 (%2)""
+				           |var olmayan rol belirtildi  ""%3"".'"),
 				ProfileDetails.Name,
 				ProfileDetails.Id,
 				Role);
@@ -2502,7 +2525,10 @@ Procedure PrepareTheRolesOfTheSuppliedProfile(ProfileProperties, ProfileDetails,
 				NStr("en = 'Role ""%3"" provided in profile
 				           |""%1 (%2)""
 				           |does not match profile assignment
-				           |""%4"".';"),
+				           |""%4"".';tr = '""%1 (%2)""
+				           |profilindeki ""%3""
+				           |rolü""%4""
+				           |profil ataması ile eşleşmiyor.'"),
 				ProfileDetails.Name,
 				ProfileDetails.Id,
 				Role,
@@ -2540,7 +2566,8 @@ Procedure PrepareTheTypesOfAccessForTheSuppliedProfile(ProfileProperties, Profil
 		If AccessKindsProperties.ByNames.Get(AccessKindName) = Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Access kind ""%2"" specified in profile
-				           |""%1"" does not exist.';"),
+				           |""%1"" does not exist.';tr = '""%1"" profilinde belirtilen 
+				           |""%2"" erişim türü mevcut değil.'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2557,7 +2584,10 @@ Procedure PrepareTheTypesOfAccessForTheSuppliedProfile(ProfileProperties, Profil
 				NStr("en = 'Access kind ""%2"" specified in profile
 				           |""%1""
 				           |does not match profile assignment
-				           |""%3"".';"),
+				           |""%3"".';tr = '""%1""
+				           |profilinde belirtilen ""%2""
+				           |erişim türü ""%3""
+				           |profil ataması ile eşleşmiyor.'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2577,7 +2607,13 @@ Procedure PrepareTheTypesOfAccessForTheSuppliedProfile(ProfileProperties, Profil
 				           |The valid values are:
 				           |- %4
 				           |- %5
-				           |- %6';"),
+				           |- %6';tr = '""%2"" erişim türü için ""%1"" 
+				           |profilinin açıklamasında bilinmeyen bir iyileştirme var ""%3"". 
+				           |
+				           |Yalnızca aşağıdaki iyileştirmelere izin verilir: 
+				           |- ""%4"" veya """",
+				           |- ""%5"", 
+				           |- ""%6"".'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 					ProfileDetails.Name,
 					ProfileDetails.Id),
@@ -2616,7 +2652,10 @@ Procedure PrepareTheAccessValuesOfTheSuppliedProfile(ProfileProperties, ProfileD
 				NStr("en = 'Access Value ""%3""
 				           |of profile ""%1""
 				           |has invalid access kind:
-				           |""%2"".';"),
+				           |""%2"".';tr = '""%1"" profilinin
+				           |""%3"" Erişim Değeri
+				           |geçersiz erişim türüne sahip:
+				           |""%2"".'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2643,7 +2682,10 @@ Procedure PrepareTheAccessValuesOfTheSuppliedProfile(ProfileProperties, ProfileD
 				NStr("en = 'An Access Value ""%3""
 				           |specified for access kind ""%2""
 				           |has the type that is not listed in the details
-				           |of the ""%1"" profile.';"),
+				           |of the ""%1"" profile.';tr = '""%2""
+				           |erişim türü için belirtilen ""%3""
+				           |Erişim Değeri, ""%1""
+				           |profilinin ayrıntılarında listelenmeyen bir türe sahip.'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2664,7 +2706,10 @@ Procedure PrepareTheAccessValuesOfTheSuppliedProfile(ProfileProperties, ProfileD
 				NStr("en = 'The type of Access Value ""%3""
 				           |specified in the details of the ""%1"" profile
 				           |for access kind ""%2""
-				           |is not a reference type.';"),
+				           |is not a reference type.';tr = '""%2""
+				           |erişim türü için ""%1""
+				           |profilinin ayrıntılarında belirtilen ""%3""
+				           |Erişim Değerinin türü bir referans türü değil.'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2681,7 +2726,9 @@ Procedure PrepareTheAccessValuesOfTheSuppliedProfile(ProfileProperties, ProfileD
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The type of Access Value ""%3""
 				           |specified in the details of the ""%1"" profile
-				           |is not found in the properties of access kind ""%2"".';"),
+				           |is not found in the properties of access kind ""%2"".';tr = '""%1""
+				           |profilinin ayrıntılarında belirtilen ""%3""
+				           |Erişim Değerinin türü ""%2"" erişim türünün özelliklerinde bulunamadı.'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2695,7 +2742,10 @@ Procedure PrepareTheAccessValuesOfTheSuppliedProfile(ProfileProperties, ProfileD
 				NStr("en = 'Duplicate Access Value ""%3""
 				           |for access kind 
 				           |""%2""
-				           |in the details of the ""%1"" profile.';"),
+				           |in the details of the ""%1"" profile.';tr = '""%1""
+				           |profilinin ayrıntılarında ""%2""
+				           |erişim türü için ""%3""
+				           |kopya Erişim Değeri.'"),
 				?(ValueIsFilled(ProfileDetails.Name),
 				  ProfileDetails.Name,
 				  ProfileDetails.Id),
@@ -2769,13 +2819,13 @@ EndFunction
 Function ProfileAssignmentPresentation(ProfileAssignment)
 	
 	If ProfileAssignment = "BothForUsersAndExternalUsers" Then
-		Return NStr("en = 'For users and external users';");
+		Return NStr("en = 'For users and external users';tr = 'Kullanıcılar ve harici kullanıcılar için'");
 		
 	ElsIf ProfileAssignment = "ForExternalUsers" Then
-		Return NStr("en = 'For external users';");
+		Return NStr("en = 'For external users';tr = 'Harici kullanıcılar için'");
 	EndIf;
 	
-	Return NStr("en = 'For users';");
+	Return NStr("en = 'For users';tr = 'Kullanıcılar için'");
 	
 EndFunction
 
@@ -3056,7 +3106,8 @@ Function UpdateTheProfileOrProfileFolder(ProfileProperties, Trash = Undefined, D
 				If RoleMetadata = Undefined Then
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'When updating built-in profile ""%1"",
-						           |a non-existent role ""%2"" has been found';"),
+						           |a non-existent role ""%2"" has been found';tr = 'Sağlanan bir profili güncellerken""%1""
+						           | olmayan rol bulundu ""%2"".'"),
 						ProfileProperties.Description,
 						Role);
 					Raise ErrorText;

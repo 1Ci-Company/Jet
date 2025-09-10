@@ -34,7 +34,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	HasUpdateRight = AccessRight("Update", Metadata.InformationRegisters.UserPrintTemplates);
 	If Not HasUpdateRight Then
 		StandardProcessing = False;
-		MessageText = NStr("en = 'Insufficient rights to edit templates.';");
+		MessageText = NStr("en = 'Insufficient rights to edit templates.';tr = 'Şablon düzenleme yetkisi yok.'");
 		Raise(MessageText, ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -46,7 +46,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			PrintManagementModuleNationalLanguageSupport = Common.CommonModule("PrintManagementNationalLanguageSupport");
 			AdditionalLanguagesOfPrintedForms = PrintManagementModuleNationalLanguageSupport.AdditionalLanguagesOfPrintedForms();
 			
-			Items.FilterByLanguage.ChoiceList.Add("", NStr("en = 'All';"));
+			Items.FilterByLanguage.ChoiceList.Add("", NStr("en = 'All';tr = 'Tümü'"));
 			For Each Language In AdditionalLanguagesOfPrintedForms Do
 				LanguagePresentation = ModuleNationalLanguageSupportServer.LanguagePresentation(Language);
 				Items.FilterByLanguage.ChoiceList.Add(LanguagePresentation);
@@ -394,8 +394,8 @@ Procedure AddTemplate(Command)
 	
 	NotificationParameters = New Structure("Copy, TemplateType", False, "MXL");
 	NotifyDescription = New NotifyDescription("OnSelectingLayoutName", ThisObject, NotificationParameters);
-	UniqueDescr = AssignUniqueDescription(NStr("en = 'New print form';"), False);
-	ShowInputString(NotifyDescription, UniqueDescr, NStr("en = 'Enter a template description';"), 100, False)
+	UniqueDescr = AssignUniqueDescription(NStr("en = 'New print form';tr = 'Yeni yazdırma formu'"), False);
+	ShowInputString(NotifyDescription, UniqueDescr, NStr("en = 'Enter a template description';tr = 'Şablon adını girin'"), 100, False)
 	
 EndProcedure
 
@@ -409,8 +409,8 @@ Procedure AddOfficeOpenXMLTemplate(Command)
 	
 	NotificationParameters = New Structure("Copy, TemplateType", False, "DOCX");
 	NotifyDescription = New NotifyDescription("OnSelectingLayoutName", ThisObject, NotificationParameters);
-	UniqueDescr = AssignUniqueDescription(NStr("en = 'New print form';"), False);
-	ShowInputString(NotifyDescription, UniqueDescr, NStr("en = 'Enter a template description';"), 100, False)
+	UniqueDescr = AssignUniqueDescription(NStr("en = 'New print form';tr = 'Yeni yazdırma formu'"), False);
+	ShowInputString(NotifyDescription, UniqueDescr, NStr("en = 'Enter a template description';tr = 'Şablon adını girin'"), 100, False)
 	
 EndProcedure
 
@@ -528,14 +528,16 @@ Procedure OpenPrintFormTemplateForEdit()
 		NotifyDescription = New NotifyDescription("OpenPrintFormTemplateForEditingFollowUp", ThisObject, CurrentData);
 		QueryText = NStr("en = 'An edited version of this template is available.
 		|You can switch to the edited template or continue with the standard one.
-		|';");
+		|';tr = 'Bu şablonun düzenlenmiş bir sürümü mevcut.
+		|Düzenlenmiş şablona geçebilir veya standart şablonla devam edebilirsiniz.
+		|'");
 		
 		Buttons = New ValueList();
-		Buttons.Add(True, NStr("en = 'Edited template';"));
-		Buttons.Add(False, NStr("en = 'Standard template';"));
-		Buttons.Add(Undefined, NStr("en = 'Cancel';"));
+		Buttons.Add(True, NStr("en = 'Edited template';tr = 'Değiştirilmiş şablon'"));
+		Buttons.Add(False, NStr("en = 'Standard template';tr = 'Standart şablon'"));
+		Buttons.Add(Undefined, NStr("en = 'Cancel';tr = 'İptal'"));
 		
-		ShowQueryBox(NotifyDescription, QueryText, Buttons, , , NStr("en = 'Which template do you want to proceed with?';"));
+		ShowQueryBox(NotifyDescription, QueryText, Buttons, , , NStr("en = 'Which template do you want to proceed with?';tr = 'Hangi şablonla devam etmek istiyorsunuz?'"));
 		Return;
 	EndIf;
 	
@@ -710,7 +712,7 @@ Procedure Copy(Command)
 	NotifyDescription = New NotifyDescription("OnSelectingLayoutName", ThisObject, NotificationParameters);
 	CurrentTemplate = Items.Templates.CurrentData;
 	CopyDescr = AssignUniqueDescription(CurrentTemplate.Presentation);
-	ShowInputString(NotifyDescription, CopyDescr, NStr("en = 'Enter a template description';"), 100, False)
+	ShowInputString(NotifyDescription, CopyDescr, NStr("en = 'Enter a template description';tr = 'Şablon adını girin'"), 100, False)
 	
 EndProcedure
 
@@ -723,7 +725,7 @@ Function AssignUniqueDescription(TemplateDescr, ThisIsCopying = True)
 	TreeOfTemplates = FormAttributeToValue("Templates");
 	While TreeOfTemplates.Rows.Find(NewDescription + EndOfCopy, "Presentation", True) <> Undefined Do
 		If ThisIsCopying Then
-			EndOfCopy = " - " + NStr("en = 'copy';");
+			EndOfCopy = " - " + NStr("en = 'copy';tr = 'kopya'");
 		Else
 			EndOfCopy = "";
 		EndIf;
@@ -802,11 +804,12 @@ Procedure GoToList()
 			NotifyDescription = New NotifyDescription("GoToListCompletion", ThisObject, 
 				New Structure("Form, URL", Form, ListURL));
 			Buttons = New ValueList;
-			Buttons.Add("Reopen", NStr("en = 'Reopen';"));
-			Buttons.Add("Cancel", NStr("en = 'Do not reopen';"));
+			Buttons.Add("Reopen", NStr("en = 'Reopen';tr = 'Tekrar aç'"));
+			Buttons.Add("Cancel", NStr("en = 'Do not reopen';tr = 'Tekrar açma'"));
 			QueryText = 
 				NStr("en = 'The list is already open. Reopen the list
-				|to see the changes in Print menu?';");
+				|to see the changes in Print menu?';tr = 'Liste zaten açık. Yazdırma menüsünün
+				|değişikliklerini görmek için liste tekrar açılsın mı?'");
 			ShowQueryBox(NotifyDescription, QueryText, Buttons, , "Reopen");
 			Return;
 		EndIf;
@@ -1020,7 +1023,7 @@ Procedure FillPrintFormsTemplatesTable(Branch1)
 	LayoutGroups = New Map();
 	
 	GroupOther = Branch1.GetItems().Add();
-	GroupOther.Presentation = NStr("en = 'Other';");
+	GroupOther.Presentation = NStr("en = 'Other';tr = 'Diğer'");
 	GroupOther.PictureGroup = PictureLib.Enum;
 	GroupOther.Id = "CommonTemplates";
 	GroupOther.UsagePicture = -1;

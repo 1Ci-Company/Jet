@@ -54,7 +54,7 @@ EndFunction
 Function UnavailableRoles(Purpose = "ForUsers", Service = Undefined) Export
 	
 	CheckAssignment(Purpose, StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in function ""%1"" of common module ""%2"".';"),
+		NStr("en = 'Error in function ""%1"" of common module ""%2"".';tr = '%2 genel modülün %1 işlevinde hata oluştu.'"),
 		"UnavailableRoles", "UsersInternalCached"));
 	
 	If Service = Undefined Then
@@ -120,7 +120,9 @@ Function RolesAssignment() Export
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Procedure ""%2""''
 					           |of common module ""%3""''
-					           |contains a non-existent role ""%1"".';"),
+					           |contains a non-existent role ""%1"".';tr = '%3 genel modülün %2
+					           | prosedüründe ""%1""
+					           | geçersiz rol belirtildi.'"),
 					Name,
 					"OnDefineRoleAssignment",
 					"UsersOverridable");
@@ -326,7 +328,7 @@ EndFunction
 Function RolesTree(BySubsystems = True, Purpose = "ForUsers") Export
 	
 	CheckAssignment(Purpose, StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in function ""%1"" of common module ""%2"".';"),
+		NStr("en = 'Error in function ""%1"" of common module ""%2"".';tr = '%2 genel modülün %1 işlevinde hata oluştu.'"),
 		"RolesTree", "UsersInternalCached"));
 	
 	UnavailableRoles = UsersInternalCached.UnavailableRoles(Purpose);
@@ -455,13 +457,14 @@ Function RefKindsProperties() Export
 	For Each RefsKind In RefsKinds Do
 		If Result.Get(RefsKind.Name) <> Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The reference kind name ""%1"" is already defined.';"), RefsKind.Name);
+				NStr("en = 'The reference kind name ""%1"" is already defined.';tr = '""%1"" referans türü adı zaten tanımlandı.'"), RefsKind.Name);
 			Raise ErrorText;
 		EndIf;
 		If AllParametersNames.Get(RefsKind.ParameterNameExtensionsOperation) <> Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Extension parameter name in reference kind ""%1"" is already taken:
-				           |""%2"".';"), RefsKind.Name, RefsKind.ParameterNameExtensionsOperation);
+				           |""%2"".';tr = '""%1"" referans türünde uzantı parametresi adı zaten alındı:
+				           |""%2"".'"), RefsKind.Name, RefsKind.ParameterNameExtensionsOperation);
 			Raise ErrorText;
 		EndIf;
 		Properties = New Structure;
@@ -557,7 +560,13 @@ Procedure CheckAssignment(Purpose, ErrorTitle)
 			           | - %3
 			           | - %4
 			           | - %5
-			           | - %6';"),
+			           | - %6';tr = 'Parametre %1 ""%2"" yanlış belirtildi"".
+			           |
+			           |Kabul edilebilir değerler sadece"":
+			           |- ""%3"",
+			           |- ""%4"",
+			           |- ""%5"",
+			           |- ""%6"".'"),
 			"Purpose",
 			Purpose,
 			"ForAdministrators",

@@ -244,20 +244,26 @@ Procedure StandardSetDeletionMark(Command)
 			QueryText = NStr(
 				"en = 'To proceed, save the file changes.
 				      |Save the changes and clear the deletion mark from file
-				      |""%1""?';");
+				      |""%1""?';tr = 'Eylemin gerçekleştirilmesi için dosyanın değişikliklerini kaydedin.
+				      |Değişiklikler kaydedilip 
+				      |""%1"" dosyasından silme işareti kaldırılsın mı?'");
 		Else
 			QueryText = NStr(
 				"en = 'To proceed, you need to save the file changes.
 				      |Save the changes and mark the
-				      |""%1"" file for deletion?';");
+				      |""%1"" file for deletion?';tr = 'Eylemin gerçekleştirilmesi için dosyanın değişikliklerini kaydedin.
+				      |Değişiklikler kaydedilip 
+				      |""%1"" dosyası silinmek üzere işaretlensin mi?'");
 		EndIf;
 	Else
 		If ThisObject.Object.DeletionMark Then
 			QueryText = NStr("en = 'Deletion mark will be cleared from %1.
-			                          |Continue?';");
+			                          |Continue?';tr = '%1 öğesinden silme işareti kaldırılacak.
+			                          |Devam edilsin mi?'");
 		Else
 			QueryText = NStr("en = '%1 will be marked for deletion.
-			                          |Continue?';");
+			                          |Continue?';tr = '%1 silinmek üzere işaretlenecek.
+			                          |Devam edilsin mi?'");
 		EndIf;
 	EndIf;
 	
@@ -290,7 +296,7 @@ Procedure StandardReread(Command)
 		Return;
 	EndIf;
 	
-	QueryText = NStr("en = 'The data has been changed. Do you want to refresh the data?';");
+	QueryText = NStr("en = 'The data has been changed. Do you want to refresh the data?';tr = 'Veriler değiştirildi. Veriler yenilensin mi?'");
 	
 	NotifyDescription = New NotifyDescription("StandardRereadAnswerReceived", ThisObject);
 	ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.Yes);
@@ -643,7 +649,7 @@ Procedure DeleteDS(Command)
 	EndIf;
 	
 	NotifyDescription = New NotifyDescription("DeleteDigitalSignatureAnswerReceived", ThisObject);
-	ShowQueryBox(NotifyDescription, NStr("en = 'Do you want to delete the selected signatures?';"), QuestionDialogMode.YesNo);
+	ShowQueryBox(NotifyDescription, NStr("en = 'Do you want to delete the selected signatures?';tr = 'Seçilen imzalar silinsin mi?'"), QuestionDialogMode.YesNo);
 	
 EndProcedure
 
@@ -881,9 +887,9 @@ Procedure RefreshTitle()
 	CurrentObjectRef = CurrentRefToFileServer();
 	If ValueIsFilled(CurrentObjectRef) Then
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 (Attachment)';"), String(CurrentObjectRef));
+			NStr("en = '%1 (Attachment)';tr = '%1 (Ekli dosya)'"), String(CurrentObjectRef));
 	Else
-		Title = NStr("en = 'Create attachment';")
+		Title = NStr("en = 'Create attachment';tr = 'Ekli dosya (Oluştur)'")
 	EndIf;
 	
 EndProcedure
@@ -1066,16 +1072,16 @@ Procedure SetButtonsAvailability(Form, Items)
 	
 	If Not PrintWithStampAvailable Then
 		Items.PrintSubmenu.Type = FormGroupType.ButtonGroup;
-		Items.Print.Title = NStr("en = 'Print';");
+		Items.Print.Title = NStr("en = 'Print';tr = 'Yazdır'");
 	Else
 		Items.PrintSubmenu.Type = FormGroupType.Popup;
-		Items.Print.Title = NStr("en = 'Quick print';");
+		Items.Print.Title = NStr("en = 'Quick print';tr = 'Hızlı Yazdırma'");
 	EndIf;
 	
 	If CommandsNames.Find("Edit") <> Undefined Then
-		Items["LongDesc"].InputHint = NStr("en = 'A brief description. To edit the file, click Edit.';");
+		Items["LongDesc"].InputHint = NStr("en = 'A brief description. To edit the file, click Edit.';tr = 'Kısa not. Dosya içeriğini düzenlemek için Düzenle''ye tıklayın.'");
 	Else
-		Items["LongDesc"].InputHint = NStr("en = 'A brief description. To edit the file, click Edit.';");
+		Items["LongDesc"].InputHint = NStr("en = 'A brief description. To edit the file, click Edit.';tr = 'Kısa not. Dosya içeriğini düzenlemek için Düzenle''ye tıklayın.'");
 	EndIf;
 	
 EndProcedure
@@ -1376,7 +1382,7 @@ Function HandleFileRecordCommand()
 	
 	If IsBlankString(ThisObject.Object.Description) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'To proceed, please provide the file name.';"), , "Description", "Object");
+			NStr("en = 'To proceed, please provide the file name.';tr = 'Devam etmek için dosya adını belirtin.'"), , "Description", "Object");
 		Return False;
 	EndIf;
 	
@@ -1627,14 +1633,14 @@ Procedure UpdateCloudServiceNote(AttachedFile)
 				SynchronizationInfo.Service, SynchronizationInfo.Href);
 				
 			Items.DecorationNote.Title = StringFunctions.FormattedString(
-				NStr("en = 'This is a read-only file. It is stored in cloud service <a href=""%1"">%2</a>.';"),
+				NStr("en = 'This is a read-only file. It is stored in cloud service <a href=""%1"">%2</a>.';tr = 'Dosya sadece görüntülenebilir. Dosya işlemleri <a href=""%1"">%2</a> bulut hizmetinde yürütülür.'"),
 				FolderAddressInCloudService, SynchronizationInfo.AccountDescription1);
 			
 			Items.DecorationPictureSyncStatus.Visible = Not SynchronizationInfo.IsSynchronized;
 			Items.DecorationSyncDate.ToolTipRepresentation =?(SynchronizationInfo.IsSynchronized, ToolTipRepresentation.None, ToolTipRepresentation.Button);
 			
 			Items.DecorationSyncDate.Title = StringFunctions.FormattedString(
-				NStr("en = 'Synchronized on: <a href=""%1"">%2</a>';"),
+				NStr("en = 'Synchronized on: <a href=""%1"">%2</a>';tr = 'Senkronize edildi: <a href=""%1"">%2</a>'"),
 				"OpenJournal", Format(SynchronizationInfo.SynchronizationDate, "DLF=DD"));
 			
 		EndIf;

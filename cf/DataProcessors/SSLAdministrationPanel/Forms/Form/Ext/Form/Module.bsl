@@ -13,7 +13,7 @@
 &AtClient
 Procedure OnOpen(Cancel)
 	Cancel = True;
-	ShowMessageBox(, NStr("en = 'The data processor cannot be opened manually.';"));
+	ShowMessageBox(, NStr("en = 'The data processor cannot be opened manually.';tr = 'Bu veri işlemcisi manuel kullanım için uygun değildir.'"));
 EndProcedure
 
 #EndRegion

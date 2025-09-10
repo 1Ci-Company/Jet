@@ -22,7 +22,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 
 	If Common.IsMobileClient() Then
 		Raise NStr("en = 'Cannot edit a spreadsheet document in mobile client.
-		|Use thin client or web client.';");
+		|Use thin client or web client.';tr = 'Mobil istemcide tablo belge düzenlenemez.
+		|Bu istemciyi ya da web-istemcisini kullanın.'");
 	EndIf;
 	
 	If Parameters.WindowOpeningMode <> Undefined Then
@@ -162,7 +163,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		AddingOptions.ListName = NameOfTheListOfOperators();
 		AddingOptions.LocationOfTheList = Items.OperatorsAndFunctionsGroup;
 		AddingOptions.FieldsCollections.Add(ListOfOperators());			
-		AddingOptions.HintForEnteringTheSearchString = NStr("en = 'Find operator or function…';");
+		AddingOptions.HintForEnteringTheSearchString = NStr("en = 'Find operator or function…';tr = 'Operatör veya fonksiyon bul...'");
 		AddingOptions.ViewBrackets = False;
 		AddingOptions.ListHandlers.Insert("Selection", "Attachable_ListOfFieldsSelection");
 		AddingOptions.ListHandlers.Insert("DragStart", "Attachable_OperatorsDragStart");
@@ -230,7 +231,7 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 	EndIf;
 	
 	NotifyDescription = New NotifyDescription("ConfirmAndClose", ThisObject);
-	QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to save the changes to %1?';"), DocumentName);
+	QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to save the changes to %1?';tr = '%1 değişiklikleri kaydedilsin mi?'"), DocumentName);
 	CommonClient.ShowFormClosingConfirmation(NotifyDescription, Cancel, Exit, QueryText);
 	
 	If Modified Or Exit Then
@@ -291,7 +292,7 @@ Procedure TemplateOwnersClick(Item)
 	PickingParameters = StandardSubsystemsClientServer.MetadataObjectsSelectionParameters();
 	PickingParameters.SelectedMetadataObjects = CommonClient.CopyRecursive(DataSources);
 	PickingParameters.ChooseRefs = True;
-	PickingParameters.Title = NStr("en = 'Template assignment';");
+	PickingParameters.Title = NStr("en = 'Template assignment';tr = 'Şablon ataması'");
 	PickingParameters.FilterByMetadataObjects = ObjectsWithPrintCommands();
 	
 	NotifyDescription = New NotifyDescription("OnChooseTemplateOwners", ThisObject);
@@ -345,7 +346,7 @@ Procedure SaveToFile(Command)
 	
 	FileDialog = New FileDialog(FileDialogMode.Save);
 	FileDialog.FullFileName = CommonClientServer.ReplaceProhibitedCharsInFileName(DocumentName);
-	FileDialog.Filter = NStr("en = 'Spreadsheet document';") + " (*.mxl)|*.mxl";
+	FileDialog.Filter = NStr("en = 'Spreadsheet document';tr = 'E-tablo belgesi'") + " (*.mxl)|*.mxl";
 	
 	NotifyDescription = New NotifyDescription("ContinueSavingToFile", ThisObject);
 	FileSystemClient.ShowSelectionDialog(NotifyDescription, FileDialog);	
@@ -356,7 +357,7 @@ EndProcedure
 Procedure LoadFromFile(Command)
 	
 	FileDialog = New FileDialog(FileDialogMode.Open);
-	FileDialog.Filter = NStr("en = 'Spreadsheet document';") + " (*.mxl)|*.mxl";
+	FileDialog.Filter = NStr("en = 'Spreadsheet document';tr = 'E-tablo belgesi'") + " (*.mxl)|*.mxl";
 	FileDialog.Multiselect = False;
 	
 	NotifyDescription = New NotifyDescription("ContinueDownloadFromFile", ThisObject);
@@ -422,10 +423,10 @@ EndProcedure
 Procedure Translate(Command)
 	
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Do you want to automatically translate into the %1 language?';"), Items.Language.Title);
+		NStr("en = 'Do you want to automatically translate into the %1 language?';tr = '%1 diline otomatik çeviri yapılsın mı?'"), Items.Language.Title);
 	Buttons = New ValueList;
-	Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Translate';"));
-	Buttons.Add(DialogReturnCode.No, NStr("en = 'Do not translate';"));
+	Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Translate';tr = 'Çevir'"));
+	Buttons.Add(DialogReturnCode.No, NStr("en = 'Do not translate';tr = 'Yapılmasın'"));
 	
 	NotifyDescription = New NotifyDescription("WhenAnsweringAQuestionAboutTranslatingALayout", ThisObject);
 	ShowQueryBox(NotifyDescription, QueryText, Buttons);
@@ -529,7 +530,7 @@ EndProcedure
 Procedure Rename(Command)
 	
 	NotifyDescription = New NotifyDescription("OnSelectingLayoutName", ThisObject);
-	ShowInputString(NotifyDescription, DocumentName, NStr("en = 'Enter a template description';"), 100, False);
+	ShowInputString(NotifyDescription, DocumentName, NStr("en = 'Enter a template description';tr = 'Şablon adını girin'"), 100, False);
 	
 EndProcedure
 
@@ -791,7 +792,7 @@ Procedure WriteSpreadsheetDocumentFileNameSelected(Val CompletionHandler, Unlock
 			AfterWriteSpreadsheetDocument(AdditionalParameters.CompletionHandler, UnlockFile);
 		Else
 			NotifyDescription = New NotifyDescription("ContinueWritingTabularDocument", ThisObject, AdditionalParameters);
-			ShowQueryBox(NotifyDescription, NStr("en = 'Some entries are invalid. Save the template anyway?';"), QuestionDialogMode.YesNo, , DialogReturnCode.No);
+			ShowQueryBox(NotifyDescription, NStr("en = 'Some entries are invalid. Save the template anyway?';tr = 'Bazı girişler geçersiz. Şablon yine de kaydedilsin mi?'"), QuestionDialogMode.YesNo, , DialogReturnCode.No);
 		EndIf;
 	Else
 		SpreadsheetDocument.BeginWriting(
@@ -853,7 +854,7 @@ Procedure StartFileSavingDialog(Val CompletionHandler, UnlockFile)
 	
 	SaveFileDialog = New FileDialog(FileDialogMode.Save);
 	SaveFileDialog.FullFileName = CommonClientServer.ReplaceProhibitedCharsInFileName(DocumentName);
-	SaveFileDialog.Filter = NStr("en = 'Spreadsheet documents';") + " (*.mxl)|*.mxl";
+	SaveFileDialog.Filter = NStr("en = 'Spreadsheet documents';tr = 'E-tablo belgeleri'") + " (*.mxl)|*.mxl";
 	
 	AdditionalParameters = New Structure;
 	AdditionalParameters.Insert("CompletionHandler", CompletionHandler);
@@ -909,7 +910,7 @@ EndFunction
 	
 &AtClient
 Function NewDocumentName()
-	Return NStr("en = 'New';");
+	Return NStr("en = 'New';tr = 'Yeni'");
 EndFunction
 
 &AtClient
@@ -922,9 +923,9 @@ Procedure SetHeader()
 	EndIf;
 	
 	If IsNew() Then
-		Title = Title + " (" + NStr("en = 'Create';") + ")";
+		Title = Title + " (" + NStr("en = 'Create';tr = 'oluştur'") + ")";
 	ElsIf EditingDenied Then
-		Title = Title + " (" + NStr("en = 'Read-only';") + ")";
+		Title = Title + " (" + NStr("en = 'Read-only';tr = 'salt okunur'") + ")";
 	EndIf;
 	
 EndProcedure
@@ -1069,9 +1070,9 @@ Procedure Attachable_SwitchLanguage(Command)
 		EndIf;
 		
 		If CurrentLanguage = CommonClient.DefaultLanguageCode() Then
-			Items.DeleteLayoutLanguage.Title = NStr("en = 'Delete all template changes';");
+			Items.DeleteLayoutLanguage.Title = NStr("en = 'Delete all template changes';tr = 'Tüm şablon değişikliklerini sil'");
 		Else
-			Items.DeleteLayoutLanguage.Title = NStr("en = 'Delete template in current language';");
+			Items.DeleteLayoutLanguage.Title = NStr("en = 'Delete template in current language';tr = 'Mevcut dilde şablonu sil'");
 		EndIf;
 	EndIf;
 	
@@ -1099,10 +1100,11 @@ Procedure Attachable_WhenSwitchingTheLanguage(LanguageCode, AdditionalParameters
 	If TranslationRequired And AutomaticTranslationAvailable Then
 		QueryText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Template has not been translated into the %1 language yet.
-			|Do you want to translate it automatically?';"), Items.Language.Title);
+			|Do you want to translate it automatically?';tr = 'Şablon henüz %1 diline çevrilmedi.
+			|Otomatik çeviri yapılsın mı?'"), Items.Language.Title);
 		Buttons = New ValueList;
-		Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Translate';"));
-		Buttons.Add(DialogReturnCode.No, NStr("en = 'Do not translate';"));
+		Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Translate';tr = 'Çevir'"));
+		Buttons.Add(DialogReturnCode.No, NStr("en = 'Do not translate';tr = 'Yapılmasın'"));
 		
 		NotifyDescription = New NotifyDescription("WhenAnsweringAQuestionAboutTranslatingALayout", ThisObject);
 		ShowQueryBox(NotifyDescription, QueryText, Buttons);
@@ -1483,19 +1485,19 @@ Procedure UpdateInputFieldCurrentCellValue()
 	Items.RepeatAtTopofPage.Enabled = False;
 	Items.RepeatAtEndPage.Enabled = False;
 	
-	ViewArea = NStr("en = 'Text of the selected cell';");
+	ViewArea = NStr("en = 'Text of the selected cell';tr = 'Seçilen hücrenin metni'");
 	If TypeOf(CurrentArea) = Type("SpreadsheetDocumentRange") Then
 		If CurrentArea.AreaType = SpreadsheetDocumentCellAreaType.Rows
 			And ValueIsFilled(CurrentArea.Top) Then
 			Span = CurrentArea.Top;
 			If CurrentArea.Top <> CurrentArea.Bottom Then
 				Span = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '%1-%2';"), CurrentArea.Top, CurrentArea.Bottom);
+					NStr("en = '%1-%2';tr = '%1-%2'"), CurrentArea.Top, CurrentArea.Bottom);
 				ViewArea = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Output conditions for rows %1';"), Span);
+					NStr("en = 'Output conditions for rows %1';tr = '%1 satırlarını görüntüleme koşulları'"), Span);
 			Else
 				ViewArea = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Output conditions for row %1';"), Span);
+					NStr("en = 'Output conditions for row %1';tr = 'Satır %1 görüntüleme koşulları'"), Span);
 			EndIf;
 			Items.RepeatAtTopofPage.Enabled = True;
 			Items.RepeatAtEndPage.Enabled = True;
@@ -1508,19 +1510,19 @@ Procedure UpdateInputFieldCurrentCellValue()
 			Span = CurrentArea.Left;
 			If CurrentArea.Left <> CurrentArea.Right Then
 				Span = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '%1-%2';"), CurrentArea.Left, CurrentArea.Right);
+					NStr("en = '%1-%2';tr = '%1-%2'"), CurrentArea.Left, CurrentArea.Right);
 				ViewArea = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Output conditions for columns %1';"), Span);
+					NStr("en = 'Output conditions for columns %1';tr = '%1 sütunlarını görüntüleme koşulları'"), Span);
 			Else
 				ViewArea = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Output conditions for column %1';"), Span);
+					NStr("en = 'Output conditions for column %1';tr = 'Sütün %1 görüntüleme koşulları'"), Span);
 			EndIf;
 		EndIf;
 		If ValueIsFilled(CurrentArea.Left) And ValueIsFilled(CurrentArea.Top) Then
 			If CurrentArea.Left <> CurrentArea.Right Or CurrentArea.Top <> CurrentArea.Bottom Then
-				ViewArea = NStr("en = 'Text in the selected area';");
+				ViewArea = NStr("en = 'Text in the selected area';tr = 'Seçilen alan metni'");
 			Else
-				ViewArea = NStr("en = 'Text of the selected cell';");
+				ViewArea = NStr("en = 'Text of the selected cell';tr = 'Seçilen hücrenin metni'");
 			EndIf;
 		EndIf;
 		AreaName = ViewArea;
@@ -1573,7 +1575,7 @@ Procedure CustomizeHeadersFooters(Command)
 	Items.SettingsCurrentRegion.Visible = Not Items.ShowHeadersAndFooters.Check;
 	Items.SpreadsheetDocument.ReadOnly = Items.ShowHeadersAndFooters.Check;
 		
-	StateText = ?(Items.ShowHeadersAndFooters.Check, NStr("en = 'Edit headers and footers';"), "");
+	StateText = ?(Items.ShowHeadersAndFooters.Check, NStr("en = 'Edit headers and footers';tr = 'Başlık düzenlemesi'"), "");
 	DisplayCurrentPrintFormState(StateText);
 	
 	If Items.ShowHeadersAndFooters.Check Then
@@ -1681,17 +1683,17 @@ Function DefaultFormat(TypeDescription)
 	
 	If Type = Type("Number") Then
 		Format = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'ND=%1; NFD=%2';"),
+			NStr("en = 'ND=%1; NFD=%2';tr = 'ND=%1; NFD=%2'"),
 			TypeDescription.NumberQualifiers.Digits,
 			TypeDescription.NumberQualifiers.FractionDigits);
 	ElsIf Type = Type("Date") Then
 		If TypeDescription.DateQualifiers.DateFractions = DateFractions.Date Then
-			Format = NStr("en = 'DLF=D';");
+			Format = NStr("en = 'DLF=D';tr = 'DLF=D'");
 		Else
-			Format = NStr("en = 'DLF=DT';");
+			Format = NStr("en = 'DLF=DT';tr = 'DLF=DT'");
 		EndIf;
 	ElsIf Type = Type("Boolean") Then
-		Format = NStr("en = 'BF=No; BT=Yes';");
+		Format = NStr("en = 'BF=No; BT=Yes';tr = 'BF=Hayır; BT=Evet'");
 	EndIf;
 	
 	Return Format;
@@ -2196,19 +2198,19 @@ Function PrepareLayoutForRecording(SetLanguageCode = True, Cancel = False)
 			EndIf;
 			
 			If ValueIsFilled(Area.Text) Then
-				FieldPresentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'string %1 column %2';"), LineNumber, ColumnNumber);
+				FieldPresentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'string %1 column %2';tr = 'satır %1 sütun %2'"), LineNumber, ColumnNumber);
 				ReplaceViewParameters(Area.Text, , Cancel, FieldPresentation);
 			EndIf;
 			
 		EndDo;
 	EndDo;
 	
-	ReplaceViewParameters(Template.Header.LeftText, "TopLeftText", Cancel, NStr("en = 'header on the left';"));
-	ReplaceViewParameters(Template.Header.CenterText, "TopMiddleText", Cancel, NStr("en = 'header in the center';"));
-	ReplaceViewParameters(Template.Header.RightText, "TopRightText", Cancel, NStr("en = 'header on the right';"));
-	ReplaceViewParameters(Template.Footer.LeftText, "BottomLeftText", Cancel, NStr("en = 'footer on the left';"));
-	ReplaceViewParameters(Template.Footer.CenterText, "BottomCenterText", Cancel, NStr("en = 'footer in the center';"));
-	ReplaceViewParameters(Template.Footer.RightText, "BottomRightText", Cancel, NStr("en = 'footer on the right';"));
+	ReplaceViewParameters(Template.Header.LeftText, "TopLeftText", Cancel, NStr("en = 'header on the left';tr = 'üst sol başlık'"));
+	ReplaceViewParameters(Template.Header.CenterText, "TopMiddleText", Cancel, NStr("en = 'header in the center';tr = 'üst ortadaki başlık'"));
+	ReplaceViewParameters(Template.Header.RightText, "TopRightText", Cancel, NStr("en = 'header on the right';tr = 'üst sağ başlık'"));
+	ReplaceViewParameters(Template.Footer.LeftText, "BottomLeftText", Cancel, NStr("en = 'footer on the left';tr = 'alt sol başlık'"));
+	ReplaceViewParameters(Template.Footer.CenterText, "BottomCenterText", Cancel, NStr("en = 'footer in the center';tr = 'alt ortadaki başlık'"));
+	ReplaceViewParameters(Template.Footer.RightText, "BottomRightText", Cancel, NStr("en = 'footer on the right';tr = 'alt sağ başlık'"));
 	
 	For Each Area In Template.Areas Do
 		If TypeOf(Area) = Type("SpreadsheetDocumentRange")
@@ -2241,7 +2243,7 @@ Procedure ReplaceViewParameters(String, Field = Undefined, Cancel = False, Field
 		If ValueIsFilled(ErrorText) Then
 			If ValueIsFilled(FieldPresentation) Then
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = '%1 (%2)';"),
+					NStr("en = '%1 (%2)';tr = '%1 (%2)'"),
 					ErrorText,
 					FieldPresentation);
 			EndIf;
@@ -2594,12 +2596,12 @@ Procedure ExpandFieldList()
 	EndIf;
 	
 	ColumnPresentation = Items[ColumnNamePresentation];
-	ColumnPresentation.Title = NStr("en = 'Field';");
+	ColumnPresentation.Title = NStr("en = 'Field';tr = 'Alan'");
 	
 	ColumnPattern = Items.Add(NameOfTheFieldList() + "Pattern", Type("FormField"), FieldList);
 	ColumnPattern.DataPath = NameOfTheFieldList() + "." + "Pattern";
 	ColumnPattern.Type = FormFieldType.InputField;
-	ColumnPattern.Title = NStr("en = 'Preview';");
+	ColumnPattern.Title = NStr("en = 'Preview';tr = 'Ön izleme'");
 	ColumnPattern.SetAction("OnChange", "Attachable_SampleWhenChanging");
 	ColumnPattern.ShowInFooter = False;
 	ColumnPattern.ClearButton = True;
@@ -2610,7 +2612,7 @@ Procedure ExpandFieldList()
 	ButtonSettingsFormat.ShowInHeader = True;
 	ButtonSettingsFormat.HeaderPicture = PictureLib.DataCompositionOutputParameters;	
 	ButtonSettingsFormat.ValuesPicture = PictureLib.DataCompositionOutputParameters;	
-	ButtonSettingsFormat.Title = NStr("en = 'Configure format';");
+	ButtonSettingsFormat.Title = NStr("en = 'Configure format';tr = 'Format ayarlama'");
 	ButtonSettingsFormat.TitleLocation = FormItemTitleLocation.None;
 	ButtonSettingsFormat.CellHyperlink = True;
 	ButtonSettingsFormat.ShowInFooter = False;
@@ -2794,7 +2796,7 @@ EndFunction
 &AtClientAtServerNoContext
 Function PromptInputStringSearchFieldList()
 	
-	Return NStr("en = 'Find field…';");
+	Return NStr("en = 'Find field…';tr = 'Alan bul...'");
 	
 EndFunction
 
@@ -2807,7 +2809,7 @@ Procedure ViewPrintableForm(Command)
 		If Not ValueIsFilled(Pattern) Then
 			Items[NameOfTheFieldList()].CurrentRow = ThisObject[NameOfTheFieldList()].GetItems()[0].GetID();
 			CommonClient.MessageToUser(
-				NStr("en = 'Select a template whose data will be used to generate a print form';"), , NameOfTheFieldList() + "[0].Pattern");
+				NStr("en = 'Select a template whose data will be used to generate a print form';tr = 'Yazdırma formunun bilgilerine dayanarak oluşturulacak örneklemi seçin'"), , NameOfTheFieldList() + "[0].Pattern");
 			Return;
 		EndIf;
 		GeneratePrintForm();
@@ -3038,7 +3040,7 @@ Function PresentationOfDataSource(DataSources)
 	
 	Result = StrConcat(Values, ", ");
 	If Not ValueIsFilled(Result) Then
-		Result = "<" + NStr("en = 'not selected';") + ">";
+		Result = "<" + NStr("en = 'not selected';tr = 'seçilmedi'") + ">";
 	EndIf;
 	
 	Return Result;
@@ -3090,7 +3092,7 @@ Procedure SetUpFieldSample()
 	Offset = 0;
 	For Each FieldDetails In FieldsCollection Do
 		If FieldDetails.DataPath = "Ref" Then
-			FieldDetails.Title = NStr("en = 'Preview';");
+			FieldDetails.Title = NStr("en = 'Preview';tr = 'Ön izleme'");
 			If Offset <> 0 Then
 				IndexOf = FieldsCollection.IndexOf(FieldDetails);
 				FieldsCollection.Move(IndexOf, Offset);

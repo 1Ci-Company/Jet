@@ -19,7 +19,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 			And FilesOperationsInVolumesInternal.HasFileStorageVolumes() Then
 		
 		Common.MessageToUser(
-			NStr("en = 'Changing a method of the volume path generation is restricted. There are files in volumes.';"),
+			NStr("en = 'Changing a method of the volume path generation is restricted. There are files in volumes.';tr = 'Birim yolunun oluşturulma şekli değiştirilemez. Klasörlerde dosyalar var.'"),
 			,,,Cancel);
 	EndIf;
 EndProcedure
@@ -27,5 +27,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

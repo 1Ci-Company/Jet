@@ -16,7 +16,7 @@
 Function UniqueNameByWay(Val DirectoryName, Val FileName) Export
 	
 	CommonClientServer.Validate(ValueIsFilled(DirectoryName),
-		NStr("en = 'Fill in the directory.';"),	"FilesOperationsInternalClientServer.UniqueNameByWay");
+		NStr("en = 'Fill in the directory.';tr = 'Katalog dolu olmalıdır.'"),	"FilesOperationsInternalClientServer.UniqueNameByWay");
 	
 	FinalPath = "";
 	
@@ -93,7 +93,8 @@ Function UniqueNameByWay(Val DirectoryName, Val FileName) Export
 			Except
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot create the ""%1"" directory:
-						| %2.';"),
+						| %2.';tr = '""%1"" katalogu oluşturulamadı:
+						|""%2"".'"),
 					FullSubdirectory,
 					ErrorProcessing.BriefErrorDescription(ErrorInfo()) );
 			EndTry;
@@ -138,10 +139,10 @@ EndFunction
 Function MessageAboutInvalidSigningOfLockedFile(FileRef = Undefined) Export
 	
 	If FileRef = Undefined Then
-		Return NStr("en = 'Cannot sign the file because it is locked.';");
+		Return NStr("en = 'Cannot sign the file because it is locked.';tr = 'Kilitli dosya imzalanamıyor'");
 	Else
 		Return StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot sign the file %1 because it is locked.';"),
+			NStr("en = 'Cannot sign the file %1 because it is locked.';tr = 'Kilitli dosya imzalanamıyor: %1.'"),
 			String(FileRef) );
 	EndIf;
 	
@@ -152,10 +153,10 @@ EndFunction
 Function MessageAboutInvalidSigningOfEncryptedFile(FileRef = Undefined) Export
 	
 	If FileRef = Undefined Then
-		Return NStr("en = 'Cannot sign the file because it is encrypted.';");
+		Return NStr("en = 'Cannot sign the file because it is encrypted.';tr = 'Şifrelenmiş dosya imzalanamıyor.'");
 	Else
 		Return StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Cannot sign the file %1 because it is encrypted.';"),
+						NStr("en = 'Cannot sign the file %1 because it is encrypted.';tr = 'Şifrelenmiş dosya imzalanamıyor: %1.'"),
 						String(FileRef) );
 	EndIf;
 	
@@ -312,13 +313,13 @@ Procedure FillSignatureStatus(SignatureRow, CurrentDate) Export
 	If SignatureRow.SignatureCorrect
 		And ValueIsFilled(SignatureRow.DateActionLastTimestamp)
 		And SignatureRow.DateActionLastTimestamp < CurrentDate Then
-		SignatureRow.Status = NStr("en = 'Was valid on the date of signature';");
+		SignatureRow.Status = NStr("en = 'Was valid on the date of signature';tr = 'İmzalama tarihinde geçerli idi'");
 	ElsIf SignatureRow.SignatureCorrect Then
-		SignatureRow.Status = NStr("en = 'Valid';");
+		SignatureRow.Status = NStr("en = 'Valid';tr = 'Geçerli'");
 	ElsIf SignatureRow.IsVerificationRequired Then
-		SignatureRow.Status = NStr("en = 'Verification required';");
+		SignatureRow.Status = NStr("en = 'Verification required';tr = 'Doğrulama gerekli'");
 	Else
-		SignatureRow.Status = NStr("en = 'Invalid';");
+		SignatureRow.Status = NStr("en = 'Invalid';tr = 'Geçersiz'");
 	EndIf;
 		
 EndProcedure
@@ -902,27 +903,27 @@ Function Encodings() Export
 
 	EncodingsList = New ValueList;
 	
-	EncodingsList.Add("ibm852",       NStr("en = 'IBM852 (Central European DOS)';"));
-	EncodingsList.Add("ibm866",       NStr("en = 'IBM866 (Cyrillic DOS)';"));
-	EncodingsList.Add("iso-8859-1",   NStr("en = 'ISO-8859-1 (Western European ISO)';"));
-	EncodingsList.Add("iso-8859-2",   NStr("en = 'ISO-8859-2 (Central European ISO)';"));
-	EncodingsList.Add("iso-8859-3",   NStr("en = 'ISO-8859-3 (Latin-3 ISO)';"));
-	EncodingsList.Add("iso-8859-4",   NStr("en = 'ISO-8859-4 (Baltic ISO)';"));
-	EncodingsList.Add("iso-8859-5",   NStr("en = 'ISO-8859-5 (Cyrillic ISO)';"));
-	EncodingsList.Add("iso-8859-7",   NStr("en = 'ISO-8859-7 (Greek ISO)';"));
-	EncodingsList.Add("iso-8859-9",   NStr("en = 'ISO-8859-9 (Turkish ISO)';"));
-	EncodingsList.Add("iso-8859-15",  NStr("en = 'ISO-8859-15 (Latin-9 ISO)';"));
-	EncodingsList.Add("koi8-r",       NStr("en = 'KOI8-R (Cyrillic KOI8-R)';"));
-	EncodingsList.Add("koi8-u",       NStr("en = 'KOI8-U (Cyrillic KOI8-U)';"));
-	EncodingsList.Add("us-ascii",     NStr("en = 'US-ASCII (USA)';"));
-	EncodingsList.Add("utf-8",        NStr("en = 'UTF-8 (Unicode UTF-8)';"));
-	EncodingsList.Add("utf-8_WithoutBOM", NStr("en = 'UTF-8 (Unicode UTF-8 without BOM)';"));
-	EncodingsList.Add("windows-1250", NStr("en = 'Windows-1250 (Central European Windows)';"));
-	EncodingsList.Add("windows-1251", NStr("en = 'Windows-1251 (Cyrillic Windows)';"));
-	EncodingsList.Add("windows-1252", NStr("en = 'Windows-1252 (Western European Windows)';"));
-	EncodingsList.Add("windows-1253", NStr("en = 'Windows-1253 (Greek Windows)';"));
-	EncodingsList.Add("windows-1254", NStr("en = 'Windows-1254 (Turkish Windows)';"));
-	EncodingsList.Add("windows-1257", NStr("en = 'Windows-1257 (Baltic Windows)';"));
+	EncodingsList.Add("ibm852",       NStr("en = 'IBM852 (Central European DOS)';tr = 'IBM852 (Orta Avrupa DOS)'"));
+	EncodingsList.Add("ibm866",       NStr("en = 'IBM866 (Cyrillic DOS)';tr = 'IBM866 (Kiril DOS)'"));
+	EncodingsList.Add("iso-8859-1",   NStr("en = 'ISO-8859-1 (Western European ISO)';tr = 'ISO-8859-1 (Batı Avrupa ISO)'"));
+	EncodingsList.Add("iso-8859-2",   NStr("en = 'ISO-8859-2 (Central European ISO)';tr = 'ISO-8859-2 (Orta Avrupa ISO)'"));
+	EncodingsList.Add("iso-8859-3",   NStr("en = 'ISO-8859-3 (Latin-3 ISO)';tr = 'ISO-8859-3 (Latin 3 ISO)'"));
+	EncodingsList.Add("iso-8859-4",   NStr("en = 'ISO-8859-4 (Baltic ISO)';tr = 'ISO-8859-4 (Baltik ISO)'"));
+	EncodingsList.Add("iso-8859-5",   NStr("en = 'ISO-8859-5 (Cyrillic ISO)';tr = 'ISO-8859-5 (Kiril ISO)'"));
+	EncodingsList.Add("iso-8859-7",   NStr("en = 'ISO-8859-7 (Greek ISO)';tr = 'ISO-8859-7 (Yunan ISO)'"));
+	EncodingsList.Add("iso-8859-9",   NStr("en = 'ISO-8859-9 (Turkish ISO)';tr = 'ISO-8859-9 (Türkçe ISO)'"));
+	EncodingsList.Add("iso-8859-15",  NStr("en = 'ISO-8859-15 (Latin-9 ISO)';tr = 'ISO-8859-15 (Latin 9 ISO)'"));
+	EncodingsList.Add("koi8-r",       NStr("en = 'KOI8-R (Cyrillic KOI8-R)';tr = 'KOI8-R (Kiril KOI8-R)'"));
+	EncodingsList.Add("koi8-u",       NStr("en = 'KOI8-U (Cyrillic KOI8-U)';tr = 'KOI8-U (Kiril KOI8-U)'"));
+	EncodingsList.Add("us-ascii",     NStr("en = 'US-ASCII (USA)';tr = 'US-ASCII (ABD)'"));
+	EncodingsList.Add("utf-8",        NStr("en = 'UTF-8 (Unicode UTF-8)';tr = 'UTF-8 (Unicode UTF-8)'"));
+	EncodingsList.Add("utf-8_WithoutBOM", NStr("en = 'UTF-8 (Unicode UTF-8 without BOM)';tr = 'UTF-8 (Unicode UTF-8 ürün reçetesiz)'"));
+	EncodingsList.Add("windows-1250", NStr("en = 'Windows-1250 (Central European Windows)';tr = 'Windows-1250 (Orta Avrupa Windows)'"));
+	EncodingsList.Add("windows-1251", NStr("en = 'Windows-1251 (Cyrillic Windows)';tr = 'Windows-1251 (Kiril Windows)'"));
+	EncodingsList.Add("windows-1252", NStr("en = 'Windows-1252 (Western European Windows)';tr = 'Windows-1252 (Batı Avrupa Windows)'"));
+	EncodingsList.Add("windows-1253", NStr("en = 'Windows-1253 (Greek Windows)';tr = 'Windows-1253 (Yunan Windows)'"));
+	EncodingsList.Add("windows-1254", NStr("en = 'Windows-1254 (Turkish Windows)';tr = 'Windows-1254 (Türkçe Windows)'"));
+	EncodingsList.Add("windows-1257", NStr("en = 'Windows-1257 (Baltic Windows)';tr = 'Windows-1257 (Baltik Windows)'"));
 	
 	Return EncodingsList;
 

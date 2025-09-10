@@ -26,9 +26,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	HasMetadataObjectsIDs = Metadata.Catalogs.Find("MetadataObjectIDs") <> Undefined;
 	
 	OrderArray = New Array;
-	OrderArray.Add(NStr("en = 'Current';"));
-	OrderArray.Add(NStr("en = 'Conflicting';"));
-	OrderArray.Add(NStr("en = 'Any';"));
+	OrderArray.Add(NStr("en = 'Current';tr = 'Сari'"));
+	OrderArray.Add(NStr("en = 'Conflicting';tr = 'Çatışıyor'"));
+	OrderArray.Add(NStr("en = 'Any';tr = 'Herhangi'"));
 	
 	Items.ExecutionPrioritiesSelectExecutionOrder.ChoiceList.LoadValues(OrderArray);
 	
@@ -117,7 +117,7 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 	If Modified Then
 		Cancel = True;
 		ResponseHandler1 = New NotifyDescription("FormClosingCompletion", ThisObject);
-		ShowQueryBox(ResponseHandler1, NStr("en = 'The data has been changed. Do you want to save the changes?';"), QuestionDialogMode.YesNoCancel);
+		ShowQueryBox(ResponseHandler1, NStr("en = 'The data has been changed. Do you want to save the changes?';tr = 'Veriler değiştirildi. Değişiklikleri kaydetmek istiyor musunuz?'"), QuestionDialogMode.YesNoCancel);
 	EndIf;
 	
 EndProcedure
@@ -267,7 +267,7 @@ Procedure CheckProcedureStartChoice(Item, ChoiceData, StandardProcessing)
 	
 	If Object.ObjectsToRead.FindRows(New Structure("LockInterface", True)).Count() > 0
 		Or Object.ObjectsToLock.Count() > 0 Then
-		MessageText = NStr("en = 'Do not use the ""%1"" procedure to check locks in handlers that control locking of data to read or other objects.';");
+		MessageText = NStr("en = 'Do not use the ""%1"" procedure to check locks in handlers that control locking of data to read or other objects.';tr = '""%1"" prosedürü, okunabilir verileri veya diğer nesnelerin üzerindeki engellemeleri kontrol eden işleyicilerdeki kilitleri kontrol etmek için tasarlanmamıştır.'");
 		MessageText = StrReplace(MessageText, "%1", "InfobaseUpdate.DataUpdatedForNewApplicationVersion");
 		CommonClient.MessageToUser(MessageText,,"CheckProcedure","Object");
 		Return;	
@@ -304,7 +304,7 @@ Procedure CommentStartChoice(Item, ChoiceData, StandardProcessing)
 	
 	Notification = New NotifyDescription("CommentStartChoiceCompletion", ThisObject);
 	CommonClient.ShowMultilineTextEditingForm(
-		Notification, Items.Comment.EditText, NStr("en = 'Internal comment';"));
+		Notification, Items.Comment.EditText, NStr("en = 'Internal comment';tr = 'Servis yorumu'"));
 	
 EndProcedure
 
@@ -388,7 +388,11 @@ Procedure InfoAboutLock(Command)
 		|
 		|• If you want to select data for update with updated readable data, specify additional sources in the registration procedure selection parameters.
 		|
-		|	Additional sources are readable data tables whose items must have a lower number in a queue on the exchange plan than the current handler number.';");
+		|	Additional sources are readable data tables whose items must have a lower number in a queue on the exchange plan than the current handler number.';tr = '• Önceki sıralara göre kilit kontrolü sadece mevcut işleyici için güncellenecek değişim planında kayıtlı nesneler için gerçekleştirilir.
+		|
+		|• Güncellenmiş okunabilir verilerle güncelleme için veri seçmek istiyorsanız kayıt prosedürü seçim parametrelerinde ek kaynaklar belirtin.
+		|
+		|	Ek kaynaklar, değişim planı sırasında öğeleri mevcut işleyici numarasından daha düşük bir numaraya sahip olan okunabilir veri tablolarıdır.'");
 	
 	ShowMessageBox(, WarningText);
 	
@@ -578,7 +582,7 @@ Procedure AddAttributeTypesToObjectsToLock(Command)
 	
 	AdditionalParameters = New Structure("TableName", "ObjectsToLock");
 	ChoiceHandler = New NotifyDescription("MetadataObjectChoiceCompletion", ThisObject, AdditionalParameters);
-	ObjectsNames.ShowChooseItem(ChoiceHandler, NStr("en = 'Select metadata object';"));
+	ObjectsNames.ShowChooseItem(ChoiceHandler, NStr("en = 'Select metadata object';tr = 'Meta veri nesnesini seçin '"));
 	
 EndProcedure
 
@@ -670,7 +674,7 @@ Function FilledCorrectly()
 	CurrentHandler = Object.UpdateHandlers[0];
 	If CurrentHandler.ExecutionMode = "Deferred" 
 		And Object.ObjectsToChange.Count() = 0 Then
-		MessageText = NStr("en = 'Couldn''t save the deferred handler. ""Objects to change"" is empty.';");
+		MessageText = NStr("en = 'Couldn''t save the deferred handler. ""Objects to change"" is empty.';tr = 'Ertelenmiş işleyici boş ""Değiştirilebilir Nesneler"" boş tablo kısmıyla yazılamaz'");
 		CommonClient.MessageToUser(MessageText);
 		Items.FormPages.CurrentPage = Items.ObjectsPage;
 		Return False;
@@ -794,7 +798,8 @@ Function MainMetadataObjectName(ProcedureName, SingularForm, PluralForm)
 				DefaultLanguageCode = Common.DefaultLanguageCode();
 #EndIf
 			MessageText = NStr("en = 'Cannot recognize the ""%1"" metadata object kind.
-				|The object kind must be plural.';", DefaultLanguageCode);
+				|The object kind must be plural.';tr = '""%1"" meta veri nesnesi türü tanımlanamadı
+				|Nesne türü çoğul olmalıdır.'", DefaultLanguageCode);
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText, NameParts[0]);
 			Raise MessageText;
 		EndTry;
@@ -1049,7 +1054,8 @@ Procedure ImportLowPriorityReading(LowPriorityReading)
 			EndIf;
 		EndDo;
 		MessageText = NStr("en = 'Readable handler objects include objects that are processed by handlers with a lower priority than the current one.
-		|This will cause the current handler to wait for them to complete. Resolve this mismatch.';");
+		|This will cause the current handler to wait for them to complete. Resolve this mismatch.';tr = 'Okunabilir işleyici nesneleri, mevcut olandan daha düşük önceliğe sahip işleyiciler tarafından işlenen nesneleri içeriyor.
+		|Bu durumda mevcut işleyici diğerlerinin tamamlanmasını bekliyor. Bu uyuşmazlığı giderin.'");
 		Common.MessageToUser(MessageText);
 	Else
 		Items.ObjectsToReadWarning.Visible = False;
@@ -1265,7 +1271,7 @@ Procedure AddAttributeTypes(TableName, ObjectName = "")
 	
 	If IsBlankString(ObjectName) Then
 		If Items[TableName].CurrentData = Undefined Then
-			ShowMessageBox(,NStr("en = 'Metadata object is not selected';"));
+			ShowMessageBox(,NStr("en = 'Metadata object is not selected';tr = 'Meta veri nesnesi seçilemedi'"));
 			Return;
 		EndIf;
 		
@@ -1288,7 +1294,7 @@ Procedure SelectTheMetadataObjectSDetails(Attributes, TableName, ObjectName)
 	
 	AdditionalParameters = New Structure("TableName, ObjectName", TableName, ObjectName);
 	ChoiceHandler = New NotifyDescription("CompletingTheSelectionOfTheMetadataObjectSProps", ThisObject, AdditionalParameters);
-	Attributes.ShowChooseItem(ChoiceHandler, NStr("en = 'Select an object attribute';"));
+	Attributes.ShowChooseItem(ChoiceHandler, NStr("en = 'Select an object attribute';tr = 'Nesne niteliğini seçin'"));
 	
 EndProcedure
 
@@ -1435,18 +1441,22 @@ EndFunction
 Function TextWarningChangedCheckProcedure(DoQueryBox = False)
 	
 	TextHat = NStr("en = 'Use a custom check procedure responsibly,
-		|when the standard check procedure is insufficient.';");
+		|when the standard check procedure is insufficient.';tr = 'Standart olan dışında kendi doğrulama prosedürünün kullanımına yalnız
+		| standart doğrulama prosedürürün imkanları yetersiz olduğunda izin verilir. '");
 	TextHat = StrConcat(StrSplit(TextHat, Chars.LF), " ");
 	
 	TextContinued = NStr("en = 'Follow these development recommendations:
 		| • The handler can lock only non-updated data.
 		| • Processed data is unlocked in chunks (not after all objects are processed)
-		| • Users can always enter new data.';");
+		| • Users can always enter new data.';tr = 'Bu zaman onun yazılması sırasında aşağıdaki kurallara uyulmalıdır:
+		| • işleyici yalnızca güncellenmemiş verileri engelleyebilir;
+		| • veriler işlendikçe engeller kaldırılmalıdır, tüm nesnelerin işlenmesi beklenmemelidir;
+		| • yeni veriler her zaman girilebilmelidir.'");
 	
 	WarningText = TextHat + Chars.LF + Chars.LF + TextContinued;
 	
 	If DoQueryBox Then
-		WarningText = WarningText + Chars.LF + Chars.LF + NStr("en = 'Do you want to continue?';");
+		WarningText = WarningText + Chars.LF + Chars.LF + NStr("en = 'Do you want to continue?';tr = 'Devam etmek istiyor musunuz?'");
 	EndIf;
 	
 	Return WarningText;

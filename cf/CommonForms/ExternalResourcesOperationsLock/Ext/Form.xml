@@ -5,6 +5,10 @@
 			<v8:lang>en</v8:lang>
 			<v8:content>Moved or restored infobase</v8:content>
 		</v8:item>
+		<v8:item>
+			<v8:lang>tr</v8:lang>
+			<v8:content>Taşınmış veya yedekten geri yüklenmiş infobase </v8:content>
+		</v8:item>
 	</Title>
 	<WindowOpeningMode>LockWholeInterface</WindowOpeningMode>
 	<AutoTitle>false</AutoTitle>
@@ -24,6 +28,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Form parameters</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Form parametreleri</v8:content>
+				</v8:item>
 			</Title>
 			<PagesRepresentation>None</PagesRepresentation>
 			<ExtendedTooltip name="FormParametersGroupExtendedTooltip" id="19"/>
@@ -33,6 +41,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>Decide whether to lock</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Kilitleme kararı verme</v8:content>
 						</v8:item>
 					</Title>
 					<ExtendedTooltip name="DecideToLockGroupExtendedTooltip" id="21"/>
@@ -61,6 +73,27 @@ The infobase location has been changed. Old location:
 
 You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt; &lt;/&gt;&lt;b&gt;Support and service&lt;/&gt;.</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Veri senkronizasyonu ve e-posta gönderme gibi zamanlanmış çevrimiçi etkinlikler,
+ana infobase ile çakışmaları önlemek için devre dışı bırakıldı.
+
+&lt;b&gt;SMS&lt;/&gt; zamanlanmış görevi &lt;b&gt;01/10/2019 tarihinde saat 15:00&lt;/&gt;'te &lt;b&gt;Server-1C2&lt;/&gt; sunucusunda kilitlendi.
+
+Infobase konumu değiştirildi. Eski konum:
+&lt;b&gt; C:\1c\db\&lt;/&gt;&lt;b&gt;
+&lt;/&gt;Yeni konum:
+&lt;b&gt;Srvr=“server-1c.local”;Ref=“db”;&lt;/&gt;
+
+&lt;link EventLog&gt;Teknik bilgiler&lt;/&gt;
+
+•İnfobase'i muhasebe için kullanacaksanız, &lt;b&gt;Taşınmış infobase&lt;/&gt;'i seçin.
+  • Bu bir infobase kopyasıysa, &lt;b&gt;Infobase kopyası&lt;/&gt;&lt;b&gt; seçeneğini belirleyin.&lt;/&gt;
+ • Ölçeklenebilir kümelerde, üretim sunucusu olarak hareket eden bilgisayarların değişmesi nedeniyle yanlış başlatmaları önlemek için,
+ &lt;b&gt;Daha fazla&gt; Sunucu adını kontrol et&lt;/&gt;'e tıklayarak makine adı kontrolünü devre dışı bırakın.
+
+Kilidi daha sonra &lt;b&gt;Yönetim&lt;/&gt;&lt;b&gt;&gt; &lt;/&gt;&lt;b&gt;Destek ve hizmet&lt;/&gt; bölümünden açabilirsiniz.</v8:content>
+								</v8:item>
 							</Title>
 							<ContextMenu name="WarningLabelContextMenu" id="2"/>
 							<ExtendedTooltip name="WarningLabelExtendedTooltip" id="3"/>
@@ -74,6 +107,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 									<v8:lang>en</v8:lang>
 									<v8:content>Command bar</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Komut çubuğu</v8:content>
+								</v8:item>
 							</Title>
 							<HorizontalLocation>Center</HorizontalLocation>
 							<ExtendedTooltip name="GroupCommandBarExtendedTooltip" id="28"/>
@@ -85,6 +122,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Moved infobase</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Taşınmış infobase</v8:content>
 										</v8:item>
 									</Title>
 									<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
@@ -98,6 +139,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 											<v8:lang>en</v8:lang>
 											<v8:content>Infobase copy</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Infobase kopyasıdır</v8:content>
+										</v8:item>
 									</Title>
 									<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
 									<ExtendedTooltip name="IsInfobaseCopyExtendedTooltip" id="9"/>
@@ -107,6 +152,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>More</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Daha fazla</v8:content>
 										</v8:item>
 									</Title>
 									<ExtendedTooltip name="FormMoreGroupExtendedTooltip" id="15"/>
@@ -118,6 +167,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Check server name.</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Sunucu adını kontrol et</v8:content>
 												</v8:item>
 											</Title>
 											<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
@@ -147,6 +200,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 							<v8:lang>en</v8:lang>
 							<v8:content>Lock parameters</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Engelleme parametreleri</v8:content>
+						</v8:item>
 					</Title>
 					<ExtendedTooltip name="LockParametersGroupExtendedTooltip" id="23"/>
 					<ChildItems>
@@ -155,6 +212,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Command bar parameters</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Komut çubuğu parametreler</v8:content>
 								</v8:item>
 							</Title>
 							<ExtendedTooltip name="CommandBarParametersGroupExtendedTooltip" id="33"/>
@@ -167,6 +228,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 											<v8:lang>en</v8:lang>
 											<v8:content>Save and close</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Sakla ve kapat</v8:content>
+										</v8:item>
 									</Title>
 									<ExtendedTooltip name="WriteAndCloseExtendedTooltip" id="35"/>
 								</Button>
@@ -178,6 +243,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 								<v8:item>
 									<v8:lang>en</v8:lang>
 									<v8:content>Check server name</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Sunucu adını kontrol et</v8:content>
 								</v8:item>
 							</Title>
 							<TitleLocation>Right</TitleLocation>
@@ -197,6 +266,10 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Check server name</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sunucu adını kontrol et</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -220,11 +293,19 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Moved infobase</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Taşınmış infobase</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Moved infobase</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Taşınmış infobase</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>InfobaseMoved</Action>
@@ -236,11 +317,19 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Infobase copy</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Infobase kopyasıdır</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Infobase copy</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Infobase kopyasıdır</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>IsInfobaseCopy</Action>
@@ -252,11 +341,19 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Check server name</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sunucu adını kontrol et</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Check server name.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sunucu adını kontrol et</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>CheckServerName</Action>
@@ -268,11 +365,19 @@ You can release the lock later in &lt;b&gt;Administration&lt;/&gt;&lt;b&gt; &gt;
 					<v8:lang>en</v8:lang>
 					<v8:content>Save and close</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sakla ve kapat</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Save and close</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sakla ve kapat</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>WriteAndClose</Action>

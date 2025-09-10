@@ -21,7 +21,7 @@ Procedure BeforeWrite(Cancel)
 	EndIf;
 	
 	If ValueIsFilled(Parent) And Common.ObjectAttributeValue(Parent, "Author") <> Author Then
-		Common.MessageToUser(NStr("en = 'You cannot specify a group that belongs to another user.';"));
+		Common.MessageToUser(NStr("en = 'You cannot specify a group that belongs to another user.';tr = 'Başka kullanıcıya ait bir grup belirtemezsiniz.'"));
 		Cancel = True;
 		Return;
 	EndIf;
@@ -38,7 +38,7 @@ Procedure BeforeWrite(Cancel)
 		EndIf;
 		
 		If IsBlankString(Subject) Then 
-			Subject = "<" + NStr("en = 'Blank note';") + ">";
+			Subject = "<" + NStr("en = 'Blank note';tr = 'Boş not'") + ">";
 		EndIf;
 		
 		MaxDescriptionLength = Metadata().DescriptionLength;
@@ -53,5 +53,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

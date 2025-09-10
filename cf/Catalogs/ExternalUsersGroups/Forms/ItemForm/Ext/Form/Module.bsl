@@ -14,7 +14,7 @@
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not UsersInternal.ExternalUsersEmbedded() Then
-		Raise NStr("en = 'This application version does not support external users.';");
+		Raise NStr("en = 'This application version does not support external users.';tr = 'Programın bu sürümünde harici kullanıcılar sağlanmaz.'");
 	EndIf;
 	
 	SetConditionalAppearance();
@@ -179,24 +179,24 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 				CommonClientServer.AddUserError(Errors,
 					"Roles[%1].RolesSynonym",
 					StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Role ""%1"" does not exist.';"), 
+						NStr("en = 'Role ""%1"" does not exist.';tr = 'Feshedilmiş rol  ""%1"".'"), 
 						Item.Synonym),
 					"Roles",
 					TreeItems.IndexOf(Item),
 					StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Non-existent role ""%1"" in line %2.';"), 
+						NStr("en = 'Non-existent role ""%1"" in line %2.';tr = '%2 satırında var olmayan ""%1"" rolü.'"), 
 						Item.Synonym, "%1"));
 			EndIf;
 			If Item.IsUnavailableRole Then
 				CommonClientServer.AddUserError(Errors,
 					"Roles[%1].RolesSynonym",
 					StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Role ""%1"" is unavailable to external users.';"), 
+						NStr("en = 'Role ""%1"" is unavailable to external users.';tr = '""%1"" rolü harici kullanıcılar için kullanılamaz.'"), 
 						Item.Synonym),
 					"Roles",
 					TreeItems.IndexOf(Item),
 					StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Role ""%1"" in line %2 is unavailable to external users.';"), 
+						NStr("en = 'Role ""%1"" in line %2 is unavailable to external users.';tr = '%2 satırındaki ""%1"" rolü harici kullanıcılar tarafından kullanılamaz'"), 
 						Item.Synonym, "%1"));
 			EndIf;
 		EndDo;
@@ -320,7 +320,7 @@ Procedure ContentDrag(Item, DragParameters, StandardProcessing, String, Field)
 	UserMessage = MoveUserToGroup(DragParameters.Value, Object.Ref);
 	If UserMessage <> Undefined Then
 		ShowUserNotification(
-			NStr("en = 'Move users';"), , UserMessage, PictureLib.DialogInformation);
+			NStr("en = 'Move users';tr = 'Kullanıcıları taşıyın'"), , UserMessage, PictureLib.DialogInformation);
 	EndIf;
 	
 EndProcedure
@@ -368,7 +368,7 @@ EndProcedure
 Procedure SelectPurpose(Command)
 	
 	NotifyDescription = New NotifyDescription("AfterAssignmentChoice", ThisObject);
-	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select users type';"), False, False, NotifyDescription);
+	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select users type';tr = 'Kullanıcı türünün seçimi'"), False, False, NotifyDescription);
 	
 EndProcedure
 
@@ -662,7 +662,7 @@ EndProcedure
 Function ExtendedPickFormParameters()
 	
 	PickingParameters = UsersInternal.NewParametersOfExtendedPickForm();
-	PickingParameters.PickFormHeader = NStr("en = 'Pick external user group members';");
+	PickingParameters.PickFormHeader = NStr("en = 'Pick external user group members';tr = 'Harici kullanıcı grubunun üyelerini seç'");
 	
 	PickingParameters.SelectedUsers =
 		Object.Content.Unload(, "ExternalUser").UnloadColumn("ExternalUser");

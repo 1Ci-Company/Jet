@@ -33,18 +33,18 @@ Procedure BeforeWrite(Cancel)
 	
 	If Not PreviousValue2 And Value And Not UsersInternal.ExternalUsersEmbedded() Then
 		ErrorText =
-			NStr("en = 'The application does not support external users.';");
+			NStr("en = 'The application does not support external users.';tr = 'Uygulamada harici kullanıcıların kullanımı öngörülmemiştir.'");
 		Raise ErrorText;
 	EndIf;
 	
 	If Common.IsStandaloneWorkplace() Then
 		ErrorText =
-			NStr("en = 'To change the usage of user groups, go to the app in the service.';");
+			NStr("en = 'To change the usage of user groups, go to the app in the service.';tr = 'Kullanıcı gruplarının kullanımını değiştirmek için serviste uygulamaya gidin.'");
 		Raise ErrorText;
 		
 	ElsIf Common.IsSubordinateDIBNode() Then
 		ErrorText =
-			NStr("en = 'User groups can only be customized in the master node.';");
+			NStr("en = 'User groups can only be customized in the master node.';tr = 'Kullanıcı grupları sadece ana düğümde özelleştirilebilir.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -176,5 +176,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

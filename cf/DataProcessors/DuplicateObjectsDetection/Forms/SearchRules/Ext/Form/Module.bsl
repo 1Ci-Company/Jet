@@ -39,7 +39,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Parameters.Property("AppliedRuleDetails", AppliedRuleDetails);
 	DuplicatesSearchArea = Parameters.DuplicatesSearchArea;
 
-	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Duplicate search rule: %1';"), 
+	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Duplicate search rule: %1';tr = 'Kopya arama kuralı: %1'"), 
 		Parameters.FilterAreaPresentation);
 	
 	InitialSettings = GetFromTempStorage(Parameters.SettingsAddress);
@@ -111,11 +111,14 @@ Procedure TakeAppliedRulesIntoAccountOnChange(Item)
 	
 	LongDesc = New NotifyDescription("ClearingAppliedRulesUsageCompletion", ThisObject);
 	
-	TitleText = NStr("en = 'Warning';");
+	TitleText = NStr("en = 'Warning';tr = 'Uyarı'");
 	QueryText   = NStr("en = 'Warning. If you turn off the default restrictions,
 	                            |duplicate clean-up might lead to data inconsistency.
 	                            |
-	                            |Turn off the default restrictions?';");
+	                            |Turn off the default restrictions?';tr = 'Uyarı. Varsayılan kısıtlamaları kapatırsanız
+	                            |kopyaların temizlenmesi veri tutarsızlığına yol açabilir.
+	                            |
+	                            |Varsayılan kısıtlamalar kapatılsın mı?'");
 	
 	ShowQueryBox(LongDesc, QueryText, QuestionDialogMode.YesNo,,DialogReturnCode.No, TitleText);
 EndProcedure
@@ -222,7 +225,7 @@ Function SelectionErrors()
 		EndIf;
 	EndDo;
 	
-	Return NStr("en = 'Specify at least one duplicate search rule.';");
+	Return NStr("en = 'Specify at least one duplicate search rule.';tr = 'En az bir kopya arama kuralı belirtin.'");
 EndFunction
 
 &AtClient

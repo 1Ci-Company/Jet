@@ -65,12 +65,12 @@ EndProcedure
 Procedure Select(Command)
 	
 	If Items.DomainsTable.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a domain.';"));
+		ShowMessageBox(, NStr("en = 'Select a domain.';tr = 'Alanı seçin.'"));
 		Return;
 	EndIf;
 	
 	If Items.DomainUsersTable.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a domain user.';"));
+		ShowMessageBox(, NStr("en = 'Select a domain user.';tr = 'Alan kullanıcısını seçin.'"));
 		Return;
 	EndIf;
 	

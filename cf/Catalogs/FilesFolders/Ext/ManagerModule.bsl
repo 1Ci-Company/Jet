@@ -103,7 +103,7 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	
 	Item = Items.Add();
 	Item.PredefinedDataName = "Templates";
-	Item.Description = NStr("en = 'File templates';", Common.DefaultLanguageCode());
+	Item.Description = NStr("en = 'File templates';tr = 'Dosya şablonları'", Common.DefaultLanguageCode());
 	
 EndProcedure
 

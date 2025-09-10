@@ -69,8 +69,8 @@ Function ExternalModuleContainerDictionary() Export
 	
 	Result = New Structure();
 	
-	Result.Insert("Nominative", NStr("en = 'Additional report or data processor';"));
-	Result.Insert("Genitive", NStr("en = 'Additional report or data processor';"));
+	Result.Insert("Nominative", NStr("en = 'Additional report or data processor';tr = 'Ek rapor veya veri işlemcisi'"));
+	Result.Insert("Genitive", NStr("en = 'Additional report or data processor';tr = 'Ek rapor veya veri işlemcisi'"));
 	
 	Return Result;
 	

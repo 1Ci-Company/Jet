@@ -154,7 +154,8 @@ Function ObjectAttributesValues(Ref, Val Attributes, SelectAllowedItems = False,
 		Except
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter, function %2:
-				|%3.';"), "Ref", "Common.ObjectAttributesValues", 
+				|%3.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri:
+				|%3'"), "Ref", "Common.ObjectAttributesValues", 
 				ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 			Raise(ErrorText, ErrorCategory.ConfigurationError);
 		EndTry;
@@ -169,7 +170,7 @@ Function ObjectAttributesValues(Ref, Val Attributes, SelectAllowedItems = False,
 			ObjectMetadata = MetadataObjectByFullName(FullMetadataObjectName);
 			If Not AccessRight("Read", ObjectMetadata) Then 
 				Raise(StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Insufficient rights to access table %1.';"), FullMetadataObjectName),
+					NStr("en = 'Insufficient rights to access table %1.';tr = '""%1"" tablosu ile çalışma hakları yetersiz'"), FullMetadataObjectName),
 					ErrorCategory.AccessViolation);
 			EndIf;
 		EndIf;
@@ -181,7 +182,8 @@ Function ObjectAttributesValues(Ref, Val Attributes, SelectAllowedItems = False,
 		Except
 			Raise (StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Invalid value of the %1 parameter, function %2:
-					|The value must contain predefined item name or reference.';"), 
+					|The value must contain predefined item name or reference.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri:
+					|Değer, bir referans veya önceden tanımlanmış bir öğenin adı içermeli.'"), 
 				"Ref", "Common.ObjectAttributesValues"),
 				ErrorCategory.ConfigurationError);
 		EndTry;
@@ -236,7 +238,7 @@ Function ObjectAttributesValues(Ref, Val Attributes, SelectAllowedItems = False,
 				Result = CheckIfObjectAttributesExist(FullMetadataObjectName, Attributes);
 				If Result.Error Then 
 					Raise(StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'Invalid value of the %1 parameter, function %2: %3.';"),
+						NStr("en = 'Invalid value of the %1 parameter, function %2: %3.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri: %3'"),
 						"Attributes", "Common.ObjectAttributesValues", Result.ErrorDescription),
 						ErrorCategory.ConfigurationError);
 				EndIf;
@@ -248,7 +250,7 @@ Function ObjectAttributesValues(Ref, Val Attributes, SelectAllowedItems = False,
 		EndDo;
 	Else
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid type of parameter %1 in function %2: %3.';"), 
+			NStr("en = 'Invalid type of parameter %1 in function %2: %3.';tr = '%2 işlevinde geçersiz ikinci %1 parametre türü: %3.'"), 
 			"Attributes", "Common.ObjectAttributesValues", String(TypeOf(Attributes))),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -367,7 +369,7 @@ Function ObjectAttributesValues(Ref, Val Attributes, SelectAllowedItems = False,
 		Result = CheckIfObjectAttributesExist(FullMetadataObjectName, Attributes);
 		If Result.Error Then 
 			Raise(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid value of the %1 parameter, function %2: %3.';"), 
+				NStr("en = 'Invalid value of the %1 parameter, function %2: %3.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri: %3'"), 
 				"Attributes", "Common.ObjectAttributesValues", Result.ErrorDescription),
 				ErrorCategory.ConfigurationError);
 		EndIf;
@@ -417,7 +419,8 @@ Function ObjectAttributeValue(Ref, AttributeName, SelectAllowedItems = False, Va
 	If IsBlankString(AttributeName) Then 
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter, function %2:
-				|The attribute name cannot be empty.';"), 
+				|The attribute name cannot be empty.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri: 
+				|Öznitelik adı doldurulmalıdır.'"), 
 			"AttributeName", "Common.ObjectAttributeValue"),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -467,7 +470,8 @@ Function ObjectsAttributesValues(References, Val Attributes, SelectAllowedItems 
 	If IsBlankString(Attributes) Then 
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter, function %2:
-				|The object field must be specified.';"), 
+				|The object field must be specified.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri: 
+				|Nesne alanı belirtilmelidir.'"), 
 			"Attributes", "Common.ObjectsAttributesValues"),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -475,7 +479,8 @@ Function ObjectsAttributesValues(References, Val Attributes, SelectAllowedItems 
 	If StrFind(Attributes, ".") <> 0 Then 
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter, function %2:
-				|Dot syntax is not supported.';"), 
+				|Dot syntax is not supported.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri: 
+				|Dot syntax desteklenmiyor.'"), 
 			"Attributes", "Common.ObjectsAttributesValues"),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -531,7 +536,8 @@ Function ObjectsAttributesValues(References, Val Attributes, SelectAllowedItems 
 		If MetadataObject = Undefined Then
 			Raise(StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Invalid value of the %1 parameter, function %2:
-					|The array values must be references.';"), 
+					|The array values must be references.';tr = 'Yanlış %1 parametresi değeri, fonksiyon %2:
+					|Dizi değerleri referans olmalıdır.'"), 
 				"References", "Common.ObjectsAttributesValues"),
 				ErrorCategory.ConfigurationError);
 		EndIf;
@@ -635,7 +641,7 @@ Function ObjectsAttributesValues(References, Val Attributes, SelectAllowedItems 
 		
 		If ValueIsFilled(ErrorList) Then
 			Raise(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid value of the %1 parameter, function %2: %3';"), 
+				NStr("en = 'Invalid value of the %1 parameter, function %2: %3';tr = '%2 işlevinde %1 parametresinin geçersiz değeri: %3'"), 
 				"Attributes", "Common.ObjectsAttributesValues", 
 				StrConcat(ErrorList, Chars.LF)),
 				ErrorCategory.ConfigurationError);
@@ -686,7 +692,8 @@ Function ObjectsAttributeValue(ReferencesArrray, AttributeName, SelectAllowedIte
 	If IsBlankString(AttributeName) Then 
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter, function %2:
-			|The attribute name cannot be empty.';"), 
+			|The attribute name cannot be empty.';tr = '%2 işlevinde %1 parametresinin geçersiz değeri:
+			|Öznitelik adı doldurulmalıdır.'"), 
 			"AttributeName", "Common.ObjectsAttributeValue"),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -938,7 +945,7 @@ Function PostDocuments(Var_Documents) Export
 				ErrorPresentation = ErrorProcessing.BriefErrorDescription(ErrorInfo());
 			EndTry;
 		Else
-			ErrorPresentation = NStr("en = 'Document fields cannot be empty.';");
+			ErrorPresentation = NStr("en = 'Document fields cannot be empty.';tr = 'Belge alanları doldurulmadı.'");
 		EndIf;
 		
 		If Not ExecutedSuccessfully Then
@@ -1315,7 +1322,7 @@ Function ReplaceReferences(Val ReplacementPairs, Val ReplacementParameters = Und
 			AdditionalParameters.Insert("SessionNumber", InfoBaseSessionNumber());
 			AdditionalParameters.Insert("ProcessedItemsCount", Number);
 			TimeConsumingOperations.ReportProgress(Number,
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Replacing duplicates… processed (%1 of %2)';"), 
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Replacing duplicates… processed (%1 of %2)';tr = 'Kopyalar değiştiriliyor… İşlenen (%1 / %2)'"), 
 					Number, DuplicateCount), AdditionalParameters);
 			Number = Number + 1;
 			AddToReferenceReplacementStatistics(Statistics, Duplicate1, Result.HasErrors);
@@ -1336,7 +1343,7 @@ Function ReplaceReferences(Val ReplacementPairs, Val ReplacementParameters = Und
 		
 		ModuleMarkedObjectsDeletion = CommonModule("MarkedObjectsDeletion");
 		
-		TimeConsumingOperations.ReportProgress(0, NStr("en = 'Deleting duplicates…';"));
+		TimeConsumingOperations.ReportProgress(0, NStr("en = 'Deleting duplicates…';tr = 'Çiftleri silme...'"));
 		DeletionResult = ModuleMarkedObjectsDeletion.ToDeleteMarkedObjects(Result.QueueForDirectDeletion);
 		RegisterDeletionErrors(Result, DeletionResult.ObjectsPreventingDeletion);
 		
@@ -1462,10 +1469,10 @@ Function UsageInstances(Val RefSet, Val ResultAddress = "", AdditionalParameters
 			Presentation = String(UsageInstance1.Data);
 			
 		ElsIf ConstantMetadata.Contains(UsageInstance1.Metadata) Then
-			Presentation = UsageInstance1.Metadata.Presentation() + " (" + NStr("en = 'constant';") + ")";
+			Presentation = UsageInstance1.Metadata.Presentation() + " (" + NStr("en = 'constant';tr = 'sabit'") + ")";
 			
 		ElsIf SequenceMetadata.Contains(UsageInstance1.Metadata) Then
-			Presentation = UsageInstance1.Metadata.Presentation() + " (" + NStr("en = 'sequence';") + ")";
+			Presentation = UsageInstance1.Metadata.Presentation() + " (" + NStr("en = 'sequence';tr = 'sıra'") + ")";
 			
 		ElsIf AllRefsType.ContainsType(DataType) Then
 			ObjectMetaPresentation = New Structure("ObjectPresentation");
@@ -1770,7 +1777,7 @@ Function CommonModule(Name) Export
 	
 	If TypeOf(Module) <> Type("CommonModule") Then
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid parameter %1 in %2. Common module ""%3"" does not exist.';"), 
+			NStr("en = 'Invalid parameter %1 in %2. Common module ""%3"" does not exist.';tr = 'Geçersiz %1 parametresi değeri, %2. ""%3"" ortak modülü mevcut değil.'"), 
 			"Name", "Common.CommonModule", Name), 
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -2155,7 +2162,7 @@ Function InfobasePublicationURL() Export
 			Try
 				Result = ModuleServiceProgrammingInterface.ApplicationProperties(SessionSeparator).ApplicationURL;
 			Except
-				WriteLogEvent(NStr("en = 'Publication address';", DefaultLanguageCode()), // ACC:154 - Unavailability of the Server Manager is not considered an issue. 
+				WriteLogEvent(NStr("en = 'Publication address';tr = 'Yayın adresi'", DefaultLanguageCode()), // ACC:154 - Unavailability of the Server Manager is not considered an issue. 
 					EventLogLevel.Warning,,, 
 					ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 				Return "";
@@ -2312,13 +2319,19 @@ Function CommonCoreParameters(ShouldReturnCachedValue = True) Export
 			| - The minimum version cannot be earlier than the recommended version.
 			|Minimum version: %3
 			|Minimum SSL version: %4
-			|Recommended version: %5';",
+			|Recommended version: %5';tr = '%1''da belirtilen minimum ve önerilen platform sürümleri şu koşullara uymuyor:
+			| - Minimum sürüm doldurulmalı.
+			| - Minimum sürüm SSL sürümünden eski olamaz (bkz. %2).
+			| - Minimum sürüm önerilen sürümden eski olamaz.
+			|Minimum sürüm: %3
+			|Minimum SSL sürümü: %4
+			|Önerilen sürüm: %5'",
 			DefaultLanguageCode());
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText,
 			"CommonOverridable.OnDetermineCommonCoreParameters",
 			"Common.MinPlatformVersion",
 			Min, BuildNumberForTheCurrentPlatformVersion(MinPlatformVersion()), Recommended);
-		WriteLogEvent(NStr("en = 'Core';", DefaultLanguageCode()), EventLogLevel.Warning,,, 
+		WriteLogEvent(NStr("en = 'Core';tr = 'Esas işlevsellik'", DefaultLanguageCode()), EventLogLevel.Warning,,, 
 			MessageText);		
 	EndIf;
 	
@@ -2430,22 +2443,22 @@ Function TimeIntervalString(BeginTime, EndTime = Undefined) Export
 	If EndTime = Undefined Then
 		EndTime = CurrentSessionDate();
 	ElsIf BeginTime > EndTime Then
-		Raise NStr("en = 'The end date cannot be earlier than the start date.';");
+		Raise NStr("en = 'The end date cannot be earlier than the start date.';tr = 'Bitiş tarihi başlangıç tarihinden önce olamaz.'");
 	EndIf;
 	
 	IntervalValue = EndTime - BeginTime;
 	IntervalValueInDays = Int(IntervalValue/60/60/24);
 	
 	If IntervalValueInDays > 365 Then
-		IntervalDetails = NStr("en = 'more than a year';");
+		IntervalDetails = NStr("en = 'more than a year';tr = 'bir yıldan fazla'");
 	ElsIf IntervalValueInDays > 31 Then
-		IntervalDetails = NStr("en = 'more than a month';");
+		IntervalDetails = NStr("en = 'more than a month';tr = 'bir aydan fazla'");
 	ElsIf IntervalValueInDays >= 1 Then
 		IntervalDetails = Format(IntervalValueInDays, "NFD=0") + " "
 			+ UsersInternalClientServer.IntegerSubject(IntervalValueInDays,
-				"", NStr("en = 'day,days,,,0';"));
+				"", NStr("en = 'day,days,,,0';tr = 'gün, gün, gün,,,,,,0'"));
 	Else
-		IntervalDetails = NStr("en = 'less than a day';");
+		IntervalDetails = NStr("en = 'less than a day';tr = 'bir günden az'");
 	EndIf;
 	
 	Return IntervalDetails;
@@ -2740,10 +2753,10 @@ Function ReadXMLToTable(Val XML) Export
 	
 	// Read the first node and check it.
 	If Not Read.Read() Then
-		Raise NStr("en = 'The XML file is empty. Data couldn''t be imported.';");
+		Raise NStr("en = 'The XML file is empty. Data couldn''t be imported.';tr = 'XML dosyası boş. Veriler içe aktarılamadı.'");
 	ElsIf Read.Name <> "Items" Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t export data from the XML file. The file is missing a required tag: ""%1"".';"),
+			NStr("en = 'Couldn''t export data from the XML file. The file is missing a required tag: ""%1"".';tr = 'XML dosyasından veriler aktarılamadı. Dosyada gerekli bir etiket eksik: ""%1"".'"),
 			"Items");
 	EndIf;
 	
@@ -2766,7 +2779,7 @@ Function ReadXMLToTable(Val XML) Export
 			Continue;
 		ElsIf Read.Name <> "Item" Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Couldn''t export data from the XML file. The tag ""%1"" is missing a required tag: ""%2"".';"),
+				NStr("en = 'Couldn''t export data from the XML file. The tag ""%1"" is missing a required tag: ""%2"".';tr = 'XML dosyasından veriler aktarılamadı. ""%1"" etiketinde gerekli bir etiket eksik: ""%2"".'"),
 				"Items", "Item");
 		EndIf;
 		
@@ -3108,7 +3121,7 @@ Function TrimStringUsingChecksum(String, MaxLength) Export
 	
 	If MaxLength < 32 Then
 		CommonClientServer.Validate(False, 
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The %1 parameter cannot be less than 32.';"),
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The %1 parameter cannot be less than 32.';tr = '%1 parametresi 32 değerinden küçük olamaz.'"),
 			"MaxLength"), "Common.TrimStringUsingChecksum");
 	EndIf;
 	
@@ -3193,7 +3206,7 @@ Function SubjectString(ReferenceToSubject) Export
 	If ReferenceToSubject <> Undefined Then
 		Return SubjectAsString(CommonClientServer.ValueInArray(ReferenceToSubject))[ReferenceToSubject];
 	Else
-		Return NStr("en = 'not specified';");
+		Return NStr("en = 'not specified';tr = 'belirtilmemiş'");
 	EndIf;
 	
 EndFunction
@@ -3219,11 +3232,11 @@ Function SubjectAsString(Val RefsToSubjects) Export
 	Result = New Map;
 	For Each ReferenceToSubject In RefsToSubjects Do
 		If ReferenceToSubject = Undefined Then
-			Result[ReferenceToSubject] = NStr("en = 'empty';");
+			Result[ReferenceToSubject] = NStr("en = 'empty';tr = 'boş'");
 		ElsIf Not IsReference(TypeOf(ReferenceToSubject)) Then 
 			Result[ReferenceToSubject] = String(ReferenceToSubject);
 		ElsIf ReferenceToSubject.IsEmpty() Then	
-			Result[ReferenceToSubject] = NStr("en = 'empty';");
+			Result[ReferenceToSubject] = NStr("en = 'empty';tr = 'boş'");
 		ElsIf Metadata.Enums.Contains(ReferenceToSubject.Metadata()) Then
 			Result[ReferenceToSubject] = String(ReferenceToSubject);
 		Else
@@ -3324,7 +3337,7 @@ Function RefsPresentations(RefsToCheck) Export
 	EndDo;
 	For Each Ref In RefsToCheck Do
 		If Result[Ref] = Undefined Then
-			Result[Ref] = NStr("en = 'does not exist';");
+			Result[Ref] = NStr("en = 'does not exist';tr = 'mevcut değil'");
 		EndIf;
 	EndDo;
 		
@@ -3409,7 +3422,7 @@ Function COMConnectorID(Val COMConnectorName) Export
 	EndIf;
 	
 	Raise(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". CLSID for class ""%3"" is not specified.';"), 
+		NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". CLSID for class ""%3"" is not specified.';tr = ' ""%2"" fonksiyonunda geçersiz ""%1"" parametresi değeri. ""%3"" sınıfı için CLSID belirtilmedi.'"), 
 		"COMConnectorName", "Common.COMConnectorID", COMConnectorName),
 		ErrorCategory.ConfigurationError);
 	
@@ -3432,7 +3445,7 @@ EndFunction
 Function EstablishExternalConnectionWithInfobase(Parameters) Export
 	
 	ConnectionNotAvailable = IsLinuxServer();
-	BriefErrorDetails = NStr("en = 'Servers on Linux do not support direct infobase connections.';");
+	BriefErrorDetails = NStr("en = 'Servers on Linux do not support direct infobase connections.';tr = 'Linux OS kapsamında bir sunucudaki veritabanına doğrudan bağlantı mevcut değildir.'");
 	
 	Return CommonInternalClientServer.EstablishExternalConnectionWithInfobase(Parameters, ConnectionNotAvailable, BriefErrorDetails);
 	
@@ -4021,7 +4034,7 @@ Function ObjectManagerByFullName(FullName) Export
 	If Manager = Undefined Then
 		CheckMetadataObjectExists(FullName);
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Metadata object ""%3"" is missing an object manager.';"), 
+			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Metadata object ""%3"" is missing an object manager.';tr = '""%2"" fonksiyonunda geçersiz ""%1"" parametresi değeri. Nesne yöneticisinde ""%3"" metaveri nesnesi eksik.'"), 
 			"FullName", "Common.ObjectManagerByFullName", FullName),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -4187,7 +4200,7 @@ Function ObjectKindByType(ObjectType) Export
 	
 	Else
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid data type of parameter ""%1"" in function ""%2"": ""%3"".';"), String(ObjectType)),
+			NStr("en = 'Invalid data type of parameter ""%1"" in function ""%2"": ""%3"".';tr = '""%2"" fonksiyonunda geçersiz ""%1"" parametresi veri türü: ""%3"".'"), String(ObjectType)),
 			"ObjectType", "Common.ObjectKindByType", ErrorCategory.ConfigurationError);
 	EndIf;
 	
@@ -5347,7 +5360,10 @@ Function CreateWSProxy(Val WSProxyConnectionParameters) Export
 				NStr("en = 'Cannot check availability of the web service
 				           |%1.
 				           |Reason:
-				           |%2.';"),
+				           |%2.';tr = '
+				           |%1
+				           | web-hizmetinin erişebilirliği şu sebeple doğrulanamadı:
+				           |%2'"),
 				ConnectionParameters.WSDLAddress,
 				ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 			
@@ -5358,7 +5374,9 @@ Function CreateWSProxy(Val WSProxyConnectionParameters) Export
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = '%1
 					           |Diagnostics result:
-					           |%2';"),
+					           |%2';tr = '%1
+					           |Tanılama sonucu:
+					           |%2'"),
 					ErrorText,
 					DiagnosticsResult.ErrorDescription);
 			EndIf;
@@ -5425,7 +5443,7 @@ Function GetInterfaceVersions(Val Address, Val User, Val Password = Undefined,
 		Or Not ValueIsFilled(ConnectionParameters.URL) Then
 		
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Service URL is not specified.';"), 
+			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Service URL is not specified.';tr = '""%2"" fonksiyonunda geçersiz ""%1"" parametre değeri. Servis URL''si belirtilmedi.'"), 
 			"ConnectionParameters", "Common.GetInterfaceVersions"), ErrorCategory.ConfigurationError);
 	EndIf;
 	
@@ -5462,9 +5480,10 @@ Function GetInterfaceVersionsViaExternalConnection(ExternalConnection, Val Inter
 		XMLInterfaceVersions = ExternalConnection.StandardSubsystemsServer.SupportedVersions(InterfaceName);
 	Except
 		MessageString = NStr("en = 'The peer infobase does not support application interface versioning.
-			|Error details: %1';");
+			|Error details: %1';tr = 'Muhabir yazılım arayüzleri sürümü desteklemiyor.
+			|Hata açıklaması: %1'");
 		MessageString = StringFunctionsClientServer.SubstituteParametersToString(MessageString, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-		WriteLogEvent(NStr("en = 'Getting interface versions';", DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Getting interface versions';tr = 'Arayüz sürümlerini al'", DefaultLanguageCode()),
 			EventLogLevel.Error, , , MessageString);
 		
 		Return New FixedArray(New Array);
@@ -5583,7 +5602,8 @@ Procedure WriteDataToSecureStorage(Owner, Data, Var_Key = "Password") Export
 	CommonClientServer.Validate(ValueIsFilled(Owner),
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
-			           |The parameter must contain a reference. The passed value is %3 (type: %4).';"),
+			           |The parameter must contain a reference. The passed value is %3 (type: %4).';tr = '%2 konumunda geçersiz %1 parametresi değeri.
+			           |Parametre bir referans içermelidir. İletilen değer %3 (tür: %4).'"),
 			"Owner", "Common.WriteDataToSecureStorage", Owner, TypeOf(Owner)));
 			
 	If ValueIsFilled(Var_Key) Then
@@ -5591,7 +5611,8 @@ Procedure WriteDataToSecureStorage(Owner, Data, Var_Key = "Password") Export
 		CommonClientServer.Validate(TypeOf(Var_Key) = Type("String"),
 			StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
-			|The parameter must contain a string. The passed value is %3 (type: %4).';"),
+			|The parameter must contain a string. The passed value is %3 (type: %4).';tr = '%2 konumunda geçersiz %1 parametresi değeri.
+			|Parametre bir dize içermelidir. İletilen değer %3 (tür: %4).'"),
 			"Key", "Common.WriteDataToSecureStorage", Var_Key, TypeOf(Var_Key))); 
 			
 	Else
@@ -5599,7 +5620,8 @@ Procedure WriteDataToSecureStorage(Owner, Data, Var_Key = "Password") Export
 		CommonClientServer.Validate(TypeOf(Data) = Type("Structure"),
 			StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
-			|If Key = Undefined, the parameter must contain a structure. The passed value is %3 (type: %4).';"),
+			|If Key = Undefined, the parameter must contain a structure. The passed value is %3 (type: %4).';tr = '%2 konumunda geçersiz %1 parametresi değeri.
+			|Anahtar = Tanımsız ise parametre bir yapı içermelidir. İletilen değer %3 (tür: %4).'"),
 			"Data", "Common.WriteDataToSecureStorage", Data, TypeOf(Data)));
 		
 	EndIf;
@@ -5700,7 +5722,8 @@ Function ReadOwnersDataFromSecureStorage(Owners, Keys = "Password", SharedData =
 	CommonClientServer.Validate(TypeOf(Owners) = Type("Array"),
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
-			           |The parameter must contain an array. The passed value is %3 (type: %4).';"),
+			           |The parameter must contain an array. The passed value is %3 (type: %4).';tr = '%2 konumunda geçersiz %1 parametresi değeri.
+			           |Parametre bir dizi içermelidir. İletilen değer %3 (tür: %4).'"),
 			"Owners", "Common.ReadDataFromSecureStorage", Owners, TypeOf(Owners)));
 	
 	Result = DataFromSecureStorage(Owners, Keys, SharedData);
@@ -5787,7 +5810,8 @@ Procedure DeleteDataFromSecureStorage(Owner, Keys = Undefined) Export
 	CommonClientServer.Validate(ValueIsFilled(Owner),
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2.
-			           |The parameter must contain a reference. The passed value is %3 (type: %4).';"),
+			           |The parameter must contain a reference. The passed value is %3 (type: %4).';tr = '%2 konumunda geçersiz %1 parametresi değeri.
+			           |Parametre bir referans içermelidir. İletilen değer %3 (tür: %4).'"),
 			"Owner", "Common.DeleteDataFromSecureStorage", Owner, TypeOf(Owner)));
 	
 	If DataSeparationEnabled() And SeparatedDataUsageAvailable() Then
@@ -6024,11 +6048,11 @@ Procedure ExecuteObjectMethod(Val Object, Val MethodName, Val Parameters = Undef
 	Try
 		Test = New Structure(MethodName, MethodName);
 		If Test = Undefined Then 
-			Raise NStr("en = 'Method name validation.';");
+			Raise NStr("en = 'Method name validation.';tr = 'Yöntem adı doğrulama.'");
 		EndIf;
 	Except
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of the %1 parameter in %3: %2.';"), 
+			NStr("en = 'Invalid value of the %1 parameter in %3: %2.';tr = '%3 konumunda geçersiz %1 parametresi değeri: %2.'"), 
 				"MethodName", MethodName, "Common.ExecuteObjectMethod"),
 			ErrorCategory.ConfigurationError);
 	EndTry;
@@ -6322,7 +6346,8 @@ Procedure OnStartExecuteScheduledJob(ScheduledJob = Undefined) Export
 	
 	If InformationRegisters.ApplicationRuntimeParameters.UpdateRequired1() Then
 		Text = NStr("en = 'The app is temporarily unavailable due to a version update.
-			               |It is recommended that you disable scheduled jobs for the duration of the update.';");
+			               |It is recommended that you disable scheduled jobs for the duration of the update.';tr = 'Yeni sürüme yükseltme nedeniyle uygulama geçici olarak kullanılamıyor.
+			               |Güncelleme sırasında planlı işleri devre dışı bırakmanız önerilir.'");
 		ScheduledJobsServer.CancelJobExecution(ScheduledJob, Text);
 		Raise Text;
 	EndIf;
@@ -6332,7 +6357,8 @@ Procedure OnStartExecuteScheduledJob(ScheduledJob = Undefined) Export
 	   And ValueIsFilled(Constants.MasterNode.Get()) Then
 	
 		Text = NStr("en = 'The app is temporarily unavailable until the connection to the master node is restored.
-			               |It is recommended that you disable scheduled jobs until the connection is restored.';");
+			               |It is recommended that you disable scheduled jobs until the connection is restored.';tr = 'Ana düğümle bağlantı sağlanana kadar uygulama geçici olarak kullanılamıyor.
+			               |Ana düğümle bağlantı sağlanana kadar planlı işleri devre dışı bırakmanız önerilir.'");
 		ScheduledJobsServer.CancelJobExecution(ScheduledJob, Text);
 		Raise Text;
 	EndIf;
@@ -6354,7 +6380,9 @@ Procedure OnStartExecuteScheduledJob(ScheduledJob = Undefined) Export
 			EndDo;
 			Text = NStr("en = 'The scheduled job is unavailable due to functional option values
 				               |or is not supported in the current app run mode.
-				               |The scheduled job execution is canceled and the job is disabled.';");
+				               |The scheduled job execution is canceled and the job is disabled.';tr = 'Planlı iş fonksiyonel seçenek değerleri nedeniyle kullanılamıyor 
+				               |veya uygulamanın mevcut çalışma modunda desteklenmiyor.
+				               |Planlı iş iptal edildi ve devre sışı bırakıldı.'");
 			ScheduledJobsServer.CancelJobExecution(ScheduledJob, Text);
 			Raise Text;
 		EndIf;
@@ -6362,7 +6390,8 @@ Procedure OnStartExecuteScheduledJob(ScheduledJob = Undefined) Export
 	
 	If StandardSubsystemsServer.RegionalInfobaseSettingsRequired() Then
 		Text = NStr("en = 'The scheduled job cannot run until the regional settings are configured.
-			                |The scheduled job is aborted.';");
+			                |The scheduled job is aborted.';tr = 'Bölgesel ayarlar yapılandırılana kadar planlı iş yürütülemiyor.
+			                |Planlı iş iptal edildi.'");
 		ScheduledJobsServer.CancelJobExecution(ScheduledJob, Text);
 		Raise Text;
 	EndIf;
@@ -6671,7 +6700,7 @@ Function ObjectByFullName(FullName) Export
 		Name = RowsArray[1];
 	Else
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Invalid name of a report or data processor: ""%3"".';"), 
+			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Invalid name of a report or data processor: ""%3"".';tr = '""%2"" fonksiyonunda ""%1"" parametresinin değeri geçersiz. Geçersiz rapor veya veri işlemcisi adı: ""%3"".'"), 
 			"FullName", "Common.ObjectByFullName", FullName),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -6682,7 +6711,7 @@ Function ObjectByFullName(FullName) Export
 		Return DataProcessors[Name].Create();
 	Else
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". The object is not a report or data processor: ""%3"".';"), 
+			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". The object is not a report or data processor: ""%3"".';tr = '""%2"" fonksiyonunda ""%1"" parametresinin değeri geçersiz. Nesne bir rapor veya veri işlemcisi değil: ""%3"".'"), 
 			"FullName", "Common.ObjectByFullName", FullName),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -6763,7 +6792,7 @@ Function AttachAddInSSLByID(Val Id, Val Location, Val Isolated = Null) Export
 	Except
 		ErrorInfo = ErrorInfo();
 		ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot attach the ""%1"" add-in on the server due to:';"),
+			NStr("en = 'Cannot attach the ""%1"" add-in on the server due to:';tr = 'Sunucuda ""%1"" eklentisi şu nedenle eklenemiyor:'"),
 			Id);
 		
 		Result.ErrorDescription = ErrorTitle + Chars.LF
@@ -6773,7 +6802,7 @@ Function AttachAddInSSLByID(Val Id, Val Location, Val Isolated = Null) Export
 			+ ErrorProcessing.DetailErrorDescription(ErrorInfo)
 			+ SystemInformationForLogging();
 		
-		WriteLogEvent(NStr("en = 'Attaching add-in on the server';", DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Attaching add-in on the server';tr = 'Harici bileşenin sunucuda bağlantı'", DefaultLanguageCode()),
 			EventLogLevel.Error,,, CommentForLog);
 		Return Result;
 	EndTry;
@@ -6788,25 +6817,32 @@ Function AttachAddInSSLByID(Val Id, Val Location, Val Isolated = Null) Export
 					 |%2.
 					 |Technical information:
 					 |%3
-					 |Method ""%4"" returned ""False"".';"), Id, TemplateAddInCompatibilityError, Location,
+					 |Method ""%4"" returned ""False"".';tr = 'Sunucuda ""%1"" eklentisi şu nedenle eklenemiyor:
+					 |%2.
+					 |Teknik bilgiler:
+					 |%3
+					 |""%4"" yöntemi ""False"" değeri verdi.'"), Id, TemplateAddInCompatibilityError, Location,
 				"AttachAddIn");
 		Else
 			Result.ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot attach the ""%1"" add-in on the server.
 					 |Technical information:
 					 |%2
-					 |The method ""%3"" returned ""False"".';"), Id, Location, "AttachAddIn");
+					 |The method ""%3"" returned ""False"".';tr = 'Sunucuda ""%1"" eklentisi eklenemiyor.
+					 |Teknik bilgiler:
+					 |%2
+					 |""%3"" yöntemi ""False"" değeri verdi.'"), Id, Location, "AttachAddIn");
 		EndIf;
 		
 		Try
-			Raise NStr("en = 'Call stack:';")
+			Raise NStr("en = 'Call stack:';tr = 'Çağrı yığını:'")
 		Except
 			CommentForLog = Result.ErrorDescription + Chars.LF + Chars.LF
 				+ ErrorProcessing.DetailErrorDescription(ErrorInfo())
 				+ SystemInformationForLogging();
 		EndTry;
 		
-		WriteLogEvent(NStr("en = 'Attaching add-in on the server';", DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Attaching add-in on the server';tr = 'Harici bileşenin sunucuda bağlantı'", DefaultLanguageCode()),
 			EventLogLevel.Error,,, CommentForLog);
 		Return Result;
 	EndIf;
@@ -6815,7 +6851,7 @@ Function AttachAddInSSLByID(Val Id, Val Location, Val Isolated = Null) Export
 	Try
 		Attachable_Module = New("AddIn." + Id + "SymbolicName" + "." + Id);
 		If Attachable_Module = Undefined Then 
-			Raise NStr("en = 'The New operator returned Undefined.';");
+			Raise NStr("en = 'The New operator returned Undefined.';tr = 'Operatör Yeni iade etti Belirsiz'");
 		EndIf;
 	Except
 		Attachable_Module = Undefined;
@@ -6825,16 +6861,18 @@ Function AttachAddInSSLByID(Val Id, Val Location, Val Isolated = Null) Export
 	If Attachable_Module = Undefined Then
 		Result.ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot create object of the %1 add-in on the server due to:
-			           |%2';"),
+			           |%2';tr = 'Sunucuda bağlı ""%1"" harici bileşen şu sebeple oluşturulamadı:
+			           |%2'"),
 			Id, ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		
 		CommentForLog = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot create an object of the %1 add-in on the server due to:
-			           |%2';"),
+			           |%2';tr = 'Sunucuda %1 eklentisinin nesnesi şu nedenle oluşturulamıyor:
+			           |%2'"),
 			Id, ErrorProcessing.DetailErrorDescription(ErrorInfo)
 				+ SystemInformationForLogging());
 		
-		WriteLogEvent(NStr("en = 'Attaching add-in on the server';", DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Attaching add-in on the server';tr = 'Harici bileşenin sunucuda bağlantı'", DefaultLanguageCode()),
 			EventLogLevel.Error,,, CommentForLog);
 		Return Result;
 	EndIf;
@@ -7113,7 +7151,7 @@ Function CheckIfObjectAttributesExist(FullMetadataObjectName, ExpressionsToCheck
 	If ObjectMetadata = Undefined Then 
 		Return New Structure("Error, ErrorDescription", True, 
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Non-existing metadata object: ""%1"".';"), FullMetadataObjectName));
+				NStr("en = 'Non-existing metadata object: ""%1"".';tr = 'Mevcut olmayan metaveri nesnesi: ""%1"".'"), FullMetadataObjectName));
 	EndIf;
 
 	// Allow a call from the safe mode of an external data processor or extension.
@@ -7132,7 +7170,7 @@ Function CheckIfObjectAttributesExist(FullMetadataObjectName, ExpressionsToCheck
 		
 		If Not QuerySchemaSourceFieldAvailable(Source, CurrentExpression) Then 
 			ErrorText = ErrorText + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%1"" object field does not exist.';"), CurrentExpression);
+				NStr("en = 'The ""%1"" object field does not exist.';tr = '""%1"" nesne alanı mevcut değil.'"), CurrentExpression);
 		EndIf;
 		
 	EndDo;
@@ -7213,7 +7251,7 @@ Function MarkUsageInstances(Val ExecutionParameters, Val Ref, Val DestinationRef
 			// Unknown object for reference replacement.
 			Result.Success = False;
 			Text = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot replace references in ""%1"".';"), Information.FullName);
+				NStr("en = 'Cannot replace references in ""%1"".';tr = 'Referanslar şurada değiştirilemiyor: ""%1"".'"), Information.FullName);
 			ErrorDescription = New Structure("Object, Text", UsageInstance1.Data, Text);
 			Result.MarkupErrors.Add(ErrorDescription);
 		EndIf;
@@ -7306,7 +7344,8 @@ Procedure ReplaceInConstant(Result, Val UsageInstance1, Val WriteParameters)
 			ActionState = "LockError";
 			RefinementErrors = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Failed to make replacement in ""%1"". Another user is editing the data.
-				|Please try again later.';"), 
+				|Please try again later.';tr = 'Şurada değişiklik yapılamadı: ""%1"". Başka bir kullanıcı, verileri düzenliyor.
+				|Daha sonra tekrar deneyin.'"), 
 				DataPresentation);
 			ErrorInfo = ErrorInfo();
 			Refinement = CommonClientServer.ExceptionClarification(ErrorInfo, RefinementErrors);
@@ -7340,7 +7379,7 @@ Procedure ReplaceInConstant(Result, Val UsageInstance1, Val WriteParameters)
 			ActionState = "WritingError";
 			ErrorInfo = ErrorInfo();
 			Refinement = CommonClientServer.ExceptionClarification(ErrorInfo,
-				NStr("en = 'Couldn''t make replacement due to:';"));
+				NStr("en = 'Couldn''t make replacement due to:';tr = 'Değişiklik şu nedenle yapılamadı:'"));
 			Raise(Refinement.Text, Refinement.Category,,, ErrorInfo);
 		EndTry;
 		
@@ -7390,7 +7429,8 @@ Procedure ReplaceInObject(Result, Val UsageInstance1, Val ExecutionParameters)
 			ActionState = "LockError";
 			RefinementErrors = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Failed to make replacement in ""%1"". Another user is editing the data.
-				|Please try again later.';"), 
+				|Please try again later.';tr = 'Şurada değişiklik yapılamadı: ""%1"". Başka bir kullanıcı, verileri düzenliyor.
+				|Daha sonra tekrar deneyin.'"), 
 				DataPresentation);
 			ErrorInfo = ErrorInfo();
 			Refinement = CommonClientServer.ExceptionClarification(ErrorInfo, RefinementErrors);
@@ -7427,7 +7467,7 @@ Procedure ReplaceInObject(Result, Val UsageInstance1, Val ExecutionParameters)
 			ActionState = "WritingError";
 			ErrorInfo = ErrorInfo();
 			Refinement = CommonClientServer.ExceptionClarification(ErrorInfo,
-				NStr("en = 'Couldn''t make replacement due to:';"));
+				NStr("en = 'Couldn''t make replacement due to:';tr = 'Değişiklik şu nedenle yapılamadı:'"));
 			Raise(Refinement.Text, Refinement.Category,,, ErrorInfo);
 		EndTry;
 		
@@ -7508,7 +7548,8 @@ Procedure ReplaceInSet(Result, Val UsageInstance1, Val ExecutionParameters)
 			ActionState = "LockError";
 			RefinementErrors = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Failed to make replacement in ""%1"". Another user is editing the data.
-				|Please try again later.';"), 
+				|Please try again later.';tr = 'Şurada değişiklik yapılamadı: ""%1"". Başka bir kullanıcı, verileri düzenliyor.
+				|Daha sonra tekrar deneyin.'"), 
 				DataPresentation);
 			ErrorInfo = ErrorInfo();
 			Refinement = CommonClientServer.ExceptionClarification(ErrorInfo, RefinementErrors);
@@ -7533,7 +7574,7 @@ Procedure ReplaceInSet(Result, Val UsageInstance1, Val ExecutionParameters)
 			ActionState = "WritingError";
 			ErrorInfo = ErrorInfo();
 			Refinement = CommonClientServer.ExceptionClarification(ErrorInfo,
-				NStr("en = 'Couldn''t make replacement due to:';"));
+				NStr("en = 'Couldn''t make replacement due to:';tr = 'Değişiklik şu nedenle yapılamadı:'"));
 			Raise(Refinement.Text, Refinement.Category,,, ErrorInfo);
 		EndTry;
 		
@@ -7995,7 +8036,7 @@ Function SetDeletionMark(Result, Val RefToDelete, Val AllUsageInstances, Val Exe
 		Success = False;
 		ErrorInfo = ErrorInfo();
 		Refinement = CommonClientServer.ExceptionClarification(ErrorInfo,
-			NStr("en = 'Cannot mark the item for deletion. Reason:';"));
+			NStr("en = 'Cannot mark the item for deletion. Reason:';tr = 'Öğe silinmek üzere şu sebeple işaretlenmedi:'"));
 		Try
 			Raise(Refinement.Text, Refinement.Category,,, ErrorInfo);
 		Except
@@ -8029,7 +8070,7 @@ Procedure AddModifiedObjectReplacementResults(Result, RepeatSearchTable)
 
 		RegisterReplacementError(Result, TableRow.Ref, 
 			ReplacementErrorDescription("DataChanged1", TableRow.Data, SubjectString(TableRow.Data),
-				NStr("en = 'Some of the instances were not replaced. Probably these instances were added or edited by other users.';")));
+				NStr("en = 'Some of the instances were not replaced. Probably these instances were added or edited by other users.';tr = 'Tüm kullanım yerleri değiştirilmedi. Kullanım yerleri eklenmiş veya başka bir kullanıcı tarafından değiştirilmiş olabilir.'")));
 	EndDo;
 	
 EndProcedure
@@ -8577,7 +8618,7 @@ Procedure WriteObject(Val Object, Val WriteParameters)
 		
 		If Object.Parent = Object.Ref Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot write ""%1"" because it cannot be its own parent element.';"),
+				NStr("en = 'Cannot write ""%1"" because it cannot be its own parent element.';tr = '""%1"" kendi üst öğesi olamayacağı için kaydedilemiyor.'"),
 				SubjectString(Object));
 			EndIf;
 			
@@ -8586,7 +8627,7 @@ Procedure WriteObject(Val Object, Val WriteParameters)
 	// Check the owner.
 	If ObjectProperties.Owners.Count() > 1 And Object.Owner = Object.Ref Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot write ""%1"" because it cannot own itself.';"),
+			NStr("en = 'Cannot write ""%1"" because it cannot own itself.';tr = '""%1"" kendine sahip olamayacağı için kaydedilemiyor.'"),
 			SubjectString(Object));
 	EndIf;
 	
@@ -8603,7 +8644,7 @@ EndProcedure
 
 Function RefReplacementEventLogMessageText()
 	
-	Return NStr("en = 'Searching for references and deleting them';", DefaultLanguageCode());
+	Return NStr("en = 'Searching for references and deleting them';tr = 'Referansları ara ve sil'", DefaultLanguageCode());
 	
 EndFunction
 
@@ -8677,23 +8718,23 @@ Procedure RegisterErrorInTable(Result, Duplicate1, Original, Data, Information, 
 	Error.ErrorObjectPresentation = FullDataPresentation;
 	
 	If ErrorType = "LockForRegister" Then
-		NewTemplate = NStr("en = 'Cannot start editing %1: %2';");
+		NewTemplate = NStr("en = 'Cannot start editing %1: %2';tr = 'Düzenleme başlatılamadı %1: %2'");
 		Error.ErrorType = "LockError";
 	ElsIf ErrorType = "DataLockForDuplicateDeletion" Then
-		NewTemplate = NStr("en = 'Cannot start deletion: %2';");
+		NewTemplate = NStr("en = 'Cannot start deletion: %2';tr = 'Silme başlayamadı: %2'");
 		Error.ErrorType = "LockError";
 	ElsIf ErrorType = "DeleteDuplicateSet" Then
-		NewTemplate = NStr("en = 'Cannot clear duplicate''s details in %1: %2';");
+		NewTemplate = NStr("en = 'Cannot clear duplicate''s details in %1: %2';tr = '%1 içindeki kopya bilgisi silinemedi: %2'");
 		Error.ErrorType = "WritingError";
 	ElsIf ErrorType = "WriteOriginalSet" Then
-		NewTemplate = NStr("en = 'Cannot update information in %1: %2';");
+		NewTemplate = NStr("en = 'Cannot update information in %1: %2';tr = '%1 konumunda bilgiler güncellenemiyor: %2'");
 		Error.ErrorType = "WritingError";
 	Else
 		NewTemplate = ErrorType + " (%1): %2";
 		Error.ErrorType = ErrorType;
 	EndIf;
 	
-	NewTemplate = NewTemplate + Chars.LF + Chars.LF + NStr("en = 'See the Event log for details.';");
+	NewTemplate = NewTemplate + Chars.LF + Chars.LF + NStr("en = 'See the Event log for details.';tr = 'Ayrıntılar için kayıt günlüğüne bakın.'");
 	
 	BriefPresentation = ErrorProcessing.BriefErrorDescription(ErrorInfo);
 	Error.ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NewTemplate, FullDataPresentation, BriefPresentation);
@@ -8918,7 +8959,7 @@ Procedure RegisterDeletionErrors(Result, ObjectsPreventingDeletion)
 
 	RefsPresentations = SubjectAsString(ObjectsPreventingDeletion.UnloadColumn("UsageInstance1"));	
 	For Each ObjectsPreventingDeletion In ObjectsPreventingDeletion Do
-		ErrorText = NStr("en = 'An item is not deleted since there are references to it.';");
+		ErrorText = NStr("en = 'An item is not deleted since there are references to it.';tr = 'Öğe, referansları olduğu için silinmedi.'");
 		ErrorDescription = ReplacementErrorDescription("DeletionError", ObjectsPreventingDeletion.UsageInstance1, 
 			RefsPresentations[ObjectsPreventingDeletion.UsageInstance1], ErrorText);
 		RegisterReplacementError(Result, ObjectsPreventingDeletion.ItemToDeleteRef, ErrorDescription);
@@ -9063,45 +9104,45 @@ Function RecordSetDimensionsDetails(Val RegisterMetadata, RegisterDimensionCache
 		
 		If MetaPeriod = Periodicity.RecorderPosition Then
 			DimensionData.Type           = Documents.AllRefsType();
-			DimensionData.Presentation = NStr("en = 'Recorder';");
+			DimensionData.Presentation = NStr("en = 'Recorder';tr = 'Transfer kaydı'");
 			DimensionData.Master       = True;
 			DimensionsDetails.Insert("Recorder", DimensionData);
 			
 		ElsIf MetaPeriod = Periodicity.Year Then
 			DimensionData.Type           = New TypeDescription("Date");
-			DimensionData.Presentation = NStr("en = 'Period';");
-			DimensionData.Format        = NStr("en = 'DF=''yyyy''; DE=''No date''';");
+			DimensionData.Presentation = NStr("en = 'Period';tr = 'Dönem'");
+			DimensionData.Format        = NStr("en = 'DF=''yyyy''; DE=''No date''';tr = 'DF=''yyyy'' ""y""; DE=''Tarih ayarlanmadı'''");
 			DimensionsDetails.Insert("Period", DimensionData);
 			
 		ElsIf MetaPeriod = Periodicity.Day Then
 			DimensionData.Type           = New TypeDescription("Date");
-			DimensionData.Presentation = NStr("en = 'Period';");
-			DimensionData.Format        = NStr("en = 'DLF=D; DE=''No date''';");
+			DimensionData.Presentation = NStr("en = 'Period';tr = 'Dönem'");
+			DimensionData.Format        = NStr("en = 'DLF=D; DE=''No date''';tr = 'DLF=D; DE=''Tarih yok'''");
 			DimensionsDetails.Insert("Period", DimensionData);
 			
 		ElsIf MetaPeriod = Periodicity.Quarter Then
 			DimensionData.Type           = New TypeDescription("Date");
-			DimensionData.Presentation = NStr("en = 'Period';");
-			DimensionData.Format        =  NStr("en = 'DF=''""""Q""""q yyyy''; DE=''No date''';");
+			DimensionData.Presentation = NStr("en = 'Period';tr = 'Dönem'");
+			DimensionData.Format        =  NStr("en = 'DF=''""""Q""""q yyyy''; DE=''No date''';tr = 'DF=''""""Q""""q yyyy''; DE=''Tarih ayarlanmadı'''");
 			DimensionsDetails.Insert("Period", DimensionData);
 			
 		ElsIf MetaPeriod = Periodicity.Month Then
 			DimensionData.Type           = New TypeDescription("Date");
-			DimensionData.Presentation = NStr("en = 'Period';");
-			DimensionData.Format        = NStr("en = 'DF=''MMMM yyyy''; DE=''No date''';");
+			DimensionData.Presentation = NStr("en = 'Period';tr = 'Dönem'");
+			DimensionData.Format        = NStr("en = 'DF=''MMMM yyyy''; DE=''No date''';tr = 'DF = ''MMMM yyyy """"y.""""; DE=''Tarih ayarlanmadı'''");
 			DimensionsDetails.Insert("Period", DimensionData);
 			
 		ElsIf MetaPeriod = Periodicity.Second Then
 			DimensionData.Type           = New TypeDescription("Date");
-			DimensionData.Presentation = NStr("en = 'Period';");
-			DimensionData.Format        = NStr("en = 'DLF=DT; DE=''No date''';");
+			DimensionData.Presentation = NStr("en = 'Period';tr = 'Dönem'");
+			DimensionData.Format        = NStr("en = 'DLF=DT; DE=''No date''';tr = 'DLF=DT; DE=''Tarih yok'''");
 			DimensionsDetails.Insert("Period", DimensionData);
 			
 		EndIf;
 		
 	Else
 		DimensionData.Type           = Documents.AllRefsType();
-		DimensionData.Presentation = NStr("en = 'Recorder';");
+		DimensionData.Presentation = NStr("en = 'Recorder';tr = 'Transfer kaydı'");
 		DimensionData.Master       = True;
 		DimensionsDetails.Insert("Recorder", DimensionData);
 		
@@ -9207,7 +9248,7 @@ Function ServerManagerModule(Name)
 	
 	If Not ObjectFound Then
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Metadata object doesn''t exist: ""%3"".';"), 
+			NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Metadata object doesn''t exist: ""%3"".';tr = '""%2"" fonksiyonunda ""%1"" parametresinin değeri geçersiz. Metaveri nesnesi mevcut değil: ""%3"".'"), 
 			"Name", "Common.ServerManagerModule", Name),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -9251,7 +9292,7 @@ Function ColumnsToCompare(Val RowsCollection, Val ColumnsNames, Val ExcludingCol
 			ColumnsToCompare.Add("Value");
 		Else	
 			Raise(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid value of parameter ""%1"" (of ""%2"" type) in ""%3"". Specify the names of the fields for comparison.';"),
+				NStr("en = 'Invalid value of parameter ""%1"" (of ""%2"" type) in ""%3"". Specify the names of the fields for comparison.';tr = '""%3"" konumunda geçersiz ""%1"" parametresi türü (""%2"" türü). Karşılaştırma için alanların adlarını belirtin.'"),
 				"RowsCollection1", CollectionType, "Common.IdenticalCollections"),
 				ErrorCategory.ConfigurationError);
 		EndIf;
@@ -9464,7 +9505,7 @@ Procedure CheckFixedData(Data, DataInFixedTypeValue = False)
 	EndIf;
 	
 	Raise(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Data of type ""%3"" cannot be immutable.';"),
+		NStr("en = 'Invalid value of parameter ""%1"" in function ""%2"". Data of type ""%3"" cannot be immutable.';tr = '""%2"" fonksiyonunda ""%1"" parametresinin değeri geçersiz. ""%3"" türündeki veriler değiştirilemez olamaz.'"),
 		"Data", "Common.FixedData", String(DataType)),
 		ErrorCategory.ConfigurationError);
 	
@@ -9576,7 +9617,7 @@ Procedure CheckMetadataObjectExists(FullName)
 	
 	If MetadataObjectByFullName(FullName) = Undefined Then 
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Non-existing metadata object type: ""%1"".';"), FullName),
+			NStr("en = 'Non-existing metadata object type: ""%1"".';tr = 'Mevcut olmayan metaveri nesnesi türü: ""%1"".'"), FullName),
 			ErrorCategory.ConfigurationError);
 	EndIf;
 	
@@ -9802,7 +9843,7 @@ Procedure CheckConfigurationProcedureName(Val ProcedureName)
 	NameParts = StrSplit(ProcedureName, ".");
 	If NameParts.Count() <> 2 And NameParts.Count() <> 3 Then
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid format of %1 parameter (passed value: ""%2"") in %3.';"), 
+			NStr("en = 'Invalid format of %1 parameter (passed value: ""%2"") in %3.';tr = '%3 içinde geçersiz %1 parametre biçimi (aktarılan değer: ""%2"").'"), 
 			"ProcedureName", ProcedureName, "Common.ExecuteConfigurationMethod"),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -9811,7 +9852,8 @@ Procedure CheckConfigurationProcedureName(Val ProcedureName)
 	If NameParts.Count() = 2 And Metadata.CommonModules.Find(ObjectName) = Undefined Then
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Incorrect format of parameter %1 (passed value: ""%2"") in %3:
-				|Common module ""%4"" does not exist.';"),
+				|Common module ""%4"" does not exist.';tr = '%3''da geçersiz %1 parametre biçimi (aktarılan değer: ""%2""):
+				|""%4"" ortak modülü mevcut değil.'"),
 			"ProcedureName", ProcedureName, "Common.ExecuteConfigurationMethod", ObjectName),
 			ErrorCategory.ConfigurationError);
 	EndIf;
@@ -9826,7 +9868,8 @@ Procedure CheckConfigurationProcedureName(Val ProcedureName)
 		If Manager = Undefined Then
 			Raise(StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Incorrect format of parameter %1 (passed value: ""%2"") in %3:
-				           |Object manager ""%4"" does not exist.';"),
+				           |Object manager ""%4"" does not exist.';tr = '%3''da geçersiz %1 parametre biçimi (aktarılan değer: ""%2""):
+				           |""%4"" nesne menajeri mevcut değil.'"),
 				"ProcedureName", ProcedureName, "Common.ExecuteConfigurationMethod", FullObjectName),
 				ErrorCategory.ConfigurationError);
 		EndIf;
@@ -9839,11 +9882,12 @@ Procedure CheckConfigurationProcedureName(Val ProcedureName)
 		// For example, "MyProcedure".
 		TempStructure.Insert(ObjectMethodName);
 	Except
-		WriteLogEvent(NStr("en = 'Executing method in safe mode';", DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Executing method in safe mode';tr = 'Yöntem güvenli bir şekilde gerçekleştirildi'", DefaultLanguageCode()),
 			EventLogLevel.Error, , , ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Incorrect format of parameter %1 (passed value: ""%2"") in %3:
-			           |Name of method ""%4"" does not meet the requirements of procedure and function name formation.';"),
+			           |Name of method ""%4"" does not meet the requirements of procedure and function name formation.';tr = '%3''da geçersiz %1 parametre biçimi (aktarılan değer: ""%2""):
+			           |""%4"" yönteminin adı prosedür ve fonksiyon adı oluşturma gereksinimleri ile uyuşmuyor. '"),
 			"ProcedureName", ProcedureName, "Common.ExecuteConfigurationMethod", ObjectMethodName),
 			ErrorCategory.ConfigurationError);
 	EndTry;
@@ -9986,7 +10030,7 @@ Function ObjectManagerByName(Name)
 	EndIf;
 	
 	Raise(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Invalid value of parameter ""%1"" in ""%2"". Manager for object ""%3"" doesn''t exist.';"), Name),
+		NStr("en = 'Invalid value of parameter ""%1"" in ""%2"". Manager for object ""%3"" doesn''t exist.';tr = '""%2"" konumunda ""%1"" parametresinin değeri geçersiz. ""%3"" nesnesi için yönetici yok.'"), Name),
 		"Name", "Common.ObjectManagerByName", ErrorCategory.ConfigurationError);
 	
 EndFunction
@@ -10062,7 +10106,7 @@ Function CallObjectFunction(Val Object, Val MethodName, Val Parameters = Undefin
 		Test.Insert(MethodName, MethodName);
 	Except
 		Raise(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Incorrect value of parameter %1 in %3: %2.';"), 
+			NStr("en = 'Incorrect value of parameter %1 in %3: %2.';tr = '%3 içindeki %1 parametresinin yanlış değeri: %2.'"), 
 			"MethodName", MethodName, "Common.ExecuteObjectMethod"),
 			ErrorCategory.ConfigurationError);
 	EndTry;
@@ -10115,7 +10159,7 @@ Procedure CheckTheLocationOfTheComponent(Id, Location)
 		Return;
 	EndIf;
 	Raise(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'When attaching an add-in ""%2"", non-existent template ""%1"" is specified.';"),
+		NStr("en = 'When attaching an add-in ""%2"", non-existent template ""%1"" is specified.';tr = '""%2"" dış bileşenin bağlanması sırasında belirtilen ""%1"" şablon mevcut değil.'"),
 			Location, Id),
 		ErrorCategory.ConfigurationError);
 	
@@ -10143,7 +10187,11 @@ Function SystemInformationForLogging()
 		           |Type: %2
 		           |OS version: %3
 		           |CPU: %4
-		           |RAM: %5';",
+		           |RAM: %5';tr = '1C:Enterprise: %1
+		           |Tüt: %2
+		           |İS sürümü: %3
+		           |CPU: %4
+		           |RAM: %5'",
 		           DefaultLanguageCode()),
 		SystemInfo.AppVersion,
 		SystemInfo.PlatformType,
@@ -10298,7 +10346,8 @@ Procedure CheckAlgorithm(Val Algorithm)
 	FoundCalls = FoundCalls(Algorithm, InvalidMethods(), "(");
 	If FoundCalls.Count() > 0 Then
 		ErrorText = NStr("en = 'Invalid method calls:
-			|%1';");
+			|%1';tr = 'Geçersiz yöntem çağrıları:
+			|%1'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, StrConcat(FoundCalls, Chars.LF));
 		
 		ErrorsTexts.Add(ErrorText);
@@ -10310,7 +10359,8 @@ Procedure CheckAlgorithm(Val Algorithm)
 	CommonClientServer.SupplementArray(FoundCalls, AlternativeCallsFound, True);
 	If FoundCalls.Count() > 0 Then
 		ErrorText = NStr("en = 'Invalid global context property calls:
-			|%1';");
+			|%1';tr = 'Geçersiz genel bağlam özelliği çağrıları:
+			|%1'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, StrConcat(FoundCalls, Chars.LF));
 		
 		ErrorsTexts.Add(ErrorText);
@@ -10319,7 +10369,8 @@ Procedure CheckAlgorithm(Val Algorithm)
 	FoundCalls = FoundCalls(Algorithm, ProhibitedModules(), ".");
 	If FoundCalls.Count() > 0 Then
 		ErrorText = NStr("en = 'Invalid modules calls:
-			|%1';");
+			|%1';tr = 'Geçersiz modül çağrıları:
+			|%1'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, StrConcat(FoundCalls, Chars.LF));
 		
 		ErrorsTexts.Add(ErrorText);

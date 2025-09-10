@@ -84,7 +84,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 	If AccessRight("Edit", Metadata.InformationRegisters.UserReminders) Then
 		Command = Commands.Add();
 		Command.Kind = "Organizer";
-		Command.Presentation = NStr("en = 'Remind…';");
+		Command.Presentation = NStr("en = 'Remind…';tr = 'Hatırlat...'");
 		Command.FunctionalOptions = "UseUserReminders";
 		Command.Picture = PictureLib.Reminder;
 		Command.ParameterType = Metadata.DefinedTypes.ReminderSubject.Type;
@@ -156,19 +156,19 @@ EndFunction
 Function StandardNotifyIntervals()
 	
 	Result = New Array;
-	Result.Add(NStr("en = '5 minutes';"));
-	Result.Add(NStr("en = '10 minutes';"));
-	Result.Add(NStr("en = '15 minutes';"));
-	Result.Add(NStr("en = '30 minutes';"));
-	Result.Add(NStr("en = '1 hour';"));
-	Result.Add(NStr("en = '2 hours';"));
-	Result.Add(NStr("en = '4 hours';"));
-	Result.Add(NStr("en = '8 hours';"));
-	Result.Add(NStr("en = '1 day';"));
-	Result.Add(NStr("en = '2 days';"));
-	Result.Add(NStr("en = '3 days';"));
-	Result.Add(NStr("en = '1 week';"));
-	Result.Add(NStr("en = '2 weeks';"));
+	Result.Add(NStr("en = '5 minutes';tr = '5 dakika'"));
+	Result.Add(NStr("en = '10 minutes';tr = '10 dakika'"));
+	Result.Add(NStr("en = '15 minutes';tr = '15 dakika'"));
+	Result.Add(NStr("en = '30 minutes';tr = '30 dakika'"));
+	Result.Add(NStr("en = '1 hour';tr = '1 saat'"));
+	Result.Add(NStr("en = '2 hours';tr = '2 saat'"));
+	Result.Add(NStr("en = '4 hours';tr = '4 saat'"));
+	Result.Add(NStr("en = '8 hours';tr = '8 saat'"));
+	Result.Add(NStr("en = '1 day';tr = '1 gün'"));
+	Result.Add(NStr("en = '2 days';tr = '2 gün'"));
+	Result.Add(NStr("en = '3 days';tr = '3 gün'"));
+	Result.Add(NStr("en = '1 week';tr = '1 hafta'"));
+	Result.Add(NStr("en = '2 weeks';tr = '2 hafta'"));
 	
 	Return Result;
 	
@@ -186,7 +186,7 @@ Function StandardSchedulesForReminder()
 	WeekDays = New Array;
 	WeekDays.Add(1);
 	Schedule.WeekDays = WeekDays;
-	Result.Insert(NStr("en = 'on Mondays at 9.00 AM';"), Schedule);
+	Result.Insert(NStr("en = 'on Mondays at 9.00 AM';tr = 'Pazartesi günleri, 09:00'"), Schedule);
 	
 	// On Fridays at 3 p.m.
 	Schedule = New JobSchedule;
@@ -196,14 +196,14 @@ Function StandardSchedulesForReminder()
 	WeekDays = New Array;
 	WeekDays.Add(5);
 	Schedule.WeekDays = WeekDays;
-	Result.Insert(NStr("en = 'on Fridays at 3.00 PM';"), Schedule);
+	Result.Insert(NStr("en = 'on Fridays at 3.00 PM';tr = 'Cuma günleri, 15:00'"), Schedule);
 	
 	// Every day at 9:00 a.m.
 	Schedule = New JobSchedule;
 	Schedule.DaysRepeatPeriod = 1;
 	Schedule.WeeksPeriod = 1;
 	Schedule.BeginTime = '00010101090000';
-	Result.Insert(NStr("en = 'every day at 9:00 AM';"), Schedule);
+	Result.Insert(NStr("en = 'every day at 9:00 AM';tr = 'her gün, 09:00'"), Schedule);
 	
 	Return Result;
 	
@@ -1005,7 +1005,7 @@ Procedure UpdateRemindersList(OnStart)
 				CommitTransaction();
 			Except
 				RollbackTransaction();
-				WriteLogEvent(NStr("en = 'User reminders';", Common.DefaultLanguageCode()),
+				WriteLogEvent(NStr("en = 'User reminders';tr = 'Kullanıcı hatırlatıcıları'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error, Metadata.InformationRegisters.UserReminders, , ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			EndTry;
 		EndIf;
@@ -1142,17 +1142,17 @@ Procedure OnCreateAtServer(Form, PlacementParameters) Export
 		AttributesToBeAdded.Add(New FormAttribute(NameOfReminderSettingsField, New TypeDescription));
 			
 		AttributesToBeAdded.Add(New FormAttribute(FieldNameRemindAboutEvent,
-			New TypeDescription("Boolean"), , NStr("en = 'Remind';"), True));
+			New TypeDescription("Boolean"), , NStr("en = 'Remind';tr = 'Hatırlat'"), True));
 			
 		AttributesToBeAdded.Add(New FormAttribute(FieldNameReminderTimeInterval,
-			New TypeDescription("String"), ,  NStr("en = 'Reminder interval';"), True));
+			New TypeDescription("String"), ,  NStr("en = 'Reminder interval';tr = 'Hatırlatıcı aralığı'"), True));
 		
 		Form.ChangeAttributes(AttributesToBeAdded);
 		
 		Group = Form.Items.Add(NameOfItemGroup, Type("FormGroup"), PlacementParameters.Group);
 		Group.Type = FormGroupType.UsualGroup;
 		Group.ShowTitle = False;
-		Group.Title = NStr("en = 'Set up reminder';");
+		Group.Title = NStr("en = 'Set up reminder';tr = 'Hatırlatıcı kur'");
 		Group.Representation = UsualGroupRepresentation.None;
 		
 		If SettingsOfReminder.ShouldAddFlag Then
@@ -1160,17 +1160,17 @@ Procedure OnCreateAtServer(Form, PlacementParameters) Export
 			CheckBox.DataPath = FieldNameRemindAboutEvent;
 			CheckBox.Type = FormFieldType.CheckBoxField;
 			CheckBox.TitleLocation = FormItemTitleLocation.Right;
-			CheckBox.Title = NStr("en = 'Remind:';");
+			CheckBox.Title = NStr("en = 'Remind:';tr = 'Hatırlat:'");
 		EndIf;
 		
 		InputField = Form.Items.Add(FieldNameReminderTimeInterval, Type("FormField"), Group);
 		InputField.DataPath = FieldNameReminderTimeInterval;
 		InputField.Type = FormFieldType.InputField;
-		InputField.ToolTip = NStr("en = 'Time interval to remind about the event';");
+		InputField.ToolTip = NStr("en = 'Time interval to remind about the event';tr = 'Olayın hatırlatılacağı zaman aralığı'");
 		If SettingsOfReminder.ShouldAddFlag Then
 			InputField.TitleLocation = FormItemTitleLocation.None;
 		Else
-			InputField.Title = NStr("en = 'Remind';");
+			InputField.Title = NStr("en = 'Remind';tr = 'Hatırlat'");
 		EndIf;
 		InputField.SetAction("OnChange", "Attachable_OnChangeReminderSettings");
 		InputField.EditTextUpdate = EditTextUpdate.OnValueChange;
@@ -1193,7 +1193,7 @@ Procedure OnCreateAtServer(Form, PlacementParameters) Export
 			EndIf;
 
 			InputField.ChoiceList.Add(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 before';"), Interval));
+				NStr("en = '%1 before';tr = '%1 önce'"), Interval));
 		EndDo;
 		
 		If SettingsOfReminder.ReminderInterval = Undefined Then
@@ -1205,7 +1205,7 @@ Procedure OnCreateAtServer(Form, PlacementParameters) Export
 				Form[FieldNameReminderTimeInterval] = UserRemindersClientServer.EnumPresentationOnOccurrence();
 			Else
 				Form[FieldNameReminderTimeInterval] = StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = '%1 before';"), TimePresentation(SettingsOfReminder.ReminderInterval, , False));
+						NStr("en = '%1 before';tr = '%1 önce'"), TimePresentation(SettingsOfReminder.ReminderInterval, , False));
 			EndIf;
 		Else
 			Form[FieldNameReminderTimeInterval] = UserRemindersClientServer.EnumPresentationDoNotRemind();

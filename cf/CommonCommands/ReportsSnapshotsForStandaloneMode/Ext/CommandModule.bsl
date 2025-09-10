@@ -17,7 +17,7 @@ Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	OpenForm("InformationRegister.ReportsSnapshots.Form.ReportViewForm");
 #Else
 	CommonClient.MessageToUser(NStr(
-			"en = 'This command is used in the mobile client.';"));
+			"en = 'This command is used in the mobile client.';tr = 'Bu komut mobil istemcide kullanılıyor.'"));
 #EndIf
 
 EndProcedure

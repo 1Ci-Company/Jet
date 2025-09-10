@@ -44,11 +44,11 @@ Function FileBinaryData(Val AttachedFile, Val RaiseException1 = True) Export
 	
 	CommonClientServer.Validate(FileObject1 <> Undefined, 
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter %1';"), "AttachedFile"),
+			NStr("en = 'Invalid value of parameter %1';tr = '%1 parametre değeri geçersiz'"), "AttachedFile"),
 		"FilesOperations.FileBinaryData");
 	CommonClientServer.Validate(Not FileObject1.IsFolder, 
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid value of parameter %1 (file folder: ""%2"")';"),
+			NStr("en = 'Invalid value of parameter %1 (file folder: ""%2"")';tr = '%1 parametre değeri geçersiz (""%2"" dosya klasörü)'"),
 			"AttachedFile", Common.SubjectString(AttachedFile)),
 		"FilesOperations.FileBinaryData");
 	
@@ -109,7 +109,7 @@ Function BinaryFilesData(Val AttachedFiles, Val RaiseException1 = True) Export
 	FileType = TypeOf(AttachedFiles[0]);
 	For IndexOf = 1 To AttachedFiles.Count() - 1 Do
 		If TypeOf(AttachedFiles[IndexOf]) <> FileType Then
-			Raise NStr("en = 'All attachments must be of the same type.';");
+			Raise NStr("en = 'All attachments must be of the same type.';tr = 'Tüm ekler aynı türde olmalıdır.'");
 		EndIf;
 	EndDo;
 	
@@ -371,7 +371,7 @@ Function FileData(Val AttachedFile, Val AdditionalParameters = Undefined,
 	FileObject1 = AttachedFile.GetObject();
 	If RaiseException1 Then
 		CommonClientServer.Validate(FileObject1 <> Undefined, 
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Attachment ""%1"" (%2) not found';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Attachment ""%1"" (%2) not found';tr = 'Ekli dosya ""%1"" bulunamadı (%2)'"),
 			String(AttachedFile), AttachedFile.Metadata()));
 	ElsIf FileObject1 = Undefined Then
 		Return Undefined;
@@ -539,8 +539,8 @@ EndProcedure
 //
 Function FilesObjectFormNameByOwner(Val FilesOwner) Export
 	
-	ErrorTitle = NStr("en = 'Error getting the form name of the attachment.';");
-	ErrorEnd = NStr("en = 'Cannot get the form.';");
+	ErrorTitle = NStr("en = 'Error getting the form name of the attachment.';tr = 'Ekli dosyanın form adı alınırken hata oluştu.'");
+	ErrorEnd = NStr("en = 'Cannot get the form.';tr = 'Bu durumda, form alınamaz.'");
 	
 	CatalogName = FilesOperationsInternal.FileStoringCatalogName(
 		FilesOwner, "", ErrorTitle, ErrorEnd);
@@ -601,7 +601,7 @@ EndFunction
 Function AddFileFromHardDrive(FilesOwner, FilePathOnHardDrive) Export
 	
 	If Not ValueIsFilled(FilesOwner) Then
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The %1 parameter value is not set in %2.';"), 
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The %1 parameter value is not set in %2.';tr = '%2''da %1 parametre değeri ayarlanmadı.'"), 
 			"FilesOwner","FilesOperations.AddFileFromHardDrive");
 	EndIf;
 	
@@ -744,7 +744,7 @@ Function AppendFile(FileParameters,
 	
 	If Not ValueIsFilled(FilesOwner) Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The %1 parameter value is not set in %2.';"), "FileParameters.FilesOwner", "FilesOperations.AppendFile");
+			NStr("en = 'The %1 parameter value is not set in %2.';tr = '%2''da %1 parametre değeri ayarlanmadı.'"), "FileParameters.FilesOwner", "FilesOperations.AppendFile");
 	EndIf;
 	
 	BinaryData = GetFromTempStorage(FileAddressInTempStorage); // BinaryData
@@ -783,12 +783,12 @@ Function AppendFile(FileParameters,
 		ModificationTimeUniversal = CurrentUniversalDate();
 	EndIf;
 	
-	ErrorTitle = NStr("en = 'Error adding attachment.';");
+	ErrorTitle = NStr("en = 'Error adding attachment.';tr = 'Ekli dosya eklenemedi.'");
 	
 	If NewRefToFile = Undefined Then
 		CatalogName = FilesOperationsInternal.FileStoringCatalogName(FilesOwner, "", ErrorTitle,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'In this case, parameter ""%1"" is required.';"), "NewRefToFile"));
+				NStr("en = 'In this case, parameter ""%1"" is required.';tr = 'Bu durumda, ""%1"" parametresi belirtilmelidir.'"), "NewRefToFile"));
 		
 		NewRefToFile = Catalogs[CatalogName].GetRef();
 	Else
@@ -797,7 +797,8 @@ Function AppendFile(FileParameters,
 			Or Not ValueIsFilled(NewRefToFile) Then
 			
 			Raise NStr("en = 'Error adding attachment.
-				|A reference to the new file is required.';");
+				|A reference to the new file is required.';tr = 'Ekli dosya eklenirken hata oluştu.
+				|Yeni dosyaya referans gerekli.'");
 		EndIf;
 		
 		CatalogName = FilesOperationsInternal.FileStoringCatalogName(
@@ -901,14 +902,15 @@ Function AppendFile(FileParameters,
 		ErrorInfo = ErrorInfo();
 		
 		MessageTemplate = NStr("en = 'Error adding attachment ""%1"":
-			|%2';");
+			|%2';tr = '""%1"" ekli dosyası eklenirken hata oluştu:
+			|%2'");
 		EventLogComment = StringFunctionsClientServer.SubstituteParametersToString(
 			MessageTemplate,
 			BaseName + "." + ExtensionWithoutPoint,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		
 		WriteLogEvent(
-			NStr("en = 'Files.Add attachment';",
+			NStr("en = 'Files.Add attachment';tr = 'Dosyalar.Ekli dosya ekle'",
 			Common.DefaultLanguageCode()),
 			EventLogLevel.Error,
 			,
@@ -1111,7 +1113,7 @@ Function MoveFilesBetweenStorageCatalogs(Val FilesOwner, Val Source = Undefined,
 	
 	If Not ValueIsFilled(FilesOwner) Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The %1 parameter value is not set in %2.';"), 
+			NStr("en = 'The %1 parameter value is not set in %2.';tr = '%2''da %1 parametre değeri ayarlanmadı.'"), 
 			"FilesOwner","FilesOperations.ConvertFilesToAttachedFiles");
 	EndIf;
 	
@@ -1128,12 +1130,12 @@ Function MoveFilesBetweenStorageCatalogs(Val FilesOwner, Val Source = Undefined,
 		EndDo;
 	EndIf;
 
-	ErrorTitle = NStr("en = 'Error converting attachments.';");
+	ErrorTitle = NStr("en = 'Error converting attachments.';tr = 'Ekli dosyalar dönüştürülürken hata oluştu.'");
 	
 	If Source = Receiver Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			ErrorTitle + Chars.LF
-			+ NStr("en = 'Destination catalog is same as source catalog (%1).';"),
+			+ NStr("en = 'Destination catalog is same as source catalog (%1).';tr = 'Hedef katalog kaynak katalog ile aynı (%1).'"),
 			Source);
 	EndIf;
 	
@@ -1448,7 +1450,7 @@ Procedure OnCreateAtServer(Form, ItemsToAdd1 = Undefined, SettingsOfFileManageme
 		
 		ItemNumber = Format(IndexOf, "NZ=0; NG=");
 		GroupName = "AttachedFilesManagementGroup" + ItemNumber;
-		GroupTitle = NStr("en = 'Attachment management';") + " "+ ItemNumber;
+		GroupTitle = NStr("en = 'Attachment management';tr = 'Ekli dosya yönetimi'") + " "+ ItemNumber;
 		
 		FormItemParameters = New Structure;
 		FormItemParameters.Insert("GroupName",          GroupName);
@@ -1514,7 +1516,7 @@ Function FilesHyperlink() Export
 	HyperlinkParameters = New Structure;
 	HyperlinkParameters.Insert("Owner",                  "Object.Ref");
 	HyperlinkParameters.Insert("Location",                "AttachedFilesManagement");
-	HyperlinkParameters.Insert("Title",                 NStr("en = 'Attachments';"));
+	HyperlinkParameters.Insert("Title",                 NStr("en = 'Attachments';tr = 'Dosyalar'"));
 	HyperlinkParameters.Insert("DisplayTitleRight", True);
 	HyperlinkParameters.Insert("DisplayCount",      True);
 	HyperlinkParameters.Insert("AddFiles2",            True);
@@ -1596,7 +1598,7 @@ Function FileField() Export
 	FieldParameters.Insert("PathToPictureData",    Undefined);
 	FieldParameters.Insert("OneFileOnly",            False);
 	FieldParameters.Insert("ShowPreview",    True);
-	FieldParameters.Insert("NonselectedPictureText",  NStr("en = 'Add image';"));
+	FieldParameters.Insert("NonselectedPictureText",  NStr("en = 'Add image';tr = 'Resim ekle'"));
 	FieldParameters.Insert("Title",                 "");
 	FieldParameters.Insert("OutputFileTitle",    False);
 	FieldParameters.Insert("ShowCommandBar", True);
@@ -1607,7 +1609,7 @@ Function FileField() Export
 	FieldParameters.Insert("ClearFile",               True);
 	FieldParameters.Insert("MaximumSize",        0);
 	FieldParameters.Insert("SelectionDialogFilter", 
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask()));
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask()));
 	
 	Return FieldParameters;
 	
@@ -1900,10 +1902,10 @@ Procedure ChangeFilesStoragecatalog(Val FilesOwner, CatalogName = Undefined) Exp
 	
 	If Not ValueIsFilled(FilesOwner) Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The %1 parameter value is not set in %2.';"), "FilesOwner","FilesOperations.ChangeFilesStoragecatalog");
+			NStr("en = 'The %1 parameter value is not set in %2.';tr = '%2''da %1 parametre değeri ayarlanmadı.'"), "FilesOwner","FilesOperations.ChangeFilesStoragecatalog");
 	EndIf;
 	
-	ErrorTitle = NStr("en = 'Error converting attachments.';");
+	ErrorTitle = NStr("en = 'Error converting attachments.';tr = 'Ekli dosyalar dönüştürülürken hata oluştu.'");
 	CatalogName = FilesOperationsInternal.FileStoringCatalogName(
 		FilesOwner, CatalogName, ErrorTitle);
 	
@@ -2204,7 +2206,7 @@ Procedure MarkToDeleteAttachedFiles(Val Source, CatalogName = Undefined)
 	Try
 		CatalogNames = FilesOperationsInternal.FileStorageCatalogNames(TypeOf(Source.Ref));
 	Except
-		Raise NStr("en = 'Error marking attachments for deletion.';")
+		Raise NStr("en = 'Error marking attachments for deletion.';tr = 'Eklenen dosyalar silme için işaretlenirken bir hata oluştu.'")
 			+ Chars.LF + ErrorProcessing.BriefErrorDescription(ErrorInfo());
 	EndTry;
 	
@@ -2237,7 +2239,8 @@ Procedure MarkToDeleteAttachedFiles(Val Source, CatalogName = Undefined)
 		If Source.DeletionMark And ValueIsFilled(Selection.BeingEditedBy) Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot delete ""%1""
-				           |as it contains the ""%2"" attachment locked for editing.';"),
+				           |as it contains the ""%2"" attachment locked for editing.';tr = '""%1"", düzenlemeye karşı kilitlenmiş 
+				           |""%2"" ekli dosyasını içerdiğinden silinemiyor.'"),
 				Common.SubjectString(Source.Ref),
 				String(Selection.Ref));
 		EndIf;
@@ -2367,7 +2370,7 @@ Procedure ExecuteActionsBeforeWriteAttachedFile(Source, Cancel) Export
 		// Check the Add right.
 		If Not FilesOperationsInternal.HasRight("AddFilesAllowed", Source.FileOwner) Then
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Insufficient rights to add files to folder ""%1.""';"),
+				NStr("en = 'Insufficient rights to add files to folder ""%1.""';tr = '""%1"" Klasörüne dosya eklemek için yeterli yetkiler yok.'"),
 				String(Source.FileOwner));
 			Raise(MessageText, ErrorCategory.AccessViolation);
 		EndIf;
@@ -2385,7 +2388,7 @@ Procedure ExecuteActionsBeforeWriteAttachedFile(Source, Cancel) Export
 		If DeletionMarkChanged Then
 			If Not FilesOperationsInternal.HasRight("FilesDeletionMark", Source.FileOwner) Then
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Insufficient rights to mark files in folder ""%1"" for deletion.';"),
+					NStr("en = 'Insufficient rights to mark files in folder ""%1"" for deletion.';tr = '""%1"" klasöründe silinecek dosyaları işaretlemek için yeterli yetki yok.'"),
 					String(Source.FileOwner));
 				Raise(MessageText, ErrorCategory.AccessViolation);
 			EndIf;
@@ -2395,12 +2398,13 @@ Procedure ExecuteActionsBeforeWriteAttachedFile(Source, Cancel) Export
 				
 			If Source.BeingEditedBy = Users.AuthorizedUser() Then
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot perform the operation because file ""%1"" file is locked for editing.';"),
+					NStr("en = 'Cannot perform the operation because file ""%1"" file is locked for editing.';tr = 'Dosya ""%1"" düzenleme için kilitlendiğinden işlem yapılamıyor.'"),
 					Source.Description);
 			Else
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot perform the operation because user %2
-						|is editing file ""%1"".';"),
+						|is editing file ""%1"".';tr = '""%1"" dosyası 
+						|%2 kullanıcısı tarafından düzenlendiği için işlem yapılamıyor.'"),
 					Source.Description, String(Source.BeingEditedBy));
 			EndIf;
 			Raise MessageText;
@@ -2423,11 +2427,11 @@ Procedure ExecuteActionsBeforeWriteAttachedFile(Source, Cancel) Export
 			Locked3 = ValueIsFilled(Source.BeingEditedBy);
 			
 			If Not Source.IsFolder And Source.SignedWithDS And RefSigned And Locked3 And Not RefLocked Then
-				Raise NStr("en = 'Cannot edit the file because it has been signed.';");
+				Raise NStr("en = 'Cannot edit the file because it has been signed.';tr = 'İmzalı dosya düzenlenemez.'");
 			EndIf;
 			
 			If Not Source.IsFolder And Source.Encrypted And RefEncrypted And Source.SignedWithDS And Not RefSigned Then
-				Raise NStr("en = 'Cannot sign an encrypted file.';");
+				Raise NStr("en = 'Cannot sign an encrypted file.';tr = 'Şifrelenmiş dosya imzalanamaz.'");
 			EndIf;
 			
 		EndIf;
@@ -2471,10 +2475,11 @@ Procedure ExecuteActionsBeforeWriteAttachedFile(Source, Cancel) Export
 	If Not ValueIsFilled(Source.FileOwner) Then
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The owner of file
-			|""%1"" is blank.';"), Source.Description);
+			|""%1"" is blank.';tr = '
+			|Dosya oluşturan bilgisi doldurulmamıştır ""%1"".'"), Source.Description);
 		
 		If InfobaseUpdate.InfobaseUpdateInProgress() Then
-			WriteLogEvent(NStr("en = 'Files.Error writing file during infobase update';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Files.Error writing file during infobase update';tr = 'Dosyalar. Infobase güncellenirken dosya kayıt hatası oluştu'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,, Source.Ref, ErrorDescription);
 		Else
 			Raise ErrorDescription;
@@ -2601,7 +2606,7 @@ Procedure CheckIfTheFileAuthorHasChanged(Val FormerValue, Val Source)
 	
 	ChangedTheAuthorOf = Source.Author <> FormerValue.Author;
 	If ChangedTheAuthorOf Then
-		Raise(NStr("en = 'Insufficient rights to change the file author.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to change the file author.';tr = 'Dosyayı oluşturanı değiştirmek için yetersiz yetki.'"), ErrorCategory.AccessViolation);
 	EndIf;
 	
 	If TypeOf(Source) = Type("CatalogObject.FilesVersions") Then
@@ -2612,13 +2617,13 @@ Procedure CheckIfTheFileAuthorHasChanged(Val FormerValue, Val Source)
 	If Source.BeingEditedBy <> FormerValue.BeingEditedBy
 		And (InvalidAuthor(Source.BeingEditedBy, CurrentUser) 
 			Or InvalidAuthor(FormerValue.BeingEditedBy, CurrentUser)) Then
-		Raise(NStr("en = 'Insufficient rights to edit the file.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to edit the file.';tr = 'Dosyayı düzenlemek için yetersiz yetki.'"), ErrorCategory.AccessViolation);
 	EndIf;
 	
 	If Source.ChangedBy <> FormerValue.ChangedBy
 		And (InvalidAuthor(Source.ChangedBy, CurrentUser) 
 			Or InvalidAuthor(FormerValue.ChangedBy, CurrentUser)) Then
-		Raise(NStr("en = 'Insufficient rights to edit the file.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to edit the file.';tr = 'Dosyayı düzenlemek için yetersiz yetki.'"), ErrorCategory.AccessViolation);
 	EndIf;
 
 EndProcedure
@@ -2689,13 +2694,13 @@ Procedure CreateFilesHyperlink(Form, ItemToAdd, AttachedFilesOwner, HyperlinkPar
 		
 		SubmenuAdd.Type         = FormGroupType.Popup;
 		SubmenuAdd.Picture    = PictureLib.Clip;
-		SubmenuAdd.Title   = NStr("en = 'Attach files';");
-		SubmenuAdd.ToolTip   = NStr("en = 'Attach files';");
+		SubmenuAdd.Title   = NStr("en = 'Attach files';tr = 'Dosya ekle'");
+		SubmenuAdd.ToolTip   = NStr("en = 'Attach files';tr = 'Dosya ekle'");
 		SubmenuAdd.Representation = ButtonRepresentation.Picture;
 		
 		ImportFile_           = Form.Commands.Add(CommandPrefix + ImportFileCommandName + "_" + ItemNumber);
 		ImportFile_.Action  = "Attachable_AttachedFilesPanelCommand";
-		CommandTitle = NStr("en = 'Upload local file';");
+		CommandTitle = NStr("en = 'Upload local file';tr = 'Yerel dosya yükle'");
 		ImportFile_.ToolTip = CommandTitle;
 		ImportFile_.Title = CommandTitle + "...";
 		
@@ -2714,13 +2719,13 @@ Procedure CreateFilesHyperlink(Form, ItemToAdd, AttachedFilesOwner, HyperlinkPar
 		LoadButtonFromSubmenu.Representation = ButtonRepresentation.Text;
 		
 		CreateByTemplate = Form.Commands.Add(CommandPrefix + CreateFromTemplateCommandName + "_" + ItemNumber);
-		CreateByTemplate.Title = NStr("en = 'Create from template…';");
+		CreateByTemplate.Title = NStr("en = 'Create from template…';tr = 'Şablondan oluştur...'");
 		FillPropertyValues(CreateByTemplate, FormCommandProperties);
 		
 		AddButtonOnForm(Form, CreateFromTemplateCommandName + ItemNumber, SubmenuAdd, CreateByTemplate.Name);
 		
 		Scan = Form.Commands.Add(CommandPrefix + ScanCommandName + "_" + ItemNumber);
-		Scan.Title = NStr("en = 'Scan…';");
+		Scan.Title = NStr("en = 'Scan…';tr = 'Tara...'");
 		FillPropertyValues(Scan, FormCommandProperties);
 		
 		AddButtonOnForm(Form, ScanCommandName + ItemNumber, SubmenuAdd, Scan.Name);
@@ -2771,12 +2776,12 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 	FormCommandPropertiesPicture.Insert("Representation", ButtonRepresentation.Picture);
 	
 	LoadButtonProperties = New Structure;
-	LoadButtonProperties.Insert("Title",            NStr("en = 'Upload…';"));
+	LoadButtonProperties.Insert("Title",            NStr("en = 'Upload…';tr = 'Karşıya yükle...'"));
 	LoadButtonProperties.Insert("Representation",          ButtonRepresentation.Text);
 	LoadButtonProperties.Insert("ToolTipRepresentation", ToolTipRepresentation.None);
 	
 	SelectionButtonProperties = New Structure;
-	SelectionButtonProperties.Insert("Title",            NStr("en = 'Select from attachments…';"));
+	SelectionButtonProperties.Insert("Title",            NStr("en = 'Select from attachments…';tr = 'Ekli dosyalardan seç...'"));
 	SelectionButtonProperties.Insert("Representation",          ButtonRepresentation.Text);
 	SelectionButtonProperties.Insert("ToolTipRepresentation", ToolTipRepresentation.None);
 	
@@ -2821,7 +2826,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 	
 	HeaderGroup = Form.Items.Add("AttachedFilesManagementGroupHeader" + ItemNumber,
 		Type("FormGroup"), PlacementOnFormGroup); // FormGroup
-	HeaderGroup.Title = NStr("en = 'Attachment management';") + " " + ItemNumber;
+	HeaderGroup.Title = NStr("en = 'Attachment management';tr = 'Ekli dosya yönetimi'") + " " + ItemNumber;
 	
 	FillPropertyValues(HeaderGroup, GroupPropertiesWithoutDisplay);
 	HeaderGroup.Group = ChildFormItemsGroup.AlwaysHorizontal;
@@ -2831,7 +2836,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		PreviewItem = Form.Items.Add("AttachedFilePictureField" + ItemNumber,
 			Type("FormField"), PlacementOnFormGroup); // FormFieldExtensionForInputField
 		
-		PreviewItem.Title                  = NStr("en = 'Attachment picture';") + " " + ItemNumber;
+		PreviewItem.Title                  = NStr("en = 'Attachment picture';tr = 'Ekli dosya resmi'") + " " + ItemNumber;
 		PreviewItem.Type                        = FormFieldType.PictureField;
 		PreviewItem.TextColor                 = StyleColors.NotSelectedPictureTextColor;
 		PreviewItem.DataPath                = ItemToAdd.PathToPictureData;
@@ -2851,7 +2856,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		ContextMenuAddGroup = Form.Items.Add("FileAddingGroupContextMenu" + ItemNumber,
 			Type("FormGroup"), PreviewContextMenu); // FormGroup
-		ContextMenuAddGroup.Title = NStr("en = 'Context menu ""Add file""';") + " " + ItemNumber;
+		ContextMenuAddGroup.Title = NStr("en = 'Context menu ""Add file""';tr = 'İçerik menüsü ""Dosya ekle""'") + " " + ItemNumber;
 		ContextMenuAddGroup.Type = FormGroupType.ButtonGroup;
 		
 		If ValueIsFilled(PlacementAttribute)
@@ -2870,7 +2875,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 				BinaryDataValue = GetFromTempStorage(RefToBinaryData);
 				If BinaryDataValue = Undefined Then
 					PreviewItem.TextColor = StyleColors.ErrorNoteText;
-					PreviewItem.NonselectedPictureText = NStr("en = 'No image';");
+					PreviewItem.NonselectedPictureText = NStr("en = 'No image';tr = 'Görsel yok'");
 				EndIf;
 				
 			EndIf;
@@ -2910,9 +2915,9 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		TitleHyperlink.AutoMaxWidth = False;
 		If Not ValueIsFilled(PlacementAttribute) Then
 			FileTitle.ToolTip       = "";
-			TitleHyperlink.Title = NStr("en = 'upload';");
+			TitleHyperlink.Title = NStr("en = 'upload';tr = 'karşıya yükle'");
 		ElsIf Common.IsReference(TypeOf(PlacementAttribute)) Then
-			FileTitle.ToolTip       = NStr("en = 'Open file';");
+			FileTitle.ToolTip       = NStr("en = 'Open file';tr = 'Dosyayı aç'");
 			AttachedFileAttributes  = Common.ObjectAttributesValues(PlacementAttribute, "Description, Extension");
 			TitleHyperlink.Title = AttachedFileAttributes.Description
 				+ ?(StrStartsWith(AttachedFileAttributes.Extension, "."), "", ".")
@@ -2938,7 +2943,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 			Form.Items.Move(GroupCommandBar, HeaderGroup);
 			SuppliedItemsGroup = Form.Items.Add("AttachmentsManagement1CSuppliedCommandsGroup" + ItemNumber,
 				Type("FormGroup"), GroupCommandBar); // FormGroup
-			SuppliedItemsGroup.Title = NStr("en = 'Attachment management command';") 
+			SuppliedItemsGroup.Title = NStr("en = 'Attachment management command';tr = 'Ekli dosya yönetim komutu'") 
 				+ " " + ItemNumber;
 			SuppliedItemsGroup.Type = FormGroupType.ButtonGroup;
 			For Each SuppliedItem In GroupCommandBar.ChildItems Do
@@ -2951,12 +2956,12 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		SubmenuAdd.Type         = FormGroupType.Popup;
 		SubmenuAdd.Picture    = PictureAdd1;
-		SubmenuAdd.Title   = NStr("en = 'Overwrite';");
+		SubmenuAdd.Title   = NStr("en = 'Overwrite';tr = 'Üzerine yaz'");
 		SubmenuAdd.Representation = ButtonRepresentation.Picture;
 		
 		SubmenuGroup = Form.Items.Add("FileAddingGroup" + ItemNumber,
 			Type("FormGroup"), SubmenuAdd); // FormGroup
-		ContextMenuAddGroup.Title = NStr("en = 'Add files';") + " " + ItemNumber;
+		ContextMenuAddGroup.Title = NStr("en = 'Add files';tr = 'Dosya ekle'") + " " + ItemNumber;
 		SubmenuGroup.Type = FormGroupType.ButtonGroup;
 		
 	EndIf;
@@ -2969,7 +2974,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		ImportFile_ = Form.Commands.Add(CommandNameWithPrefix + "_" + OneFileOnlyText + ItemNumber);
 		ImportFile_.Action  = "Attachable_AttachedFilesPanelCommand";
-		ImportFile_.ToolTip = NStr("en = 'Upload local file';");
+		ImportFile_.ToolTip = NStr("en = 'Upload local file';tr = 'Yerel dosya yükle'");
 		
 		If ItemToAdd.ShowCommandBar Then
 			
@@ -3003,7 +3008,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 			CommandNameWithPrefix = CommandPrefix + FilesOperationsClientServer.CreateFromTemplateCommandName();
 			
 			CreateByTemplate = Form.Commands.Add(CommandNameWithPrefix + "_" + ItemNumber);
-			CreateByTemplate.Title = NStr("en = 'Create from template…';");
+			CreateByTemplate.Title = NStr("en = 'Create from template…';tr = 'Şablondan oluştur...'");
 			FillPropertyValues(CreateByTemplate, FormCommandProperties);
 		
 			If ItemToAdd.ShowCommandBar Then
@@ -3020,7 +3025,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 			CommandNameWithPrefix = CommandPrefix + FilesOperationsClientServer.ScanCommandName();
 			
 			Scan = Form.Commands.Add(CommandNameWithPrefix + "_" + ItemNumber);
-			Scan.Title = ?(Common.IsMobileClient(), NStr("en = 'Take a photograph…';"), NStr("en = 'Scan…';"));
+			Scan.Title = ?(Common.IsMobileClient(), NStr("en = 'Take a photograph…';tr = 'Resim çek...'"), NStr("en = 'Scan…';tr = 'Tara...'"));
 			FillPropertyValues(Scan, FormCommandProperties);
 		
 			If ItemToAdd.ShowCommandBar Then
@@ -3044,7 +3049,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		SelectFile           = Form.Commands.Add(CommandNameWithPrefix + "_" + ItemNumber);
 		SelectFile.Action  = "Attachable_AttachedFilesPanelCommand";
-		SelectFile.ToolTip = NStr("en = 'Select a file from attached ones.';");
+		SelectFile.ToolTip = NStr("en = 'Select a file from attached ones.';tr = 'Ekli olanlardan dosya seç.'");
 		
 		If ItemToAdd.ShowCommandBar Then
 			
@@ -3069,7 +3074,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 	If ItemToAdd.ViewFile Then
 		
 		ViewFile1 = Form.Commands.Add(CommandPrefix + FilesOperationsClientServer.ViewFileCommandName() + "_" + ItemNumber);
-		ViewFile1.Title = NStr("en = 'View';");
+		ViewFile1.Title = NStr("en = 'View';tr = 'Görüntüle'");
 		FillPropertyValues(ViewFile1, FormCommandProperties);
 		
 		If ItemToAdd.OneFileOnly Then
@@ -3088,7 +3093,7 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		Zap           = Form.Commands.Add(CommandPrefix + FilesOperationsClientServer.ClearCommandName() + "_" + ItemNumber);
 		Zap.Picture  = PictureLib.InputFieldClear;
-		Zap.Title = NStr("en = 'Clear';");
+		Zap.Title = NStr("en = 'Clear';tr = 'Temizle'");
 		Zap.ToolTip = Zap.Title;
 		FillPropertyValues(Zap, FormCommandPropertiesPicture);
 		
@@ -3109,8 +3114,8 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		EditFile           = Form.Commands.Add(CommandPrefix + FilesOperationsClientServer.OpenFormCommandName() + "_" + ItemNumber);
 		EditFile.Picture  = PictureLib.InputFieldOpen;
-		EditFile.Title = NStr("en = 'Open card';");
-		EditFile.ToolTip = NStr("en = 'Open the attachment card.';");
+		EditFile.Title = NStr("en = 'Open card';tr = 'Kartı aç'");
+		EditFile.ToolTip = NStr("en = 'Open the attachment card.';tr = 'Ekli dosya kartını aç.'");
 		FillPropertyValues(EditFile, FormCommandPropertiesPicture);
 		
 		If ItemToAdd.ShowCommandBar Then
@@ -3128,22 +3133,22 @@ Procedure CreateFileField(Form, ItemToAdd, AttachedFilesOwner, FileFieldParamete
 		
 		EditFile           = Form.Commands.Add(CommandPrefix + FilesOperationsClientServer.EditFileCommandName() + "_" + ItemNumber);
 		EditFile.Picture  = PictureLib.Change;
-		EditFile.Title = NStr("en = 'Edit';");
-		EditFile.ToolTip = NStr("en = 'Open the file for editing.';");
+		EditFile.Title = NStr("en = 'Edit';tr = 'Düzenle'");
+		EditFile.ToolTip = NStr("en = 'Open the file for editing.';tr = 'Düzenleme için dosyayı aç.'");
 		FillPropertyValues(EditFile, FormCommandPropertiesPicture);
 		
 		PutFile           = Form.Commands.Add(CommandPrefix + FilesOperationsClientServer.PutFileCommandName() + "_" + ItemNumber);
 		PutFile.Picture  = PictureLib.EndFileEditing;
-		PutFile.Title = NStr("en = 'Commit';");
-		PutFile.ToolTip = NStr("en = 'Save the file and release it in the infobase.';");
+		PutFile.Title = NStr("en = 'Commit';tr = 'Uygula'");
+		PutFile.ToolTip = NStr("en = 'Save the file and release it in the infobase.';tr = 'Infobase''de dosya kaydet ve kilidini aç'");
 		FillPropertyValues(PutFile, FormCommandPropertiesPicture);
 		
 		CancelEdit = Form.Commands.Add(
 			CommandPrefix + FilesOperationsClientServer.CancelEditCommandName() + "_" + ItemNumber);
 		
 		CancelEdit.Picture  = PictureLib.UnlockFile;
-		CancelEdit.Title = NStr("en = 'Cancel editing';");
-		CancelEdit.ToolTip = NStr("en = 'Release a locked file.';");
+		CancelEdit.Title = NStr("en = 'Cancel editing';tr = 'Düzenlemeyi iptal et'");
+		CancelEdit.ToolTip = NStr("en = 'Release a locked file.';tr = 'Kilitli dosyayı serbest bırak.'");
 		FillPropertyValues(CancelEdit, FormCommandPropertiesPicture);
 		
 		FileDataParameters = FilesOperationsClientServer.FileDataParameters();

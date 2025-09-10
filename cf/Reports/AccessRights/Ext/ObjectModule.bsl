@@ -97,7 +97,7 @@ Procedure OnComposeResult(ResultDocument, DetailsData, StandardProcessing)
 	StandardProcessing = False;
 
 	If Not Common.SubsystemExists("StandardSubsystems.ReportsOptions") Then
-		ErrorText = NStr("en = 'To generate a report, the Report options subsystem is required.';");
+		ErrorText = NStr("en = 'To generate a report, the Report options subsystem is required.';tr = 'Rapor oluşturmak için Rapor seçenekleri alt sistemi gereklidir.'");
 		Raise ErrorText;
 	EndIf;
 
@@ -112,14 +112,15 @@ Procedure OnComposeResult(ResultDocument, DetailsData, StandardProcessing)
 
 	If Not ValueIsFilled(UserOrGroup) Then
 		ErrorText = NStr("en = 'Open the user card, click ""Access rights"",
-						   |and then click ""Access rights report"".';");
+						   |and then click ""Access rights report"".';tr = 'Kullanıcı kartını açın, ""Erişim yetkileri"" bağlantısını açın,
+						   | ""Erişim yetkileri raporu"" düğmesine basın.'");
 		Raise ErrorText;
 	EndIf;
 
 	If UserOrGroup <> Users.AuthorizedUser()
 		And Not Users.IsFullUser() Then
 
-		ErrorText = NStr("en = 'Insufficient rights to view the report.';");
+		ErrorText = NStr("en = 'Insufficient rights to view the report.';tr = 'Raporu görmek için yetersiz haklar.'");
 		Raise(ErrorText, ErrorCategory.AccessViolation);
 	EndIf;
 
@@ -779,7 +780,7 @@ Procedure OutputAvailableForView(Val AvailableRights, Val Template, Val QueryRes
 		True);
 	
 	Area = Template.GetArea("ObjectsRightsGroup");
-	Area.Parameters.ObjectsRightsGroupPresentation = NStr("en = 'View objects';");
+	Area.Parameters.ObjectsRightsGroupPresentation = NStr("en = 'View objects';tr = 'Nesneleri görüntüle'");
 	Document.Put(Area, 1);
 	Area = Template.GetArea("ViewObjectsLegend");
 	Document.Put(Area, 2);
@@ -789,16 +790,16 @@ Procedure OutputAvailableForView(Val AvailableRights, Val Template, Val QueryRes
 	For Each ObjectsKindDetails In RightsObjects.Rows Do
 		Area = Template.GetArea("ObjectRightsTableTitle");
 		If SimplifiedInterface Then
-			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Profiles';");
+			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Profiles';tr = 'Profiller'");
 		Else
-			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Access groups';");
+			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Access groups';tr = 'Erişim grupları'");
 		EndIf;
 		Area.Parameters.Fill(ObjectsKindDetails);
 		Document.Put(Area, 2);
 		
 		Area = Template.GetArea("ObjectRightsTableTitleAddl");
 		If AccessRightsDetailedInfo Then
-			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = '(profile, roles)';");
+			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = '(profile, roles)';tr = '(profil, roller)'");
 		Else
 			Area.Parameters.ProfilesOrAccessGroupsPresentation = "";
 		EndIf;
@@ -814,15 +815,15 @@ Procedure OutputAvailableForView(Val AvailableRights, Val Template, Val QueryRes
 			
 			If ObjectDetails.UnrestrictedReadRight Then
 				If ObjectDetails.ViewRight Then
-					ObjectPresentationClarification = NStr("en = '(view, unrestricted)';");
+					ObjectPresentationClarification = NStr("en = '(view, unrestricted)';tr = '(görünüm, sınırlı değil)'");
 				Else
-					ObjectPresentationClarification = NStr("en = '(view*, unrestricted)';");
+					ObjectPresentationClarification = NStr("en = '(view*, unrestricted)';tr = '(görünüm *, sınırlı değil)'");
 				EndIf;
 			Else
 				If ObjectDetails.ViewRight Then
-					ObjectPresentationClarification = NStr("en = '(view, restricted)';");
+					ObjectPresentationClarification = NStr("en = '(view, restricted)';tr = '(görünüm, sınırlı)'");
 				Else
-					ObjectPresentationClarification = NStr("en = '(view*, restricted)';");
+					ObjectPresentationClarification = NStr("en = '(view*, restricted)';tr = '(görünüm*, sınırlı)'");
 				EndIf;
 			EndIf;
 			
@@ -890,10 +891,12 @@ Procedure OutputAvailableForView(Val AvailableRights, Val Template, Val QueryRes
 									
 									If RolesCount > 1 Then
 										PresentationClarificationAccessGroups = NStr("en = '(profile: %1, roles:
-											|%2)';")
+											|%2)';tr = '(profil: %1, roller:
+											|%2)'")
 									Else
 										PresentationClarificationAccessGroups = NStr("en = '(profile: %1, role:
-											|%2)';")
+											|%2)';tr = '(profil: %1, roller:
+											|%2)'")
 									EndIf;
 									
 									Area.Parameters.ProfileOrAccessGroupPresentation =
@@ -993,7 +996,7 @@ Procedure OutputAvailableForEdit(Val AvailableRights, Val Template, Val QueryRes
 		|AccessValuePresentation Asc", True);
 
 	Area = Template.GetArea("ObjectsRightsGroup");
-	Area.Parameters.ObjectsRightsGroupPresentation = NStr("en = 'Editing objects';");
+	Area.Parameters.ObjectsRightsGroupPresentation = NStr("en = 'Editing objects';tr = 'Nesne düzenleme'");
 	Document.Put(Area, 1);
 	Area = Template.GetArea("ObjectsEditLegend");
 	Document.Put(Area, 2);
@@ -1001,16 +1004,16 @@ Procedure OutputAvailableForEdit(Val AvailableRights, Val Template, Val QueryRes
 	For Each ObjectsKindDetails In RightsObjects.Rows Do
 		Area = Template.GetArea("ObjectRightsTableTitle");
 		If SimplifiedInterface Then
-			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Profiles';");
+			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Profiles';tr = 'Profiller'");
 		Else
-			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Access groups';");
+			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = 'Access groups';tr = 'Erişim grupları'");
 		EndIf;
 		Area.Parameters.Fill(ObjectsKindDetails);
 		Document.Put(Area, 2);
 
 		Area = Template.GetArea("ObjectRightsTableTitleAddl");
 		If AccessRightsDetailedInfo Then
-			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = '(profile, roles)';");
+			Area.Parameters.ProfilesOrAccessGroupsPresentation = NStr("en = '(profile, roles)';tr = '(profil, roller)'");
 		Else
 			Area.Parameters.ProfilesOrAccessGroupsPresentation = "";
 		EndIf;
@@ -1031,59 +1034,75 @@ Procedure OutputAvailableForEdit(Val AvailableRights, Val Template, Val QueryRes
 					If ObjectDetails.UnrestrictedAddRight And ObjectDetails.UnrestrictedUpdateRight Then
 						If ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, unrestricted
-																 |Edit, unrestricted)';");
+																 |Edit, unrestricted)';tr = '(ekleme, sınırlı olmayan 
+																 |modifikasyon, sınırlı değil)'");
 						ElsIf Not ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add*, unrestricted
-																 |Edit, unrestricted)';");
+																 |Edit, unrestricted)';tr = '(* ekleme, sınırlı olmayan 
+																 |modifikasyon, sınırlı değil)'");
 						ElsIf ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, unrestricted
-																 |Edit*, unrestricted)';");
+																 |Edit*, unrestricted)';tr = '(ekleme, sınırlı olmayan 
+																 |modifikasyon*, sınırlı değil)'");
 						Else // Not ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight.
 							ObjectPresentationClarification = NStr("en = '(Add*, unrestricted
-																 |Edit*, unrestricted)';");
+																 |Edit*, unrestricted)';tr = '(ekleme*, sınırlı olmayan 
+																 |modifikasyon*, sınırlı değil)'");
 						EndIf;
 					ElsIf Not ObjectDetails.UnrestrictedAddRight
 						And ObjectDetails.UnrestrictedUpdateRight Then
 						If ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, restricted
-																 |Edit unrestricted)';");
+																 |Edit unrestricted)';tr = '(ekleme, sınırlı 
+																 |modifikasyon, sınırlı değil)'");
 						ElsIf Not ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add*, restricted
-																 |Edit, unrestricted)';");
+																 |Edit, unrestricted)';tr = '(* ekleme, sınırlı 
+																 |modifikasyon, sınırlı değil)'");
 						ElsIf ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, restricted
-																 |Edit*, unrestricted)';");
+																 |Edit*, unrestricted)';tr = '(ekleme, sınırlı 
+																 |modifikasyon*, sınırlı değil)'");
 						Else // Not ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight.
 							ObjectPresentationClarification = NStr("en = '(Add*, restricted
-																 |Edit*, unrestricted)';");
+																 |Edit*, unrestricted)';tr = '(ekleme, sınırlı 
+																 |modifikasyon*, sınırlı değil)'");
 						EndIf;
 					ElsIf ObjectDetails.UnrestrictedAddRight And Not ObjectDetails.UnrestrictedUpdateRight Then
 						If ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, unrestricted
-																 |Edit, restricted)';");
+																 |Edit, restricted)';tr = '(ekleme, sınırlı olmayan 
+																 |modifikasyon, sınırlı)'");
 						ElsIf Not ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add*, unrestricted
-																 |Edit, restricted)';");
+																 |Edit, restricted)';tr = '(*ekleme, sınırlı olmayan 
+																 |modifikasyon, sınırlı)'");
 						ElsIf ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, unrestricted
-																 |Edit*, restricted)';");
+																 |Edit*, restricted)';tr = '(ekleme, sınırlı olmayan 
+																 |modifikasyon*, sınırlı)'");
 						Else // Not ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight.
 							ObjectPresentationClarification = NStr("en = '(Add*, unrestricted
-																 |Edit*, restricted)';");
+																 |Edit*, restricted)';tr = '(ekleme*, sınırlı olmayan 
+																 |modifikasyon*, sınırlı)'");
 						EndIf;
 					Else // Not ObjectDetails.UnrestrictedAddRight And Not ObjectDetails.UnrestrictedUpdateRight.
 						If ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, restricted
-																 |Edit, restricted)';");
+																 |Edit, restricted)';tr = '(ekleme, sınırlı 
+																 |modifikasyon, sınırlı)'");
 						ElsIf Not ObjectDetails.InteractiveAddRight And ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add*, restricted
-																 |Edit, restricted)';");
+																 |Edit, restricted)';tr = '(* ekleme, sınırlı 
+																 |modifikasyon, sınırlı)'");
 						ElsIf ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add, restricted
-																 |Edit*, restricted)';");
+																 |Edit*, restricted)';tr = '(ekleme, sınırlı 
+																 |modifikasyon*, sınırlı)'");
 						Else // Not ObjectDetails.InteractiveAddRight And Not ObjectDetails.EditRight.
 							ObjectPresentationClarification = NStr("en = '(Add*, restricted
-																 |Edit*, restricted)';");
+																 |Edit*, restricted)';tr = '(ekleme*, sınırlı 
+																 |modifikasyon*, sınırlı)'");
 						EndIf;
 					EndIf;
 
@@ -1092,42 +1111,47 @@ Procedure OutputAvailableForEdit(Val AvailableRights, Val Template, Val QueryRes
 					If ObjectDetails.UnrestrictedUpdateRight Then
 						If ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add unavailable 
-																 |Edit, unrestricted)';");
+																 |Edit, unrestricted)';tr = '(ekleme mevcut değil, 
+																 |modifikasyon, sınırlı değil)'");
 						Else // Not ObjectDetails.EditRight.
 							ObjectPresentationClarification = NStr("en = '(Add unavailable 
-																 |Edit*, unrestricted)';");
+																 |Edit*, unrestricted)';tr = '(ekleme mevcut değil, 
+																 |modifikasyon*, sınırlı değil)'");
 						EndIf;
 					Else // Not ObjectDetails.UnrestrictedUpdateRight.
 						If ObjectDetails.EditRight Then
 							ObjectPresentationClarification = NStr("en = '(Add unavailable
-																 |Edit, restricted)';");
+																 |Edit, restricted)';tr = '(ekleme mevcut değil, 
+																 |modifikasyon, sınırlı)'");
 						Else // Not ObjectDetails.EditRight.
 							ObjectPresentationClarification = NStr("en = '(Add unavailable 
-																 |Edit*, restricted)';");
+																 |Edit*, restricted)';tr = '(ekleme mevcut değil, 
+																 |modifikasyon*, sınırlı)'");
 						EndIf;
 					EndIf;
 
 				Else // Not ObjectDetails.AddRight And Not ObjectDetails.UpdateRight.
 					ObjectPresentationClarification = NStr("en = '(Add unavailable 
-														 |Edit unavailable)';");
+														 |Edit unavailable)';tr = '(ekleme mevcut değil, 
+														 |modifikasyon mevcut değil)'");
 				EndIf;
 			Else
 				If ObjectDetails.RightUpdate Then
 					If ObjectDetails.UnrestrictedUpdateRight Then
 						If ObjectDetails.EditRight Then
-							ObjectPresentationClarification = NStr("en = '(Edit, unrestricted)';");
+							ObjectPresentationClarification = NStr("en = '(Edit, unrestricted)';tr = '(değişiklik, sınırlı değil)'");
 						Else // Not ObjectDetails.EditRight.
-							ObjectPresentationClarification = NStr("en = '(Edit*, unrestricted)';");
+							ObjectPresentationClarification = NStr("en = '(Edit*, unrestricted)';tr = '(değişiklik *, sınırlı değil)'");
 						EndIf;
 					Else
 						If ObjectDetails.EditRight Then
-							ObjectPresentationClarification = NStr("en = '(Edit, restricted)';");
+							ObjectPresentationClarification = NStr("en = '(Edit, restricted)';tr = '(değişiklik, sınırlı)'");
 						Else // Not ObjectDetails.EditRight.
-							ObjectPresentationClarification = NStr("en = '(Edit*, restricted)';");
+							ObjectPresentationClarification = NStr("en = '(Edit*, restricted)';tr = '(değişiklik *, sınırlı)'");
 						EndIf;
 					EndIf;
 				Else // Not ObjectDetails.UpdateRight.
-					ObjectPresentationClarification = NStr("en = '(Edit unavailable)';");
+					ObjectPresentationClarification = NStr("en = '(Edit unavailable)';tr = '(değişiklik mevcut değil)'");
 				EndIf;
 			EndIf;
 
@@ -1191,10 +1215,12 @@ Procedure OutputAvailableForEdit(Val AvailableRights, Val Template, Val QueryRes
 									EndIf;
 									If RolesCount > 1 Then
 										PresentationClarificationAccessGroups = NStr("en = '(profile: %1, roles:
-																				   |%2)';");
+																				   |%2)';tr = '(profil: %1, roller:
+																				   |%2)'");
 									Else
 										PresentationClarificationAccessGroups = NStr("en = '(profile: %1, role:
-																				   |%2)';");
+																				   |%2)';tr = '(profil: %1, roller:
+																				   |%2)'");
 									EndIf;
 
 									Area.Parameters.ProfileOrAccessGroupPresentation = AccessGroupDetails.PresentationAccessGroups
@@ -1298,7 +1324,7 @@ Procedure FillObjectsPresentations(RightsObjects)
 			If MetadataObject <> Undefined Then
 				ObjectDetails.ObjectPresentation = MetadataObject.Synonym;
 			Else
-				ObjectDetails.ObjectPresentation = NStr("en = 'does not exist';") + " " + ObjectDetails.Table;
+				ObjectDetails.ObjectPresentation = NStr("en = 'does not exist';tr = 'mevcut değil'") + " " + ObjectDetails.Table;
 			EndIf;
 		EndDo;
 	EndDo;
@@ -1353,18 +1379,19 @@ Procedure OutputRightsToSeparateObjects(Val AvailableRights, Val Template, Val Q
 		EndDo;
 
 		TitleForSubfolders = NStr("en = 'For
-									|subfolders';");
-		TooltipForSubfolders = NStr("en = 'Rights both for the current folder and its subfolders';");
+									|subfolders';tr = '
+									|Alt klasörler için'");
+		TooltipForSubfolders = NStr("en = 'Rights both for the current folder and its subfolders';tr = 'Yetkiler sadece geçerli klasör için değil, aynı zamanda alt klasörler için de'");
 
 		Area = Template.GetArea("RightsSettingsLegendString");
 		Area.Parameters.Title = StrReplace(TitleForSubfolders, Chars.LF, " ");
 		Area.Parameters.ToolTip = StrReplace(TooltipForSubfolders, Chars.LF, " ");
 		Document.Put(Area, 2);
 
-		TitleSettingReceivedFromGroup = NStr("en = 'Rights inherited from group';");
+		TitleSettingReceivedFromGroup = NStr("en = 'Rights inherited from group';tr = 'Yetkiler ayarı gruptan alındı'");
 
 		Area = Template.GetArea("RightsSettingsLegendStringInheritance");
-		Area.Parameters.ToolTip = NStr("en = 'Right inheritance from parent folders';");
+		Area.Parameters.ToolTip = NStr("en = 'Right inheritance from parent folders';tr = 'Giriş klasörlerinden yetki devralma'");
 		Document.Put(Area, 2);
 
 		Document.Put(IndentArea, 2);
@@ -1416,8 +1443,8 @@ Procedure OutputRightsToSeparateObjects(Val AvailableRights, Val Template, Val Q
 		EndIf;
 		Document.Put(HeaderTemplate, 2);
 
-		TextYes  = NStr("en = 'Yes';");
-		TextNo = NStr("en = 'No';");
+		TextYes  = NStr("en = 'Yes';tr = 'Evet'");
+		TextNo = NStr("en = 'No';tr = 'Hayır'");
 		
 		// Output table rows.
 		For Each ObjectDetails In ObjectsTypeDetails.Rows Do
@@ -1474,23 +1501,23 @@ EndProcedure
 Procedure OutputReportHeader(Val Template, Properties, Val UserOrGroup)
 
 	If TypeOf(UserOrGroup) = Type("CatalogRef.Users") Then
-		Properties.Insert("ReportHeader", NStr("en = 'User rights report';"));
-		Properties.Insert("RolesByProfilesGroup", NStr("en = 'User roles by profiles';"));
-		Properties.Insert("ObjectPresentation", NStr("en = 'User: %1';"));
+		Properties.Insert("ReportHeader", NStr("en = 'User rights report';tr = 'Kullanıcı yetkileri raporu'"));
+		Properties.Insert("RolesByProfilesGroup", NStr("en = 'User roles by profiles';tr = 'Profillere göre kullanıcı rolleri'"));
+		Properties.Insert("ObjectPresentation", NStr("en = 'User: %1';tr = 'Kullanıcı: %1'"));
 
 	ElsIf TypeOf(UserOrGroup) = Type("CatalogRef.ExternalUsers") Then
-		Properties.Insert("ReportHeader", NStr("en = 'External user rights report';"));
-		Properties.Insert("RolesByProfilesGroup", NStr("en = 'External user roles by profiles';"));
-		Properties.Insert("ObjectPresentation", NStr("en = 'External user: %1';"));
+		Properties.Insert("ReportHeader", NStr("en = 'External user rights report';tr = 'Harici kullanıcı yetkileri raporu'"));
+		Properties.Insert("RolesByProfilesGroup", NStr("en = 'External user roles by profiles';tr = 'Harici kullanıcının rolleri profillere göre'"));
+		Properties.Insert("ObjectPresentation", NStr("en = 'External user: %1';tr = 'Harici kullanıcı: %1'"));
 
 	ElsIf TypeOf(UserOrGroup) = Type("CatalogRef.UserGroups") Then
-		Properties.Insert("ReportHeader", NStr("en = 'User group rights report';"));
-		Properties.Insert("RolesByProfilesGroup", NStr("en = 'User group roles by profiles';"));
-		Properties.Insert("ObjectPresentation", NStr("en = 'User group: %1';"));
+		Properties.Insert("ReportHeader", NStr("en = 'User group rights report';tr = 'Kullanıcı grubu hakları raporu'"));
+		Properties.Insert("RolesByProfilesGroup", NStr("en = 'User group roles by profiles';tr = 'Profillere göre kullanıcı grubu rolleri'"));
+		Properties.Insert("ObjectPresentation", NStr("en = 'User group: %1';tr = 'Kullanıcı grubu: %1'"));
 	Else
-		Properties.Insert("ReportHeader", NStr("en = 'External user group rights report';"));
-		Properties.Insert("RolesByProfilesGroup", NStr("en = 'External user group roles by profiles';"));
-		Properties.Insert("ObjectPresentation", NStr("en = 'External user group: %1';"));
+		Properties.Insert("ReportHeader", NStr("en = 'External user group rights report';tr = 'Harici kullanıcıların grup yetkileri hakkında rapor'"));
+		Properties.Insert("RolesByProfilesGroup", NStr("en = 'External user group roles by profiles';tr = 'Harici kullanıcı grubunun profillere göre rolleri'"));
+		Properties.Insert("ObjectPresentation", NStr("en = 'External user group: %1';tr = 'Harici kullanıcı grubu: %1'"));
 	EndIf;
 
 	Properties.ObjectPresentation = StringFunctionsClientServer.SubstituteParametersToString(
@@ -1525,7 +1552,7 @@ Procedure OutputIBUserProperties(Val Template, Val UserOrGroup)
 		Area.Parameters.LanguagePresentation = LanguagePresentation(IBUserProperies.Language);
 		Area.Parameters.RunModePresentation = PresentationRunMode(IBUserProperies.RunMode);
 		If Not ValueIsFilled(IBUserProperies.OSUser) Then
-			Area.Parameters.OSUser = NStr("en = 'Not specified';");
+			Area.Parameters.OSUser = NStr("en = 'Not specified';tr = 'Belirtilmemiş'");
 		EndIf;
 		Document.Put(Area, 2);
 	Else
@@ -1549,27 +1576,27 @@ Procedure OutputDetailedInfoOnAccessRights(Val Template, UserOrGroup, Val QueryR
 
 	If OnePersonalGroup Then
 		If TypeOf(UserOrGroup) = Type("CatalogRef.Users") Then
-			AccessPresentation = NStr("en = 'User access restrictions';");
+			AccessPresentation = NStr("en = 'User access restrictions';tr = 'Kullanıcı erişim sınırlamaları'");
 
 		ElsIf TypeOf(UserOrGroup) = Type("CatalogRef.ExternalUsers") Then
-			AccessPresentation = NStr("en = 'External user access restrictions';");
+			AccessPresentation = NStr("en = 'External user access restrictions';tr = 'Harici kullanıcının erişim kısıtlamaları'");
 
 		ElsIf TypeOf(UserOrGroup) = Type("CatalogRef.UserGroups") Then
-			AccessPresentation = NStr("en = 'User group access restrictions';");
+			AccessPresentation = NStr("en = 'User group access restrictions';tr = 'Kullanıcı grubunun erişim kısıtlamaları'");
 		Else
-			AccessPresentation = NStr("en = 'External user group access restrictions';");
+			AccessPresentation = NStr("en = 'External user group access restrictions';tr = 'Harici kullanıcı grubu erişim kısıtlamaları'");
 		EndIf;
 	Else
 		If TypeOf(UserOrGroup) = Type("CatalogRef.Users") Then
-			AccessPresentation = NStr("en = 'User access groups';");
+			AccessPresentation = NStr("en = 'User access groups';tr = 'Kullanıcı erişim grupları'");
 
 		ElsIf TypeOf(UserOrGroup) = Type("CatalogRef.ExternalUsers") Then
-			AccessPresentation = NStr("en = 'External user access groups';");
+			AccessPresentation = NStr("en = 'External user access groups';tr = 'Harici kullanıcı erişim grupları'");
 
 		ElsIf TypeOf(UserOrGroup) = Type("CatalogRef.UserGroups") Then
-			AccessPresentation = NStr("en = 'User group access groups';");
+			AccessPresentation = NStr("en = 'User group access groups';tr = 'Erişim grupları kullanıcı grupları'");
 		Else
-			AccessPresentation = NStr("en = 'External user group access groups';");
+			AccessPresentation = NStr("en = 'External user group access groups';tr = 'Harici kullanıcı gruplarına erişim grupları'");
 		EndIf;
 	EndIf;
 
@@ -1676,17 +1703,17 @@ Function AccessKindPresentationTemplate(AccessKindDetails, RightsSettingsOwners)
 			If AccessKindDetails.AccessKind = Catalogs.Users.EmptyRef()
 			 Or AccessKindDetails.AccessKind = Catalogs.ExternalUsers.EmptyRef() Then
 				
-				AccessKindPresentationTemplate = NStr("en = '%1 (No forbidden: Authorized user and their groups are always allowed)';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (No forbidden: Authorized user and their groups are always allowed)';tr = '%1 (Engellenmedi: Doğrulanmış kullanıcıya ve gruplarına daima izin verilir)'");
 			Else
-				AccessKindPresentationTemplate = NStr("en = '%1 (none denied)';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (none denied)';tr = '%1 (yasaksız)'");
 			EndIf;
 		Else
 			If AccessKindDetails.AccessKind = Catalogs.Users.EmptyRef()
 			 Or AccessKindDetails.AccessKind = Catalogs.ExternalUsers.EmptyRef() Then
 				
-				AccessKindPresentationTemplate = NStr("en = '%1 (No allowed: Authorized user and their groups are always allowed)';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (No allowed: Authorized user and their groups are always allowed)';tr = '%1 (İzin verilmedi: Doğrulanmış kullanıcıya ve gruplarına daima izin verilir)'");
 			Else
-				AccessKindPresentationTemplate = NStr("en = '%1 (none allowed)';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (none allowed)';tr = '%1 (yasaksız)'");
 			EndIf;
 		EndIf;
 	Else
@@ -1694,17 +1721,17 @@ Function AccessKindPresentationTemplate(AccessKindDetails, RightsSettingsOwners)
 			If AccessKindDetails.AccessKind = Catalogs.Users.EmptyRef()
 			 Or AccessKindDetails.AccessKind = Catalogs.ExternalUsers.EmptyRef() Then
 				
-				AccessKindPresentationTemplate = NStr("en = '%1 (Forbidden: Authorized user and their groups are always allowed):';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (Forbidden: Authorized user and their groups are always allowed):';tr = '%1 (Engellendi: Doğrulanmış kullanıcıya ve gruplarına daima izin verilir):'");
 			Else
-				AccessKindPresentationTemplate = NStr("en = '%1 (denied):';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (denied):';tr = '%1 (yasaklanmış):'");
 			EndIf;
 		Else
 			If AccessKindDetails.AccessKind = Catalogs.Users.EmptyRef()
 			 Or AccessKindDetails.AccessKind = Catalogs.ExternalUsers.EmptyRef() Then
 				
-				AccessKindPresentationTemplate = NStr("en = '%1 (Allowed: Authorized user and their groups are always allowed):';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (Allowed: Authorized user and their groups are always allowed):';tr = '%1 (İzin verildi: Doğrulanmış kullanıcıya ve gruplarına daima izin verilir):'");
 			Else
-				AccessKindPresentationTemplate = NStr("en = '%1 (allowed):';");
+				AccessKindPresentationTemplate = NStr("en = '%1 (allowed):';tr = '%1 (izin verilir):'");
 			EndIf;
 		EndIf;
 	EndIf;
@@ -1760,13 +1787,13 @@ EndProcedure
 Function PresentationRunMode(RunMode)
 
 	If RunMode = "Auto" Then
-		PresentationRunMode = NStr("en = 'Auto';");
+		PresentationRunMode = NStr("en = 'Auto';tr = 'Oto'");
 
 	ElsIf RunMode = "OrdinaryApplication" Then
-		PresentationRunMode = NStr("en = 'Ordinary application';");
+		PresentationRunMode = NStr("en = 'Ordinary application';tr = 'Standart uygulama'");
 
 	ElsIf RunMode = "ManagedApplication" Then
-		PresentationRunMode = NStr("en = 'Managed application';");
+		PresentationRunMode = NStr("en = 'Managed application';tr = 'Yönetilen uygulama'");
 	Else
 		PresentationRunMode = "";
 	EndIf;
@@ -1834,5 +1861,5 @@ EndFunction
 #EndRegion
 
 #Else
-	Raise NStr("en = 'Invalid object call on the client.';");
+	Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

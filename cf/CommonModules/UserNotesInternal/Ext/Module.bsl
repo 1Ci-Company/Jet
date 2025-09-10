@@ -52,7 +52,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id = NoteID;
 		ToDoItem.HasToDoItems      = NumberOfNotes > 0;
-		ToDoItem.Presentation = NStr("en = 'My notes';");
+		ToDoItem.Presentation = NStr("en = 'My notes';tr = 'Notlarım'");
 		ToDoItem.Count    = NumberOfNotes;
 		ToDoItem.Form         = "Catalog.Notes.Form.AllNotes";
 		ToDoItem.Owner      = Section;
@@ -91,7 +91,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 	If AccessRight("InteractiveInsert", Metadata.Catalogs.Notes) Then
 		Command = Commands.Add();
 		Command.Kind = "Organizer";
-		Command.Presentation = NStr("en = 'Create note';");
+		Command.Presentation = NStr("en = 'Create note';tr = 'Not oluştur'");
 		Command.FunctionalOptions = "UseNotes";
 		Command.Picture = PictureLib.Note;
 		Command.ParameterType = Metadata.DefinedTypes.NotesSubject.Type;
@@ -158,7 +158,7 @@ Procedure SetClearNotesDeletionMark(Source, Cancel) Export
 				NoteObject.Write();
 			Except
 				ErrorText = ErrorProcessing.DetailErrorDescription(ErrorInfo());
-				WriteLogEvent(NStr("en = 'Notes.Change deletion mark';", Common.DefaultLanguageCode()),
+				WriteLogEvent(NStr("en = 'Notes.Change deletion mark';tr = 'Notlar. Silme işaretini değiştir'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error, NoteObject.Metadata(), NoteObject.Ref, ErrorText);
 			EndTry;
 		EndDo;

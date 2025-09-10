@@ -96,11 +96,11 @@ Function TimePresentation(Val Time, FullPresentation = True, OutputSeconds = Tru
 	Result = "";
 	
 	// Presentation of time measurement units in Accusative for quantities: 1, 2-4, and 5-20.
-	WeeksPresentation = NStr("en = ';%1 week;;;;%1 weeks';");
-	DaysPresentation   = NStr("en = ';%1 day;;;;%1 days';");
-	HoursPresentation  = NStr("en = ';%1 hour;;;;%1 hours';");
-	MinutesPresentation  = NStr("en = ';%1 minute;;;;%1 minutes';");
-	SecondsPresentation = NStr("en = ';%1 second;;;;%1 seconds';");
+	WeeksPresentation = NStr("en = ';%1 week;;;;%1 weeks';tr = ';%1 hafta;;;;%1 hafta'");
+	DaysPresentation   = NStr("en = ';%1 day;;;;%1 days';tr = ';%1 gün;;;;%1 gün'");
+	HoursPresentation  = NStr("en = ';%1 hour;;;;%1 hours';tr = ';%1 saat;;;;%1 saat'");
+	MinutesPresentation  = NStr("en = ';%1 minute;;;;%1 minutes';tr = ';%1 dakika;;;;%1 dakika'");
+	SecondsPresentation = NStr("en = ';%1 second;;;;%1 seconds';tr = ';%1 saniye;;;;%1 saniye'");
 	
 	Time = Number(Time);
 	
@@ -260,17 +260,17 @@ Function ReplaceUnitOfMeasureByMultiplier(Val Unit)
 	Result = 0;
 	Unit = Lower(Unit);
 	
-	AllowedChars = NStr("en = 'abcdefghijklmnopqrstuvwxyz';"); // 
+	AllowedChars = NStr("en = 'abcdefghijklmnopqrstuvwxyz';tr = 'abcçdefgğhiıjklmnoöprsştuüvyz'"); // 
 	ProhibitedChars = StrConcat(StrSplit(Unit, AllowedChars, False), "");
 	If ProhibitedChars <> "" Then
 		Unit = StrConcat(StrSplit(Unit, ProhibitedChars, False), "");
 	EndIf;
 	
-	WordFormsForWeek = StrSplit(NStr("en = 'wk,w,wee';"), ",", False);
-	WordFormsForDay = StrSplit(NStr("en = 'day,d';"), ",", False);
-	WordFormsForHour = StrSplit(NStr("en = 'hrs,hr,h,hou';"), ",", False);
-	WordFormsForMinute = StrSplit(NStr("en = 'min,m';"), ",", False);
-	WordFormsForSecond = StrSplit(NStr("en = 'sec,s';"), ",", False);
+	WordFormsForWeek = StrSplit(NStr("en = 'wk,w,wee';tr = 'haf,ha,h'"), ",", False);
+	WordFormsForDay = StrSplit(NStr("en = 'day,d';tr = 'gün,g'"), ",", False);
+	WordFormsForHour = StrSplit(NStr("en = 'hrs,hr,h,hou';tr = 'saa,sa,s,saa'"), ",", False);
+	WordFormsForMinute = StrSplit(NStr("en = 'min,m';tr = 'dak,d'"), ",", False);
+	WordFormsForSecond = StrSplit(NStr("en = 'sec,s';tr = 'san,sn'"), ",", False);
 	
 	FirstThreeChars = Left(Unit,3);
 	If WordFormsForWeek.Find(FirstThreeChars) <> Undefined Then
@@ -291,19 +291,19 @@ EndFunction
 
 Function EnumPresentationDoNotRemind() Export
 	
-	Return NStr("en = 'do not remind';");
+	Return NStr("en = 'do not remind';tr = 'hatırlatma'");
 	
 EndFunction
 
 Function EnumPresentationOnOccurrence() Export
 	
-	Return NStr("en = 'on occurrence';");
+	Return NStr("en = 'on occurrence';tr = 'meydana geldiğinde'");
 	
 EndFunction
 
 Function EnumPresentationOnSchedule()
 	
-	Return NStr("en = 'on schedule';");
+	Return NStr("en = 'on schedule';tr = 'zamanında'");
 	
 EndFunction
 
@@ -317,12 +317,12 @@ Function ReminderTimePresentation(Reminder) Export
 			Return EnumPresentationOnOccurrence();
 		Else
 			Return StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 before';"), TimePresentation(Reminder.ReminderInterval));
+				NStr("en = '%1 before';tr = '%1 önce'"), TimePresentation(Reminder.ReminderInterval));
 		EndIf;
 	ElsIf Reminder.ReminderTimeSettingMethod = PredefinedValue("Enum.ReminderTimeSettingMethods.AtSpecifiedTime")
 		Or Reminder.ReminderTimeSettingMethod = PredefinedValue("Enum.ReminderTimeSettingMethods.RelativeToCurrentTime") Then
 		Return StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1';"), Format(Reminder.ReminderTime, "DLF=DT;"));
+			NStr("en = '%1';tr = '%1'"), Format(Reminder.ReminderTime, "DLF=DT;"));
 	Else
 		Return EnumPresentationOnSchedule();
 	EndIf;

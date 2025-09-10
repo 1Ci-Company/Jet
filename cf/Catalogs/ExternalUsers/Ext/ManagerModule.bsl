@@ -96,7 +96,7 @@ Procedure FormGetProcessing(FormType, Parameters, SelectedForm, AdditionalInform
 				"NewExternalUserAuthorizationObject", Parameters.AuthorizationObject);
 		Else
 			ErrorAsWarningDetails =
-				NStr("en = 'The right to log in is not granted.';");
+				NStr("en = 'The right to log in is not granted.';tr = 'Giriş yetkisi verilmedi.'");
 				
 			Raise ErrorAsWarningDetails;
 		EndIf;
@@ -157,13 +157,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Couldn''t process (skipped) some external users: %1
-				|%2';"), ObjectsWithIssuesCount, StrConcat(ErrorList, Chars.LF));
+				|%2';tr = 'Bazı harici kullanıcılar işlenemedi (atlandı): %1
+				|%2'"), ObjectsWithIssuesCount, StrConcat(ErrorList, Chars.LF));
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.ExternalUsers,,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Yet another batch of external users is processed: %1';"),
+				NStr("en = 'Yet another batch of external users is processed: %1';tr = 'Başka bir harici kullanıcı grubu işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

@@ -251,7 +251,7 @@ Procedure OnlineSupportAndServicesMonitoringCenterOnChange(Form, Item) Export
 	Except
 		// The address format must comply with RFC 3986. See the function "CommonClientServer.URIStructure".
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Service address %1 is not a valid web service address for sending usage reports.';"),
+			NStr("en = 'Service address %1 is not a valid web service address for sending usage reports.';tr = '%1 servis adresi, kullanım raporları göndermek için geçerli bir web servisi adresi değil.'"),
 			Form.MonitoringCenterServiceAddress);
 		Raise(ErrorDescription);
 	EndTry;

@@ -167,23 +167,23 @@ Procedure RegisterDataToProcessForMigrationToNewVersion(Parameters) Export
 	
 	NewRow                    = CountryList.Add();
 	NewRow.Code                = "203";
-	NewRow.Description       = NStr("en = 'CZECH REPUBLIC';");
+	NewRow.Description       = NStr("en = 'CZECH REPUBLIC';tr = 'ÇEK CUMHURİYETİ'");
 	NewRow.CodeAlpha2          = "CZ";
 	NewRow.CodeAlpha3          = "CZE";
 	
 	NewRow                    = CountryList.Add();
 	NewRow.Code                = "270";
-	NewRow.Description       = NStr("en = 'GAMBIA';");
+	NewRow.Description       = NStr("en = 'GAMBIA';tr = 'GAMBİYA'");
 	NewRow.CodeAlpha2          = "GM";
 	NewRow.CodeAlpha3          = "GMB";
-	NewRow.DescriptionFull = NStr("en = 'Republic of the Gambia';");
+	NewRow.DescriptionFull = NStr("en = 'Republic of the Gambia';tr = 'Gambiya Cumhuriyeti'");
 	
 	NewRow                    = CountryList.Add();
 	NewRow.Code                = "807";
-	NewRow.Description       = NStr("en = 'REPUBLIC OF MACEDONIA';");
+	NewRow.Description       = NStr("en = 'REPUBLIC OF MACEDONIA';tr = 'MAKEDONYA CUMHURİYETİ'");
 	NewRow.CodeAlpha2          = "MK";
 	NewRow.CodeAlpha3          = "MKD";
-	NewRow.DescriptionFull =  NStr("en = 'REPUBLIC OF MACEDONIA';");
+	NewRow.DescriptionFull =  NStr("en = 'REPUBLIC OF MACEDONIA';tr = 'MAKEDONYA CUMHURİYETİ'");
 	
 	Query = New Query;
 	Query.Text = "SELECT
@@ -290,13 +290,13 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some countries: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) some countries: %1';tr = 'Dünyanın bazı ülkeleri işlenemedi (atlandı): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.WorldCountries,,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The update procedure processed another portion of world countries: %1';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The update procedure processed another portion of world countries: %1';tr = 'Güncelleme prosedürü başka bir dünya ülkeleri partisini işledi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

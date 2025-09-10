@@ -18,7 +18,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 	If Executed And TaskWasExecuted <> True And Not AddressingAttributesAreFilled() Then
 		
 		Common.MessageToUser(
-			NStr("en = 'Specify a task assignee.';"),,,
+			NStr("en = 'Specify a task assignee.';tr = 'Görevi yürüteni belirtin.'"),,,
 			"Object.Performer", Cancel);
 		Return;
 			
@@ -26,7 +26,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 	
 	If TaskDueDate <> '00010101' And StartDate > TaskDueDate Then
 		Common.MessageToUser(
-			NStr("en = 'Execution start date cannot be later than the deadline.';"),,,
+			NStr("en = 'Execution start date cannot be later than the deadline.';tr = 'Uygulama başlangıç tarihi bitiş tarihinden ileri bir tarih olamaz.'"),,,
 			"Object.StartDate", Cancel);
 		Return;
 	EndIf;
@@ -62,7 +62,7 @@ Procedure BeforeWrite(Cancel)
 	If Not InitialAttributes.Executed And Executed Then
 		
 		If BusinessProcessState = Enums.BusinessProcessStates.Suspended Then
-			Raise NStr("en = 'Cannot perform tasks of suspended business processes.';");
+			Raise NStr("en = 'Cannot perform tasks of suspended business processes.';tr = 'Askıya alınmış iş süreçlerinin görevleri gerçekleştirilemez.'");
 		EndIf;
 		
 		// If the task is completed, assign the "Performer" attribute to the user who fulfilled it.
@@ -77,7 +77,7 @@ Procedure BeforeWrite(Cancel)
 		EndIf;
 	ElsIf Not DeletionMark And InitialAttributes.Executed And Executed Then
 			Common.MessageToUser(
-				NStr("en = 'This task is already completed.';"),,,, Cancel);
+				NStr("en = 'This task is already completed.';tr = 'Görev zaten tamamlandı.'"),,,, Cancel);
 			Return;
 	EndIf;
 	
@@ -175,5 +175,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

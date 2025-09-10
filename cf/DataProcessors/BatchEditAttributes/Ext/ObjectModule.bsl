@@ -35,7 +35,7 @@ Function ExternalDataProcessorInfo() Export
 		RegistrationParameters.SafeMode = False;
 		
 		NewCommand = RegistrationParameters.Commands.Add();
-		NewCommand.Presentation = NStr("en = 'Bulk attribute edit';");
+		NewCommand.Presentation = NStr("en = 'Bulk attribute edit';tr = 'Toplu öznitelik düzenleme'");
 		NewCommand.Id = "OpenGlobally";
 		NewCommand.Use = ModuleAdditionalReportsAndDataProcessorsClientServer.CommandTypeOpenForm();
 		NewCommand.ShouldShowUserNotification = False;
@@ -781,12 +781,12 @@ Function CompareVersions(Val VersionString1, Val VersionString2) Export
 	Version1 = StrSplit(String1, ".");
 	If Version1.Count() <> 4 Then
 		Raise SubstituteParametersToString(
-			NStr("en = 'Invalid %1 parameter format: %2';"), "VersionString1", VersionString1);
+			NStr("en = 'Invalid %1 parameter format: %2';tr = 'Yanlış %1 parametresi biçimi: %2'"), "VersionString1", VersionString1);
 	EndIf;
 	Version2 = StrSplit(String2, ".");
 	If Version2.Count() <> 4 Then
 		Raise SubstituteParametersToString(
-			NStr("en = 'Invalid %1 parameter format: %2';"), "VersionString2", VersionString2);
+			NStr("en = 'Invalid %1 parameter format: %2';tr = 'Yanlış %1 parametresi biçimi: %2'"), "VersionString2", VersionString2);
 	EndIf;
 	
 	Result = 0;
@@ -901,7 +901,7 @@ Function ObjectManagerByFullName(FullName) Export
 		EndTry;
 	EndIf;
 	
-	Raise SubstituteParametersToString(NStr("en = 'Unknown metadata object type: %1.';"), FullName);
+	Raise SubstituteParametersToString(NStr("en = 'Unknown metadata object type: %1.';tr = 'Bilinmeyen metaveri nesnesi türü: %1.'"), FullName);
 	
 EndFunction
 
@@ -936,7 +936,7 @@ Function EvalExpression(Val Expression, Object, AvailableAttributes)
 			EndDo;
 		Else
 			ErrorText = SubstituteParametersToString(
-				NStr("en = 'Expressions do not support the ""%1"" attribute';"), AttributeDetails.Presentation);
+				NStr("en = 'Expressions do not support the ""%1"" attribute';tr = 'İfadeler ""%1"" özniteliğini desteklemiyor'"), AttributeDetails.Presentation);
 			Raise ErrorText;
 		EndIf;
 		
@@ -1028,7 +1028,7 @@ Function ObjectKindByType(Type) Export
 		Return "Enum";
 	
 	Else
-		Raise SubstituteParametersToString(NStr("en = 'Invalid parameter value type: %1.';"), String(Type));
+		Raise SubstituteParametersToString(NStr("en = 'Invalid parameter value type: %1.';tr = 'Parametre değeri tipi yanlış (%1)'"), String(Type));
 	
 	EndIf;
 	
@@ -1178,7 +1178,7 @@ Function ObjectAttributesValues(Ref, Val Attributes) Export
 			AttributesStructure1.Insert(StrReplace(Attribute, ".", ""), Attribute);
 		EndDo;
 	Else
-		Raise SubstituteParametersToString(NStr("en = 'Invalid Attributes parameter type: %1.';"), String(TypeOf(Attributes)));
+		Raise SubstituteParametersToString(NStr("en = 'Invalid Attributes parameter type: %1.';tr = 'Geçersiz Öznitelik parametresi türü: %1.'"), String(TypeOf(Attributes)));
 	EndIf;
 	
 	FieldTexts = "";
@@ -1305,7 +1305,7 @@ Function CommonModule(Name) Export
 	EndIf;
 	
 	If TypeOf(Module) <> Type("CommonModule") Then
-		Raise SubstituteParametersToString(NStr("en = 'Common module ""%1"" does not exist.';"), Name);
+		Raise SubstituteParametersToString(NStr("en = 'Common module ""%1"" does not exist.';tr = ' ""%1"" ortak modülü mevcut değil.'"), Name);
 	EndIf;
 	
 	Return Module;
@@ -1580,7 +1580,7 @@ Function RunObjectsChangeInMultipleThreads(Parameters, ObjectsToProcess, ChangeR
 	ModuleTimeConsumingOperations = CommonModule("TimeConsumingOperations");
 	
 	ExecutionParameters = ModuleTimeConsumingOperations.BackgroundExecutionParameters(FormIdentifier);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Bulk attribute edit';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Bulk attribute edit';tr = 'Toplu öznitelik düzenleme'");
 	
 	IsExternalDataProcessor = IsExternalDataProcessor();
 	If IsExternalDataProcessor Then
@@ -1718,5 +1718,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

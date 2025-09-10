@@ -127,7 +127,7 @@ Procedure ApplyRules(ExportingParameters, StorageAddress) Export
 	
 	Result = Query.ExecuteBatch();
 	If Result[2].IsEmpty() Then
-		MessageText = NStr("en = 'The selected folder is empty.';");
+		MessageText = NStr("en = 'The selected folder is empty.';tr = 'Seçilen klasör boş.'");
 		PutToTempStorage(MessageText, StorageAddress);
 		Return;
 	EndIf;
@@ -173,7 +173,9 @@ Procedure ApplyRules(ExportingParameters, StorageAddress) Export
 			
 			ErrorMessageTemplate = NStr("en = 'Cannot apply the ""%1"" mailbox rule to the ""%2"" account due to: 
 			                                |%3
-			                                |Correct the mailbox rule.';", Common.DefaultLanguageCode());
+			                                |Correct the mailbox rule.';tr = '""%1"" posta kutusu kuralı şu nedenle ""%2"" hesabına uygulanamıyor: 
+			                                |%3
+			                                |Posta kutusu kuralını düzeltin.'", Common.DefaultLanguageCode());
 		
 			ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				ErrorMessageTemplate, 
@@ -208,9 +210,9 @@ Procedure ApplyRules(ExportingParameters, StorageAddress) Export
 	Interactions.CalculateReviewedByFolders(Interactions.TableOfDataForReviewedCalculation(FoldersToProcess, "Folder"));
 	
 	If MailFolders.Count() > 0 Then
-		MessageText = NStr("en = 'All messages are moved to the folders.';");
+		MessageText = NStr("en = 'All messages are moved to the folders.';tr = 'Tüm iletiler klasörlere taşındı.'");
 	Else
-		MessageText =  NStr("en = 'No messages were moved.';");
+		MessageText =  NStr("en = 'No messages were moved.';tr = 'Hiçbir ileti taşınmadı.'");
 	EndIf;
 	
 	PutToTempStorage(MessageText, StorageAddress);

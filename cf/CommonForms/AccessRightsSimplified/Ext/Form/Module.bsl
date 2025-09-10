@@ -56,9 +56,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 	
 	If TypeOf(Parameters.User) = Type("CatalogRef.ExternalUsers") Then
-		Items.Profiles.Title = NStr("en = 'External user profiles';");
+		Items.Profiles.Title = NStr("en = 'External user profiles';tr = 'Harici kullanıcı profilleri'");
 	Else
-		Items.Profiles.Title = NStr("en = 'User profiles';");
+		Items.Profiles.Title = NStr("en = 'User profiles';tr = 'Kullanıcı profilleri'");
 	EndIf;
 	
 	ImportData(FilterProfilesOnlyForCurrentUser);
@@ -100,7 +100,7 @@ Procedure OnOpen(Cancel)
 	 Or FormOwner.Window <> Window Then
 		
 		AutoTitle = False;
-		Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Access rights (%1)';"), String(Parameters.User));
+		Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Access rights (%1)';tr = 'Erişim hakları (%1)'"), String(Parameters.User));
 	EndIf;
 	
 	If ServiceOperationError <> Undefined Then
@@ -878,7 +878,8 @@ Procedure WriteChangesAtServer(Cancel)
 								Cancel = True;
 								Raise
 									NStr("en = 'At least one user authorized to log in
-									           |must have the Administrator profile.';");
+									           |must have the Administrator profile.';tr = 'Giriş yapma yetkisi olan en az bir kullanıcının
+									           |Yönetici profili olmalıdır.'");
 							EndIf;
 						EndIf;
 					EndIf;

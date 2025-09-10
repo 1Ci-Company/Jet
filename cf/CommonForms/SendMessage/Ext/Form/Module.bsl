@@ -43,7 +43,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		// Account is not passed. Selecting the first available account.
 		AvailableEmailAccounts = EmailOperations.AvailableEmailAccounts(True);
 		If AvailableEmailAccounts.Count() = 0 Then
-			MessageText = NStr("en = 'There are no email accounts available. Please contact your system administrator.';");
+			MessageText = NStr("en = 'There are no email accounts available. Please contact your system administrator.';tr = 'Kullanılabilir e-posta hesapları bulunamadı, sistem yöneticisine başvurun.'");
 			Common.MessageToUser(MessageText,,,,Cancel);
 			Return;
 		EndIf;
@@ -56,7 +56,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		EmailAccountList = Parameters.Sender;
 		
 		If EmailAccountList.Count() = 0 Then
-			MessageText = NStr("en = 'No accounts for sending mail are specified. Please contact your system administrator.';");
+			MessageText = NStr("en = 'No accounts for sending mail are specified. Please contact your system administrator.';tr = 'E-posta göndermek için hesap belirtilmedi. Lütfen sistem yöneticinize başvurun.'");
 			Common.MessageToUser(MessageText,,,, Cancel);
 			Return;
 		EndIf;
@@ -322,7 +322,7 @@ Procedure RecipientPostalAddressesBeforeEditEnd(Item, NewRow, CancelEdit, Cancel
 	EndIf;
 	
 	If Not CommonClientServer.EmailAddressMeetsRequirements(Address, True) Then
-		ShowMessageBox(, NStr("en = 'Please specify a correct email address.';"));
+		ShowMessageBox(, NStr("en = 'Please specify a correct email address.';tr = 'Lütfen, doğru bir e-posta adresi belirtin.'"));
 		Cancel = True;
 		Return;
 	EndIf;
@@ -333,7 +333,7 @@ Procedure RecipientPostalAddressesBeforeEditEnd(Item, NewRow, CancelEdit, Cancel
 		If Duplicates[Upper(MailAddr)] = Undefined Then
 			Duplicates.Insert(Upper(MailAddr), True);
 		Else
-			ShowMessageBox(, NStr("en = 'This email address already exists.';"));
+			ShowMessageBox(, NStr("en = 'This email address already exists.';tr = 'Bu e-posta adresi listede zaten mevcut.'"));
 			Cancel = True;
 			Return;
 		EndIf;
@@ -471,7 +471,7 @@ Procedure SendMail()
 		MessageSent = SendEmailMessage(HasWrongRecipients);
 	Except
 		ErrorText = ErrorProcessing.BriefErrorDescription(ErrorInfo());
-		ErrorTitle = NStr("en = 'The message is not sent';");
+		ErrorTitle = NStr("en = 'The message is not sent';tr = 'E-posta gönderilmedi'");
 		EmailOperationsClient.ReportConnectionError(Account, ErrorTitle, ErrorText);
 		Return;
 	EndTry;
@@ -480,11 +480,11 @@ Procedure SendMail()
 		SaveReplyTo(ReplyToAddress);
 		FormClosingConfirmationRequired = False;
 		
-		ShowUserNotification(NStr("en = 'Message sent:';"), ,
-			?(IsBlankString(EmailSubject), NStr("en = '<No subject>';"), EmailSubject), PictureLib.DialogInformation);
+		ShowUserNotification(NStr("en = 'Message sent:';tr = 'Mesaj gönderildi:'"), ,
+			?(IsBlankString(EmailSubject), NStr("en = '<No subject>';tr = '<Konu yok>'"), EmailSubject), PictureLib.DialogInformation);
 		
 		If HasWrongRecipients Then
-			ShowMessageBox(, NStr("en = 'The message is not sent to some recipients.';"));
+			ShowMessageBox(, NStr("en = 'The message is not sent to some recipients.';tr = 'İleti bazı alıcılara gönderilmedi.'"));
 		Else
 			Close();
 		EndIf;
@@ -498,18 +498,18 @@ Function FieldsFilledCorrectly()
 	
 	If RecipientsMailAddresses.Count() = 0 Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please specify at least one recipient.';"), , "RecipientsMailAddresses");
+			NStr("en = 'Please specify at least one recipient.';tr = 'Lütfen, en az bir alıcı belirtin.'"), , "RecipientsMailAddresses");
 		Result = False;
 	EndIf;
 	For Each EmailRecipient1 In RecipientsMailAddresses Do
 		Address = EmailAddressFromPresentation(EmailRecipient1.Presentation);
 		If IsBlankString(Address) Then
 			CommonClient.MessageToUser(
-				NStr("en = 'Please specify at least one recipient.';"),, "RecipientsMailAddresses[" + Format(RecipientsMailAddresses.IndexOf(EmailRecipient1), "NG=0") + "].Presentation");
+				NStr("en = 'Please specify at least one recipient.';tr = 'Lütfen, en az bir alıcı belirtin.'"),, "RecipientsMailAddresses[" + Format(RecipientsMailAddresses.IndexOf(EmailRecipient1), "NG=0") + "].Presentation");
 			Result = False;
 		ElsIf Not CommonClientServer.EmailAddressMeetsRequirements(Address, False) Then
 			CommonClient.MessageToUser(
-				NStr("en = 'Invalid email address.';"),, "RecipientsMailAddresses[" + Format(RecipientsMailAddresses.IndexOf(EmailRecipient1), "NG=0") + "].Presentation");
+				NStr("en = 'Invalid email address.';tr = 'Geçersiz e-posta adresi'"),, "RecipientsMailAddresses[" + Format(RecipientsMailAddresses.IndexOf(EmailRecipient1), "NG=0") + "].Presentation");
 			Result = False;
 		EndIf;
 	EndDo;
@@ -529,7 +529,7 @@ EndProcedure
 Procedure ImportanceHigh(Command)
 	EmailImportance = EmailOperationsInternalClientServer.InternetMailMessageImportanceHigh();
 	Items.SeverityGroup.Picture = PictureLib.ImportanceHigh;
-	Items.SeverityGroup.ToolTip = NStr("en = 'High importance';");
+	Items.SeverityGroup.ToolTip = NStr("en = 'High importance';tr = 'Yüksek önem'");
 	Modified = True;
 EndProcedure
 
@@ -537,7 +537,7 @@ EndProcedure
 Procedure ImportanceNormal(Command)
 	EmailImportance = EmailOperationsInternalClientServer.InternetMailMessageImportanceStandard();
 	Items.SeverityGroup.Picture = PictureLib.ImportanceNotSpecified;
-	Items.SeverityGroup.ToolTip = NStr("en = 'Normal importance';");
+	Items.SeverityGroup.ToolTip = NStr("en = 'Normal importance';tr = 'Normal önem'");
 	Modified = True;
 EndProcedure
 
@@ -545,7 +545,7 @@ EndProcedure
 Procedure ImportanceLow(Command)
 	EmailImportance = EmailOperationsInternalClientServer.InternetMailMessageImportanceLow();
 	Items.SeverityGroup.Picture = PictureLib.ImportanceLow;
-	Items.SeverityGroup.ToolTip = NStr("en = 'Low importance';");
+	Items.SeverityGroup.ToolTip = NStr("en = 'Low importance';tr = 'Düşük önem'");
 	Modified = True;
 EndProcedure
 
@@ -587,7 +587,7 @@ Function SendEmailMessage(HasWrongRecipients)
 	If WrongRecipients.Count() > 0 Then
 		For Each WrongRecipient In WrongRecipients Do
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1: %2';"),
+				NStr("en = '%1: %2';tr = '%1: %2'"),
 				WrongRecipient.Key, WrongRecipient.Value);
 				
 			Field = "RecipientsMailAddresses";
@@ -697,7 +697,7 @@ Function GetSpreadsheetDocumentByBinaryData(Val BinaryData)
 	Try
 		DeleteFiles(FileName);
 	Except
-		WriteLogEvent(NStr("en = 'Get spreadsheet document';", Common.DefaultLanguageCode()), EventLogLevel.Error, , , 
+		WriteLogEvent(NStr("en = 'Get spreadsheet document';tr = 'Elektronik çizelge belgesini al'", Common.DefaultLanguageCode()), EventLogLevel.Error, , , 
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -932,7 +932,7 @@ Function GetNormalizedEmailInFormat(Text)
 	
 	If Addresses.Count() > 1 Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please specify a single reply-to address.';"), , "ReplyToAddress");
+			NStr("en = 'Please specify a single reply-to address.';tr = 'Cevap için sadece bir adres belirtilebilir.'"), , "ReplyToAddress");
 		Return Text;
 	EndIf;
 	
@@ -994,13 +994,13 @@ EndProcedure
 
 &AtClient
 Procedure ShowQueryBoxBeforeCloseForm()
-	QueryText = NStr("en = 'The message is not yet sent. Do you want to close the window?';");
+	QueryText = NStr("en = 'The message is not yet sent. Do you want to close the window?';tr = 'Mesaj henüz gönderilmedi. Formu kapat?'");
 	NotifyDescription = New NotifyDescription("CloseFormConfirmed", ThisObject);
 	Buttons = New ValueList;
-	Buttons.Add("Close", NStr("en = 'Close';"));
-	Buttons.Add(DialogReturnCode.Cancel, NStr("en = 'Do not close';"));
+	Buttons.Add("Close", NStr("en = 'Close';tr = 'Kapat'"));
+	Buttons.Add(DialogReturnCode.Cancel, NStr("en = 'Do not close';tr = 'Kapatmayın'"));
 	ShowQueryBox(NotifyDescription, QueryText, Buttons,,
-		DialogReturnCode.Cancel, NStr("en = 'Send message';"));
+		DialogReturnCode.Cancel, NStr("en = 'Send message';tr = 'Mesaj gönder'"));
 EndProcedure
 
 &AtClient

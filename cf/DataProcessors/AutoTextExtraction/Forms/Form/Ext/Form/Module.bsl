@@ -40,7 +40,7 @@ Procedure OnOpen(Cancel)
 	
 	If Not TextsExtractionAvailable() Then
 		Cancel = True;
-		MessageText = NStr("en = 'Text extraction is only available in the Windows client.';");
+		MessageText = NStr("en = 'Text extraction is only available in the Windows client.';tr = 'Metin çıkarma yalnızca Windows tabanlı bir istemcide desteklenir.'");
 		ShowMessageBox(, MessageText);
 		Return;
 	EndIf;
@@ -111,7 +111,10 @@ Procedure ExtractAll(Command)
 			NStr("en = 'Extracting text from all files
 			         |with extraction pending is completed.
 			         |
-			         | Files processed: %1.';"),
+			         | Files processed: %1.';tr = 'Metin ayıklamayan tüm dosyalardan
+			         |metin çıkarımı tamamlandı.
+			         |
+			         | İşlenen dosyaların sayısı: %1.'"),
 			UnextractedTextFileCountBeforeOperation));
 #EndIf
 	
@@ -134,7 +137,7 @@ EndFunction
 
 &AtClientAtServerNoContext
 Function StatusTextCalculation()
-	Return NStr("en = 'Searching for files with text extraction pending…';");
+	Return NStr("en = 'Searching for files with text extraction pending…';tr = 'Çıkarılmamış metne sahip dosyalar aranıyor...'");
 EndFunction
 
 &AtClient
@@ -216,10 +219,10 @@ Procedure OutputInformationOnNonExtractedTextFilesCount()
 	
 	If UnextractedTextFileCount > 0 Then
 		Items.UnextractedTextFilesCountInfo.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Files with text extraction pending: %1';"),
+			NStr("en = 'Files with text extraction pending: %1';tr = 'Çıkarılmamış metne sahip dosya sayısı: %1'"),
 			UnextractedTextFileCount);
 	Else
-		Items.UnextractedTextFilesCountInfo.Title = NStr("en = 'Files with text extraction pending: None';");
+		Items.UnextractedTextFilesCountInfo.Title = NStr("en = 'Files with text extraction pending: None';tr = 'Çıkarılmamış metne sahip dosya sayısı: yok'");
 	EndIf;
 	
 EndProcedure
@@ -228,7 +231,7 @@ EndProcedure
 Function ExecuteSearchOfFilesWIthNonExtractedText()
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Search for files with text extraction pending.';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Search for files with text extraction pending.';tr = 'Çıkarılmamış metne sahip dosyalar aranıyor.'");
 	
 	TimeConsumingOperation = TimeConsumingOperations.ExecuteFunction(ExecutionParameters, "FilesOperationsInternal.VersionsWithUnextractedTextCount");
 	CurrentBackgroundJob = "Calculation1";
@@ -242,7 +245,7 @@ EndFunction
 &AtServerNoContext
 Procedure WriteLogEventServer(MessageText)
 	
-	WriteLogEvent(NStr("en = 'Files.Extract text';", Common.DefaultLanguageCode()),
+	WriteLogEvent(NStr("en = 'Files.Extract text';tr = 'Dosyalar. Metin Çıkarma'", Common.DefaultLanguageCode()),
 		EventLogLevel.Error,,, MessageText);
 	
 EndProcedure
@@ -253,7 +256,7 @@ Procedure CountdownUpdate()
 	Left = ExpectedExtractionStartTime - CommonClient.SessionDate();
 	
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Text extraction starts in %1 sec';"),
+		NStr("en = 'Text extraction starts in %1 sec';tr = '%1 metin çıkarımı başlamadan önce'"),
 		Left);
 	
 	If Left <= 1 Then
@@ -291,7 +294,7 @@ Procedure TextExtractionClient(PortionSize = Undefined)
 		FilesArray = GetFilesForTextExtraction(PortionSizeCurrent);
 		
 		If FilesArray.Count() = 0 Then
-			ShowUserNotification(NStr("en = 'Extract text';"),, NStr("en = 'No files for text extraction.';"));
+			ShowUserNotification(NStr("en = 'Extract text';tr = 'Metinlerin çıkarılması'"),, NStr("en = 'No files for text extraction.';tr = 'Metni çıkarılacak dosya yok'"));
 			Return;
 		EndIf;
 		
@@ -310,7 +313,7 @@ Procedure TextExtractionClient(PortionSize = Undefined)
 					FileDescription, Extension);
 				
 				Progress = IndexOf * 100 / FilesArray.Count();
-				Status(NStr("en = 'Extracting text from files';"), Progress, NameWithExtension);
+				Status(NStr("en = 'Extracting text from files';tr = 'Dosya metnini çıkarma'"), Progress, NameWithExtension);
 				
 				FilesOperationsInternalClient.ExtractVersionText(
 					FileOrFileVersion, FileAddress, Extension, UUID, Encoding);
@@ -318,7 +321,8 @@ Procedure TextExtractionClient(PortionSize = Undefined)
 			Except
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'An unexpected error occurred while extracting the text from the ""%1"" file:
-						|%2';"),
+						|%2';tr = '""%1"" dosyasından metin çıkarılırken hata oluştu:
+						|%2'"),
 					String(FileOrFileVersion), ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 				Status(MessageText);
 				ExtractionResult = "FailedExtraction";
@@ -329,16 +333,18 @@ Procedure TextExtractionClient(PortionSize = Undefined)
 		
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Text extraction completed.
-			           |Files processed: %1';"),
+			           |Files processed: %1';tr = 'Metin çıkarımı tamamlandı.
+			           |İşlenen dosya sayısı: %1'"),
 			FilesArray.Count());		
-		ShowUserNotification(NStr("en = 'Extract text';"),, MessageText);
+		ShowUserNotification(NStr("en = 'Extract text';tr = 'Metinlerin çıkarılması'"),, MessageText);
 		
 	Except
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'An unexpected error occurred while extracting the text from the ""%1"" file:
-			|%2';"),
+			|%2';tr = '""%1"" dosyasından metin çıkarılırken hata oluştu:
+			|%2'"),
 			String(FileOrFileVersion), ErrorProcessing.BriefErrorDescription(ErrorInfo()));	
-		ShowUserNotification(NStr("en = 'Extract text';"),, MessageText);	
+		ShowUserNotification(NStr("en = 'Extract text';tr = 'Metinlerin çıkarılması'"),, MessageText);	
 		WriteLogEventServer(MessageText);
 	EndTry;
 	

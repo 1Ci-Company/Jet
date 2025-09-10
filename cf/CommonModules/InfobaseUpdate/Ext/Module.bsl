@@ -68,7 +68,7 @@ Procedure WriteObject(Val Object, Val RegisterOnExchangePlanNodes = Undefined,
 	If Var_DocumentWriteMode <> Undefined Then
 		If TypeOf(Var_DocumentWriteMode) <> Type("DocumentWriteMode") Then
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid type of parameter %1';"),
+				NStr("en = 'Invalid type of parameter %1';tr = 'Geçersiz %1 parametresi numarası'"),
 				"DocumentWriteMode");
 			Raise ExceptionText;
 		EndIf;
@@ -250,7 +250,11 @@ Procedure CheckObjectProcessed(Data, Form = Undefined, DeferredHandlerName = "",
 		           |from update handler
 		           |%2
 		           | as its queue number is less than or equal to the queue number of update handler
-		           |%3.';"),
+		           |%3.';tr = 'Güncelleştirme işleyicisinden çağırmak %1
+		           | için geçerli değil, çünkü sıra numarası
+		           |%2
+		           | güncelleştirme işleyicisinin sıra numarasına eşit veya daha küçük
+		           |%3'"),
 		InterfaceProcedureName,
 		SessionParameters.UpdateHandlerParameters.HandlerName,
 		DeferredHandlerName);
@@ -354,11 +358,14 @@ Function ObjectProcessed(Data) Export
 		
 		PartsExceptions = New Array;
 		PartsExceptions.Add(NStr("en = 'Operations with this object are temporarily blocked
-			|until the scheduled upgrade to a new version is completed.';"));
+			|until the scheduled upgrade to a new version is completed.';tr = 'Programın yeni bir sürümüne geçiş tamamlanmadığı için nesne eylemleri geçici olarak yasaktır. 
+			|Yakında sona erecek planlı bir süreçtir.'"));
 		PartsExceptions.Add(StrConcat(StrSplit(NStr("en = 'To enable editing, click More actions > Unlock.
 			|Do that responsibly, as it might
-			|corrupt the document.';"), Chars.LF), " "));
-		PartsExceptions.Add(NStr("en = 'The following data processing procedures are not completed';"));
+			|corrupt the document.';tr = 'Düzenlemeyi etkinleştirmek için Diğer - Engellemeyi Kaldır''a tıklayabilirsiniz.
+			|Belge doğru şekilde kaydedilmeyebileceğinden
+			|, engellemeyi kaldırma yalnızca acil durumlarda kullanılmalıdır.'"), Chars.LF), " "));
+		PartsExceptions.Add(NStr("en = 'The following data processing procedures are not completed';tr = 'Aşağıdaki veri işleme prosedürleri tamamlanmadı'"));
 		
 		ExceptionText = StrConcat(PartsExceptions, Chars.LF + Chars.LF) + ":";
 		
@@ -432,7 +439,7 @@ Procedure MarkProcessingCompletion(Data, AdditionalParameters = Undefined, Queue
 		Or TypeOf(Data) = Type("ValueTable"))
 		And Data.Count() = 0 Then
 		
-		ExceptionText = NStr("en = 'An empty array is passed to procedure %1. Cannot mark the data processing procedure as completed.';");
+		ExceptionText = NStr("en = 'An empty array is passed to procedure %1. Cannot mark the data processing procedure as completed.';tr = '%1 prosedürüne boş küme aktarıldı. İşlem yürütülemedi.'");
 		ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, "InfobaseUpdate.MarkProcessingCompletion");
 		Raise ExceptionText;
 		
@@ -450,7 +457,7 @@ Procedure MarkProcessingCompletion(Data, AdditionalParameters = Undefined, Queue
 		
 	Else
 		If TypeOf(Data) = Type("MetadataObject") Then
-			ExceptionText = NStr("en = 'Setting ""update processing completed"" flag to an entire metadata object is not supported. This flag can be set to specific data.';");
+			ExceptionText = NStr("en = 'Setting ""update processing completed"" flag to an entire metadata object is not supported. This flag can be set to specific data.';tr = '""Güncelleme işlemleri tamamlandı"" bayrağının tüm metaveri nesnesine ayarlanması desteklenmiyor. Bu bayrak belirli verilere ayarlanabilir.'");
 			Raise ExceptionText;
 		EndIf;
 		
@@ -633,7 +640,7 @@ Function MetadataAndFilterByData(Data, AdditionalParameters = Undefined) Export
 			EndDo;
 			
 		Else
-			ExceptionText = NStr("en = 'Cannot use procedure %1 in this form.';");
+			ExceptionText = NStr("en = 'Cannot use procedure %1 in this form.';tr = 'Bu formda %1 prosedürü kullanılamaz.'");
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, "InfobaseUpdate.MetadataAndFilterByData");
 		EndIf;
 		
@@ -673,7 +680,7 @@ Function MetadataAndFilterByData(Data, AdditionalParameters = Undefined) Export
 				Filter = Data.Filter.Recorder.Value;
 			EndIf;
 		Else
-			ExceptionText = NStr("en = 'Function %1 does not support analysis of this metadata type.';");
+			ExceptionText = NStr("en = 'Function %1 does not support analysis of this metadata type.';tr = 'Bu tür metaveri için %1 işlevinde analiz desteklenmiyor.'");
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, "InfobaseUpdate.MetadataAndFilterByData");
 			Raise ExceptionText;
 		EndIf;
@@ -746,7 +753,8 @@ Procedure MarkForProcessing(MainParameters, Data, AdditionalParameters = Undefin
 		
 		If NonExistent.Count() <> 0 Then
 			ExceptionText = NStr("en = 'Non-existing objects are specified in the %1 property of the deferred handler data population procedures:
-				|%2.';");
+				|%2.';tr = 'Ertelenen işleyicinin veri doldurma prosedürünün %1özelliğinde geçersiz nesneler belirtildi:
+				|%2.'");
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText,
 				"SelectionParameters", StrConcat(NonExistent, ", "));
 			Raise ExceptionText;
@@ -772,7 +780,7 @@ Procedure MarkForProcessing(MainParameters, Data, AdditionalParameters = Undefin
 			ElsIf Common.IsReference(TypeOf(Data)) Then
 				MetadataOfDocument = Data.Metadata();
 			Else
-				ExceptionText = NStr("en = 'To register all register recorders, in the Data parameter, pass the metadata object ""Document"" or ""DocumentRef"".';");
+				ExceptionText = NStr("en = 'To register all register recorders, in the Data parameter, pass the metadata object ""Document"" or ""DocumentRef"".';tr = 'Kaydın tüm transfer kayıtlarının kaydedilmesi için Veri parametresinde ""Document"" ya da ""DocumentRef"" metaveri nesnesi aktarılmalı.'");
 				Raise ExceptionText;
 			EndIf;
 			FullDocumentName = MetadataOfDocument.FullName();
@@ -827,7 +835,7 @@ Procedure MarkForProcessing(MainParameters, Data, AdditionalParameters = Undefin
 			RegisterObjectChanges(MainParameters, Node, Data, "Ref");
 		Else
 			If TypeOf(Data) = Type("MetadataObject") Then
-				ExceptionText = NStr("en = 'Registration of an entire metadata object for update is not supported. Please update specific data.';");
+				ExceptionText = NStr("en = 'Registration of an entire metadata object for update is not supported. Please update specific data.';tr = 'Metaveri nesnesinin tamamını güncelleştirmeye kayıt desteklenmiyor. Belirli verileri güncellemek gerekir.'");
 				Raise ExceptionText;
 			EndIf;
 			
@@ -1952,7 +1960,7 @@ Function HasDataToProcess(Queue, FullObjectNameMetadata, Filter = Undefined) Exp
 		FullNamesOfObjectsToProcess = New Array;
 		FullNamesOfObjectsToProcess.Add(FullObjectNameMetadata.FullName());
 	Else
-		ExceptionText = NStr("en = 'Invalid type of parameter ""%1"" is passed to function %2';");
+		ExceptionText = NStr("en = 'Invalid type of parameter ""%1"" is passed to function %2';tr = '%2 işlevinde ""%1"" parametresinin türü yanlış aktarılmıştır.'");
 		ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, "FullObjectNameMetadata", "InfobaseUpdate.HasDataToProcess");
 		Raise ExceptionText;
 	EndIf;	
@@ -2007,7 +2015,7 @@ Function HasDataToProcess(Queue, FullObjectNameMetadata, Filter = Undefined) Exp
 			And ObjectMetadata.WriteMode = Metadata.ObjectProperties.RegisterWriteMode.Independent Then
 			
 			If FullNamesOfObjectsToProcess.Count() > 1 Then
-				ExceptionText = NStr("en = 'In the name array in parameter ""%1"", an independent information register is passed to function %2.';");
+				ExceptionText = NStr("en = 'In the name array in parameter ""%1"", an independent information register is passed to function %2.';tr = '""%1"" parametrenin isim dizininde %2 işlevine bağımsız bilgi kaydı aktarıldı.'");
 				ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText,
 					"FullObjectNameMetadata", "InfobaseUpdate.HasDataToProcess");
 				Raise ExceptionText;
@@ -2097,7 +2105,7 @@ Function HasDataToProcess(Queue, FullObjectNameMetadata, Filter = Undefined) Exp
 			EndIf;
 			
 		Else
-			ExceptionText = NStr("en = 'Function %2 does not support checks for metadata type ""%1"".';");
+			ExceptionText = NStr("en = 'Function %2 does not support checks for metadata type ""%1"".';tr = '%2 işlevinde denetleme ""%1"" metaveri türü için desteklenmiyor'");
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText,
 				String(ObjectMetadata), "InfobaseUpdate.HasDataToProcess");
 			Raise ExceptionText;
@@ -2423,7 +2431,7 @@ Function CreateTemporaryTableOfDataProhibitedFromReadingAndEditing(Queue, FullOb
 			QueryText = StrReplace(QueryText, "Recorder", NameOfTheDimensionToSelect);
 		EndIf;
 	Else
-		ExceptionText = NStr("en = 'Function %1 does not support checks for this metadata type.';");
+		ExceptionText = NStr("en = 'Function %1 does not support checks for this metadata type.';tr = 'Bu tür metaveri için %1 işlevinde denetim desteklenmiyor.'");
 		ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, "InfobaseUpdate.CreateTemporaryTableOfDataProhibitedFromReadingAndEditing");
 		Raise ExceptionText;
 	EndIf;
@@ -2569,7 +2577,7 @@ Function CreateTemporaryTableOfRefsProhibitedFromReadingAndEditing(Queue, FullNa
 				HasRegisters = True;
 				
 			Else
-				ExceptionText = NStr("en = 'Function %2 does not support checks for metadata type ""%1"".';");
+				ExceptionText = NStr("en = 'Function %2 does not support checks for metadata type ""%1"".';tr = '%2 işlevinde denetleme ""%1"" metaveri türü için desteklenmiyor'");
 				ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText,
 					String(ObjectMetadata), "InfobaseUpdate.CreateTemporaryTableOfRefsProhibitedFromReadingAndEditing");
 				Raise ExceptionText;
@@ -3496,7 +3504,8 @@ Function DataAreasUpdateProgress(UpdateMode) Export
 	Else
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Incorrect value of the ""%1"" parameter.
-				 |Possible values: ""%2"", ""%3""';"), "UpdateMode", UpdateModeOnline, UpdateModeDeferred);
+				 |Possible values: ""%2"", ""%3""';tr = '""%1"" parametre değeri geçersiz.
+				 |Uygun değerler: ""%2"", ""%3""'"), "UpdateMode", UpdateModeOnline, UpdateModeDeferred);
 	EndIf;
 	
 	StatusOrderUpdated = 4;
@@ -3789,7 +3798,7 @@ Function UpdateHandlers(Filter = Undefined) Export
 				Continue;
 			EndIf;
 			String = HandlersInformation.Add();
-			String.HandlerName = NStr("en = 'Internal procedures to register deferred handlers';");
+			String.HandlerName = NStr("en = 'Internal procedures to register deferred handlers';tr = 'Ertelenmiş işleyicileri kaydetmeye yönelik dahili prosedürler'");
 			String.ExecutionMode = ModeNamesByValue[Enums.HandlersExecutionModes.Seamless];
 			String.LibraryName = "StandardSubsystemsLibrary";
 			String.Status = NamesOfStatusesByValue[Enums.UpdateHandlersStatuses.Running];
@@ -4062,7 +4071,8 @@ Procedure WriteErrorToEventLog(Ref_Metadata, Val Presentation, ErrorInfo = Undef
 	EndIf;
 	
 	MessageText = NStr("en = 'Couldn''t process ""%1"" due to:
-		|%2';");
+		|%2';tr = '""%1"" şu nedenle işlenemedi:
+		|%2'");
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText,
 		Presentation,
 		ErrorText);
@@ -4146,7 +4156,7 @@ Procedure RelaunchDeferredUpdate(Filter = Undefined) Export
 	
 	If TypeOf(Filter) = Type("Structure")
 		And Filter.Count() = 0 Then
-		Raise NStr("en = 'The dataset is missing the list of subsystems that require restart of deferred handlers.';");
+		Raise NStr("en = 'The dataset is missing the list of subsystems that require restart of deferred handlers.';tr = 'Filtrede ertelenen işleyicilerin yeniden başlatılması gereken alt sistem listesi belirtilmedi.'");
 	EndIf;
 	
 	// Deferred update handlers.
@@ -4271,7 +4281,7 @@ Procedure RelaunchDeferredUpdate(Filter = Undefined) Export
 			TempQueueObject.Description = XMLString(Queue);
 			TempQueueObject.Temporary = False;
 			
-			MainQueueObject.Description = XMLString(Queue) + " " + NStr("en = 'Old after restart';");
+			MainQueueObject.Description = XMLString(Queue) + " " + NStr("en = 'Old after restart';tr = 'Eski yeniden başlatıldıktan sonra'");
 			MainQueueObject.Temporary = True;
 			
 			TempQueueObject.Write();
@@ -4382,7 +4392,9 @@ Procedure FileIssueWithData(ObjectWithIssue, IssueSummary, Parameters = Undefine
 	
 	TemplateEntryToLog = NStr("en = 'An issue found in object ""%2"" when running handler ""%1"".
 		|Issue details:
-		|%3';");
+		|%3';tr = '""%1"" işleyici yürütülürken ""%2"" nesnede veri sorunu tespit edildi.
+		|Sorunun kesinleştirilmesi:
+		|%3'");
 	
 	TextToWriteToLog = StringFunctionsClientServer.SubstituteParametersToString(TemplateEntryToLog,
 		HandlerName, ObjectWithIssue, IssueSummary);
@@ -4450,7 +4462,7 @@ Procedure AddAdditionalSourceLockCheck(Queue, QueryText, FullObjectName, FullReg
 		
 		If AdditionalSourcesRefs.Count() > 0 Then
 			If FullObjectName = Undefined Then
-				ExceptionText = NStr("en = '%FunctionName% function call error: additional data sources were passed without a document name.';");
+				ExceptionText = NStr("en = '%FunctionName% function call error: additional data sources were passed without a document name.';tr = '%FunctionName% işlevin çağrı hatası: belge adı aktarılmadı, ama ek veri kaynakları aktarıldı.'");
 				ExceptionText = StrReplace(ExceptionText, "%FunctionName%", "InfobaseUpdate.AddAdditionalSourceLockCheck");
 				Raise ExceptionText;
 			EndIf;
@@ -4557,7 +4569,7 @@ Procedure AddAdditionalSourceLockCheck(Queue, QueryText, FullObjectName, FullReg
 				If Common.IsInformationRegister(SourceMetadata)
 					And SourceMetadata.WriteMode = Metadata.ObjectProperties.RegisterWriteMode.Independent Then
 					
-					ExceptionText = NStr("en = 'The %DataSource% register is independent. The check supports only registers that are subordinate to recorders.';");
+					ExceptionText = NStr("en = 'The %DataSource% register is independent. The check supports only registers that are subordinate to recorders.';tr = '%DataSource% kaydedici bağımsızdır. Denetim sadece kayıt, bağlı kayıtlara göre desteklenmektedir.'");
 					ExceptionText = StrReplace(ExceptionText, "%DataSource%",DataSource);
 					Raise ExceptionText;
 				EndIf;
@@ -4829,7 +4841,11 @@ Procedure RegisterChangesToADataItem(Data, RegistrationParameters)
 				|might not be included in the ""%1"" exchange plan.
 				|To detect such errors, use the %2 tool.
 				|
-				|%3';");
+				|%3';tr = 'Veriler işlenmek üzere kaydedilemiyor. Verilerin kaydedildiği tablolar
+				|""%1"" değişim planına dahil olmayabilir.
+				|Bu tür sorunları tespit etmek için %2 aracını kullanın.
+				|
+				|%3'");
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, 
 				Metadata.ExchangePlans.InfobaseUpdate.Name,
 				"SSLImplementationCheck",
@@ -4875,7 +4891,11 @@ Procedure RegisterADataPackage(RegistrationParameters, Data, Forcibly = False, P
 				|might not be included in the ""%1"" exchange plan.
 				|To detect such errors, use the %2 tool.
 				|
-				|%3';");
+				|%3';tr = 'Veriler işlenmek üzere kaydedilemiyor. Verilerin kaydedildiği tablolar
+				|""%1"" değişim planına dahil olmayabilir.
+				|Bu tür sorunları tespit etmek için %2 aracını kullanın.
+				|
+				|%3'");
 			ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText, 
 				Metadata.ExchangePlans.InfobaseUpdate.Name,
 				"SSLImplementationCheck",
@@ -6080,7 +6100,7 @@ EndFunction
 Procedure CheckSelectionParameters(Parameters)
 	
 	If Not Parameters.SelectInBatches And IsSelectionByPages(Parameters) Then
-		Raise NStr("en = 'Multi-threaded update handler must select data in portions.';");
+		Raise NStr("en = 'Multi-threaded update handler must select data in portions.';tr = 'Güncellemenin çok iş parçacıklı işleyicisi verileri parti şeklinde seçmelidir.'");
 	EndIf;
 	
 EndProcedure
@@ -6424,7 +6444,7 @@ Function IsSimpleDataSource(AdditionalDataSources)
 	EndDo;
 	
 	If SimpleSource And ComplexSource Then
-		Error = NStr("en = 'Invalid data source (see %1).';");
+		Error = NStr("en = 'Invalid data source (see %1).';tr = 'Veri kaynağı yanlış belirtildi (bkz. %1).'");
 		Error = StringFunctionsClientServer.SubstituteParametersToString(Error, "AdditionalProcessingDataSelectionParameters()");
 		Raise Error;
 	Else

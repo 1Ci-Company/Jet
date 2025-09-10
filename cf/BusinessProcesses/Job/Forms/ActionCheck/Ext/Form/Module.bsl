@@ -57,12 +57,12 @@ Procedure BeforeWriteAtServer(Cancel, CurrentObject, WriteParameters)
 
 	If Not JobCompleted And Not JobConfirmed And Not ValueIsFilled(CurrentObject.ExecutionResult) Then
 		Common.MessageToUser(
-			NStr("en = 'Please tell why the task should be fixed.';"),, 
+			NStr("en = 'Please tell why the task should be fixed.';tr = 'Görevin tekrar revizyona gönderilmesinin sebebini belirtin.'"),, 
 			"Object.ExecutionResult",, Cancel);
 		Return;
 	ElsIf Not JobCompleted And JobConfirmed And Not ValueIsFilled(CurrentObject.ExecutionResult) Then
 		Common.MessageToUser(
-			NStr("en = 'Please tell why the task is canceled.';"),, 
+			NStr("en = 'Please tell why the task is canceled.';tr = 'Görevin iptal nedenini belirtin.'"),, 
 			"Object.ExecutionResult",, Cancel);
 		Return;
 	EndIf;

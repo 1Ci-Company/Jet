@@ -63,31 +63,33 @@ Procedure CheckObjectReferenceAfterValidationConfirm(Response, Parameters) Expor
 		If Parameters.ReferencesArrray.Count() = 1 Then
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1 is used elsewhere in the app.
-				           |Editing this object might lead to data inconsistency.';"),
+				           |Editing this object might lead to data inconsistency.';tr = '%1, uygulamada başka yerlerde kullanılıyor.
+				           |Bu nesnenin düzenlenmesi veri tutarsızlığına yol açabilir.'"),
 				Parameters.ReferencesArrray[0]);
 		Else
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1 selected items are used elsewhere in the app.
-				           |Editing these items might lead to data inconsistency.';"),
+				           |Editing these items might lead to data inconsistency.';tr = '%1 seçili öğeleri uygulamada başka yerlerde kullanılıyor.
+				           |Bu öğelerin düzenlenmesi veri tutarsızlığına yol açabilir.'"),
 				Parameters.ReferencesArrray.Count());
 		EndIf;
 		
 		Buttons = New ValueList;
-		Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Allow editing';"));
-		Buttons.Add(DialogReturnCode.No, NStr("en = 'Cancel';"));
+		Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Allow editing';tr = 'Düzenlemeye izin ver'"));
+		Buttons.Add(DialogReturnCode.No, NStr("en = 'Cancel';tr = 'İptal et'"));
 		ShowQueryBox(
 			New NotifyDescription(
 				"CheckObjectRefsAfterEditConfirmation", ThisObject, Parameters),
 			MessageText, Buttons, , DialogReturnCode.No, Parameters.DialogTitle);
 	Else
 		If Parameters.ReferencesArrray.Count() = 1 Then
-			ShowUserNotification(NStr("en = 'Attribute editing allowed';"),
+			ShowUserNotification(NStr("en = 'Attribute editing allowed';tr = 'Öznitelik düzenlemeye izin verilir'"),
 				GetURL(Parameters.ReferencesArrray[0]), Parameters.ReferencesArrray[0]);
 		Else
-			MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Allowed to edit attributes of %1 objects';"),
+			MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Allowed to edit attributes of %1 objects';tr = 'Nesne özelliklerinin düzenlenmesine izin verilir (%1)'"),
 				Parameters.ReferencesArrray.Count());
 			
-			ShowUserNotification(NStr("en = 'Attribute editing allowed';"),,
+			ShowUserNotification(NStr("en = 'Attribute editing allowed';tr = 'Öznitelik düzenlemeye izin verilir'"),,
 				MessageText);
 		EndIf;
 		ExecuteNotifyProcessing(Parameters.ContinuationHandler, True);

@@ -218,7 +218,8 @@ Procedure CheckVolumeIntegrity(Command)
 	
 	If Not ValueIsFilled(Object.Ref) Then
 			QueryText = NStr("en = 'To proceed with the integrity check, save the volume data.
-					|Do you want to save the data?';");
+					|Do you want to save the data?';tr = 'Bütünlük kontrolüne devam etmek için birim verilerini kaydedin.
+					|Veriler kaydedilsin mi?'");
 			Notification = New NotifyDescription("WriteFormRequiredToCheckVolumeIntegrity", ThisObject);
 			ShowQueryBox(Notification, QueryText, QuestionDialogMode.YesNo);
 	Else

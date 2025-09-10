@@ -54,11 +54,11 @@ EndProcedure
 //
 Procedure ShowExitWarning() Export
 	Warnings = StandardSubsystemsClient.ClientParameter("ExitWarnings");
-	Explanation = NStr("en = 'and perform additional actions.';");
+	Explanation = NStr("en = 'and perform additional actions.';tr = 've ek eylemleri yerine getir'");
 	If Warnings.Count() = 1 And Not IsBlankString(Warnings[0].HyperlinkText) Then
 		Explanation = Warnings[0].HyperlinkText;
 	EndIf;
-	ShowUserNotification(NStr("en = 'Click here to exit';"), 
+	ShowUserNotification(NStr("en = 'Click here to exit';tr = 'Çıkmak için tıklayın'"), 
 		"e1cib/command/CommonCommand.ExitWarnings",
 		Explanation, PictureLib.ExitApplication, UserNotificationStatus.Important);
 EndProcedure

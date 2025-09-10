@@ -25,7 +25,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	SourceHandler = HandlerName;
 	
-	Title = NStr("en = 'Dependences of handler ""%1""';");
+	Title = NStr("en = 'Dependences of handler ""%1""';tr = 'İşleyici bağımlılıkları%1'");
 	Title = StringFunctionsClientServer.SubstituteParametersToString(Title, HandlerName);
 	
 	ProgressProcessing = GetFromTempStorage(Parameters.Cache).Copy(); // ValueTable

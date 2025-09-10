@@ -39,7 +39,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		EndIf;
 	EndIf;
 	
-	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Users assigned to role ""%1""';"), Role);
+	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Users assigned to role ""%1""';tr = 'Rol yapımcıları ""%1""'"), Role);
 	
 	SetRecordSetFilter();
 	
@@ -131,7 +131,7 @@ EndProcedure
 Procedure BeforeWrite(Cancel, WriteParameters)
 	For Each LinePerformer In RecordSet Do
 		If Not ValueIsFilled(LinePerformer.Performer) Then
-			ShowMessageBox(, NStr("en = 'Specify assignees.';"));
+			ShowMessageBox(, NStr("en = 'Specify assignees.';tr = 'Atananları belirleyin'"));
 			Cancel = True;
 		EndIf;
 	EndDo;
@@ -243,10 +243,10 @@ Procedure Pick(Command)
 	
 	If RoleIsAvailableToExternalUsers And RoleIsAvailableToUsers Then
 		Case = New ValueList;
-		Case.Add("ExternalUser", NStr("en = 'External user';"));
-		Case.Add("User", NStr("en = 'User';"));
+		Case.Add("ExternalUser", NStr("en = 'External user';tr = 'Harici kullanıcı'"));
+		Case.Add("User", NStr("en = 'User';tr = 'Kullanıcı'"));
 		NotifyDescription = New NotifyDescription("AfterUserTypeChoice", ThisObject);
-		Case.ShowChooseItem(NotifyDescription, NStr("en = 'Select user type';"));
+		Case.ShowChooseItem(NotifyDescription, NStr("en = 'Select user type';tr = 'Kullanıcı türü seçin'"));
 	ElsIf RoleIsAvailableToUsers Then
 		OpenSelectionForm("User");
 	ElsIf RoleIsAvailableToExternalUsers Then

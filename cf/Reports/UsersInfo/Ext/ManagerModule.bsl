@@ -26,18 +26,21 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UsersAndExternalUsersInfo");
 	OptionSettings.LongDesc = 
 		NStr("en = 'Detailed information about all users,
-		|including their authorization settings (if specified).';");
+		|including their authorization settings (if specified).';tr = 'Oturum açma ayarları (belirtilmişse) 
+		|dahil olmak üzere tüm kullanıcılar hakkında ayrıntılı bilgi görüntüler.'");
 	OptionSettings.FunctionalOptions.Add("UseExternalUsers");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "UsersInfo");
 	OptionSettings.LongDesc = 
 		NStr("en = 'Detailed information about users,
-		|including their authorization settings (if specified).';");
+		|including their authorization settings (if specified).';tr = 'Oturum açma ayarları (belirtilmişse) 
+		|dahil olmak üzere tüm kullanıcılar hakkında ayrıntılı bilgi görüntüler.'");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "ExternalUsersInfo");
 	OptionSettings.LongDesc = 
 		NStr("en = 'Detailed information about external users,
-		|including their authorization settings (if specified).';");
+		|including their authorization settings (if specified).';tr = 'Oturum açma ayarları (belirtilmişse) 
+		|dahil olmak üzere tüm kullanıcılar hakkında ayrıntılı bilgi görüntüler.'");
 	OptionSettings.FunctionalOptions.Add("UseExternalUsers");
 EndProcedure
 

@@ -124,7 +124,7 @@ EndProcedure
 Procedure OpenDataForViewing(CurrentData) Export
 	
 	If CurrentData = Undefined Or CurrentData.Data = Undefined Then
-		ShowMessageBox(, NStr("en = 'The event log record is not linked to data (see the Data column)';"));
+		ShowMessageBox(, NStr("en = 'The event log record is not linked to data (see the Data column)';tr = 'Olay günlüğü kaydı verilere bağlantılı değil (Veri sütununa bakın)'"));
 		Return;
 	EndIf;
 	
@@ -132,14 +132,15 @@ Procedure OpenDataForViewing(CurrentData) Export
 		ShowValue(, CurrentData.Data);
 	Except
 		WarningText = NStr("en = 'The event log record is linked to data that cannot be displayed.
-									|%1';");
+									|%1';tr = 'Olay günlüğü kaydı, görüntülenemeyen verilere bağlantılı.
+									|%1'");
 		If CurrentData.Event = "_$Data$_.Delete" Then 
 			// This is a deletion event.
 			WarningText =
-					StringFunctionsClientServer.SubstituteParametersToString(WarningText, NStr("en = 'The data was deleted from the infobase';"));
+					StringFunctionsClientServer.SubstituteParametersToString(WarningText, NStr("en = 'The data was deleted from the infobase';tr = 'Veri veritabanından silindi'"));
 		Else
 			WarningText =
-				StringFunctionsClientServer.SubstituteParametersToString(WarningText, NStr("en = 'Perhaps the data was deleted from the infobase';"));
+				StringFunctionsClientServer.SubstituteParametersToString(WarningText, NStr("en = 'Perhaps the data was deleted from the infobase';tr = 'Veri veritabanından silinmiş olabilir.'"));
 		EndIf;
 		ShowMessageBox(, WarningText);
 	EndTry;

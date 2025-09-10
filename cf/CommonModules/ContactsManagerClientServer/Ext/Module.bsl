@@ -38,7 +38,7 @@ Function GeneratePhonePresentation(CountryCode, CityCode, PhoneNumber, PhoneExte
 	EndIf;
 	
 	If Not IsBlankString(PhoneExtension) Then
-		Presentation = Presentation + ?(IsBlankString(Presentation), "", ", ") + NStr("en = 'ext.';") + " " + TrimAll(PhoneExtension);
+		Presentation = Presentation + ?(IsBlankString(Presentation), "", ", ") + NStr("en = 'ext.';tr = 'ekl.'") + " " + TrimAll(PhoneExtension);
 	EndIf;
 	
 	If Not IsBlankString(Comment) Then
@@ -84,7 +84,7 @@ EndFunction
 //  String - a text that is displayed in the contact information field.
 //
 Function BlankAddressTextAsHyperlink() Export
-	Return NStr("en = 'Fill';");
+	Return NStr("en = 'Fill';tr = 'Doldur'");
 EndFunction
 
 // Determines whether information is entered in the contact information field when it is displayed as a hyperlink.
@@ -485,7 +485,7 @@ Function ExtendedTooltipForAddress(CommandsForOutput, AddressPresentation, Comme
 	EndIf;
 
 	If CommandsForOutput.Property("ShowOnYandexMaps") And CommandsForOutput.Property("ShowOnGoogleMap") Then
-		ShowOnMap = New FormattedString(NStr("en = 'On map';"),,WebColors.Gray, , "ShowOnMap");
+		ShowOnMap = New FormattedString(NStr("en = 'On map';tr = 'Haritada'"),,WebColors.Gray, , "ShowOnMap");
 	ElsIf CommandsForOutput.Property("ShowOnYandexMaps") Then
 		ShowOnMap = New FormattedString(CommandsForOutput.ShowOnYandexMaps.Title, ,WebColors.Gray, , "ShowOnYandexMaps");
 	ElsIf CommandsForOutput.Property("ShowOnGoogleMap") Then
@@ -772,29 +772,29 @@ Function PhoneFillingErrors(InfoAboutPhone, AdditionalChecksModule = Undefined) 
 	
 	CountryCodeNumbersOnly = LeaveOnlyTheNumbersInTheLine(InfoAboutPhone.CountryCode);
 	If ValueIsFilled(InfoAboutPhone.CountryCode) And IsBlankString(CountryCodeNumbersOnly) Then
-		ErrorList.Add("CountryCode", NStr("en = 'Country code contains invalid characters';"));
+		ErrorList.Add("CountryCode", NStr("en = 'Country code contains invalid characters';tr = 'Ülke kodu geçersiz karakterler içeriyor'"));
 	EndIf;
 	
 	PhoneNumberNumbersOnly = LeaveOnlyTheNumbersInTheLine(InfoAboutPhone.Presentation);
 	If IsBlankString(PhoneNumberNumbersOnly) Then
-		ErrorList.Add("PhoneNumber", NStr("en = 'Phone number does not contain digits';"));
+		ErrorList.Add("PhoneNumber", NStr("en = 'Phone number does not contain digits';tr = 'Telefon numarası rakamları içermiyor'"));
 	EndIf;
 
 	FullPhoneNumberOnlyDigits = LeaveOnlyTheNumbersInTheLine(FullPhoneNumber);
 	If StrLen(FullPhoneNumberOnlyDigits) > 15 Then
-		ErrorList.Add("PhoneNumber", NStr("en = 'Phone number is too long.';"));
+		ErrorList.Add("PhoneNumber", NStr("en = 'Phone number is too long.';tr = 'Telefon numarası çok uzun'"));
 	EndIf;
 	
 	If ValueIsFilled(InfoAboutPhone.CountryCode) And PhoneNumberContainsProhibitedChars(InfoAboutPhone.CountryCode) Then
-		ErrorList.Add("CountryCode", NStr("en = 'Country code contains invalid characters';"));
+		ErrorList.Add("CountryCode", NStr("en = 'Country code contains invalid characters';tr = 'Ülke kodu geçersiz karakterler içeriyor'"));
 	EndIf;
 	
 	If ValueIsFilled(InfoAboutPhone.CityCode) And PhoneNumberContainsProhibitedChars(InfoAboutPhone.CityCode) Then
-		ErrorList.Add("CityCode", NStr("en = 'City code contains invalid characters';"));
+		ErrorList.Add("CityCode", NStr("en = 'City code contains invalid characters';tr = 'Şehir kodu geçersiz karakterler içeriyor'"));
 	EndIf;
 	
 	If ValueIsFilled(InfoAboutPhone.PhoneNumber) And PhoneNumberContainsProhibitedChars(InfoAboutPhone.PhoneNumber) Then
-		ErrorList.Add("PhoneNumber", NStr("en = 'Phone number contains illegal characters.';"));
+		ErrorList.Add("PhoneNumber", NStr("en = 'Phone number contains illegal characters.';tr = 'Telefon numarası uygunsuz karakterleri içeriyor'"));
 	EndIf;
 	
 	If AdditionalChecksModule <> Undefined Then

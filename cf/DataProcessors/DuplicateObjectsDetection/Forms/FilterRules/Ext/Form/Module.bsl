@@ -38,7 +38,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	PrefilterComposer.LoadSettings(GetFromTempStorage(FilterComposerSettingsAddress));
 	DeleteFromTempStorage(FilterComposerSettingsAddress);
 	
-	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Filter rule: %1';"), 
+	Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Filter rule: %1';tr = 'Filtre kuralı: %1'"), 
 		Parameters.FilterAreaPresentation);
 	
 	IsMobileClient = Common.IsMobileClient();

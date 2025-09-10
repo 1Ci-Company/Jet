@@ -158,7 +158,7 @@ EndFunction
 
 Procedure TransferData_(ShouldReportProgress = False, ResultAddress = Undefined) Export
 	
-	ProgressTemplate = NStr("en = '%1 (%2 MB) out of %3 (%4 MB) files processed';");
+	ProgressTemplate = NStr("en = '%1 (%2 MB) out of %3 (%4 MB) files processed';tr = '%1 (%2 MB) / %3 (%4 MB) dosya işlendi'");
 	TotalRecords = 0;
 	TotalSizeMB = 0;
 	If ShouldReportProgress Then
@@ -204,7 +204,7 @@ Procedure TransferData_(ShouldReportProgress = False, ResultAddress = Undefined)
 				
 				FileSystem.DeleteTempFile(TempFileName);
 			ElsIf TypeOf(BinaryData) <> Type("BinaryData") Then
-				ErrorText = NStr("en = 'Detected data type: %3. Expected data type: %4. Information register: %1. File: %2';");
+				ErrorText = NStr("en = 'Detected data type: %3. Expected data type: %4. Information register: %1. File: %2';tr = 'Saptanan veri türü: %3. Beklenen veri türü: %4. Bilgi kaydı: %1. Dosya: %2'");
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 					Metadata.InformationRegisters.DeleteFilesBinaryData.Name,
 					FileDescription,
@@ -217,7 +217,7 @@ Procedure TransferData_(ShouldReportProgress = False, ResultAddress = Undefined)
 				ErrorDescription.Insert("Version", File);
 				Errors.Add(ErrorDescription);
 				
-				WriteLogEvent(NStr("en = 'Files.File deduplication error.';", Common.DefaultLanguageCode()),
+				WriteLogEvent(NStr("en = 'Files.File deduplication error.';tr = 'Dosyalar.Dosya tekilleştirme hatası.'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error, , File, ErrorText);
 				RollbackTransaction();
 				Continue;
@@ -355,7 +355,8 @@ Procedure TransferFilesBinaryDataToFileStorageInfoRegister(Selection)
 			
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Couldn''t process binary data of file %1. Reason:
-				|%2';"), 
+				|%2';tr = 'Bu nedenle %1 dosyasının ikili verileri işlenilemedi:
+				|%2'"), 
 				Selection.Ref, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			WriteLogEvent(InfobaseUpdate.EventLogEvent(), 
 				EventLogLevel.Warning, Selection.Ref.Metadata(), Selection.Ref, 
@@ -366,14 +367,14 @@ Procedure TransferFilesBinaryDataToFileStorageInfoRegister(Selection)
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some binary data of the file: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) some binary data of the file: %1';tr = 'Dosyanın ikili verileri işlenilemedi (atlanan): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), 
 			EventLogLevel.Information, Metadata.Catalogs.FilesVersions,,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Another batch of file binary data is processed: %1';"),
+				NStr("en = 'Another batch of file binary data is processed: %1';tr = 'Başka bir ikili veri partisi işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	
@@ -450,14 +451,14 @@ Procedure ToCreateTheMissingVersionFile(Selection)
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some files: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) some files: %1';tr = 'Bazı dosyalar işlenilemedi (atlanan): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.FilesVersions,,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Another batch of files is processed: %1';"),
+				NStr("en = 'Another batch of files is processed: %1';tr = 'Başka bir dosya partisi işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

@@ -113,7 +113,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.ImportBannedPasswordListExtendedTooltip.Title =
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Import a banned password list from a text file encoded with %1 with specification (with %2). Each password should be specified on a separate line.
-			           |You can specify either a password or its %3 hash in the %4 format.';"),
+			           |You can specify either a password or its %3 hash in the %4 format.';tr = 'Belirtimli (%2 ile) %1 ile şifrelenmiş bir metin dosyasından engelli şifre listesini içe aktar. Her şifre ayrı satırda belirtilmelidir.
+			           |Şifreyi veya %3 karmasını %4 formatında belirtebilirsiniz.'"),
 			"UTF-8", "BOM", "sha1", "base64");
 	
 	UpdateAvailabilityOfBannedPasswordServiceSettings(ThisObject);
@@ -130,7 +131,7 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	   And Not ValueIsFilled(BannedPasswordServiceAddress) Then
 		
 		Common.MessageToUser(
-			NStr("en = 'Service address required';"),, "BannedPasswordServiceAddress",, Cancel);
+			NStr("en = 'Service address required';tr = 'Servis adresi gerekli'"),, "BannedPasswordServiceAddress",, Cancel);
 	EndIf;
 	
 EndProcedure
@@ -275,12 +276,16 @@ Procedure ShowInListChoiceProcessing(Item, ValueSelected, StandardProcessing)
 		QueryText =
 			NStr("en = 'When you start the application, the user choice list will become full.
 			           |The Show in list attribute in cards
-			           | of all users will be enabled and hidden.';");
+			           | of all users will be enabled and hidden.';tr = 'Uygulamayı başlattığınızda kullanıcı seçim listesi dolacak.
+			           |Tüm kullanıcıların kartlarındaki ""Listede göster"" özniteliği 
+			           |etkinleştirilecek ve gizlenecek.'");
 	Else
 		QueryText =
 			NStr("en = 'The user list in the startup dialog will be cleared
 			           |(attribute ""Show in choice list"" will be cleared and hidden from all user profiles).
-			           |';");
+			           |';tr = 'Başlatma penceresindeki kullanıcı listesi silinecek
+			           |(""Seçim listesinde göster"" özniteliği tüm kullanıcı profillerinden silinecek ve gizlenecek).
+			           |'");
 	EndIf;
 	
 	ShowQueryBox(Notification, QueryText, QuestionDialogMode.YesNo);
@@ -317,13 +322,13 @@ Procedure ShowBannedPasswordList(Command)
 	If ValueIsFilled(NewPasswordListAddressInTempStorage) Then
 		Text = ImportedBannedPasswordList(NewPasswordListAddressInTempStorage);
 		If IsNewListContainsPasswords Then
-			DocumentTitle = NStr("en = 'Banned passwords (imported)';");
+			DocumentTitle = NStr("en = 'Banned passwords (imported)';tr = 'Engellenen şifreler (içe aktarıldı)'");
 		Else
-			DocumentTitle = NStr("en = 'Banned password hashes (imported)';");
+			DocumentTitle = NStr("en = 'Banned password hashes (imported)';tr = 'Engellenen şifre karmaları (içe aktarıldı)'");
 		EndIf;
 	Else
 		Text = CurrentBannedPasswordHashList();
-		DocumentTitle = NStr("en = 'Banned password hashes';");
+		DocumentTitle = NStr("en = 'Banned password hashes';tr = 'Engellenen şifre karmaları'");
 	EndIf;
 	
 	TextDocument = New TextDocument;
@@ -345,7 +350,7 @@ Procedure ImportBannedPasswordList(Command)
 	ImportParameters = FileSystemClient.FileImportParameters();
 	ImportParameters.FormIdentifier = UUID;
 	ImportParameters.Dialog.Filter = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Text file: %1 with specification (with %2)';"), "UTF-8", "BOM") + "|*.txt";
+		NStr("en = 'Text file: %1 with specification (with %2)';tr = 'Metin dosyası: %1 belirtimli (%2 ile)'"), "UTF-8", "BOM") + "|*.txt";
 	
 	Notification = New NotifyDescription("AfterFileImported", ThisObject);
 	FileSystemClient.ImportFile_(Notification, ImportParameters);
@@ -520,14 +525,14 @@ EndProcedure
 Procedure UpdateExternalUsersSettingsAvailability(Form, OnChange = False)
 	
 	If Form.AreSeparateSettingsForExternalUsers Then
-		Form.Items.ForUsers.Title = NStr("en = 'For users';");
+		Form.Items.ForUsers.Title = NStr("en = 'For users';tr = 'Kullanıcılar için'");
 		Form.Items.ForExternalUsers.Visible = True;
 		If OnChange Then
 			Form.Items.Pages.CurrentPage =
 				Form.Items.ForExternalUsers;
 		EndIf;
 	Else
-		Form.Items.ForUsers.Title = NStr("en = 'Main';");
+		Form.Items.ForUsers.Title = NStr("en = 'Main';tr = 'Genel'");
 		Form.Items.ForExternalUsers.Visible = False;
 		Form.Items.Pages.CurrentPage =
 			Form.Items.ForUsers;
@@ -571,10 +576,10 @@ Procedure RecountPasswordsInAdditionalBannedList(Val Clear = False, Val Count = 
 	If ValueIsFilled(Count) Then
 		IsListAvailable = Not Common.DataSeparationEnabled();
 		TitleText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Additional list (%1)';"), String(Count));
+			NStr("en = 'Additional list (%1)';tr = 'Ek liste (%1)'"), String(Count));
 	Else
 		IsListAvailable = False;
-		TitleText = NStr("en = 'Additional list';");
+		TitleText = NStr("en = 'Additional list';tr = 'Ek liste'");
 	EndIf;
 	
 	Items.ShowBannedPasswordList.Enabled = IsListAvailable;
@@ -753,16 +758,20 @@ Procedure AfterFileImported(FileThatWasPut, Context) Export
 	EndIf;
 	
 	Buttons = New ValueList;
-	Buttons.Add("Passwords", NStr("en = 'Passwords';"));
-	Buttons.Add("PasswordsHash", NStr("en = 'Password hashes';"));
-	Buttons.Add("Cancel", NStr("en = 'Cancel';"));
+	Buttons.Add("Passwords", NStr("en = 'Passwords';tr = 'Şifreler'"));
+	Buttons.Add("PasswordsHash", NStr("en = 'Password hashes';tr = 'Şifre karmaları'"));
+	Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
 	
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Does this file contain passwords or password hashes?
 		           |
 		           |%1
 		           |
-		           |(Hash format must be %3 hashed with %2.)';"),
+		           |(Hash format must be %3 hashed with %2.)';tr = 'Bu dosya şifreler veya şifre karmaları içeriyor mu?
+		           |
+		           |%1
+		           |
+		           |(Karma formatı%3, %2 ile karma olmalıdır.)'"),
 		StrConcat(Result, Chars.LF), "sha1", "base64");
 	
 	Notification = New NotifyDescription("AfterFileFormatSelected", ThisObject, FileThatWasPut.Location);
@@ -788,11 +797,11 @@ Function ListPreparationPreliminaryResult(Val Address)
 	
 	BinaryData = GetFromTempStorage(Address);
 	If TypeOf(BinaryData) <> Type("BinaryData") Then
-		Return NStr("en = 'Couldn''t receive the file data';");
+		Return NStr("en = 'Couldn''t receive the file data';tr = 'Dosya verileri alınamadı'");
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Couldn''t find specification at the beginning of the file:  %1 (with %2)';"), "UTF-8", "BOM");
+		NStr("en = 'Couldn''t find specification at the beginning of the file:  %1 (with %2)';tr = 'Dosyanın başında belirtim bulunamadı: %1 (%2 ile)'"), "UTF-8", "BOM");
 	
 	If BinaryData.Size() < 3 Then
 		Return ErrorText;
@@ -825,7 +834,7 @@ Function ListPreparationPreliminaryResult(Val Address)
 	EndDo;
 	
 	If Not ValueIsFilled(AllRows) Then
-		Return NStr("en = 'Empty file';");
+		Return NStr("en = 'Empty file';tr = 'Boş dosya'");
 	EndIf;
 	
 	If AllRows.Count() > 5 Then
@@ -856,7 +865,8 @@ Function ListPreparationResult(Val Address, Val Format)
 				ErrorInfo = ErrorInfo();
 				Return StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Line %2 (""%1"") format is not %3 due to:
-					|%4';"),
+					|%4';tr = 'Satır %2 (""%1"") format %3 değil. Nedeni:
+					|%4'"),
 					String,
 					Format(LineNumber, "NG="),
 					"base64",
@@ -864,14 +874,14 @@ Function ListPreparationResult(Val Address, Val Format)
 			EndTry;
 			If Hash.Size() = 0 Then
 				Return StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Line %2 (""%1"") format is not %3.';"),
+					NStr("en = 'Line %2 (""%1"") format is not %3.';tr = 'Satır %2 (""%1"") format %3 değil.'"),
 					String,
 					Format(LineNumber, "NG="),
 					"base64");
 			EndIf;
 			If Hash.Size() <> 20 Then
 				Return StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Line %2 (""%1"") contains binary data with a length other  than 20 bites: %3';"),
+					NStr("en = 'Line %2 (""%1"") contains binary data with a length other  than 20 bites: %3';tr = '%2 satırı (""%1"") 20 bitten farklı uzunlukta ikili veriler içeriyor: %3'"),
 					String,
 					Format(LineNumber, "NG="),
 					Format(Hash.Size(), "NG="));
@@ -886,10 +896,10 @@ Function ListPreparationResult(Val Address, Val Format)
 	RecountPasswordsInAdditionalBannedList(False, Rows.Count());
 	
 	If Format = "PasswordsHash" Then
-		Return NStr("en = 'Password hashes imported';");
+		Return NStr("en = 'Password hashes imported';tr = 'Şifre karmaları içe aktarıldı'");
 	EndIf;
 	
-	Return NStr("en = 'Passwords imported';");
+	Return NStr("en = 'Passwords imported';tr = 'Şifreler içe aktarıldı'");
 	
 EndFunction
 

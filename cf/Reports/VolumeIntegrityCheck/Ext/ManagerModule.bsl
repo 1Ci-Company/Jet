@@ -25,7 +25,7 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	ModuleReportsOptions = Common.CommonModule("ReportsOptions");
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "Main");
-	OptionSettings.LongDesc = NStr("en = 'Volume integrity check.';");
+	OptionSettings.LongDesc = NStr("en = 'Volume integrity check.';tr = 'Birim bütünlüğünü kontrol et.'");
 	ReportSettings.DefineFormSettings = True;
 
 EndProcedure

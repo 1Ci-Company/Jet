@@ -74,7 +74,7 @@ Procedure CheckOnTheServer()
 	Settings.Insert("ShouldShowRemindersInNotificationCenter", ReminderMethod = 1);
 	SpecifySettingsAtServer(Settings);
 	Modified = False;
-	UserReminders.SetReminder(NStr("en = 'My reminder';"), CurrentSessionDate() - 15);
+	UserReminders.SetReminder(NStr("en = 'My reminder';tr = 'Hatırlatıcım'"), CurrentSessionDate() - 15);
 	
 EndProcedure
 

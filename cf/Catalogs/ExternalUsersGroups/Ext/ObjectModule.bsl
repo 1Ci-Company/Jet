@@ -54,10 +54,10 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 		If Not ValueIsFilled(CurrentRow.ExternalUser) Then
 			CommonClientServer.AddUserError(Errors,
 				"Object.Content[%1].ExternalUser",
-				NStr("en = 'The external user is not specified.';"),
+				NStr("en = 'The external user is not specified.';tr = 'Harici kullanıcı seçilmedi.'"),
 				"Object.Content",
 				LineNumber,
-				NStr("en = 'The external user is not specified in line #%1.';"));
+				NStr("en = 'The external user is not specified in line #%1.';tr = '%1Satırında harici kullanıcı seçilmedi.'"));
 			Continue;
 		EndIf;
 		
@@ -66,10 +66,10 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 		If FoundValues.Count() > 1 Then
 			CommonClientServer.AddUserError(Errors,
 				"Object.Content[%1].ExternalUser",
-				NStr("en = 'Duplicate external user.';"),
+				NStr("en = 'Duplicate external user.';tr = 'Kopya harici kullanıcı.'"),
 				"Object.Content",
 				LineNumber,
-				NStr("en = 'Duplicate external user in line #%1.';"));
+				NStr("en = 'Duplicate external user in line #%1.';tr = '%1Satırında kopya harici kullanıcı.'"));
 		EndIf;
 	EndDo;
 	
@@ -139,11 +139,11 @@ Procedure OnWrite(Cancel)
 	
 	If Ref = AllExternalUsersGroup Then
 		If Not Parent.IsEmpty() Then
-			ErrorText = NStr("en = 'The position of the ""All external users"" group cannot be changed. It is the root of the group tree.';");
+			ErrorText = NStr("en = 'The position of the ""All external users"" group cannot be changed. It is the root of the group tree.';tr = '""Tüm harici kullanıcılar"" grubu, grup ağacının kökü olduğundan, pozisyonu değiştirilemiyor.'");
 			Raise ErrorText;
 		EndIf;
 		If Content.Count() > 0 Then
-			ErrorText = NStr("en = 'Cannot add members to the ""All external users"" group. ';");
+			ErrorText = NStr("en = 'Cannot add members to the ""All external users"" group. ';tr = '""Tüm harici kullanıcılar"" grubuna üye eklenemiyor.'");
 			Raise ErrorText;
 		EndIf;
 	Else
@@ -219,27 +219,29 @@ Function ParentCheckErrorText(AllExternalUsersGroup = Undefined)
 	EndIf;
 	
 	If Parent = AllExternalUsersGroup Then
-		Return NStr("en = 'Cannot set the ""All external users"" group as a parent.';");
+		Return NStr("en = 'Cannot set the ""All external users"" group as a parent.';tr = '""Tüm harici kullanıcılar"" grubu ana grup olarak belirlenemez.'");
 	EndIf;
 	
 	If Ref = AllExternalUsersGroup Then
 		If Not Parent.IsEmpty() Then
-			Return NStr("en = 'Cannot move the ""All external users"" group.';");
+			Return NStr("en = 'Cannot move the ""All external users"" group.';tr = '""Tüm harici kullanıcılar"" grubu taşınamıyor.'");
 		EndIf;
 	Else
 		If Parent = AllExternalUsersGroup Then
-			Return NStr("en = 'Cannot add a subgroup to the ""All external users"" group. ';");
+			Return NStr("en = 'Cannot add a subgroup to the ""All external users"" group. ';tr = '""Tüm harici kullanıcılar"" grubuna alt grup eklenemiyor.'");
 			
 		ElsIf Common.ObjectAttributeValue(Parent, "AllAuthorizationObjects") = True Then
 			Return StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot add a subgroup to group ""%1"" as
-				           |it contains all external users of the specified types.';"), Parent);
+				           |it contains all external users of the specified types.';tr = '""%1"" grubuna alt grup eklenemiyor çünkü 
+				           |belirtilen türlerdeki tüm harici kullanıcıları içeriyor.'"), Parent);
 		EndIf;
 		
 		If AllAuthorizationObjects And ValueIsFilled(Parent) Then
 			Return StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot move group ""%1"" as
-				           |it contains all external users of the specified types.';"), Ref);
+				           |it contains all external users of the specified types.';tr = '""%1"" grubu taşınamıyor çünkü 
+				           |belirtilen türlerdeki tüm harici kullanıcıları içeriyor.'"), Ref);
 		EndIf;
 	EndIf;
 	
@@ -251,7 +253,7 @@ Function PurposeCheckErrorText()
 	
 	// Checking whether the group purpose is filled.
 	If Purpose.Count() = 0 Then
-		Return NStr("en = 'The type of group members is not specified.';");
+		Return NStr("en = 'The type of group members is not specified.';tr = 'Grup üyelerin türü belirtilmedi.'");
 	EndIf;
 	
 	// Checking whether the group of all authorization objects of the specified type is unique.
@@ -266,7 +268,8 @@ Function PurposeCheckErrorText()
 		If CommonClientServer.ValueListsAreEqual(AllExternalUsersPurpose, PurposesArray) Then
 			Return
 				NStr("en = 'Cannot create a group having the same purpose
-				           | as the predefined group ""All external users.""';");
+				           | as the predefined group ""All external users.""';tr = 'Öntanımlı ""Tüm harici kullanıcılar"" grubu ile
+				           | aynı amaca sahip grup oluşturulamaz.'");
 		EndIf;
 		
 		Query = New Query;
@@ -305,7 +308,8 @@ Function PurposeCheckErrorText()
 			
 			Return StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'An existing group ""%1""
-				           | includes all users of the specified types.';"),
+				           | includes all users of the specified types.';tr = '""%1"" grup zaten var ve 
+				           | belirtilen türünden tüm kullanıcıları içermektedir.'"),
 				Selection.RefPresentation);
 		EndIf;
 	EndIf;
@@ -322,7 +326,8 @@ Function PurposeCheckErrorText()
 			If ParentUsersType.Find(UserType) = Undefined Then
 				Return StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The group members type must be identical to the members type
-					           |of the parent external user group ""%1.""';"), Parent);
+					           |of the parent external user group ""%1.""';tr = '""%1"" Grup üyelerinin türü, "
+" harici kullanıcı grubundaki gibi olmalıdır.'"), Parent);
 			EndIf;
 		EndDo;
 	EndIf;
@@ -345,7 +350,8 @@ Function PurposeCheckErrorText()
 		If Not QueryResult.IsEmpty() Then
 			Return
 				NStr("en = 'Cannot change the type of group 
-				           | members as the group contains subgroups.';");
+				           | members as the group contains subgroups.';tr = '"
+" grubu alt gruplara sahip olduğundan dolayı katılımcıların türü değiştirilemez.'");
 		EndIf;
 	EndIf;
 	
@@ -387,7 +393,8 @@ Function PurposeCheckErrorText()
 			
 			Return StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot change the type of group members
-				           |as the group contains the subgroup ""%1"" with different member types.';"),
+				           |as the group contains the subgroup ""%1"" with different member types.';tr = 'Grup, farklı üye türlerine sahip ""%1"" alt grubunu içerdiğinden
+				           |grup üyelerinin türü değiştirilemiyor.'"),
 				Selection.RefPresentation);
 		EndIf;
 	EndIf;
@@ -399,5 +406,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

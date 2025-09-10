@@ -33,12 +33,12 @@ Procedure BeforeWrite(Cancel)
 	
 	If Common.IsStandaloneWorkplace() Then
 		ErrorText =
-			NStr("en = 'To update RLS access restrictions, go to the app in the service.';");
+			NStr("en = 'To update RLS access restrictions, go to the app in the service.';tr = 'Kayıt seviyesinde erişim kısıtlamalarını güncellemek için serviste uygulamayı güncelleyin.'");
 		Raise ErrorText;
 		
 	ElsIf Common.IsSubordinateDIBNode() Then
 		ErrorText =
-			NStr("en = 'RLS access restrictions can only be changed in the master node.';");
+			NStr("en = 'RLS access restrictions can only be changed in the master node.';tr = 'Kayıt seviyesinde erişim kısıtlamaları sadece ana düğümde değiştirilebilir.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -102,5 +102,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

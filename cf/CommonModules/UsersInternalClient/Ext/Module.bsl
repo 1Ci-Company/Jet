@@ -111,7 +111,8 @@ Procedure ShowSecurityWarning(Notification, WarningKind, AdditionalParameter = U
 	If Not UsersInternalClientServer.SecurityWarningKinds().Property(WarningKind) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of parameter ""%1"" in procedure ""%2"":
-			           |""%3"".';"),
+			           |""%3"".';tr = '""%2"" prosedüründe yanlış ""%1"" parametre değeri:
+			           |""%3"".'"),
 			"WarningKind",
 			"UsersInternalClient.ShowSecurityWarning",
 			WarningKind);
@@ -201,9 +202,9 @@ Procedure AfterStart() Export
 	
 	If ClientRunParameters.Property("AskAboutDisablingOpenIDConnect") Then
 		ClickNotification = New NotifyDescription("AskAboutDisablingOpenIDConnect", ThisObject);
-		MessageTitle = NStr("en = 'Security warning';");
+		MessageTitle = NStr("en = 'Security warning';tr = 'Güvenlik uyarısı'");
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Disable %1 authentication if it is not used.';"), "OpenID-Connect");
+			NStr("en = 'Disable %1 authentication if it is not used.';tr = '%1 kimlik doğrulaması kullanılmıyorsa devre dışı bırak.'"), "OpenID-Connect");
 		ShowUserNotification(MessageTitle, ClickNotification,
 			MessageText, PictureLib.DialogExclamation, UserNotificationStatus.Important);
 	EndIf;
@@ -223,9 +224,9 @@ Procedure OnReceiptServerNotification(NameOfAlert, Result) Export
 	ElsIf Result = "RolesIncreased" Then
 		StopAppRestart();
 		ShowUserNotification(
-			NStr("en = 'Access rights updated';"),
+			NStr("en = 'Access rights updated';tr = 'Erişim yetkileri güncellendi'"),
 			"e1cib/app/CommonForm.InfobaseUserRoleChangeControl",
-			NStr("en = 'Restart the application so that they come into force.';"),
+			NStr("en = 'Restart the application so that they come into force.';tr = 'Devreye girmeleri için uygulamayı yeniden başlatın.'"),
 			PictureLib.DialogExclamation,
 			UserNotificationStatus.Important,
 			"InfobaseUserRoleChangeControl");
@@ -233,13 +234,14 @@ Procedure OnReceiptServerNotification(NameOfAlert, Result) Export
 	ElsIf TypeOf(Result) = Type("Number") Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Your access will expire in %1.
-			           |To extend access, contact your administrator.';"),
+			           |To extend access, contact your administrator.';tr = 'Erişiminiz %1 sonra sona erecek.
+			           |Erişimi uzatmak için yöneticinize başvurun.'"),
 			Format(Result, "NG=") + " "
 				+ UsersInternalClientServer.IntegerSubject(Result,
-					"", NStr("en = 'day,days,,,0';")));
+					"", NStr("en = 'day,days,,,0';tr = 'gün,gün,,,0'")));
 		
 		ShowUserNotification(
-			NStr("en = 'Access about to expire';"),,
+			NStr("en = 'Access about to expire';tr = 'Erişim sona ermek üzere'"),,
 			MessageText,
 			PictureLib.DialogExclamation,
 			UserNotificationStatus.Important,
@@ -302,16 +304,17 @@ Procedure AskAboutDisablingOpenIDConnect(Context) Export
 	
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = '%1 authentication is enabled for users.
-		           |If you do not use this authentication kind, disable it.';"),
+		           |If you do not use this authentication kind, disable it.';tr = 'Kullanıcılar için %1 kimlik doğrulaması etkinleştirildi.
+		           |Bu kimlik doğrulama türünü kullanmıyorsanız devre dışı bırakın.'"),
 		"OpenID-Connect");
 	
 	Buttons = New ValueList;
-	Buttons.Add("DisabledForAllUsers", NStr("en = 'Disable for all users';"));
-	Buttons.Add("DoNotDisable",                 NStr("en = 'Do not disable';"));
-	Buttons.Add("RemindLater",              NStr("en = 'Remind me later';"));
+	Buttons.Add("DisabledForAllUsers", NStr("en = 'Disable for all users';tr = 'Tüm kullanıcılar için devre dışı bırak'"));
+	Buttons.Add("DoNotDisable",                 NStr("en = 'Do not disable';tr = 'Devre dışı bırakma'"));
+	Buttons.Add("RemindLater",              NStr("en = 'Remind me later';tr = 'Daha sonra hatırlat'"));
 	
 	AdditionalParameters = StandardSubsystemsClient.QuestionToUserParameters();
-	AdditionalParameters.Title = NStr("en = 'Security warning';");
+	AdditionalParameters.Title = NStr("en = 'Security warning';tr = 'Güvenlik uyarısı'");
 	AdditionalParameters.PromptDontAskAgain = False;
 	
 	StandardSubsystemsClient.ShowQuestionToUser(CompletionProcessing,
@@ -410,7 +413,8 @@ Procedure OpenReportOrForm(CurrentItem, User, CurrentUser, PersonalSettingsFormN
 	If User <> CurrentUser Then
 		WarningText =
 			NStr("en = 'To view settings of another user,
-			           |restart the application on behalf of that user and open the setting.';");
+			           |restart the application on behalf of that user and open the setting.';tr = 'Diğer kullanıcının ayarlarını görüntülemek için uygulama onun adı ile
+			           |başlatılmalı ve gereken ayar gönderilmelidir.'");
 		ShowMessageBox(,WarningText);
 		Return;
 	EndIf;
@@ -449,21 +453,23 @@ Procedure OpenReportOrForm(CurrentItem, User, CurrentUser, PersonalSettingsFormN
 				
 				If ValueTreeItem.CurrentData.RowType = "DesktopSettings" Then
 					ShowMessageBox(,
-						NStr("en = 'Navigate to ""Home page"" to view its settings.';"));
+						NStr("en = 'Navigate to ""Home page"" to view its settings.';tr = 'Ayarları görüntülemek için ""Ana sayfa""ya gidin.'"));
 					Return;
 				EndIf;
 				
 				If ValueTreeItem.CurrentData.RowType = "CommandInterfaceSettings" Then
 					ShowMessageBox(,
 						NStr("en = 'To view the command interface settings,
-						           |select a section in the application command interface.';"));
+						           |select a section in the application command interface.';tr = 'Komut arayüz ayarlarını görüntülemek için, 
+						           |uygulamanın komut arayüzün gerekli bölümünü seçin.'"));
 					Return;
 				EndIf;
 				
 				If ItemParent <> Undefined Then
 					WarningText =
 						NStr("en = 'To view this setting, open ""%1""
-						           |and go to the ""%2"" form.';");
+						           |and go to the ""%2"" form.';tr = 'Bu ayarı görüntülemek için ""%1"" 
+						           | açın ve ardından ""%2"" formuna gidin.'");
 					WarningText = StringFunctionsClientServer.SubstituteParametersToString(WarningText,
 						ItemParent.Setting, ValueTreeItem.CurrentData.Setting);
 					ShowMessageBox(,WarningText);
@@ -474,7 +480,7 @@ Procedure OpenReportOrForm(CurrentItem, User, CurrentUser, PersonalSettingsFormN
 			
 		EndDo;
 		
-		ShowMessageBox(,NStr("en = 'Cannot view this setting.';"));
+		ShowMessageBox(,NStr("en = 'Cannot view this setting.';tr = 'Bu ayar görüntülenemiyor.'"));
 		Return;
 		
 	ElsIf ValueTreeItem.Name = "OtherSettings" Then
@@ -485,12 +491,12 @@ Procedure OpenReportOrForm(CurrentItem, User, CurrentUser, PersonalSettingsFormN
 			Return;
 		EndIf;
 		
-		ShowMessageBox(,NStr("en = 'Cannot view this setting.';"));
+		ShowMessageBox(,NStr("en = 'Cannot view this setting.';tr = 'Bu ayar görüntülenemiyor.'"));
 		Return;
 		
 	EndIf;
 	
-	ShowMessageBox(,NStr("en = 'Select a setting to view.';"));
+	ShowMessageBox(,NStr("en = 'Select a setting to view.';tr = 'Görüntülemek için bir ayar seçin.'"));
 	
 EndProcedure
 
@@ -513,16 +519,16 @@ Function GenerateNoteOnCopy(SettingPresentation, SettingsCount, SettingsCopiedTo
 		EndIf;
 		
 		NotificationComment = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '""%1"" copied to %2.';"),
+			NStr("en = '""%1"" copied to %2.';tr = '""%1"" kopyalandı %2'"),
 			SettingPresentation,
 			SettingsCopiedToNote);
 	Else
 		SubjectInWords = Format(SettingsCount, "NFD=0") + " "
 			+ UsersInternalClientServer.IntegerSubject(SettingsCount,
-				"", NStr("en = 'setting,settings,,,0';"));
+				"", NStr("en = 'setting,settings,,,0';tr = 'ayar, ayarlar, ayarlar,,,,,,0'"));
 		
 		NotificationComment = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 copied to %2.';"),
+			NStr("en = '%1 copied to %2.';tr = 'Kopyalandı %1 %2'"),
 			SubjectInWords,
 			SettingsCopiedToNote);
 	EndIf;
@@ -545,10 +551,10 @@ Function UsersNote(UsersCount, User) Export
 	
 	If UsersCount = 1 Then
 		SettingsCopiedToNote = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'user ""%1""';"), User);
+			NStr("en = 'user ""%1""';tr = 'kullanıcı ""%1""'"), User);
 	Else
 		SettingsCopiedToNote = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 users.';"), UsersCount);
+			NStr("en = '%1 users.';tr = '%1 kullanıcıları'"), UsersCount);
 	EndIf;
 	
 	Return SettingsCopiedToNote;
@@ -605,18 +611,19 @@ Procedure NotifyAboutAppRestart()
 	MinutesLeftPresentation = MinutesBeforeRestartPresentation(MinutesLeft);
 	
 	ShowRestartAlert(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'App will restart in %1. Save the changes.';"),
+		NStr("en = 'App will restart in %1. Save the changes.';tr = 'Uygulama %1 sonra yeniden başlatılacak. Değişiklikleri kaydedin.'"),
 		MinutesLeftPresentation));
 	
 	If MinutesLeft <= ExitWithConfirmationTimeout Then
 		AskOnTermination(StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'App will restart in %1. Save the changes.
-			           |Restart now?';"),
+			           |Restart now?';tr = 'Uygulama %1 sonra yeniden başlatılacak. Değişiklikleri kaydedin.
+			           |Şimdi yeniden başlatılsın mı?'"),
 			MinutesLeftPresentation));
 		
 	ElsIf MinutesLeft <= WaitTimeout Then
 		ShowWarningOnExit(StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'App will restart in %1. Save the changes.';"),
+			NStr("en = 'App will restart in %1. Save the changes.';tr = 'Uygulama %1 sonra yeniden başlatılacak. Değişiklikleri kaydedin.'"),
 			MinutesLeftPresentation));
 	EndIf;
 	
@@ -637,7 +644,7 @@ EndFunction
 Function MinutesBeforeRestartPresentation(MinutesLeft) Export
 	
 	Return StringFunctionsClientServer.StringWithNumberForAnyLanguage(
-		NStr("en = ';%1 minute;;;;%1 minutes';"),
+		NStr("en = ';%1 minute;;;;%1 minutes';tr = ';%1 dakika;;;;%1 dakika'"),
 		MinutesLeft);
 	
 EndFunction
@@ -687,7 +694,7 @@ Procedure ShowRestartAlert(MessageText)
 	EndIf;
 	
 	ShowUserNotification(
-		NStr("en = 'App will restart';"),
+		NStr("en = 'App will restart';tr = 'Uygulama yeniden başlatılacak'"),
 		"e1cib/app/CommonForm.InfobaseUserRoleChangeControl",
 		MessageText,
 		PictureLib.DialogExclamation,
@@ -706,7 +713,7 @@ Procedure ClearRestartAlert()
 	EndIf;
 	Parameters.IsNotificationDisplayed = False;
 	
-	ShowUserNotification(NStr("en = 'Restart canceled';"),,,,
+	ShowUserNotification(NStr("en = 'Restart canceled';tr = 'Yeniden başlatma iptal edildi'"),,,,
 		UserNotificationStatus.Important, "ControlRestartWhenAccessRightsReduced");
 	
 EndProcedure

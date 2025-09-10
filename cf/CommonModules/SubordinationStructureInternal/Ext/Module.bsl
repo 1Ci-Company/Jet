@@ -34,7 +34,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "RelatedDocuments";
 	Kind.SubmenuName  = "ReportsSubmenu";
-	Kind.Title   = NStr("en = 'Reports';");
+	Kind.Title   = NStr("en = 'Reports';tr = 'Raporlar'");
 	Kind.Order     = 50;
 	Kind.Picture    = PictureLib.Report;
 	Kind.Representation = ButtonRepresentation.PictureAndText;
@@ -55,7 +55,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 	EndIf;
 
 	Command = Commands.Add();
-	Command.Presentation      = NStr("en = 'Related documents';");
+	Command.Presentation      = NStr("en = 'Related documents';tr = 'İlgili belgeler'");
 	Command.Kind                = "RelatedDocuments";
 	Command.MultipleChoice = False;
 	Command.FormParameterName  = "FilterObject";

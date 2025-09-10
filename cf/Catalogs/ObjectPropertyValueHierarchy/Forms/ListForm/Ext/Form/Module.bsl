@@ -143,15 +143,15 @@ Procedure SetHeader()
 		
 		If ValueIsFilled(Property) Then
 			If Not Parameters.ChoiceMode Then
-				TitleLine = NStr("en = '""%1"" property values';");
+				TitleLine = NStr("en = '""%1"" property values';tr = '%1 için öznitelik değeri'");
 			Else
-				TitleLine = NStr("en = 'Select ""%1"" property value';");
+				TitleLine = NStr("en = 'Select ""%1"" property value';tr = '%1 için öznitelik değerini seçin'");
 			EndIf;
 			
 			TitleLine = StringFunctionsClientServer.SubstituteParametersToString(TitleLine, String(Property));
 		
 		ElsIf Parameters.ChoiceMode Then
-			TitleLine = NStr("en = 'Select property value';");
+			TitleLine = NStr("en = 'Select property value';tr = 'Öznitelik değerini seçin'");
 		EndIf;
 	EndIf;
 	

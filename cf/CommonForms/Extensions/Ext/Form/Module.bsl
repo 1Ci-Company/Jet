@@ -216,7 +216,7 @@ Procedure SaveAs(Command)
 	ElsIf SelectedRows.Count() = 1 Then
 		FilesToSave = SaveAtServer(SelectedRows);
 	Else
-		Title = NStr("en = 'Select directory';");
+		Title = NStr("en = 'Select directory';tr = 'Dizini seçin'");
 		FileSystemClient.SelectDirectory(NotifyDescription, Title);
 		Return;
 	EndIf;
@@ -226,9 +226,9 @@ Procedure SaveAs(Command)
 	EndIf;
 	
 	SavingParameters = FileSystemClient.FileSavingParameters();
-	SavingParameters.Dialog.Title = NStr("en = 'Select file';");
-	SavingParameters.Dialog.Filter    = NStr("en = 'Configuration extension files (*.cfe)|*.cfe';") + "|"
-			+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';"), GetAllFilesMask());
+	SavingParameters.Dialog.Title = NStr("en = 'Select file';tr = 'Dosya seç'");
+	SavingParameters.Dialog.Filter    = NStr("en = 'Configuration extension files (*.cfe)|*.cfe';tr = 'Konfigürasyon uzantı dosyaları (*.cfe)|*.cfe'") + "|"
+			+ StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'All files (%1)|%1';tr = 'Tüm dosyalar (%1)|%1'"), GetAllFilesMask());
 	
 	FileSystemClient.SaveFiles(Undefined, FilesToSave, SavingParameters);
 	
@@ -271,7 +271,7 @@ EndProcedure
 Procedure DeleteObsoleteParametersWorkExtensions(Command)
 	
 	DeleteDeprecatedSettingsExtensionsWorkOnServer();
-	ShowMessageBox(, NStr("en = 'Obsolete versions of extension parameters are deleted.';"));
+	ShowMessageBox(, NStr("en = 'Obsolete versions of extension parameters are deleted.';tr = 'Uzantı ayarları eski sürümleri kaldırıldı.'"));
 	
 EndProcedure
 
@@ -294,13 +294,13 @@ Procedure CheckIfAllExtensionsCanBeApplied(Command)
 		QuestionFormParameters = StandardSubsystemsClient.QuestionToUserParameters();
 		QuestionFormParameters.Picture = PictureLib.DialogInformation;
 		QuestionFormParameters.PromptDontAskAgain = False;
-		QuestionFormParameters.Title = NStr("en = 'Result of extensions applicability check';");
+		QuestionFormParameters.Title = NStr("en = 'Result of extensions applicability check';tr = 'Uzantıların uygulanabilirlik kontrolünün sonucu'");
 		StandardSubsystemsClient.ShowQuestionToUser(Undefined,
-			NStr("en = 'The extensions applicability check is passed.';"),
+			NStr("en = 'The extensions applicability check is passed.';tr = 'Uzantıların uygulanabilirlik kontrolü başarılı.'"),
 			QuestionDialogMode.OK,
 			QuestionFormParameters);
 	Else
-		Result.InfoOnIssues.Show(NStr("en = 'The extension check result.';"));
+		Result.InfoOnIssues.Show(NStr("en = 'The extension check result.';tr = 'Uzantı kontrol sonucu.'"));
 	EndIf;
 	
 EndProcedure
@@ -444,13 +444,13 @@ Procedure UpdateList(AfterAdd = False)
 		ExtensionKey = Extension.Name + Extension.HashSum + Extension.Scope;	
 		If AttachedExtensions[ExtensionKey] <> Undefined Then
 			ExtensionItem.Attached = 0;
-			ExtensionItem.ActivationState = NStr("en = 'Attached';");
+			ExtensionItem.ActivationState = NStr("en = 'Attached';tr = 'Bağlı'");
 		ElsIf DetachedExtensions[ExtensionKey] <> Undefined Then
 			ExtensionItem.Attached = 2;
-			ExtensionItem.ActivationState = NStr("en = 'Detached';");
+			ExtensionItem.ActivationState = NStr("en = 'Detached';tr = 'Devre dışı'");
 		Else
 			ExtensionItem.Attached = 1;
-			ExtensionItem.ActivationState = NStr("en = 'Restart required';");
+			ExtensionItem.ActivationState = NStr("en = 'Restart required';tr = 'Yeniden başlatma gerekiyor'");
 		EndIf;	
 			
 		If IsBlankString(ExtensionItem.Synonym) Then
@@ -568,7 +568,13 @@ Procedure RunUpdateSettingsExtensionsWorkInBackgroundOnServer(WarningText)
 		           |2. See the result in the event log in the events
 		           |""%2"",
 		           |for example, by clicking
-		           |""%3"" in the More menu.';"),
+		           |""%3"" in the More menu.';tr = '1. Planlanmış iş etkin ve çalışıyor
+		           |""%1"".
+		           |
+		           |2. Çalışmanın sonucunu
+		           |""%2"", 
+		           |örneğin Diğer menüsündeki komutu kullanarak olay kaydında görün
+		           | ""%3"".'"),
 		InformationRegisters.ExtensionVersionParameters.TaskNameFillingParameters(),
 		InformationRegisters.ExtensionVersionParameters.ParameterFillingEventName(),
 		Commands.Find("RunUpdateSettingsExtensionsWorkInBackground").Title);
@@ -796,8 +802,8 @@ Procedure LoadExtensionAfterConfirmation(Response, Context) Export
 	Notification = New NotifyDescription("LoadExtensionAfterPutFiles", ThisObject, Context);
 	
 	ImportParameters = FileSystemClient.FileImportParameters();
-	ImportParameters.Dialog.Filter = NStr("en = 'Configuration extensions';")+ " (*.cfe)|*.cfe";
-	ImportParameters.Dialog.Title = NStr("en = 'Select configuration extension file';");
+	ImportParameters.Dialog.Filter = NStr("en = 'Configuration extensions';tr = 'Konfigürasyon uzantıları'")+ " (*.cfe)|*.cfe";
+	ImportParameters.Dialog.Title = NStr("en = 'Select configuration extension file';tr = 'Konfigürasyon uzantı dosyasını seçin'");
 	ImportParameters.Dialog.CheckFileExist = True;
 	
 	ImportParameters.FormIdentifier = UUID;
@@ -826,7 +832,7 @@ Procedure LoadExtensionAfterPutFiles(PlacedFiles, Context) Export
 			
 		ElsIf SelectedFilesContainPatches(PlacedFiles, ModuleConfigurationUpdateClient) Then 
 			ShowMessageBox(,
-				NStr("en = 'The selected files cannot contain both patches and extensions of other types.';"));
+				NStr("en = 'The selected files cannot contain both patches and extensions of other types.';tr = 'Seçilen dosyalar aynı anda düzeltmeler (yamalar) ve diğer uzantı türlerini içermemelidir.'"));
 			Return;
 		EndIf;
 	EndIf;
@@ -966,7 +972,12 @@ Procedure LoadExtensionCompletion()
 			           |If extension ""%2"" is not an update for extension ""%1"",
 			           |refuse to replace it and add extension ""%2"" as a new one.
 			           |Note: if you cannot add extension ""%2"" because of extension ""%1"",
-			           |delete extension ""%1"" before adding extension ""%2"".';"),
+			           |delete extension ""%1"" before adding extension ""%2"".';tr = '""%1"" adlı uzantı, ""%2adlı uzantıyla değiştirilecektir.
+			           |
+			           | ""%2"" uzantısı, ""%1"" 
+			           |uzantısının bir güncellemesi değilse, o zaman yenisini atmalı ve ""%2"" uzantısını yeni olarak eklemelisiniz.
+			           | Not: ""%2"" uzantısı ""%1"" uzantısı nedeniyle eklenemiyorsa, 
+			           |önce ""%1"" uzantısını kaldırmalı ve ardından ""%2"" eklemelisiniz.'"),
 			NameReplacementConfirmation.OldName,
 			NameReplacementConfirmation.NewName);
 			
@@ -974,8 +985,8 @@ Procedure LoadExtensionCompletion()
 			"LoadExtensionAfterQuestionNameReplacement", ThisObject, Context);
 		
 		Buttons = New ValueList;
-		Buttons.Add("Replace",   NStr("en = 'Replace';"));
-		Buttons.Add("NotReplace", NStr("en = 'Do not replace';"));
+		Buttons.Add("Replace",   NStr("en = 'Replace';tr = 'Değiştir'"));
+		Buttons.Add("NotReplace", NStr("en = 'Do not replace';tr = 'Değiştirmemek'"));
 		
 		QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
 		QuestionParameters.DefaultButton = "NotReplace";
@@ -992,12 +1003,12 @@ Procedure LoadExtensionCompletion()
 	
 	If Context.ExtensionID = Undefined Then
 		If Context.PlacedFiles.Count() > 1 Then
-			NotificationText1 = NStr("en = 'Configuration extensions added';");
+			NotificationText1 = NStr("en = 'Configuration extensions added';tr = 'Konfigürasyon uzantıları eklendi'");
 		Else
-			NotificationText1 = NStr("en = 'Configuration extension added';");
+			NotificationText1 = NStr("en = 'Configuration extension added';tr = 'Konfigürasyon uzantısı eklendi'");
 		EndIf;
 	Else
-		NotificationText1 = NStr("en = 'Configuration extension updated';");
+		NotificationText1 = NStr("en = 'Configuration extension updated';tr = 'Konfigürasyon uzantısı güncellendi'");
 	EndIf;
 	
 	ShowUserNotification(NotificationText1);
@@ -1008,13 +1019,13 @@ Procedure LoadExtensionCompletion()
 	
 	If Context.PlacedFiles.Count() > 1 Then
 		If StrFind(UnattachedExtensions, ",") > 0 Then
-			WarningText = NStr("en = 'Cannot attach the following extensions:';");
+			WarningText = NStr("en = 'Cannot attach the following extensions:';tr = 'Bazı uzantılar bağlanamadı:'");
 		Else
-			WarningText = NStr("en = 'Cannot attach the extension:';");
+			WarningText = NStr("en = 'Cannot attach the extension:';tr = 'Bir uzantı bağlanamadı:'");
 		EndIf;
 		WarningText = WarningText + " " + UnattachedExtensions;
 	Else
-		WarningText = NStr("en = 'Cannot attach an extension.';");
+		WarningText = NStr("en = 'Cannot attach an extension.';tr = 'Uzantı eklenemedi.'");
 	EndIf;
 	
 	ShowMessageBox(, WarningText);
@@ -1101,7 +1112,8 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 				If ValueIsFilled(ErrorText) Then
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot apply the extension. Reason:
-						           |%1';"),
+						           |%1';tr = 'Yeni uzantı 
+						           |%1 nedeniyle uygulanamaz'"),
 						ErrorText);
 					Break;
 				Else
@@ -1120,7 +1132,9 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot add extension ""%1""
 						           | from file %2, 
-						           |as an extension with this name already exists.';"),
+						           |as an extension with this name already exists.';tr = '""%2"" 
+						           |dosyasından ""%1"" 
+						           |uzantısı eklenemiyor çünkü bu ada sahip bir uzantı artık var.'"),
 						ExtensionDetails.Name,
 						FileThatWasPut.Name);
 					Break;
@@ -1147,7 +1161,8 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 		If RowsIDs <> Undefined Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot update the extension. Reason:
-				           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+				           |%1';tr = 'Uzantı şu nedenle güncellenemedi:
+				           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 			
 		ElsIf ValueIsFilled(AddedExtensionFileName) Then
 			BriefErrorDescription = ErrorProcessing.BriefErrorDescription(ErrorInfo);
@@ -1164,7 +1179,9 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot add extension ""%1""
 					           | from file %2. Reason:
-					           |%3';"),
+					           |%3';tr = '%2 dosyasından
+					           |""%1"" uzantısı eklenemedi. Nedeni:
+					           |%3'"),
 					ExtensionDetails.Name,
 					AddedExtensionFileName,
 					BriefErrorDescription);
@@ -1172,7 +1189,8 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot add the extension. Reason:
-				           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+				           |%1';tr = 'Uzantı eklenemiyor. Nedeni:
+				           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		EndIf;
 	EndTry;
 	
@@ -1184,7 +1202,8 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 			ErrorInfo = ErrorInfo();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'An unexpected error occurred while preparing the added extensions:
-				           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+				           |%1';tr = 'Eklenen uzantılar hazırlanırken beklenmeyen bir hata oluştu:
+				           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		EndTry;
 	EndIf;
 	
@@ -1222,12 +1241,14 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 				ErrorText = ErrorText + Chars.LF + Chars.LF
 					+ StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'An unexpected error occurred while restoring the changed extension:
-						           |%1';"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
+						           |%1';tr = 'Değiştirilen uzantı geri yüklenirken beklenmeyen bir hata oluştu:
+						           |%1'"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
 			Else
 				ErrorText = ErrorText + Chars.LF + Chars.LF
 					+ StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'An unexpected error occurred while trying to delete the added extensions:
-						           |%1';"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
+						           |%1';tr = 'Eklenen uzantılar silinmeye çalışırken beklenmeyen bir hata oluştu:
+						           |%1'"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
 			EndIf;
 		EndTry;
 		If RecoveryPerformed
@@ -1236,14 +1257,14 @@ Procedure ChangeExtensionsAtServer(PlacedFiles, RowsIDs,
 			If RowsIDs <> Undefined Then
 				If ExtensionsToCheck.Count() > 0 Then
 					ErrorText = ErrorText + Chars.LF + Chars.LF
-						+ NStr("en = 'The modified extension is restored.';");
+						+ NStr("en = 'The modified extension is restored.';tr = 'Değişmiş uzantı geri yüklendi.'");
 				Else
 					ErrorText = ErrorText + Chars.LF + Chars.LF
-						+ NStr("en = 'The extension is not modified.';");
+						+ NStr("en = 'The extension is not modified.';tr = 'Uzantı değiştirilmedi.'");
 				EndIf;
 			Else
 				ErrorText = ErrorText + Chars.LF + Chars.LF
-					+ NStr("en = 'The added extensions are deleted.';");
+					+ NStr("en = 'The added extensions are deleted.';tr = 'Eklenen uzantılar silindi.'");
 			EndIf;
 		EndIf;
 	EndIf;
@@ -1290,11 +1311,13 @@ Procedure ExtensionListSafeModeFlagOnChangeAtServer(RowID)
 		If Extension.SafeMode Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'An unexpected error occurred while preparing the extensions (after enabling the safe mode):
-				           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+				           |%1';tr = 'Uzantılar hazırlanırken (güvenli mod etkinleştirildikten sonra) beklenmeyen bir hata oluştu:
+				           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'An unexpected error occurred while preparing the extensions (after disabling the safe mode):
-				           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+				           |%1';tr = 'Uzantılar hazırlanırken (güvenli mod kapatıldıktan sonra) beklenmeyen bir hata oluştu:
+				           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		EndIf;
 	EndTry;
 	
@@ -1308,12 +1331,13 @@ Procedure ExtensionListSafeModeFlagOnChangeAtServer(RowID)
 			ErrorText = ErrorText + Chars.LF + Chars.LF
 				+ StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'An unexpected error occurred when trying to cancel the change of the safe extension mode check box:
-					           |%1';"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
+					           |%1';tr = 'Güvenli uzantı modu onay kutusunun değişikliği iptal edilirken hata oluştu:
+					           |%1'"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
 		EndTry;
 		If RecoveryErrorInformation = Undefined Then
 			ListLine.SafeModeFlag = Extension.SafeMode;
 			ErrorText = ErrorText + Chars.LF + Chars.LF
-				+ NStr("en = 'The change of the ""Safe mode"" extension parameter is canceled.';");
+				+ NStr("en = 'The change of the ""Safe mode"" extension parameter is canceled.';tr = 'Uzantının güvenli mod onay kutusu değişimi iptal edildi.'");
 		EndIf;
 	EndIf;
 	
@@ -1424,7 +1448,7 @@ Procedure AddPermissionRequest(PermissionsRequests, PlacedFiles, ExtensionID = U
 				TemporaryExtension = FindExtension(ExtensionID);
 				If TemporaryExtension = Undefined Then
 					Raise StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'The app does not have extensions with the id ""%1"". Probably, the extension was deleted by another user.';"),
+						NStr("en = 'The app does not have extensions with the id ""%1"". Probably, the extension was deleted by another user.';tr = 'Uygulamanın ""%1"" ID''li uzantısı yok. Uzantı başka bir kullanıcı tarafından silinmiş olabilir.'"),
 						ExtensionID);
 				EndIf;
 				UpdatedExtensionData = TemporaryExtension.GetData();
@@ -1462,18 +1486,23 @@ Procedure AddPermissionRequest(PermissionsRequests, PlacedFiles, ExtensionID = U
 							NStr("en = 'Cannot add extensions from the file
 							           |""%1""
 							           |when receiving permissions due to:
-							           |%2';"),
+							           |%2';tr = 'İzinler alınırken 
+							           |""%1""
+							           | dosyasından uzantılar şu nedenle eklenemiyor:
+							           |%2'"),
 							FileThatWasPut.Name,
 							ErrorProcessing.BriefErrorDescription(ErrorInfo));
 				Else
 					ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'Cannot add the extension when receiving permissions due to:
-							           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+							           |%1';tr = 'İzinler alınırken şu nedenle uzantı eklenemiyor:
+							           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 				EndIf;
 			Else
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot update the extension when receiving permissions due to:
-						           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+						           |%1';tr = 'İzinler alınırken şu nedenle uzantı güncellenemiyor:
+						           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 			EndIf;
 			If RecoveryRequired Then
 				Try
@@ -1497,20 +1526,25 @@ Procedure AddPermissionRequest(PermissionsRequests, PlacedFiles, ExtensionID = U
 									NStr("en = 'Cannot delete the added extension from the file when receiving permissions
 									           |%1
 									           |due to:
-									           |%2';"),
+									           |%2';tr = 'İzinler alınırken dosyadan 
+									           |%1
+									           | eklenen uzantı şu nedenle silinemiyor:
+									           |%2'"),
 									FileThatWasPut.Name,
 									ErrorProcessing.BriefErrorDescription(ErrorInfo));
 						Else
 							ErrorText = ErrorText + Chars.LF + Chars.LF
 								+ StringFunctionsClientServer.SubstituteParametersToString(
 									NStr("en = 'An unexpected error occurred when trying to delete the temporarily added extension:
-									           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+									           |%1';tr = 'Geçici olarak eklenen uzantı silinirken beklenmeyen bir hata oluştu:
+									           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 						EndIf;
 					Else
 						ErrorText = ErrorText + Chars.LF + Chars.LF
 							+ StringFunctionsClientServer.SubstituteParametersToString(
 								NStr("en = 'An unexpected error occurred when trying to restore the temporarily changed extension:
-								           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+								           |%1';tr = 'Geçici olarak değiştirilen uzantı geri yüklenirken beklenmeyen bir hata oluştu:
+								           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 					EndIf;
 				EndTry;
 			EndIf;
@@ -1743,7 +1777,7 @@ Procedure OutputErrorsInfoOnExtensionsReconfiguration(ExtensionsModificationErro
 	QuestionFormParameters = StandardSubsystemsClient.QuestionToUserParameters();
 	QuestionFormParameters.Picture = PictureLib.DialogExclamation;
 	QuestionFormParameters.PromptDontAskAgain = False;
-	QuestionFormParameters.Title = NStr("en = 'Failed to reconfigure some extensions';");
+	QuestionFormParameters.Title = NStr("en = 'Failed to reconfigure some extensions';tr = 'Bazı uzantılar yeniden yapılandırılamadı'");
 	StandardSubsystemsClient.ShowQuestionToUser(Undefined,
 		ErrorInformation_,
 		QuestionDialogMode.OK,
@@ -1842,7 +1876,11 @@ Procedure DisableAttachExtensions()
 				           |The related app data might become unchangeable.
 				           |
 				           |The extension with data:
-				           | - %1';"),
+				           | - %1';tr = 'Seçilen uzantılardan biri verilerini uygulamada saklıyor. Bu verilere ulaşılamayabilir.
+				           |İlgili uygulama verileri değiştirilemeyebilir.
+				           |
+				           |Verileri olan uzantı:
+				           | - %1'"),
 				ExtensionsSynonyms.WithData[0]);
 		Else
 			ExtensionsWithDataText = StrConcat(ExtensionsSynonyms.WithData, Chars.LF + " - ");
@@ -1851,7 +1889,11 @@ Procedure DisableAttachExtensions()
 				           |The related app data might become unchangeable.
 				           |
 				           |The extensions with data stored in the app:
-				           | - %1';"),
+				           | - %1';tr = 'Seçilen uzantılardan bazıları verilerini uygulamada saklıyor. Bu verilere ulaşılamayabilir.
+				           |İlgili uygulama verileri değiştirilemeyebilir.
+				           |
+				           |Uygulamada saklanan verileri olan uzantılar:
+				           | - %1'"),
 				ExtensionsWithDataText);
 		EndIf;
 			
@@ -1860,27 +1902,29 @@ Procedure DisableAttachExtensions()
 		
 		Buttons = New ValueList;
 		If ExtensionsSynonyms.NoData.Count() > 0 Then
-			Buttons.Add("TurnOffExtensionsWithoutData", NStr("en = 'Disabled only extensions without stored data';"));
+			Buttons.Add("TurnOffExtensionsWithoutData", NStr("en = 'Disabled only extensions without stored data';tr = 'Sadece saklanan verileri olmayan uzantılar devre dışı bırakıldı'"));
 			
 			If ExtensionsSynonyms.NoData.Count() = 1 Then
 				ExtensionsWithoutDataText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'An extension without stored data:
-			           | - %1';"),
+			           | - %1';tr = 'Saklanan verileri olmayan uzantı:
+			           | - %1'"),
 					ExtensionsSynonyms.NoData[0]);
 			Else
 				ExtensionsWithoutDataText = StrConcat(ExtensionsSynonyms.NoData, Chars.LF + " - ");
 				ExtensionsWithoutDataText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Extensions without stored data:
-			           | - %1';"), 
+			           | - %1';tr = 'Saklanan verileri olmayan uzantılar:
+			           | - %1'"), 
 					ExtensionsWithoutDataText);
 			EndIf;
 			QueryText = QueryText + Chars.LF + Chars.LF + ExtensionsWithoutDataText;
 		EndIf;
-		Buttons.Add("TurnOffAll", NStr("en = 'Disable all';"));
-		Buttons.Add("Cancel", NStr("en = 'Cancel';"));
+		Buttons.Add("TurnOffAll", NStr("en = 'Disable all';tr = 'Tümünü devre dışı bırak'"));
+		Buttons.Add("Cancel", NStr("en = 'Cancel';tr = 'İptal'"));
 		
 		QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
-		QuestionParameters.Title = NStr("en = 'Warning';");
+		QuestionParameters.Title = NStr("en = 'Warning';tr = 'Uyarı'");
 		QuestionParameters.Picture = PictureLib.DialogExclamation;
 		QuestionParameters.DefaultButton = "TurnOffExtensionsWithoutData";
 		QuestionParameters.PromptDontAskAgain = False;
@@ -2032,7 +2076,7 @@ Procedure SetTitleToCommentItem()
 	EndIf;
 	
 	Items.ExtensionsListComment.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Comment for %1';"), Items.ExtensionsList.CurrentData.Synonym);
+		NStr("en = 'Comment for %1';tr = '%1 için yorum'"), Items.ExtensionsList.CurrentData.Synonym);
 		
 EndProcedure
 
@@ -2063,7 +2107,7 @@ EndProcedure
 
 &AtServerNoContext
 Function IsInfobaseExclusiveLockError(ErrorText)
-	ExclusiveLockErrorText = NStr("en = 'Error setting an exclusive lock';");
+	ExclusiveLockErrorText = NStr("en = 'Error setting an exclusive lock';tr = 'Özel kilit ayarlama hatası'");
 	Return (StrFind(ErrorText, ExclusiveLockErrorText) <> 0);
 EndFunction
 
@@ -2081,16 +2125,16 @@ Procedure ToOpenTheFormCompleteTheUserExperience()
 		FormParameters = ModuleIBConnectionsClient.ExclusiveModeSetErrorFormOpenParameters();
 		ItemsToImportCount = ExtensionsToReAdd.Count();
 		FormParameters.Title = ?(ItemsToImportCount = 1,
-			NStr("en = 'Couldn''t add extension';"), NStr("en = 'Couldn''t add extensions';"));
+			NStr("en = 'Couldn''t add extension';tr = 'Uzantı eklenemedi'"), NStr("en = 'Couldn''t add extensions';tr = 'Uzantılar eklenemedi'"));
 		FormParameters.ErrorMessageText = ?(ItemsToImportCount = 1, 
-			NStr("en = 'Couldn''t add extension: active users detected';"),
+			NStr("en = 'Couldn''t add extension: active users detected';tr = 'Uzantı eklenemedi: Aktif kullanıcılar tespit edildi'"),
 			StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t add extensions (%1): active users detected';"), ItemsToImportCount));
+			NStr("en = 'Couldn''t add extensions (%1): active users detected';tr = 'Uzantılar eklenemedi (%1): Aktif kullanıcılar tespit edildi'"), ItemsToImportCount));
 		FormParameters.ErrorTextExitFailed = ?(ItemsToImportCount = 1, 
-			NStr("en = 'Couldn''t add extensions. Failed to terminate the user sessions:';"),
+			NStr("en = 'Couldn''t add extensions. Failed to terminate the user sessions:';tr = 'Uzantılar eklenemedi. Kullanıcı oturumları sonlandırılamadı:'"),
 			StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t add extensions (%1). Failed to terminate the user sessions:';"), ItemsToImportCount));
-		FormParameters.LoginMessage = NStr("en = 'Cannot add extensions while the app is being used.';");
+			NStr("en = 'Couldn''t add extensions (%1). Failed to terminate the user sessions:';tr = 'Uzantılar eklenemedi (%1). Kullanıcı oturumları sonlandırılamadı:'"), ItemsToImportCount));
+		FormParameters.LoginMessage = NStr("en = 'Cannot add extensions while the app is being used.';tr = 'Uygulama kullanılırken uzantılar eklenemiyor.'");
 		FormParameters.ShouldCloseAllSessionsButCurrent = True;
 		FormParameters.ShouldCloseDesignerSession = True;
 		FormParameters.BlockingPeriod = 60;

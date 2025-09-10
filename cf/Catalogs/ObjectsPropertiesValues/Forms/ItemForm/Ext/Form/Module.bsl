@@ -145,21 +145,21 @@ Procedure SetHeader()
 	
 	If Not IsBlankString(PropertyName) Then
 		If ValueIsFilled(Object.Ref) Then
-			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';"),
+			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';tr = '%1 (%2)'"),
 				Object.Description,
 				PropertyName);
 		Else
-			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (Create)';"), PropertyName);
+			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (Create)';tr = '%1 (Oluştur)'"), PropertyName);
 		EndIf;
 	Else
 		PropertyName = String(AttributesValues.Title);
 		
 		If ValueIsFilled(Object.Ref) Then
-			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (""%2"" property value)';"),
+			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (""%2"" property value)';tr = '%1 (özniteliğin değeri %2)'"),
 				Object.Description,
 				PropertyName);
 		Else
-			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '""%1"" property value (Create)';"), PropertyName);
+			Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '""%1"" property value (Create)';tr = '%1 özellik değeri (Oluştur)'"), PropertyName);
 		EndIf;
 	EndIf;
 	

@@ -100,7 +100,7 @@ EndProcedure
 
 &AtServer
 Function BlankFormattedString()
-	ValuePresentation= NStr("en = 'not set';");
+	ValuePresentation= NStr("en = 'not set';tr = 'Belirlenmedi'");
 	EditLink1 = "NotDefined";
 	Result            = New FormattedString(ValuePresentation,, StyleColors.EmptyHyperlinkColor,, EditLink1);
 	

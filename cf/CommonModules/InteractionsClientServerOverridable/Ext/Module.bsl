@@ -55,7 +55,7 @@ Procedure OnDeterminePossibleContacts(ContactsTypes) Export
 	Contact = InteractionsClientServer.NewContactDescription();
 	Contact.Type = Type("CatalogRef.Counterparties");
 	Contact.Name = "Counterparties";
-	Contact.Presentation = NStr("en = 'Counterparties'");
+	Contact.Presentation = NStr("en = 'Counterparties'; tr = 'Cari hesaplar'");
 	Contact.Hierarchical = True;
 	ContactsTypes.Add(Contact);
 	

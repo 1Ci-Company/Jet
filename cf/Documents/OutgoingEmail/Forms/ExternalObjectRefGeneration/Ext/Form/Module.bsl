@@ -55,14 +55,14 @@ Procedure Insert(Command)
 	
 	If IsBlankString(InfobasePublicationURL) Then
 		
-		MessageText = NStr("en = 'Infobase publication URL not specified.';");
+		MessageText = NStr("en = 'Infobase publication URL not specified.';tr = 'İnternetteki Infobase yayın adresi belirtilmedi.'");
 		CommonClient.MessageToUser(MessageText,, "InfobasePublicationURL",, Cancel);
 		
 	EndIf;
 	
 	If IsBlankString(ObjectReference) Then
 		
-		MessageText = NStr("en = 'In-app link to the object is not specified.';");
+		MessageText = NStr("en = 'In-app link to the object is not specified.';tr = 'Nesneye dahili referans belirtilmedi.'");
 		CommonClient.MessageToUser(MessageText,, "ObjectReference",, Cancel);
 		
 	EndIf;

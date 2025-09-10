@@ -190,13 +190,16 @@ Procedure OnStartExecuteScheduledJob(ScheduledJob) Export
 	If Common.DataSeparationEnabled() Then
 		ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The application has been moved.
-			           |The ""%1"" scheduled job, which requires online activities, is disabled.';"), 
+			           |The ""%1"" scheduled job, which requires online activities, is disabled.';tr = 'Uygulama taşındı.
+			           |Çevrimiçi işlem gerektiren ""%1"" planlı işi devre dışı bırakıldı.'"), 
 			ScheduledJob.Synonym);
 	Else 
 		ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The infobase connection string has changed.
 			           |The infobase might have been moved.
-			           |The ""%1"" scheduled job is disabled.';"), 
+			           |The ""%1"" scheduled job is disabled.';tr = 'Infobase bağlantı dizesi değişti.
+			           |Infobase taşınmış olabilir.
+			           |""%1"" planlı işi devre dışı bırakıldı.'"), 
 			ScheduledJob.Synonym);
 	EndIf;
 	
@@ -426,7 +429,17 @@ Procedure WriteFileInfobaseIDToCheckFile(TheDatabaseID)
 		           |while synchronizing data, sending emails, and performing other operations with external resources.
 		           |
 		           |If the file is missing from the infobase directory, the app will prompt
-		           |the administrator if accessing external resources is allowed.';"), 
+		           |the administrator if accessing external resources is allowed.';tr = '%1
+		           |
+		           |Dosya ""%2"" uygulaması tarafından otomatik oluşturuldu.
+		           |Infobase ID''sini içerir ve bu infobase''in kopyalandığını gösterir.
+		           |
+		           |Infobase dosyalarını kopyalayıp yedekleme oluşturduğunuzda bu dosyayı kopyalamayın.
+		           |Aynı ID''ye sahip infobase kopyalarının aynı anda kullanılması 
+		           |verileri senkronize ederken, e-posta gönderirken ve harici kaynaklarla başka işlemler yaparken uyuşmazlıklara yol açabilir.
+		           |
+		           |Dosya infobase dizininde yoksa, uygulama yöneticiye harici kaynaklara erişim izni 
+		           |olup olmadığını sorar.'"), 
 		TheDatabaseID, 
 		Metadata.Synonym);
 	
@@ -478,7 +491,7 @@ Function SetExternalResourcesOperationsLock()
 	DataSeparationChanged = LockParameters.DataSeparationEnabled <> DataSeparationEnabled;
 	
 	If DataSeparationChanged Then
-		MessageText = NStr("en = 'The infobase has been moved from a web application.';");
+		MessageText = NStr("en = 'The infobase has been moved from a web application.';tr = 'Infobase, web uygulamasından taşındı.'");
 		SetFlagShowsNecessityOfLock(LockParameters, MessageText);
 		Return True;
 	EndIf;
@@ -495,8 +508,8 @@ Function SetExternalResourcesOperationsLock()
 	If MovedBetweenFileAndClientServerMode Then
 		MessageText = 
 			?(IsFileInfobase, 
-				NStr("en = 'The infobase has been moved from the client/server mode to the file mode.';"),
-				NStr("en = 'The infobase has been moved from the file mode to the client/server mode.';"));
+				NStr("en = 'The infobase has been moved from the client/server mode to the file mode.';tr = 'Infobase istemci/sunucu modundan dosya moduna taşındı.'"),
+				NStr("en = 'The infobase has been moved from the file mode to the client/server mode.';tr = 'Infobase dosya modundan istemci/sunucu moduna taşındı.'"));
 		SetFlagShowsNecessityOfLock(LockParameters, MessageText);
 		Return True;
 	EndIf;
@@ -511,7 +524,7 @@ Function SetExternalResourcesOperationsLock()
 		// Therefore, check if the infobase was re-located using the checking file.
 		
 		If Not FileInfobaseIDCheckFileExists() Then
-			MessageText = NStr("en = 'The infobase folder does not contain check file %1.';");
+			MessageText = NStr("en = 'The infobase folder does not contain check file %1.';tr = 'İnfobase klasörü %1 denetim dosyasını içermiyor.'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText, "DoNotCopy.txt");
 			SetFlagShowsNecessityOfLock(LockParameters, MessageText);
 			Return True;
@@ -521,7 +534,7 @@ Function SetExternalResourcesOperationsLock()
 		
 		If InfobaseIDChanged Then
 			MessageText = 
-				NStr("en = 'The infobase ID in check file %1 does not match ID in the current infobase.';");
+				NStr("en = 'The infobase ID in check file %1 does not match ID in the current infobase.';tr = '%1 denetim dosyasındaki Infobase kimliği mevcut Infobase kimliğiyle eşleşmiyor.'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText, "DoNotCopy.txt");
 			SetFlagShowsNecessityOfLock(LockParameters, MessageText);
 			Return True;
@@ -562,7 +575,17 @@ Function SetExternalResourcesOperationsLock()
 				           |Connection string: <%3>
 				           |Computer name: <%4>
 				           |
-				           |Check server name: <%5>';"),
+				           |Check server name: <%5>';tr = 'İstemci-sunucu veritabanının benzersizliğini denetleme parametreleri değişti.
+				           |
+				           |Önceki:
+				           |Bağlantı satırı: <%1>
+				           |Bilgisayar adı: <%2>
+				           |
+				           |Şimdi:
+				           |Bağlantı satırı: <%3>
+				           |Bilgisayar adı: <%4>
+				           |
+				           |Sunucu adını kontrol et: <%5>'"),
 				LockParameters.ConnectionString, 
 				SavedWorkingProcessServerName,
 				ConnectionString,
@@ -609,7 +632,12 @@ Function LockReasonPresentation(LockParameters)
 		           |The infobase location has been changed. Old location: 
 		           |<b>%5</b>
 		           |New location: 
-		           |<b>%6</b>';"),
+		           |<b>%6</b>';tr = 'Kilit <b>%1</b> sunucusunda ayarlandı: <b>%2</b>, <b>%3</b> %4.
+		           |
+		           |Infobase konumu değişti. Eski konum: 
+		           |<b>%5</b>
+		           |Yeni konum: 
+		           |<b>%6</b>'"),
 		ComputerName(),
 		Format(CurrentDate, "DLF=D"),
 		Format(CurrentDate, "DLF=T"),
@@ -627,12 +655,12 @@ Function CurrentOperationPresentation()
 	
 	If IsScheduledJobSession Then
 		Return StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'on attempt to execute scheduled job <b>%1</b>';"),
+			NStr("en = 'on attempt to execute scheduled job <b>%1</b>';tr = '%1</b>planlı işini yürütme girişiminde<b>'"),
 			BackgroundJob.ScheduledJob.Description);
 	EndIf;
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'when user <b>%1</b> logged in';"),
+		NStr("en = 'when user <b>%1</b> logged in';tr = 'kullanıcı <b>%1</b> giriş yaptığında'"),
 		UserName());
 	
 EndFunction
@@ -652,7 +680,7 @@ EndFunction
 
 Function EventLogEventName() Export 
 	
-	Return NStr("en = 'Online activities are disabled';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Online activities are disabled';tr = 'Dış kaynaklarla çalışma kilitlendi'", Common.DefaultLanguageCode());
 	
 EndFunction
 

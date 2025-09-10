@@ -71,10 +71,11 @@ Procedure ProcessUserTemplates(Parameters) Export
 		RecordSet.Filter.TemplateName.Set(Selection.TemplateName);
 		
 		If Metadata.FindByFullName(TemplateMetadataObjectName) = Undefined Then
-			EventName = NStr("en = 'Print';", Common.DefaultLanguageCode());
+			EventName = NStr("en = 'Print';tr = 'Yazdır'", Common.DefaultLanguageCode());
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Custom template not registered in configuration metadata found:
-					|%1.';"), TemplateMetadataObjectName);
+					|%1.';tr = 'Yapılandırma metaverilerinde kayıtlı olmayan özel şablon bulundu:
+					|%1.'"), TemplateMetadataObjectName);
 			WriteLogEvent(EventName, EventLogLevel.Warning, , TemplateMetadataObjectName, ErrorText);
 			InfobaseUpdate.MarkProcessingCompletion(RecordSet);
 			ObjectsWithIssuesCount = ObjectsWithIssuesCount + 1;
@@ -109,14 +110,14 @@ Procedure ProcessUserTemplates(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some custom templates: %1';"),
+			NStr("en = 'Couldn''t process (skipped) some custom templates: %1';tr = 'Bazı özel şablonlar işlenemedi (atlandı): %1'"),
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(),
 			EventLogLevel.Information, Metadata.InformationRegisters.UserPrintTemplates,,
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Another batch of custom templates is processed: %1';"),
+					NStr("en = 'Another batch of custom templates is processed: %1';tr = 'Başka bir özel şablon partisi işlendi: %1'"),
 			ObjectsProcessed));
 	EndIf;
 	

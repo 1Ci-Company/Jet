@@ -40,6 +40,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Quantity</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Miktar</v8:content>
+				</v8:item>
 			</title>
 			<appearance>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
@@ -47,6 +51,10 @@
 					<dcscor:value xsi:type="v8:LocalStringType">
 						<v8:item>
 							<v8:lang>en</v8:lang>
+							<v8:content>NFD=3</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
 							<v8:content>NFD=3</v8:content>
 						</v8:item>
 					</dcscor:value>
@@ -61,6 +69,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Amount</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Tutar</v8:content>
+				</v8:item>
 			</title>
 			<appearance>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
@@ -68,6 +80,10 @@
 					<dcscor:value xsi:type="v8:LocalStringType">
 						<v8:item>
 							<v8:lang>en</v8:lang>
+							<v8:content>NFD=2</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
 							<v8:content>NFD=2</v8:content>
 						</v8:item>
 					</dcscor:value>
@@ -99,6 +115,10 @@ FROM
 				<v8:lang>en</v8:lang>
 				<v8:content>Begin of period</v8:content>
 			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Dönem başlangıcı</v8:content>
+			</v8:item>
 		</title>
 		<valueType>
 			<v8:Type>xs:dateTime</v8:Type>
@@ -116,6 +136,10 @@ FROM
 			<v8:item>
 				<v8:lang>en</v8:lang>
 				<v8:content>End of period</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Dönem sonu</v8:content>
 			</v8:item>
 		</title>
 		<valueType>
@@ -135,6 +159,10 @@ FROM
 				<v8:lang>en</v8:lang>
 				<v8:content>Accounting period</v8:content>
 			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Hesap dönemi</v8:content>
+			</v8:item>
 		</title>
 		<valueType>
 			<v8:Type>v8:StandardPeriod</v8:Type>
@@ -148,7 +176,16 @@ FROM
 	</parameter>
 	<settingsVariant>
 		<dcsset:name>Default</dcsset:name>
-		<dcsset:presentation xsi:type="xs:string">Default</dcsset:presentation>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Default</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>tr</v8:lang>
+				<v8:content>Varsayılan</v8:content>
+			</v8:item>
+		</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
 			<dcsset:dataParameters>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
@@ -189,6 +226,10 @@ FROM
 									<dcscor:value xsi:type="v8:LocalStringType">
 										<v8:item>
 											<v8:lang>en</v8:lang>
+											<v8:content>DLF=D</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
 											<v8:content>DLF=D</v8:content>
 										</v8:item>
 									</dcscor:value>
@@ -237,6 +278,10 @@ FROM
 								<d8p1:labelFormat>
 									<v8:item>
 										<v8:lang>en</v8:lang>
+										<v8:content>NFD=2</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>tr</v8:lang>
 										<v8:content>NFD=2</v8:content>
 									</v8:item>
 								</d8p1:labelFormat>
@@ -310,6 +355,10 @@ FROM
 								<d8p1:labelFormat>
 									<v8:item>
 										<v8:lang>en</v8:lang>
+										<v8:content>NFD=3</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>tr</v8:lang>
 										<v8:content>NFD=3</v8:content>
 									</v8:item>
 								</d8p1:labelFormat>

@@ -37,9 +37,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		ExecuteActionsOnContextOpen();
 	Else
 		If Not IsFullUser() Then
-			Raise(NStr("en = 'Insufficient rights.';"), ErrorCategory.AccessViolation);
+			Raise(NStr("en = 'Insufficient rights.';tr = 'Yetersiz yetki.'"), ErrorCategory.AccessViolation);
 		EndIf;
-		Title = NStr("en = 'Bulk attribute edit';");
+		Title = NStr("en = 'Bulk attribute edit';tr = 'Toplu öznitelik düzenleme'");
 		FillObjectsTypesList();
 	EndIf;
 	
@@ -73,7 +73,7 @@ EndProcedure
 Procedure OnOpen(Cancel)
 #If WebClient Then
 	If ValueIsFilled(ExternalProcessorFilePathAtClient) Then
-		ErrorText = NStr("en = 'To perform this action, start the client app.';");
+		ErrorText = NStr("en = 'To perform this action, start the client app.';tr = 'Bu eylem için istemci uygulamasını başlatın.'");
 		Raise ErrorText;
 	EndIf;
 #EndIf
@@ -172,13 +172,13 @@ Procedure OperationKindOnChange(Item)
 	
 	If Object.OperationType = "ExecuteAlgorithm" Then
 		Items.OperationKindPages.CurrentPage = Items.ArbitraryAlgorithm;
-		Items.FormChange.Title = NStr("en = 'Run';");
+		Items.FormChange.Title = NStr("en = 'Run';tr = 'Çalıştır'");
 		Items.PreviouslyChangedAttributes.Visible = False;
 		Items.Algorithms.Visible = True;
 		Items.AttributesSearchString.Visible = False;
 	Else
 		Items.OperationKindPages.CurrentPage = Items.AttributesToChange;
-		Items.FormChange.Title = NStr("en = 'Edit attributes';");
+		Items.FormChange.Title = NStr("en = 'Edit attributes';tr = 'Öznitelikleri düzenle'");
 		Items.PreviouslyChangedAttributes.Visible = True;
 		Items.Algorithms.Visible = False;
 		Items.AttributesSearchString.Visible = True;
@@ -391,7 +391,7 @@ Procedure Change(Command)
 	
 	If ButtonPurpose = "Change" Then
 		If Not SelectedObjectsAvailable() Then
-			ShowMessageBox(, NStr("en = 'Items to edit are not provided.';"));
+			ShowMessageBox(, NStr("en = 'Items to edit are not provided.';tr = 'Düzenlenecek öğeler belirtilmedi.'"));
 			Return;
 		EndIf;
 		
@@ -402,9 +402,9 @@ Procedure Change(Command)
 		If AvailableConfiguredFilters() Then
 			ExecuteChangeFilterCheckCompleted();
 		Else
-			QueryText = NStr("en = 'Filter not set. Do you want to edit all items?';");
+			QueryText = NStr("en = 'Filter not set. Do you want to edit all items?';tr = 'Filtre ayarlanmadı. Tüm öğeler düzenlensin mi?'");
 			NotifyDescription = New NotifyDescription("ExecuteChangeFilterCheckCompleted", ThisObject);
-			ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.OKCancel, , , NStr("en = 'Edit items';"));
+			ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.OKCancel, , , NStr("en = 'Edit items';tr = 'Öğeleri düzenle'"));
 		EndIf;
 		
 		Return;
@@ -656,9 +656,9 @@ Procedure ExecuteChangeFilterCheckCompleted(QuestionResult = Undefined, Addition
 	EndIf;
 	
 	If Not AvailableConfiguredChanges() And Object.OperationType = "EnterValues" Then
-		QueryText = NStr("en = 'No changes found. Overwrite the items without introducing changes?';");
+		QueryText = NStr("en = 'No changes found. Overwrite the items without introducing changes?';tr = 'Değişiklik bulunmadı. Değişiklik olmadan öğelerin üstüne yazılsın mı?'");
 		NotifyDescription = New NotifyDescription("ExecuteChangeChecksCompleted", ThisObject);
-		ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.OKCancel, , , NStr("en = 'Edit items';"));
+		ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.OKCancel, , , NStr("en = 'Edit items';tr = 'Öğeleri düzenle'"));
 	Else
 		ExecuteChangeChecksCompleted();
 	EndIf;
@@ -685,7 +685,7 @@ EndFunction
 &AtServer
 Procedure ExecuteActionsOnContextOpen()
 	
-	TitleTemplate1 = NStr("en = 'Edit selected %1 elements (%2)';");
+	TitleTemplate1 = NStr("en = 'Edit selected %1 elements (%2)';tr = 'Seçili %1 öğeyi (%2) düzenle'");
 	
 	ObjectsTypes = New ValueList;
 	For Each PassedObject In Parameters.ObjectsArray Do
@@ -699,7 +699,7 @@ Procedure ExecuteActionsOnContextOpen()
 	TypePresentation = Parameters.ObjectsArray[0].Metadata().Presentation();
 	If ObjectsTypes.Count() > 1 Then
 		TypePresentation = "";
-		TitleTemplate1 = NStr("en = 'Edit selected items (%2)';");
+		TitleTemplate1 = NStr("en = 'Edit selected items (%2)';tr = 'Seçili öğeleri (%2) düzenle'");
 	EndIf;
 	
 	ObjectCount = Parameters.ObjectsArray.Count();
@@ -839,7 +839,7 @@ EndProcedure
 Procedure AskForAttributeUnlockConfirmation(SelectedAttribute)
 	
 	Buttons = New ValueList;
-	Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Allow editing';"));
+	Buttons.Add(DialogReturnCode.Yes, NStr("en = 'Allow editing';tr = 'Düzenlemeye izin ver'"));
 	QueryText = SubstituteParametersToString(
 		NStr("en = 'To prevent data inconsistency, attribute %1 has been locked.
 			|
@@ -847,13 +847,19 @@ Procedure AskForAttributeUnlockConfirmation(SelectedAttribute)
 			|and consider possible data implications.
 			|
 			|Allow editing of %1?
-			|';"),
+			|';tr = 'Veri tutarsızlığını önlemek için %1 özniteliği kilitlendi.
+			|
+			|Düzenlemeye izin vermeden önce, seçilen öğelerin örneklerini görüntüleyin 
+			|ve olası veri sorunlarını değerlendirin.
+			|
+			|%1 düzenlenebilsin mi?
+			|'"),
 		SelectedAttribute.Presentation);
 	
-	Buttons.Add(DialogReturnCode.Cancel, NStr("en = 'Cancel';"));
+	Buttons.Add(DialogReturnCode.Cancel, NStr("en = 'Cancel';tr = 'İptal et'"));
 	
 	NotifyDescription = New NotifyDescription("AskForAttributeUnlockConfirmationCompletion", ThisObject, SelectedAttribute);
-	ShowQueryBox(NotifyDescription, QueryText, Buttons, , DialogReturnCode.Yes, NStr("en = 'Attribute is locked';"));
+	ShowQueryBox(NotifyDescription, QueryText, Buttons, , DialogReturnCode.Yes, NStr("en = 'Attribute is locked';tr = 'Özellik kilitlendi'"));
 	
 EndProcedure
 
@@ -1076,12 +1082,12 @@ Procedure SettButtonsDuringChange(StartChange)
 	Items.FormChange.Enabled = True;
 	
 	If StartChange Then
-		Items.FormChange.Title = NStr("en = 'Abort';");
+		Items.FormChange.Title = NStr("en = 'Abort';tr = 'Durdur'");
 	Else
 		If ObjectsThatCouldNotBeChanged.Count() > 0 Then
-			Items.FormChange.Title = NStr("en = 'Edit same attributes';");
+			Items.FormChange.Title = NStr("en = 'Edit same attributes';tr = 'Aynı öznitelikleri düzenle'");
 		Else
-			Items.FormChange.Title = NStr("en = 'Close';");
+			Items.FormChange.Title = NStr("en = 'Close';tr = 'Kapat'");
 		EndIf;
 	EndIf;
 	
@@ -1094,8 +1100,8 @@ Procedure ChangeObjects1()
 	CurrentChangeStatus = New Structure;
 	ObjectsCountForProcessing = SelectedObjectsCount(True, True);
 	
-	ShowUserNotification(NStr("en = 'Edit selected items';"),, 
-		NStr("en = 'Please wait. Processing may take some time…';"));
+	ShowUserNotification(NStr("en = 'Edit selected items';tr = 'Seçilen öğeleri düzenle'"),, 
+		NStr("en = 'Please wait. Processing may take some time…';tr = 'Lütfen, bekleyin. İşlem biraz zaman alabilir...'"));
 	ShowProcessedItemsPercentage = False;
 	
 	CurrentChangeStatus.Insert("ItemsAvailableForProcessing", True);
@@ -1176,7 +1182,7 @@ Procedure OnCompleteChange(Result, AdditionalParameters) Export
 	ResultsOfChanges = GetFromTempStorage(Result.ResultAddress);
 	
 	If TypeOf(ResultsOfChanges) <> Type("Map") Then
-		ErrorText = NStr("en = 'The background job did not return a result';");
+		ErrorText = NStr("en = 'The background job did not return a result';tr = 'Arka plan işi sonuç vermedi'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -1190,7 +1196,7 @@ Procedure OnCompleteChange(Result, AdditionalParameters) Export
 		Else
 			ResultOfBatchChange = GetFromTempStorage(ResultOfBatchExecution.ResultAddress);
 			If TypeOf(ResultOfBatchChange) <> Type("Structure") Then
-				ErrorText = NStr("en = 'The thread background job did not return a result';");
+				ErrorText = NStr("en = 'The thread background job did not return a result';tr = 'İş parçacığı arka plan işi sonuç vermedi'");
 				Raise ErrorText;
 			EndIf;
 		
@@ -1226,16 +1232,17 @@ Procedure ProcessChangeResult(ChangeResult = Undefined, ContinueProcessing = Und
 		EndIf;
 		
 		QueryText = NStr("en = 'Errors editing items.
-			|Do you want to cancel editing and see the Error log?';");
+			|Do you want to cancel editing and see the Error log?';tr = 'Öğeler düzenlenirken hatalar oluştu.
+			|Düzenlemeyi iptal etmek ve hata kayıtlarına bakmak ister misiniz?'");
 		Buttons = New ValueList;
-		Buttons.Add(DialogReturnCode.Abort, NStr("en = 'Cancel';"));
-		Buttons.Add(DialogReturnCode.Ignore, NStr("en = 'Continue';"));
-		Buttons.Add(DialogReturnCode.No, NStr("en = 'Do not ask again';"));
+		Buttons.Add(DialogReturnCode.Abort, NStr("en = 'Cancel';tr = 'İptal'"));
+		Buttons.Add(DialogReturnCode.Ignore, NStr("en = 'Continue';tr = 'Devam'"));
+		Buttons.Add(DialogReturnCode.No, NStr("en = 'Do not ask again';tr = 'Bir daha sorma'"));
 		
 		NotifyDescription = New NotifyDescription("ProcessChangeResultResponseReceived", 
 			ThisObject, ChangeResult);
 		ShowQueryBox(NotifyDescription, QueryText, Buttons, , DialogReturnCode.Abort, 
-			NStr("en = 'Editing errors';"));
+			NStr("en = 'Editing errors';tr = 'Düzenleme hataları'"));
 		Return;
 	EndDo;
 	
@@ -1244,7 +1251,7 @@ Procedure ProcessChangeResult(ChangeResult = Undefined, ContinueProcessing = Und
 	If CurrentChangeStatus.ShowProcessedItemsPercentage Then
 		// Calculating the current percentage of processed objects.
 		CurrentPercentage = Round(CurrentChangeStatus.CurrentPosition / CurrentChangeStatus.ObjectsCountForProcessing * 100);
-		Status(NStr("en = 'Processing in progress…';"), CurrentPercentage, NStr("en = 'Edit selected items';"));
+		Status(NStr("en = 'Processing in progress…';tr = 'İşlem devam ediyor...'"), CurrentPercentage, NStr("en = 'Edit selected items';tr = 'Seçilen öğeleri düzenle'"));
 	EndIf;
 	
 	ItemsAvailableForProcessing = ?(CurrentChangeStatus.CurrentPosition < CurrentChangeStatus.ObjectsCountForProcessing, True, False);
@@ -1285,8 +1292,8 @@ Procedure CompleteObjectChange()
 	
 	ProcessingCompleted = CurrentChangeStatus.ChangedCount = CurrentChangeStatus.ObjectsCountForProcessing;
 	If ProcessingCompleted Then
-		ShowUserNotification(NStr("en = 'Edit attributes';"), , 
-			SubstituteParametersToString(NStr("en = '%1 items have been edited.';"), CurrentChangeStatus.ChangedCount));
+		ShowUserNotification(NStr("en = 'Edit attributes';tr = 'Öznitelikleri düzenle'"), , 
+			SubstituteParametersToString(NStr("en = '%1 items have been edited.';tr = '%1 öğe düzenlendi.'"), CurrentChangeStatus.ChangedCount));
 		GoToCompletedPage();
 		Return;
 	EndIf;
@@ -1294,13 +1301,14 @@ Procedure CompleteObjectChange()
 	Items.ObjectsThatCouldNotBeChangedGroup.Visible = ObjectsThatCouldNotBeChanged.Count() > 0;
 	
 	If ProcessingCompleted Then
-		MessageTemplate = NStr("en = 'All %2 selected items have been edited.';");
+		MessageTemplate = NStr("en = 'All %2 selected items have been edited.';tr = 'Tüm seçili öğeler (%2) düzenlendi.'");
 	Else
 		If Object.ChangeInTransaction Or CurrentChangeStatus.ChangedCount = 0 Then
-			MessageTemplate = NStr("en = 'No items have been edited.';");
+			MessageTemplate = NStr("en = 'No items have been edited.';tr = 'Hiçbir öğe düzenlenmedi.'");
 		Else
 			MessageTemplate = NStr("en = 'Items edited partially.
-										|Edited: %1. Could not edit: %3.';");
+										|Edited: %1. Could not edit: %3.';tr = 'Öğeler kısmen düzenlendi.
+										|Düzenlenen: %1. Düzenlenemeyen: %3.'");
 		EndIf;
 	EndIf;
 	
@@ -1308,8 +1316,8 @@ Procedure CompleteObjectChange()
 		SkippedItemsCount = CurrentChangeStatus.ObjectsCountForProcessing - CurrentChangeStatus.ErrorsCount;
 		If SkippedItemsCount > 0 And Not CurrentChangeStatus.AbortUpdate Then
 			TableRow = ObjectsThatCouldNotBeChanged.Add();
-			TableRow.Object = SubstituteParametersToString(NStr("en = '… and other items (%1)';"), SkippedItemsCount);
-			TableRow.Cause = NStr("en = 'Cannot modify some items. The items were skipped.';");
+			TableRow.Object = SubstituteParametersToString(NStr("en = '… and other items (%1)';tr = '... ve diğer öğeler (%1)'"), SkippedItemsCount);
+			TableRow.Cause = NStr("en = 'Cannot modify some items. The items were skipped.';tr = 'Değiştirilemeyen bazı öğeler atlandı.'");
 		EndIf;
 	EndIf;
 	
@@ -1332,10 +1340,10 @@ Procedure BackServer()
 	ObjectsThatCouldNotBeChanged.Clear();
 	Items.FormBack.Visible = False;
 	If Object.OperationType = "ExecuteAlgorithm" Then
-		Items.FormChange.Title = NStr("en = 'Run';");
-		Items.FormChange.ExtendedTooltip.Title = NStr("en = 'Run algorithm';");
+		Items.FormChange.Title = NStr("en = 'Run';tr = 'Çalıştır'");
+		Items.FormChange.ExtendedTooltip.Title = NStr("en = 'Run algorithm';tr = 'Algoritmayı çalıştır'");
 	Else
-		Items.FormChange.Title = NStr("en = 'Edit attributes';");
+		Items.FormChange.Title = NStr("en = 'Edit attributes';tr = 'Öznitelikleri düzenle'");
 	EndIf;
 	
 	UpdateLabelServer();
@@ -1348,8 +1356,9 @@ Procedure GoToCompletedPage()
 	Items.Pages.CurrentPage = Items.AllDone;
 	Items.DoneLabel.Title = SubstituteParametersToString(
 		NStr("en = 'Attributes of selected items edited.
-			|Total items edited: %1.';"), CurrentChangeStatus.ChangedCount);
-	Items.FormChange.Title = NStr("en = 'Finish';");
+			|Total items edited: %1.';tr = 'Seçilen öğelerin özellikleri değiştirildi. 
+			|Değiştirilen toplam öğe sayısı: %1'"), CurrentChangeStatus.ChangedCount);
+	Items.FormChange.Title = NStr("en = 'Finish';tr = 'Bitiş'");
 	Items.FormBack.Visible = True;
 	
 	AddMessagePossibleToEditAttributesFaster();
@@ -1383,7 +1392,8 @@ Procedure AddMessagePossibleToEditAttributesFaster()
 	Items.DoneLabel.Title = Items.DoneLabel.Title
 		+ Chars.LF + Chars.LF
 		+ NStr("en = 'You can edit attributes faster.
-		|To do it, clear the ""Edit in transaction"" check box in the additional parameters.';");
+		|To do it, clear the ""Edit in transaction"" check box in the additional parameters.';tr = 'Öznitelikleri daha hızlı düzenleyebilirsiniz.
+		|Bunun için, ek parametrelerde ""İşlemde düzenle"" onay kutusunu temizleyin.'");
 	
 EndProcedure
 
@@ -1991,9 +2001,9 @@ Procedure GenerateNoteAboutAutonumbering()
 	If Autonumbering = Undefined Then
 		NoteOnAutonumbering = "";
 	ElsIf Autonumbering Then
-		NoteOnAutonumbering = NStr("en = '<Set automatically>';");
+		NoteOnAutonumbering = NStr("en = '<Set automatically>';tr = '<Otomatik olarak yap>'");
 	Else
-		NoteOnAutonumbering = NStr("en = '<Clear>';");
+		NoteOnAutonumbering = NStr("en = '<Clear>';tr = '<Temizle>'");
 	EndIf;
 	
 EndProcedure
@@ -2383,7 +2393,7 @@ Function AttributesTableColumnDescriptions()
 	ColumnDetails = TableColumns.Add();
 	ColumnDetails.Name = "Presentation";
 	ColumnDetails.Type = New TypeDescription("String");
-	ColumnDetails.Presentation = NStr("en = 'Attribute';");
+	ColumnDetails.Presentation = NStr("en = 'Attribute';tr = 'Öznitelik'");
 	ColumnDetails.FieldKind = FormFieldType.InputField;
 	ColumnDetails.ReadOnly = True;
 	
@@ -2397,7 +2407,7 @@ Function AttributesTableColumnDescriptions()
 	ColumnDetails = TableColumns.Add();
 	ColumnDetails.Name = "Value";
 	ColumnDetails.Type = AllTypes();
-	ColumnDetails.Presentation = NStr("en = 'New value';");
+	ColumnDetails.Presentation = NStr("en = 'New value';tr = 'Yeni değer'");
 	ColumnDetails.FieldKind = FormFieldType.InputField;
 	ColumnDetails.Actions = New Structure("OnChange", "Attachable_ValueOnChange");
 	
@@ -3081,14 +3091,14 @@ Procedure GenerateNoteOnConfiguredChanges()
 	EndDo;
 	
 	If Not SelectedObjectsAvailable() Then
-		Explanation = NStr("en = 'No items selected.';");
+		Explanation = NStr("en = 'No items selected.';tr = 'Hiç öğe seçilmedi.'");
 	Else
 		If AttributesToChange.Count() = 1 Then
-			NoteTemplate = NStr("en = 'Change the %1 attribute for the selected items';") // Example: "Update attribute ""Warehouse""..."
+			NoteTemplate = NStr("en = 'Change the %1 attribute for the selected items';tr = 'Seçili öğelerde %1özniteliği değiştir'") // Example: "Update attribute ""Warehouse""..."
 		ElsIf AttributesToChange.Count() > 3 Then
-			NoteTemplate = NStr("en = 'Change attributes (%1) for the selected items';"); // Example: "Update attributes (5)..."
+			NoteTemplate = NStr("en = 'Change attributes (%1) for the selected items';tr = 'Seçili öğeler için öznitelikleri (%1) değiştir'"); // Example: "Update attributes (5)..."
 		ElsIf AttributesToChange.Count() > 1 Then
-			NoteTemplate = NStr("en = 'Change the %1 attributes for the selected items';"); // Example: "Update attributes ""Warehouse"", ""Office""..."
+			NoteTemplate = NStr("en = 'Change the %1 attributes for the selected items';tr = 'Seçili öğelerde %1 öznitelikleri değiştir'"); // Example: "Update attributes ""Warehouse"", ""Office""..."
 		Else	
 			NoteTemplate = "";
 		EndIf;
@@ -3110,16 +3120,16 @@ Procedure GenerateNoteOnConfiguredChanges()
 			
 			If AttributesToChange.Count() = 1 Then
 				NoteTemplate = ?(IsBlankString(Explanation),
-					NStr("en = 'Change the %1 attribute in table ""%2""';"),
-					NStr("en = 'the %1 attribute in table ""%2""';")); 
+					NStr("en = 'Change the %1 attribute in table ""%2""';tr = '""%2"" tablosunda %1 özniteliğini değiştir'"),
+					NStr("en = 'the %1 attribute in table ""%2""';tr = '""%2"" tablosunda %1 özniteliği'")); 
 			ElsIf AttributesToChange.Count() > 3 Then
 				NoteTemplate = ?(IsBlankString(Explanation),
-					NStr("en = 'Change attributes (%1) in table ""%2""';"),
-					NStr("en = '%1 attributes in table ""%2""';")); 
+					NStr("en = 'Change attributes (%1) in table ""%2""';tr = '""%2"" tablosunda öznitelikleri (%1) değiştir'"),
+					NStr("en = '%1 attributes in table ""%2""';tr = '""%2"" tablosunda %1 öznitelikleri'")); 
 			Else 
 				NoteTemplate = ?(IsBlankString(Explanation),
-					NStr("en = 'Change the %1 attributes in table ""%2""';"),
-					NStr("en = 'the %1 attributes in table ""%2""';")); 
+					NStr("en = 'Change the %1 attributes in table ""%2""';tr = '""%2"" tablosunda %1 özniteliklerini değiştir'"),
+					NStr("en = 'the %1 attributes in table ""%2""';tr = '""%2"" tablosunda %1 öznitelikleri'")); 
 			EndIf;
 			
 			If Not IsBlankString(Explanation) Then
@@ -3139,23 +3149,24 @@ Procedure GenerateNoteOnConfiguredChanges()
 			If TabularSectionsToChange.Count() > 0 Then
 				If FilterByRowsAvailable Then 
 					Explanation = Explanation + " " + SubstituteParametersToString(NStr(
-						"en = 'Apply the changes only to the lines of the selected items that match the <a href = ""%1"">filter</a>.';"),
+						"en = 'Apply the changes only to the lines of the selected items that match the <a href = ""%1"">filter</a>.';tr = 'Aşağıdakileri filtre koşullarını karşılayan seçili öğelerin satırlarında değişiklikler yapılacaktır <a href = ""%1""></a>.'"),
 						"GoToFilterSettings");
 				Else
 					Explanation = Explanation + " " + SubstituteParametersToString(NStr(
-						"en = 'Apply the changes <a href = ""%1"">to all lines</a> of the selected items.';"),
+						"en = 'Apply the changes <a href = ""%1"">to all lines</a> of the selected items.';tr = 'Seçilen öğelerin tüm <a href = ""%1""> satırlarında </a>değişiklikler yapılacaktır.'"),
 						"GoToFilterSettings");
 				EndIf;
 			EndIf;
 		Else
-			Explanation = NStr("en = '<b>Overwrite</b> the selected items.';");
+			Explanation = NStr("en = '<b>Overwrite</b> the selected items.';tr = '<b>Seçilmiş öğeler</b>yeniden yazılsın.'");
 		EndIf;
 	EndIf;
 	
 	Items.NoteOnConfiguredChanges.Title = FormattedString(Explanation);
 	If IsBlankString(AlgorithmCode) Then
 		AlgorithmCode = SubstituteParametersToString(NStr("en = '// Available variables:
-		|// %1 - an object to be processed.';"), "Object") + Chars.LF;
+		|// %1 - an object to be processed.';tr = '// Erişilen değişkenler:
+		|// %1-işlenecek nesne'"), "Object") + Chars.LF;
 	EndIf;
 	
 EndProcedure
@@ -3187,10 +3198,10 @@ Procedure UpdateSelectedCountLabel()
 	If AvailableConfiguredFilters() Then
 		ErrorMessageText = "";
 		SelectedObjectsCount = SelectedObjectsCount(True, , ErrorMessageText);
-		LabelText = StringWithNumberForAnyLanguage(NStr("en = ';%1 item;;;;%1 items';"),
+		LabelText = StringWithNumberForAnyLanguage(NStr("en = ';%1 item;;;;%1 items';tr = ';%1 öğe;;;;%1 öğe'"),
 			SelectedObjectsCount);
 	Else
-		LabelText = NStr("en = 'All items';");
+		LabelText = NStr("en = 'All items';tr = 'Tüm öğeler'");
 	EndIf;
 	
 	Items.FilterSettings.Title = LabelText;
@@ -3317,7 +3328,7 @@ Procedure SetChangeSetting(Val Setting)
 	EndDo;
 	
 	If LockedAttributesAvailable Then
-		ShowMessageBox(, NStr("en = 'Some attributes are locked for editing. Changes are not saved.';"));
+		ShowMessageBox(, NStr("en = 'Some attributes are locked for editing. Changes are not saved.';tr = 'Bazı öznitelikler düzenlemeye karşı kilitli. Değişiklikler kaydedilmedi.'"));
 	EndIf;
 	
 	UpdateCountersOfAttributesToChange();
@@ -3406,7 +3417,7 @@ Function ChoiceParameterLinksPresentation(ChoiceParameterLinks, MetadataObject)
 			If Attribute <> Undefined Then
 				AttributeRepresentation = Attribute.Presentation();
 				If Not IsBlankString(TabularSectionPresentation) Then
-					AttributeRepresentation = AttributeRepresentation + " (" + NStr("en = 'table';") + " " 
+					AttributeRepresentation = AttributeRepresentation + " (" + NStr("en = 'table';tr = 'Tablo'") + " " 
 						+ TabularSectionPresentation + ")";
 				EndIf;
 				LinkedAttributes.Add(AttributeRepresentation);
@@ -3415,9 +3426,9 @@ Function ChoiceParameterLinksPresentation(ChoiceParameterLinks, MetadataObject)
 	EndDo;
 	
 	If LinkedAttributes.Count() > 0 Then
-		LinkPresentationPattern = NStr("en = 'Dependency to attributes: %1.';");
+		LinkPresentationPattern = NStr("en = 'Dependency to attributes: %1.';tr = 'Özniteliklere bağımlılık: %1.'");
 		If LinkedAttributes.Count() = 1 Then
-			LinkPresentationPattern = NStr("en = 'Depends on the %1 attribute.';");
+			LinkPresentationPattern = NStr("en = 'Depends on the %1 attribute.';tr = '%1 özniteliğine bağlı.'");
 		EndIf;
 		Result = SubstituteParametersToString(LinkPresentationPattern, StrConcat(LinkedAttributes, ", "));
 	EndIf;
@@ -3454,7 +3465,7 @@ EndProcedure
 Function ComposerParameters(Formula)
 	Result = New Structure;
 	Result.Insert("Formula", Formula);
-	Result.Insert("OperandsTitle", NStr("en = 'Available attributes';"));
+	Result.Insert("OperandsTitle", NStr("en = 'Available attributes';tr = 'Mevcut özellikler'"));
 	Result.Insert("Operands", Operands());
 	Result.Insert("Advanced", False);
 	Return Result;
@@ -3689,7 +3700,7 @@ Function ObjectManagerByFullName(FullName)
 				// Recalculate.
 				Manager = CalculationRegisters[MetadataObjectName1].Recalculations;
 			Else
-				Raise SubstituteParametersToString(NStr("en = 'Unknown metadata object type: %1.';"), FullName);
+				Raise SubstituteParametersToString(NStr("en = 'Unknown metadata object type: %1.';tr = 'Bilinmeyen metaveri nesnesi türü: %1.'"), FullName);
 			EndIf;
 		EndIf;
 		
@@ -3714,7 +3725,7 @@ Function ObjectManagerByFullName(FullName)
 		EndTry;
 	EndIf;
 	
-	Raise SubstituteParametersToString(NStr("en = 'Unknown metadata object type: %1.';"), FullName);
+	Raise SubstituteParametersToString(NStr("en = 'Unknown metadata object type: %1.';tr = 'Bilinmeyen metaveri nesnesi türü: %1.'"), FullName);
 	
 EndFunction
 
@@ -3788,7 +3799,7 @@ Function ObjectKindByType(Type)
 		Return "Enum";
 	
 	Else
-		Raise SubstituteParametersToString(NStr("en = 'Invalid parameter value type: %1.';"), String(Type));
+		Raise SubstituteParametersToString(NStr("en = 'Invalid parameter value type: %1.';tr = 'Parametre değeri tipi yanlış (%1)'"), String(Type));
 	
 	EndIf;
 	
@@ -4266,7 +4277,7 @@ Function ObjectAttributesValues(Ref, Val Attributes)
 			AttributesStructure1.Insert(StrReplace(Attribute, ".", ""), Attribute);
 		EndDo;
 	Else
-		Raise SubstituteParametersToString(NStr("en = 'Invalid Attributes parameter type: %1.';"), String(TypeOf(Attributes)));
+		Raise SubstituteParametersToString(NStr("en = 'Invalid Attributes parameter type: %1.';tr = 'Geçersiz Öznitelik parametresi türü: %1.'"), String(TypeOf(Attributes)));
 	EndIf;
 	
 	FieldTexts = "";
@@ -4350,12 +4361,12 @@ Function CommonModule(Name)
 	EndIf;
 	
 	If TypeOf(Module) <> Type("CommonModule") Then
-		Raise SubstituteParametersToString(NStr("en = 'Common module ""%1"" does not exist.';"), Name);
+		Raise SubstituteParametersToString(NStr("en = 'Common module ""%1"" does not exist.';tr = ' ""%1"" ortak modülü mevcut değil.'"), Name);
 	EndIf;
 #Else
 	Module = Eval(Name);
 	If TypeOf(Module) <> Type("CommonModule") Then
-		Raise SubstituteParametersToString(NStr("en = 'Common module ""%1"" does not exist.';"), Name);
+		Raise SubstituteParametersToString(NStr("en = 'Common module ""%1"" does not exist.';tr = ' ""%1"" ortak modülü mevcut değil.'"), Name);
 	EndIf;
 #EndIf
 // ACC:488-on
@@ -4719,7 +4730,8 @@ Procedure CheckPlatformVersionAndCompatibilityMode()
 		And Metadata.CompatibilityMode <> Metadata.ObjectProperties.CompatibilityMode["Version8_3_2"]))) Then
 		
 		Raise NStr("en = 'The data processor supports 1C:Enterprise 8.3 or later,
-			|with disabled compatibility mode.';");
+			|with disabled compatibility mode.';tr = 'Veri işlemcisi 1C:Enterprise 8.3 ve üstünü
+			|destekler (uyumluluk modu kapalı).'");
 		
 	EndIf;
 	

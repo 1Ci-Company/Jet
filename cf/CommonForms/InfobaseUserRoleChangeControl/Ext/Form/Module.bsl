@@ -26,7 +26,8 @@ Procedure OnOpen(Cancel)
 		
 	Items.Label.Title = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'The administrator changed access rights.
-		           |To apply the changes, the app will restart in %1.';"),
+		           |To apply the changes, the app will restart in %1.';tr = 'Yönetici, erişim yetkilerini değiştirdi.
+		           |Değişikliklerin uygulanması için uygulama %1 sonra yeniden başlatılacak.'"),
 		MinutesLeftPresentation);
 	
 EndProcedure

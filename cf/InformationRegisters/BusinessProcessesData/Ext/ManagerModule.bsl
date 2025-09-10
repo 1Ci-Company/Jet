@@ -115,7 +115,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 				Enums.BusinessProcessStates.Running);
 			If BusinessProcessState = Undefined Then
 				BadData[String.Owner] = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The ""Business processes"" information register contains records of a non-existent business process: ""%1"".';"),
+					NStr("en = 'The ""Business processes"" information register contains records of a non-existent business process: ""%1"".';tr = '""İş süreçleri"" bilgi kaydı, mevcut olmayan bir iş sürecinin kayıtlarını içeriyor: ""%1"".'"),
 					String.Owner);
 				InfobaseUpdate.MarkProcessingCompletion(RecordSet);
 				CommitTransaction();
@@ -154,14 +154,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some information records about business processes: %1';"), 
+			NStr("en = 'Couldn''t process (skipped) some information records about business processes: %1';tr = 'İş süreçleri hakkındaki bazı bilgiler işlenemedi (atlandı): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			RegisterMetadata,,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Another batch of information records about business processes is processed: %1';"),
+				NStr("en = 'Another batch of information records about business processes is processed: %1';tr = 'İş süreçleri hakkında başka bir bilgi kaydı partisi işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

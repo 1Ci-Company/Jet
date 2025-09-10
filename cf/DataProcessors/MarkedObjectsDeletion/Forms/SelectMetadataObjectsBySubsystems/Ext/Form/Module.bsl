@@ -310,7 +310,7 @@ Function NewTreeItemSection(CurrentTreeRow, Section)
 	SectionPresentation = Section;
 	If Common.IsDocumentJournal(Section) Then
 		SectionPresentation = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 (Log)';"), SectionPresentation);
+			NStr("en = '%1 (Log)';tr = '%1 (Kayıt)'"), SectionPresentation);
 	EndIf;
 	
 	NewRow = CurrentTreeRow.Rows.Add();

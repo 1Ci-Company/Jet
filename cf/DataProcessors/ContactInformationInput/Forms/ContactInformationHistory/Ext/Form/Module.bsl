@@ -34,7 +34,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			TableRow.Type = ContactInformationType;
 			TableRow.Kind = ContactInformationKind;
 		EndDo;
-		Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Change history (%1)';"), ContactInformationPresentation);
+		Title = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Change history (%1)';tr = 'Değişiklik geçmişi (%1)'"), ContactInformationPresentation);
 		Items.HistoryPresentation.Title = ContactInformationPresentation;
 	Else
 		Cancel = True;
@@ -93,7 +93,7 @@ Procedure HistoryBeforeDeleteRow(Item, Cancel)
 	If Not Cancel Then
 		AdditionalParameters = New Structure("RowID", Item.CurrentRow);
 		Notification = New NotifyDescription("AfterAnswerToQuestionAboutDeletion", ThisObject, AdditionalParameters);
-		ShowQueryBox(Notification, NStr("en = 'Do you want to remove address registered on';") + " " + Format(ValidFrom, "DLF=DD")+ "?", QuestionDialogMode.YesNo);
+		ShowQueryBox(Notification, NStr("en = 'Do you want to remove address registered on';tr = 'Itibaren geçerli adresi sil'") + " " + Format(ValidFrom, "DLF=DD")+ "?", QuestionDialogMode.YesNo);
 	EndIf;
 	Cancel = True;
 EndProcedure
@@ -211,7 +211,7 @@ Procedure GenerateData(EnterNewAddress = False)
 		If DatesOptions[History[IndexOf].ValidFrom] = Undefined Then
 			DatesOptions.Insert(History[IndexOf].ValidFrom, True);
 		Else
-			CommonClient.MessageToUser(NStr("en = 'You cannot enter addresses with the same date.';"),, 
+			CommonClient.MessageToUser(NStr("en = 'You cannot enter addresses with the same date.';tr = 'Aynı tarihlere sahip adresler girilmez.'"),, 
 				"History[" + Format(IndexOf, "NG=0") + "].ValidFrom");
 			Return;
 		EndIf;
@@ -227,7 +227,7 @@ Procedure GenerateData(EnterNewAddress = False)
 	History[ValidAddress1].IsHistoricalContactInformation = False;
 
 	If Not EnterNewAddress And NoInitialDate Then
-		ShowMessageBox(, NStr("en = 'An address valid on the accounting start date is required.';"));
+		ShowMessageBox(, NStr("en = 'An address valid on the accounting start date is required.';tr = 'Kayıt başlangıç tarihinden itibaren geçerli olan adres mevcut değil.'"));
 		Return;
 	EndIf;
 	
@@ -303,7 +303,7 @@ Procedure SetConditionalAppearance()
 
 	Item.Appearance.SetParameterValue("TextColor", StyleColors.InaccessibleCellTextColor);
 	Item.Appearance.SetParameterValue("ReadOnly", True);
-	Item.Appearance.SetParameterValue("Text", NStr("en = 'Default value';"));
+	Item.Appearance.SetParameterValue("Text", NStr("en = 'Default value';tr = 'İlk değer'"));
 	
 EndProcedure
 
@@ -313,7 +313,7 @@ Function AllowedHistoryDate(OldDate, NewDate, IndexOf)
 	Filter = New Structure("ValidFrom", NewDate);
 	FoundRows = History.FindRows(Filter);
 	If FoundRows.Count() > 1 Then
-		CommonClient.MessageToUser(NStr("en = 'You cannot enter addresses with the same date.';"),, 
+		CommonClient.MessageToUser(NStr("en = 'You cannot enter addresses with the same date.';tr = 'Aynı tarihlere sahip adresler girilmez.'"),, 
 			"History[" + Format(IndexOf, "NG=0") + "].ValidFrom");
 		If ValueIsFilled(OldDate) Then
 			Return OldDate;

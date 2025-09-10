@@ -38,9 +38,9 @@ Procedure UpdateRegisterData(Command)
 	UpdateRegisterDataAtServer(HasChanges);
 	
 	If HasChanges Then
-		Text = NStr("en = 'Updated successfully.';");
+		Text = NStr("en = 'Updated successfully.';tr = 'Güncelleme başarılı.'");
 	Else
-		Text = NStr("en = 'No update required.';");
+		Text = NStr("en = 'No update required.';tr = 'Güncelleme gerekmiyor.'");
 	EndIf;
 	
 	ShowMessageBox(, Text);
@@ -56,11 +56,11 @@ Procedure SetConditionalAppearance()
 	
 	List.SettingsComposer.Settings.ConditionalAppearance.Items.Clear();
 	
-	ApplyDataGroupAppearance(0, NStr("en = 'Standard Access Values';"));
-	ApplyDataGroupAppearance(1, NStr("en = 'Regular or external users';"));
-	ApplyDataGroupAppearance(2, NStr("en = 'Regular or external user groups';"));
-	ApplyDataGroupAppearance(3, NStr("en = 'Assignee groups';"));
-	ApplyDataGroupAppearance(4, NStr("en = 'Authorization objects';"));
+	ApplyDataGroupAppearance(0, NStr("en = 'Standard Access Values';tr = 'Standart erişim değerleri'"));
+	ApplyDataGroupAppearance(1, NStr("en = 'Regular or external users';tr = 'Normal veya harici kullanıcılar'"));
+	ApplyDataGroupAppearance(2, NStr("en = 'Regular or external user groups';tr = 'Normal veya harici kullanıcı grupları'"));
+	ApplyDataGroupAppearance(3, NStr("en = 'Assignee groups';tr = 'Icracı gruplar'"));
+	ApplyDataGroupAppearance(4, NStr("en = 'Authorization objects';tr = 'Doğrulama nesneleri'"));
 	
 EndProcedure
 

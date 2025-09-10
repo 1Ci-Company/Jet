@@ -32,7 +32,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.FormImportCurrenciesRates.Visible = CurrenciesImportAvailable;
 	If Not CurrenciesImportAvailable Then
 		If CurrenciesChangeAvailable Then
-			Items.CreateCurrency.Title = NStr("en = 'Create';");
+			Items.CreateCurrency.Title = NStr("en = 'Create';tr = 'Oluştur'");
 		EndIf;
 		Items.Create.Type = FormGroupType.ButtonGroup;
 	EndIf;
@@ -85,7 +85,7 @@ Procedure CurrenciesOnGetDataAtServer(TagName, Settings, Rows)
 		ListLine = Rows[Selection.Currency];
 		ListLine.Data["Rate"] = Selection.Rate;
 		If Selection.Repetition <> 1 Then
-			Explanation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'for %1 %2';"),
+			Explanation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'for %1 %2';tr = '%1 %2 için'"),
 				Selection.Repetition, ListLine.Data["Description"]);
 			ListLine.Data["Repetition"] = Explanation;
 		EndIf;

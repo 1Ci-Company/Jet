@@ -20,7 +20,7 @@ Procedure OnWrite(Cancel)
 	
 	If Not Interactions.UserIsResponsibleForMaintainingFolders(Owner) Then
 		Common.MessageToUser(
-			NStr("en = 'The operation is available only to the user responsible for managing the account''s folders.';"),
+			NStr("en = 'The operation is available only to the user responsible for managing the account''s folders.';tr = 'Bu işlem sadece hesabın klasörlerinden sorumlu olan kullanıcı tarafından yapılabilir.'"),
 			Ref,,,
 			Cancel);
 	EndIf;
@@ -30,5 +30,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

@@ -90,7 +90,9 @@ Function StartGeneratingPrintForms(ParametersForOpeningIncoming) Export
 			StringFunctionsClientServer.SubstituteParametersToString(NStr(
 				"en = 'Invalid parameter value. %1 parameter, %2 method.
 				|Expected value: %3, %4.
-				|Passed value: %5.';"),
+				|Passed value: %5.';tr = 'Geçersiz parametre değeri. %1 parametresi, %2 yöntemi.
+				|Beklenen değer: %3, %4.
+				|Aktarılan değer: %5 '"),
 				"CommandParameter",
 				"PrintManagementClient.ExecutePrintCommand",
 				"Array",

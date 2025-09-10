@@ -97,7 +97,7 @@ Function CurrentUserSubsystems() Export
 	
 	RootRow = Result.Rows.Add();
 	RootRow.Ref = Catalogs.MetadataObjectIDs.EmptyRef();
-	RootRow.Presentation = NStr("en = 'All sections';");
+	RootRow.Presentation = NStr("en = 'All sections';tr = 'Tüm bölümler'");
 	
 	FullSubsystemsNames = New Array;
 	TreeRowsFullNames = New Map;
@@ -113,7 +113,7 @@ Function CurrentUserSubsystems() Export
 			And Not (TypeOf(MetadataSection) = Type("String") And MetadataSection = HomePageID) Then
 			
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid section values in %1 procedure.';"), 
+				NStr("en = 'Invalid section values in %1 procedure.';tr = '%1 prosedüründeki bölüm değerleri yanlış tanımlanmıştır.'"), 
 				"ReportsOptionsOverridable.DefineSectionsWithReportOptions");
 			
 		EndIf;
@@ -121,7 +121,7 @@ Function CurrentUserSubsystems() Export
 		If ValueIsFilled(ListItem.Presentation) Then
 			TitleTemplate1 = ListItem.Presentation;
 		Else
-			TitleTemplate1 = NStr("en = '%1 section reports';");
+			TitleTemplate1 = NStr("en = '%1 section reports';tr = '""%1"" bölüm raporları'");
 		EndIf;
 		
 		IsHomePage = (MetadataSection = HomePageID);
@@ -250,7 +250,7 @@ Function SubsystemsPresentations() Export
 		If Not (TypeOf(MetadataSection) = Type("MetadataObject") And StrStartsWith(MetadataSection.FullName(), "Subsystem"))
 			And Not (TypeOf(MetadataSection) = Type("String") And MetadataSection = HomePageID) Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid section values in %1 procedure.';"),
+				NStr("en = 'Invalid section values in %1 procedure.';tr = '%1 prosedüründeki bölüm değerleri yanlış tanımlanmıştır.'"),
 				"ReportsOptionsOverridable.DefineSectionsWithReportOptions");
 		EndIf;
 		

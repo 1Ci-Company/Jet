@@ -211,7 +211,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 			InfobaseUpdate.MarkProcessingCompletion(DataTable,AddlParameters,Parameters.Queue);
 		EndIf;
 		
-		MessageTemplate = NStr("en = 'The ""FilesExist"" register. The object batch has been processed: %1'");
+		MessageTemplate = NStr("en = 'The ""FilesExist"" register. The object batch has been processed: %1'; tr = '""FilesExist"" kaydı. Nesne partisi işlendi: %1'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, DataToProcess.Count());
 			WriteLogEvent(
 				InfobaseUpdate.EventLogEvent(), EventLogLevel.Information, , ,
@@ -230,7 +230,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 		ObjectsWithIssuesCount = 0;
 
 		ListOfDescriptions = New Array;
-		ListOfDescriptions.Add(NStr("en = 'Failed to process objects from the ""FilesExist"" information register:'"));
+		ListOfDescriptions.Add(NStr("en = 'Failed to process objects from the ""FilesExist"" information register:'; tr = '""FilesExist"" bilgi kaydından nesneler işlenemedi:'"));
 
 		For Each CurrentItem In DataToProcess Do
 			
@@ -302,7 +302,8 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 				
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot update information on the availability of files %1. Reason:
-						|%2';"), 
+						|%2';tr = '%1 dosyalarının kullanılabilirlik bilgileri güncellenemiyor. Nedeni:
+						|%2'"), 
 					RepresentationOfTheReference, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 				WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Warning,
 					CurrentItem.ObjectWithFiles.Metadata(), CurrentItem.ObjectWithFiles, MessageText);
@@ -336,14 +337,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 
 		If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 
-			ListOfDescriptions.Add(NStr("en = 'Skipped: %1'"));
+			ListOfDescriptions.Add(NStr("en = 'Skipped: %1'; tr = 'Atlandı: %1'"));
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(StrConcat(ListOfDescriptions, Chars.LF), 
 				ObjectsWithIssuesCount);
 			Raise MessageText;
 
 		Else
 
-			MessageTemplate = NStr("en = 'The ""FilesExist"" register. The object batch has been processed: %1'");
+			MessageTemplate = NStr("en = 'The ""FilesExist"" register. The object batch has been processed: %1'; tr = '""FilesExist"" kaydı. Nesne partisi işlendi: %1'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, ObjectsProcessed);
 			WriteLogEvent(
 				InfobaseUpdate.EventLogEvent(), EventLogLevel.Information, , ,

@@ -41,7 +41,7 @@ Procedure OnOpen(Cancel)
 	
 	If StorageVolumesCount = 0 Then
 		NotifyDescription = New NotifyDescription("WhenOpeningAfterClosingTheWarning", ThisObject);
-		ShowMessageBox(NotifyDescription, NStr("en = 'Cannot move the files between volumes since there is no volume available for storing files.';"));	
+		ShowMessageBox(NotifyDescription, NStr("en = 'Cannot move the files between volumes since there is no volume available for storing files.';tr = 'Hacimler arasında dosya aktarımı mümkün değildir, çünkü dosyaları yerleştirecek bir hacim yok.'"));	
 		Return;
 	EndIf;
 	
@@ -60,7 +60,7 @@ Procedure ActionOnChange(Item)
 		And StorageVolumesCount = 1 Then
 		
 		Action = "MoveToVolumes";
-		ShowMessageBox(, NStr("en = 'Cannot move the files between volumes as only one file storage volume is defined in the settings.';"));
+		ShowMessageBox(, NStr("en = 'Cannot move the files between volumes as only one file storage volume is defined in the settings.';tr = 'Birimler arasında dosya aktarımı yapılamıyor: Dosyaları barındırmak için ayarlarda bir hacim belirtilir.'"));
 	EndIf;
 	
 	FormItemsManagement();
@@ -113,7 +113,7 @@ Procedure ExecuteTransfer(Command)
 	
 	If Action = "MoveBetweenVolumes" And Not ValueIsFilled(DestinationStorageVolume) Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please specify the destination volume.';"), , "DestinationStorageVolume");
+			NStr("en = 'Please specify the destination volume.';tr = 'Dosyaların aktarılacağı hacim dolu değil.'"), , "DestinationStorageVolume");
 		Return;
 	EndIf;
 	
@@ -147,18 +147,18 @@ Procedure ExecuteTransferCompletion(Result, AdditionalParameters) Export
 	TransferResult = GetFromTempStorage(Result.ResultAddress); // See DataProcessors.FileTransfer.ExecuteFileTransfer
 	If TransferResult.TransferErrors.Count() = 0 Then
 		If TransferResult.FilesTransferred > 0 Then
-			Explanation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The files are moved. Total files: %1.';"),
+			Explanation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The files are moved. Total files: %1.';tr = 'Dosya aktarımı tamamlandı. Aktarılan dosyalar: %1.'"),
 				Format(TransferResult.FilesTransferred, "NZ=0; NG="));
 		Else
-			Explanation = NStr("en = 'There are no files matching the specified conditions.';");
+			Explanation = NStr("en = 'There are no files matching the specified conditions.';tr = 'Belirtilen koşullarla eşleşen dosya yok.'");
 			If AdditionalConditions.Settings.Filter.Items.Count() > 1 Then
-				Explanation = Explanation + Chars.LF + NStr("en = 'Consider that additional conditions are grouped by ""AND"" if they are not grouped into an ""Or"" group.';");
+				Explanation = Explanation + Chars.LF + NStr("en = 'Consider that additional conditions are grouped by ""AND"" if they are not grouped into an ""Or"" group.';tr = '""Veya"" grubunda gruplandırılmamışlarsa, ek koşulların ""VE"" ile gruplandırıldığına dikkat ediniz.'");
 			EndIf;
 		EndIf;
 		ShowMessageBox(, Explanation);
 	Else
 		Explanation = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Moved files: %1, failed to move: %2';"),
+			NStr("en = 'Moved files: %1, failed to move: %2';tr = 'Aktarılan dosyalar: %1, aktarılamayan: %2'"),
 			TransferResult.FilesTransferred, TransferResult.TransferErrors.Count());
 		
 		FormParameters = New Structure;

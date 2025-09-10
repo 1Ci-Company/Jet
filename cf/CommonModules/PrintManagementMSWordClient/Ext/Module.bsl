@@ -110,7 +110,7 @@ Function GetMSWordTemplate(Val BinaryTemplateData, Val TempFileName) Export
 		DeleteFiles(TempFileName);
 		EventLogClient.AddMessageForEventLog(EventLogEvent(), "Error",
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()),,True);
-		Raise(NStr("en = 'Cannot open template file. Reason:';") + Chars.LF 
+		Raise(NStr("en = 'Cannot open template file. Reason:';tr = 'Şablon dosyası aşağıdaki nedenle açılamaz:'") + Chars.LF 
 			+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -591,18 +591,19 @@ Function PageParametersSettings()
 EndFunction
 
 Function EventLogEvent()
-	Return NStr("en = 'Print';", CommonClient.DefaultLanguageCode());
+	Return NStr("en = 'Print';tr = 'Yazdır'", CommonClient.DefaultLanguageCode());
 EndFunction
 
 Procedure FailedToGeneratePrintForm(ErrorInfo)
 #If WebClient Or MobileClient Then
-	ClarificationText = NStr("en = 'Use thin client to generate this print from.';");
+	ClarificationText = NStr("en = 'Use thin client to generate this print from.';tr = 'Bu yazdırma formunu oluşturmak için ince istemci kullanın.'");
 #Else		
-	ClarificationText = NStr("en = 'To output print forms in MS Word formats, Microsoft Office must be installed.';");
+	ClarificationText = NStr("en = 'To output print forms in MS Word formats, Microsoft Office must be installed.';tr = 'Yazdırma formları Microsoft Word biçiminde çıkarmak için bilgisayarınızda Microsoft Office yüklü olmalıdır.'");
 #EndIf
 	ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot generate print form: %1.
-			|%2';"),
+			|%2';tr = 'Yazdırma formu oluşturulamadı: %1. 
+			|%2'"),
 		ErrorProcessing.BriefErrorDescription(ErrorInfo), ClarificationText);
 	Raise ExceptionText;
 EndProcedure

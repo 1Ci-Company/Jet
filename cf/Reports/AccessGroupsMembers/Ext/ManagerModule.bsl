@@ -25,10 +25,10 @@ Procedure BeforeAddReportCommands(ReportsCommands, Parameters, StandardProcessin
 	Presentation = Undefined;
 	
 	If Parameters.FormName = "Catalog.AccessGroups.Form.ListForm" Then
-		Presentation = NStr("en = 'Access group members';");
+		Presentation = NStr("en = 'Access group members';tr = 'Erişim grubu üyeleri'");
 		
 	ElsIf Parameters.FormName = "Catalog.AccessGroups.Form.ItemForm" Then
-		Presentation = NStr("en = 'Access group members';");
+		Presentation = NStr("en = 'Access group members';tr = 'Erişim grubu üyeleri'");
 	EndIf;
 	
 	If Presentation = Undefined Then
@@ -58,7 +58,7 @@ Procedure CustomizeReportOptions(Settings, ReportSettings) Export
 	
 	OptionSettings = ModuleReportsOptions.OptionDetails(Settings, ReportSettings, "Main");
 	OptionSettings.LongDesc =
-		NStr("en = 'Displays users'' membership in access groups.';");
+		NStr("en = 'Displays users'' membership in access groups.';tr = 'Kullanıcıların erişim grubu üyeliklerini gösterir.'");
 	
 EndProcedure
 

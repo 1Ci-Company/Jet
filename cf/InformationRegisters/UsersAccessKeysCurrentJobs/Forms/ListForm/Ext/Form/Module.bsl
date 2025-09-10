@@ -19,7 +19,9 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cancel the background job of the access update thread immediately.
 			           |Background jobs that do not respond for %1 seconds are canceled automatically.
-			           |The missing background job will be started automatically.';"),
+			           |The missing background job will be started automatically.';tr = 'Erişim güncelleme iş parçacığının arka plan işini derhal iptal et.
+			           |%1 saniye yanıt vermeyen arka plan işleri otomatik olarak iptal edilir.
+			           |Eksik arka plan işi otomatik olarak başlatılır.'"),
 			AccessManagementInternal.MaxWaitSecondsCountOfWaitingForOneJobInThreadToBeProcessed());
 	
 EndProcedure
@@ -39,7 +41,7 @@ EndProcedure
 Procedure CancelBackgroundJob(Command)
 	
 	If Items.List.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Please select a background job.';"));
+		ShowMessageBox(, NStr("en = 'Please select a background job.';tr = 'Kayıt seçilmedi.'"));
 		Return;
 	EndIf;
 	
@@ -67,18 +69,19 @@ Procedure CancelBackgroundJobAtServer(JobID, ResultingText)
 	BackgroundJob = BackgroundJobs.FindByUUID(JobID);
 	
 	If BackgroundJob = Undefined Then
-		ResultingText = NStr("en = 'Cannot find a background job by ID.';");
+		ResultingText = NStr("en = 'Cannot find a background job by ID.';tr = 'Belirtece göre arka plan görevi bulunamadı.'");
 		Return;
 	EndIf;
 	
 	Try
 		BackgroundJob.Cancel();
-		ResultingText = NStr("en = 'The background job is canceled.';");
+		ResultingText = NStr("en = 'The background job is canceled.';tr = 'Arka plan görevi iptal edildi.'");
 	Except
 		ErrorInfo = ErrorInfo();
 		ResultingText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot cancel the background job. Reason:
-			           |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+			           |%1';tr = 'Bu nedenle arka plan görevi iptal edilemedi:
+			           |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 	EndTry;
 	
 EndProcedure

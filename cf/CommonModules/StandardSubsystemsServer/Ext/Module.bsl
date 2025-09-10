@@ -119,7 +119,7 @@ EndFunction
 //
 Function IsBaseConfigurationVersion() Export
 	
-	IsBaseConfigurationVersion = StrFind(Upper(Metadata.Name), NStr("en = 'BASE';")) > 0;
+	IsBaseConfigurationVersion = StrFind(Upper(Metadata.Name), NStr("en = 'BASE';tr = 'TEMEL'")) > 0;
 	CommonOverridable.WhenDefiningAFeatureThisIsTheBasicVersionOfTheConfiguration(IsBaseConfigurationVersion);
 	
 	Return IsBaseConfigurationVersion;
@@ -224,11 +224,11 @@ Function AdministrationParameters() Export
 	   And Common.SeparatedDataUsageAvailable() Then
 		
 		If Not Users.IsFullUser() Then
-			Raise(NStr("en = 'Insufficient rights to perform the operation.';"), ErrorCategory.AccessViolation);
+			Raise(NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok.'"), ErrorCategory.AccessViolation);
 		EndIf;
 	Else
 		If Not Users.IsFullUser(, True) Then
-			Raise(NStr("en = 'Insufficient rights to perform the operation.';"), ErrorCategory.AccessViolation);
+			Raise(NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok.'"), ErrorCategory.AccessViolation);
 		EndIf;
 	EndIf;
 	
@@ -336,7 +336,7 @@ Procedure SetDateFieldConditionalAppearance(Form,
 	// Today presentation of today.
 	AppearanceItem = ConditionalAppearance.Items.Add();
 	AppearanceItem.Use = True;
-	AppearanceItem.Appearance.SetParameterValue("Format", NStr("en = 'DF=HH:mm';"));
+	AppearanceItem.Appearance.SetParameterValue("Format", NStr("en = 'DF=HH:mm';tr = 'DF=HH:mm'"));
 	
 	FormattedField = AppearanceItem.Fields.Items.Add();
 	FormattedField.Field = New DataCompositionField(FormattedFieldName);
@@ -655,13 +655,15 @@ Function ClientParametersAtServer(RaiseException1 = True) Export
 	If OnStart Then
 		CommentForTheLogWithoutACallStack = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid access to uninitialized client parameters on the server.
-			           |The call might have been executed before initialization was completed in %1.';",
+			           |The call might have been executed before initialization was completed in %1.';tr = 'Sunucudaki başlatılmamış istemci seçeneklerine geçersiz erişim.
+			           |Muhtemelen, çağrı %1 içinde başlatma sonlandırılmadan gerçekleştirilmiştir.'",
 			     Common.DefaultLanguageCode()),
 			     "StandardSubsystemsClient.BeforeStart");
 	Else
 		CommentForTheLogWithoutACallStack = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid access to uninitialized client parameters on the server.
-			           |The call might have been executed after session parameters were cleared incorrectly without using %2.';",
+			           |The call might have been executed after session parameters were cleared incorrectly without using %2.';tr = 'Sunucudaki başlatılmamış istemci seçeneklerine geçersiz erişim.
+			           |Muhtemelen, çağrı %2 kullanılmadan oturum parametrelerinin yanlış temizlenmesinden sonra gerçekleştirilmiştir.'",
 			     Common.DefaultLanguageCode()),
 			     "Common.ClearSessionParameters");
 	EndIf;
@@ -673,7 +675,7 @@ Function ClientParametersAtServer(RaiseException1 = True) Export
 	EndTry;
 	CommentWithCallStack = ErrorProcessing.DetailErrorDescription(ErrorInfo);
 	
-	EventName = NStr("en = 'The client parameters on the server are blank';",
+	EventName = NStr("en = 'The client parameters on the server are blank';tr = 'Sunucudaki istemci parametreleri girilmedi.'",
 		Common.DefaultLanguageCode());
 	
 	WriteLogEvent(EventName, EventLogLevel.Error,,, CommentWithCallStack);
@@ -681,7 +683,8 @@ Function ClientParametersAtServer(RaiseException1 = True) Export
 	If Not OnStart Then
 		ErrorText =
 			NStr("en = 'Client parameters on the server are not initialized.
-			           |To initialize them, retry the action or restart the session.';");
+			           |To initialize them, retry the action or restart the session.';tr = 'Sunucudaki istemci parametreleri başlatılmadı.
+			           |Başlatılmaları için işlemi tekrarlayın ya da oturumu yeniden başlatın.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -737,7 +740,7 @@ EndFunction
 // Raises an exception with a recommendation to restart a session due to an update of the application version.
 Procedure RequireRestartDueToApplicationVersionDynamicUpdate() Export
 	
-	ErrorText = NStr("en = 'The app is updated. Restart the app.';");
+	ErrorText = NStr("en = 'The app is updated. Restart the app.';tr = 'Uygulama güncellendi. Uygulamayı yeniden başlatın.'");
 	InstallRequiresSessionRestart(ErrorText);
 	Raise ErrorText;
 	
@@ -752,9 +755,13 @@ Procedure RequireSessionRestartDueToDynamicUpdateOfProgramExtensions() Export
 			           |start a session with the specified separators.
 			           |
 			           |Data area extensions are not applied when you log in to a data area in a session
-			           |that is started without separators.';");
+			           |that is started without separators.';tr = 'Gerekli işlemleri yürütmek için
+			           |ayırıcıları ayarlı olan bir oturum başlatın.
+			           |
+			           |Ayırıcılar olmadan başlatılan bir oturumda bir veri alanına
+			           |giriş yaparken veri alanı uzantıları uygulanmaz.'");
 	Else
-		ErrorText = NStr("en = 'Extensions are updated. Restart the app.';");
+		ErrorText = NStr("en = 'Extensions are updated. Restart the app.';tr = 'Uzantılar güncellendi. Uygulamayı yeniden başlatın.'");
 	EndIf;
 	
 	InstallRequiresSessionRestart(ErrorText);
@@ -993,7 +1000,8 @@ Procedure RestorePredefinedItems() Export
 	If ExchangePlans.MasterNode() <> Undefined Then
 		Raise 
 			NStr("en = 'Restore the predefined items in the master node of the distributed infobase.
-			           |Then synchronize the other nodes with the master node.';");
+			           |Then synchronize the other nodes with the master node.';tr = 'Önceden tanımlanmış öğeler sadece RIB ana ünitesinde yenilenmelidir. 
+			           | Sonra alt üniteler ile senkronizasyon yapılmalıdır.'");
 	EndIf;
 	
 	MetadataObjects = MetadataObjectsOfAllPredefinedData();
@@ -1101,7 +1109,8 @@ Function ObjectAttributeValuesIfExist(References, Val Attributes) Export
 			If MetadataObject = Undefined Then
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Invalid value of the %1 parameter, function %2:
-						|The array values must be references.';"), 
+						|The array values must be references.';tr = 'Yanlış %1 parametresi değeri, fonksiyon %2:
+						|Dizi değerleri referans olmalıdır.'"), 
 					"References", "Common.ObjectAttributeValuesIfExist");
 			EndIf;
 			AttributesOfType = New Array;
@@ -1310,7 +1319,7 @@ Procedure RecordObjectChangesInAllNodes(Val Object, Val ExchangePlanName, Val In
 	If Common.DataSeparationEnabled() Then
 		
 		If Common.SeparatedDataUsageAvailable() Then
-			Raise NStr("en = 'Register changes of shared data in separated mode.';");
+			Raise NStr("en = 'Register changes of shared data in separated mode.';tr = 'Ortak verilerin değişikliklerini ayrılmış modda kaydet.'");
 		EndIf;
 		
 		ModuleSaaSOperations = Undefined;
@@ -1326,7 +1335,7 @@ Procedure RecordObjectChangesInAllNodes(Val Object, Val ExchangePlanName, Val In
 		EndIf;
 		
 		If Not IsSeparatedExchangePlan Then
-			Raise NStr("en = 'Shared exchange plans don''t support registration of changes.';");
+			Raise NStr("en = 'Shared exchange plans don''t support registration of changes.';tr = 'Bölünmemiş değişim planları için değişiklik kaydı desteklenmemektedir.'");
 		EndIf;
 		
 		If ModuleSaaSOperations <> Undefined Then
@@ -1337,7 +1346,7 @@ Procedure RecordObjectChangesInAllNodes(Val Object, Val ExchangePlanName, Val In
 		EndIf;
 		
 		If IsSeparatedMetadataObject Then
-				Raise NStr("en = 'Separated objects don''t support registration of changes.';");
+				Raise NStr("en = 'Separated objects don''t support registration of changes.';tr = 'Ayrılmış nesneler değişiklik kaydını desteklemez.'");
 		EndIf;
 		
 		QueryText =
@@ -1742,7 +1751,7 @@ Procedure ResetWindowLocationAndSize(Form) Export
 		Except
 			ErrorInfo = ErrorInfo();
 			WriteLogEvent(
-				NStr("en = 'Runtime error';", Common.DefaultLanguageCode()),
+				NStr("en = 'Runtime error';tr = 'Uygulama hatası'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo));
 			Break;
@@ -1786,7 +1795,14 @@ Function ApplicationRunParameterErrorClarificationForDeveloper() Export
 			| • Run the app with command-line option:
 			|/C %1.
 			| • Update the app to a later version.
-			|The data update procedures will start automatically at launch.';"),
+			|The data update procedures will start automatically at launch.';tr = 'Bazı servis verileri güncelleme gerektiriyor olabilir.
+			|Aşağıdakilerden birini yapın:
+			| • Harici veri işlemcisini çalıştırın
+			|""Geliştirme araçları: Servis verileri güncellemesi.""
+			| • Uygulamayı komut satırı seçeneğiyle çalıştırın:
+			|/C %1.
+			| • Uygulamayı daha yeni bir sürüme güncelleyin.
+			|Veri güncelleme prosedürleri başlatma sırasında otomatik olarak başlar.'"),
 		"StartInfobaseUpdate");
 	
 EndFunction
@@ -1998,7 +2014,7 @@ EndFunction
 //
 Function HomePagePresentation() Export 
 	
-	Return NStr("en = 'Main';");
+	Return NStr("en = 'Main';tr = 'Genel'");
 	
 EndFunction
 
@@ -2021,7 +2037,7 @@ Procedure CheckSafeModeBeforeRecording(Source, Cancel) Export
 	SetPrivilegedMode(True);
 	
 	If Not PrivilegedMode() Then
-		Raise NStr("en = 'Action not supported in safe mode.';");
+		Raise NStr("en = 'Action not supported in safe mode.';tr = 'Eylem güvenli modda desteklenmiyor.'");
 	EndIf;
 	
 EndProcedure
@@ -2049,7 +2065,7 @@ Procedure CheckSafeModeBeforeRecordingRecordingSet(Source, Cancel, Replacing,
 	SetPrivilegedMode(True);
 	
 	If Not PrivilegedMode() Then
-		Raise NStr("en = 'Action not supported in safe mode.';");
+		Raise NStr("en = 'Action not supported in safe mode.';tr = 'Eylem güvenli modda desteklenmiyor.'");
 	EndIf;
 	
 EndProcedure
@@ -2155,7 +2171,7 @@ Procedure OnFillPermissionsToAccessExternalResources(PermissionsRequests) Export
 	Permissions = New Array();
 	
 	Permissions.Add(ModuleSafeModeManager.PermissionToUseTempDirectory(True, True,
-		NStr("en = 'Basic permissions required to run the app.';")));
+		NStr("en = 'Basic permissions required to run the app.';tr = 'Uygulamayı çalıştırmak için gereken temel izinler.'")));
 	Permissions.Add(ModuleSafeModeManager.PermissionToUsePrivilegedMode());
 	
 	PermissionsRequests.Add(
@@ -2176,9 +2192,9 @@ Procedure OnFillToDoList(ToDoList) Export
 	ToDoItem.HasToDoItems      = DataBaseConfigurationChangedDynamically()
 	                     Or Catalogs.ExtensionsVersions.ExtensionsChangedDynamically();
 	ToDoItem.Important        = False;
-	ToDoItem.Presentation = NStr("en = 'Application update installed';");
+	ToDoItem.Presentation = NStr("en = 'Application update installed';tr = 'Uygulama güncellemesi yüklendi'");
 	ToDoItem.Form         = "CommonForm.DynamicUpdateControl";
-	ToDoItem.Owner      = NStr("en = 'Application performance';");
+	ToDoItem.Owner      = NStr("en = 'Application performance';tr = 'Uygulama performansı'");
 	
 	ModuleToDoListServer = Common.CommonModule("ToDoListServer");
 	If ModuleToDoListServer.UserTaskDisabled("SpeedupRecommendation") Then
@@ -2190,9 +2206,9 @@ Procedure OnFillToDoList(ToDoList) Export
 	ToDoItem.Id = Id;
 	ToDoItem.HasToDoItems      = MustShowRAMSizeRecommendations();
 	ToDoItem.Important        = True;
-	ToDoItem.Presentation = NStr("en = 'Application performance degraded';");
+	ToDoItem.Presentation = NStr("en = 'Application performance degraded';tr = 'Çalışma hızı düştü'");
 	ToDoItem.Form         = "DataProcessor.SpeedupRecommendation.Form";
-	ToDoItem.Owner      = NStr("en = 'Application performance';");
+	ToDoItem.Owner      = NStr("en = 'Application performance';tr = 'Uygulama performansı'");
 	
 EndProcedure
 
@@ -2262,7 +2278,7 @@ Procedure AfterImportData(Container) Export
 	InformationRegisters.ExtensionVersionParameters.EnableFillingExtensionsWorkParameters(False, True);
 	If Common.DataSeparationEnabled() Then
 		InformationRegisters.ExtensionVersionParameters.StartFillingWorkParametersExtensions(
-			NStr("en = 'Start and wait after importing area data';"),
+			NStr("en = 'Start and wait after importing area data';tr = 'Başlat ve alan veri içe aktarıldıktan sonra bekle'"),
 			True);
 	EndIf;
 	
@@ -2340,7 +2356,7 @@ Procedure OnGetOtherSettings(UserInfo, Settings) Export
 		UserInfo.InfobaseUserName);
 	If CurrentSchedule <> Undefined Then
 		SettingProperties = New Structure;
-		SettingProperties.Insert("SettingName1", NStr("en = 'Schedule to check for new patches';"));
+		SettingProperties.Insert("SettingName1", NStr("en = 'Schedule to check for new patches';tr = 'Yeni yamaları kontrol etme planı'"));
 		SettingProperties.Insert("PictureSettings", PictureLib.Calendar);
 		SettingProperties.Insert("SettingsList", New ValueList);
 		SettingProperties.SettingsList.Add(CurrentSchedule);
@@ -2388,20 +2404,20 @@ Function MessageTextOnDynamicUpdate(DynamicConfigurationChanges) Export
 	Messages = New Array;
 	
 	If DynamicConfigurationChanges.DataBaseConfigurationChangedDynamically Then
-		MessageTextConfiguration = NStr("en = 'The application is updated (the infobase configuration is modified).';");
+		MessageTextConfiguration = NStr("en = 'The application is updated (the infobase configuration is modified).';tr = 'Uygulama güncellendi (infobase konfigürasyonu değiştirildi).'");
 		Messages.Add(MessageTextConfiguration);
 	EndIf;
 	
 	If DynamicConfigurationChanges.Corrections <> Undefined Then
 		If DynamicConfigurationChanges.Corrections.Added2 > 0
 			And DynamicConfigurationChanges.Corrections.Deleted > 0 Then
-			MessageTextPatches = NStr("en = 'New patches: %1, deleted: %2.';");
+			MessageTextPatches = NStr("en = 'New patches: %1, deleted: %2.';tr = 'Yeni yamalar: %1, silinen: %2.'");
 		ElsIf DynamicConfigurationChanges.Corrections.Added2 = 1 Then
-			MessageTextPatches = NStr("en = 'New patch.';");
+			MessageTextPatches = NStr("en = 'New patch.';tr = 'Yeni yama.'");
 		ElsIf DynamicConfigurationChanges.Corrections.Added2 > 0 Then
-			MessageTextPatches = NStr("en = 'New patches: %1.';");
+			MessageTextPatches = NStr("en = 'New patches: %1.';tr = 'Yeni yamalar: %1.'");
 		ElsIf DynamicConfigurationChanges.Corrections.Deleted > 0 Then
-			MessageTextPatches = NStr("en = 'Patches deleted: %2.';");
+			MessageTextPatches = NStr("en = 'Patches deleted: %2.';tr = 'Düzeltmeler (yamalar) silindi: %2.'");
 		EndIf;
 		MessageTextPatches = StringFunctionsClientServer.SubstituteParametersToString(MessageTextPatches,
 			DynamicConfigurationChanges.Corrections.Added2,
@@ -2411,21 +2427,21 @@ Function MessageTextOnDynamicUpdate(DynamicConfigurationChanges) Export
 	
 	If DynamicConfigurationChanges.Extensions <> Undefined Then
 		If DynamicConfigurationChanges.Extensions.Added2 > 0 Then
-			MessageTextExtensions = NStr("en = 'New extensions: %1.';");
+			MessageTextExtensions = NStr("en = 'New extensions: %1.';tr = 'Yeni uzantılar: %1.'");
 			MessageTextExtensions = StringFunctionsClientServer.SubstituteParametersToString(MessageTextExtensions,
 				DynamicConfigurationChanges.Extensions.Added2);
 			Messages.Add(MessageTextExtensions);
 		EndIf;
 		
 		If DynamicConfigurationChanges.Extensions.Deleted > 0 Then
-			MessageTextExtensions = NStr("en = 'Extensions deleted: %1.';");
+			MessageTextExtensions = NStr("en = 'Extensions deleted: %1.';tr = 'Uzantılar silindi: %1.'");
 			MessageTextExtensions = StringFunctionsClientServer.SubstituteParametersToString(MessageTextExtensions,
 				DynamicConfigurationChanges.Extensions.Deleted);
 			Messages.Add(MessageTextExtensions);
 		EndIf;
 		
 		If DynamicConfigurationChanges.Extensions.IsChanged > 0 Then
-			MessageTextExtensions = NStr("en = 'Extensions modified: %1.';");
+			MessageTextExtensions = NStr("en = 'Extensions modified: %1.';tr = 'Uzantılar değiştirildi: %1.'");
 			MessageTextExtensions = StringFunctionsClientServer.SubstituteParametersToString(MessageTextExtensions,
 				DynamicConfigurationChanges.Extensions.IsChanged);
 			Messages.Add(MessageTextExtensions);
@@ -2454,7 +2470,7 @@ EndFunction
 //
 Function FileTypeRepresentationOfATabularPDFDocument() Export
 	
-	Return NStr("en = 'PDF/A document (.pdf)';");
+	Return NStr("en = 'PDF/A document (.pdf)';tr = 'PDF/A (.pdf) belgesi'");
 	
 EndFunction
 
@@ -2549,7 +2565,7 @@ Function TheComponentOfTheLatestVersion(Id, Location, AddIn = Undefined) Export
 	EndIf;
 	
 	Raise StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Add-in with ID %1 does not exist';"), Id);
+		NStr("en = 'Add-in with ID %1 does not exist';tr = '%1 kimlikli dış bileşen mevcut değil'"), Id);
 	
 EndFunction
 
@@ -2560,7 +2576,7 @@ Function TechnicalInfoOnExtensionsAndSubsystemsVersions() Export
 	
 	SubsystemsDetails = Common.SubsystemsDetails();
 	
-	TechnicalInfoOnExtensionsAndSubsystemsVersions = NStr("en = 'Subsystem versions';") + ":" + Chars.LF;
+	TechnicalInfoOnExtensionsAndSubsystemsVersions = NStr("en = 'Subsystem versions';tr = 'Alt sistem sürümleri'") + ":" + Chars.LF;
 	For Each SubsystemDetails In SubsystemsDetails Do
 		TechnicalInfoOnExtensionsAndSubsystemsVersions = TechnicalInfoOnExtensionsAndSubsystemsVersions
 			+ SubsystemDetails.Name + " - "
@@ -2577,7 +2593,7 @@ Function TechnicalInfoOnExtensionsAndSubsystemsVersions() Export
 		
 		TechnicalInfoOnExtensionsAndSubsystemsVersions = TechnicalInfoOnExtensionsAndSubsystemsVersions
 			+ Extension.Name + " - " + Extension.Synonym + " - "
-			+ Format(Extension.Active, NStr("en = 'BF=Disabled; BT=Enabled';")) + Chars.LF;
+			+ Format(Extension.Active, NStr("en = 'BF=Disabled; BT=Enabled';tr = 'BF=Devre dışı; BT=Etkin'")) + Chars.LF;
 		
 	EndDo;
 	
@@ -2818,7 +2834,8 @@ Function AddClientParametersOnStart(Parameters) Export
 				
 				ErrorTemplate =
 					NStr("en = 'Cannot enable exclusive mode to set up the distributed infobase node. Reason:
-					           |%1';");
+					           |%1';tr = 'Dağıtılmış infobase düğümünün ayarlanması için özel mod etkinleştirilemiyor. Nedeni:
+					           |%1'");
 				EnableExclusiveModeAtStartup(True, ErrorTemplate);
 			EndIf;
 			Return False;
@@ -3221,7 +3238,7 @@ Procedure DenySettingDeletionMarksToPredefinedItemsBeforeWrite(Source)
 	
 	If Source.IsNew() Then
 		Raise
-			NStr("en = 'Cannot create a predefined item that is marked for deletion.';");
+			NStr("en = 'Cannot create a predefined item that is marked for deletion.';tr = 'Silinmek üzere işaretlenmiş önceden tanımlanmış bir öğe oluşturulamıyor.'");
 	EndIf;
 	
 	PreviousProperties = Common.ObjectAttributesValues(Source.Ref, 
@@ -3233,7 +3250,8 @@ Procedure DenySettingDeletionMarksToPredefinedItemsBeforeWrite(Source)
 		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot mark the predefined item for deletion:
-			           |""%1.""';"),
+			           |""%1.""';tr = 'Öntanımlı öğe silinmek üzere işaretlenemiyor:
+			           |""%1.""'"),
 			String(Source.Ref));
 	ElsIf (ValueIsFilled(AttributeValue) And Not ValueIsFilled(PreviousProperties[AttributeName])
 	      Or PreviousProperties.PredefinedDataName = "")
@@ -3241,7 +3259,8 @@ Procedure DenySettingDeletionMarksToPredefinedItemsBeforeWrite(Source)
 		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot map a predefined item name to an item marked for deletion:
-			           |""%1.""';"),
+			           |""%1.""';tr = 'Silinmek üzere işaretlenmiş olan öğeyi 
+			           |önceden tanımlanmış isimle bağlamak kabul edilemez:%1.'"),
 			String(Source.Ref));
 	EndIf;
 	
@@ -3271,7 +3290,8 @@ Procedure DenyPredefinedItemDeletionBeforeDelete(Source, Cancel) Export
 	
 	Raise StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Cannot delete the predefined item 
-			|""%1.""';"),
+			|""%1.""';tr = 'Önceden tanımlanmış öğe silinemez 
+			|""%1"".'"),
 		String(Source.Ref));
 	
 EndProcedure
@@ -3602,12 +3622,12 @@ Procedure AddNewExtraAccountDimensionTypes(Account, SampleAccount)
 		If Account.ExtDimensionTypes.Count() > IndexOf Then
 			If Account.ExtDimensionTypes[IndexOf].ExtDimensionType <> ExtDimensionType.ExtDimensionType Then
 				WriteLogEvent(
-					NStr("en = 'Data exchange.Disconnection from the master node';", Common.DefaultLanguageCode()),
+					NStr("en = 'Data exchange.Disconnection from the master node';tr = 'Veri alışverişi. Ana ünite ile bağlantının kesilmesi'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error,
 					Account.Metadata(),
 					Account,
 					StringFunctionsClientServer.SubstituteParametersToString(
-						NStr("en = 'The extra dimension #%2 ""%3"" in chart of accounts ""%1"" does not match the predefined extra dimension ""%4.""';"),
+						NStr("en = 'The extra dimension #%2 ""%3"" in chart of accounts ""%1"" does not match the predefined extra dimension ""%4.""';tr = '""%1"" hesabın %2 sayılı alt hesabı ""%3"" önceden tanımlanmış alt hesap ""%4"" ile aynı değildir.'"),
 						String(Account),
 						IndexOf + 1,
 						String(Account.ExtDimensionTypes[IndexOf].ExtDimensionType),
@@ -3717,7 +3737,8 @@ Procedure BeforeStartApplication()
 	If Metadata.ScriptVariant <> CurrentLanguageOf1CEnterpriseLanguage Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The built-in configuration language option ""%1"" is not supported.
-			           |Use language option ""%2"" instead.';"),
+			           |Use language option ""%2"" instead.';tr = '""%1"" Konfigürasyonun 1C:Enterprise dil seçeneği desteklenmiyor.
+			           |""%2"" dil seçeneğini kullanın.'"),
 			Metadata.ScriptVariant,
 			Metadata.ObjectProperties.ScriptVariant["English"]);
 	EndIf;
@@ -3741,7 +3762,7 @@ Procedure BeforeStartApplication()
 		MinBuildNumberForCurrent1CEnterpriseVersion) < 0 Then
 		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The application requires 1C:Enterprise version %1 or later.';"), 
+			NStr("en = 'The application requires 1C:Enterprise version %1 or later.';tr = '1C:Enterprise platformunun %1 veya daha yeni sürümü gerekiyor.'"), 
 			MinBuildNumberForCurrent1CEnterpriseVersion);
 	EndIf;
 	
@@ -3754,13 +3775,15 @@ Procedure BeforeStartApplication()
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Configuration compatibility mode ""Version %1"" is not supported. 
 			           |To start the application, set the compatibility mode to ""None"" (on 1C:Enterprise version %2)
-			           | or to ""Version %2"" (on a later 1C:Enterprise version).';"),
+			           | or to ""Version %2"" (on a later 1C:Enterprise version).';tr = 'Konfigürasyonun 1C:Enterprise %1sürümü ile eşleşme modu desteklenmiyor.
+			           |Başlatmak için geliştirme sırasında %2
+			           |sürümde (ya da ""Sürüm %2"" daha yeni sürümlerde geliştirme yaparken) konfigürasyonda ""Uygulanmasın"" eşleşme modunu ayarlayın.'"),
 			CompatibilityModeVersion, MinPlatformVersion);
 	EndIf;
 	
 	// Checking whether the configuration version is filled.
 	If IsBlankString(Metadata.Version) Then
-		Raise NStr("en = 'The Version configuration property is blank.';");
+		Raise NStr("en = 'The Version configuration property is blank.';tr = 'Yapılandırmanın Özellik Sürümü girilmemiş.'");
 	EndIf;
 
 	Try
@@ -3768,13 +3791,15 @@ Procedure BeforeStartApplication()
 	Except
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The Version configuration property has invalid value: %1.
-						|Use the following format: 1.2.3.45.';"),
+						|Use the following format: 1.2.3.45.';tr = 'Sürüm konfigürasyon özelliğinin değeri geçersiz: %1.
+						|Şu formatı kullanın: 1.2.3.45.'"),
 			Metadata.Version);
 	EndTry;
 	If ZeroVersion Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The Version configuration property has invalid value: %1.
-						|The version cannot be zero.';"),
+						|The version cannot be zero.';tr = 'Sürüm yapılandırmasının özelliği yanlış şekilde dolduruldu: %1
+						|Sürüm sıfır olamaz.'"),
 			Metadata.Version);
 	EndIf;
 	
@@ -3782,7 +3807,7 @@ Procedure BeforeStartApplication()
 		Or Not Metadata.DefaultRoles.Contains(Metadata.Roles.FullAccess) Then
 		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Standard roles %2 and %3 are not specified in property %1 in the configuration.';"),
+			NStr("en = 'Standard roles %2 and %3 are not specified in property %1 in the configuration.';tr = '%1özelliğinin konfigürasyonunda %2 ve %3 standart roller belirtilmedi. '"),
 			"DefaultRoles", Metadata.Roles.SystemAdministrator.Name, Metadata.Roles.FullAccess.Name);
 	EndIf;
 	
@@ -4246,7 +4271,9 @@ Procedure CheckIfCanStart()
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t set session parameters. Reason: Security profile %1 is not found in 1C:Enterprise server cluster or it cannot be applied in safe mode.
 						|
-						|To restore the app functionality, disable the security profile using the cluster console and reconfigure the security profiles using the configuration interface (see the commands in the app settings section).';"),
+						|To restore the app functionality, disable the security profile using the cluster console and reconfigure the security profiles using the configuration interface (see the commands in the app settings section).';tr = 'Oturum parametreleri ayarlanamadı. Nedeni: %1 güvenlik profili 1C:Enterprise sunucu kümesinde bulunamadı veya güvenli modda uygulanamadı.
+						|
+						|Uygulama işlevselliğini geri yüklemek için, küme konsolunu kullanarak güvenlik profilini devre dışı bırakın ve konfigürasyon arayüzünü kullanarak güvenlik profillerini yeniden yapılandırın (uygulama ayarları bölümündeki komutlara bakın).'"),
 					InfobaseProfile);
 			EndIf;
 			
@@ -4263,7 +4290,9 @@ Procedure CheckIfCanStart()
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot set the session parameters. Reason: Security profile %1 does not contain the permission to set the privileged mode. Probably it was edited using the cluster console.
 					|
-					|To restore the app functionality, disable the security profile using the cluster console and reconfigure the security profiles using the configuration interface (see the commands in the app settings section).';"),
+					|To restore the app functionality, disable the security profile using the cluster console and reconfigure the security profiles using the configuration interface (see the commands in the app settings section).';tr = 'Oturum parametreleri ayarlanamıyor. Nedeni: %1 güvenlik profili ayrıcalıklı modu ayarlama iznini içermiyor. Küme konsolu kullanılarak düzenlenmiş olabilir.
+					|
+					|Uygulama işlevselliğini geri yüklemek için, küme konsolunu kullanarak güvenlik profilini devre dışı bırakın ve konfigürasyon arayüzünü kullanarak güvenlik profillerini yeniden yapılandırın (uygulama ayarları bölümündeki komutlara bakın).'"),
 				InfobaseProfile);
 			
 		EndIf;
@@ -4280,7 +4309,9 @@ Procedure CheckIfCanStart()
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot set the session parameters. Reason: %1.
 					|
-					|Probably a security profile that does not allow execution of external modules in unsafe mode was set using the cluster console. If this is the case, to restore the application functionality, disable the security profile using the cluster console and reconfigure the security profiles using the configuration interface (see the commands in the application settings section). The app will be automatically configured to use the enabled security profiles.';"),
+					|Probably a security profile that does not allow execution of external modules in unsafe mode was set using the cluster console. If this is the case, to restore the application functionality, disable the security profile using the cluster console and reconfigure the security profiles using the configuration interface (see the commands in the application settings section). The app will be automatically configured to use the enabled security profiles.';tr = 'Oturum parametreleri ayarlanamıyor. Nedeni:%1.
+					|
+					|Güvenli olmayan modda harici modüllerin yürütülmesine izin vermeyen bir güvenlik profili, küme konsolu kullanılarak ayarlanmış olabilir. Bu durumda uygulama işlevselliğini geri yüklemek için, küme konsolunu kullanarak güvenlik profilini devre dışı bırakın ve konfigürasyon arayüzünü kullanarak güvenlik profillerini yeniden yapılandırın (uygulama ayarları bölümündeki komutlara bakın). Etkinleştirilen güvenlik profillerinin kullanılması için uygulama otomatik yapılandırılır.'"),
 				ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 			
 		EndTry;
@@ -4528,7 +4559,7 @@ Procedure ConfigurationOrExtensionModifiedDuringRepeatedCheck(UserMessage)
 			
 			PatchCheckSchedule = New Structure;
 			PatchCheckSchedule.Insert("Id", "Once");
-			PatchCheckSchedule.Insert("Presentation", NStr("en = 'Once a day';"));
+			PatchCheckSchedule.Insert("Presentation", NStr("en = 'Once a day';tr = 'Günde bir defa'"));
 			PatchCheckSchedule.Insert("Schedule", OnceADay);
 			PatchCheckSchedule.Insert("LastAlert", CurrentSessionDate());
 
@@ -4545,7 +4576,7 @@ Procedure ConfigurationOrExtensionModifiedDuringRepeatedCheck(UserMessage)
 		
 	Messages = New Array;
 	Messages.Add(MessageTextOnDynamicUpdate(DynamicChanges));
-	Messages.Add(NStr("en = 'Click here to start or postpone patch application.';"));
+	Messages.Add(NStr("en = 'Click here to start or postpone patch application.';tr = 'Yama uygulamayı başlatmak veya ertelemek için buraya tıklayın.'"));
 	UserMessage = StrConcat(Messages, Chars.LF);
 	
 EndProcedure

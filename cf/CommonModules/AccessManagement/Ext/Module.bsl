@@ -120,7 +120,11 @@ Function HasRole(Val Role, Val ObjectReference = Undefined, Val User = Undefined
 					           |The access value set contains the ""%3"" access kind 
 					           |for the table with ID ""%4"".
 					           |The only additional right that can be included
-					           |in the access restriction is Read.';"),
+					           |in the access restriction is Read.';tr = '""%2"" modülünün ""%1"" işlevinde hata oluştu.
+					           |Erişim değerleri kümesinde ""%4"" kimliğine sahip tablo için 
+					           | ""%3"" erişim türü belirtilmiştir.
+					           |Erişim kısıtlamalarına dahil edebilecek tek ek yetki 
+					           |Okuma yetkisidir.'"),
 					"HasRole",
 					"AccessManagement",
 					"EditRight",
@@ -137,7 +141,12 @@ Function HasRole(Val Role, Val ObjectReference = Undefined, Val User = Undefined
 				           |It cannot contain this access kind.
 				           |
 				           |It can only contain special access kinds
-				           |""%4"" and ""%5"".';"),
+				           |""%4"" and ""%5"".';tr = '""%2"" modülünün ""%1"" işlevinde bir hata oluştu.
+				           |Erişim değerleri kümesi bilinen ""%3"" erişim türünü içerir.
+				           |Bu erişim türünü içeremez.
+				           |
+				           |Sadece ""%4"" ve ""%5""
+				           |özel erişim türlerini içerebilir.'"),
 				"HasRole",
 				"AccessManagement",
 				String.AccessKind,
@@ -147,7 +156,8 @@ Function HasRole(Val Role, Val ObjectReference = Undefined, Val User = Undefined
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Error in function ""%1"" of module ""%2"".
-				           |The access value set contains an unknown access kind ""%1"".';"),
+				           |The access value set contains an unknown access kind ""%1"".';tr = '""%2"" modülünün ""%1"" işlevinde bir hata oluştu.
+				           | Erişim değerleri kümesi bilinmeyen ""%1"" erişim türünü içerir.'"),
 				"HasRole",
 				"AccessManagement",
 				String.AccessKind);
@@ -403,7 +413,7 @@ Function HasRight(Right, ObjectReference, Val User = Undefined) Export
 	
 	If RightsDetails = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Details about rights valid for table ""%1"" are missing.';"),
+			NStr("en = 'Details about rights valid for table ""%1"" are missing.';tr = '""%1"" tablosu için olası yetkilerin açıklaması yok'"),
 			ObjectReference.Metadata().FullName());
 		Raise ErrorText;
 	EndIf;
@@ -412,7 +422,7 @@ Function HasRight(Right, ObjectReference, Val User = Undefined) Export
 	
 	If RightDetails = Undefined Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Details about right ""%1"" for table ""%2"" are missing.';"),
+			NStr("en = 'Details about right ""%1"" for table ""%2"" are missing.';tr = '""%2"" tablosu için ""%1""yetkinin açıklaması mevcut değil'"),
 			Right, ObjectReference.Metadata().FullName());
 		Raise ErrorText;
 	EndIf;
@@ -771,7 +781,8 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Error in procedure %1
-		           |of common module %2.';"),
+		           |of common module %2.';tr = '%2 genel modülünün 
+		           |%1 prosedüründe hata oluştu.'"),
 		"OnCreateAccessValueForm",
 		"AccessManagement");
 	
@@ -784,7 +795,9 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 			ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Parameter ""%1"" is required. Automatic filling
 				           |from form attribute ""%2"" is not available. Reason:
-				           |%3';"),
+				           |%3';tr = '%1 parametresi belirtilmedi ve ""%2"" formu özelliğinden şu nedenle otomatik doldurma
+				           | yapılamıyor:
+				           |%3'"),
 				"CreateNewAccessValue",
 				"Object.Ref",
 				ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -801,7 +814,9 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 			ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Parameter ""%1"" is required. Automatic filling
 				           |from form attribute ""%2"" is not available. Reason:
-				           |%3';"),
+				           |%3';tr = '%1 parametresi belirtilmedi ve ""%2"" formu özelliğinden şu nedenle otomatik doldurma
+				           | yapılamıyor:
+				           |%3'"),
 				"ValueType",
 				"Object.Ref",
 				ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -830,7 +845,9 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 			ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Parameter ""Attribute"" is required. Cannot populate is automatically
 				           |form attribute ""%2"" due to:
-				           |%3';"),
+				           |%3';tr = 'Öznitelik parametresi belirtilmedi ve ""%2"" formu 
+				           |özelliğinden şu nedenle otomatik doldurma yapılamıyor:
+				           |%3'"),
 				"Attribute",
 				"Object.AccessGroup",
 				ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -846,7 +863,9 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 				ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t get the value of form attribute ""%1""
 					           |specified in parameter ""%2"". Reason:
-					           |%3';"),
+					           |%3';tr = '""%1"" formun %2 parametrede belirtilen 
+					           |öznitelik değeri şu sebeple alınamadı:
+					           |%3'"),
 					Attribute,
 					"Attribute",
 					ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -860,7 +879,9 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 				ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Couldn''t get the value of form attribute ""%1""
 					           |specified in parameter ""%2"". Reason:
-					           |%3';"),
+					           |%3';tr = '""%1"" formun %2 parametrede belirtilen 
+					           |öznitelik değeri şu sebeple alınamadı:
+					           |%3'"),
 					Attribute,
 					"Attribute",
 					ErrorProcessing.BriefErrorDescription(ErrorInfo));
@@ -875,7 +896,11 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 			           |with ""%3"" value type
 			           |specified in the overridable module is used for access values of ""%1"" type.
 			           |This type does not match the ""%4"" type of the %5 attribute
-			           |in the access value form.';"),
+			           |in the access value form.';tr = '""%1"" Tür erişim türünün erişim 
+			           |değerleri için ""%2"", geçersiz kılma modülünde belirtilen "
+" değerleriyle kullanılır. 
+			           |%4Ancak bu tür, %5 özniteliğinde erişim değeri formundaki%3"" türüyle 
+			           |eşleşmiyor.'"),
 			String(AccessValueType),
 			String(GroupsProperties.AccessKind),
 			String(GroupsProperties.Type),
@@ -907,7 +932,7 @@ Procedure OnCreateAccessValueForm(Form, AdditionalParameters = Undefined,
 	   And CreateNewAccessValue Then
 		
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot add an item because this requires allowed ""%1"".';"),
+			NStr("en = 'Cannot add an item because this requires allowed ""%1"".';tr = 'Eklemek için izin verilen ""%1"" gereklidir.'"),
 			Metadata.FindByType(GroupsProperties.Type).Presentation());
 		Raise ErrorText;
 	EndIf;
@@ -991,7 +1016,8 @@ Function AccessValuesGroupsAllowingAccessValuesChange(AccessValuesType, ReturnAl
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Error in procedure %1
-		           |of common module %2.';"),
+		           |of common module %2.';tr = '%2 genel modülünün 
+		           |%1 prosedüründe hata oluştu.'"),
 		"AccessValuesGroupsAllowingAccessValuesChange",
 		"AccessManagement");
 	
@@ -1133,7 +1159,8 @@ Procedure SetDynamicListFilters(List, FiltersDetails) Export
 	If TypeOf(List) <> Type("DynamicList") Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Error calling procedure ""%1"" of common module ""%2"".
-			           |Value ""%4"" of parameter ""%3"" is not a dynamic list.';"),
+			           |Value ""%4"" of parameter ""%3"" is not a dynamic list.';tr = '""%2"" genel modülünün ""%1"" prosedürü çağrısı hatası.
+			           | ""%3"" parametresinin ""%4"" değeri dinamik bir liste değildir.'"),
 			"SetDynamicListFilters",
 			"AccessManagement",
 			"List",
@@ -1144,7 +1171,8 @@ Procedure SetDynamicListFilters(List, FiltersDetails) Export
 	If Not ValueIsFilled(List.MainTable) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Error calling procedure ""%1"" of common module ""%2"".
-			           |The main table of the dynamic list passed to the procedure is not specified.';"),
+			           |The main table of the dynamic list passed to the procedure is not specified.';tr = '""%2"" genel modülünün ""%1"" prosedürü çağrısı hatası.
+			           |Prosedüre gönderilen dinamik listesinin ana tablosu belirtilmedi.'"),
 			"SetDynamicListFilters",
 			"AccessManagement");
 		Raise ErrorText;
@@ -1153,7 +1181,8 @@ Procedure SetDynamicListFilters(List, FiltersDetails) Export
 	If Not List.CustomQuery Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Error calling procedure ""%1"" of common module ""%2"".
-			           |The passed dynamic list is missing flag ""%3"".';"),
+			           |The passed dynamic list is missing flag ""%3"".';tr = '""%2"" genel modülünün ''""%1"" prosedürü çağrısı hatası.
+			           |Sunulan dinamik listesinin ""%3"" onay kutusu belirlenmedi.'"),
 			"SetDynamicListFilters",
 			"AccessManagement",
 			"CustomQuery");
@@ -1184,7 +1213,9 @@ Procedure SetDynamicListFilters(List, FiltersDetails) Export
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Error calling procedure ""%1"" of common module ""%2"".
 				           |Cannot find the alias of the ""%1"" main table
-				           |of the dynamic list passed to the procedure.';"),
+				           |of the dynamic list passed to the procedure.';tr = '""%2"" genel modülün]n ""%1"" prosedürü çağrısı hatası.
+				           |Prosedüre aktarılan dinamik listesinin ""%1"" ana tablosunun takma adı 
+				           | bulunamadı.'"),
 				"SetDynamicListFilters",
 				"AccessManagement",
 				List.MainTable);
@@ -1391,7 +1422,9 @@ Procedure FillAccessValuesSets(Val Object, Table, Val SubordinateObjectRef = Und
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid parameters.
 			           |Cannot find object type ""%1""
-			           |in event subscriptions %2, %3.';"),
+			           |in event subscriptions %2, %3.';tr = 'Geçersiz parametreler.
+			           |""%1"" nesne türü 
+			           |%2, %3 olay aboneliklerinde mevcut değil.'"),
 			ValueTypeObject,
 			"WriteAccessValuesSets",
 			"WriteDependentAccessValuesSets");
@@ -1406,7 +1439,9 @@ Procedure FillAccessValuesSets(Val Object, Table, Val SubordinateObjectRef = Und
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = '%1 ""%2""
 			           |has not generated an access value set. Reason:
-			           |%3';"),
+			           |%3';tr = '%1 ""%2""
+			           |aşağıdaki nedenle erişim değerlerinin kümesini oluşturmadı: 
+			           |%3'"),
 			TypeOf(ObjectReference),
 			Object,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
@@ -1418,7 +1453,8 @@ Procedure FillAccessValuesSets(Val Object, Table, Val SubordinateObjectRef = Und
 		// for access restriction will get stuck in a loop.
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = '%1 ""%2""
-			           |generated a blank access value set.';"),
+			           |generated a blank access value set.';tr = '%1 ""%2""
+			           |boş erişim değerleri kümesini oluşturdu.'"),
 			TypeOf(ObjectReference),
 			Object);
 		Raise ErrorText;
@@ -2074,7 +2110,11 @@ Procedure ReplaceRightsInObjectsRightsSettings(RenamedTable) Export
 				           |of common module ""%2""..
 				           |
 				           |After the update, the following new access right names will have identical settings:
-				           |%1.';"),
+				           |%1.';tr = '%2 genel modülünün
+				           |%1 işlem parametrelerinde bir hata oluştu.
+				           |
+				           |Güncellemeden sonra hakların aşağıdaki yeni isimlerin ayarları tekrarlanacaktır:
+				           |%1.'"),
 				"ReplaceRightsInObjectsRightsSettings",
 				"AccessManagement",
 				RepeatedNewRightsNames);
@@ -2263,7 +2303,9 @@ Procedure DisableAccessKeysUpdate(Disconnect, ScheduleUpdate1 = True) Export
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid call of procedure ""%1"" of common module ""%2"".
 			           |Only full-access users or
-			           |users that run the application in privileged mode can disable update of access keys.';"),
+			           |users that run the application in privileged mode can disable update of access keys.';tr = '%2 genel modülün %1 prosedürün çağrısı yanlıştır.
+			           |Erişim anahtarlarının güncellenmesinin devre dışı bırakılması yalnızca 
+			           |tam yetkili kullanıcı için veya öncelikli modda mümkündür.'"),
 			"DisableAccessKeysUpdate",
 			"AccessManagement");
 		Raise ErrorText;
@@ -2417,7 +2459,7 @@ Procedure AddUpdateHandlerToEnableUniversalRestriction(Version, Handlers,
 	Handler.Procedure = "InformationRegisters.AccessRestrictionParameters.ProcessDataForMigrationToNewVersion";
 	Handler.ExecutionMode = "Deferred";
 	Handler.RunAlsoInSubordinateDIBNodeWithFilters = True;
-	Handler.Comment = NStr("en = 'Enables universal record-level access restriction.';");
+	Handler.Comment = NStr("en = 'Enables universal record-level access restriction.';tr = 'Kayıt düzeyinde evrensel erişim kısıtlamasını etkinleştirin.'");
 	Handler.Id = New UUID("74cb1992-c9ac-4b46-90db-810544dee86c");
 	Handler.UpdateDataFillingProcedure = "InformationRegisters.AccessRestrictionParameters.RegisterDataToProcessForMigrationToNewVersion";
 	Handler.ObjectsToRead = "InformationRegister.AccessRestrictionParameters";
@@ -2699,7 +2741,11 @@ Procedure SpecifyAccessValuesSets(ObjectReference, Table)
 				           |containing a known access kind ""%2."" It cannot contain this access kind.
 				           |
 				           |It can only contain special access kinds
-				           |""%3"" and ""%4"".';"),
+				           |""%3"" and ""%4"".';tr = 'Nesne ""%1"", 
+				           |belirtilen erişim türünü ""%2"" içeren belirlenmemiş erişim değerleri oluşturuldu. 
+				           |
+				           |Kullanıldıkları zaman sadece 
+				           |""%3"", ""%4"" özel erişim türlerini belirtin.'"),
 				TypeOf(ObjectReference),
 				String.AccessKind,
 				"ReadRight1",
@@ -2708,7 +2754,8 @@ Procedure SpecifyAccessValuesSets(ObjectReference, Table)
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Object ""%1"" generated an access value set
-				           |containing an unknown access kind ""%2.""';"),
+				           |containing an unknown access kind ""%2.""';tr = 'Nesne ""%1"", bilinmeyen erişim türünü içeren "
+" erişim değerleri kümesini ""%2"" oluşturdu.'"),
 				TypeOf(ObjectReference),
 				String.AccessKind);
 			Raise ErrorText;
@@ -3092,7 +3139,8 @@ Function AccessValueGroupsProperties(AccessValueType, ErrorTitle)
 	If AccessKindProperties = Undefined Then
 		ErrorText = ErrorTitle + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Access value groups are not used for
-			           |access values of ""%1"" type.';"),
+			           |access values of ""%1"" type.';tr = '""%1"" tipi erişim
+			           | değeri gruplarının erişim değerleri kullanılmaz.'"),
 			String(AccessValueType));
 		Raise ErrorText;
 	EndIf;
@@ -3140,7 +3188,8 @@ Procedure EnableDisableUserProfile(User, Profile, Enable, Source = Undefined) Ex
 	If Not AccessManagementInternal.SimplifiedAccessRightsSetupInterface() Then
 		ErrorText =
 			NStr("en = 'This operation is available only in the simplified
-			           |access rights interface.';");
+			           |access rights interface.';tr = 'Bu işlem yalnızca sadeleştirilmiş erişim hakları arayüzü
+			           | için mümkündür.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -3162,11 +3211,12 @@ Procedure EnableDisableUserProfile(User, Profile, Enable, Source = Undefined) Ex
 		ExpectedTypes = New TypeDescription(Types);
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2. 
-			           |Expected value: %3, actual value: %4 (%5 type).';"),
+			           |Expected value: %3, actual value: %4 (%5 type).';tr = '%2''deki %1 parametrenin geçersiz değeri.
+			           |Beklenen değer: %3; gönderilen değer: %4 (%5 türü).'"),
 			ParameterName,
 			NameOfAProcedureOrAFunction,
 			ExpectedTypes, 
-			?(ParameterValue <> Undefined, ParameterValue, NStr("en = 'Undefined';")),
+			?(ParameterValue <> Undefined, ParameterValue, NStr("en = 'Undefined';tr = 'Tanımlanmamış'")),
 			TypeOf(ParameterValue));
 		Raise ErrorText;
 	EndIf;
@@ -3189,11 +3239,12 @@ Procedure EnableDisableUserProfile(User, Profile, Enable, Source = Undefined) Ex
 		ExpectedTypes = New TypeDescription(Types);
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid value of the %1 parameter in %2. 
-			           |Expected value: %3, actual value: %4 (%5 type).';"),
+			           |Expected value: %3, actual value: %4 (%5 type).';tr = '%2''deki %1 parametrenin geçersiz değeri.
+			           |Beklenen değer: %3; gönderilen değer: %4 (%5 türü).'"),
 			ParameterName,
 			NameOfAProcedureOrAFunction,
 			ExpectedTypes, 
-			?(ParameterValue <> Undefined, ParameterValue, NStr("en = 'Undefined';")),
+			?(ParameterValue <> Undefined, ParameterValue, NStr("en = 'Undefined';tr = 'Tanımlanmamış'")),
 			TypeOf(ParameterValue));
 		Raise ErrorText;
 	EndIf;
@@ -3283,7 +3334,8 @@ Procedure EnableDisableUserProfile(User, Profile, Enable, Source = Undefined) Ex
 					If ValueIsFilled(ErrorDescription) Then
 						ErrorText =
 							NStr("en = 'At least one user authorized to log in
-							           |must have the Administrator profile.';");
+							           |must have the Administrator profile.';tr = 'Giriş yapma yetkisi olan en az bir kullanıcının
+							           |Yönetici profili olmalıdır.'");
 						Raise ErrorText;
 					EndIf;
 				EndIf;

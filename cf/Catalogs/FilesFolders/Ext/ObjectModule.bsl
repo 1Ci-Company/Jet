@@ -24,22 +24,22 @@ Procedure BeforeWrite(Cancel)
 	If Ref = PredefinedValue("Catalog.FilesFolders.Templates")
 		And CurrentFolder.Parent <> Catalogs.FilesFolders.EmptyRef() Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Cannot move folder ""%1"".';"), CurrentFolder.Description);
+				NStr("en = 'Cannot move folder ""%1"".';tr = '""%1"" klasörüne taşıma yasak.'"), CurrentFolder.Description);
 	EndIf;
 	
 	If IsNew() Or CurrentFolder.Parent <> Parent Then
 		// Check rights for the source folder.
 		If Not FilesOperationsInternal.HasRight("FoldersModification", CurrentFolder.Parent) Then
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Insufficient rights to move files from the ""%1"" folder.';"),
-				?(ValueIsFilled(CurrentFolder.Parent), CurrentFolder.Parent, NStr("en = 'Folders';")));
+				NStr("en = 'Insufficient rights to move files from the ""%1"" folder.';tr = '""%1"" dosya klasörünü taşımak için yetkiler yetersiz.'"),
+				?(ValueIsFilled(CurrentFolder.Parent), CurrentFolder.Parent, NStr("en = 'Folders';tr = 'Klasörler'")));
 			Raise(MessageText, ErrorCategory.AccessViolation);
 		EndIf;
 		// Check rights for the destination folder.
 		If Not FilesOperationsInternal.HasRight("FoldersModification", Parent) Then
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Insufficient rights to add subfolders to the ""%1"" folder.';"),
-				?(ValueIsFilled(Parent), Parent, NStr("en = 'Folders';")));
+				NStr("en = 'Insufficient rights to add subfolders to the ""%1"" folder.';tr = '""%1"" dosya klasörüne alt klasörleri eklemek için yetkiler yetersiz'"),
+				?(ValueIsFilled(Parent), Parent, NStr("en = 'Folders';tr = 'Klasörler'")));
 			Raise(MessageText, ErrorCategory.AccessViolation);
 		EndIf;
 	EndIf;
@@ -48,7 +48,7 @@ Procedure BeforeWrite(Cancel)
 		// Check the "Deletion mark" right.
 		If Not FilesOperationsInternal.HasRight("FoldersModification", Ref) Then
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Insufficient rights to change the ""%1"" file folder.';"),
+				NStr("en = 'Insufficient rights to change the ""%1"" file folder.';tr = '""%1"" dosya klasörünü değiştirmek için yetkiler yetersiz.'"),
 				String(Ref));
 			Raise(MessageText, ErrorCategory.AccessViolation);
 		EndIf;
@@ -73,7 +73,7 @@ Procedure BeforeWrite(Cancel)
 		While Selection.Next() Do
 			If ValueIsFilled(Selection.BeingEditedBy) Then
 				Raise StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Cannot delete the %1 folder as it contains the ""%2"" file that is locked for editing.';"),
+					NStr("en = 'Cannot delete the %1 folder as it contains the ""%2"" file that is locked for editing.';tr = 'Klasör %1, düzenleme için kilitli olan ""%2"" dosyasını içerdiğinden silinemez.'"),
 				    String(Ref), String(Selection.Ref));
 			EndIf;
 
@@ -185,7 +185,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 	If FoundProhibitedCharsArray.Count() <> 0 Then
 		Cancel = True;
 		
-		Text = NStr("en = 'The folder name contains characters that are not allowed ( \ / : * ? "" < > | .. )';");
+		Text = NStr("en = 'The folder name contains characters that are not allowed ( \ / : * ? "" < > | .. )';tr = 'Klasör adı yasaklanmış karakterler içeriyor (\ /: *? ""< >| ..)'");
 		Common.MessageToUser(Text, ThisObject, "Description");
 	EndIf;
 	
@@ -194,5 +194,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

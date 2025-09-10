@@ -31,7 +31,9 @@ Procedure EnableEditing(Command)
 	ShowMessageBox(,
 		NStr("en = 'It is recommended that you do not change the access key as it is mapped to different objects.
 		           |To resolve the issue, delete the access key or
-		           |delete the mapping between the key and the objects from the registers, and then run the access update.';"));
+		           |delete the mapping between the key and the objects from the registers, and then run the access update.';tr = 'Farklı nesnelerle eşleştirildiğinden erişim anahtarı değiştirilmemelidir.
+		           |Standart olmayan bir sorunu gidermek için, erişim anahtarını veya 
+		           |kayıtlarda onunla bağlantıyı kaldırmanız ve erişim güncelleme işlemini gerçekleştirmeniz gerekir.'"));
 	
 EndProcedure
 
@@ -49,9 +51,9 @@ Function FieldsCompositionDetails(FieldsComposition)
 	While CurrentCount1 > 0 Do
 		Balance = CurrentCount1 - Int(CurrentCount1 / 16) * 16;
 		If TabularSectionNumber = 0 Then
-			Details = NStr("en = 'Header';") + ": " + Balance;
+			Details = NStr("en = 'Header';tr = 'Üst bilgi'") + ": " + Balance;
 		Else
-			Details = Details + ", " + NStr("en = 'Tabular section';") + " " + TabularSectionNumber + ": " + Balance;
+			Details = Details + ", " + NStr("en = 'Tabular section';tr = 'Tablo bölümü'") + " " + TabularSectionNumber + ": " + Balance;
 		EndIf;
 		CurrentCount1 = Int(CurrentCount1 / 16);
 		TabularSectionNumber = TabularSectionNumber + 1;

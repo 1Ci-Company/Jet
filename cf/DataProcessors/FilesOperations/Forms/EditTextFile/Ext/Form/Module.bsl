@@ -49,7 +49,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		FileData.FullVersionDescription, FileData.Extension);
 	
 	If Not EditMode Then
-		TitleRow = TitleRow + " " + NStr("en = '(Read-only)';");
+		TitleRow = TitleRow + " " + NStr("en = '(Read-only)';tr = '(salt okunur)'");
 	EndIf;
 	Title = TitleRow;
 	
@@ -66,7 +66,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			EncodingPresentation = ListItem.Presentation;
 		EndIf;
 	Else
-		EncodingPresentation = NStr("en = 'Default';");
+		EncodingPresentation = NStr("en = 'Default';tr = 'Varsayılan'");
 	EndIf;
 	
 EndProcedure
@@ -127,22 +127,23 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 	
 	If Exit Then
 		WarningText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The changes in file ""%1"" will be lost.';"), NameAndExtension);
+			NStr("en = 'The changes in file ""%1"" will be lost.';tr = '""%1"" dosyasındaki değişiklikler kaybedilecekler.'"), NameAndExtension);
 		Return;
 	EndIf;
 
 	ResultHandler = New NotifyDescription("BeforeCloseAfterAnswerQuestionOnClosingTextEditor", ThisObject);
 	ReminderText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'File ""%1"" was changed.
-			|Do you want to save the changes?';"), 
+			|Do you want to save the changes?';tr = '""%1"" dosyası değiştirildi.
+			|Değişiklikler kaydedilsin mi?'"), 
 		NameAndExtension);
 	Buttons = New ValueList;
-	Buttons.Add("Save", NStr("en = 'Save';"));
-	Buttons.Add("NotPreserve", NStr("en = 'Do not save';"));
-	Buttons.Add("Cancel",  NStr("en = 'Cancel';"));
+	Buttons.Add("Save", NStr("en = 'Save';tr = 'Sakla'"));
+	Buttons.Add("NotPreserve", NStr("en = 'Do not save';tr = 'Kaydetme'"));
+	Buttons.Add("Cancel",  NStr("en = 'Cancel';tr = 'İptal et'"));
 	ReminderParameters = New Structure;
 	ReminderParameters.Insert("Picture", PictureLib.DialogInformation);
-	ReminderParameters.Insert("Title", NStr("en = 'Warning';"));
+	ReminderParameters.Insert("Title", NStr("en = 'Warning';tr = 'Uyarı'"));
 	ReminderParameters.Insert("PromptDontAskAgain", False);
 	StandardSubsystemsClient.ShowQuestionToUser(
 			ResultHandler, ReminderText, Buttons, ReminderParameters);
@@ -164,7 +165,7 @@ Procedure SaveAs(Command)
 	
 	SelectingFile.FullFileName = NameWithExtension;
 	Filter = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'All files (*.%1)|*.%1';"), FileExtention());
+		NStr("en = 'All files (*.%1)|*.%1';tr = 'Tüm dosyalar (*.%1)|*.%1'"), FileExtention());
 	SelectingFile.Filter = Filter;
 	
 	If SelectingFile.Choose() Then
@@ -172,7 +173,7 @@ Procedure SaveAs(Command)
 		SelectedFullFileName = SelectingFile.FullFileName;
 		WriteTextToFile(SelectedFullFileName);
 		
-		ShowUserNotification(NStr("en = 'File saved';"), , SelectedFullFileName);
+		ShowUserNotification(NStr("en = 'File saved';tr = 'Dosya başarıyla kaydedildi'"), , SelectedFullFileName);
 		
 	EndIf;
 	
@@ -233,10 +234,10 @@ EndProcedure
 Procedure ShowDifferences(Command)
 	
 #If WebClient Then
-	ShowMessageBox(, NStr("en = 'The web client does not support file version comparison.';"));
+	ShowMessageBox(, NStr("en = 'The web client does not support file version comparison.';tr = 'Web istemcide dosya sürümleri karşılaştırılamaz.'"));
 	Return;
 #ElsIf MobileClient Then
-	ShowMessageBox(, NStr("en = 'The mobile client does not support file version comparison.';"));
+	ShowMessageBox(, NStr("en = 'The mobile client does not support file version comparison.';tr = 'Mobil istemciden dosya sürümleri karşılaştırılamaz.'"));
 	Return;
 #Else
 	ExecutionParameters = New Structure;
@@ -384,7 +385,7 @@ Procedure SetCommandsAvailability()
 		FileData.FullVersionDescription, FileExtention());
 	
 	If Not EditMode Then
-		TitleRow = TitleRow + " " + NStr("en = '(Read-only)';");
+		TitleRow = TitleRow + " " + NStr("en = '(Read-only)';tr = '(salt okunur)'");
 	EndIf;
 	Title = TitleRow;
 	

@@ -117,7 +117,7 @@ Function DownloadEmailMessages(Val UserAccountOrConnection, Val ImportParameters
 	If Account <> Undefined Then
 		UseForReceiving = Common.ObjectAttributeValue(Account, "UseForReceiving");
 		If Not UseForReceiving Then
-			Raise NStr("en = 'The account is not intended to receive messages.';");
+			Raise NStr("en = 'The account is not intended to receive messages.';tr = 'Hesap mesaj almak için uygun değildir.'");
 		EndIf;
 	EndIf;
 	
@@ -492,11 +492,11 @@ Function PrepareEmail(Account, EmailParameters) Export
 	
 	If TypeOf(Account) <> Type("CatalogRef.EmailAccounts")
 		Or Not ValueIsFilled(Account) Then
-		Raise NStr("en = 'The account is not specified or specified incorrectly.';");
+		Raise NStr("en = 'The account is not specified or specified incorrectly.';tr = 'Hesap belirtilmedi veya yanlış belirtildi.'");
 	EndIf;
 	
 	If EmailParameters = Undefined Then
-		Raise NStr("en = 'The mail sending parameters are not specified.';");
+		Raise NStr("en = 'The mail sending parameters are not specified.';tr = 'E-posta gönderme parametreleri belirtilmemiş.'");
 	EndIf;
 	
 	RecipientValType = ?(EmailParameters.Property("Whom"), TypeOf(EmailParameters.Whom), Undefined);
@@ -504,7 +504,7 @@ Function PrepareEmail(Account, EmailParameters) Export
 	BCCs = CommonClientServer.StructureProperty(EmailParameters, "BCCs");
 	
 	If RecipientValType = Undefined And CcType = Undefined And BCCs = Undefined Then
-		Raise NStr("en = 'No recipient is selected.';");
+		Raise NStr("en = 'No recipient is selected.';tr = 'Hiçbir alıcı belirtilmemiş.'");
 	EndIf;
 	
 	If RecipientValType = Type("String") Then
@@ -634,11 +634,11 @@ Function SendEmailMessage(Val Account, Val SendOptions,
 	
 	If TypeOf(Account) <> Type("CatalogRef.EmailAccounts")
 		Or Not ValueIsFilled(Account) Then
-		Raise NStr("en = 'The account is not specified or specified incorrectly.';");
+		Raise NStr("en = 'The account is not specified or specified incorrectly.';tr = 'Hesap belirtilmedi veya yanlış belirtildi.'");
 	EndIf;
 	
 	If SendOptions = Undefined Then
-		Raise NStr("en = 'The mail sending parameters are not specified.';");
+		Raise NStr("en = 'The mail sending parameters are not specified.';tr = 'Gönderme parametreleri belirtilmemiş.'");
 	EndIf;
 	
 	RecipientValType = ?(SendOptions.Property("Whom"), TypeOf(SendOptions.Whom), Undefined);
@@ -646,7 +646,7 @@ Function SendEmailMessage(Val Account, Val SendOptions,
 	BCCs = CommonClientServer.StructureProperty(SendOptions, "BCCs");
 	
 	If RecipientValType = Undefined And CcType = Undefined And BCCs = Undefined Then
-		Raise NStr("en = 'No recipient is selected.';");
+		Raise NStr("en = 'No recipient is selected.';tr = 'Hiçbir alıcı belirtilmemiş.'");
 	EndIf;
 	
 	If RecipientValType = Type("String") Then
@@ -675,7 +675,7 @@ Function SendEmailMessage(Val Account, Val SendOptions,
 	EmailOperationsOverridable.AfterEmailSending(SendOptions);
 	
 	If SendOptions.WrongRecipients.Count() > 0 Then
-		ErrorText = NStr("en = 'The following email addresses were declined by mail server:';");
+		ErrorText = NStr("en = 'The following email addresses were declined by mail server:';tr = 'Posta sunucusu aşağıdaki posta adreslerini kabul etmedi;'");
 		For Each WrongRecipient In SendOptions.WrongRecipients Do
 			ErrorText = ErrorText + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString("%1: %2",
 				WrongRecipient.Key, WrongRecipient.Value);

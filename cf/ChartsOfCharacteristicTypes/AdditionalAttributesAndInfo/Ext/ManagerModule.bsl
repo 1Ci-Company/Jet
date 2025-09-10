@@ -162,15 +162,17 @@ Procedure CheckIDUniqueness(IDForFormulas, Ref, Cancel) Export
 			IDByRules = False;
 			
 			ErrorText = NStr("en = 'ID ""%1"" does not comply with variable naming rules.
-										|An ID must not contain spaces and special characters.';");
+										|An ID must not contain spaces and special characters.';tr = '""%1"" tanımlayıcısı değişkenleri adlandırma kurallarına uymuyor.
+										|Tanımlayıcı boşluk ve özel karakter içermemelidir.'");
 			Common.MessageToUser(
 				StringFunctionsClientServer.SubstituteParametersToString(ErrorText, IDForFormulas),,
 				"IDForFormulas",, Cancel);
 				
 			LanguageCode = Common.DefaultLanguageCode();
-			EventName = NStr("en = 'Save additional attribute or information record';", LanguageCode);
+			EventName = NStr("en = 'Save additional attribute or information record';tr = 'Ek ayrıntı (bilgi) girişi'", LanguageCode);
 			ErrorText = NStr("en = 'ID ""%1"" does not comply with variable naming rules.
-									|An ID must not contain spaces and special characters.';", LanguageCode);
+									|An ID must not contain spaces and special characters.';tr = '""%1"" tanımlayıcısı değişkenleri adlandırma kurallarına uymuyor.
+									|Tanımlayıcı boşluk ve özel karakter içermemelidir.'", LanguageCode);
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 				IDForFormulas);
 			WriteLogEvent(EventName,
@@ -185,16 +187,16 @@ Procedure CheckIDUniqueness(IDForFormulas, Ref, Cancel) Export
 				
 				Cancel = True;
 				
-				ErrorText = NStr("en = 'ID for formulas ""%1"" is not unique';");
+				ErrorText = NStr("en = 'ID for formulas ""%1"" is not unique';tr = '""%1"" formulünün tanımlayıcısı benzersiz değil'");
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 					IDForFormulas);
 				Common.MessageToUser(ErrorText,, "IDForFormulas");
 				
 				LanguageCode = Common.DefaultLanguageCode();
-				ErrorText = NStr("en = 'ID for formulas ""%1"" is not unique';", LanguageCode);
+				ErrorText = NStr("en = 'ID for formulas ""%1"" is not unique';tr = '""%1"" formulünün tanımlayıcısı benzersiz değil'", LanguageCode);
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 					IDForFormulas);
-				EventName = NStr("en = 'Save additional attribute or information record';", LanguageCode);
+				EventName = NStr("en = 'Save additional attribute or information record';tr = 'Ek ayrıntı (bilgi) girişi'", LanguageCode);
 				WriteLogEvent(EventName,
 					EventLogLevel.Error,
 					Ref.Metadata(),
@@ -205,14 +207,14 @@ Procedure CheckIDUniqueness(IDForFormulas, Ref, Cancel) Export
 		
 	Else
 		
-		ErrorText = NStr("en = 'ID for formulas is required';");
+		ErrorText = NStr("en = 'ID for formulas is required';tr = 'Formül için tanımlayıcı doldurulmadı'");
 		Common.MessageToUser(
 			StringFunctionsClientServer.SubstituteParametersToString(ErrorText, IDForFormulas),,
 			"IDForFormulas",, Cancel);
 			
 		LanguageCode = Common.DefaultLanguageCode();
-		EventName = NStr("en = 'Save additional attribute or information record';", LanguageCode);
-		ErrorText = NStr("en = 'ID for formulas is required';", LanguageCode);
+		EventName = NStr("en = 'Save additional attribute or information record';tr = 'Ek ayrıntı (bilgi) girişi'", LanguageCode);
+		ErrorText = NStr("en = 'ID for formulas is required';tr = 'Formül için tanımlayıcı doldurulmadı'", LanguageCode);
 		WriteLogEvent(EventName,
 			EventLogLevel.Error,
 			Ref.Metadata(),
@@ -236,7 +238,7 @@ Function UUIDForFormulas(ObjectPresentation, CurrentObjectRef) Export
 	Id = IDForFormulas(ObjectPresentation);
 	If IsBlankString(Id) Then
 		// Presentation consists of special characters and digits.
-		Prefix = NStr("en = 'ID';");
+		Prefix = NStr("en = 'ID';tr = 'Kimlik'");
 		Id = IDForFormulas(Prefix + ObjectPresentation);
 	EndIf;
 	
@@ -460,7 +462,8 @@ Procedure ChangePropertySetting(Parameters, StorageAddress) Export
 		If OwnerMetadata = Undefined Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The %1 property settings were not changed.
-				           |The %2 property set is not linked with any property value owner.';"),
+				           |The %2 property set is not linked with any property value owner.';tr = '%1 özellik ayarı değiştirilmedi.
+				           |%2 özellik ayarı hiçbir özellik değeri sahibiyle bağlantılı değil.'"),
 				Property,
 				CurrentPropertiesSet);
 		EndIf;
@@ -504,7 +507,8 @@ Procedure ChangePropertySetting(Parameters, StorageAddress) Export
 		ElsIf Property = ObjectProperty.Ref Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The %1 property settings were not changed.
-				           |The value type does not contain additional values.';"),
+				           |The value type does not contain additional values.';tr = '%1 özellik ayarları değiştirilmedi.
+				           |Değer türü, ek değerler içermiyor.'"),
 				Property);
 		EndIf;
 		
@@ -948,13 +952,13 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	Parameters.ProcessingCompleted = InfobaseUpdate.DataProcessingCompleted(Parameters.Queue, FullName);
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Failed to process (skipped) some additional attributes or information records: %1';"), 
+			NStr("en = 'Failed to process (skipped) some additional attributes or information records: %1';tr = 'Bazı ek alanlar veya bilgiler işlenemedi (atlandı): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 			Metadata.ChartsOfCharacteristicTypes.AdditionalAttributesAndInfo,,
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Yet another batch of additional attributes or information records is processed: %1';"),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Yet another batch of additional attributes or information records is processed: %1';tr = 'Ek alanların (bilgilerin) sıradaki miktarı işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

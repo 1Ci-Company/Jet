@@ -29,19 +29,20 @@ Procedure OnOpen(Cancel)
 	EndIf;
 	
 	MessageText = NStr("en = 'Your computer has %1 GB of RAM.
-		|Recommended RAM size is %2 GB.';");
+		|Recommended RAM size is %2 GB.';tr = 'Bilgisayarınızın RAM''i %1 GB.
+		|Önerilen RAM boyutu %2 GB.'");
 	
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText, AvailableMemorySize, RecommendedSize);
 	
-	MessageTitle = NStr("en = 'Speedup recommendation';");
+	MessageTitle = NStr("en = 'Speedup recommendation';tr = 'Çalışma hızının arttırılması ile ilgili öneri'");
 	
 	QuestionParameters = StandardSubsystemsClient.QuestionToUserParameters();
 	QuestionParameters.Title = MessageTitle;
 	QuestionParameters.Picture = PictureLib.DialogExclamation;
-	QuestionParameters.Insert("CheckBoxText", NStr("en = 'Remind in two months';"));
+	QuestionParameters.Insert("CheckBoxText", NStr("en = 'Remind in two months';tr = 'İki ay içinde gösterme'"));
 	
 	Buttons = New ValueList;
-	Buttons.Add("ContinueWork", NStr("en = 'Continue';"));
+	Buttons.Add("ContinueWork", NStr("en = 'Continue';tr = 'Devam'"));
 	
 	NotifyDescription = New NotifyDescription("AfterShowRecommendation", ThisObject);
 	StandardSubsystemsClient.ShowQuestionToUser(NotifyDescription, MessageText, Buttons, QuestionParameters);

@@ -208,7 +208,7 @@ Function GenerateInfoLabelMessageCharsCount(SendInTransliteration, MessageText) 
 	CountOfCharacters = StrLen(MessageText);
 	MessagesCount   = Int(CountOfCharacters / CharsInMessage) + 1;
 	CharsLeft      = CharsInMessage - CountOfCharacters % CharsInMessage;
-	MessageTextTemplate = NStr("en = 'Messages: %1. Symbols left: %2';");
+	MessageTextTemplate = NStr("en = 'Messages: %1. Symbols left: %2';tr = 'İleti: %1. Kalan karakter: %2'");
 	Return StringFunctionsClientServer.SubstituteParametersToString(MessageTextTemplate, MessagesCount, CharsLeft);
 
 EndFunction
@@ -270,9 +270,9 @@ Function GetFileSizeStringPresentation(SizeInBytes) Export
 	
 	SizeMB = SizeInBytes / (1024*1024);
 	If SizeMB > 1 Then
-		StringSize = Format(SizeMB, "NFD=1") + " " + NStr("en = 'MB';");
+		StringSize = Format(SizeMB, "NFD=1") + " " + NStr("en = 'MB';tr = 'MB'");
 	Else
-		StringSize = Format(SizeInBytes /1024, "NFD=0; NZ=0") + " " + NStr("en = 'kB';");
+		StringSize = Format(SizeInBytes /1024, "NFD=0; NZ=0") + " " + NStr("en = 'kB';tr = 'KB'");
 	EndIf;
 	
 	Return StringSize;
@@ -333,7 +333,7 @@ Procedure OnChangeFilterInteractionType(Form,InteractionType) Export
 	
 	// Clear linked filters.
 	FilterGroup = CommonClientServer.CreateFilterItemGroup(
-		Filter.Items, NStr("en = 'Filter by interaction category';"), DataCompositionFilterItemsGroupType.AndGroup);
+		Filter.Items, NStr("en = 'Filter by interaction category';tr = 'Etkileşim türüne göre filtrele'"), DataCompositionFilterItemsGroupType.AndGroup);
 	
 	// .Set filters by type.
 	If InteractionType = "AllEmails" Then
@@ -585,21 +585,21 @@ Procedure PresentationGetProcessing(ObjectManager, Data, Presentation, StandardP
 	Date = Format(Data.Date, "DLF=D");
 	DocumentType = "";
 	If TypeOf(ObjectManager) = Type("DocumentManager.Meeting") Then
-		DocumentType = NStr("en = 'Appointment';");
+		DocumentType = NStr("en = 'Appointment';tr = 'Randevu'");
 		Date = Format(Data.StartDate, "DLF=D");
 	ElsIf TypeOf(ObjectManager) = Type("DocumentManager.PlannedInteraction") Then
-		DocumentType = NStr("en = 'Scheduled interaction';");
+		DocumentType = NStr("en = 'Scheduled interaction';tr = 'Planlı etkileşim'");
 	ElsIf TypeOf(ObjectManager) = Type("DocumentManager.SMSMessage") Then
-		DocumentType = NStr("en = 'SMS';");
+		DocumentType = NStr("en = 'SMS';tr = 'SMS'");
 	ElsIf TypeOf(ObjectManager) = Type("DocumentManager.PhoneCall") Then
-		DocumentType = NStr("en = 'Phone call';");
+		DocumentType = NStr("en = 'Phone call';tr = 'Telefon görüşmesi'");
 	ElsIf TypeOf(ObjectManager) = Type("DocumentManager.IncomingEmail") Then
-		DocumentType = NStr("en = 'Incoming mail';");
+		DocumentType = NStr("en = 'Incoming mail';tr = 'Gelen e-posta'");
 	ElsIf TypeOf(ObjectManager) = Type("DocumentManager.OutgoingEmail") Then
-		DocumentType = NStr("en = 'Outgoing mail';");
+		DocumentType = NStr("en = 'Outgoing mail';tr = 'Giden e-posta'");
 	EndIf;
 	
-	TemplateOfPresentation = NStr("en = '%1, %2 (%3)';");
+	TemplateOfPresentation = NStr("en = '%1, %2 (%3)';tr = '%1, %2 (%3)'");
 	Presentation = StringFunctionsClientServer.SubstituteParametersToString(TemplateOfPresentation, Subject, Date, DocumentType);
 	
 	StandardProcessing = False;
@@ -641,7 +641,7 @@ EndFunction
 
 Function InteractionSubject1(Subject) Export
 
-	Return ?(IsBlankString(Subject), NStr("en = '<No Subject>';"), Subject);
+	Return ?(IsBlankString(Subject), NStr("en = '<No Subject>';tr = '<Konu yok>'"), Subject);
 
 EndFunction 
 

@@ -197,7 +197,7 @@ Procedure MaxDataAreaFileSizeOnChange(Item)
 	
 	If MaxDataAreaFileSize = 0 Then
 		
-		MessageText = NStr("en = 'File size limit is required.';");
+		MessageText = NStr("en = 'File size limit is required.';tr = 'Dosya boyutu limiti gerekli.'");
 		CommonClient.MessageToUser(MessageText, ,"MaxDataAreaFileSize");
 		Return;
 		
@@ -229,7 +229,7 @@ Procedure MaxFileSizeOnChange(Item)
 	
 	If MaxFileSize = 0 Then
 		
-		MessageText = NStr("en = 'File size limit is required.';");
+		MessageText = NStr("en = 'File size limit is required.';tr = 'Dosya boyutu limiti gerekli.'");
 		CommonClient.MessageToUser(MessageText, ,"MaxFileSize");
 		Return;
 		
@@ -288,12 +288,16 @@ EndProcedure
 &AtClient
 Async Procedure StartDeduplication(Command)
 	
-	QuestionTitle = NStr("en = 'File deduplication';");
+	QuestionTitle = NStr("en = 'File deduplication';tr = 'Dosya tekilleştirme'");
 	QuestionTemplate = NStr("en = 'With file deduplication, you can save up to 30% of infobase space by removing duplicate files stored in the application (the ""Infobase"" storage option). The process takes from minutes to hours, depending on the number of files, and can be paused and resumed at any time. All newly added files are automatically stored as a single instance.
 	 |
 	 |During deduplication, the infobase size may increase significantly. Therefore, before initiating the process, ensure that the device hosting the infobase has at least %1 MB of free space and back up the infobase. After completion, compress the infobase for the deduplication to take effect.
 	 |
-	 |Do you want to start file deduplication?';");
+	 |Do you want to start file deduplication?';tr = 'Uygulamada (""Infobase"" depolama seçeneği) saklanan kopya dosyaları silerek infobase alanında %30''a kadar yer açabilirsiniz. Bu işlem dosya sayısına bağlı olarak birkaç dakika ile birkaç saat sürebilir ve istendiğinde duraklatılabilir ve devam ettirilebilir. Yeni eklenen tüm dosyalar tek örnek olarak saklanır.
+	 |
+	 |Tekilleştirme sırasında infobase boyutu önemli ölçüde artabilir. Bu nedenle, süreci başlatmadan önce infobase''in bulunduğu cihazda en az %1 MB boş alan olduğundan emin olun ve infobase''i yedekleyin. İşlem tamamlandıktan sonra, tekilleştirmenin uygulanması için infobase''i sıkıştırın.
+	 |
+	 |Dosya tekilleştirmesini başlatmak istiyor musunuz?'");
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(QuestionTemplate, FilesSizeInInfobase());
 	Response = Await DoQueryBoxAsync(QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.No, QuestionTitle);
 	If Response <> DialogReturnCode.Yes Then
@@ -303,9 +307,9 @@ Async Procedure StartDeduplication(Command)
 	TimeConsumingOperation = StartDeduplicationAtServer();
 	CallbackOnCompletion = New NotifyDescription("FinishDeduplication", ThisObject);
 	IdleParameters = TimeConsumingOperationsClient.IdleParameters(ThisObject);
-	IdleParameters.Title = NStr("en = 'Deduplicating files';");
+	IdleParameters.Title = NStr("en = 'Deduplicating files';tr = 'Dosyalar tekilleştiriliyor'");
 	IdleParameters.OutputProgressBar = True;
-	IdleParameters.CancelButtonTitle = NStr("en = 'Cancel';");
+	IdleParameters.CancelButtonTitle = NStr("en = 'Cancel';tr = 'İptal'");
 	TimeConsumingOperationsClient.WaitCompletion(TimeConsumingOperation, CallbackOnCompletion, IdleParameters);
 		
 EndProcedure
@@ -327,7 +331,8 @@ Procedure FilesStorageMethodOnChangeCompletion(Response, Item) Export
 			And Not HasFileStorageVolumes() Then
 			
 			ShowMessageBox(, NStr("en = 'Storing files to the file server is enabled but the volumes are not configured.
-				|Files will be saved to the infobase until at least one file storage volume is configured.';"));
+				|Files will be saved to the infobase until at least one file storage volume is configured.';tr = 'Dosyaların dosya sunucusunda saklanması etkin fakat birimler yapılandırılmadı.
+				|En az bir dosya depolama birimi yapılandırılana kadar dosyalar infobase''e kaydedilecek.'"));
 		EndIf;
 		
 		OnChangeFilesStorageMethodAtServer();
@@ -555,7 +560,7 @@ EndFunction
 Procedure FinishDeduplication(Result, AdditionalParameters) Export
 	
 	If Result = Undefined Then
-		ShowMessageBox(, NStr("en = 'Deduplication has been paused and can be resumed later.';"));
+		ShowMessageBox(, NStr("en = 'Deduplication has been paused and can be resumed later.';tr = 'Tekilleştirme duraklatıldı, daha sonra devam ettirilebilir.'"));
 		Return;
 	EndIf;
 	
@@ -568,13 +573,13 @@ Procedure FinishDeduplication(Result, AdditionalParameters) Export
 	DeduplicationErrors = GetFromTempStorage(DeduplicationResultAddress);
 	If IsDeduplicationCompleted() And DeduplicationErrors = Undefined Then
 		Items.GroupDeduplication.Visible = False;
-		ShowMessageBox(, NStr("en = 'File deduplication is completed.';"));
+		ShowMessageBox(, NStr("en = 'File deduplication is completed.';tr = 'Dosya tekilleştirme tamamlandı.'"));
 	ElsIf DeduplicationErrors = Undefined Then
-		ShowMessageBox(, NStr("en = 'Some files have not been processed. Start again.';"));
+		ShowMessageBox(, NStr("en = 'Some files have not been processed. Start again.';tr = 'Bazı dosyalar işlenmedi. Yeniden başlatın.'"));
 	Else
 		FormParameters = New Structure;
 		FormParameters.Insert("Deduplication", True);
-		FormParameters.Insert("Explanation", NStr("en = 'Some of the files failed to be processed. To resume, fix the following issues:';"));
+		FormParameters.Insert("Explanation", NStr("en = 'Some of the files failed to be processed. To resume, fix the following issues:';tr = 'Bazı dosyalar işlenemedi. Devam etmek için şu sorunları çözün:'"));
 		FormParameters.Insert("FilesWithErrors", DeduplicationErrors);
 		OpenForm("DataProcessor.FileTransfer.Form.ReportForm", FormParameters);
 	EndIf;

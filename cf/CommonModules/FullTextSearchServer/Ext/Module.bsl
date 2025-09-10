@@ -13,14 +13,14 @@
 // Updates a full-text search index.
 Procedure FullTextSearchIndexUpdate() Export
 	
-	UpdateIndex(NStr("en = 'Update full-text search index';"), False, True);
+	UpdateIndex(NStr("en = 'Update full-text search index';tr = 'Tam metin arama dizinini güncelle'"), False, True);
 	
 EndProcedure
 
 // Merges full-text search indexes.
 Procedure FullTextSearchMergeIndex() Export
 	
-	UpdateIndex(NStr("en = 'Merge full-text search index';"), True);
+	UpdateIndex(NStr("en = 'Merge full-text search index';tr = 'Tam metin arama dizinini birleştir'"), True);
 	
 EndProcedure
 
@@ -179,10 +179,10 @@ Procedure OnFillToDoList(ToDoList) Export
 	ToDoItem = ToDoList.Add();
 	ToDoItem.Id = "FullTextSearchInDataSearchSettingsError";
 	ToDoItem.HasToDoItems = (State = "SearchSettingsError");
-	ToDoItem.Presentation = NStr("en = 'Full-text search not set up';");
+	ToDoItem.Presentation = NStr("en = 'Full-text search not set up';tr = 'Tam metin araması ayarlanmadı'");
 	ToDoItem.Form = "DataProcessor.FullTextSearchInData.Form.FullTextSearchAndTextExtractionControl";
 	ToDoItem.ToolTip = 
-		NStr("en = 'Try toggling the full-text search off and on.';");
+		NStr("en = 'Try toggling the full-text search off and on.';tr = 'Tam metin aramayı kapatıp açmayı deneyin.'");
 	ToDoItem.Owner = Section;
 	
 	// Index update is required.
@@ -192,27 +192,27 @@ Procedure OnFillToDoList(ToDoList) Export
 		CurrentDate = CurrentDate(); // ACC:143 - CurrentDate() must be used.
 		
 		If IndexUpdateDate > CurrentDate Then
-			Interval = NStr("en = 'less than one day ago';");
+			Interval = NStr("en = 'less than one day ago';tr = 'bir günden az süre önce'");
 		Else
 			Interval = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1 ago';"),
+				NStr("en = '%1 ago';tr = '%1 önce'"),
 				Common.TimeIntervalString(IndexUpdateDate, CurrentDate));
 		EndIf;
 		
 		DaysFromLastUpdate = Int((CurrentDate - IndexUpdateDate) / 60 / 60 / 24);
 		HasToDoItems = (DaysFromLastUpdate >= 1);
 	Else 
-		Interval = NStr("en = 'never';");
+		Interval = NStr("en = 'never';tr = 'Hiç bir zaman'");
 		HasToDoItems = False;
 	EndIf;
 	
 	ToDoItem = ToDoList.Add();
 	ToDoItem.Id = "FullTextSearchInDataIndexUpdateRequired";
 	ToDoItem.HasToDoItems = HasToDoItems;
-	ToDoItem.Presentation = NStr("en = 'Full-text search index is outdated';");
+	ToDoItem.Presentation = NStr("en = 'Full-text search index is outdated';tr = 'Tam metin arama dizini eskidi'");
 	ToDoItem.Form = "DataProcessor.FullTextSearchInData.Form.FullTextSearchAndTextExtractionControl";
 	ToDoItem.ToolTip = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Last update: %1.';"),
+		NStr("en = 'Last update: %1.';tr = 'Son güncelleme %1'"),
 		Interval);
 	ToDoItem.Owner = Section;
 	
@@ -329,7 +329,7 @@ Function FullTextSearchIndexIsUpToDate()
 	Except
 		LogRecord(
 			EventLogLevel.Warning, 
-			NStr("en = 'Failed to check full-text search index status';"),
+			NStr("en = 'Failed to check full-text search index status';tr = 'Tam metin arama endeks durumu denetlemesi başarısız'"),
 			ErrorInfo());
 	EndTry;
 	
@@ -388,7 +388,7 @@ Function ExecuteFullTextSearch(SearchParameters) Export
 			SearchResultsList.NextPart(CurrentPosition);
 		Else 
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid value in parameter ""%1"". Expected value is ""%2"", ""%3"", or ""%4"".';"),
+				NStr("en = 'Invalid value in parameter ""%1"". Expected value is ""%2"", ""%3"", or ""%4"".';tr = '""%1"" parametresinin geçersiz değeri. Beklenen değerler: ""%2"", ""%3"" veya ""%4"".'"),
 				"SearchDirection", "FirstPart", "PreviousPart", "NextPart");
 		EndIf;
 	Except
@@ -397,14 +397,14 @@ Function ExecuteFullTextSearch(SearchParameters) Export
 	EndTry;
 	
 	If SearchResultsList.TooManyResults() Then 
-		ErrorDescription = NStr("en = 'Too many results. Please narrow your search.';");
+		ErrorDescription = NStr("en = 'Too many results. Please narrow your search.';tr = 'Çok fazla sonuç var, aramanızı netleştirin'");
 		ErrorCode = "TooManyResults";
 	EndIf;
 	
 	TotalCount = SearchResultsList.TotalCount();
 	
 	If TotalCount = 0 Then
-		ErrorDescription = NStr("en = 'No results found';");
+		ErrorDescription = NStr("en = 'No results found';tr = 'Sonuç bulunamadı'");
 		ErrorCode = "FoundNothing";
 	EndIf;
 	
@@ -540,19 +540,19 @@ Procedure UpdateIndex(ProcedurePresentation, EnableJoining = False, InPortions =
 	
 	LogRecord(
 		Undefined, 
-		NStr("en = 'Starting %1.';"),,
+		NStr("en = 'Starting %1.';tr = '""%1"" Prosedürünü başlatın.'"),,
 		ProcedurePresentation);
 	
 	Try
 		FullTextSearch.UpdateIndex(EnableJoining, InPortions);
 		LogRecord(
 			Undefined, 
-			NStr("en = '%1 is successfully completed.';"),, 
+			NStr("en = '%1 is successfully completed.';tr = '""%1"" prosedürü başarı ile tamamlandı.'"),, 
 			ProcedurePresentation);
 	Except
 		LogRecord(
 			EventLogLevel.Warning, 
-			NStr("en = 'Failed to execute %1:';"),
+			NStr("en = 'Failed to execute %1:';tr = '""%1"" prosedürü yürütülemedi:'"),
 			ErrorInfo(), 
 			ProcedurePresentation);
 	EndTry;
@@ -590,7 +590,7 @@ Procedure LogRecord(LogLevel, CommentWithParameters, ErrorInfo = Undefined,
 	EndIf;
 	TextForLog = TrimAll(TextForLog);
 	
-	WriteLogEvent(NStr("en = 'Full-text indexing';", Common.DefaultLanguageCode()), 
+	WriteLogEvent(NStr("en = 'Full-text indexing';tr = 'Tam metin indeksleme'", Common.DefaultLanguageCode()), 
 		LogLevel, , , TextForLog);
 	
 EndProcedure

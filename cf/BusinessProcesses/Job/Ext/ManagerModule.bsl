@@ -244,7 +244,7 @@ EndProcedure
 
 Function ExecutionResultOnForward(Val TaskInfo)
 
-	StringFormat = "%1, %2 " + NStr("en = 'redirected the task';") + ":
+	StringFormat = "%1, %2 " + NStr("en = 'redirected the task';tr = 'görev yeniden yönlendirildi'") + ":
 																	   |%3
 																	   |";
 

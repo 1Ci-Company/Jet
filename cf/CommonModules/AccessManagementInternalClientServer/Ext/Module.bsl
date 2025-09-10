@@ -120,11 +120,11 @@ Procedure FillAllAllowedPresentation(Form, AccessKindDetails, AddValuesCount = T
 	
 	If Form.IsAccessGroupProfile Then
 		If ValuesCount = 0 Then
-			NumberAndSubject = NStr("en = 'not assigned';");
+			NumberAndSubject = NStr("en = 'not assigned';tr = 'atanmadı'");
 		Else
 			NumberAndSubject = Format(ValuesCount, "NG=") + " "
 				+ UsersInternalClientServer.IntegerSubject(ValuesCount,
-					"", NStr("en = 'value,values,,,0';"));
+					"", NStr("en = 'value,values,,,0';tr = 'değer, değerler, değerler,,,,,,0'"));
 		EndIf;
 		
 		AccessKindDetails.AllAllowedPresentation =
@@ -135,17 +135,17 @@ Procedure FillAllAllowedPresentation(Form, AccessKindDetails, AddValuesCount = T
 	
 	If ValuesCount = 0 Then
 		Presentation = ?(AccessKindDetails.AllAllowed,
-			NStr("en = 'All allowed, no exceptions';"),
-			NStr("en = 'All denied, no exceptions';"));
+			NStr("en = 'All allowed, no exceptions';tr = 'İstisnasız hepsine izin verildi'"),
+			NStr("en = 'All denied, no exceptions';tr = 'İstisnasız hepsi yasak'"));
 	Else
 		NumberAndSubject = Format(ValuesCount, "NG=") + " "
 			+ UsersInternalClientServer.IntegerSubject(ValuesCount,
-				"", NStr("en = 'value,values,,,0';"));
+				"", NStr("en = 'value,values,,,0';tr = 'değer, değerler, değerler,,,,,,0'"));
 		
 		Presentation = StringFunctionsClientServer.SubstituteParametersToString(
 			?(AccessKindDetails.AllAllowed,
-				NStr("en = 'All allowed, except %1';"),
-				NStr("en = 'All denied, except %1';")),
+				NStr("en = 'All allowed, except %1';tr = '%1 Hariç hepsine izin verildi'"),
+				NStr("en = 'All denied, except %1';tr = '%1 hariç hepsi yasak'")),
 			NumberAndSubject);
 	EndIf;
 	
@@ -247,12 +247,12 @@ Procedure OnChangeCurrentAccessKind(Form, ProcessingAtClient = True) Export
 		 Or CurrentData.AccessKind = Form.AccessKindExternalUsers Then
 			
 			LabelPattern = ?(CurrentData.AllAllowed,
-				NStr("en = 'Forbidden values (%1): Authorized user and their groups are always allowed';"),
-				NStr("en = 'Allowed values (%1): Authorized user and their groups are always allowed';") );
+				NStr("en = 'Forbidden values (%1): Authorized user and their groups are always allowed';tr = 'İzin verilmeyen değerler (%1): Doğrulanmış kullanıcılara ve gruplarına daima izin verilir'"),
+				NStr("en = 'Allowed values (%1): Authorized user and their groups are always allowed';tr = 'İzin verilen değerler (%1): Doğrulanmış kullanıcılara ve gruplarına daima izin verilir'") );
 		Else
 			LabelPattern = ?(CurrentData.AllAllowed,
-				NStr("en = 'Denied values (%1)';"),
-				NStr("en = 'Allowed values (%1)';") );
+				NStr("en = 'Denied values (%1)';tr = 'Yasak değerler (%1)'"),
+				NStr("en = 'Allowed values (%1)';tr = 'İzin verilen değerler (%1)'") );
 		EndIf;
 		
 		// Refresh the field AccessKindLabel.
@@ -305,7 +305,7 @@ Procedure OnChangeCurrentAccessKind(Form, ProcessingAtClient = True) Export
 	EndIf;
 	
 	If Form.CurrentTypesOfValuesToSelect.Count() = 0 Then
-		Form.CurrentTypesOfValuesToSelect.Add(Undefined, NStr("en = 'Undefined';"));
+		Form.CurrentTypesOfValuesToSelect.Add(Undefined, NStr("en = 'Undefined';tr = 'Tanımlanmamış'"));
 	EndIf;
 	
 	Items.AccessValues.Enabled = CanEditValues;
@@ -467,10 +467,10 @@ Procedure ProcessingOfCheckOfFillingAtServerAllowedValuesEditForm(
 		If AccessKindRow.AccessKind = Undefined Then
 			CommonClientServer.AddUserError(Errors,
 				Parameters.PathToTables + "AccessKinds[%1].AccessKind",
-				NStr("en = 'The access kind is not selected.';"),
+				NStr("en = 'The access kind is not selected.';tr = 'Erişim türü seçilmedi.'"),
 				"AccessKinds",
 				AccessKinds.Find(AccessKindRow),
-				NStr("en = 'No access kind selected in line #%1.';"),
+				NStr("en = 'No access kind selected in line #%1.';tr = '%1 satırdaki erişim türü seçilmedi.'"),
 				Parameters.AccessKinds.IndexOf(AccessKindRow));
 			Cancel = True;
 			Continue;
@@ -482,11 +482,11 @@ Procedure ProcessingOfCheckOfFillingAtServerAllowedValuesEditForm(
 			
 			CommonClientServer.AddUserError(Errors,
 				Parameters.PathToTables + "AccessKinds[%1].AccessKind",
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Access kind ""%1"" does not match the profile assignment.';"),
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Access kind ""%1"" does not match the profile assignment.';tr = '""%1"" erişim türü profilin amacına uygun değildir.'"),
 					AccessKindRow.AccessKindPresentation),
 				"AccessKinds",
 				AccessKinds.Find(AccessKindRow),
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Access kind ""%1"" in line #%2 does not match the profile assignment.';"),
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Access kind ""%1"" in line #%2 does not match the profile assignment.';tr = '%2 satırındaki ""%1"" erişim türü profilin amacına uygun değildir.'"),
 					AccessKindRow.AccessKindPresentation, "%1"),
 				Parameters.AccessKinds.IndexOf(AccessKindRow));
 			Cancel = True;
@@ -500,11 +500,11 @@ Procedure ProcessingOfCheckOfFillingAtServerAllowedValuesEditForm(
 		If FoundAccessKinds.Count() > 1 Then
 			CommonClientServer.AddUserError(Errors,
 				Parameters.PathToTables + "AccessKinds[%1].AccessKind",
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Duplicate access kind: ""%1"".';"),
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Duplicate access kind: ""%1"".';tr = '""%1"" erişim türü tekrarlandı.'"),
 					AccessKindRow.AccessKindPresentation),
 				"AccessKinds",
 				AccessKinds.Find(AccessKindRow),
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Duplicate access kind ""%1"" in line #%2.';"),
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Duplicate access kind ""%1"" in line #%2.';tr = '""%1"" erişim türü %2 satırında tekrarlanıyor.'"),
 					AccessKindRow.AccessKindPresentation, "%1"),
 				Parameters.AccessKinds.IndexOf(AccessKindRow));
 			Cancel = True;
@@ -528,10 +528,10 @@ Procedure ProcessingOfCheckOfFillingAtServerAllowedValuesEditForm(
 				
 				CommonClientServer.AddUserError(Errors,
 					Parameters.PathToTables + "AccessValues[%1].AccessValue",
-					NStr("en = 'No value is selected.';"),
+					NStr("en = 'No value is selected.';tr = 'Değer seçilmedi'"),
 					"AccessValues",
 					AccessValues.Find(AccessValueRow),
-					NStr("en = 'No value selected in line #%1.';"),
+					NStr("en = 'No value selected in line #%1.';tr = '%1Satırdaki değer seçilmedi.'"),
 					Parameters.AccessValues.IndexOf(AccessValueRow));
 				Cancel = True;
 				Continue;
@@ -547,10 +547,10 @@ Procedure ProcessingOfCheckOfFillingAtServerAllowedValuesEditForm(
 				
 				CommonClientServer.AddUserError(Errors,
 					Parameters.PathToTables + "AccessValues[%1].AccessValue",
-					NStr("en = 'Duplicate value.';"),
+					NStr("en = 'Duplicate value.';tr = 'Değer tekrarlandı.'"),
 					"AccessValues",
 					AccessValues.Find(AccessValueRow),
-					NStr("en = 'Duplicate value in line #%1.';"),
+					NStr("en = 'Duplicate value in line #%1.';tr = '%1 satırındaki değer tekrarlandı.'"),
 					Parameters.AccessValues.IndexOf(AccessValueRow));
 				Cancel = True;
 				Continue;

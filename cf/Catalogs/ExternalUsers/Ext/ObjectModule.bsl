@@ -47,7 +47,7 @@ Procedure BeforeWrite(Cancel)
 	IsNew = IsNew();
 	
 	If Not ValueIsFilled(AuthorizationObject) Then
-		ErrorText = NStr("en = 'No authorization object is set for the external user.';");
+		ErrorText = NStr("en = 'No authorization object is set for the external user.';tr = 'Harici kullanıcı için yetkilendirme nesnesi belirlenmedi.'");
 		Raise ErrorText;
 	Else
 		ErrorText = "";
@@ -67,7 +67,7 @@ Procedure BeforeWrite(Cancel)
 		If ValueIsFilled(PreviousAuthorizationObject)
 		   And PreviousAuthorizationObject <> AuthorizationObject Then
 			
-			ErrorText = NStr("en = 'Cannot change a previously specified authorization object.';");
+			ErrorText = NStr("en = 'Cannot change a previously specified authorization object.';tr = 'Daha önce belirlenen yetkilendirme nesnesi değiştirilemez.'");
 			Raise ErrorText;
 		EndIf;
 	EndIf;
@@ -159,5 +159,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

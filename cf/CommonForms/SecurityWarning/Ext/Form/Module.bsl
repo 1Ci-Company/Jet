@@ -15,13 +15,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not ValueIsFilled(Parameters.Key) Then
 		ErrorText =
-			NStr("en = 'The common form ""Security warning"" is auxiliary; it is meant to be opened by the internal application algorithms.';");
+			NStr("en = 'The common form ""Security warning"" is auxiliary; it is meant to be opened by the internal application algorithms.';tr = '""Güvenlik Uyarısı"" genel formu yardımcı olup programın hizmet mekanizmalarından açılır.'");
 		Raise ErrorText;
 	EndIf;
 	
 	If Not UsersInternalClientServer.SecurityWarningKinds().Property(Parameters.Key) Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Invalid security warning specified: %1.';"),
+			NStr("en = 'Invalid security warning specified: %1.';tr = 'Geçersiz güvenlik uyarısı belirtildi: %1.'"),
 			Parameters.Key);
 		Raise(ErrorText, ErrorCategory.ConfigurationError);
 	EndIf;
@@ -61,7 +61,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 			ModuleIBBackupServer = Common.CommonModule("IBBackupServer");
 			Items.WarningBeforeDeleteExtensionWithDataBackup.Title = 
 				StringFunctions.FormattedString(NStr("en = 'It is recommended that you 
-					|<a href=""%1"">back up the infobase</a> before deleting the extension.';"),
+					|<a href=""%1"">back up the infobase</a> before deleting the extension.';tr = 'Uzantı silinmeden önce infobase''nin</a> yedeklenmesi tavsiye edilir
+					|<a href=""%1"">.'"),
 				ModuleIBBackupServer.BackupDataProcessorURL());
 			Items.WarningBeforeDeleteExtensionWithoutDataBackup.Title =
 				Items.WarningBeforeDeleteExtensionWithDataBackup.Title;
@@ -69,15 +70,15 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		If Parameters.AdditionalParameter = True Then
 			Items.WarningBeforeDeleteExtensionWithDataTextDelete.Title =
-				NStr("en = 'Do you want to delete the selected extensions?';");
+				NStr("en = 'Do you want to delete the selected extensions?';tr = 'Seçilen uzantılar silinsin mi?'");
 		Else
 			Items.WarningBeforeDeleteExtensionWithDataTextDelete.Title =
-				NStr("en = 'Do you want to delete the extension?';");
+				NStr("en = 'Do you want to delete the extension?';tr = 'Uzantı silinsin mi?'");
 		EndIf;
 		Items.WarningBeforeDeleteExtensionWithoutDataTextDelete.Title = 
 			Items.WarningBeforeDeleteExtensionWithDataTextDelete.Title;
 		
-		Title = NStr("en = 'Warning';");
+		Title = NStr("en = 'Warning';tr = 'Uyarı'");
 	EndIf;
 	
 EndProcedure
@@ -207,9 +208,9 @@ Procedure ProposeRestart()
 	
 	Handler = New NotifyDescription("RestartApplication", ThisObject);
 	Buttons = New ValueList;
-	Buttons.Add("Restart", NStr("en = 'Restart';"));
-	Buttons.Add("DoNotRestart", NStr("en = 'Do not restart';"));
-	QueryText = NStr("en = 'To apply the changes, restart the application.';");
+	Buttons.Add("Restart", NStr("en = 'Restart';tr = 'Yeniden başlat'"));
+	Buttons.Add("DoNotRestart", NStr("en = 'Do not restart';tr = 'Yeniden başlatma'"));
+	QueryText = NStr("en = 'To apply the changes, restart the application.';tr = 'Değişikliklerin uygulanması için program yeniden başlatılmalıdır.'");
 	ShowQueryBox(Handler, QueryText, Buttons);
 EndProcedure
 

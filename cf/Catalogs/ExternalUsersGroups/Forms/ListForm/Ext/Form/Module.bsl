@@ -26,11 +26,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		If Parameters.CloseOnChoice = False Then
 			// Pick mode.
-			Title = NStr("en = 'Pick external user groups';");
+			Title = NStr("en = 'Pick external user groups';tr = 'Harici kullanıcı gruplarını seç'");
 			Items.List.MultipleChoice = True;
 			Items.List.SelectionMode = TableSelectionMode.MultiRow;
 		Else
-			Title = NStr("en = 'Select external user groups';");
+			Title = NStr("en = 'Select external user groups';tr = 'Harici kullanıcı grupları seçin'");
 		EndIf;
 		
 		AutoTitle = False;

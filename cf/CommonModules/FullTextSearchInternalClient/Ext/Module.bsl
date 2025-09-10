@@ -14,10 +14,11 @@ Procedure ShowExclusiveChangeModeWarning() Export
 	
 	QueryText = 
 		NStr("en = 'To change the full-text search mode, close all sessions,
-		           |except for the current user session.';");
+		           |except for the current user session.';tr = 'Tam metin arama modunu değiştirmek için mevcut kullanıcı dışındaki tüm kullanıcı oturumlarını 
+		           |kapatın.'");
 	
 	Buttons = New ValueList;
-	Buttons.Add("ActiveUsers", NStr("en = 'Active users';"));
+	Buttons.Add("ActiveUsers", NStr("en = 'Active users';tr = 'Aktif kullanıcılar'"));
 	Buttons.Add(DialogReturnCode.Cancel);
 	
 	Handler = New NotifyDescription("AfterDisplayWarning", ThisObject);

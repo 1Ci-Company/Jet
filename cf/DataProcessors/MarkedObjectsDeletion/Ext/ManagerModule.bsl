@@ -24,7 +24,7 @@
 Function ToDeleteMarkedObjects(DeletionParameters, JobID = Undefined) Export
 	
 	If Not Users.IsFullUser() Then
-		Raise(NStr("en = 'Insufficient rights to perform the operation.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok.'"), ErrorCategory.AccessViolation);
 	EndIf;
 	
 	Measurement = CurrentUniversalDateInMilliseconds();	
@@ -120,7 +120,7 @@ Procedure ReflectNotDeletedItems(DeletionParameters, NotTrash)
 		ElsIf Item.DeletionResult = DeletionResultCodes().NoMarkedForDeletion Then 	
 			Cause = DeletionParameters.ObjectsPreventingDeletion.Add();
 			Cause.ItemToDeleteRef = Item.ItemToDeleteRef;
-			Cause.ErrorDescription = NStr("en = 'The object being deleted is not marked for deletion.';");
+			Cause.ErrorDescription = NStr("en = 'The object being deleted is not marked for deletion.';tr = 'Silinecek nesne silinmek üzere işaretlenmemiş'");
 		EndIf;
 
 	EndDo;
@@ -471,7 +471,7 @@ Procedure ClearRefsInUsageInstance(UsageInstance1, ObjectsToDelete)
 		CommitTransaction();
 	Except
 		RollbackTransaction();
-		WriteWarning(NStr("en = 'Couldn''t remove links to the object in ""%1"" due to:';"), 
+		WriteWarning(NStr("en = 'Couldn''t remove links to the object in ""%1"" due to:';tr = '""%1"" konumundaki nesneye bağlantılar şu nedenle kaldırılamadı:'"), 
 			UsageInstance1, ErrorInfo());
 	EndTry;
 	
@@ -824,7 +824,7 @@ Function ProcessPackageInOneTransaction(DeletionParameters, Package)
 	Except
 		RollbackTransaction();
 		Result.NotDeletedObjects = Package.Copy();
-		WriteWarning(NStr("en = 'Couldn''t delete ""%1"" due to:';"),
+		WriteWarning(NStr("en = 'Couldn''t delete ""%1"" due to:';tr = '""%1"" şu nedenle silinemedi:'"),
 			ItemPresentation, ErrorInfo());
 	EndTry;
 	AfterDeletingAGroupOfObjects(Context, True);
@@ -882,7 +882,7 @@ Function DeletePackageItem(DeletionParameters, Item, UsageInstances, UndeletedIt
 		DeleteObject(Object);	
 	Except
 		ErrorInfo = ErrorInfo();
-		WriteWarning(NStr("en = 'Couldn''t delete ""%1"" due to:';"), ItemPresentation, ErrorInfo);
+		WriteWarning(NStr("en = 'Couldn''t delete ""%1"" due to:';tr = '""%1"" şu nedenle silinemedi:'"), ItemPresentation, ErrorInfo);
 		Result.Messages = TimeConsumingOperations.UserMessages(True);
 		Result.ErrorInfo = ErrorInfo; 
 		Result.Code = DeletionResultCodes().ErrorOnDelete;
@@ -1581,7 +1581,7 @@ Procedure DeleteMarkedObjectsExclusively(ObjectsToDelete, ExecutionParameters)
 				And Not DeletableObjectsInfoRecords[RemovableObject].DeletionMark Then
 			ReasonForNotDeletion = New Structure;
 			ReasonForNotDeletion.Insert("ItemToDeleteRef", RemovableObject);
-			ReasonForNotDeletion.Insert("UsageInstance1", NStr("en = 'The object being deleted is not marked for deletion.';"));
+			ReasonForNotDeletion.Insert("UsageInstance1", NStr("en = 'The object being deleted is not marked for deletion.';tr = 'Silinecek nesne silinmek üzere işaretlenmemiş'"));
 			ReasonForNotDeletion.Insert("FoundMetadata");
 			WriteReasonToResult(ExecutionParameters, ReasonForNotDeletion, TypesInformation);
 			ObjectsToDelete.Delete(-IndexOf);
@@ -1615,7 +1615,7 @@ Procedure DeleteMarkedObjectsExclusively(ObjectsToDelete, ExecutionParameters)
 			DeleteObjects(ObjectsToDelete, True, ObjectsPreventingDeletion);
 		Except
 			ErrorInfo = ErrorInfo();
-			WriteWarning(NStr("en = 'Couldn''t delete items due to:';"), Undefined, ErrorInfo);
+			WriteWarning(NStr("en = 'Couldn''t delete items due to:';tr = 'Öğeler şu nedenle silinemedi:'"), Undefined, ErrorInfo);
 			ErrorDescription = ErrorProcessing.BriefErrorDescription(ErrorInfo);
 
 			Messages = TimeConsumingOperations.UserMessages(True);
@@ -1630,7 +1630,7 @@ Procedure DeleteMarkedObjectsExclusively(ObjectsToDelete, ExecutionParameters)
 		SetPrivilegedMode(False);
 		
 		If ObjectsPreventingDeletion.Columns.Count() < 3 Then
-			Raise NStr("en = 'Cannot delete the objects.';");
+			Raise NStr("en = 'Cannot delete the objects.';tr = 'Nesneler silinemedi.'");
 		EndIf;
 		
 		InternalDataLinks = Common.InternalDataLinks(ObjectsPreventingDeletion, ExecutionParameters.RefSearchExclusions);
@@ -1695,7 +1695,7 @@ Procedure WriteWarning(Val LongDesc, Val ItemPresentation, Val ErrorInfo)
 	EndIf;
 	TextForLog = StringFunctionsClientServer.SubstituteParametersToString(LongDesc, ItemPresentation) 
 		+ Chars.LF + TextForLog;
-	WriteLogEvent(NStr("en = 'Delete marked objects';", Common.DefaultLanguageCode()),
+	WriteLogEvent(NStr("en = 'Delete marked objects';tr = 'İşaretlilerin silinmesi'", Common.DefaultLanguageCode()),
 		EventLogLevel.Warning,,, TextForLog);
 EndProcedure
 
@@ -1723,7 +1723,7 @@ Procedure WriteReasonToResult(ExecutionParameters, TableRow, TypesInformation)
 	If UsageInstance1 = Undefined 
 		And Not Metadata.Constants.Contains(TableRow.Metadata) Then
 			Cause.ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Unresolvable references detected (%1)';"),
+				NStr("en = 'Unresolvable references detected (%1)';tr = 'Yanlış referanslar tespit edildi (%1)'"),
 				TableRow.Metadata.Presentation());
 	EndIf;
 	
@@ -1770,19 +1770,19 @@ Procedure MarkCollectionTraversalProgress(ExecutionParameters, CollectionName)
 	// Prepare parameters to be passed.
 	If CollectionName = "BeforeSearchForItemsMarkedForDeletion" Then
 		
-		Text = NStr("en = 'Preparing to search for objects marked for deletion.';");
+		Text = NStr("en = 'Preparing to search for objects marked for deletion.';tr = 'Silmek için işaretlenmiş nesneleri bulmak için hazırlayın.'");
 		
 	ElsIf CollectionName = "FindMarkedForDeletion" Then
 		
-		Text = NStr("en = 'Searching for objects marked for deletion.';");
+		Text = NStr("en = 'Searching for objects marked for deletion.';tr = 'Silinmek üzere işaretlenmiş nesneleri ara.'");
 		
 	ElsIf CollectionName = "AllObjectsMarkedForDeletion" Then
 		
-		Text = NStr("en = 'Analyzing objects marked for deletion.';");
+		Text = NStr("en = 'Analyzing objects marked for deletion.';tr = 'Silinmek için işaretli olanların analizi.'");
 		
 	ElsIf CollectionName = "ExclusiveDeletion" Then
 		
-		Text = NStr("en = 'Deleting objects.';");
+		Text = NStr("en = 'Deleting objects.';tr = 'Nesneler siliniyor.'");
 		
 	ElsIf CollectionName = "UserObjects" Then
 		
@@ -1790,21 +1790,21 @@ Procedure MarkCollectionTraversalProgress(ExecutionParameters, CollectionName)
 		AdditionalParameters.Insert("SessionNumber", InfoBaseSessionNumber());
 		AdditionalParameters.Insert("ProcessedItemsCount", ExecutionParameters.ProcessedItemsCount);
 		Text = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Processed %1 of %2';"),
+			NStr("en = 'Processed %1 of %2';tr = '%2 dan %1 işlendi'"),
 			ExecutionParameters.ProcessedItemsCount,
 			ExecutionParameters.CountOfItemsToDelete);
 		
 	ElsIf CollectionName = "ToRedelete" Then
 		
 		Text = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Analyzing skipped objects: %1 out of %2.';"),
+			NStr("en = 'Analyzing skipped objects: %1 out of %2.';tr = 'Atlanan nesnelerin analizi: %1 / %2.'"),
 			Format(ExecutionParameters.Number, "NZ=0; NG="),
 			Format(ExecutionParameters.Total, "NZ=0; NG="));
 		
 	ElsIf CollectionName = "ObjectsPreventingDeletion" Then
 		
 		Text = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Analyzing objects that prevent deletion: %1 out of %2.';"),
+			NStr("en = 'Analyzing objects that prevent deletion: %1 out of %2.';tr = 'Silinmeye engel olan nesnelerin analizi: %1 / %2.'"),
 			Format(ExecutionParameters.Number, "NZ=0; NG="),
 			Format(ExecutionParameters.Total, "NZ=0; NG="));
 		
@@ -1832,7 +1832,7 @@ Procedure SendStatistics1(DeletionMode, RunTime, ItemsToDeleteCount)
 	ModuleMonitoringCenter = Common.CommonModule("MonitoringCenter");
 	ModuleMonitoringCenter.WriteBusinessStatisticsOperation(
 		"Core.DeleteMarkedObjects."+DeletionMode, RunTime,
-		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Number of items: %1';"), ItemsToDeleteCount));
+		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Number of items: %1';tr = 'Öğe sayısı: %1'"), ItemsToDeleteCount));
 		
 EndProcedure
 

@@ -34,7 +34,7 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 		If Not UseForObjectForm And Not UseForListForm 
 			And Publication <> Enums.AdditionalReportsAndDataProcessorsPublicationOptions.isDisabled Then
 			Common.MessageToUser(
-				NStr("en = 'Disable publication or select at least one of the forms to use.';"),,, 
+				NStr("en = 'Disable publication or select at least one of the forms to use.';tr = 'Göndermeyi devre dışı bırakın veya kullanılacak formlardan en az birini seçin.'"),,, 
 				"Object.UseForObjectForm", Cancel);
 		EndIf;
 	EndIf;
@@ -82,14 +82,16 @@ Procedure FillCheckProcessing(Cancel, CheckedAttributes)
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The %1 report or data processor name is not unique.
 					|
-					|To continue, change the Publication type from ""%2"" to ""%3"" or ""%4"".';"),
+					|To continue, change the Publication type from ""%2"" to ""%3"" or ""%4"".';tr = '%1 rapor veya veri işlemcisi adı benzersiz değil.
+					|
+					|Devam etmek için ""%2"" Yayın türünü ""%3"" veya ""%4"" olarak değiştirin.'"),
 					ObjectName,
 					String(Enums.AdditionalReportsAndDataProcessorsPublicationOptions.Used),
 					String(Enums.AdditionalReportsAndDataProcessorsPublicationOptions.DebugMode),
 					String(Enums.AdditionalReportsAndDataProcessorsPublicationOptions.isDisabled));
 			Else
 				ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The name %1 of the %2 report or data processor is not unique. The same name is assigned to another report or data processor.';"),
+					NStr("en = 'The name %1 of the %2 report or data processor is not unique. The same name is assigned to another report or data processor.';tr = '""%2"" raporda kullanılan ""%1"" adı (veri işlemcisi) yayınlanan başka bir ek rapor (veri işlemcisi) tarafından zaten kullanılıyor.'"),
 					ObjectName,
 					String(Ref));
 			EndIf;
@@ -111,14 +113,14 @@ Procedure BeforeWrite(Cancel)
 	SSLSubsystemsIntegration.BeforeWriteAdditionalDataProcessor(ThisObject, Cancel);
 	
 	If IsNew() And Not AdditionalReportsAndDataProcessors.InsertRight1(ThisObject) Then
-		Raise(NStr("en = 'Insufficient rights to add additional reports or data processors.';"),
+		Raise(NStr("en = 'Insufficient rights to add additional reports or data processors.';tr = 'Ek raporlar veya veri işlemcileri eklemek için yetersiz haklar.'"),
 			ErrorCategory.AccessViolation);
 	EndIf;
 	
 	// Preliminary checks.
 	If Not IsNew() And Kind <> Common.ObjectAttributeValue(Ref, "Kind") Then
 		Common.MessageToUser(
-			NStr("en = 'Cannot change the type of additional report or data processor.';"),,,,
+			NStr("en = 'Cannot change the type of additional report or data processor.';tr = 'Mevcut ek raporun veya veri işlemcisinin türü değiştirilemiyor.'"),,,,
 			Cancel);
 		Return;
 	EndIf;
@@ -335,7 +337,7 @@ Function JobPresentation(Command)
 		+ ": "
 		+ TrimAll(Description)
 		+ " / "
-		+ NStr("en = 'Command';")
+		+ NStr("en = 'Command';tr = 'Komut'")
 		+ ": "
 		+ TrimAll(Command.Presentation));
 EndFunction
@@ -383,7 +385,7 @@ Procedure OnWriteReport(Cancel)
 				ExternalObject = AdditionalReportsAndDataProcessors.ExternalDataProcessorObject(Ref);
 			EndIf;
 		Except
-			ErrorText = NStr("en = 'Attachment error:';") + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
+			ErrorText = NStr("en = 'Attachment error:';tr = 'Bağlantı hatası:'") + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 			AdditionalReportsAndDataProcessors.WriteError(Ref, ErrorText);
 			AdditionalProperties.Insert("AttachmentError", ErrorText);
 			ExternalObject = Undefined;
@@ -403,5 +405,5 @@ EndProcedure
 #EndIf
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

@@ -25,7 +25,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	TreeRow = ValueTree.Rows.Add();
 	TreeRow.Name            = "NonIncludedToSections";
 	TreeRow.FullName      = "NonIncludedToSections";
-	TreeRow.Presentation  = NStr("en = 'Not included in sections';");
+	TreeRow.Presentation  = NStr("en = 'Not included in sections';tr = 'Bölümlere dahil değil'");
 	TreeRow.Ref   = Catalogs.MetadataObjectIDs.EmptyRef();
 
 	ValueToFormAttribute(ValueTree, "SubsystemsTree");
@@ -80,11 +80,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Items.FilterReportType.Visible = ReportsOptions.FullRightsToOptions();
 
 	ChoiceList = Items.FilterReportType.ChoiceList;
-	ChoiceList.Add(1, NStr("en = 'All but external reports';"));
-	ChoiceList.Add(Enums.ReportsTypes.BuiltIn, NStr("en = 'Integrated reports';"));
-	ChoiceList.Add(Enums.ReportsTypes.Extension, NStr("en = 'Extensions';"));
-	ChoiceList.Add(Enums.ReportsTypes.Additional, NStr("en = 'Additional reports';"));
-	ChoiceList.Add(Enums.ReportsTypes.External, NStr("en = 'External reports';"));
+	ChoiceList.Add(1, NStr("en = 'All but external reports';tr = 'Harici raporlar dışında tümü'"));
+	ChoiceList.Add(Enums.ReportsTypes.BuiltIn, NStr("en = 'Integrated reports';tr = 'Entegre raporlar'"));
+	ChoiceList.Add(Enums.ReportsTypes.Extension, NStr("en = 'Extensions';tr = 'Uzantılar'"));
+	ChoiceList.Add(Enums.ReportsTypes.Additional, NStr("en = 'Additional reports';tr = 'Ek raporlar'"));
+	ChoiceList.Add(Enums.ReportsTypes.External, NStr("en = 'External reports';tr = 'Harici raporlar'"));
 
 	SearchString = Parameters.SearchString;
 	If Parameters.Filter.Property("ReportType", FilterReportType) Then
@@ -263,15 +263,15 @@ Procedure SubsystemsTreeDrag(Item, DragParameters, StandardProcessing, String, F
 
 	If PlacementParameters.Variants.Total = 1 Then
 		If PlacementParameters.Action = "Copy" Then
-			QuestionTemplate = NStr("en = 'Do you want to add ""%1"" to %4?';");
+			QuestionTemplate = NStr("en = 'Do you want to add ""%1"" to %4?';tr = '""%1"" şuraya eklensin mi: %4'");
 		Else
-			QuestionTemplate = NStr("en = 'Do you want to move %1 from %3 to %4?';");
+			QuestionTemplate = NStr("en = 'Do you want to move %1 from %3 to %4?';tr = '%1, %3 konumundan %4 konumuna taşınsın mı?'");
 		EndIf;
 	Else
 		If PlacementParameters.Action = "Copy" Then
-			QuestionTemplate = NStr("en = 'Do you want to add %2 report options %1 to %4?';");
+			QuestionTemplate = NStr("en = 'Do you want to add %2 report options %1 to %4?';tr = '%2 rapor seçenekleri %1 ila %4 eklensin mi?'");
 		Else
-			QuestionTemplate = NStr("en = 'Do you want to move %2 report options %1 from %3 to %4?';");
+			QuestionTemplate = NStr("en = 'Do you want to move %2 report options %1 from %3 to %4?';tr = '%2 rapor seçeneği %1, %3 konumundan %4 konumuna taşınsın mı?'");
 		EndIf;
 	EndIf;
 
@@ -454,7 +454,7 @@ Function PlacementParameters(DragParameters, String)
 	PlacementParameters.Source = Source;
 
 	If Source.Ref = Receiver.Ref Then
-		ShowMessageBox(, NStr("en = 'Selected report options already assigned to this section.';"));
+		ShowMessageBox(, NStr("en = 'Selected report options already assigned to this section.';tr = 'Seçilen rapor seçenekleri bu bölümde zaten var.'"));
 		Return Undefined;
 	EndIf;
 
@@ -517,19 +517,19 @@ Procedure SubsystemsTreeDragCompletion(Response, PlacementParameters) Export
 	If PlacementParameters.Variants.Total = ExecutionResult.Placed Then
 		If PlacementParameters.Variants.Total = 1 Then
 			If PlacementParameters.Action = "Move" Then
-				Template = NStr("en = 'Report successfully moved to %1.';");
+				Template = NStr("en = 'Report successfully moved to %1.';tr = 'Rapor taşındı: %1.'");
 			Else
-				Template = NStr("en = 'Report successfully added to %1.';");
+				Template = NStr("en = 'Report successfully added to %1.';tr = 'Rapor şuraya eklendi: %1.'");
 			EndIf;
 			Text = PlacementParameters.Variants.Presentation;
 			Ref = GetURL(PlacementParameters.Variants.Array[0]);
 		Else
 			If PlacementParameters.Action = "Move" Then
-				Template = NStr("en = 'Reports successfully moved to %1.';");
+				Template = NStr("en = 'Reports successfully moved to %1.';tr = 'Raporlar taşındı: %1.'");
 			Else
-				Template = NStr("en = 'Reports successfully added to %1.';");
+				Template = NStr("en = 'Reports successfully added to %1.';tr = 'Raporlar şuraya eklendi: %1.'");
 			EndIf;
-			Text = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 report options.';"),
+			Text = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 report options.';tr = '%1 rapor seçenekleri.'"),
 				Format(PlacementParameters.Variants.Total, "NZ=0; NG=0"));
 			Ref = Undefined;
 		EndIf;
@@ -540,22 +540,26 @@ Procedure SubsystemsTreeDragCompletion(Response, PlacementParameters) Export
 		ErrorsText = "";
 		If Not IsBlankString(ExecutionResult.CannotBePlaced) Then
 			ErrorsText = ?(ErrorsText = "", "", ErrorsText + Chars.LF + Chars.LF) 
-				+ NStr("en = 'Cannot add to the command interface:';") + Chars.LF
+				+ NStr("en = 'Cannot add to the command interface:';tr = 'Komut arayüzüne eklenemedi:'") + Chars.LF
 				+ ExecutionResult.CannotBePlaced;
 		EndIf;
 		If Not IsBlankString(ExecutionResult.AlreadyAssigned) Then
 			ErrorsText = ?(ErrorsText = "", "", ErrorsText + Chars.LF + Chars.LF) 
-				+ NStr("en = 'Already added to this section:';") + Chars.LF + ExecutionResult.AlreadyAssigned;
+				+ NStr("en = 'Already added to this section:';tr = 'Bu bölüme eklendi:'") + Chars.LF + ExecutionResult.AlreadyAssigned;
 		EndIf;
 
 		If PlacementParameters.Action = "Move" Then
 			Template = NStr("en = '%1 out of %2 report options have been moved.
 						  |Details:
-						  |%3';");
+						  |%3';tr = '%1 / %2 rapor seçeneği taşındı.
+						  |Ayrıntılar:
+						  |%3'");
 		Else
 			Template = NStr("en = '%1 out of %2 report options have been added.
 						  |Details:
-						  |%3';");
+						  |%3';tr = '%1 / %2 rapor seçeneği eklendi.
+						  |Ayrıntılar:
+						  |%3'");
 		EndIf;
 
 		StandardSubsystemsClient.ShowQuestionToUser(Undefined,
@@ -662,7 +666,7 @@ EndProcedure
 &AtClient
 Procedure SetSubsystemsTreeTitle()
 	Items.SectionsGroup.Title = ?(Items.SubsystemsTree.CurrentData = Undefined, 
-		NStr("en = 'All sections';", CommonClient.DefaultLanguageCode()),
+		NStr("en = 'All sections';tr = 'Tüm bölümler'", CommonClient.DefaultLanguageCode()),
 		Items.SubsystemsTree.CurrentData.Presentation);
 EndProcedure
 
@@ -716,11 +720,11 @@ Function AssignOptionsToSubsystem(PlacementParameters)
 		For Each OptionRef In PlacementParameters.Variants.Array Do
 			If OptionRef.ReportType = Enums.ReportsTypes.External Then
 				CannotBePlaced = ?(CannotBePlaced = "", "", CannotBePlaced + Chars.LF) + "  " 
-					+ String(OptionRef) + " (" + NStr("en = 'external';") + ")";
+					+ String(OptionRef) + " (" + NStr("en = 'external';tr = 'harici'") + ")";
 				Continue;
 			ElsIf OptionRef.DeletionMark Then
 				CannotBePlaced = ?(CannotBePlaced = "", "", CannotBePlaced + Chars.LF) + "  " 
-					+ String(OptionRef) + " (" + NStr("en = 'marked for deletion';") + ")";
+					+ String(OptionRef) + " (" + NStr("en = 'marked for deletion';tr = 'silinmek üzere işaretlendi'") + ")";
 				Continue;
 			EndIf;
 

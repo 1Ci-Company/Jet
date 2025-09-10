@@ -71,7 +71,7 @@ EndProcedure
 Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	
 	If Object.Inventory.Total("Total") < Object.AdvanceClearing.Total("AmountCur") Then
-		MessageText = NStr("en = 'The invoice amount is less than the clearing amount.'");
+		MessageText = NStr("en = 'The invoice amount is less than the clearing amount.'; tr = 'Fatura tutarı, mahsup tutarından düşük.'");
 		Common.MessageToUser(MessageText,,,, Cancel);
 	EndIf;
 	
@@ -210,7 +210,7 @@ EndProcedure
 Procedure SelectAdvances(Command)
 	
 	If Not ValueIsFilled(Object.Supplier) Then
-		ShowMessageBox(, NStr("en = 'Please specify the supplier.'"));
+		ShowMessageBox(, NStr("en = 'Please specify the supplier.'; tr = 'Lütfen tedarikçiyi belirtin.'"));
 		Return;
 	EndIf;
 	
@@ -240,7 +240,7 @@ Procedure ImportInventoryFromFile(Command)
 	
 	ImportParameters = ImportDataFromFileClient.DataImportParameters();
 	ImportParameters.FullTabularSectionName = "SupplierInvoice.Inventory";
-	ImportParameters.Title = NStr("en = 'Import inventory from file'");
+	ImportParameters.Title = NStr("en = 'Import inventory from file'; tr = 'Stoğu dosyadan içe aktar'");
 	
 	CallbackDescription = New CallbackDescription("ImportInventoryFromFileEnd", ThisObject);
 	
@@ -328,7 +328,7 @@ Procedure FormManagement()
 		Items.Multiplier.ReadOnly = False;
 		Items.AdvanceClearingAmountCur.Visible = True;
 		Items.AdvanceClearingAmountCur.Title = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Amount (%1)'"),
+				NStr("en = 'Amount (%1)'; tr = 'Tutar (%1)'"),
 				Object.Currency);
 	EndIf;
 	
@@ -341,7 +341,7 @@ Procedure FormManagement()
 	Items.TotalTotal.Visible			= SubjectToVAT;
 	
 #If MobileClient Then
-	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Title", NStr("en = 'Totals'"));
+	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Title", NStr("en = 'Totals'; tr = 'Toplamlar'"));
 	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Behavior", UsualGroupBehavior.Collapsible);
 	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "ShowTitle", True);
 	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "ControlRepresentation", UsualGroupControlRepresentation.TitleHyperlink);

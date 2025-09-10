@@ -41,12 +41,12 @@ EndProcedure
 Procedure OK(Command)
 	
 	If IntervalException = 0 Then
-		CommonClient.MessageToUser(NStr("en = 'Please specify a nonzero number of days.';"),,, "IntervalException");
+		CommonClient.MessageToUser(NStr("en = 'Please specify a nonzero number of days.';tr = 'Gün sayısı 0 olamaz.'"),,, "IntervalException");
 		Return;
 	EndIf;
 	
 	If Not ValueIsFilled(DateTypeAttribute) Then
-		CommonClient.MessageToUser(NStr("en = 'Fill in file cleanup conditions.';"),,, "DateTypeAttribute");
+		CommonClient.MessageToUser(NStr("en = 'Fill in file cleanup conditions.';tr = 'Dosyaları temizleme şartları doldurulmalıdır.'"),,, "DateTypeAttribute");
 		Return;
 	EndIf;
 	

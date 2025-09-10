@@ -41,7 +41,8 @@ Procedure CreateNewEmailMessage(EmailSendOptions = Undefined, FormClosingNotific
 				New Structure("ContextMode", True), , , , , ResultHandler);
 		Else
 			MessageText = NStr("en = 'To send messages, set up the email account.
-				|Contact the administrator.';");
+				|Contact the administrator.';tr = 'İleti göndermek için e-posta hesabı kurun.
+				|Yönetici ile iletişime geçin.'");
 			NotifyDescription = New NotifyDescription("CheckAccountForSendingEmailExistsCompletion", ThisObject, ResultHandler);
 			ShowMessageBox(NotifyDescription, MessageText);
 		EndIf;
@@ -124,7 +125,8 @@ Procedure CheckAccountForSendingEmailExists(ResultHandler) Export
 				New Structure("ContextMode", True), , , , , ResultHandler);
 		Else	
 			MessageText = NStr("en = 'To send messages, set up the email account.
-				|Contact the administrator.';");
+				|Contact the administrator.';tr = 'İleti göndermek için e-posta hesabı kurun.
+				|Yönetici ile iletişime geçin.'");
 			NotifyDescription = New NotifyDescription("CheckAccountForSendingEmailExistsCompletion", ThisObject, ResultHandler);
 			ShowMessageBox(NotifyDescription, MessageText);
 		EndIf;

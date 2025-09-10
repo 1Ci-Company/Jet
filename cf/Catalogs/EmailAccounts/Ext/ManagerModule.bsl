@@ -79,7 +79,7 @@ Procedure PresentationGetProcessing(Data, Presentation, StandardProcessing)
 
 	StandardProcessing = False;
 	If ValueIsFilled(Data.Email) And StrFind(Data.Description, Data.Email) = 0 Then
-		Presentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';"), 
+		Presentation = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';tr = '%1 (%2)'"), 
 			Data.Description, Data.Email);
 	Else
 		Presentation = Data.Description;
@@ -188,7 +188,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 		CommitTransaction();
 	Except
 		RollbackTransaction();
-		WriteLogEvent(NStr("en = 'Email account update';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Email account update';tr = 'Hesap Güncellemeleri'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		Raise;
 	EndTry;
@@ -221,9 +221,9 @@ Procedure OnInitialItemsFilling(LanguagesCodes, Items, TabularSections) Export
 	
 	Item = Items.Add();
 	Item.PredefinedDataName        = "SystemEmailAccount";
-	Item.Description                     = NStr("en = 'System account';", 
+	Item.Description                     = NStr("en = 'System account';tr = 'Sistem hesabı'", 
 		Common.DefaultLanguageCode());
-	Item.UserName                  = NStr("en = '1C:Enterprise';", Common.DefaultLanguageCode());
+	Item.UserName                  = NStr("en = '1C:Enterprise';tr = '1C:Enterprise'", Common.DefaultLanguageCode());
 	Item.UseForReceiving         = False;
 	Item.UseForSending          = False;
 	Item.KeepMessageCopiesAtServer = False;
@@ -350,7 +350,7 @@ Function AccountPermissions(Account = Undefined) Export
 					AccountSettings1.Protocol,
 					AccountSettings1.Server,
 					AccountSettings1.Port,
-					NStr("en = 'Email.';")));
+					NStr("en = 'Email.';tr = 'E-posta.'")));
 		EndDo;
 		Result.Insert(Accounts_.Ref, Permissions);
 	EndDo;
@@ -894,14 +894,14 @@ Function TestConnectionToIncomingMailServer(Profile, Protocol)
 			Profile.POP3Port,
 			?(Profile.POP3UseSSL, "/SSL", ""),
 			Profile.User,
-			?(IsBlankString(ErrorText), NStr("en = 'OK';"), ErrorText));
+			?(IsBlankString(ErrorText), NStr("en = 'OK';tr = 'Tamam'"), ErrorText));
 	Else
 		TextForLog = StringFunctionsClientServer.SubstituteParametersToString("%1:%2%3 (%4)" + Chars.LF + "%5",
 			Profile.IMAPServerAddress,
 			Profile.IMAPPort,
 			?(Profile.IMAPUseSSL, "/SSL", ""),
 			Profile.IMAPUser,
-			?(IsBlankString(ErrorText), NStr("en = 'OK';"), ErrorText));
+			?(IsBlankString(ErrorText), NStr("en = 'OK';tr = 'Tamam'"), ErrorText));
 	EndIf;
 	
 	WriteLogEvent(MailServerConnectionTestEvent(), 
@@ -913,9 +913,9 @@ EndFunction
 
 Function TestConnectionToOutgoingMailServer(Profile, Email)
 	
-	Subject = NStr("en = 'Test message from 1C:Enterprise';");
-	Body = NStr("en = 'This message is sent by 1C:Enterprise.';");
-	EmailSenderName = NStr("en = '1C:Enterprise';");
+	Subject = NStr("en = 'Test message from 1C:Enterprise';tr = '1C:Enterprise test mesajı'");
+	Body = NStr("en = 'This message is sent by 1C:Enterprise.';tr = 'Bu mesaj 1C:Enterprise tarafından gönderildi.'");
+	EmailSenderName = NStr("en = '1C:Enterprise';tr = '1C:Enterprise'");
 	
 	MailMessage = New InternetMailMessage;
 	MailMessage.Subject = Subject;
@@ -947,7 +947,7 @@ Function TestConnectionToOutgoingMailServer(Profile, Email)
 		Profile.SMTPPort,
 		?(Profile.SMTPUseSSL, "/SSL", ""),
 		Profile.SMTPUser,
-		?(IsBlankString(ErrorText), NStr("en = 'OK';"), ErrorText));
+		?(IsBlankString(ErrorText), NStr("en = 'OK';tr = 'Tamam'"), ErrorText));
 		
 	WriteLogEvent(MailServerConnectionTestEvent(), 
 		EventLogLevel.Information, , , TextForLog);
@@ -1328,9 +1328,9 @@ Function CheckProfilesSettings(OutgoingMailProfile, IncomingMailProfile, Val Ema
 			
 			AuthenticationError = AuthenticationError(ErrorText);
 			If AuthenticationError(ErrorText) Then
-				MessageText.Add(NStr("en = 'Cannot send test mail: authorization failed.';"));
+				MessageText.Add(NStr("en = 'Cannot send test mail: authorization failed.';tr = 'Test mesajı gönderilemedi: Yetkilendirilemedi.'"));
 			Else
-				MessageText.Add(NStr("en = 'Sending the test mail failed.';"));
+				MessageText.Add(NStr("en = 'Sending the test mail failed.';tr = 'Test mesajı gönderilemedi.'"));
 				OutgoingMailSettingsCheckRequired = True;
 				
 				If Common.SubsystemExists("StandardSubsystems.GetFilesFromInternet") Then
@@ -1340,7 +1340,7 @@ Function CheckProfilesSettings(OutgoingMailProfile, IncomingMailProfile, Val Ema
 				EndIf;
 			EndIf;
 		Else
-			ExecutedChecks.Add("- " + NStr("en = 'Sending the test mail succeeded.';"));
+			ExecutedChecks.Add("- " + NStr("en = 'Sending the test mail succeeded.';tr = 'Test mesajı gönderildi.'"));
 		EndIf;
 		
 	EndIf;
@@ -1354,9 +1354,9 @@ Function CheckProfilesSettings(OutgoingMailProfile, IncomingMailProfile, Val Ema
 			
 			AuthenticationError = AuthenticationError(ErrorText);
 			If AuthenticationError(ErrorText) Then
-				MessageText.Add(NStr("en = 'Cannot connect to the incoming mail server: authorization failed.';"));
+				MessageText.Add(NStr("en = 'Cannot connect to the incoming mail server: authorization failed.';tr = 'Gelen posta sunucusuna bağlantı başarısız oldu: Yetkilendirilemedi.'"));
 			Else
-				MessageText.Add(NStr("en = 'Connection to the incoming mail server failed.';"));
+				MessageText.Add(NStr("en = 'Connection to the incoming mail server failed.';tr = 'Gelen posta sunucusuna bağlantı başarısız oldu.'"));
 				IncomingMailSettingsCheckRequired = True;
 				
 				If Common.SubsystemExists("StandardSubsystems.GetFilesFromInternet") Then
@@ -1367,13 +1367,13 @@ Function CheckProfilesSettings(OutgoingMailProfile, IncomingMailProfile, Val Ema
 				EndIf;
 			EndIf;
 		Else
-			ExecutedChecks.Add("- " + NStr("en = 'Connection to the incoming mail server succeeded.';"));
+			ExecutedChecks.Add("- " + NStr("en = 'Connection to the incoming mail server succeeded.';tr = 'Gelen posta sunucusuna bağlandı.'"));
 		EndIf;
 		
 	EndIf;
 	
 	TechnicalDetails.Add(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Email address: %1';"), Email));
+		NStr("en = 'Email address: %1';tr = 'E-posta adresi: %1'"), Email));
 	
 	TechnicalDetails.Add(SettingsDescription(OutgoingMailProfile, IncomingMailProfile));
 	
@@ -1390,16 +1390,16 @@ Function CheckProfilesSettings(OutgoingMailProfile, IncomingMailProfile, Val Ema
 		
 		Recommendations = New Array;
 		If AuthenticationError Then
-			Recommendations.Add(NStr("en = 'Ensure that the username, password, and authentication method are correct.';"));
+			Recommendations.Add(NStr("en = 'Ensure that the username, password, and authentication method are correct.';tr = 'Seçilen yetkilendirme yönteminin yanı sıra oturum açma ve parolanın doğruluğunu kontrol edin.'"));
 		EndIf;
 		If OutgoingMailSettingsCheckRequired Then
-			Recommendations.Add(NStr("en = 'Ensure that the outgoing mail server settings are correct.';"));
+			Recommendations.Add(NStr("en = 'Ensure that the outgoing mail server settings are correct.';tr = 'Giden posta sunucusu bağlantı ayarlarınızı kontrol edin.'"));
 		EndIf;
 		If IncomingMailSettingsCheckRequired Then
-			Recommendations.Add(NStr("en = 'Ensure that the incoming mail server settings are correct.';"));
+			Recommendations.Add(NStr("en = 'Ensure that the incoming mail server settings are correct.';tr = 'Gelen posta sunucusu bağlantı ayarlarınızı kontrol edin.'"));
 		EndIf;
 		If OutgoingMailSettingsCheckRequired Or IncomingMailSettingsCheckRequired Then
-			Recommendations.Add(NStr("en = 'Contact the network administrator.';"));
+			Recommendations.Add(NStr("en = 'Contact the network administrator.';tr = 'Yerel ağ yöneticinize başvurun.'"));
 		EndIf;
 		
 		Recommendations = StrConcat(Recommendations, Chars.LF);
@@ -1414,13 +1414,23 @@ Function CheckProfilesSettings(OutgoingMailProfile, IncomingMailProfile, Val Ema
 			|
 			|Details to provide to technical support:
 			|
-			|%4';"), MessageText, Recommendations, DomainName_SSLy, TechnicalDetails);
+			|%4';tr = '%1
+			|
+			|%2
+			|
+			|Posta sunucusu yöneticinize başvurun""%3"".
+			|
+			|============================
+			|
+			|Teknik destek için bilgiler:
+			|
+			|%4'"), MessageText, Recommendations, DomainName_SSLy, TechnicalDetails);
 	EndIf;
 	
 	ExecutedChecks = StrConcat(ExecutedChecks, Chars.LF);
 	
 	If ValueIsFilled(ConnectionErrors) Then
-		WriteLogEvent(NStr("en = 'Validating email account settings';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'Validating email account settings';tr = 'E-posta hesabı ayarları doğrulama'", Common.DefaultLanguageCode()),
 			EventLogLevel.Warning, , , ConnectionErrors);
 	EndIf;
 	
@@ -1456,7 +1466,7 @@ Function SettingsDescription(OutgoingMailProfile, IncomingMailProfile)
 		Settings = New Array;
 		For Each PropertyName In StrSplit(SMTPPropertyList, ",", False) Do
 			Settings.Add(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1=""%2""';"), PropertyName, Profile[PropertyName]));
+				NStr("en = '%1=""%2""';tr = '%1=""%2""'"), PropertyName, Profile[PropertyName]));
 		EndDo;
 		SettingsDescription.Add(StrConcat(Settings, ", "));
 	EndIf;
@@ -1465,7 +1475,7 @@ Function SettingsDescription(OutgoingMailProfile, IncomingMailProfile)
 		Settings = New Array;
 		For Each PropertyName In StrSplit(IMAPPropertyList, ",", False) Do
 			Settings.Add(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1=""%2""';"), PropertyName, Profile[PropertyName]));
+				NStr("en = '%1=""%2""';tr = '%1=""%2""'"), PropertyName, Profile[PropertyName]));
 		EndDo;
 		SettingsDescription.Add(StrConcat(Settings, ", "));
 	EndIf;
@@ -1474,7 +1484,7 @@ Function SettingsDescription(OutgoingMailProfile, IncomingMailProfile)
 		Settings = New Array;
 		For Each PropertyName In StrSplit(POP3PropertyList, ",", False) Do
 			Settings.Add(StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = '%1=""%2""';"), PropertyName, Profile[PropertyName]));
+				NStr("en = '%1=""%2""';tr = '%1=""%2""'"), PropertyName, Profile[PropertyName]));
 		EndDo;
 		SettingsDescription.Add(StrConcat(Settings, ", "));
 	EndIf;	
@@ -1488,18 +1498,18 @@ Function ApplicationInfo()
 	SystemInfo = New SystemInfo;
 	
 	Result = New Array;
-	Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Operating system: %1';"), SystemInfo.OSVersion));
-	Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '1C:Enterprise platform: %1 (%2)';"),
+	Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Operating system: %1';tr = 'İşletim sistemi: %1'"), SystemInfo.OSVersion));
+	Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '1C:Enterprise platform: %1 (%2)';tr = 'Platform: %1 (%2)'"),
 		SystemInfo.AppVersion, SystemInfo.PlatformType));
-	Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '1C:Enterprise application: %1 (%2)';"), 
+	Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '1C:Enterprise application: %1 (%2)';tr = 'Yapılandırma: %1 (%2)'"), 
 		?(ValueIsFilled(Metadata.Synonym), Metadata.Synonym, Metadata.Name), Metadata.Version));
 		
-	Result.Add(Chars.LF + NStr("en = 'Extensions:';"));
+	Result.Add(Chars.LF + NStr("en = 'Extensions:';tr = 'Uzantılar:'"));
 	
 	SetPrivilegedMode(True);
 	For Each Extension In ConfigurationExtensions.Get() Do
 		If Extension.Active Then
-			Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';"),
+			Result.Add(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 (%2)';tr = '%1 (%2)'"),
 				?(ValueIsFilled(Extension.Synonym), Extension.Synonym, Extension.Name), Extension.Version));
 		EndIf;
 	EndDo;
@@ -1510,7 +1520,7 @@ Function ApplicationInfo()
 EndFunction
 
 Function MailServerConnectionTestEvent()
-	Return NStr("en = 'Mail server connection test';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Mail server connection test';tr = 'Posta sunucusu bağlantı testi'", Common.DefaultLanguageCode());
 EndFunction
 
 #EndRegion

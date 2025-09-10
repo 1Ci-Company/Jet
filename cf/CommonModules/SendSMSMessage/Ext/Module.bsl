@@ -32,7 +32,7 @@ Function SendSMS(RecipientsNumbers, Val Text, SenderName = Undefined, Transliter
 	Result = New Structure("SentMessages,ErrorDescription", New Array, "");
 	
 	If Not ValueIsFilled(StrConcat(RecipientsNumbers, "")) Then
-		Result.ErrorDescription = NStr("en = 'Text message recipient number is not specified.';");
+		Result.ErrorDescription = NStr("en = 'Text message recipient number is not specified.';tr = 'SMS alıcısının numarası belirtilmedi.'");
 		Return Result;
 	EndIf;
 	
@@ -41,7 +41,7 @@ Function SendSMS(RecipientsNumbers, Val Text, SenderName = Undefined, Transliter
 	EndIf;
 	
 	If Not SMSMessageSendingSetupCompleted() Then
-		Result.ErrorDescription = NStr("en = 'Invalid SMS provider settings.';");
+		Result.ErrorDescription = NStr("en = 'Invalid SMS provider settings.';tr = 'Geçersiz SMS sağlayıcı ayarları.'");
 		Return Result;
 	EndIf;
 	
@@ -80,7 +80,9 @@ Function SendSMS(RecipientsNumbers, Val Text, SenderName = Undefined, Transliter
 			Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 				"en = 'Error completing procedure %1:
 				|At least one of the parameters is required: %2, %3.
-				|Provider: %4.';", Common.DefaultLanguageCode()),
+				|Provider: %4.';tr = '%1 prosedürü tamamlanırken hata oluştu:
+				|Parametrelerden en az biri gerekli: %2, %3.
+				|Sağlayıcı: %4.'", Common.DefaultLanguageCode()),
 				"SendSMSMessageOverridable.SendSMS",
 				"ErrorDescription",
 				"SentMessages",
@@ -92,7 +94,8 @@ Function SendSMS(RecipientsNumbers, Val Text, SenderName = Undefined, Transliter
 				TypeOf(Result.SentMessages[0]) = Type("Structure"),
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Invalid value type in %1 collection.
-						|Actual type: %2. Expected type: Structure.';"),
+						|Actual type: %2. Expected type: Structure.';tr = '%1 koleksiyonunda geçersiz değer türü.
+						|Gerçekleşen tür: %2. Beklenen tür: Yapı.'"),
 						"Result.SentMessages",
 						TypeOf(Result.SentMessages[0])),
 				"SendSMSMessageOverridable.SendSMS");
@@ -364,8 +367,8 @@ Function DefaultProviderAuthorizationFields()
 	AuthorizationMethods = New Structure;
 	
 	AuthorizationFields = New ValueList;
-	AuthorizationFields.Add("Login", NStr("en = 'Username';"));
-	AuthorizationFields.Add("Password", NStr("en = 'Password';"), True);
+	AuthorizationFields.Add("Login", NStr("en = 'Username';tr = 'Kullanıcı adı'"));
+	AuthorizationFields.Add("Password", NStr("en = 'Password';tr = 'Parola'"), True);
 	
 	AuthorizationMethods.Insert("ByUsernameAndPassword", AuthorizationFields);
 	
@@ -376,7 +379,7 @@ EndFunction
 Function DefaultAuthorizationMethods()
 	
 	Result = New ValueList;
-	Result.Add("ByUsernameAndPassword", NStr("en = 'Username and password authentication';"));
+	Result.Add("ByUsernameAndPassword", NStr("en = 'Username and password authentication';tr = 'Kullanıcı adı ve parola doğrulaması'"));
 	
 	Return Result;
 	

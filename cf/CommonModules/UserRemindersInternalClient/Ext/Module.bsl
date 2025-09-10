@@ -47,17 +47,17 @@ Procedure AddConversationsCommands(CommandParameters_, Commands, DefaultCommand)
 		Return;
 	EndIf;
 		
-	RemindersCommands = New CollaborationSystemCommandDescription(New Array, NStr("en = 'Remind…';"));
+	RemindersCommands = New CollaborationSystemCommandDescription(New Array, NStr("en = 'Remind…';tr = 'Hatırlat...'"));
 	RemindersCommands.Picture = ?(ClientRunParameters.ShouldShowRemindersInNotificationCenter, 
 		PictureLib.NotificationCenter, PictureLib.Reminder);
 	
-	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindIn1Hour", NStr("en = 'In 1 hour';"));
-	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindIn2Hours", NStr("en = 'In 2 hours';"));
-	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindIn3Hours", NStr("en = 'In 4 hours';"));
-	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindTomorrowMorning", NStr("en = 'Next morning';"));
-	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindAtBeginningOfNextWeek", NStr("en = 'Start of next week';"));
+	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindIn1Hour", NStr("en = 'In 1 hour';tr = '1 saat sonra'"));
+	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindIn2Hours", NStr("en = 'In 2 hours';tr = '2 saat sonra'"));
+	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindIn3Hours", NStr("en = 'In 4 hours';tr = '4 saat sonra'"));
+	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindTomorrowMorning", NStr("en = 'Next morning';tr = 'Ertesi sabah'"));
+	AddCommand(RemindersCommands.Command, CommandParameters_, "RemindAtBeginningOfNextWeek", NStr("en = 'Start of next week';tr = 'Önümüzdeki hafta başı'"));
 	AddSeparator(RemindersCommands.Command);
-	AddCommand(RemindersCommands.Command, CommandParameters_, "ReminderSettings", NStr("en = 'Settings…';"));
+	AddCommand(RemindersCommands.Command, CommandParameters_, "ReminderSettings", NStr("en = 'Settings…';tr = 'Ayarlar...'"));
 	
 	Commands.Add(RemindersCommands);
 
@@ -83,7 +83,7 @@ Procedure CreateReminder(AdditionalParameters) Export
 		ReminderAlarmTime = EndOfWeek(ReminderAlarmTime) + 9*60*60;
 	EndIf;           
 	
-	UserRemindersClient.RemindInSpecifiedTime(NStr("en = 'Deferred message reminder';"), 
+	UserRemindersClient.RemindInSpecifiedTime(NStr("en = 'Deferred message reminder';tr = 'Ertelenmiş mesaj hatırlatıcı'"), 
 		ReminderAlarmTime, , "e1ccs/data/msg?id=" + AdditionalParameters.MessageID);
 		
 EndProcedure

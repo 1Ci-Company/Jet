@@ -63,7 +63,7 @@ Procedure OnCreateAtServer(Form, Cancel, StandardProcessing) Export
 		Form.ReportSettings.SchemaModified = True;
 		Schema = GetFromTempStorage(Form.ReportSettings.SchemaURL);
 		Field = Schema.DataSets.UsersRights.Fields.Find("AccessGroup");
-		Field.Title = NStr("en = 'User profile';");
+		Field.Title = NStr("en = 'User profile';tr = 'Kullanıcı profili'");
 		Field.ValueType = New TypeDescription("CatalogRef.AccessGroupProfiles");
 		Form.ReportSettings.SchemaURL = PutToTempStorage(Schema, Form.UUID);
 	EndIf;
@@ -163,7 +163,7 @@ Procedure OnComposeResult(ResultDocument, DetailsData, StandardProcessing)
 	StandardProcessing = False;
 	
 	If Not Common.SubsystemExists("StandardSubsystems.ReportsOptions") Then
-		ErrorText = NStr("en = 'To use the report, deploy the Report options subsystem.';");
+		ErrorText = NStr("en = 'To use the report, deploy the Report options subsystem.';tr = 'Raporu kullanmak için Rapor seçenekleri alt sistemini dağıtın.'");
 		Raise ErrorText;
 	EndIf;
 	
@@ -214,17 +214,17 @@ EndProcedure
 
 Procedure FinishOutput(ResultDocument, DetailsData, RightsSettings)
 	
-	AccessGroupTitle = NStr("en = 'Access group';");
+	AccessGroupTitle = NStr("en = 'Access group';tr = 'Erişim grubu'");
 	If AccessManagementInternal.SimplifiedAccessRightsSetupInterface() Then
-		AccessGroupTitle = NStr("en = 'User profile';");
+		AccessGroupTitle = NStr("en = 'User profile';tr = 'Kullanıcı profili'");
 	EndIf;
 	
 	// ACC:163-off - #598.1. The use is permissible, as it affects the meaning.
-	TextIsRestriction  = NStr("en = 'Not everything is available';");
+	TextIsRestriction  = NStr("en = 'Not everything is available';tr = 'Her şey mevcut değil'");
 	// ACC:163-on
-	TextRightNotAssigned = NStr("en = '●';");
-	TextRightAllowed   = NStr("en = '✔';");
-	TextRightForbidden   = NStr("en = '✘';");
+	TextRightNotAssigned = NStr("en = '●';tr = '●'");
+	TextRightAllowed   = NStr("en = '✔';tr = '✔'");
+	TextRightForbidden   = NStr("en = '✘';tr = '✘'");
 	FontRightNotAssigned = Undefined;
 	FontRightAllowed   = Undefined;
 	FontRightForbidden   = Undefined;
@@ -1341,16 +1341,16 @@ Function UsersRights()
 			+ Common.QueryBatchSeparator()
 			+ QueryTextWithoutGroupingByReportsWithAccessRestrictionsEnd;
 		Query.Text = QueryTextShared;
-		Query.SetParameter("TextAllowed", " (" + NStr("en = 'Allowed';")+ ")");
-		Query.SetParameter("TextForbidden", " (" + NStr("en = 'Denied';") + ")");
-		Query.SetParameter("TextAllowedUsers", " (" + NStr("en = 'Allowed';") + ") - "
-			+ NStr("en = 'Authorized user and their groups are always allowed';"));
-		Query.SetParameter("TextForbiddenUsers", " (" + NStr("en = 'Denied';") + ") - "
-			+ NStr("en = 'Authorized user and their groups are always allowed';"));
-		Query.SetParameter("TextRestrictionWithoutAccessTypes", "<" + NStr("en = 'Restriction without access kinds';")+ ">");
-		Query.SetParameter("TextUnlimited", "<" + NStr("en = 'No restriction';") + ">");
-		Query.SetParameter("TextAllAllowed", "<" + NStr("en = 'All allowed';") + ">");
-		Query.SetParameter("TextAllForbidden", "<" + NStr("en = 'All denied';") + ">");
+		Query.SetParameter("TextAllowed", " (" + NStr("en = 'Allowed';tr = 'İzin verilmiş'")+ ")");
+		Query.SetParameter("TextForbidden", " (" + NStr("en = 'Denied';tr = 'Yasak'") + ")");
+		Query.SetParameter("TextAllowedUsers", " (" + NStr("en = 'Allowed';tr = 'İzin verilmiş'") + ") - "
+			+ NStr("en = 'Authorized user and their groups are always allowed';tr = 'Doğrulanmış kullanıcıya ve gruplarına daima izin verilir'"));
+		Query.SetParameter("TextForbiddenUsers", " (" + NStr("en = 'Denied';tr = 'Yasak'") + ") - "
+			+ NStr("en = 'Authorized user and their groups are always allowed';tr = 'Doğrulanmış kullanıcıya ve gruplarına daima izin verilir'"));
+		Query.SetParameter("TextRestrictionWithoutAccessTypes", "<" + NStr("en = 'Restriction without access kinds';tr = 'Erişim türleri olmadan kısıtlama'")+ ">");
+		Query.SetParameter("TextUnlimited", "<" + NStr("en = 'No restriction';tr = 'Kısıtlamasız'") + ">");
+		Query.SetParameter("TextAllAllowed", "<" + NStr("en = 'All allowed';tr = 'Hepsine izin verildi'") + ">");
+		Query.SetParameter("TextAllForbidden", "<" + NStr("en = 'All denied';tr = 'Hepsi yasak'") + ">");
 		Query.SetParameter("EmptyAccessValueReferences",
 			AccessManagementInternal.EmptyAccessValueReferences());
 	Else
@@ -1656,12 +1656,12 @@ Function RightsSettingsOnObjects()
 	Query.SetParameter("HasHierarchy",   RightsSettings.HasHierarchy);
 	Query.SetParameter("EmptyParent", RightsSettings.EmptyRef);
 	Query.SetParameter("TitlesRight",  TitlesRight);
-	Query.SetParameter("ViewPersonal",  NStr("en = 'Personal';"));
-	Query.SetParameter("ViewUndefined", NStr("en = 'Undefined';"));
+	Query.SetParameter("ViewPersonal",  NStr("en = 'Personal';tr = 'Kişisel'"));
+	Query.SetParameter("ViewUndefined", NStr("en = 'Undefined';tr = 'Tanımlanmamış'"));
 	Query.SetParameter("ViewUserGroup",
-		" (" + NStr("en = 'User group';") + ")");
+		" (" + NStr("en = 'User group';tr = 'Kullanıcı grubu'") + ")");
 	Query.SetParameter("ExternalUserGroupView",
-		" (" + NStr("en = 'External user group';") + ")");
+		" (" + NStr("en = 'External user group';tr = 'Harici kullanıcı grubu'") + ")");
 	
 	Query.Text =
 	"SELECT
@@ -1950,9 +1950,9 @@ Function DescriptionColumnsForSubfolders()
 	
 	Result = New Structure;
 	Result.Insert("Name", "ForSubfolders");
-	Result.Insert("Title", NStr("en = 'For subfolders';"));
+	Result.Insert("Title", NStr("en = 'For subfolders';tr = 'Alt klasörler için'"));
 	Result.Insert("ToolTip",
-		NStr("en = 'Rights both for the current folder and its subfolders';"));
+		NStr("en = 'Rights both for the current folder and its subfolders';tr = 'Yetkiler sadece geçerli klasör için değil, aynı zamanda alt klasörler için de'"));
 	
 	Return Result;
 	
@@ -1965,7 +1965,7 @@ Function SettingsRightsLegend(TitlesRight, HasHierarchy)
 	If HasHierarchy Then
 		NewRow = Result.Insert(0);
 		NewRow.TitlePermissions = "";
-		NewRow.HintPermissions = NStr("en = 'Right inheritance from parent folders';");
+		NewRow.HintPermissions = NStr("en = 'Right inheritance from parent folders';tr = 'Giriş klasörlerinden yetki devralma'");
 	EndIf;
 	
 	For Each String In Result Do
@@ -1991,5 +1991,5 @@ EndProcedure
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

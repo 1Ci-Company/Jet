@@ -21,7 +21,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 	
 	Items.OtherReportOptionsGroup.Title = ReportDescription
-		+ " (" + NStr("en = 'report options';") + "):";
+		+ " (" + NStr("en = 'report options';tr = 'report options'") + "):";
 	
 	ReadThisFormSettings();
 	
@@ -329,7 +329,7 @@ Procedure OutputHyperlinkToPanel(OutputTable, Variant, Var_Group, ShowTooltips)
 		Label.ToolTip = TrimAll(Variant.LongDesc);
 	EndIf;
 	If ValueIsFilled(Variant.Author) Then
-		Label.ToolTip = TrimL(Label.ToolTip + Chars.LF) + NStr("en = 'Author:';") + " " + TrimAll(String(Variant.Author));
+		Label.ToolTip = TrimL(Label.ToolTip + Chars.LF) + NStr("en = 'Author:';tr = 'Author:'") + " " + TrimAll(String(Variant.Author));
 	EndIf;
 	If ShowTooltips Then
 		Label.ToolTipRepresentation = ToolTipRepresentation.ShowBottom;

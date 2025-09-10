@@ -303,7 +303,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t update (skipped) outgoing email data: %1';"), 
+			NStr("en = 'Couldn''t update (skipped) outgoing email data: %1';tr = 'Giden e-posta verileri güncellenemedi (atlandı): %1'"), 
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
@@ -311,7 +311,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 			EventLogLevel.Information,
 			Metadata.Documents.OutgoingEmail,
 			StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Another batch of outgoing emails is processed: %1';"),
+				NStr("en = 'Another batch of outgoing emails is processed: %1';tr = 'Başka bir giden e-posta partisi işlendi: %1'"),
 				ObjectsProcessed));
 	EndIf;
 	

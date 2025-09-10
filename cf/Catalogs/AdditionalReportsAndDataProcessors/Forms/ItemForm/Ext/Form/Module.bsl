@@ -22,13 +22,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	SetConditionalAppearance();
 	
 	If ValueIsFilled(Parameters.CopyingValue) Then
-		Raise NStr("en = 'Create by copying is prohibited.';");
+		Raise NStr("en = 'Create by copying is prohibited.';tr = 'Kopyalayarak yeni bir öğe oluşturmak yasaktır.'");
 	EndIf;
 	
 	If Object.Kind = Enums.AdditionalReportsAndDataProcessorsKinds.PrintForm
 		And Not Common.SubsystemExists("StandardSubsystems.Print") Then
 		Cancel = True;
-		Common.MessageToUser(NStr("en = 'Print forms are not supported.';"));
+		Common.MessageToUser(NStr("en = 'Print forms are not supported.';tr = 'Yazdırma formları desteklenmiyor.'"));
 		Return;
 	EndIf;
 	
@@ -45,7 +45,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	InsertRight1 = AdditionalReportsAndDataProcessors.InsertRight1();
 	If Not InsertRight1 Then
 		If IsNew Then
-			Raise(NStr("en = 'Insufficient rights to add additional reports and data processors.';"),
+			Raise(NStr("en = 'Insufficient rights to add additional reports and data processors.';tr = 'Ek raporlar veya veri işlemcileri eklemek için yetersiz erişim hakları.'"),
 				ErrorCategory.AccessViolation);
 		EndIf;
 		Items.LoadFromFile.Visible = False;
@@ -84,7 +84,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 	
 	If ShowImportFromFileDialogOnOpen And Not Items.LoadFromFile.Visible Then
-		Raise(NStr("en = 'Insufficient rights to import additional reports and data processors.';"),
+		Raise(NStr("en = 'Insufficient rights to import additional reports and data processors.';tr = 'Ek raporları veya veri işlemcilerini içe aktarmak için yetersiz yetki'"),
 			ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -311,11 +311,11 @@ Procedure AdditionalReportOptionsBeforeDeleteRow(Item, Cancel)
 	EndIf;
 	
 	If Not Variant.Custom Then
-		ShowMessageBox(, NStr("en = 'Predefined report option cannot be marked for deletion.';"));
+		ShowMessageBox(, NStr("en = 'Predefined report option cannot be marked for deletion.';tr = 'Öntanımlı rapor seçeneği silinmek üzere işaretlenemez.'"));
 		Return;
 	EndIf;
 	
-	QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to mark %1 for deletion?';"), Variant.Description);
+	QueryText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Do you want to mark %1 for deletion?';tr = '""%1"" silinmek üzere işaretlensin mi?'"), Variant.Description);
 	
 	AdditionalParameters = New Structure;
 	AdditionalParameters.Insert("Variant", Variant);
@@ -466,7 +466,7 @@ EndProcedure
 Procedure AdditionalReportOptionsOpen(Command)
 	Variant = Items.AdditionalReportOptions.CurrentData;
 	If Variant = Undefined Then
-		ShowMessageBox(, NStr("en = 'Choose a report option.';"));
+		ShowMessageBox(, NStr("en = 'Choose a report option.';tr = 'Rapor seçeneğini seçin.'"));
 		Return;
 	EndIf;
 	
@@ -494,9 +494,9 @@ EndProcedure
 Procedure SetPrintCommandVisibility(Command)
 	If Modified Then
 		NotifyDescription = New NotifyDescription("SetPrintCommandVisibilityCompletion", ThisObject);
-		QueryText = NStr("en = 'To configure the visibility of print commands, save the data processor. Continue?';");
+		QueryText = NStr("en = 'To configure the visibility of print commands, save the data processor. Continue?';tr = 'Yazdırma komutlarının görünürlüğünü ayarlamak için işlemeyi kaydedin. İlerlemek?'");
 		Buttons = New ValueList;
-		Buttons.Add("Continue", NStr("en = 'Continue';"));
+		Buttons.Add("Continue", NStr("en = 'Continue';tr = 'Devam'"));
 		Buttons.Add(DialogReturnCode.Cancel);
 		ShowQueryBox(NotifyDescription, QueryText, Buttons);
 	Else
@@ -522,9 +522,9 @@ Procedure ExecuteCommand(Command)
 	Handler = New NotifyDescription("ExecuteCommandAfterWriteConfirmed", ThisObject, Context);
 	
 	If Object.Ref.IsEmpty() Or Modified Then
-		QueryText = NStr("en = 'Save the data before running the command.';");
+		QueryText = NStr("en = 'Save the data before running the command.';tr = 'Komutu yürütmek için verileri yazın.'");
 		Buttons = New ValueList;
-		Buttons.Add("WriteAndContinue", NStr("en = 'Save and continue';"));
+		Buttons.Add("WriteAndContinue", NStr("en = 'Save and continue';tr = 'Kaydet ve devam et'"));
 		Buttons.Add(DialogReturnCode.Cancel);
 		ShowQueryBox(Handler, QueryText, Buttons);
 	Else
@@ -610,7 +610,7 @@ Procedure ContinueWriteAtClient(Result, CloseAfterWrite)  Export
 	
 	If WriteParameters.DataProcessorRegistration Then
 		RefreshReusableValues();
-		NotificationText1 = NStr("en = 'To apply the changes in open windows, close and reopen them.';");
+		NotificationText1 = NStr("en = 'To apply the changes in open windows, close and reopen them.';tr = 'Açık pencerelerde değişiklikleri uygulamak için pencereleri kapatıp tekrar açın.'");
 		ShowUserNotification(, , NotificationText1);
 	EndIf;
 	WriteAtClientCompletion(WriteParameters);
@@ -650,13 +650,13 @@ Procedure UpdateFromFileAfterConfirm(Response, RegistrationParameters) Export
 	
 	If Object.Ref.IsEmpty() Then
 		ImportParameters.Dialog.FilterIndex = 0;
-		ImportParameters.Dialog.Title = NStr("en = 'Select a file with external report or data processor';");
+		ImportParameters.Dialog.Title = NStr("en = 'Select a file with external report or data processor';tr = 'Harici rapor veya veri işlemcisi seçin'");
 	ElsIf Object.Kind = KindAdditionalReport Or Object.Kind = KindOfReport Then
 		ImportParameters.Dialog.FilterIndex = 1;
-		ImportParameters.Dialog.Title = NStr("en = 'Select an file with external report';");
+		ImportParameters.Dialog.Title = NStr("en = 'Select an file with external report';tr = 'Harici rapor dosyası seçin'");
 	Else
 		ImportParameters.Dialog.FilterIndex = 2;
-		ImportParameters.Dialog.Title = NStr("en = 'Select a file with external data processor';");
+		ImportParameters.Dialog.Title = NStr("en = 'Select a file with external data processor';tr = 'Harici veri işlemcisi dosyası seçin'");
 	EndIf;
 	
 	FileSystemClient.ImportFile_(Handler, ImportParameters, Object.FileName);
@@ -688,7 +688,7 @@ Procedure UpdateFromFileAfterFileChoice(FileDetails, RegistrationParameters) Exp
 	Else
 		RegistrationParameters.Success = False;
 		ResultHandler = New NotifyDescription("UpdateFromFileCompletion", ThisObject, RegistrationParameters);
-		WarningText = NStr("en = 'The file extension does not match external report extension (ERF) or external data processor extension (EPF).';");
+		WarningText = NStr("en = 'The file extension does not match external report extension (ERF) or external data processor extension (EPF).';tr = 'Dosya uzantısı harici rapor uzantısı (ERF) veya harici veri işlemcisi uzantısı (EPF) ile uyuşmuyor.'");
 		ReturnParameters1 = New Structure;
 		ReturnParameters1.Insert("Handler", ResultHandler);
 		ReturnParameters1.Insert("Result",  Undefined);
@@ -720,7 +720,7 @@ Procedure UpdateFromFileAndMessage(RegistrationParameters)
 	EndIf;
 	
 	If RegistrationParameters.Success Then
-		NotificationTitle1 = ?(RegistrationParameters.IsReport, NStr("en = 'External report file is imported';"), NStr("en = 'External data processor file is imported';"));
+		NotificationTitle1 = ?(RegistrationParameters.IsReport, NStr("en = 'External report file is imported';tr = 'Harici rapor dosyası içe aktarıldı'"), NStr("en = 'External data processor file is imported';tr = 'Harici veri işlemcisi dosyası içe aktarıldı'"));
 		NotificationRef    = ?(IsNew, "", GetURL(Object.Ref));
 		NotificationText     = RegistrationParameters.FileName;
 		ShowUserNotification(NotificationTitle1, NotificationRef, NotificationText);
@@ -741,7 +741,7 @@ Procedure ShowConflicts(RegistrationParameters)
 	
 	If RegistrationParameters.ConflictsCount > 1 Then
 		If RegistrationParameters.IsReport Then
-			QuestionTitle = NStr("en = 'External report import conflict';");
+			QuestionTitle = NStr("en = 'External report import conflict';tr = 'Harici rapor içe aktarım çakışması'");
 			QueryText = NStr("en = 'Internal report name ""[Name]"" 
 			|is already used by the following additional reports ([Count]):
 			|[List].
@@ -749,9 +749,16 @@ Procedure ShowConflicts(RegistrationParameters)
 			|Select one of the following:
 			|1. ""[Continue]"". Import the new report in debug mode.
 			|2. ""[Disable]"". Disable all conflicting reports and import the new report.
-			|3. ""[Open]"". Cancel the import and show the list of conflicting reports.';");
+			|3. ""[Open]"". Cancel the import and show the list of conflicting reports.';tr = '""[Name]"" raporunun 
+			|dahili adı zaten mevcut ek raporlar tarafından alınmış ([Count]): 
+			|[List]. 
+			|
+			|Seçin: 
+			|1. ""[Continue]"" - hata ayıklama modunda yeni bir rapor indir. 
+			|2. ""[Disable]"" - tüm çelişkili raporların yayınlanmasını engelleyen yeni bir rapor indirin. 
+			|3. ""[Open]"" - indirmeyi iptal edin ve çakışan raporların bir listesini gösterin.'");
 		Else
-			QuestionTitle = NStr("en = 'Conflicts occurred during import of external data processor';");
+			QuestionTitle = NStr("en = 'Conflicts occurred during import of external data processor';tr = 'Harici veri işlemcisi içe aktarılırken çakışmalar meydana geldi'");
 			QueryText = NStr("en = 'Internal name of data processor ""[Name]"" 
 			|is already used by the following additional data processors ([Count]):
 			|[List].
@@ -759,35 +766,54 @@ Procedure ShowConflicts(RegistrationParameters)
 			|Select one of the following:
 			|1. ""[Continue]"". Import the new data processor in the debug mode.
 			|2. ""[Disable]"". Disable all conflicting data processors and import the new data processor.
-			|3. ""[Open]"". Cancel the import and show the list of conflicting data processors.';");
+			|3. ""[Open]"". Cancel the import and show the list of conflicting data processors.';tr = '""[Name]"" raporunun 
+			|dahili adı zaten mevcut ek veri işlemcileri tarafından alınmış ([Count]): 
+			|[List]. 
+			|
+			|Seçin: 
+			|1. ""[Continue]"" - hata ayıklama modunda yeni bir veri işlemcisini indir. 
+			|2. ""[Disable]"" - tüm çelişkili veri işlemcilerin yayınlanmasını engelleyen yeni bir veri işlemcisini indirin. 
+			|3. ""[Open]"" - indirmeyi iptal edin ve çakışan veri işlemcilerin listesini gösterin.'");
 		EndIf;
-		DisableButtonPresentation = NStr("en = 'Disable conflicting objects';");
-		OpenButtonPresentation = NStr("en = 'Cancel and show list';");
+		DisableButtonPresentation = NStr("en = 'Disable conflicting objects';tr = 'Çakışan nesneleri devre dışı bırak'");
+		OpenButtonPresentation = NStr("en = 'Cancel and show list';tr = 'İptal et ve listeyi göster'");
 	Else
 		If RegistrationParameters.IsReport Then
-			QuestionTitle = NStr("en = 'External report import conflict';");
+			QuestionTitle = NStr("en = 'External report import conflict';tr = 'Harici rapor içe aktarım çakışması'");
 			QueryText = NStr("en = 'Internal report name ""[Name]"" 
 			|is already used by additional report [List].
 			|
 			|Select one of the following:
 			|1. ""[Continue]"". Import the new report in debug mode.
 			|2. ""[Disable]"". Disable the conflicting report and import the new report.
-			|3. ""[Open]"". Open the conflicting report''s card.';");
-			DisableButtonPresentation = NStr("en = 'Disable another report';");
+			|3. ""[Open]"". Open the conflicting report''s card.';tr = '""[Name]"" raporunun 
+			|dahili adı zaten mevcut ek raporlar tarafından alınmış [List]. 
+			|
+			|Seçin: 
+			|1. ""[Continue]"" - hata ayıklama modunda yeni bir rapor indir. 
+			|2. ""[Disable]"" - tüm çelişkili raporların yayınlanmasını engelleyen yeni bir rapor indirin. 
+			|3. ""[Open]"" - indirmeyi iptal edin ve çakışan raporların kartını gösterin.'");
+			DisableButtonPresentation = NStr("en = 'Disable another report';tr = 'Diğer raporu devre dışı bırak'");
 		Else
-			QuestionTitle = NStr("en = 'External data processor import conflict';");
+			QuestionTitle = NStr("en = 'External data processor import conflict';tr = 'Harici veri işlemcisi içe aktarılırken çakışma meydana geldi'");
 			QueryText = NStr("en = 'Internal name of data processor ""[Name]"" 
 			|is already used by additional data processor [List].
 			|
 			|Select one of the following:
 			|1. ""[Continue]"". Import the new data processor in debug mode.
 			|2. ""[Disable]"". Disable the conflicting data processor and import the new data processor.
-			|3. ""[Open]"". Open the conflicting data processor''s card.';");
-			DisableButtonPresentation = NStr("en = 'Disable another data processor';");
+			|3. ""[Open]"". Open the conflicting data processor''s card.';tr = '""[Name]"" veri işlemcisinin 
+			|dahili adı zaten mevcut ek veri işlemcisi tarafından alınmış [List]. 
+			|
+			|Seçin: 
+			|1. ""[Continue]"" - hata ayıklama modunda yeni bir veri işlemcisini indir. 
+			|2. ""[Disable]"" - tüm çelişkili veri işlemcisinin yayınlanmasını engelleyen yeni bir veri işlemcisini indirin. 
+			|3. ""[Open]"" - çakışan veri işlemcisinin kartını gösterin.'");
+			DisableButtonPresentation = NStr("en = 'Disable another data processor';tr = 'Diğer veri işlemcisini devre dışı bırak'");
 		EndIf;
-		OpenButtonPresentation = NStr("en = 'Cancel and open';");
+		OpenButtonPresentation = NStr("en = 'Cancel and open';tr = 'İptal et ve aç'");
 	EndIf;
-	ContinueButtonPresentation = NStr("en = 'Debug mode';");
+	ContinueButtonPresentation = NStr("en = 'Debug mode';tr = 'Hata ayıklama modu'");
 	QueryText = StrReplace(QueryText, "[Name]",  RegistrationParameters.ObjectName);
 	QueryText = StrReplace(QueryText, "[Count]", RegistrationParameters.ConflictsCount);
 	QueryText = StrReplace(QueryText, "[List]",  RegistrationParameters.LockersPresentation);
@@ -827,7 +853,7 @@ Procedure UpdateFromFileConflictDecision(Response, RegistrationParameters) Expor
 		EndIf;
 		If ShowList Then // List form with a filter by conflicting items.
 			Var_FormName = "Catalog.AdditionalReportsAndDataProcessors.ListForm";
-			FormTitle = NStr("en = 'Additional reports and data processors with name ""%1""';");
+			FormTitle = NStr("en = 'Additional reports and data processors with name ""%1""';tr = 'Dahili adı ""%1"" olan ek raporlar ve veri işlemcileri'");
 			FormTitle = StringFunctionsClientServer.SubstituteParametersToString(FormTitle, RegistrationParameters.ObjectName);
 			ParametersForm = New Structure;
 			ParametersForm.Insert("Filter", New Structure);
@@ -871,7 +897,7 @@ Procedure OpenOption()
 	EndIf;
 	
 	If Not ValueIsFilled(Variant.Ref) Then
-		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '""%1"" report option is not registered.';"), Variant.Description);
+		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '""%1"" report option is not registered.';tr = 'Rapor seçeneği ""%1"" kayıtlı değil.'"), Variant.Description);
 		ShowMessageBox(, ErrorText);
 	Else
 		ModuleReportsOptionsClient = CommonClient.CommonModule("ReportsOptionsClient");
@@ -890,7 +916,8 @@ Procedure ChangeScheduledJob(Var_ChoiceMode = False, CheckBoxChanged = False)
 	If ItemCommand.StartupOption <> PredefinedValue("Enum.AdditionalDataProcessorsCallMethods.ServerMethodCall")
 		And ItemCommand.StartupOption <> PredefinedValue("Enum.AdditionalDataProcessorsCallMethods.SafeModeScenario") Then
 		ErrorText = NStr("en = 'Scheduled jobs do not support commands
-		|with the ""%1"" startup option.';");
+		|with the ""%1"" startup option.';tr = 'Başlangıç seçeneği komutu 
+		|""%1"" planlanan işlerde kullanılamaz.'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, String(ItemCommand.StartupOption));
 		ShowMessageBox(, ErrorText);
 		If CheckBoxChanged Then
@@ -935,7 +962,7 @@ Procedure AfterScheduleEditComplete(Schedule, Context) Export
 		If DataSeparationEnabled
 			And Schedule.RepeatPeriodInDay <> 0
 			And Schedule.RepeatPeriodInDay < 60 Then
-			MessageText = NStr("en = 'Setting the retry interval of the scheduled job less than 60 seconds is not allowed.';");
+			MessageText = NStr("en = 'Setting the retry interval of the scheduled job less than 60 seconds is not allowed.';tr = 'Zamanlanmış bir görevi tekrarlama aralığının 60 saniyenin altına ayarlanmasına izin verilmez.'");
 			ShowMessageBox(, MessageText);
 			Return;
 		EndIf;
@@ -947,13 +974,13 @@ Procedure AfterScheduleEditComplete(Schedule, Context) Export
 			ItemCommand.ScheduledJobUsage = True;
 			ItemCommand.ScheduledJobPresentation = String(Schedule);
 		Else
-			ItemCommand.ScheduledJobPresentation = NStr("en = 'Not filled';");
+			ItemCommand.ScheduledJobPresentation = NStr("en = 'Not filled';tr = 'Boş'");
 			If ItemCommand.ScheduledJobUsage Then
 				ItemCommand.ScheduledJobUsage = False;
 				ShowUserNotification(
-					NStr("en = 'Scheduling is disabled';"),
+					NStr("en = 'Scheduling is disabled';tr = 'Planlanmış başlatma devre dışı bırakıldı'"),
 					,
-					NStr("en = 'Schedule is not filled';"));
+					NStr("en = 'Schedule is not filled';tr = 'Program doldurulmadı'"));
 			EndIf;
 		EndIf;
 	EndIf;
@@ -1040,7 +1067,7 @@ Procedure ExecuteCommandAfterWriteConfirmed(Response, Context) Export
 		Or CommandsTableRow.StartupOption = PredefinedValue("Enum.AdditionalDataProcessorsCallMethods.SafeModeScenario") Then
 		
 		StateHeader = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Executing command ""%1""';"),
+			NStr("en = 'Executing command ""%1""';tr = '""%1"" komutu yürütülüyor'"),
 			CommandsTableRow.Presentation);
 		ShowUserNotification(StateHeader + "...", , , PictureLib.TimeConsumingOperation48);
 		
@@ -1090,11 +1117,11 @@ EndProcedure
 Function UsersQuickAccessPresentation(UsersCount)
 	
 	If UsersCount = 0 Then
-		Return NStr("en = 'None';");
+		Return NStr("en = 'None';tr = 'Hiçbiri'");
 	EndIf;
 	
 	QuickAccessPresentation = StringFunctionsClientServer.StringWithNumberForAnyLanguage(
-		NStr("en = ';%1 user;;;;%1 users';"), UsersCount);
+		NStr("en = ';%1 user;;;;%1 users';tr = ';%1 kullanıcı;;;;%1 kullanıcı'"), UsersCount);
 	
 	Return QuickAccessPresentation;
 	
@@ -1114,9 +1141,9 @@ Function StartExecuteServerCommandInBackground(CommandToExecute, UUID)
 	
 	StartSettings1 = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 	StartSettings1.BackgroundJobDescription =
-		NStr("en = 'Additional reports and data processors: executing data processor server method.';");
+		NStr("en = 'Additional reports and data processors: executing data processor server method.';tr = 'Ek raporlar ve veri işlemcileri: Sunucu işlem yöntemini yürütme'");
 	StartSettings1.RefinementErrors =
-		NStr("en = 'Cannot execute the command. Reason:';");
+		NStr("en = 'Cannot execute the command. Reason:';tr = 'Komut yürütülemiyor. Nedeni:'");
 	
 	Return TimeConsumingOperations.ExecuteInBackground(ProcedureName, ProcedureParameters, StartSettings1);
 EndFunction
@@ -1178,7 +1205,7 @@ Function PrepareMetadataObjectsSelectionFormParameters()
 	FormParameters = StandardSubsystemsClientServer.MetadataObjectsSelectionParameters();
 	FormParameters.FilterByMetadataObjects = FilterByMetadataObjects;
 	FormParameters.SelectedMetadataObjects = SelectedMetadataObjects;
-	FormParameters.Title = NStr("en = 'Additional data processor assignment';");
+	FormParameters.Title = NStr("en = 'Additional data processor assignment';tr = 'Ek veri işlemcisinin amacı'");
 	
 	Return FormParameters;
 EndFunction
@@ -1228,11 +1255,11 @@ Procedure SetVisibilityAvailability(Registration = False)
 		
 		If Registration Or OptionsCount = 0 Then
 			Items.OptionsPages.CurrentPage = Items.OptionsHideBeforeWrite;
-			Items.OptionsPage.Title = NStr("en = 'Report options';");
+			Items.OptionsPage.Title = NStr("en = 'Report options';tr = 'Rapor seçenekleri'");
 		Else
 			Items.OptionsPages.CurrentPage = Items.OptionsShow;
 			Items.OptionsPage.Title = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Report options (%1)';"),
+				NStr("en = 'Report options (%1)';tr = '(%1) rapor seçenekleri'"),
 				Format(OptionsCount, "NG="));
 		EndIf;
 	Else
@@ -1313,7 +1340,7 @@ Procedure SetVisibilityAvailability(Registration = False)
 		
 		Items.PermissionsPage.Visible = True;
 		Items.PermissionsPage.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Permissions (%1)';"),
+			NStr("en = 'Permissions (%1)';tr = 'İzinler (%1)'"),
 			Format(PermissionsCount, "NG="));
 		
 		Items.SafeModeGlobalGroup.Visible = False;
@@ -1328,12 +1355,14 @@ Procedure SetVisibilityAvailability(Registration = False)
 			Items.SafeModeWithPermissionsPages.CurrentPage = Items.PersonalSecurityProfilePage;
 			Items.DecorationPersonalSecurityProfileLabel.Title = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The report or data processor will be attached to the application with a custom security profile
-					|%1, which allows the following actions:';"),
+					|%1, which allows the following actions:';tr = 'Rapor veya veri işlemcisi, sadece aşağıdaki işlemlere izin veren özel bir 
+					|güvenlik profiliyle%1 uygulamaya eklenecek:'"),
 				SafeMode);
 		Else
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1 is not a valid mode to attach additional reports and data processors
-					|that require permissions to use security profiles.';"),
+					|that require permissions to use security profiles.';tr = 'Güvenlik profili kullanımı için izin gerektiren ek raporlar ve veri işlemcileri için %1 doğru bir 
+					|bağlantı modu değil.'"),
 				SafeMode);
 		EndIf;
 		
@@ -1374,7 +1403,7 @@ Procedure SetVisibilityAvailability(Registration = False)
 		EndDo;
 	EndIf;
 	If PurposePresentation = "" Then
-		PurposePresentation = NStr("en = 'Undefined';");
+		PurposePresentation = NStr("en = 'Undefined';tr = 'Tanımlanmamış'");
 	EndIf;
 	
 	Items.ObjectCommandsQuickAccessPresentation.Visible       = IsGlobalDataProcessor;
@@ -1393,9 +1422,9 @@ Procedure SetVisibilityAvailability(Registration = False)
 	Items.ObjectCommandsComment.Visible = IsPrintForm;
 	
 	If IsNew Then
-		Title = ?(IsReport, NStr("en = 'Additional report (Create)';"), NStr("en = 'Additional data processor (Create)';"));
+		Title = ?(IsReport, NStr("en = 'Additional report (Create)';tr = 'Ek rapor (Oluştur)'"), NStr("en = 'Additional data processor (Create)';tr = 'Ek veri işlemcisi (Oluştur)'"));
 	Else
-		Title = Object.Description + " " + ?(IsReport, NStr("en = '(Additional report)';"), NStr("en = '(Additional data processor)';"));
+		Title = Object.Description + " " + ?(IsReport, NStr("en = '(Additional report)';tr = '(Ek rapor)'"), NStr("en = '(Additional data processor)';tr = '(Ek veri işlemcisi)'"));
 	EndIf;
 	
 	If OptionsCount > 0 Then
@@ -1503,7 +1532,7 @@ Procedure FillInCommands(SavedCommands = Undefined)
 				SetPrivilegedMode(False);
 			EndIf;
 			If Not ValueIsFilled(ItemCommand.ScheduledJobPresentation) Then
-				ItemCommand.ScheduledJobPresentation = NStr("en = 'Not filled';");
+				ItemCommand.ScheduledJobPresentation = NStr("en = 'Not filled';tr = 'Boş'");
 			EndIf;
 		ElsIf Object.Kind = Enums.AdditionalReportsAndDataProcessorsKinds.PrintForm Then
 			If Not IsBlankString(ItemCommand.CommandsToReplace) And ObjectPrintCommands <> Undefined Then
@@ -1522,16 +1551,16 @@ Procedure FillInCommands(SavedCommands = Undefined)
 				EndDo;
 				If CommandsToReplaceCount > 0 Then
 					If CommandsToReplaceCount = 1 Then
-						CommentTemplate = NStr("en = 'Replace standard print command %1';");
+						CommentTemplate = NStr("en = 'Replace standard print command %1';tr = 'Standart yazdırma komutu yerinde kullanılır %1'");
 					Else
-						CommentTemplate = NStr("en = 'Replace standard print commands: %1';");
+						CommentTemplate = NStr("en = 'Replace standard print commands: %1';tr = 'Standart yazdırma komutu yerine kullanılır: %1'");
 					EndIf;
 					ItemCommand.Comment = StringFunctionsClientServer.SubstituteParametersToString(CommentTemplate, CommandsToReplacePresentation);
 				EndIf;
 			EndIf;
 		Else
 			ItemCommand.ScheduledJobPresentation = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Not applicable for commands with the ""%1"" startup option';"),
+				NStr("en = 'Not applicable for commands with the ""%1"" startup option';tr = 'Başlatma seçeneği ""%1"" olan komutlar için uygulanmaz'"),
 				String(ItemCommand.StartupOption));
 		EndIf;
 	EndDo;
@@ -1545,7 +1574,7 @@ Procedure AdditionalReportOptionsFill()
 	Try
 		ExternalObject = AdditionalReportsAndDataProcessors.ExternalDataProcessorObject(Object.Ref);
 	Except
-		ErrorText = NStr("en = 'Cannot get the list of report options due to report attachment error:';");
+		ErrorText = NStr("en = 'Cannot get the list of report options due to report attachment error:';tr = 'Bu raporu bağlarken oluşan hata nedeniyle rapor seçeneklerinin bir listesi alınamıyor:'");
 		MessageText = ErrorText + Chars.LF + ErrorProcessing.DetailErrorDescription(ErrorInfo());
 		Common.MessageToUser(MessageText);
 		Return;
@@ -1647,9 +1676,9 @@ EndFunction
 &AtServer
 Function CommandsPageName()
 	If Object.Kind = Enums.AdditionalReportsAndDataProcessorsKinds.PrintForm Then
-		Return NStr("en = 'Form''s print commands.';");
+		Return NStr("en = 'Form''s print commands.';tr = 'Formun yazdırma komutları.'");
 	Else
-		Return NStr("en = 'Commands';");
+		Return NStr("en = 'Commands';tr = 'Komutlar'");
 	EndIf;
 EndFunction
 

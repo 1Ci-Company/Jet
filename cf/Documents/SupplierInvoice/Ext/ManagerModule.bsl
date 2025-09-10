@@ -205,7 +205,7 @@ Procedure AddPrintCommands(PrintCommands) Export
 	PrintCommand = PrintCommands.Add();
 	PrintCommand.PrintManager = "PrintManagement";
 	PrintCommand.Id = "Document.SupplierInvoice.PF_MXL_GoodsReceivedNote";
-	PrintCommand.Presentation = NStr("en = 'Goods received note'");
+	PrintCommand.Presentation = NStr("en = 'Goods received note'; tr = 'Teslim alındı belgesi'");
 	
 EndProcedure
 

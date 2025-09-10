@@ -842,7 +842,8 @@ Procedure ChangeContactInformationForSelectedContacts()
 			
 			ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot update the %1 contact information due to:
-				|%2';", Common.DefaultLanguageCode()),
+				|%2';tr = '%1 iletişim bilgisi şu nedenle güncellenemiyor:
+				|%2'", Common.DefaultLanguageCode()),
 				Selection.Contact, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			
 			WriteLogEvent(EmailManagement.EventLogEvent(),

@@ -191,13 +191,13 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 	
 	LongDesc = New Array;
 	LongDesc.Add(StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Accessing URL: %1.';"), 
+		NStr("en = 'Accessing URL: %1.';tr = 'URL''ye erişirken: %1'"), 
 		URL));
 	LongDesc.Add(GetFilesFromInternetInternal.DiagnosticsLocationPresentation());
 	
 	If Common.DataSeparationEnabled() Then
 		LongDesc.Add(
-			NStr("en = 'Please contact the administrator.';"));
+			NStr("en = 'Please contact the administrator.';tr = 'Yöneticiye başvurun.'"));
 		
 		ErrorDescription = StrConcat(LongDesc, Chars.LF);
 		
@@ -213,12 +213,16 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 		Log.Add(
 			NStr("en = 'Diagnostics log:
 			           |Server availability test.
-			           |See the error description in the next log record.';"));
+			           |See the error description in the next log record.';tr = 'Tanılama günlüğü: 
+			           |sunucu kullanılabilirliğini denetler. 
+			           |Teşhis edilen hatanın açıklaması için aşağıdaki günlük iletisine bakın.'"));
 	Else
 		Log.Add(
 			NStr("en = 'Diagnostics log:
 			           |Monitoring server availability test.
-			           |See the error details in the next log record.';"));
+			           |See the error details in the next log record.';tr = 'Tanı kaydı:
+			           |Sunucu müsaitliği izleme testi.
+			           |Bir sonraki günlük kaydında hata ayrıntılarına bakın.'"));
 	EndIf;
 	Log.Add();
 	
@@ -232,7 +236,8 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 		
 		LongDesc.Add(
 			NStr("en = 'Connection diagnostics are not performed because a proxy server is configured.
-			           |Please contact the administrator.';"));
+			           |Please contact the administrator.';tr = 'Proxy sunucusu yapılandırıldığından bağlantı tanılama başarısız oldu. 
+			           |Lütfen sistem yöneticinize başvurun.'"));
 		
 	Else 
 		
@@ -254,7 +259,8 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 				
 				LongDesc.Add(StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Attempted to access a resource that does not exist on server %1,
-					           |or some issues occurred on the remote server.';"),
+					           |or some issues occurred on the remote server.';tr = 'Sunucudaki mevcut olmayan kaynağa erişildi %1 
+					           |veya uzak sunucuda sorun yaşandı.'"),
 					ResourceServerAddress));
 				
 			Else 
@@ -268,7 +274,10 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 						NStr("en = 'No Internet access. Possible reasons:
 						           |- Computer is not connected to the Internet.
 						           | - Internet provider issues.
-						           |- Access blocked by firewall, antivirus, or other software.';"));
+						           |- Access blocked by firewall, antivirus, or other software.';tr = 'İnternet erişimi yok. Olası nedenler:
+						           |- Bilgisayar internete bağlı değil.
+						           | - İnternet sağlayıcısıyla ilgili sorunlar var.
+						           |- Erişim bir güvenlik duvarı, antivirüs vb. yazılım tarafından engelleniyor.'"));
 					
 				Else 
 					
@@ -276,7 +285,10 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 						NStr("en = 'Server %1 is currently unavailable. Possible reasons:
 						           |- Internet provider issues.
 						           |- Access blocked by firewall, antivirus, or other software.
-						           |- Server is disabled or undergoing maintenance.';"),
+						           |- Server is disabled or undergoing maintenance.';tr = '%1 sunucusuna ulaşılamıyor. Olası nedenler:
+						           |- İnternet sağlayıcısıyla ilgili sorunlar var.
+						           |- Erişim bir güvenlik duvarı, antivirüs vb. yazılım tarafından engelleniyor.
+						           |- Sunucu devre dışı durumda veya bakım çalışmasında.'"),
 						ResourceServerAddress));
 					
 					TraceLog = GetFilesFromInternetInternal.ServerRouteTraceLog(ResourceServerAddress);
@@ -295,7 +307,10 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 						NStr("en = 'No Internet access. Possible reasons:
 						           |- Computer is not connected to the Internet.
 						           | - Internet provider issues.
-						           |- Access blocked by firewall, antivirus, or other software.';"));
+						           |- Access blocked by firewall, antivirus, or other software.';tr = 'İnternet erişimi yok. Olası nedenler:
+						           |- Bilgisayar internete bağlı değil.
+						           | - İnternet sağlayıcısıyla ilgili sorunlar var.
+						           |- Erişim bir güvenlik duvarı, antivirüs vb. yazılım tarafından engelleniyor.'"));
 					
 				Else 
 					
@@ -303,7 +318,10 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 						NStr("en = 'Server %1 is currently unavailable. Possible reasons:
 						           |- Internet provider issues.
 						           |- Access blocked by firewall, antivirus, or other software.
-						           |- Server is disabled or undergoing maintenance.';"),
+						           |- Server is disabled or undergoing maintenance.';tr = '%1 sunucusuna ulaşılamıyor. Olası nedenler:
+						           |- İnternet sağlayıcısıyla ilgili sorunlar var.
+						           |- Erişim bir güvenlik duvarı, antivirüs vb. yazılım tarafından engelleniyor.
+						           |- Sunucu devre dışı durumda veya bakım çalışmasında.'"),
 						ResourceServerAddress));
 					
 					TraceLog = GetFilesFromInternetInternal.ServerRouteTraceLog(ResourceServerAddress);
@@ -323,7 +341,7 @@ Function ConnectionDiagnostics(URL, WriteError1 = True, IsPackageDeliveryCheckEn
 	
 	If WriteError1 Then
 		WriteLogEvent(
-			NStr("en = 'Connection diagnostics';", Common.DefaultLanguageCode()),
+			NStr("en = 'Connection diagnostics';tr = 'Bağlantı tanısı'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, DiagnosticsLog);
 	EndIf;
 	

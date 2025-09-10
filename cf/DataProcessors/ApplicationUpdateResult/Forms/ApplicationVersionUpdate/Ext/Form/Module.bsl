@@ -38,20 +38,20 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		Not InfobaseUpdate.InfobaseUpdateRequired();
 	
 	If UpdateApplicationParametersOnly Then
-		Title = NStr("en = 'Application parameters update';");
+		Title = NStr("en = 'Application parameters update';tr = 'Uygulama parametrelerini güncelle'");
 		Items.RunMode.CurrentPage = Items.ApplicationParametersUpdate;
 		
 	ElsIf DataUpdateMode = "InitialFilling" Then
-		Title = NStr("en = 'Initialization';");
+		Title = NStr("en = 'Initialization';tr = 'Başlatma'");
 		Items.RunMode.CurrentPage = Items.InitialFilling;
 		
 	ElsIf DataUpdateMode = "MigrationFromAnotherApplication" Then
-		Title = NStr("en = 'Migration from another application';");
+		Title = NStr("en = 'Migration from another application';tr = 'Başka bir uygulamadan geçiş'");
 		Items.RunMode.CurrentPage = Items.MigrationFromAnotherApplication;
 		Items.MigrationFromAnotherApplicationMessageText.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			Items.MigrationFromAnotherApplicationMessageText.Title, Metadata.Synonym);
 	Else
-		Title = NStr("en = 'Application update';");
+		Title = NStr("en = 'Application update';tr = 'Uygulama sürümü güncellemesi'");
 		Items.RunMode.CurrentPage = Items.ApplicationVersionUpdate;
 		Items.NewConfigurationVersionMessageText.Title = StringFunctionsClientServer.SubstituteParametersToString(
 			Items.NewConfigurationVersionMessageText.Title, Metadata.Version);
@@ -737,7 +737,7 @@ EndProcedure
 Function StartDeferredHandlerFillingProcedures()
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Manage multi-threaded registration of deferred update data';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Manage multi-threaded registration of deferred update data';tr = 'Ertelenmiş güncelleme verilerinin çok iş parçacıklı kaydını yönetme'");
 	
 	ProcedureName = "InfobaseUpdateInternal.StartDeferredHandlerDataRegistration";
 	ExecutionResult = TimeConsumingOperations.ExecuteInBackground(ProcedureName, UUID, ExecutionParameters);

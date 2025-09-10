@@ -189,13 +189,13 @@ Procedure UpdateSelectedCountServer()
 	TextSelectedCount = String(SelectedCount);
 	If SelectedCount > 1000 Then
 		SelectedCount = 1000;
-		TextSelectedCount = NStr("en = '> 1000';");
+		TextSelectedCount = NStr("en = '> 1000';tr = '> 1000'");
 	ElsIf SelectedCount = 0 Then
 		List.SettingsComposer.Refresh(DataCompositionSettingsRefreshMethod.Full);
 	EndIf;
 	If PreviousSelectedCount <> SelectedCount Then
 		Items.SelectedObjectsGroup.Title = SubstituteParametersToString(
-			NStr("en = 'Selected items (%1)';"), TextSelectedCount);
+			NStr("en = 'Selected items (%1)';tr = 'Seçilen öğeler (%1)'"), TextSelectedCount);
 	EndIf;
 
 EndProcedure

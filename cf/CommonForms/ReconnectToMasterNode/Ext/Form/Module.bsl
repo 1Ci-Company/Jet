@@ -16,11 +16,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	MasterNode = Constants.MasterNode.Get();
 	
 	If Not ValueIsFilled(MasterNode) Then
-		Raise NStr("en = 'The master node is not saved.';");
+		Raise NStr("en = 'The master node is not saved.';tr = 'Ana ünite kaydedilmedi.'");
 	EndIf;
 	
 	If ExchangePlans.MasterNode() <> Undefined Then
-		Raise NStr("en = 'The master node is set.';");
+		Raise NStr("en = 'The master node is set.';tr = 'Ana ünite belirlendi.'");
 	EndIf;
 	
 	Items.WarningText.Title = StringFunctionsClientServer.SubstituteParametersToString(

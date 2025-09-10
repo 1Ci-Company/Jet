@@ -91,7 +91,11 @@ Procedure CheckIfAppStartupFinished(OnlyBeforeSystemStartup = False)
 			           |
 			           |Technical details:
 			           |Invalid call %1 during startup.
-			           |The first procedure that is called from the %2 event handler must be %3.';"),
+			           |The first procedure that is called from the %2 event handler must be %3.';tr = 'Başlatma sırasında istisna oluştu.
+			           |
+			           |Teknik bilgiler:
+			           |Başlatma sırasında geçersiz %1 çağrısı.
+			           |%2 olay işleyicisinden çağrılan ilk prosedür %3 olmalıdır.'"),
 			"StandardSubsystemsClient.ClientRunParameters",
 			"BeforeStart", 
 			"StandardSubsystemsClient.BeforeStart");
@@ -105,7 +109,7 @@ Procedure CheckIfAppStartupFinished(OnlyBeforeSystemStartup = False)
 	If Not StandardSubsystemsClient.ApplicationStartCompleted() Then
 		If StandardSubsystemsClient.ApplicationStartupLogicDisabled() Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The action is unavailable when running with the %1 parameter.';"),
+				NStr("en = 'The action is unavailable when running with the %1 parameter.';tr = 'Eylem, %1 parametresiyle çalışırken kullanılamıyor.'"),
 				"DisableSystemStartupLogic");
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -113,7 +117,11 @@ Procedure CheckIfAppStartupFinished(OnlyBeforeSystemStartup = False)
 			           |
 			           |Technical details:
 			           |Invalid call %1 during startup. Call %2 while the %3 procedure is not completed.
-				       |The last called procedure is %4.';"),
+				       |The last called procedure is %4.';tr = 'Başlatma sırasında istisna oluştu.
+			           |
+			           |Teknik bilgiler:
+			           |Başlatma sırasında geçersiz %1 çağrısı. %3 prosedürü tamamlanmadığında %2 çağırın.
+			           |Çağrılan son prosedür %4.'"),
 				"StandardSubsystemsClient.ClientRunParameters", 
 				"StandardSubsystemsClient.ClientParametersOnStart",
 				"StandardSubsystemsClient.BeforeStart",

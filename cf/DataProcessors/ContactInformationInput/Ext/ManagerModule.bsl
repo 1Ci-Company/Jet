@@ -23,7 +23,7 @@ Procedure FormGetProcessing(FormType, Parameters, SelectedForm, AdditionalInform
 			
 			If SelectedForm = Undefined Then
 				Raise  StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Unprocessable address type: ""%1""';"), InformationKind);
+					NStr("en = 'Unprocessable address type: ""%1""';tr = 'İşlenemeyen adres türü: ""%1""'"), InformationKind);
 			EndIf;
 		EndIf;
 		

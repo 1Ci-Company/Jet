@@ -136,7 +136,7 @@ Procedure InitializeItemsInForm(Val Warnings)
 	EndDo;
 	
 	// Footer.
-	LabelText = NStr("en = 'Exit the app?';");
+	LabelText = NStr("en = 'Exit the app?';tr = 'Uygulamadan çıkılsın mı?'");
 	
 	LabelName    = FindLabelNameInForm("QuestionLabel1");
 	LabelGroup = GenerateFormItemGroup();

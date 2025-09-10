@@ -16,7 +16,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	SetConditionalAppearance();
 	
 	If Not Users.IsFullUser(, True) Then
-		Raise(NStr("en = 'Insufficient access rights.';"), ErrorCategory.AccessViolation);
+		Raise(NStr("en = 'Insufficient access rights.';tr = 'Yetersiz erişim yetkileri.'"), ErrorCategory.AccessViolation);
 	EndIf;
 	
 	BlankID = String(CommonClientServer.BlankUUID());
@@ -188,14 +188,14 @@ Procedure ScheduledJobsTableBeforeDeleteRow(Item, Cancel)
 	Cancel = True;
 	
 	If Items.ScheduledJobsTable.SelectedRows.Count() > 1 Then
-		ShowMessageBox(, NStr("en = 'Select one scheduled job.';"));
+		ShowMessageBox(, NStr("en = 'Select one scheduled job.';tr = 'Zamanlanmış bir görev seçin.'"));
 		
 	ElsIf Item.CurrentData.Predefined Then
-		ShowMessageBox(, NStr("en = 'Predefined scheduled job cannot be deleted.';") );
+		ShowMessageBox(, NStr("en = 'Predefined scheduled job cannot be deleted.';tr = 'Ön tanımlı zamanlanmış görev silinemiyor.'") );
 	Else
 		ShowQueryBox(
 			New NotifyDescription("ScheduledJobsTableBeforeDeleteRowCompletion", ThisObject),
-			NStr("en = 'Do you want to delete the scheduled job?';"), QuestionDialogMode.YesNo);
+			NStr("en = 'Do you want to delete the scheduled job?';tr = 'Planlanmış iş silinsin mi?'"), QuestionDialogMode.YesNo);
 	EndIf;
 	
 EndProcedure
@@ -219,7 +219,7 @@ EndProcedure
 Procedure ExecuteScheduledJobManually(Command)
 
 	If Items.ScheduledJobsTable.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a scheduled job.';"));
+		ShowMessageBox(, NStr("en = 'Select a scheduled job.';tr = 'Programlı iş seçin.'"));
 		Return;
 	EndIf;
 	
@@ -236,7 +236,7 @@ Procedure ExecuteScheduledJobManually(Command)
 		CurrentData = ScheduledJobsTable.FindByID(SelectedRow);
 		
 		If CurrentData.Parameterized And SelectedJobsCount = 1 Then
-			ShowMessageBox(, NStr("en = 'The scheduled job cannot be started manually.';"));
+			ShowMessageBox(, NStr("en = 'The scheduled job cannot be started manually.';tr = 'Seçilen zamanlanmış görev manuel olarak yürütülemez.'"));
 			Return;
 		ElsIf CurrentData.Parameterized Then
 			Continue;
@@ -246,9 +246,10 @@ Procedure ExecuteScheduledJobManually(Command)
 		If ExecutionParameters.Started1 Then
 			
 			ShowUserNotification(
-				NStr("en = 'Scheduled job started';"), ,
+				NStr("en = 'Scheduled job started';tr = 'Zamanlanmış görev başlatıldı'"), ,
 				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1.
-					|The scheduled job has been started in the background job ""%2"".';"),
+					|The scheduled job has been started in the background job ""%2"".';tr = '%1.
+					|Zamanlanmış görev ""%2"" arka plan işinde başlatıldı.'"),
 					CurrentData.Description,
 					String(ExecutionParameters.StartedAt)),
 				PictureLib.ExecuteScheduledJobManually);
@@ -263,7 +264,8 @@ Procedure ExecuteScheduledJobManually(Command)
 			ErrorMessageArray.Add(
 				StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The scheduled job ""%1"" is running in
-					|the background job ""%2""  started on %3.';"),
+					|the background job ""%2""  started on %3.';tr = '""%1"" zamanlanmış görevi için %3 tarihinde başlatılan
+					|""%2"" arka plan işinde çalışıyor.'"),
 					CurrentData.Description,
 					ExecutionParameters.BackgroundJobPresentation,
 					String(ExecutionParameters.StartedAt)));
@@ -278,7 +280,7 @@ Procedure ExecuteScheduledJobManually(Command)
 	ErrorsCount = ErrorMessageArray.Count();
 	If ErrorsCount > 0 Then
 		ErrorTextTitle = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The jobs are not completed (%1 out of %2)';"),
+			NStr("en = 'The jobs are not completed (%1 out of %2)';tr = 'İşler tamamlanmadı (%1 / %2)'"),
 			Format(ErrorsCount, "NG="),
 			Format(SelectedRows.Count(), "NG="));
 		
@@ -291,7 +293,7 @@ Procedure ExecuteScheduledJobManually(Command)
 		
 		If ErrorsCount > 5 Then
 			Buttons = New ValueList;
-			Buttons.Add(1, NStr("en = 'Show errors';"));
+			Buttons.Add(1, NStr("en = 'Show errors';tr = 'Hataları göster'"));
 			Buttons.Add(DialogReturnCode.Cancel);
 			
 			ShowQueryBox(
@@ -311,10 +313,10 @@ Procedure SetUpSchedule(Command)
 	CurrentData = Items.ScheduledJobsTable.CurrentData;
 	
 	If CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a scheduled job.';"));
+		ShowMessageBox(, NStr("en = 'Select a scheduled job.';tr = 'Programlı iş seçin.'"));
 	
 	ElsIf Items.ScheduledJobsTable.SelectedRows.Count() > 1 Then
-		ShowMessageBox(, NStr("en = 'Select one scheduled job.';"));
+		ShowMessageBox(, NStr("en = 'Select one scheduled job.';tr = 'Zamanlanmış bir görev seçin.'"));
 	Else
 		Dialog = New ScheduledJobDialog(
 			GetSchedule(CurrentData.Id));
@@ -350,7 +352,7 @@ EndProcedure
 Procedure CancelBackgroundJob(Command)
 	
 	If Items.BackgroundJobsTable.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a background job.';"));
+		ShowMessageBox(, NStr("en = 'Select a background job.';tr = 'Arka plan işi seçin.'"));
 		Return;
 	EndIf;
 
@@ -359,7 +361,8 @@ Procedure CancelBackgroundJob(Command)
 	
 	ShowMessageBox(,
 		NStr("en = 'You have canceled the background job, but the server will stop it with a delay.,
-		           |You might need to update data on the client manually.';"));
+		           |You might need to update data on the client manually.';tr = 'Arka plan işini iptal ettiniz fakat sunucu bu işi gecikmeli olarak durdurabilir.
+		           |İstemcide verileri manuel olarak güncellemeniz gerekebilir.'"));
 	
 EndProcedure
 
@@ -375,7 +378,7 @@ EndProcedure
 Procedure ExecuteNotInBackground(Command)
 	
 	If Items.ScheduledJobsTable.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a scheduled job.';"));
+		ShowMessageBox(, NStr("en = 'Select a scheduled job.';tr = 'Programlı iş seçin.'"));
 		Return;
 	EndIf;
 	
@@ -390,7 +393,7 @@ Procedure ExecuteNotInBackground(Command)
 		CurrentData = ScheduledJobsTable.FindByID(SelectedRow);
 		
 		If CurrentData.Parameterized And SelectedJobsCount = 1 Then
-			ShowMessageBox(, NStr("en = 'The scheduled job cannot be started manually.';"));
+			ShowMessageBox(, NStr("en = 'The scheduled job cannot be started manually.';tr = 'Seçilen zamanlanmış görev manuel olarak yürütülemez.'"));
 			Return;
 		ElsIf CurrentData.Parameterized Then
 			Continue;
@@ -401,9 +404,10 @@ Procedure ExecuteNotInBackground(Command)
 	EndDo;
 	
 	ShowUserNotification(
-		NStr("en = 'Scheduled job completed';"), ,
+		NStr("en = 'Scheduled job completed';tr = 'Zamanlanmış görev tamamlandı'"), ,
 		StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1.
-			|The scheduled job has been completed manually.';"),
+			|The scheduled job has been completed manually.';tr = '%1.
+			|Zamanlanmış görev manuel olarak tamamlandı.'"),
 			CurrentData.Description),
 		PictureLib.ExecuteScheduledJobManually);
 	
@@ -436,12 +440,12 @@ Procedure EventLogEvents(Command)
 	If Items.Jobs.CurrentPage = Items.ScheduledJobs Then
 		CurrentData = Items.ScheduledJobsTable.CurrentData;
 		If CurrentData = Undefined Then
-			ShowMessageBox(, NStr("en = 'Select a scheduled job.';"));
+			ShowMessageBox(, NStr("en = 'Select a scheduled job.';tr = 'Programlı iş seçin.'"));
 			Return;
 		EndIf;
 		If Not ValueIsFilled(CurrentData.StartDate) And Not ValueIsFilled(CurrentData.EndDate)
 			Or (CurrentData.StartDate = TextUndefined And CurrentData.EndDate = TextUndefined) Then
-			ShowMessageBox(, NStr("en = 'The scheduled job has not run yet. There are no related records in the event log.';"));
+			ShowMessageBox(, NStr("en = 'The scheduled job has not run yet. There are no related records in the event log.';tr = 'Planlı iş henüz yürütülmedi. Olay günlüğünde ilgili kayıt yok.'"));
 			Return;
 		EndIf;
 		EventFilter.Insert("StartDate", CurrentData.StartDate);
@@ -450,7 +454,7 @@ Procedure EventLogEvents(Command)
 	ElsIf Items.Jobs.CurrentPage = Items.BackgroundJobs Then
 		CurrentData = Items.BackgroundJobsTable.CurrentData;
 		If CurrentData = Undefined Then
-			ShowMessageBox(, NStr("en = 'Select a background job.';"));
+			ShowMessageBox(, NStr("en = 'Select a background job.';tr = 'Arka plan işi seçin.'"));
 			Return;
 		EndIf;
 		EventFilter.Insert("StartDate", CurrentData.Begin);
@@ -480,7 +484,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter = Item.Filter.Items.Add(Type("DataCompositionFilterItem"));
 	ItemFilter.LeftValue = New DataCompositionField("BackgroundJobsTable.End");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.NotFilled;
-	Item.Appearance.SetParameterValue("Text", NStr("en = '<>';"));
+	Item.Appearance.SetParameterValue("Text", NStr("en = '<>';tr = '<>'"));
 	
 	//
 	Item = ConditionalAppearance.Items.Add();
@@ -491,7 +495,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter = Item.Filter.Items.Add(Type("DataCompositionFilterItem"));
 	ItemFilter.LeftValue = New DataCompositionField("ScheduledJobsTable.ExecutionState");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.Equal;
-	ItemFilter.RightValue = NStr("en = '<undefined>';");
+	ItemFilter.RightValue = NStr("en = '<undefined>';tr = '<undefined>'");
 	Item.Appearance.SetParameterValue("TextColor", StyleColors.InaccessibleCellTextColor);
 	
 	//
@@ -503,7 +507,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter = Item.Filter.Items.Add(Type("DataCompositionFilterItem"));
 	ItemFilter.LeftValue = New DataCompositionField("ScheduledJobsTable.EndDate");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.Equal;
-	ItemFilter.RightValue = NStr("en = '<undefined>';");
+	ItemFilter.RightValue = NStr("en = '<undefined>';tr = '<undefined>'");
 	Item.Appearance.SetParameterValue("TextColor", StyleColors.InaccessibleCellTextColor);
 	
 	//
@@ -515,7 +519,7 @@ Procedure SetConditionalAppearance()
 	ItemFilter = Item.Filter.Items.Add(Type("DataCompositionFilterItem"));
 	ItemFilter.LeftValue = New DataCompositionField("ScheduledJobsTable.StartDate");
 	ItemFilter.ComparisonType = DataCompositionComparisonType.Equal;
-	ItemFilter.RightValue = NStr("en = '<undefined>';");
+	ItemFilter.RightValue = NStr("en = '<undefined>';tr = '<undefined>'");
 	Item.Appearance.SetParameterValue("TextColor", StyleColors.InaccessibleCellTextColor);
 	
 	//
@@ -692,7 +696,7 @@ EndProcedure
 Procedure OpenBackgroundJob()
 	
 	If Items.BackgroundJobsTable.CurrentData = Undefined Then
-		ShowMessageBox(, NStr("en = 'Select a background job.';"));
+		ShowMessageBox(, NStr("en = 'Select a background job.';tr = 'Arkaplan işi seçin.'"));
 		Return;
 	EndIf;
 	
@@ -778,11 +782,12 @@ Procedure NotifyAboutManualScheduledJobCompletion()
 	For Each Notification In CompletionNotifications Do
 		
 		ShowUserNotification(
-			NStr("en = 'Scheduled job procedure completed';"),
+			NStr("en = 'Scheduled job procedure completed';tr = 'Zamanlanmış görev prosedürü gerçekleştirildi'"),
 			,
 			StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = '%1.
-				           |The scheduled job has been completed in the background job ""%2"".';"),
+				           |The scheduled job has been completed in the background job ""%2"".';tr = '%1.
+				           |Zamanlanmış görev ""%2"" arka plan işinde tamamlandı.'"),
 				Notification.ScheduledJobPresentation,
 				String(Notification.FinishedAt)),
 			PictureLib.ExecuteScheduledJobManually);
@@ -866,7 +871,7 @@ Procedure AddCopyEditScheduledJob(Val Action)
 	
 	If Action <> "Add" Then
 		If Items.ScheduledJobsTable.CurrentData = Undefined Then
-			ShowMessageBox(, NStr("en = 'Select a scheduled job.';"));
+			ShowMessageBox(, NStr("en = 'Select a scheduled job.';tr = 'Programlı iş seçin.'"));
 			Return;
 		Else
 			FormParameters.Insert("Id", Items.ScheduledJobsTable.CurrentData.Id);
@@ -979,7 +984,7 @@ Function ScheduledJobsImport(JobID)
 		ExecutionParameters.RunNotInBackground1 = True;
 	EndIf;
 	ExecutionParameters.WaitCompletion = 0; // Run immediately.
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Generate scheduled job list';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Generate scheduled job list';tr = 'Planlı iş listesi oluştur'");
 	
 	Return TimeConsumingOperations.ExecuteInBackground("ScheduledJobsInternal.GenerateScheduledJobsTable",
 		TimeConsumingOperationParameters, ExecutionParameters);
@@ -1067,7 +1072,7 @@ Function GenerateBackgroundJobsTableInBackground()
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
 	ExecutionParameters.WaitCompletion = 0;
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Scheduled jobs. Update background job list';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Scheduled jobs. Update background job list';tr = 'Planlı işler. Arka plan iş listesini güncelle'");
 	
 	Result = TimeConsumingOperations.ExecuteInBackground("ScheduledJobsInternal.FillBackgroundJobsPropertiesTableInBackground",
 		TransmittedParameters, ExecutionParameters);
@@ -1171,7 +1176,7 @@ Procedure UpdateBackgroundJobTable(ResultAddress = Undefined)
 				New Structure("Id", ToUpdate.ScheduledJobID));
 			
 			ToUpdate.ScheduledJobDescription
-				= ?(Rows.Count() = 0, NStr("en = '<not found>';"), Rows[0].Description);
+				= ?(Rows.Count() = 0, NStr("en = '<not found>';tr = '<bulunamadı>'"), Rows[0].Description);
 		Else
 			ToUpdate.ScheduledJobDescription  = TextUndefined;
 			ToUpdate.ScheduledJobID = TextUndefined;

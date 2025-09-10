@@ -50,7 +50,7 @@ Procedure MaxFileSizeOnChange(Item)
 	
 	If MaxFileSize = 0 Then
 		
-		MessageText = NStr("en = 'File size limit is required.';");
+		MessageText = NStr("en = 'File size limit is required.';tr = 'Dosya boyutu limiti gerekli.'");
 		CommonClient.MessageToUser(MessageText, ,"MaxFileSize");
 		Return;
 		
@@ -81,12 +81,16 @@ EndProcedure
 &AtClient
 Async Procedure StartDeduplication(Command)
 	
-	QuestionTitle = NStr("en = 'File deduplication';");
+	QuestionTitle = NStr("en = 'File deduplication';tr = 'Dosya tekilleştirme'");
 	QueryText = NStr("en = 'With file deduplication, you can save up to 30% of infobase space by removing duplicate files stored in the application (the ""Infobase"" storage option). The process takes minutes to hours, depending on the number of files, and can be paused and resumed at any time. All newly added files are automatically stored as a single instance.
 						|
 						|During deduplication, the infobase size may increase significantly. Therefore, before initiating the process, ensure that the device hosting the infobase has at least %1 MB of free space and back up the infobase. After completion, compress the infobase for the deduplication to take effect.
 						|
-						|Do you want to create deduplication jobs for each data area?';");
+						|Do you want to create deduplication jobs for each data area?';tr = 'Uygulamada (""Infobase"" depolama seçeneği) saklanan kopya dosyaları silerek infobase alanında %30''a kadar yer açabilirsiniz. Bu işlem dosya sayısına bağlı olarak birkaç dakika ile birkaç saat sürebilir ve istendiğinde duraklatılabilir ve devam ettirilebilir. Yeni eklenen tüm dosyalar tek örnek olarak saklanır.
+						|
+						|Tekilleştirme sırasında infobase boyutu önemli ölçüde artabilir. Bu nedenle, süreci başlatmadan önce infobase''in bulunduğu cihazda en az %1 MB boş alan olduğundan emin olun ve infobase''i yedekleyin. İşlem tamamlandıktan sonra, tekilleştirmenin uygulanması için infobase''i sıkıştırın.
+						|
+						|Her bir veri alanı için tekilleştirme işi oluşturmak istiyor musunuz?'");
 	QueryText = StringFunctionsClientServer.SubstituteParametersToString(QueryText, Format(DeleteFilesBinaryDataTableSize, "NFD=2;"));
 	
 	Response = Await DoQueryBoxAsync(QueryText, QuestionDialogMode.YesNo, , DialogReturnCode.No, QuestionTitle);

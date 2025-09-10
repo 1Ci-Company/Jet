@@ -5,6 +5,10 @@
 			<v8:lang>en</v8:lang>
 			<v8:content>Login assistance and password recovery</v8:content>
 		</v8:item>
+		<v8:item>
+			<v8:lang>tr</v8:lang>
+			<v8:content>Oturum açma yardımı ve parola kurtarma</v8:content>
+		</v8:item>
 	</Title>
 	<AutoTitle>false</AutoTitle>
 	<AutoCommandBar name="FormCommandBar" id="-1">
@@ -18,6 +22,10 @@
 					<v8:item>
 						<v8:lang>en</v8:lang>
 						<v8:content>Save and close</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>Sakla ve kapat</v8:content>
 					</v8:item>
 				</Title>
 				<ExtendedTooltip name="FormWriteAndCloseExtendedTooltip" id="44"/>
@@ -33,6 +41,10 @@
 					<v8:item>
 						<v8:lang>en</v8:lang>
 						<v8:content>Save</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>Kaydet</v8:content>
 					</v8:item>
 				</Title>
 				<ExtendedTooltip name="FormWriteExtendedTooltip" id="117"/>
@@ -52,6 +64,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Show the "Need help?" hyperlink in the authentication dialog box:</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>"Yardıma mı ihtiyacınız var?" kimlik doğrulama iletişim kutusunda:</v8:content>
+				</v8:item>
 			</Title>
 			<TitleLocation>Right</TitleLocation>
 			<CheckBoxType>Auto</CheckBoxType>
@@ -68,12 +84,20 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Help URL</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Yardım gezinme bağlantısı</v8:content>
+				</v8:item>
 			</Title>
 			<TitleLocation>None</TitleLocation>
 			<OpenButton>true</OpenButton>
 			<InputHint>
 				<v8:item>
 					<v8:lang>en</v8:lang>
+					<v8:content>http://server/help</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
 					<v8:content>http://server/help</v8:content>
 				</v8:item>
 			</InputHint>
@@ -89,6 +113,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Password recovery</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Şifre kurtarma</v8:content>
+				</v8:item>
 			</Title>
 			<Group>Vertical</Group>
 			<Behavior>Usual</Behavior>
@@ -102,6 +130,10 @@
 						<v8:item>
 							<v8:lang>en</v8:lang>
 							<v8:content>Show the "Forgot password?" hyperlink:</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>"Şifrenizi mi unuttunuz?" köprünü görüntüleyin:</v8:content>
 						</v8:item>
 					</Title>
 					<TitleLocation>Right</TitleLocation>
@@ -119,6 +151,10 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>Recover password</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Şifre kurtarmak</v8:content>
+						</v8:item>
 					</Title>
 					<RadioButtonType>Tumbler</RadioButtonType>
 					<ChoiceList>
@@ -130,6 +166,10 @@
 									<v8:item>
 										<v8:lang>en</v8:lang>
 										<v8:content>via email</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>tr</v8:lang>
+										<v8:content>e-posta yoluyla</v8:content>
 									</v8:item>
 								</Presentation>
 								<Value xsi:type="xs:string">ViaEmail</Value>
@@ -143,6 +183,10 @@
 									<v8:item>
 										<v8:lang>en</v8:lang>
 										<v8:content>following the link</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>tr</v8:lang>
+										<v8:content>bağlantıyı takip etme</v8:content>
 									</v8:item>
 								</Presentation>
 								<Value xsi:type="xs:string">LinkAction</Value>
@@ -161,6 +205,10 @@
 							<v8:lang>en</v8:lang>
 							<v8:content>Recovery options</v8:content>
 						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Kurtarma seçenekleri</v8:content>
+						</v8:item>
 					</Title>
 					<PagesRepresentation>None</PagesRepresentation>
 					<ExtendedTooltip name="RecoveryOptionsExtendedTooltip" id="18"/>
@@ -171,6 +219,10 @@
 									<v8:lang>en</v8:lang>
 									<v8:content>Email</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>E-posta</v8:content>
+								</v8:item>
 							</Title>
 							<ExtendedTooltip name="EmailExtendedTooltip" id="20"/>
 							<ChildItems>
@@ -179,6 +231,10 @@
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Send by email</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>E-posta ile gönderme</v8:content>
 										</v8:item>
 									</Title>
 									<Behavior>Usual</Behavior>
@@ -192,6 +248,10 @@
 													<v8:lang>en</v8:lang>
 													<v8:content>Send email from:</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Şu adresten e-posta gönder:</v8:content>
+												</v8:item>
 											</Title>
 											<ContextMenu name="DecorationSendFromContextMenu" id="109"/>
 											<ExtendedTooltip name="DecorationSendFromExtendedTooltip" id="110"/>
@@ -201,6 +261,10 @@
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Options</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Seçenekler</v8:content>
 												</v8:item>
 											</Title>
 											<Group>Vertical</Group>
@@ -216,6 +280,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>Sending server</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Sunucu gönderme</v8:content>
+														</v8:item>
 													</Title>
 													<TitleLocation>None</TitleLocation>
 													<RadioButtonType>Auto</RadioButtonType>
@@ -229,6 +297,10 @@
 																	<v8:item>
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Standard sending server</v8:content>
+																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Standart gönderme hizmeti</v8:content>
 																	</v8:item>
 																</Presentation>
 																<Value xsi:type="xs:string">StandardService</Value>
@@ -247,6 +319,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>Email accounts</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>E-posta hesapları</v8:content>
+														</v8:item>
 													</Title>
 													<Behavior>Usual</Behavior>
 													<Representation>None</Representation>
@@ -259,6 +335,10 @@
 																<v8:item>
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Sending server</v8:content>
+																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Sunucu gönderme</v8:content>
 																</v8:item>
 															</Title>
 															<TitleLocation>None</TitleLocation>
@@ -273,6 +353,10 @@
 																			<v8:item>
 																				<v8:lang>en</v8:lang>
 																				<v8:content>Email account:</v8:content>
+																			</v8:item>
+																			<v8:item>
+																				<v8:lang>tr</v8:lang>
+																				<v8:content>E-posta hesabı:</v8:content>
 																			</v8:item>
 																		</Presentation>
 																		<Value xsi:type="xs:string">ExternalMailServer</Value>
@@ -292,6 +376,10 @@
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Email account</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Hesap</v8:content>
+																</v8:item>
 															</Title>
 															<TitleLocation>None</TitleLocation>
 															<ContextMenu name="AccountEmailContextMenu" id="36"/>
@@ -306,6 +394,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>Sending server</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Sunucu gönderme</v8:content>
+														</v8:item>
 													</Title>
 													<TitleLocation>None</TitleLocation>
 													<RadioButtonType>Auto</RadioButtonType>
@@ -319,6 +411,10 @@
 																	<v8:item>
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Specified mail server</v8:content>
+																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Belirtilen posta sunucusu</v8:content>
 																	</v8:item>
 																</Presentation>
 																<Value xsi:type="xs:string">ManualSetting</Value>
@@ -341,6 +437,10 @@
 											<v8:lang>en</v8:lang>
 											<v8:content>Mail server settings</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Posta sunucusu ayarları</v8:content>
+										</v8:item>
 									</Title>
 									<Behavior>Collapsible</Behavior>
 									<Collapsed>true</Collapsed>
@@ -353,6 +453,10 @@
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>SMTP server</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>SMTP sunucusu</v8:content>
 												</v8:item>
 											</Title>
 											<Group>AlwaysHorizontal</Group>
@@ -368,6 +472,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>SMTP server</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>SMTP sunucusu</v8:content>
+														</v8:item>
 													</Title>
 													<Width>27</Width>
 													<ContextMenu name="SMTPServerAddressContextMenu" id="86"/>
@@ -379,6 +487,10 @@
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Encryption</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Şifreleme</v8:content>
 														</v8:item>
 													</Title>
 													<RadioButtonType>Auto</RadioButtonType>
@@ -393,6 +505,10 @@
 																		<v8:lang>en</v8:lang>
 																		<v8:content>STARTTLS</v8:content>
 																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>STARTTLS</v8:content>
+																	</v8:item>
 																</Presentation>
 																<Value xsi:type="xs:string">Auto</Value>
 															</xr:Value>
@@ -404,6 +520,10 @@
 																<Presentation>
 																	<v8:item>
 																		<v8:lang>en</v8:lang>
+																		<v8:content>SSL</v8:content>
+																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
 																		<v8:content>SSL</v8:content>
 																	</v8:item>
 																</Presentation>
@@ -424,6 +544,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>Port</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Port</v8:content>
+														</v8:item>
 													</Title>
 													<ContextMenu name="SMTPPortContextMenu" id="74"/>
 													<ExtendedTooltip name="SMTPPortExtendedTooltip" id="75"/>
@@ -435,6 +559,10 @@
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>SMTP user</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>SMTP kullanıcısı</v8:content>
 												</v8:item>
 											</Title>
 											<Group>AlwaysHorizontal</Group>
@@ -450,6 +578,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>User</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Kullanıcı</v8:content>
+														</v8:item>
 													</Title>
 													<Width>10</Width>
 													<ContextMenu name="SMTPUserContextMenu" id="77"/>
@@ -461,6 +593,10 @@
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Password</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Parola</v8:content>
 														</v8:item>
 													</Title>
 													<Width>10</Width>
@@ -477,11 +613,19 @@
 													<v8:lang>en</v8:lang>
 													<v8:content>Sender</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Gönderen</v8:content>
+												</v8:item>
 											</Title>
 											<InputHint>
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Email sender name</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>E-posta gönderen adı</v8:content>
 												</v8:item>
 											</InputHint>
 											<ContextMenu name="SenderNameContextMenu" id="83"/>
@@ -494,6 +638,10 @@
 										<v8:item>
 											<v8:lang>en</v8:lang>
 											<v8:content>Template of a message with password recovery code</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Şifre kurtarma kodu mesaj şablonu</v8:content>
 										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
@@ -509,6 +657,10 @@
 													<v8:lang>en</v8:lang>
 													<v8:content>Subject</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Konu</v8:content>
+												</v8:item>
 											</Title>
 											<ContextMenu name="EmailSubjectContextMenu" id="60">
 												<ChildItems>
@@ -517,6 +669,10 @@
 															<v8:item>
 																<v8:lang>en</v8:lang>
 																<v8:content>Insert parameter</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>tr</v8:lang>
+																<v8:content>Parametre ekle</v8:content>
 															</v8:item>
 														</Title>
 														<ExtendedTooltip name="InsertParameterContextMenuGroupExtendedTooltip" id="121"/>
@@ -529,6 +685,10 @@
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Username</v8:content>
 																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Kullanıcı adı</v8:content>
+																	</v8:item>
 																</Title>
 																<ExtendedTooltip name="EmailSubjectContextMenuUserNameExtendedTooltip" id="119"/>
 															</Button>
@@ -540,6 +700,10 @@
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Configuration name</v8:content>
 																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Konfigürasyon adı</v8:content>
+																	</v8:item>
 																</Title>
 																<ExtendedTooltip name="EmailSubjectContextMenuConfigurationDescriptionExtendedTooltip" id="125"/>
 															</Button>
@@ -550,6 +714,10 @@
 																	<v8:item>
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Confirmation code</v8:content>
+																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Onay kodu</v8:content>
 																	</v8:item>
 																</Title>
 																<ExtendedTooltip name="EmailSubjectContextMenuConfirmationCodeExtendedTooltip" id="123"/>
@@ -566,6 +734,10 @@
 													<v8:lang>en</v8:lang>
 													<v8:content>Formatted document buttons</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Biçimlendirilmiş belge butonları</v8:content>
+												</v8:item>
 											</Title>
 											<ExtendedTooltip name="GroupFormattedDocumentButtonsExtendedTooltip" id="68"/>
 											<ChildItems>
@@ -574,6 +746,10 @@
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Insert parameter</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Parametre ekle</v8:content>
 														</v8:item>
 													</Title>
 													<ExtendedTooltip name="BodyGroupParametersExtendedTooltip" id="93"/>
@@ -586,6 +762,10 @@
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Username</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Kullanıcı adı</v8:content>
+																</v8:item>
 															</Title>
 															<ExtendedTooltip name="UserNameExtendedTooltip" id="95"/>
 														</Button>
@@ -596,6 +776,10 @@
 																<v8:item>
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Configuration name</v8:content>
+																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Konfigürasyon adı</v8:content>
 																</v8:item>
 															</Title>
 															<ExtendedTooltip name="ConfigurationNameExtendedTooltip" id="97"/>
@@ -608,6 +792,10 @@
 																	<v8:lang>en</v8:lang>
 																	<v8:content>Confirmation code</v8:content>
 																</v8:item>
+																<v8:item>
+																	<v8:lang>tr</v8:lang>
+																	<v8:content>Onay kodu</v8:content>
+																</v8:item>
 															</Title>
 															<ExtendedTooltip name="ConfirmationCodeExtendedTooltip" id="99"/>
 														</Button>
@@ -618,6 +806,10 @@
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>Buttons</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Butonlar</v8:content>
 														</v8:item>
 													</Title>
 													<CommandSource>Item.MessageText</CommandSource>
@@ -632,6 +824,10 @@
 													<v8:lang>en</v8:lang>
 													<v8:content>Message body</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>İleti metni</v8:content>
+												</v8:item>
 											</Title>
 											<TitleLocation>None</TitleLocation>
 											<Height>5</Height>
@@ -642,6 +838,10 @@
 															<v8:item>
 																<v8:lang>en</v8:lang>
 																<v8:content>Insert parameter</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>tr</v8:lang>
+																<v8:content>Parametre ekle</v8:content>
 															</v8:item>
 														</Title>
 														<ExtendedTooltip name="InsertParameterBodyContextMenuGroupExtendedTooltip" id="133"/>
@@ -654,6 +854,10 @@
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Username</v8:content>
 																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Kullanıcı adı</v8:content>
+																	</v8:item>
 																</Title>
 																<ExtendedTooltip name="MessageTextContextMenuUserNameExtendedTooltip" id="127"/>
 															</Button>
@@ -665,6 +869,10 @@
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Configuration name</v8:content>
 																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Konfigürasyon adı</v8:content>
+																	</v8:item>
 																</Title>
 																<ExtendedTooltip name="MessageTextContextMenuConfigurationDescriptionExtendedTooltip" id="131"/>
 															</Button>
@@ -675,6 +883,10 @@
 																	<v8:item>
 																		<v8:lang>en</v8:lang>
 																		<v8:content>Confirmation code</v8:content>
+																	</v8:item>
+																	<v8:item>
+																		<v8:lang>tr</v8:lang>
+																		<v8:content>Onay kodu</v8:content>
 																	</v8:item>
 																</Title>
 																<ExtendedTooltip name="MessageTextContextMenuConfirmationCodeExtendedTooltip" id="129"/>
@@ -693,6 +905,10 @@
 											<v8:lang>en</v8:lang>
 											<v8:content>Confirmation code</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Onay kodu</v8:content>
+										</v8:item>
 									</Title>
 									<Group>Vertical</Group>
 									<Behavior>Collapsible</Behavior>
@@ -707,6 +923,10 @@
 													<v8:lang>en</v8:lang>
 													<v8:content>Code length</v8:content>
 												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Kod uzunluğu</v8:content>
+												</v8:item>
 											</Title>
 											<SpinButton>true</SpinButton>
 											<ContextMenu name="CodeLengthContextMenu" id="13"/>
@@ -717,6 +937,10 @@
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Request lock duration</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Engelleme süresi isteği</v8:content>
 												</v8:item>
 											</Title>
 											<Behavior>Usual</Behavior>
@@ -731,6 +955,10 @@
 															<v8:lang>en</v8:lang>
 															<v8:content>Timeout between recovery requests</v8:content>
 														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>Parola kurtarma istekleri arasındaki zaman aşımı</v8:content>
+														</v8:item>
 													</Title>
 													<SpinButton>true</SpinButton>
 													<ContextMenu name="RequestLockDurationContextMenu" id="24"/>
@@ -741,6 +969,10 @@
 														<v8:item>
 															<v8:lang>en</v8:lang>
 															<v8:content>sec.</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>tr</v8:lang>
+															<v8:content>san.</v8:content>
 														</v8:item>
 													</Title>
 													<ContextMenu name="SecondsDecorationContextMenu" id="53"/>
@@ -754,6 +986,10 @@
 												<v8:item>
 													<v8:lang>en</v8:lang>
 													<v8:content>Maximum number of failed input attempts</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>tr</v8:lang>
+													<v8:content>Maksimum başarısız giriş denemesi sayısı</v8:content>
 												</v8:item>
 											</Title>
 											<Width>3</Width>
@@ -771,6 +1007,10 @@
 									<v8:lang>en</v8:lang>
 									<v8:content>Follow the link</v8:content>
 								</v8:item>
+								<v8:item>
+									<v8:lang>tr</v8:lang>
+									<v8:content>Linki izle</v8:content>
+								</v8:item>
 							</Title>
 							<ExtendedTooltip name="LinkActionExtendedTooltip" id="22"/>
 							<ChildItems>
@@ -781,12 +1021,20 @@
 											<v8:lang>en</v8:lang>
 											<v8:content>Password recovery page address</v8:content>
 										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Şifre kurtarma sayfası adresi</v8:content>
+										</v8:item>
 									</Title>
 									<TitleLocation>Top</TitleLocation>
 									<AutoMarkIncomplete>true</AutoMarkIncomplete>
 									<InputHint>
 										<v8:item>
 											<v8:lang>en</v8:lang>
+											<v8:content>http://server/password</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
 											<v8:content>http://server/password</v8:content>
 										</v8:item>
 									</InputHint>
@@ -807,6 +1055,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Show the "Need help?" hyperlink in the authentication dialog box:</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>"Yardıma mı ihtiyacınız var?" kimlik doğrulama iletişim kutusunda:</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:boolean</v8:Type>
@@ -818,6 +1070,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Help URL</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Yardım gezinme bağlantısı</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -834,6 +1090,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Code length</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kod uzunluğu</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -852,6 +1112,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Maximum number of failed input attempts</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Maksimum başarısız giriş denemesi sayısı</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:decimal</v8:Type>
@@ -868,6 +1132,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Timeout between recovery requests</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Parola kurtarma istekleri arasındaki zaman aşımı</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -886,6 +1154,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Email client option</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>E-posta ile gönderme seçeneği</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:string</v8:Type>
@@ -901,6 +1173,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Password recovery option</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Şifre kurtarma seçeneği</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -918,6 +1194,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Email account</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>E-posta hesabı</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>cfg:CatalogRef.EmailAccounts</v8:Type>
@@ -929,6 +1209,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Password recovery URL</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Şifre kurtarma gezinme bağlantısı</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -945,6 +1229,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Show the "Forgot password?" hyperlink:</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>"Şifrenizi mi unuttunuz?" köprünü görüntüleyin:</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -967,6 +1255,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Mail subject</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>E-posta konusu</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:string</v8:Type>
@@ -983,6 +1275,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Message text</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Mesaj metni</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type xmlns:fd="http://v8.1c.ru/8.2/data/formatted-document">fd:FormattedDocument</v8:Type>
@@ -993,6 +1289,10 @@
 			<Title>
 				<v8:item>
 					<v8:lang>en</v8:lang>
+					<v8:content>Port</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
 					<v8:content>Port</v8:content>
 				</v8:item>
 			</Title>
@@ -1012,6 +1312,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>SMTP server</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>SMTP sunucusu</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:string</v8:Type>
@@ -1027,6 +1331,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Sender</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Gönderen</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -1044,6 +1352,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Password</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Şifre</v8:content>
+				</v8:item>
 			</Title>
 			<Type>
 				<v8:Type>xs:string</v8:Type>
@@ -1059,6 +1371,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>User</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kullanıcı</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -1084,6 +1400,10 @@
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Encryption</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Şifreleme</v8:content>
 				</v8:item>
 			</Title>
 			<Type>
@@ -1113,11 +1433,19 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Save and close</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sakla ve kapat</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Save and close</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sakla ve kapat</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>WriteAndClose</Action>
@@ -1128,11 +1456,19 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Username</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kullanıcı adı</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Username</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kullanıcı adı</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>ParameterUsername</Action>
@@ -1143,6 +1479,10 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Configuration name</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Konfigürasyon adı</v8:content>
+				</v8:item>
 			</Title>
 			<Action>ConfigurationDescription</Action>
 		</Command>
@@ -1152,11 +1492,19 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Confirmation code</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Onay kodu</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Confirmation code</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Onay kodu</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>ConfirmationCode</Action>
@@ -1167,11 +1515,19 @@
 					<v8:lang>en</v8:lang>
 					<v8:content>Save</v8:content>
 				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kaydet</v8:content>
+				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>en</v8:lang>
 					<v8:content>Save the changes.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Kaydet</v8:content>
 				</v8:item>
 			</ToolTip>
 			<Action>Write</Action>

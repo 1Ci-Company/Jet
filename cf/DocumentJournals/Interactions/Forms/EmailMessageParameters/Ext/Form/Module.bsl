@@ -110,14 +110,14 @@ EndProcedure
 Procedure AvailabilityControl()
 
 	If EmailType = "OutgoingEmail" Then
-		Items.Headers.Title = NStr("en = 'IDs';");
+		Items.Headers.Title = NStr("en = 'IDs';tr = 'Kodlar'");
 		If ReceivedSent = Date(1,1,1) Then
 			Items.RequestDeliveryReceipt.ReadOnly          = False;
 			Items.RequestReadReceipt.ReadOnly         = False;
 			Items.IncludeOriginalEmailBody.ReadOnly = False;
 		EndIf;
 	Else
-		Items.ReceivedSent.Title = NStr("en = 'Received';");
+		Items.ReceivedSent.Title = NStr("en = 'Received';tr = 'Alındı'");
 		Items.IncludeOriginalEmailBody.Visible =False;
 	EndIf;
 	

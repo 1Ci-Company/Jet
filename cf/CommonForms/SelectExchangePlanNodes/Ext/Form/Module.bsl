@@ -49,7 +49,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	EndIf;
 	
 	If PickMode Then
-		Title = NStr("en = 'Select exchange plan nodes';");
+		Title = NStr("en = 'Select exchange plan nodes';tr = 'Değişim plan düğümleri seç'");
 	EndIf;
 	If MultipleChoice Then
 		Items.ExchangePlansNodes.SelectionMode = TableSelectionMode.MultiRow;
@@ -95,7 +95,7 @@ Procedure Select(Command)
 	Else
 		CurrentData = Items.ExchangePlansNodes.CurrentData;
 		If CurrentData = Undefined Then
-			ShowMessageBox(, NStr("en = 'No nodes are selected.';"));
+			ShowMessageBox(, NStr("en = 'No nodes are selected.';tr = 'Ünite seçilmedi.'"));
 		Else
 			NotifyChoice(CurrentData.Node);
 		EndIf;
@@ -149,7 +149,7 @@ Procedure PopulateExchangePlans(Var_ExchangePlans)
 			NewRow.ExchangePlan              = ExchangePlanRef;
 			NewRow.ExchangePlanPresentation = MetadataObject.Synonym;
 			NewRow.Node                    = ExchangePlanRef;
-			NewRow.NodePresentation       = NStr("en = '<All infobases>';");
+			NewRow.NodePresentation       = NStr("en = '<All infobases>';tr = '<Tüm Infobase''ler>'");
 		EndIf;
 		
 	EndDo; 

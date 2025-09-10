@@ -330,7 +330,9 @@ Procedure EditPropertiesContent(Form)
 		ShowMessageBox(,
 			NStr("en = 'Cannot get the additional attribute sets of the object.
 			           |
-			           |Probably some of the required object attributes are blank.';"));
+			           |Probably some of the required object attributes are blank.';tr = 'Nesnenin ek bilgi kümeleri alınamadı.
+			           |
+			           |Nesne için gereken özellikler doldurulmamış olabilir.'"));
 	
 	Else
 		FormParameters = New Structure;

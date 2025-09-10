@@ -99,7 +99,7 @@ Procedure RunConnectedPrintCommandCompletion(FileSystemExtensionAttached1, Addit
 	If CommonClient.SubsystemExists("StandardSubsystems.PerformanceMonitor") Then
 		ModulePerformanceMonitorClient = CommonClient.CommonModule("PerformanceMonitorClient");
 		
-		IndicatorName = NStr("en = 'Print';") + StringFunctionsClientServer.SubstituteParametersToString("/%1/%2/%3/%4/%5/%6/%7",
+		IndicatorName = NStr("en = 'Print';tr = 'Yazdır'") + StringFunctionsClientServer.SubstituteParametersToString("/%1/%2/%3/%4/%5/%6/%7",
 			CommandDetails.Id,
 			CommandDetails.PrintManager,
 			CommandDetails.Handler,
@@ -146,17 +146,17 @@ Procedure CheckDocumentsPostedPostingDialog(Parameters) Export
 	
 	If Not PrintManagementServerCall.HasRightToPost(Parameters.UnpostedDocuments) Then
 		If Parameters.UnpostedDocuments.Count() = 1 Then
-			WarningText = NStr("en = 'Cannot print unposted document. You have insufficient rights to post the document. Cannot print.';");
+			WarningText = NStr("en = 'Cannot print unposted document. You have insufficient rights to post the document. Cannot print.';tr = 'Belgeyi yazdırmak için onu önce onaylayın. Belgeyi göndermek için yetersiz haklar, yazdırılamıyor.'");
 		Else
-			WarningText = NStr("en = 'Cannot print unposted document. You have insufficient rights to post the document. Cannot print.';");
+			WarningText = NStr("en = 'Cannot print unposted document. You have insufficient rights to post the document. Cannot print.';tr = 'Belgeyi yazdırmak için onu önce onaylayın. Belgeyi göndermek için yetersiz haklar, yazdırılamıyor.'");
 		EndIf;
 		Raise(WarningText, ErrorCategory.AccessViolation);
 	EndIf;
 
 	If Parameters.UnpostedDocuments.Count() = 1 Then
-		QueryText = NStr("en = 'Cannot print unposted document. Do you want to post the document and continue?';");
+		QueryText = NStr("en = 'Cannot print unposted document. Do you want to post the document and continue?';tr = 'Belgeyi yazdırmak için önce onaylayın. Belgeyi onayla ve devam et?'");
 	Else
-		QueryText = NStr("en = 'Cannot print unposted document. Do you want to post the document and continue?';");
+		QueryText = NStr("en = 'Cannot print unposted document. Do you want to post the document and continue?';tr = 'Belgeyi yazdırmak için önce onaylayın. Belgeyi onayla ve devam et?'");
 	EndIf;
 	NotifyDescription = New NotifyDescription("CheckDocumentsPostedDocumentsPosting", ThisObject, Parameters);
 	ShowQueryBox(NotifyDescription, QueryText, QuestionDialogMode.YesNo);
@@ -172,7 +172,7 @@ Procedure CheckDocumentsPostedDocumentsPosting(QuestionResult, AdditionalParamet
 	ClearMessages();
 	UnpostedDocumentsData = CommonServerCall.PostDocuments(AdditionalParameters.UnpostedDocuments);
 	
-	MessageTemplate = NStr("en = 'Document %1 is not posted: %2';");
+	MessageTemplate = NStr("en = 'Document %1 is not posted: %2';tr = '%1 belgesi kaydedilmedi: %2'");
 	UnpostedDocuments = New Array;
 	For Each DocumentInformation In UnpostedDocumentsData Do
 		CommonClient.MessageToUser(
@@ -199,12 +199,12 @@ Procedure CheckDocumentsPostedDocumentsPosting(QuestionResult, AdditionalParamet
 		
 	If UnpostedDocuments.Count() > 0 Then
 		// Asking a user whether they want to continue printing if there are unposted documents.
-		DialogText = NStr("en = 'Failed to post one or several documents.';");
+		DialogText = NStr("en = 'Failed to post one or several documents.';tr = 'Bir veya birkaç belge onaylanmaz.'");
 		
 		DialogButtons = New ValueList;
 		If PostedDocuments.Count() > 0 Then
-			DialogText = DialogText + " " + NStr("en = 'Continue?';");
-			DialogButtons.Add(DialogReturnCode.Ignore, NStr("en = 'Continue';"));
+			DialogText = DialogText + " " + NStr("en = 'Continue?';tr = 'Devam et?'");
+			DialogButtons.Add(DialogReturnCode.Ignore, NStr("en = 'Continue';tr = 'Devam'"));
 			DialogButtons.Add(DialogReturnCode.Cancel);
 		Else
 			DialogButtons.Add(DialogReturnCode.OK);
@@ -389,7 +389,7 @@ EndProcedure
 Function IdleParameters(FormOwner) Export
 	
 	IdleParameters = TimeConsumingOperationsClient.IdleParameters(FormOwner);
-	IdleParameters.MessageText = NStr("en = 'Preparing print forms.';");
+	IdleParameters.MessageText = NStr("en = 'Preparing print forms.';tr = 'Yazdırma formları hazırlanıyor.'");
 	IdleParameters.UserNotification.Show = False;
 	IdleParameters.OutputIdleWindow = True;
 	IdleParameters.OutputMessages = False;

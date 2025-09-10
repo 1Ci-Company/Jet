@@ -13,7 +13,7 @@
 &AtClient
 Procedure CommandProcessing(Variants, CommandExecuteParameters)
 	If TypeOf(Variants) <> Type("Array") Or Variants.Count() = 0 Then
-		ShowMessageBox(, NStr("en = 'Select report options to reset custom settings.';"));
+		ShowMessageBox(, NStr("en = 'Select report options to reset custom settings.';tr = 'Özel ayarları sıfırlamanız gereken rapor seçeneklerini seçin.'"));
 		Return;
 	EndIf;
 	

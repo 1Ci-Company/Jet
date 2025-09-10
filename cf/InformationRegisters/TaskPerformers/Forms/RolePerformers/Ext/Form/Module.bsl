@@ -15,7 +15,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	SetConditionalAppearance();
 	
-	Assignees.Parameters.SetParameterValue("NoAddressObject", NStr("en = '<Without business object>';"));
+	Assignees.Parameters.SetParameterValue("NoAddressObject", NStr("en = '<Without business object>';tr = '<İş nesnesi yok>'"));
 	
 	ConfigureRoleListRepresentation();
 

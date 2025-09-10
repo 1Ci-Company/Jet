@@ -152,14 +152,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 	
 	If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t process (skipped) some print templates: %1';"),
+			NStr("en = 'Couldn''t process (skipped) some print templates: %1';tr = 'Bazı yazdırma şablonları işlenemedi (atlandı): %1'"),
 			ObjectsWithIssuesCount);
 		Raise MessageText;
 	Else
 		WriteLogEvent(InfobaseUpdate.EventLogEvent(),
 			EventLogLevel.Information, Metadata.InformationRegisters.UserPrintTemplates,,
 				StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Another batch of print templates is processed: %1';"),
+					NStr("en = 'Another batch of print templates is processed: %1';tr = 'Başka bir yazdırma şablonu partisi işlendi: %1'"),
 			ObjectsProcessed));
 	EndIf;
 	
@@ -412,7 +412,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Id = New UUID("959d09e5-1dc3-4f32-833a-05ff17365e30");
 	Handler.UpdateDataFillingProcedure = "Catalogs.PrintFormTemplates.RegisterDataToProcessForMigrationToNewVersion";
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
-	Handler.Comment = NStr("en = 'Fills information about print data sources for custom print forms. Some print forms might be unavailable until processing is completed.';");
+	Handler.Comment = NStr("en = 'Fills information about print data sources for custom print forms. Some print forms might be unavailable until processing is completed.';tr = 'Özel yazdırma formları için yazdırma veri kaynakları hakkındaki bilgileri doldurur. İşlem tamamlanana kadar bazı yazdırma formları kullanılamayabilir.'");
 	
 	ItemsToRead = New Array;
 	ItemsToRead.Add(Metadata.Catalogs.PrintFormTemplates.FullName());

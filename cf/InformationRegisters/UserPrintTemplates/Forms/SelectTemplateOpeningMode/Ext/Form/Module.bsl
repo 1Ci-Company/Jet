@@ -39,8 +39,8 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Common.IsMobileClient() Then
 		Items.HowToOpen.ChoiceList.Clear();
-		Items.HowToOpen.ChoiceList.Add(0, NStr("en = 'View only';"));
-		Items.HowToOpen.ChoiceList.Add(1, NStr("en = 'Edit';"));
+		Items.HowToOpen.ChoiceList.Add(0, NStr("en = 'View only';tr = 'Salt okunur'"));
+		Items.HowToOpen.ChoiceList.Add(1, NStr("en = 'Edit';tr = 'Düzenleme için'"));
 		CommandBarLocation = FormCommandBarLabelLocation.Top;
 	EndIf;
 	

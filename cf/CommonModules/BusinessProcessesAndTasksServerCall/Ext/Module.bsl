@@ -75,7 +75,7 @@ Procedure ExecuteTask(TaskRef, DefaultAction = False) Export
 		
 		TaskInfoRecords = Common.ObjectAttributesValues(TaskRef, "Executed, BusinessProcess, RoutePoint");
 		If TaskInfoRecords.Executed Then
-			Raise NStr("en = 'The task was completed earlier.';");
+			Raise NStr("en = 'The task was completed earlier.';tr = 'Görev önceden tamamlandı.'");
 		EndIf;
 		
 		If DefaultAction 
@@ -251,14 +251,14 @@ Procedure ActivateBusinessProcess(BusinessProcess) Export
 		If Object.State = Enums.BusinessProcessStates.Running Then
 			
 			If Object.Completed Then
-				Raise NStr("en = 'Cannot activate the completed business processes.';");
+				Raise NStr("en = 'Cannot activate the completed business processes.';tr = 'Tamamlanmış iş süreçleri etkinleştirilemez.'");
 			EndIf;
 			
 			If Not Object.Started Then
-				Raise NStr("en = 'Cannot activate the business processes that are not started yet.';");
+				Raise NStr("en = 'Cannot activate the business processes that are not started yet.';tr = 'Başlamamış olan iş süreçleri etkinleştirilemez.'");
 			EndIf;
 			
-			Raise NStr("en = 'The business process is already active.';");
+			Raise NStr("en = 'The business process is already active.';tr = 'İş süreci zaten etkin.'");
 		EndIf;
 			
 		Object.Lock();
@@ -315,14 +315,14 @@ Procedure StopBusinessProcess(BusinessProcess) Export
 		If Object.State = Enums.BusinessProcessStates.Suspended Then
 			
 			If Object.Completed Then
-				Raise NStr("en = 'Cannot suspend the completed business processes.';");
+				Raise NStr("en = 'Cannot suspend the completed business processes.';tr = 'Tamamlanmış iş süreçleri askıya alınamaz.'");
 			EndIf;
 				
 			If Not Object.Started Then
-				Raise NStr("en = 'Cannot suspend the business processes that are not started yet.';");
+				Raise NStr("en = 'Cannot suspend the business processes that are not started yet.';tr = 'Başlamamış olan iş süreçleri askıya alınamaz.'");
 			EndIf;
 			
-			Raise NStr("en = 'The business process is already suspended.';");
+			Raise NStr("en = 'The business process is already suspended.';tr = 'İş süreci zaten askıya alındı.'");
 		EndIf;
 		
 		Object.Lock();

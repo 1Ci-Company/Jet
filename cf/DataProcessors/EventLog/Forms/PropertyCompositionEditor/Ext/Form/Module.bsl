@@ -65,7 +65,7 @@ Procedure SetEditorParameters(ListToEdit, ParametersToSelect)
 		Separator = StringParts1[1];
 		FilterParameterStructure = GetEventLogFilterValues();
 		FilterValues = FilterParameterStructure[ParametersToSelect].Get(Separator);
-		FilterValues.Insert("", NStr("en = '<Not set>';"));
+		FilterValues.Insert("", NStr("en = '<Not set>';tr = '<Belirlenmedi>'"));
 	Else
 		FilterParameterStructure = GetEventLogFilterValues(ParametersToSelect);
 		FilterValues = FilterParameterStructure[ParametersToSelect];
@@ -140,7 +140,7 @@ Procedure SetEditorParameters(ListToEdit, ParametersToSelect)
 							SetPrivilegedMode(False);
 							If IBUser = Undefined Then
 								NewItem.Presentation = StringFunctionsClientServer.SubstituteParametersToString(
-									NStr("en = '%1 <Deleted>';"), MapItem.Value);
+									NStr("en = '%1 <Deleted>';tr = '%1<Silindi>'"), MapItem.Value);
 							Else
 								NewItem.Presentation = MapItem.Value;
 							EndIf;
@@ -378,7 +378,7 @@ EndProcedure
 &AtServer
 Function UnspecifiedUserFullName()
 	
-	Return NStr("en = '<Not specified>';");
+	Return NStr("en = '<Not specified>';tr = '<Belirtilmedi>'");
 	
 EndFunction
 

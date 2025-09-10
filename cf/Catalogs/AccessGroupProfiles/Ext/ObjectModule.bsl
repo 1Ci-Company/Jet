@@ -432,11 +432,11 @@ Procedure CheckSuppliedDataUniqueness(Var_FillChecking = False, Cancel = False)
 	If Selection.Count() > 1 Then
 		
 		BriefErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '1C-supplied profile ""%1"" already exists:';"),
+			NStr("en = '1C-supplied profile ""%1"" already exists:';tr = '""%1"" 1C profili zaten mevcut:'"),
 			Description);
 		
 		DetailErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" default master data ID is already used in the ""%2"" profile:';"),
+			NStr("en = 'The ""%1"" default master data ID is already used in the ""%2"" profile:';tr = '""%1"" varsayılan master veri ID''si ""%2"" profilinde zaten kullanılıyor:'"),
 			String(SuppliedDataID),
 			Description);
 		
@@ -456,7 +456,7 @@ Procedure CheckSuppliedDataUniqueness(Var_FillChecking = False, Cancel = False)
 			Common.MessageToUser(BriefErrorDescription,,,, Cancel);
 		Else
 			WriteLogEvent(
-				NStr("en = 'Access management.Duplicate built-in profile';",
+				NStr("en = 'Access management.Duplicate built-in profile';tr = 'ERişim yönetimi. Kopya yerleşik profil'",
 				     Common.DefaultLanguageCode()),
 				EventLogLevel.Error, , , DetailErrorDescription);
 		EndIf;
@@ -488,5 +488,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

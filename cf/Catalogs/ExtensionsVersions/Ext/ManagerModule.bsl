@@ -331,7 +331,7 @@ Procedure RegisterExtensionsVersionUsage() Export
 	EndDo;
 	
 	JobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Extension versions: Update the last used date for %1';",
+		NStr("en = 'Extension versions: Update the last used date for %1';tr = 'Uzantı sürümleri: %1 için en son kullanılma tarihini güncelle'",
 			Common.DefaultLanguageCode()),
 		VersionAsString);
 	
@@ -475,11 +475,13 @@ Procedure ToggleExtensionUsage(ExtensionID, CurrentUsage) Export
 		If Extension.Active Then
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'An unexpected error occurred while preparing the extensions (after enabling the extension):
-					 |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+					 |%1';tr = 'Uzantılar hazırlanırken (uzantı etkinleştirildikten sonra) beklenmeyen bir hata oluştu:
+					 |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		Else
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'An unexpected error occurred while preparing the extensions (after disabling the extension):
-					 |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+					 |%1';tr = 'Uzantılar hazırlanırken (uzantı devre dışı bırakıldıktan sonra) beklenmeyen bir hata oluştu:
+					 |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		EndIf;
 	EndTry;
 
@@ -493,11 +495,12 @@ Procedure ToggleExtensionUsage(ExtensionID, CurrentUsage) Export
 			ErrorText = ErrorText + Chars.LF + Chars.LF
 				+ StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'An unexpected error occurred when trying to cancel the change of the extension attachment check box:
-						 |%1';"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
+						 |%1';tr = 'Uzantı ekleme onay kutusunun değişikliği iptal edilirken hata oluştu:
+						 |%1'"), ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
 		EndTry;
 		If RecoveryErrorInformation = Undefined Then
 			ErrorText = ErrorText + Chars.LF + Chars.LF
-				+ NStr("en = 'The change of the ""Attached"" extension parameter is canceled.';");
+				+ NStr("en = 'The change of the ""Attached"" extension parameter is canceled.';tr = 'Uzantı bağlantı onay kutusundaki değişiklik iptal edildi.'");
 		EndIf;
 	EndIf;
 
@@ -581,7 +584,8 @@ Procedure DeleteExtensions(ExtensionsIDs, ErrorText) Export
 		ErrorInfo = ErrorInfo();
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot delete extension ""%1"". Reason:
-				 |%2';"), 
+				 |%2';tr = '""%1"" uzantısı 
+				 |%2 nedeniyle silinemedi'"), 
 			ExtensionToDelete, ErrorProcessing.BriefErrorDescription(ErrorInfo));
 	EndTry;
 
@@ -596,7 +600,8 @@ Procedure DeleteExtensions(ExtensionsIDs, ErrorText) Export
 			ErrorInfo = ErrorInfo();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'After the deletion, an error occurred in the handler of deletion of all extensions:
-					 |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+					 |%1';tr = 'Silme işleminden sonra, tüm uzantıların silinmesi durumu işlenirken bir hata oluştu:
+					 |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		EndTry;
 	EndIf;
 
@@ -607,7 +612,8 @@ Procedure DeleteExtensions(ExtensionsIDs, ErrorText) Export
 			ErrorInfo = ErrorInfo();
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'After the deletion, an error occurred while initializing the remaining extensions:
-					 |%1';"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
+					 |%1';tr = 'Silindikten sonra, kalan uzantıları çalışma için hazırlarken bir hata oluştu:
+					 |%1'"), ErrorProcessing.BriefErrorDescription(ErrorInfo));
 		EndTry;
 	EndIf;
 
@@ -626,13 +632,14 @@ Procedure DeleteExtensions(ExtensionsIDs, ErrorText) Export
 			RecoveryErrorInformation = ErrorInfo();
 			ErrorText = ErrorText + Chars.LF + Chars.LF + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Another error occurred while attempting to restore the deleted extensions:
-						 |%1';"), 
+						 |%1';tr = 'Silinmiş uzantıları geri yüklemeye çalışırken bir hata daha oluştu: 
+						 |%1'"), 
 					ErrorProcessing.BriefErrorDescription(RecoveryErrorInformation));
 		EndTry;
 		If RecoveryPerformed And RecoveryErrorInformation = Undefined Then
 
 			ErrorText = ErrorText + Chars.LF + Chars.LF 
-				+ NStr("en = 'The deleted extensions are restored.';");
+				+ NStr("en = 'The deleted extensions are restored.';tr = 'Silinmiş uzantılar geri yüklendi.'");
 		EndIf;
 	EndIf;
 
@@ -800,7 +807,7 @@ Function ExtensionsVersion(WhenRegisteringUseOfExtensionVersion = False)
 	HashAmountByString = Base64String(Hashing.HashSum);
 	
 	JobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Extension versions: Add a new version of %1';",
+		NStr("en = 'Extension versions: Add a new version of %1';tr = 'Uzantı sürümleri: Yeni %1 sürümünü ekleyin'",
 			Common.DefaultLanguageCode()),
 		HashAmountByString);
 	
@@ -850,14 +857,19 @@ Function ExtensionsVersion(WhenRegisteringUseOfExtensionVersion = False)
 		AttemptNumber = AttemptNumber + 1;
 	EndDo;
 	
-	ErrorText = NStr("en = 'Try to restart the session.';");
+	ErrorText = NStr("en = 'Try to restart the session.';tr = 'Oturumu yeniden başlatmayı deneyin.'");
 	ClarificationForAdmin = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Failed to create a new extension version.
 		           |• Metadata details:
 		           |%1
 		           |• Metadata objects'' details checksum:
 		           |%2
-		           |• Job details:';"),
+		           |• Job details:';tr = 'Yeni uzantı sürümü oluşturulamadı.
+		           |• Metaveri ayrıntıları:
+		           |%1
+		           |• Metaveri nesneleri bilgilerinin toplam kontrolü:
+		           |%2
+		           |• İş ayrıntıları:'"),
 		ExtensionsDetails,
 		HashAmountByString);
 	
@@ -881,20 +893,20 @@ Function DescriptionOfStatusOfTasks(TaskIds)
 		
 		If BackgroundJob.State = BackgroundJobState.Active Then
 			JobDetails = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Job %1 started %2';"),
+				NStr("en = 'Job %1 started %2';tr = 'İş %1 başlatıldı %2'"),
 				Lower(BackgroundJob.UUID),
 				Format(BackgroundJob.Begin, "DLF=DT"));
 			
 		ElsIf BackgroundJob.State = BackgroundJobState.Canceled Then
 			JobDetails = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Job %1 started %2 canceled %3';"),
+				NStr("en = 'Job %1 started %2 canceled %3';tr = 'İş %1 başlatıldı %2 iptal edildi %3'"),
 				Lower(BackgroundJob.UUID),
 				Format(BackgroundJob.Begin, "DLF=DT"),
 				Format(BackgroundJob.End, "DLF=DT"));
 			
 		ElsIf BackgroundJob.State = BackgroundJobState.Completed Then
 			JobDetails = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Job %1 started %2 completed %3';"),
+				NStr("en = 'Job %1 started %2 completed %3';tr = 'İş %1 başlatıldı %2 tamamlandı %3'"),
 				Lower(BackgroundJob.UUID),
 				Format(BackgroundJob.Begin, "DLF=DT"),
 				Format(BackgroundJob.End, "DLF=DT"));
@@ -902,7 +914,8 @@ Function DescriptionOfStatusOfTasks(TaskIds)
 		ElsIf BackgroundJob.State = BackgroundJobState.Failed Then
 			JobDetails = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Job %1 started %2 completed %3 with error:
-				           |%4';"),
+				           |%4';tr = 'İş %1 başlatıldı %2 hatalarla tamamlandı %3:
+				           |%4'"),
 				Lower(BackgroundJob.UUID),
 				Format(BackgroundJob.Begin, "DLF=DT"),
 				Format(BackgroundJob.End, "DLF=DT"),
@@ -1255,7 +1268,7 @@ Procedure UpdateLatestExtensionsVersion(ExtensionsVersion)
 	EndDo;
 	
 	JobDescription = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Extension versions: Install a new version of %1';",
+		NStr("en = 'Extension versions: Install a new version of %1';tr = 'Uzantı sürümleri: Yeni %1 sürümünü yükleyin'",
 			Common.DefaultLanguageCode()),
 		VersionAsString);
 	
@@ -1387,14 +1400,24 @@ Procedure RegisterChangesToInstalledExtensions(InstalledExtensions, Unchanged)
 			 |""%3""
 			 |- Patches:
 			 |""%4""
-			 |3. New composition as at session start: %5';", DefaultLanguageCode),
+			 |3. New composition as at session start: %5';tr = '1. Önce:
+			 |- uzantılar:
+			 |""%1""
+			 |- düzeltmeler:
+			 |""%2""
+			 |2. Sonra:
+			 |- uzantılar:
+			 |""%3""
+			 |- düzeltmeler:
+			 |""%4""
+			 |3. Oturumun açılması sırasında olduğu gibi yeni içerik: %5'", DefaultLanguageCode),
 		SessionParameters.InstalledExtensions.BasicRegisteredStatus,
 		SessionParameters.InstalledExtensions.FixesRegisteredStatus,
 		InstalledExtensions.MainState, InstalledExtensions.PatchesState, 
-			?(Unchanged, NStr("en = 'Yes';", DefaultLanguageCode), NStr("en = 'No';", DefaultLanguageCode)));
+			?(Unchanged, NStr("en = 'Yes';tr = 'Evet'", DefaultLanguageCode), NStr("en = 'No';tr = 'Hayır'", DefaultLanguageCode)));
 
 	WriteLogEvent(
-		NStr("en = 'Configuration extensions.Installed extension change is detected';",
+		NStr("en = 'Configuration extensions.Installed extension change is detected';tr = 'Konfigürasyon uzantıları. Ayarlanan uzantıların değişimi bulundu'",
 		Common.DefaultLanguageCode()), EventLogLevel.Information,,, Comment);
 
 	UpdateTheRegisteredStateInTheSessionParameter(InstalledExtensions);

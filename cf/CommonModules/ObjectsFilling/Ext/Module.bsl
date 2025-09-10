@@ -36,7 +36,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "ObjectsFilling";
 	Kind.SubmenuName  = "FillSubmenu";
-	Kind.Title   = NStr("en = 'Fill';");
+	Kind.Title   = NStr("en = 'Fill';tr = 'Doldur'");
 	Kind.Order     = 60;
 	Kind.Picture    = PictureLib.FillForm;
 	Kind.Representation = ButtonRepresentation.PictureAndText;

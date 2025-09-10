@@ -21,7 +21,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		ThisisExternalUsers = ?(
 			TypeOf(Parameters.User) = Type("CatalogRef.ExternalUsers"), True, False);
-		Items.FormWriteAndClose.Title = NStr("en = 'Save';");
+		Items.FormWriteAndClose.Title = NStr("en = 'Save';tr = 'Sakla'");
 		OpenFromUserProfileMode = True;
 	Else
 		UsersArray = Parameters.Users;
@@ -32,7 +32,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	UsersCount = UsersArray.Count();
 	If UsersCount = 0 Then
-		Raise NStr("en = 'No users are selected.';");
+		Raise NStr("en = 'No users are selected.';tr = 'Hiçbir kullanıcı seçilmedi.'");
 	EndIf;
 	
 	UsersType = Undefined;
@@ -45,18 +45,18 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		If UserTypeFromArray <> Type("CatalogRef.Users")
 		   And UserTypeFromArray <> Type("CatalogRef.ExternalUsers") Then
 			
-			Raise NStr("en = 'Cannot run the command for the object.';");
+			Raise NStr("en = 'Cannot run the command for the object.';tr = 'Komut, belirtilen nesne için yürütülemiyor.'");
 		EndIf;
 		
 		If UsersType <> UserTypeFromArray Then
-			Raise NStr("en = 'Cannot run the command for two user types.';");
+			Raise NStr("en = 'Cannot run the command for two user types.';tr = 'Bir kerede iki farklı kullanıcı türü için komut çalıştırılamıyor.'");
 		EndIf;
 	EndDo;
 		
 	If UsersCount > 1
 	   And Parameters.User = Undefined Then
 		
-		Title = NStr("en = 'User groups';");
+		Title = NStr("en = 'User groups';tr = 'Kullanıcı grupları'");
 		Items.GroupsTreeCheck.ThreeState = True;
 	EndIf;
 	
@@ -165,15 +165,15 @@ Procedure WriteAndCloseBeginning(Result = Undefined, AdditionalParameters = Unde
 	If NotifyUser1.HasErrors = False Then
 		If NotifyUser1.Message <> Undefined Then
 			ShowUserNotification(
-				NStr("en = 'Move users';"), , NotifyUser1.Message, PictureLib.DialogInformation);
+				NStr("en = 'Move users';tr = 'Kullanıcıları taşıyın'"), , NotifyUser1.Message, PictureLib.DialogInformation);
 		EndIf;
 	Else
 		
 		If NotifyUser1.FullMessageText <> Undefined Then
 			QueryText = NotifyUser1.Message;
 			QuestionButtons = New ValueList;
-			QuestionButtons.Add("OK", NStr("en = 'OK';"));
-			QuestionButtons.Add("ShowReport", NStr("en = 'View report';"));
+			QuestionButtons.Add("OK", NStr("en = 'OK';tr = 'Tamam'"));
+			QuestionButtons.Add("ShowReport", NStr("en = 'View report';tr = 'Raporu göster'"));
 			Notification = New NotifyDescription("WriteAndCloseQuestionProcessing",
 				ThisObject, NotifyUser1.FullMessageText);
 			ShowQueryBox(Notification, QueryText, QuestionButtons,, QuestionButtons[0].Value);
@@ -566,21 +566,23 @@ Procedure GenerateMessageText(MovedUsersArray, NotifyUser1, NotMovedUsers)
 			EndDo;
 			UserMessage = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'Cannot add user ""%1"" to the selected groups
-				           |because they have different types or because the groups have ""All users of the specified types"" option selected.';"),
+				           |because they have different types or because the groups have ""All users of the specified types"" option selected.';tr = 'Kullanıcı ""%1"" farklı gruplara sahip olduklarından 
+				           |veya grupların ""Belirtilen türdeki tüm kullanıcılar"" işaretinin yüklü olması nedeniyle seçili grupta yer almayı başaramadı.'"),
 				SubjectOf);
 		Else
 			SubjectOf = Format(NotMovedUsersCount, "NFD=0") + " "
 				+ UsersInternalClientServer.IntegerSubject(NotMovedUsersCount,
-					"", NStr("en = 'user, users,,,0';"));
+					"", NStr("en = 'user, users,,,0';tr = 'kullanıcı, kullanıcılar, kullanıcılar,,,,,,0'"));
 			UserMessage =
 				NStr("en = 'Cannot add some users to the selected groups
-				           |because they have different types or because the groups have ""All users of the specified types"" option selected.';");
+				           |because they have different types or because the groups have ""All users of the specified types"" option selected.';tr = 'Tüm kullanıcılar farklı
+				           |gruplara sahip olduklarından veya grupların ""Belirtilen türdeki tüm kullanıcılar"" işaretinin yüklü olması nedeniyle seçili gruba dahil etmeyi başaramadı.'");
 			For Each NotMovedUser In NotMovedUsers Do
 				UserRow = UserRow + String(NotMovedUser.Key)
 					+ " : " + StrConcat(NotMovedUser.Value, ",") + Chars.LF;
 			EndDo;
 			NotifyUser1.FullMessageText =
-				NStr("en = 'The following users were not added to the groups:';")
+				NStr("en = 'The following users were not added to the groups:';tr = 'Aşağıdaki kullanıcılar gruplara dahil edilmedi:'")
 				+ Chars.LF + Chars.LF + UserRow;
 		EndIf;
 		
@@ -593,16 +595,16 @@ Procedure GenerateMessageText(MovedUsersArray, NotifyUser1, NotMovedUsers)
 			MovedUsersArray[0], "Description");
 		
 		NotifyUser1.Message = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The list of groups is modified for user ""%1"".';"),
+			NStr("en = 'The list of groups is modified for user ""%1"".';tr = '""%1"" kullanıcısı için grup listesi değiştirildi.'"),
 			UserDescription);
 			
 	ElsIf UsersCount > 1 Then
 		StringObject = Format(UsersCount, "NFD=0") + " "
 			+ UsersInternalClientServer.IntegerSubject(UsersCount,
-				"", NStr("en = 'user, users,,,0';"));
+				"", NStr("en = 'user, users,,,0';tr = 'kullanıcı, kullanıcılar, kullanıcılar,,,,,,0'"));
 		
 		NotifyUser1.Message = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The list of groups is modified for %1.';"), StringObject);
+			NStr("en = 'The list of groups is modified for %1.';tr = '%1 için grup listesi değiştirildi.'"), StringObject);
 	EndIf;
 	
 	NotifyUser1.HasErrors = False;
@@ -625,7 +627,7 @@ Procedure WriteAndCloseQuestionProcessing(Response, FullMessageText) Export
 		Modified = False;
 		WriteAndCloseCompletion();
 	Else
-		MessageTitle = NStr("en = 'Users not included in the groups';");
+		MessageTitle = NStr("en = 'Users not included in the groups';tr = 'Kullanıcılar gruplara dahil değil'");
 		Report = New TextDocument;
 		Report.AddLine(FullMessageText);
 		Report.Show(MessageTitle);

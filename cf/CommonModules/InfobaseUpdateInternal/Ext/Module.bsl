@@ -305,7 +305,8 @@ Function DataUpdateMode() Export
 		CommonClientServer.CheckParameter("OnDefineDataUpdateMode", "DataUpdateMode",
 			DataUpdateMode, Type("String"));
 		Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Invalid value of parameter %1 in %2.
-			|Expected value: %3, %4, or %5. Passed value: %6 (type %7).';"),
+			|Expected value: %3, %4, or %5. Passed value: %6 (type %7).';tr = '%2 içindeki %1 parametresinin geçersiz değeri.
+			|Beklenen değer: %3, %4 veya %5. Aktarılan değer: %6 (tür %7).'"),
 			"DataUpdateMode", "OnDefineDataUpdateMode",
 			"InitialFilling", "VersionUpdate", "MigrationFromAnotherApplication",
 			DataUpdateMode, TypeOf(DataUpdateMode));
@@ -701,7 +702,9 @@ Function InfobaseLockedForUpdate(ForPrivilegedMode = True,
 	MessageForSystemAdministrator =
 		NStr("en = 'The application is temporarily unavailable due to version update.
 		           |To complete the version update, administrative rights are required
-		           |(""System administrator"" and ""Full access"" roles).';");
+		           |(""System administrator"" and ""Full access"" roles).';tr = 'Yeni sürüme yükseltme nedeniyle uygulama geçiçi olarak kullanılamıyor.
+		           |Sürüm güncellemesini tamamlamak yönetici yetkileri gereklidir
+		           |(""Sistem yöneticisi"" ve ""Tam erişim"" rolleri).'");
 	
 	SetPrivilegedMode(True);
 	DataSeparationEnabled = Common.DataSeparationEnabled();
@@ -712,7 +715,8 @@ Function InfobaseLockedForUpdate(ForPrivilegedMode = True,
 		
 		MessageForDataAreaAdministrator =
 			NStr("en = 'The application is temporarily unavailable due to version update.
-			           |For details, contact the service administrator.';");
+			           |For details, contact the service administrator.';tr = 'Yeni sürüme yükseltme nedeniyle uygulama geçiçi olarak kullanılamıyor.
+			           | Ayrıntılar için yöneticiye başvurun.'");
 		
 		If SeparatedDataUsageAvailable Then
 			Message = MessageForDataAreaAdministrator;
@@ -749,7 +753,13 @@ Function InfobaseLockedForUpdate(ForPrivilegedMode = True,
 					|  user: %2
 					|  session: %3
 					|  start time: %4
-					|  application: %5';");
+					|  application: %5';tr = 'Yeni sürüme yükseltme nedeniyle uygulama geçiçi olarak kullanılamıyor.
+					|Şimdi güncelleniyor: 
+					|  bilgisayar: %1
+					|  kullanıcı: %2
+					|  oturum: %3
+					|  başlama zamanı: %4
+					|  uygulama: %5'");
 				
 				Message = StringFunctionsClientServer.SubstituteParametersToString(Message,
 					Result.UpdateSession.ComputerName,
@@ -787,12 +797,14 @@ Function InfobaseLockedForUpdate(ForPrivilegedMode = True,
 		// Message to service user.
 		Message =
 			NStr("en = 'The application is temporarily unavailable due to version update.
-			           |For details, contact the service administrator.';");
+			           |For details, contact the service administrator.';tr = 'Yeni sürüme yükseltme nedeniyle uygulama geçiçi olarak kullanılamıyor.
+			           | Ayrıntılar için yöneticiye başvurun.'");
 	Else
 		// Message to local mode user.
 		Message =
 			NStr("en = 'The application is temporarily unavailable due to version update.
-			           |For details, contact the service administrator.';");
+			           |For details, contact the service administrator.';tr = 'Yeni sürüme yükseltme nedeniyle uygulama geçiçi olarak kullanılamıyor.
+			           | Ayrıntılar için yöneticiye başvurun.'");
 	EndIf;
 	
 	Return Message;
@@ -930,9 +942,9 @@ Procedure WriteUpdateExecutionTime(UpdateStartTime, UpdateEndTime) Export
 	Minutes1 = Int((TimeInSeconds - Hours1 * 3600) / 60);
 	Seconds = TimeInSeconds - Hours1 * 3600 - Minutes1 * 60;
 	
-	DurationHours = ?(Hours1 = 0, "", StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 h';"), Hours1));
-	DurationMinutes = ?(Minutes1 = 0, "", StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 min';"), Minutes1));
-	DurationSeconds = ?(Seconds = 0, "", StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 sec';"), Seconds));
+	DurationHours = ?(Hours1 = 0, "", StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 h';tr = '%1 s'"), Hours1));
+	DurationMinutes = ?(Minutes1 = 0, "", StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 min';tr = '%1 dk'"), Minutes1));
+	DurationSeconds = ?(Seconds = 0, "", StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 sec';tr = '%1 sn'"), Seconds));
 	UpdateDuration = DurationHours + " " + DurationMinutes + " " + DurationSeconds;
 	UpdateInfo.UpdateDuration = TrimAll(UpdateDuration);
 	
@@ -1013,7 +1025,10 @@ Procedure ReregisterDataForDeferredUpdate() Export
 			Message = NStr("en = 'Executing data population procedure
 				                   |%1
 				                   |of deferred update handler
-				                   |%2.';");
+				                   |%2.';tr = '"
+"%1Ertelenmiş güncelleme işleyicisinin 
+				                   |veri doldurma prosedürü yürütülüyor 
+				                   |%2.'");
 			Message = StringFunctionsClientServer.SubstituteParametersToString(Message,
 				Handler.UpdateDataFillingProcedure,
 				Handler.HandlerName);
@@ -1030,7 +1045,12 @@ Procedure ReregisterDataForDeferredUpdate() Export
 						   |of deferred update handler
 						   |""%2"":
 						   |%3.
-						   |';"),
+						   |';tr = '""%2""
+						   | ertelenmiş güncelleme işleyicisinin 
+						   |""%1""
+						   | veri doldurma prosedürü çağrılırken hata oluştu:
+						   |%3.
+						   |'"),
 				Handler.UpdateDataFillingProcedure,
 				Handler.HandlerName,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -1145,7 +1165,8 @@ Function InfobaseUpdateThreadCount() Export
 			Except
 				ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Specify application startup parameter ""%1"" in format
-						|""%1=X"", where X is the maximum number of update threads.';"),
+						|""%1=X"", where X is the maximum number of update threads.';tr = '""X""''nin en fazla güncelleme akışı sayısı olduğu ""%1"" programının 
+						|""%1=Х"" biçimindeki başlatma parametresini belirtin.'"),
 					"UpdateThreadsCount1");
 				Raise ExceptionText;
 			EndTry;
@@ -1213,7 +1234,8 @@ Function UpdateIterations() Export
 	
 	If MainSubsystemUpdateIteration = Undefined And BaseConfigurationName = "StandardSubsystemsLibrary" Then
 		MessageText = NStr("en = 'The 1C:Standard Subsystems Library distribution file is not intended for template-based infobase creation.
-			|Before you start using it,  read the <link https://kb.1ci.com/1C_Standard_Subsystems_Library/Guides/>SSL documentation</>.';");
+			|Before you start using it,  read the <link https://kb.1ci.com/1C_Standard_Subsystems_Library/Guides/>SSL documentation</>.';tr = '1C:Standard Subsystems Library dağıtım dosyaları şablon bazlı infobase oluşturmaya yönelik değildir.
+			|Kullanmaya başlamadan önce <link https://kb.1ci.com/1C_Standard_Subsystems_Library/Guides/>SSL belge setini</> okuyun.'");
 		Raise MessageText;
 	EndIf;
 	
@@ -1485,9 +1507,9 @@ Function ExecuteUpdateIteration(Val UpdateIteration, Val Parameters) Export
 		HandlersToExecute = GetUpdatePlan(LibraryID, CurrentIBVersion, MetadataVersion);
 		If HandlersToExecute = Undefined Then
 			If UpdateIteration.IsMainConfiguration Then 
-				MessageTemplate = NStr("en = 'The update plan for configuration %1 (version %2 to %3) does not exist.';");
+				MessageTemplate = NStr("en = 'The update plan for configuration %1 (version %2 to %3) does not exist.';tr = '%2 versiyonundan %3 versiyonuna %1 konfigürasyon güncelleme planı mevcut değil'");
 			Else
-				MessageTemplate = NStr("en = 'The update plan for library %1 (version %2 to %3) does not exist.';");
+				MessageTemplate = NStr("en = 'The update plan for library %1 (version %2 to %3) does not exist.';tr = '%2 versiyonundan %3 versiyonuna %1 kitapk güncelleme planı mevcut değil'");
 			EndIf;
 			Message = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, LibraryID, CurrentIBVersion, MetadataVersion);
 			WriteInformation(Message);
@@ -1505,16 +1527,16 @@ Function ExecuteUpdateIteration(Val UpdateIteration, Val Parameters) Export
 	For Each Version In HandlersToExecute.Rows Do
 		
 		If Version.Version = "*" Then
-			Message = NStr("en = 'Mandatory updates in progress.';");
+			Message = NStr("en = 'Mandatory updates in progress.';tr = 'Zorunlu Infobase güncellemesi prosedürleri yürütülüyor.'");
 		Else
 			NewIBVersion = Version.Version;
 			If CurrentIBVersion = "0.0.0.0" Then
-				Message = NStr("en = 'Initializing the application.';");
+				Message = NStr("en = 'Initializing the application.';tr = 'İlk veri doldurulması devam ediyor'");
 			ElsIf UpdateIteration.IsMainConfiguration Then 
-				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating infobase version %1 to version %2.';"), 
+				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating infobase version %1 to version %2.';tr = 'Infobase %1 sürümünden %2 sürümüne güncelleniyor.'"), 
 					CurrentIBVersion, NewIBVersion);
 			Else
-				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating %3 library version %1 to version %2.';"), 
+				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Updating %3 library version %1 to version %2.';tr = '%3 kütüphanesi %1 sürümünden %2 sürümüne güncelleniyor.'"), 
 					CurrentIBVersion, NewIBVersion, LibraryID);
 			EndIf;
 		EndIf;
@@ -1554,15 +1576,15 @@ Function ExecuteUpdateIteration(Val UpdateIteration, Val Parameters) Export
 		EndDo;
 		
 		If Version.Version = "*" Then
-			Message = NStr("en = 'Mandatory updates finished.';");
+			Message = NStr("en = 'Mandatory updates finished.';tr = 'Zorunlu Infobase güncellemesi prosedürleri tamamlandı.'");
 		ElsIf StrStartsWith(Version.Version, "DebuggingTheHandler") Then
-			Message = NStr("en = 'Debugged updates finished.';");
+			Message = NStr("en = 'Debugged updates finished.';tr = 'Infobase güncellemesinin hata ayıklama prosedürleri tamamlandı.'");
 		Else
 			If UpdateIteration.IsMainConfiguration Then 
-				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Infobase update from version %1 to version %2 is completed.';"), 
+				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Infobase update from version %1 to version %2 is completed.';tr = '%1 sürümünden %2 sürümüne Infobase güncellemesi tamamlandı.'"), 
 					CurrentIBVersion, NewIBVersion);
 			Else
-				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The update of %3 library from version %1 to version %2 is completed.';"), 
+				Message = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The update of %3 library from version %1 to version %2 is completed.';tr = '%3 kütüphanesi %2 sürümünden %1 sürümüne güncellendi.'"), 
 					CurrentIBVersion, NewIBVersion, LibraryID);
 			EndIf;
 		EndIf;
@@ -1759,7 +1781,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.ObjectsToRead = "InformationRegister.UpdateHandlers";
 	Handler.ObjectsToChange = "InformationRegister.UpdateHandlers";
 	Handler.Comment =
-		NStr("en = 'Clears obsolete data to avoid the ""Register records are no longer unique"" error during a date restructuring when updating.';");
+		NStr("en = 'Clears obsolete data to avoid the ""Register records are no longer unique"" error during a date restructuring when updating.';tr = 'Güncelleme sırasında tarih yeniden yapılandırılırken ""Kayıtlar artık benzersiz değil"" hatasını önlemek için eski verileri temizler.'");
 	
 EndProcedure
 
@@ -1800,7 +1822,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem.Id = Id;
 		ToDoItem.HasToDoItems      = (HasHandlersWithErrors Or HasUncompletedHandlers Or HasPausedHandlers);
 		ToDoItem.Important        = HasHandlersWithErrors;
-		ToDoItem.Presentation = NStr("en = 'Application update is not completed';");
+		ToDoItem.Presentation = NStr("en = 'Application update is not completed';tr = 'Uygulama güncellemesi tamamlanmadı'");
 		ToDoItem.Form         = "DataProcessor.ApplicationUpdateResult.Form.ApplicationUpdateResult";
 		ToDoItem.Owner      = Section;
 	EndDo;
@@ -1868,7 +1890,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 	
 	Command = Commands.Add();
 	Command.Kind = "IBVersionUpdate";
-	Command.Presentation = NStr("en = 'Unlock object for editing';");
+	Command.Presentation = NStr("en = 'Unlock object for editing';tr = 'Düzenleme için nesnenin kilidini aç'");
 	Command.WriteMode = "NotWrite";
 	Command.Purpose = "ForObject";
 	Command.OnlyInAllActions = True;
@@ -1884,7 +1906,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name = "IBVersionUpdate";
-	Kind.Title   = NStr("en = 'Object unlock';");
+	Kind.Title   = NStr("en = 'Object unlock';tr = 'Nesne kilidinin açılması'");
 	Kind.Representation = ButtonRepresentation.PictureAndText;
 	
 EndProcedure
@@ -1902,11 +1924,13 @@ Procedure OnDefineChecks(ChecksGroups, Checks) Export
 	
 	Validation = Checks.Add();
 	Validation.GroupID          = "SystemChecks";
-	Validation.Description                 = NStr("en = 'Issue when updating the application';");
+	Validation.Description                 = NStr("en = 'Issue when updating the application';tr = 'Yeni bir sürüme güncelleme yaparken verilerle ilgili sorun oluştu'");
 	Validation.Reasons                      = NStr("en = 'Invalid data synchronization with external applications or data import,
-		|errors in third-party tools (such as external data processors or extensions), or equipment malfunction.';");
+		|errors in third-party tools (such as external data processors or extensions), or equipment malfunction.';tr = 'Diğer programlarla yanlış veri senkronizasyonu veya veri içe aktarma, üçüncü taraf araçlardaki 
+		|hatalar (örneğin, harici işleme veya uzantılar) veya donanım arızaları.'");
 	Validation.Recommendation                 = NStr("en = 'If mandatory attributes are missing, enter them manually.
-		|Restore missing data in the backup copy.';");
+		|Restore missing data in the backup copy.';tr = 'Zorunlu öznitelikler doldurulmadı ise, elle doldurulmalıdır.
+		|Eksik verileri bir yedekten geri yükleyin.'");
 	Validation.Id                = "InfoBaseUpdateProblemWithData";
 	Validation.HandlerChecks           = "InfobaseUpdateInternal.HandlerAccountingChecks";
 	Validation.ImportanceChangeDenied   = False;
@@ -2698,7 +2722,7 @@ Function ActionsBeforeUpdateInfobase(ParametersOfUpdate)
 	
 	// Verifying rights to update the infobase.
 	If Not CanUpdateInfobase() Then
-		Message = NStr("en = 'Insufficient rights to update the app.';");
+		Message = NStr("en = 'Insufficient rights to update the app.';tr = 'Uygulamayı güncelleme yetkisi yok.'");
 		WriteError(Message);
 		Raise(Message, ErrorCategory.AccessViolation);
 	EndIf;
@@ -2706,16 +2730,18 @@ Function ActionsBeforeUpdateInfobase(ParametersOfUpdate)
 	If DataUpdateMode = "MigrationFromAnotherApplication" Then
 		Message = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The configuration name changed to ""%1"".
-			|Migration from another application will be performed.';"),
+			|Migration from another application will be performed.';tr = 'Yapılandırma adını değiştirin%1.
+			| Başka bir uygulamadan aktarılacaksınız.'"),
 			Metadata.Name);
 	ElsIf DataUpdateMode = "VersionUpdate" Then
 		Message = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Configuration version was updated from ""%1"" to ""%2"".
-			|Your app will be updated.';"),
+			|Your app will be updated.';tr = 'Konfigürasyon sürümü güncellendi: ""%1"" > ""%2"".
+			|Uygulamanız güncellenecek.'"),
 			DataVersion, MetadataVersion);
 	Else
 		Message = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Initializing the data to version %1.';"),
+		NStr("en = 'Initializing the data to version %1.';tr = '""%1"" Sürümüne kadar ilk veri doldurulması devam ediyor.'"),
 		MetadataVersion);
 	EndIf;
 	WriteInformation(Message);
@@ -2799,7 +2825,7 @@ Procedure ExecuteActionsOnUpdateInfobase(ParametersOfUpdate, AdditionalParameter
 	Parameters.Insert("OnClientStart", ParametersOfUpdate.OnClientStart);
 	Parameters.Insert("DeferredUpdateMode", DeferredUpdateMode);
 	
-	Message = NStr("en = 'The following handlers will be executed during the application update: %1';");
+	Message = NStr("en = 'The following handlers will be executed during the application update: %1';tr = 'Uygulamayı yeni sürüme güncellemek için aşağıdaki işleyiciler çalıştırılacak: %1'");
 	Message = StringFunctionsClientServer.SubstituteParametersToString(Message, Parameters.HandlerExecutionProgress.TotalHandlerCount);
 	WriteInformation(Message);
 	
@@ -2858,7 +2884,7 @@ Procedure ExecuteActionsAfterUpdateInfobase(ParametersOfUpdate, AdditionalParame
 	EndIf;
 	
 	Message = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'The infobase was updated to version %1.';"), MetadataVersion);
+		NStr("en = 'The infobase was updated to version %1.';tr = 'Infobase %1 sürümüne güncellendi.'"), MetadataVersion);
 		WriteInformation(Message);
 	
 	OutputUpdatesDetails = (DataUpdateMode <> "InitialFilling");
@@ -2936,7 +2962,7 @@ Procedure RunActionAfterDeferredInfobaseUpdate(SyncedUpdate = False, IsScriptedU
 			ModuleConfigurationUpdate = Common.CommonModule("ConfigurationUpdate");
 			ShouldAbortUpdate = ModuleConfigurationUpdate.IsCurrentVersionRequiresSuccessfulHandlersCompletion();
 			If ShouldAbortUpdate Then
-				Raise NStr("en = 'The deferred update is completed with errors. See the event log for details.';");
+				Raise NStr("en = 'The deferred update is completed with errors. See the event log for details.';tr = 'Ertelenmiş güncelleme hatalarla tamamlandı. Ayrıntılı bilgi için olay günlüğüne bakın.'");
 			EndIf;
 		EndIf;
 		Return;
@@ -3154,7 +3180,7 @@ Function UpdateInfobaseInBackground(FormUniqueID, IBLock) Export
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(FormUniqueID);
 	ExecutionParameters.WaitCompletion = 0;
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Update infobase in background';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Update infobase in background';tr = 'Arka plan Infobase güncellemesi'");
 	// To view the process bar, the update should run in the background.
 	// In the update mode, the launch of a background job is intermitted by a block of code,
 	// which mitigates the launch delay event without the exclusive mode set.
@@ -3285,7 +3311,12 @@ Function LockIB(IBLock, ExceptionOnCannotLockIB) Export
 			|- The configuration version does not support update in nonexclusive mode.
 			|
 			|Error details:
-			|%1';"),
+			|%1';tr = 'Veritabanı güncellenemedi: 
+			|- Özel bir mod 
+			|belirlenemedi - Yapılandırma sürümü, ayarları olmayan%1 modu güncellemeyi
+			| içermiyor 
+			|Hata hakkında daha fazla bilgi:
+			|'"),
 		ErrorProcessing.BriefErrorDescription(ErrorInfo));
 	
 	WriteError(Message);
@@ -3580,7 +3611,10 @@ Procedure MigrateFromAnotherApplication(UpdateIterations)
 				NStr("en = 'Error while calling the handler of migration from another application
 				           |%1:
 				           |%2
-				           |';"),
+				           |';tr = 'Başka bir programdan geçiş işleyicisini çağırdığınızda 
+				           |"
+" %2bir hata oluştu: 
+				           |""%1"".'"),
 				HandlerName,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo())));
 			
@@ -3844,7 +3878,7 @@ EndProcedure
 //
 Function EventLogEvent() Export
 	
-	Return NStr("en = 'Infobase update';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Infobase update';tr = 'Infobase güncellemesi'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -3856,7 +3890,7 @@ EndFunction
 //
 Function EventLogEventProtocol() Export
 	
-	Return EventLogEvent() + "." + NStr("en = 'Execution log';", Common.DefaultLanguageCode());
+	Return EventLogEvent() + "." + NStr("en = 'Execution log';tr = 'Yürütme protokolü'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -4341,7 +4375,9 @@ Procedure CheckDeferredHandlerProperties(Val Handler, Val DeferredHandlersExecut
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'No data population procedure is specified
 					   |for deferred update handler
-					   |%1.';"),
+					   |%1.';tr = 'Bekleyen güncelleştirme işleyicisi "
+" verilerini doldurmak için prosedür 
+					   |belirtilmedi%1.'"),
 			Handler.HandlerName);
 		
 		WriteError(ErrorText);
@@ -4350,7 +4386,8 @@ Procedure CheckDeferredHandlerProperties(Val Handler, Val DeferredHandlersExecut
 
 	If Handler.ExclusiveMode = True Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Deferred handler ""%1""
-			|cannot have flag ""%2"" set.';"), 
+			|cannot have flag ""%2"" set.';tr = '""%1""
+			| ertelenmiş işleyicinin ""%2"" özelliği ayarlanmamalıdır.'"), 
 			Handler.HandlerName,
 			"ExclusiveMode");
 		WriteError(ErrorText);
@@ -4365,7 +4402,12 @@ Procedure CheckDeferredHandlerProperties(Val Handler, Val DeferredHandlersExecut
 			| - ""%2""
 			| - ""%3"".
 			|
-			|The property values cannot be True at the same time.';"), 
+			|The property values cannot be True at the same time.';tr = '""%1""
+			|Ertelenmiş işleyicinin özelliklerinin değerleri yanlış doldurulmuştur:
+			| - ""%2""
+			| - ""%3"".
+			|
+			|Bu özellikler, aynı anda ""Doğru"" değerini alamaz.'"), 
 			Handler.HandlerName,
 			"ExecuteInMasterNodeOnly",
 			"RunAlsoInSubordinateDIBNodeWithFilters");
@@ -4377,7 +4419,8 @@ Procedure CheckDeferredHandlerProperties(Val Handler, Val DeferredHandlersExecut
 		And Handler.Multithreaded Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'The deferred handler ""%1"" has the ""Multithreaded"" property set, which is prohibited.
-			|The handler belongs to the ""%2"" subsystem, which supports only sequential deferred handlers.';"),
+			|The handler belongs to the ""%2"" subsystem, which supports only sequential deferred handlers.';tr = '""%1"" ertelenmiş işleyicisinde ""Çok iş parçacıklı"" özelliği ayarlanmış.
+			|İşleyici sadece sıralı ertelenmiş işleyicileri destekleyen ""%2"" alt sistemine ait.'"),
 			Handler.HandlerName,
 			LibraryName);
 		WriteError(ErrorText);
@@ -4388,7 +4431,10 @@ Procedure CheckDeferredHandlerProperties(Val Handler, Val DeferredHandlersExecut
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'In deferred handler ""%1""
 			|, the value of property ""%2"" is invalid.
 			|
-			|This property cannot be True in deferred handlers.';"), 
+			|This property cannot be True in deferred handlers.';tr = '""%1"" Ertelenmiş işleyicinin 
+			|""%2"" özelliğinin belirtilen değeri kabul edilemez.
+			|
+			|Geçerli özellik, ertelenmiş işleyicide ""Doğru"" değerini alamaz.'"), 
 			Handler.HandlerName, "SharedData");
 		WriteError(ErrorText);
 		ErrorsText = ErrorsText + ErrorText + Chars.LF;
@@ -4433,7 +4479,7 @@ Procedure CheckDeferredHandlerIDUniqueness(UpdateIterations)
 	EndIf;
 	
 	UniquenessCheckTable.Sort("IndexOf Desc");
-	MessageText = NStr("en = 'Some of the deferred update handlers have matching UUIDs:';");
+	MessageText = NStr("en = 'Some of the deferred update handlers have matching UUIDs:';tr = 'Bazı ertelenmiş güncelleme işleyecilerinin UUID''leri çakışıyor.'");
 	For Each IDRow In UniquenessCheckTable Do
 		If IDRow.IndexOf = 1 Then
 			Break;
@@ -4959,7 +5005,7 @@ EndFunction
 //
 Function AddDeferredUpdateDataRegistrationThread(DataToProcessDetails)
 	
-	DescriptionTemplate = NStr("en = 'Register data of %1 update handler';");
+	DescriptionTemplate = NStr("en = 'Register data of %1 update handler';tr = '""%1"" güncelleme işleyicisinin verilerinin kaydı'");
 	DataToProcessDetails.Status = "Running";
 	
 	Stream = NewThread();
@@ -5142,7 +5188,7 @@ Function AddDatasearchThreadForUpdate(Stream, Handler, HandlerContext, UpdateInf
 			LongDesc.SearchCompleted = False;
 		EndIf;
 		
-		DescriptionTemplate = NStr("en = 'Searching data for the %1 update handler';");
+		DescriptionTemplate = NStr("en = 'Searching data for the %1 update handler';tr = '""%1"" güncelleme işleyicisi için veri araması'");
 		Stream.Description = StringFunctionsClientServer.SubstituteParametersToString(DescriptionTemplate, HandlerName);
 		Stream.Group = BatchesSearchThreadsGroup();
 		Stream.CompletionPriority = 1;
@@ -5196,7 +5242,7 @@ EndFunction
 Procedure AddUpdateHandlerThread(Stream, HandlerContext)
 	
 	HandlerName = HandlerContext.HandlerName;
-	DescriptionTemplate = NStr("en = 'Run the %1 update handler';");
+	DescriptionTemplate = NStr("en = 'Run the %1 update handler';tr = '""%1"" güncelleme işleyicisi yürütülüyor'");
 	Stream.Description = StringFunctionsClientServer.SubstituteParametersToString(DescriptionTemplate, HandlerName);
 	Stream.Group = DeferredUpdateThreadsGroup();
 	Stream.ProcedureParameters = HandlerContext;
@@ -6021,7 +6067,9 @@ Procedure CheckSelectionParameters(SelectionParameters)
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Specify a selection method in the update data registration procedure
 			|in ""%1"".
-			|The current selection method is invalid: ""%2"".';"),
+			|The current selection method is invalid: ""%2"".';tr = 'Güncelleme için verilerin kayıt prosedüründe örnekleme yöntemini belirtin.
+			|""%1"" belirtilir.
+			|Şimdi ""%2"" bilinmeyen örnekleme  yöntemi gösterilmiştir.'"),
 			SelectionMethod, "Parameters.SelectionParameters.SelectionMethod");
 		Raise(MessageText, ErrorCategory.ConfigurationError);
 	EndIf;
@@ -6032,7 +6080,9 @@ Procedure CheckSelectionParameters(SelectionParameters)
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'Specify tables to be processed in the update data registration procedure
 			|in ""%1"" and/or
-			|""%2"".';"),
+			|""%2"".';tr = 'Güncelleme için verileri kaydetme prosedüründe işlenecek tabloları belirtin.
+			|""%1"" ve/veya
+			|""%2"" belirtilir.'"),
 			"Parameters.SelectionParameters.FullNamesOfObjects", "Parameters.SelectionParameters.FullRegistersNames");
 		Raise(MessageText, ErrorCategory.ConfigurationError);
 	EndIf;
@@ -7184,13 +7234,13 @@ Procedure FillItemsWithInitialData(Parameters, MetadataObject, PopulationSetting
 	
 	If Result.ObjectsProcessed = 0 And Result.ObjectsWithIssuesCount <> 0 Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Couldn''t populate (skipped) some items with initial data: %1';"),
+			NStr("en = 'Couldn''t populate (skipped) some items with initial data: %1';tr = 'Bazı öğeler ilk verilerle doldurulamadı (eksik): %1'"),
 			Result.ObjectsWithIssuesCount);
 		Raise MessageText;
 	EndIf;
 	WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Information,
 		MetadataObject,, StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Yet another batch of items is processed: %1';"),
+		NStr("en = 'Yet another batch of items is processed: %1';tr = 'Öğelerin bir grubu daha işlendi: %1'"),
 	Result.ObjectsProcessed));
 	
 EndProcedure
@@ -7485,7 +7535,7 @@ Function UpdateItemsOfPredefinedItems(ObjectsRefs, ObjectMetadata, PopulationSet
 			Result.ObjectsWithIssuesCount = Result.ObjectsWithIssuesCount + 1;
 			
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot fill in item %1 due to: %2';"),
+			NStr("en = 'Cannot fill in item %1 due to: %2';tr = 'Öğe doldurulamadı: %1 nedeni: %2'"),
 			RepresentationOfTheReference, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			
 			WriteLogEvent(InfobaseUpdate.EventLogEvent(), EventLogLevel.Warning,
@@ -7666,13 +7716,13 @@ Procedure ClearObsoleteData() Export
 		Metadata.ScheduledJobs.ClearObsoleteData);
 	
 	If TransactionActive() Then
-		ErrorText = NStr("en = 'You cannot clear obsolete data in an external transaction.';");
+		ErrorText = NStr("en = 'You cannot clear obsolete data in an external transaction.';tr = 'Eski veriler harici işlemde temizlenemez.'");
 		Raise(ErrorText, ErrorCategory.ConfigurationError);
 	EndIf;
 	
 	JobMetadata = Metadata.ScheduledJobs.ClearObsoleteData;
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'You can run the %1 procedure only in a background job.';"),
+		NStr("en = 'You can run the %1 procedure only in a background job.';tr = '%1 prosedürü sadece arka plan işinde yürütülebilir.'"),
 		JobMetadata.MethodName);
 	
 	CurrentSession = GetCurrentInfoBaseSession();
@@ -7693,12 +7743,16 @@ Procedure ClearObsoleteData() Export
 				           |data areas have not completed the deferred infobase update yet.
 				           |Areas with update in progress: %1
 				           |Areas pending update: %2
-				           |Areas with update issues: %3';"),
+				           |Areas with update issues: %3';tr = 'Bazı veri alanları ertelenmiş infobase güncellemesini henüz tamamlamadığı için 
+				           |eski verilerin temizlenmesi ertelendi.
+				           |Güncellemesi devam eden alanlar: %1
+				           |Güncelleme bekleyen alanlar: %2
+				           |Güncelleme sorunları olan alanlar: %3'"),
 				Format(UpdateProgress.Running, "NZ=0; NG="),
 				Format(UpdateProgress.Waiting1, "NZ=0; NG="),
 				Format(UpdateProgress.Issues, "NZ=0; NG="));
 			WriteLogEvent(
-				NStr("en = 'Clear obsolete data.Wait for the update to complete';",
+				NStr("en = 'Clear obsolete data.Wait for the update to complete';tr = 'Eski verileri sil.Güncellemenin tamamlanmasını bekleyin'",
 					Common.DefaultLanguageCode()),
 				EventLogLevel.Information,,, Comment);
 			Return;
@@ -7710,7 +7764,11 @@ Procedure ClearObsoleteData() Export
 			           |View the results: %1
 			           |
 			           |The scheduled job is used only in SaaS to
-			           |clear up obsolete shared data.';"),
+			           |clear up obsolete shared data.';tr = 'Eski veriler son ertelenmiş güncelleme işleyicisi tarafından temizlenir.
+			           |Sonuçları görüntüle:%1
+			           |
+			           |Planlı iş, eski ortak verilerin temizlenmesi için
+			           |sadece SaaS''ta kullanılır.'"),
 			"e1cib/app/DataProcessor.ApplicationUpdateResult");
 		Raise ErrorText;
 	EndIf;
@@ -7722,11 +7780,12 @@ Procedure ClearObsoleteData() Export
 		SetUpObsoleteDataPurgeJobNoAttempt(True);
 		Comment = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Obsolete data cleanup is already in progress
-			           |in the ""%1"" background job dated %2';"),
+			           |in the ""%1"" background job dated %2';tr = '%2 tarihli ""%1"" arka plan işinde
+			           |eski verilerin temizlenmesi devam ediyor'"),
 			FoundJob.Description,
 			Format(FoundJob.Begin, "DLF=DT"));
 		WriteLogEvent(
-			NStr("en = 'Clear obsolete data.Startup denied';",
+			NStr("en = 'Clear obsolete data.Startup denied';tr = 'Eski verileri sil.Başlatma engellendi'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Information,,, Comment);
 		Return;
@@ -7779,13 +7838,15 @@ Procedure ClearObsoleteData() Export
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot clear some data due to errors:
 			           |
-			           |%1';"),
+			           |%1';tr = 'Hatalar nedeniyle bazı veriler silinemedi:
+			           |
+			           |%1'"),
 			StrConcat(Errors, "
 			|--------------------------------------------------------------------------------
 			|
 			|"));
 		WriteLogEvent(
-			NStr("en = 'Clear obsolete data.Deletion errors';",
+			NStr("en = 'Clear obsolete data.Deletion errors';tr = 'Eski verileri sil.Silme hataları'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorText);
 	EndIf;
@@ -7831,11 +7892,13 @@ Procedure SetUpObsoleteDataPurgeJob(Enable)
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot set up scheduled job
 			           |""%1"" due to:
-			           |%2';"),
+			           |%2';tr = '""%1""
+			           |programlı işi ayarlanamıyor. Nedeni:
+			           |%2'"),
 			Metadata.ScheduledJobs.ClearObsoleteData.Name,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteLogEvent(
-			NStr("en = 'Clear obsolete data.Scheduled job setup error';",
+			NStr("en = 'Clear obsolete data.Scheduled job setup error';tr = 'Eski verileri sil.Planlı iş ayarlama hatası'",
 				Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorText);
 	EndTry;
@@ -7957,12 +8020,12 @@ EndProcedure
 
 Procedure ClearObsoleteDataCompletely(Parameters) Export
 	
-	ErrorTitle = NStr("en = 'Couldn''t clear obsolete data.';")
+	ErrorTitle = NStr("en = 'Couldn''t clear obsolete data.';tr = 'Eski veriler silinemedi.'")
 		+ Chars.LF + Chars.LF;
 	
 	If Not Common.SeparatedDataUsageAvailable() Then
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot call the ""%1"" procedure in shared mode.';"),
+			NStr("en = 'Cannot call the ""%1"" procedure in shared mode.';tr = '""%1"" prosedürü ortak modda çağrılamıyor.'"),
 			"ClearCompletelyAfterDeferredUpdateSucceeded");
 		Raise(ErrorTitle + ErrorText, ErrorCategory.ConfigurationError);
 	EndIf;
@@ -7973,7 +8036,7 @@ Procedure ClearObsoleteDataCompletely(Parameters) Export
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters();
 	ExecutionParameters.WaitCompletion = Undefined;
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Clear obsolete data (deferred)';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Clear obsolete data (deferred)';tr = 'Eski verileri sil (ertelendi)'");
 	ExecutionParameters.ResultAddress = AddressOfCleaningResult;
 	ExecutionParameters.BackgroundJobKey = ObsoleteDataPurgeJobKey();
 	ExecutionParameters.RunNotInBackground1 = ExclusiveMode();
@@ -7992,9 +8055,9 @@ Procedure ClearObsoleteDataCompletely(Parameters) Export
 		If Result.Status = "Error" Then
 			ErrorText = Result.DetailErrorDescription;
 		ElsIf Result.Status = "Canceled" Then
-			ErrorText = NStr("en = 'Job is canceled';");
+			ErrorText = NStr("en = 'Job is canceled';tr = 'İş iptal edildi'");
 		ElsIf Result.Status = "Running" Then
-			ErrorText = NStr("en = 'The app did not wait for the job to be completed';");
+			ErrorText = NStr("en = 'The app did not wait for the job to be completed';tr = 'Uygulama, işin tamamlanmasını beklemedi'");
 		EndIf;
 		If Result.Status <> "Completed2" Then
 			Raise ErrorTitle + ErrorText;
@@ -8022,9 +8085,9 @@ Function ObsoleteDataPurgeJobErrorText(Results) Export
 	
 	If TypeOf(Results) <> Type("Map") Then
 		If Common.DataSeparationEnabled() Then
-			Return NStr("en = 'The background job did not return a result';");
+			Return NStr("en = 'The background job did not return a result';tr = 'Arka plan işi sonuç vermedi'");
 		Else
-			Return NStr("en = 'The managing background job did not return a result';");
+			Return NStr("en = 'The managing background job did not return a result';tr = 'Arka plan işinin yönetilmesi sonuç vermedi'");
 		EndIf;
 	EndIf;
 	
@@ -8043,7 +8106,7 @@ Function ObsoleteDataPurgeJobErrorText(Results) Export
 	ErrorText = Undefined;
 	
 	If HasError And Not ValueIsFilled(ErrorsTexts) Then
-		ErrorText = NStr("en = 'Some jobs are not completed. Repeat the operation.';");
+		ErrorText = NStr("en = 'Some jobs are not completed. Repeat the operation.';tr = 'Bazı işler tamamlanmadı. İşlemi tekrarlayın.'");
 	ElsIf ValueIsFilled(ErrorsTexts) Then
 		ErrorText = StrConcat(ErrorsTexts, "
 		|--------------------------------------------------------------------------------
@@ -8146,7 +8209,7 @@ Function IsObsoleteDataPurgeJobRunning(RaiseException1 = False)
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Cannot start as the ""%1"" scheduled job is running.';"),
+		NStr("en = 'Cannot start as the ""%1"" scheduled job is running.';tr = '""%1"" planlı işi yürütüldüğünden başlatılamıyor.'"),
 		JobMetadata.Presentation());
 	
 	If RaiseException1 Then
@@ -8347,7 +8410,7 @@ Procedure WriteCleanUpPlanToLog(Context)
 	CleanUpPlan = ObsoleteDataPurgePlan(Context.CleanUpDeleteable, Context.TablesToClearUp);
 	
 	WriteLogEvent(
-		NStr("en = 'Clear obsolete data.Cleanup plan';",
+		NStr("en = 'Clear obsolete data.Cleanup plan';tr = 'Eski verileri sil.Silme planı'",
 			Common.DefaultLanguageCode()),
 		EventLogLevel.Information,,, CleanUpPlan);
 	
@@ -8365,11 +8428,11 @@ Function ObsoleteDataPurgePlan(CleanUpDeleteable, TablesToClearUp = Undefined, S
 			SetTablesCleaningOrder(TablesToClearUp);
 		EndIf;
 		If Not Common.DataSeparationEnabled() Then
-			Rows.Add(NStr("en = 'The following tables will be processed';"));
+			Rows.Add(NStr("en = 'The following tables will be processed';tr = 'Aşağıdaki tablolar işlenecek'"));
 		ElsIf Not SeparatedDataUsageAvailable Then
-			Rows.Add(NStr("en = 'The following shared tables will be processed (shared data)';"));
+			Rows.Add(NStr("en = 'The following shared tables will be processed (shared data)';tr = 'Aşağıdaki ortak tablolar (ortak veriler) işlenecek'"));
 		Else
-			Rows.Add(NStr("en = 'The following separated tables will be processed';"));
+			Rows.Add(NStr("en = 'The following separated tables will be processed';tr = 'Aşağıdaki ayrı tablolar işlenecek'"));
 		EndIf;
 		AddTablesDetailsToCleanUpPlan(Rows, TablesToClearUp);
 	Else
@@ -8378,7 +8441,7 @@ Function ObsoleteDataPurgePlan(CleanUpDeleteable, TablesToClearUp = Undefined, S
 		Filter = New Structure("Shared2", True);
 		SharedTables = AllTables.Copy(AllTables.FindRows(Filter));
 		SetTablesCleaningOrder(SharedTables);
-		Rows.Add(NStr("en = '1. The following shared tables will be processed (shared data).';"));
+		Rows.Add(NStr("en = '1. The following shared tables will be processed (shared data).';tr = '1. Aşağıdaki ortak tablolar (ortak veriler) işlenecek.'"));
 		AddTablesDetailsToCleanUpPlan(Rows, SharedTables);
 		
 		Rows.Add("");
@@ -8387,7 +8450,8 @@ Function ObsoleteDataPurgePlan(CleanUpDeleteable, TablesToClearUp = Undefined, S
 		SeparatedTables = AllTables.Copy(AllTables.FindRows(Filter));
 		SetTablesCleaningOrder(SeparatedTables);
 		Rows.Add(NStr("en = '2. The following separated tables will be processed in data areas
-		                           |   (the full cleanup plan is available only when you log in to a data area).';"));
+		                           |   (the full cleanup plan is available only when you log in to a data area).';tr = '2. Aşağıdaki ayrılmış tablolar veri alanlarında işlenecek
+		                           | (veri alanına giriş yaptığınızda tam temizleme planına erişilebilir).'"));
 		AddTablesDetailsToCleanUpPlan(Rows, SeparatedTables);
 	EndIf;
 	
@@ -8402,19 +8466,19 @@ Procedure AddTablesDetailsToCleanUpPlan(Rows, TablesToClearUp)
 		Rows.Add("");
 		Rows.Add(TableToCleanUp.Presentation + " (" + TableToCleanUp.FullName + ")");
 		If TableToCleanUp.ClearAll Then
-			Rows.Add("	" + NStr("en = 'Full cleanup';"));
+			Rows.Add("	" + NStr("en = 'Full cleanup';tr = 'Tam temizleme'"));
 			Continue;
 		ElsIf TableToCleanUp.Independent Then
-			Rows.Add("	" + NStr("en = 'Delete records by values in dimensions:';"));
+			Rows.Add("	" + NStr("en = 'Delete records by values in dimensions:';tr = 'Boyutlardaki değerlere göre kayıtları sil:'"));
 			AddFieldsDetailsToCleanUpPlan(Rows, TableToCleanUp.RegisterFields);
 			Continue;
 		EndIf;
 		If ValueIsFilled(TableToCleanUp.RegisterFields) Then
-			Rows.Add("	" + NStr("en = 'Delete records by recorders if the main table dimensions contain values:';"));
+			Rows.Add("	" + NStr("en = 'Delete records by recorders if the main table dimensions contain values:';tr = 'Ana tablo boyutları değer içeriyorsa kaydedicilere göre kayıtları sil:'"));
 			AddFieldsDetailsToCleanUpPlan(Rows, TableToCleanUp.RegisterFields);
 		EndIf;
 		If ValueIsFilled(TableToCleanUp.ExtdimensionFields) Then
-			Rows.Add("	" + NStr("en = 'Delete records by recorders if dimensions of the extra dimension table contain values:';"));
+			Rows.Add("	" + NStr("en = 'Delete records by recorders if dimensions of the extra dimension table contain values:';tr = 'Ekstra boyur tablosunun boyutları değer içeriyorsa kaydedicilere göre kayıtları sil:'"));
 			AddFieldsDetailsToCleanUpPlan(Rows, TableToCleanUp.ExtdimensionFields);
 		EndIf;
 	EndDo;
@@ -8426,11 +8490,11 @@ Procedure AddFieldsDetailsToCleanUpPlan(Rows, FieldsDetails)
 	
 	For Each FieldDetails In FieldsDetails Do
 		Rows.Add("		" + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The ""%1"" dimension contains values of the following types:';"), FieldDetails.Key));
+			NStr("en = 'The ""%1"" dimension contains values of the following types:';tr = '""%1"" boyutu şu türlerde veriler içeriyor:'"), FieldDetails.Key));
 		For Each TypeDetails In FieldDetails.Value Do
 			If TypeOf(TypeDetails.Value) = Type("Array") Then
 				Rows.Add("			" + StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'For the ""%1"" type, only the following values are checked:';"), String(TypeDetails.Key)) + "
+					NStr("en = 'For the ""%1"" type, only the following values are checked:';tr = '""%1"" türü için sadece şu değerler kontrol edilir:'"), String(TypeDetails.Key)) + "
 					|				" + StrConcat(TypeDetails.Value, "
 					|				"));
 			Else
@@ -8626,11 +8690,11 @@ Procedure GenerateListOfObsoleteDataInBackgroundNoAttempt(ObsoleteData, Paramete
 	   And ObsoleteData.Count() > 1 Then
 		
 		If Not ShouldProcessDataAreas Then
-			Presentation = NStr("en = 'Total number for all tables';");
+			Presentation = NStr("en = 'Total number for all tables';tr = 'Tüm tablolar için toplam sayı'");
 		ElsIf DisplayQuantity Then
-			Presentation = NStr("en = 'Total number for all area tables';");
+			Presentation = NStr("en = 'Total number for all area tables';tr = 'Tüm alan tabloları için toplam sayı'");
 		Else
-			Presentation = NStr("en = 'There are tables to clear';");
+			Presentation = NStr("en = 'There are tables to clear';tr = 'Temizlenecek tablolar var'");
 		EndIf;
 		
 		NewRow = ObsoleteData.Insert(0);
@@ -8948,7 +9012,7 @@ Function TablesToClearUp(RegistersOnly, ShouldConsiderDataSeparation = True)
 	FieldsTypeToDelete   = New Map;
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Error in procedure %1 of common module %2.';"),
+		NStr("en = 'Error in procedure %1 of common module %2.';tr = '%2 genel modülünün %1 prosedüründe hata oluştu.'"),
 			"OnPopulateObjectsPlannedForDeletion",
 			"InfobaseUpdateOverridable")
 		+ Chars.LF + Chars.LF;
@@ -8968,11 +9032,11 @@ Function TablesToClearUp(RegistersOnly, ShouldConsiderDataSeparation = True)
 		MetadataObject = Common.MetadataObjectByFullName(FullName);
 		If MetadataObject = Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%1"" metadata object does not exist.';"), FullName);
+				NStr("en = 'The ""%1"" metadata object does not exist.';tr = '""%1"" metaveri nesnesi mevcut değil.'"), FullName);
 			Raise(ErrorText, ErrorCategory.ConfigurationError);
 		ElsIf FieldName = Undefined And Not StrStartsWith(MetadataObject.Name, "Delete") Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'The ""%1"" metadata object name must begin with ""%2"".';"), FullName, "Delete");
+				NStr("en = 'The ""%1"" metadata object name must begin with ""%2"".';tr = '""%1"" metaveri nesnesinin adı ""%2"" ile başlamalı.'"), FullName, "Delete");
 			Raise(ErrorText, ErrorCategory.ConfigurationError);
 		EndIf;
 		FullName = MetadataObject.FullName();
@@ -8991,11 +9055,11 @@ Function TablesToClearUp(RegistersOnly, ShouldConsiderDataSeparation = True)
 					ValueMetadata = MetadataObject.EnumValues.Find(FieldName); // MetadataObject
 					If ValueMetadata = Undefined Then
 						ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'The ""%1"" value does not exist.';"), ObjectDetails.Key);
+							NStr("en = 'The ""%1"" value does not exist.';tr = '""%1"" değeri mevcut değil.'"), ObjectDetails.Key);
 						Raise(ErrorText, ErrorCategory.ConfigurationError);
 					ElsIf Not StrStartsWith(ValueMetadata.Name, "Delete") Then
 						ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'The ""%1"" value name must begin with ""%2"".';"), ObjectDetails.Key, "Delete");
+							NStr("en = 'The ""%1"" value name must begin with ""%2"".';tr = '""%1"" değerinin adı ""%2"" ile başlamalı.'"), ObjectDetails.Key, "Delete");
 						Raise(ErrorText, ErrorCategory.ConfigurationError);
 					EndIf;
 					EnumValues = DeletedTypes.Get(RefType);
@@ -9026,11 +9090,11 @@ Function TablesToClearUp(RegistersOnly, ShouldConsiderDataSeparation = True)
 					If RoutePoint = Undefined
 					 Or Upper(FieldParts[0]) <> Upper("RoutePoint") Then
 						ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'The ""%1"" value is not an existing route point.';"), ObjectDetails.Key);
+							NStr("en = 'The ""%1"" value is not an existing route point.';tr = '""%1"" değeri, mevcut bir rota noktası değil.'"), ObjectDetails.Key);
 						Raise(ErrorText, ErrorCategory.ConfigurationError);
 					ElsIf Not StrStartsWith(RoutePoint.Name, "Delete") Then
 						ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-							NStr("en = 'The ""%1"" route point name must begin with ""%2"".';"), ObjectDetails.Key, "Delete");
+							NStr("en = 'The ""%1"" route point name must begin with ""%2"".';tr = '""%1"" rota noktasının adı ""%2"" ile başlamalı.'"), ObjectDetails.Key, "Delete");
 						Raise(ErrorText, ErrorCategory.ConfigurationError);
 					EndIf;
 					RouteDotsType = TypeOf(PredefinedValue(FullName + ".RoutePoint.EmptyRef"));
@@ -9099,7 +9163,8 @@ Function TablesToClearUp(RegistersOnly, ShouldConsiderDataSeparation = True)
 	If ValueIsFilled(RedundantFieldsTypes) Then
 		ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'You cannot use the following field types to clear obsolete data:
-			           |%1';"),
+			           |%1';tr = 'Eski verileri silmek için şu alan türleri kullanılamaz:
+			           |%1'"),
 			"- " + StrConcat(RedundantFieldsTypes, ";" + Chars.LF + "- ") + ".");
 		Raise(ErrorText. ErrorCategory.ConfigurationError);
 	EndIf;
@@ -9360,7 +9425,7 @@ Procedure AddDeleteableFieldTypes(Fields, Field, FullRegisterName, Context, Regi
 			EndIf;
 			If Not FieldTypes.ContainsType(Type) Then
 				ErrorText = Context.ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'The ""%1"" field does not contain the ""%2"" type.';"),
+					NStr("en = 'The ""%1"" field does not contain the ""%2"" type.';tr = '""%1"" alanı, ""%2"" türünü içermiyor.'"),
 					FullFieldName1, Common.TypePresentationString(Type));
 				Raise(ErrorText, ErrorCategory.ConfigurationError);
 			Else
@@ -9371,10 +9436,10 @@ Procedure AddDeleteableFieldTypes(Fields, Field, FullRegisterName, Context, Regi
 						MetadataTables = Metadata.FindByType(Type);
 						If MetadataTables = Undefined Then
 							ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-								NStr("en = 'Cannot find a metadata object by the %1 type being deleted in the %2 field.';"),
+								NStr("en = 'Cannot find a metadata object by the %1 type being deleted in the %2 field.';tr = '%2 alanında silinen %1 türüne göre metaveri nesnesi bulunamıyor.'"),
 								String(Type), FullFieldName1);
 							WriteLogEvent(
-								NStr("en = 'Clear obsolete data.Error preparing the list of tables to clear';",
+								NStr("en = 'Clear obsolete data.Error preparing the list of tables to clear';tr = 'Eski verileri sil.Temizlenecek tabloların listesi hazırlanırken hata oluştu'",
 									Common.DefaultLanguageCode()),
 								EventLogLevel.Error,,, ErrorText);
 							Continue;
@@ -9392,7 +9457,9 @@ Procedure AddDeleteableFieldTypes(Fields, Field, FullRegisterName, Context, Regi
 						ErrorText = Context.ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 							NStr("en = 'The ""%1""field
 							           |contains a value of the ""%2"" type,
-							           |which is not an enumeration value or a business process route point.';"),
+							           |which is not an enumeration value or a business process route point.';tr = '""%1"" alanı
+							           |""%2"" türünde bir değer içeriyor;
+							           |bu bir numaralandırma değeri veya iş süreci rota noktası değil.'"),
 							FullFieldName1,
 							Common.TypePresentationString(Type));
 						Raise(ErrorText, ErrorCategory.ConfigurationError);
@@ -9675,7 +9742,7 @@ Function CanExecuteSeamlessUpdate(UpdateIterationsToCheck = Undefined) Export
 	EndIf;
 	
 	If HandlerProcedures.Count() <> 0 Then
-		MessageText = NStr("en = 'The following handlers support update in exclusive mode only:';");
+		MessageText = NStr("en = 'The following handlers support update in exclusive mode only:';tr = 'Aşağıdaki işleyicileri tekel modu yüklemeden güncelleştirme desteklemez:'");
 		MessageText = MessageText + Chars.LF;
 		For Each HandlerProcedure1 In HandlerProcedures Do
 			MessageText = MessageText + Chars.LF + HandlerProcedure1;
@@ -9787,7 +9854,10 @@ Procedure ExecuteUpdateHandler(Handler, Parameters, AdditionalParameters)
 			NStr("en = 'An error occurred while calling update handler
 					   |%1:
 					   |%2.
-					   |';"),
+					   |';tr = 'Güncelleştirme işleyicisi çağrıldığında: 
+					   |""%1"" %2bir hata oluştu:
+					   |"
+".'"),
 			HandlerName,
 			ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		
@@ -9954,7 +10024,7 @@ EndProcedure
 
 Procedure ValidateNestedTransaction(TransactionActiveAtExecutionStartTime, HandlerName1)
 	
-	EventName = EventLogEvent() + "." + NStr("en = 'Execute handlers';", Common.DefaultLanguageCode());
+	EventName = EventLogEvent() + "." + NStr("en = 'Execute handlers';tr = 'İşleyiciler yürütülüyor'", Common.DefaultLanguageCode());
 	If TransactionActiveAtExecutionStartTime Then
 		
 		If TransactionActive() Then
@@ -9964,7 +10034,9 @@ Procedure ValidateNestedTransaction(TransactionActiveAtExecutionStartTime, Handl
 			Except
 				CommentTemplate = NStr("en = 'Error while executing update handler %1:
 				|The update handler intercepted an exception while an external transaction was active.
-				|If active transactions are open at higher stack levels, the exceptions also must be passed to higher stack levels.';");
+				|If active transactions are open at higher stack levels, the exceptions also must be passed to higher stack levels.';tr = 'İşleyici 
+				|güncelleştirmesi yürütülürken bir hata oluştu: Güncelleme işleyicisi, etkin dış işlem sırasında özel durumu absorbe etti. %1 Yığının üstünde açılmış etkin işlemlerin söz konusu olması durumunda, 
+				|istisnanın da yığının üzerine yerleştirilmesi gerekir.'");
 				Comment = StringFunctionsClientServer.SubstituteParametersToString(CommentTemplate, HandlerName1);
 				
 				WriteLogEvent(EventName, EventLogLevel.Error,,, Comment);
@@ -9972,7 +10044,8 @@ Procedure ValidateNestedTransaction(TransactionActiveAtExecutionStartTime, Handl
 			EndTry;
 		Else
 			CommentTemplate = NStr("en = 'Error while executing update handler %1:
-			|The update handler closed an excessive transaction that was opened earlier (at a higher stack level).';");
+			|The update handler closed an excessive transaction that was opened earlier (at a higher stack level).';tr = 'Güncelleme işleyicisini 
+			|yürütürken bir hata %1 oluştu: Güncelleştirmenin işleyicisi, daha önce açılmış bir ek işlemi kapattı (yığında).'");
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(CommentTemplate, HandlerName1);
 			
 			WriteLogEvent(EventName, EventLogLevel.Error,,, Comment);
@@ -9981,7 +10054,8 @@ Procedure ValidateNestedTransaction(TransactionActiveAtExecutionStartTime, Handl
 	Else
 		If TransactionActive() Then
 			CommentTemplate = NStr("en = 'Error while executing update handler %1:
-			|A transaction that was opened in the update handler is still active (as it was not committed or rolled back).';");
+			|A transaction that was opened in the update handler is still active (as it was not committed or rolled back).';tr = 'Güncelleme işleyicisi 
+			|yürütülürken bir hata oluştu: %1İşleyici içinde açılan işlem etkin kaldı (kapatılmadı veya iptal edilmedi).'");
 			Comment = StringFunctionsClientServer.SubstituteParametersToString(CommentTemplate, HandlerName1);
 			
 			WriteLogEvent(EventName, EventLogLevel.Error,,, Comment);
@@ -10005,7 +10079,7 @@ Procedure ValidateHandlerProperties(UpdateIteration)
 			
 			If Handler.InitialFilling <> True Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'One of the following handler properties is blank: %1 or %2.';"),
+					NStr("en = 'One of the following handler properties is blank: %1 or %2.';tr = 'İşleyicide %1 özelliği veya %2 özelliği doldurulmadı.'"),
 					"Version", "InitialFilling");
 			EndIf;
 			
@@ -10018,14 +10092,16 @@ Procedure ValidateHandlerProperties(UpdateIteration)
 				ZeroVersion = False;
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'In the handler, property %1 has invalid value: ""%2"".
-					           |Valid format: ""2.1.3.70"".';"),
+					           |Valid format: ""2.1.3.70"".';tr = 'İşleyici Sürüm %1özelliği yanlış dolduruldu:""%2"". 
+					           |Doğru biçim, örneğin: 21.3.70.'"),
 					"Version", Handler.Version);
 			EndTry;
 			
 			If ZeroVersion Then
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'In the handler, property %1 has invalid value: ""%2"".
-					           |Zero versions are not allowed.';"),
+					           |Zero versions are not allowed.';tr = 'İşleyici Sürüm %1özelliği yanlış dolduruldu: ""%2"".
+					           | Sürüm sıfır olamaz.'"),
 					"Version", Handler.Version);
 			EndIf;
 			
@@ -10035,7 +10111,8 @@ Procedure ValidateHandlerProperties(UpdateIteration)
 				
 				ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'One of the following handler properties has invalid value: %1 or
-				               |%2.';"),
+				               |%2.';tr = 'İşleyici %1 özelliği ya da 
+				               |%2 özelliği yanlış dolduruldu.'"),
 					"Priority", "ExecuteInMandatoryGroup");
 			EndIf;
 		EndIf;
@@ -10046,7 +10123,8 @@ Procedure ValidateHandlerProperties(UpdateIteration)
 			And Handler.ExecutionMode <> "Deferred" Then
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In handler ""%1"", property %2 has invalid value.
-				           |Valid value: ""%3"", ""%4"", or ""%5"".';"),
+				           |Valid value: ""%3"", ""%4"", or ""%5"".';tr = '""%1"" işleyicide %2 özellik yanlış dolduruldu.
+				           |Kabul edilebilir değer: ""%3"", ""%4"", ""%5"".'"),
 				Handler.Procedure, "ExecutionMode", "Exclusively", "Deferred", "Seamless");
 		EndIf;
 		
@@ -10056,7 +10134,8 @@ Procedure ValidateHandlerProperties(UpdateIteration)
 			
 			ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'One of the following handler properties has invalid value: %1 or
-			               |%2.';"),
+			               |%2.';tr = 'İşleyici %1 özelliği ya da 
+			               |%2 özelliği yanlış dolduruldu.'"),
 				"Optional", "InitialFilling");
 		EndIf;
 			
@@ -10065,17 +10144,17 @@ Procedure ValidateHandlerProperties(UpdateIteration)
 		EndIf;
 		
 		If UpdateIteration.IsMainConfiguration Then
-			ErrorTitle = NStr("en = 'Configuration update handler property error';");
+			ErrorTitle = NStr("en = 'Configuration update handler property error';tr = 'Yapılandırma güncelleme işleyicisinin özelliğinde bir hata oluştu'");
 		Else
 			ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Error in a property of library %1 (version %2) update handler';"),
+				NStr("en = 'Error in a property of library %1 (version %2) update handler';tr = '%1 Sürüm kütüphane güncelleme işleyicisi %2özelliğinde bir hata oluştu'"),
 				UpdateIteration.Subsystem,
 				UpdateIteration.Version);
 		EndIf;
 		
 		ErrorDescription = StringFunctionsClientServer.SubstituteParametersToString(
 			ErrorTitle + Chars.LF
-			+ NStr("en = '(%1).';") + Chars.LF
+			+ NStr("en = '(%1).';tr = '(%1).'") + Chars.LF
 			+ Chars.LF
 			+ ErrorDescription,
 			Handler.Procedure);
@@ -10417,7 +10496,8 @@ Function TheValueOfTheEnumerationByName(EnumValueName, EnumerationMetadata) Expo
 	If Result = Undefined Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Invalid name ""%1"" of the ""%2"" enumeration value.
-				 |Available values: %3';"), 
+				 |Available values: %3';tr = '""%2"" numaralandırması değerinin ""%1"" adı yanlış.
+				 |Kulanılabilir değerler: %3'"), 
 			EnumValueName, EnumerationMetadata, StrConcat(AvailableValues, ", "));
 		Raise(MessageText, ErrorCategory.ConfigurationError); 
 	EndIf;
@@ -10456,7 +10536,7 @@ Procedure WriteUpdateProgressInformation(Handler, HandlerExecutionProgress, InBa
 	HandlerExecutionProgress.CompletedHandlersCount = HandlerExecutionProgress.CompletedHandlersCount + 1;
 	
 	If Not Common.DataSeparationEnabled() Then
-		Message = NStr("en = 'Executing update handler %1 (%2 out of %3).';");
+		Message = NStr("en = 'Executing update handler %1 (%2 out of %3).';tr = '%1 güncelleme işleyicisi devam ediyor (%3''den %2''i).'");
 		Message = StringFunctionsClientServer.SubstituteParametersToString(
 			Message, Handler.Procedure,
 			HandlerExecutionProgress.CompletedHandlersCount, HandlerExecutionProgress.TotalHandlerCount);
@@ -10568,7 +10648,8 @@ Function UpdateDetailsSections() Export
 			
 			If VersionWeight > MetadataVersionWeight Then
 				ExceptionText = NStr("en = 'The version specified in a section of common template %1
-					|is greater than the version specified in the metadata (%2 instead of correct version %3)';");
+					|is greater than the version specified in the metadata (%2 instead of correct version %3)';tr = '%1 genel şablonda, değişiklik bölümlerinden biri
+					|için sürüm metaverilerden daha yüksek (%2 olmalıdır %3).'");
 				ExceptionText = StringFunctionsClientServer.SubstituteParametersToString(ExceptionText,
 					"SystemReleaseNotes", Version, Metadata.Version);
 				Raise(ExceptionText, ErrorCategory.ConfigurationError);
@@ -10884,7 +10965,7 @@ Procedure EndDeferredUpdateHandlerExecution(HandlerContext)
 			Constants.DeferredMasterNodeUpdateCompleted.Set(False);
 		EndIf;
 		
-		ErrorTemplate = NStr("en = 'Cannot execute update handler %1. See the Event log for details.';");
+		ErrorTemplate = NStr("en = 'Cannot execute update handler %1. See the Event log for details.';tr = 'Güncelleme işleyicisi başarısız oldu ""%1"". Daha fazla bilgi için olay günlüğüne bakın.'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 			HandlerContext.HandlerName);
 		HandlerContext.Insert("ErrorWhenCompletingHandler", ErrorText);
@@ -11058,7 +11139,7 @@ Procedure BeforeStartDataProcessingProcedure(HandlerContext,
 		SubsystemVersionAtStartUpdates = SubsystemVersionsAtStartUpdates[HandlerUpdates.LibraryName];
 		
 		HandlerContext.StartedWithoutErrors = True;
-		HandlerExecutionMessage = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Executing update procedure %1.';"), HandlerName);
+		HandlerExecutionMessage = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Executing update procedure %1.';tr = '%1 güncelleme prosedürü yürütülüyor.'"), HandlerName);
 		EventLog.AddMessageForEventLog(EventLogEvent(),
 				EventLogLevel.Information,,, HandlerExecutionMessage);
 		
@@ -11110,10 +11191,14 @@ Procedure BeforeStartDataProcessingProcedure(HandlerContext,
 				ErrorText = NStr("en = 'The maximum number of update handler execution attempts is exceeded.
 					|Ensure that all additional update handlers in the main node
 					|are completed, synchronize the data,
-					|and execute the update handlers in this node again.';");
+					|and execute the update handlers in this node again.';tr = 'Güncelleştirme prosedürünün geçerli başlatma sayısı aşıldı. 
+					|Ana düğümdeki ek veri işleme yordamlarının 
+					|tam olarak tamamlandığından emin olun, verileri eşitleyin ve bu ünitedeki 
+					|veri işleme prosedürlerini yeniden çalıştırın.'");
 			Else
 				ErrorText = NStr("en = 'The maximum number of update attempts is exceeded.
-					|The update is canceled to prevent an endless loop.';");
+					|The update is canceled to prevent an endless loop.';tr = 'Güncelleştirme prosedürünün geçerli başlatma sayısı aşıldı. 
+					|Yürütme veri işleme mekanizması döngü önlemek için durduruldu.'");
 			EndIf;
 			
 			MinQueue = MinDeferredDataProcessorQueue();
@@ -11200,7 +11285,8 @@ Procedure AfterStartDataProcessingProcedure(HandlerContext, HandlerName)
 		
 		If Parameters.ProcessingCompleted = Undefined Then
 			ErrorText = NStr("en = 'The update handler cannot initialize parameter %1.
-				|The execution is canceled due to an error in the handler code.';");
+				|The execution is canceled due to an error in the handler code.';tr = 'Güncelleme işleyicisi %1 parametresini başlatamıyor.
+				|Yürütme, işleyicinin kodundaki bir hata yüzünden iptal edildi.'");
 			ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText, "ProcessingCompleted");
 			Raise(ErrorText, ErrorCategory.ConfigurationError);
 		EndIf;
@@ -11272,7 +11358,7 @@ Procedure AfterStartDataProcessingProcedure(HandlerContext, HandlerName)
 				AttemptCount = HandlerUpdates.AttemptCount;
 				MaxAttempts = MaxUpdateAttempts(HandlerUpdates) - 1;
 				If AttemptCount >= MaxAttempts Then
-					ExceptionText = NStr("en = 'The data processing procedure went into an endless loop and was canceled.';");
+					ExceptionText = NStr("en = 'The data processing procedure went into an endless loop and was canceled.';tr = 'Veri işleme prosedürü döngüsü takıldı. Yürütme durduruldu.'");
 					Raise(ExceptionText, ErrorCategory.ConfigurationError);
 				Else
 					AttemptsCountToAdd = AttemptsCountToAdd(HandlerUpdates, HandlerContext);
@@ -11392,7 +11478,8 @@ Procedure FillLockedItems(VersionRow, LockedObjectsInfo)
 		ElsIf ValueIsFilled(ObjectsToLock) And Not ValueIsFilled(CheckProcedure) Then
 			ExceptionText =  StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'In deferred update handler ""%1"",
-					|the list of locked objects is filled in but property ""%2"" is not specified.';"),
+					|the list of locked objects is filled in but property ""%2"" is not specified.';tr = 'Ertelenmiş güncelleştirme işleyicisi ""%1"" engellenen nesnelerin bir listesini dolduruldu, 
+					|ancak ""%2"" özelliği ayarlanmamıştır.'"),
 					Handler.HandlerName, "CheckProcedure");
 			Raise(ExceptionText, ErrorCategory.ConfigurationError);
 		EndIf;
@@ -11523,7 +11610,10 @@ Procedure FillDataForParallelDeferredUpdate1(Parameters) Export
 			Message = NStr("en = 'Executing data population procedure
 				                   |%1
 				                   |of deferred update handler
-				                   |%2.';");
+				                   |%2.';tr = '"
+"%1Ertelenmiş güncelleme işleyicisinin 
+				                   |veri doldurma prosedürü yürütülüyor 
+				                   |%2.'");
 			Message = StringFunctionsClientServer.SubstituteParametersToString(Message,
 				Handler.UpdateDataFillingProcedure,
 				Handler.HandlerName);
@@ -11557,7 +11647,12 @@ Procedure FillDataForParallelDeferredUpdate1(Parameters) Export
 						   |of deferred update handler
 						   |""%2"":
 						   |%3.
-						   |';"),
+						   |';tr = '""%2""
+						   | ertelenmiş güncelleme işleyicisinin 
+						   |""%1""
+						   | veri doldurma prosedürü çağrılırken hata oluştu:
+						   |%3.
+						   |'"),
 				Handler.UpdateDataFillingProcedure,
 				Handler.HandlerName,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
@@ -11685,7 +11780,10 @@ Procedure FillDeferredHandlerData(DataToProcessDetails, ResultAddress) Export
 		"en = 'Executing data population procedure
 		|%1
 		|of deferred update handler
-		|%2.';");
+		|%2.';tr = '"
+"%1Ertelenmiş güncelleme işleyicisinin 
+		|veri doldurma prosedürü yürütülüyor 
+		|%2.'");
 	MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate,
 		DataToProcessDetails.FillingProcedure,
 		DataToProcessDetails.HandlerName);
@@ -11703,7 +11801,12 @@ Procedure FillDeferredHandlerData(DataToProcessDetails, ResultAddress) Export
 			|of deferred update handler
 			|""%2"":
 			|%3.
-			|';");
+			|';tr = '""%2""
+			| ertelenmiş güncelleme işleyicisinin 
+			|""%1""
+			| veri doldurma prosedürü çağrılırken hata oluştu:
+			|%3.
+			|'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 			DataToProcessDetails.FillingProcedure,
 			DataToProcessDetails.HandlerName,
@@ -11829,7 +11932,9 @@ Function ComparisonKindAsString(Val ComparisonCondition, HandlerName)
 	Else
 		ErrorText = NStr("en = 'Invalid comparison type ""%1"" is specified for the relevant data filter
 			|in the data registration procedure of the ""%2"" handler.
-			|For valid types, see the function ""%3""';");
+			|For valid types, see the function ""%3""';tr = '""%2"" işleyicisinin veri kayıt prosedüründe ilgili veri filtresi için 
+			|geçersiz karşılaştırma türü ""%1"" belirtildi.
+			|Geçerli türler için ""%3"" fonksiyonuna bakın.'");
 		AvailableCompareTypes = "InfobaseUpdate.UpToDateDataSelectionParameters";
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 			ComparisonCondition, HandlerName, AvailableCompareTypes);
@@ -12183,7 +12288,9 @@ Procedure AddErrorInformationInHandler(HandlerName) Export
 	If Not ValueIsFilled(HandlerName) Then
 		ErrorText = NStr("en = 'Couldn''t save error details in the handler.
 			|Reason:
-			|Seems like the call wasn''t made from the update handler.';");
+			|Seems like the call wasn''t made from the update handler.';tr = '
+			| işleyicide hata bilgisi şu sebeple kaydedilemedi:
+			|Çağrı bir güncelleme işleyicisinden olmayabilir.'");
 		WriteError(ErrorText);
 		Return;
 	EndIf;
@@ -12211,7 +12318,9 @@ Procedure AddErrorInformationInHandler(HandlerName) Export
 		ErrorInfo = ErrorInfo();
 		ErrorText = NStr("en = 'Couldn''t save error details in handler ""%1"".
 			|Reason:
-			|%2';");
+			|%2';tr = '%1
+			|işleyicisinde hata bilgisi şu sebeple kaydedilemedi:
+			|%2'");
 		ErrorText = StringFunctionsClientServer.SubstituteParametersToString(ErrorText,
 			HandlerName, ErrorProcessing.DetailErrorDescription(ErrorInfo));
 		WriteError(ErrorText);
@@ -12237,18 +12346,18 @@ EndProcedure
 Function StepDurationAsString(Val Duration) Export
 	
 	If Duration < 1 Then
-		Return "< " + NStr("en = '1 sec';");
+		Return "< " + NStr("en = '1 sec';tr = '1 sn'");
 	ElsIf Duration < 60 Then
-		Template = NStr("en = '%1 sec';");
+		Template = NStr("en = '%1 sec';tr = '%1 sn'");
 		Return StringFunctionsClientServer.SubstituteParametersToString(Template, Int(Duration));
 	ElsIf Duration < 3600 Then
-		Template = NStr("en = '%1 min %2 sec';");
+		Template = NStr("en = '%1 min %2 sec';tr = '%1 dak %2 san'");
 		Duration = Duration / 60; // Converted to minutes.
 		Minutes1 = Int(Duration);
 		Seconds = Int((Duration - Minutes1) * 60);
 		Return StringFunctionsClientServer.SubstituteParametersToString(Template, Minutes1, Seconds);
 	Else
-		Template = NStr("en = '%1 h %2 min';");
+		Template = NStr("en = '%1 h %2 min';tr = '%1 sa %2 dk'");
 		Duration = Duration / 60 / 60; // Converted to hours.
 		Hours1 = Int(Duration);
 		Minutes1 = Int((Duration - Hours1) * 60);

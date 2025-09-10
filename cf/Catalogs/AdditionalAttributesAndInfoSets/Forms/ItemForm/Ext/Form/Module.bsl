@@ -21,13 +21,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	UseLabels        = SetPropertiesTypes.Labels;
 	
 	If UseAddlInfo And Not UseAddlAttributes And Not UseLabels Then
-		Title = Object.Description + " " + NStr("en = '(Set of additional information records)';")
+		Title = Object.Description + " " + NStr("en = '(Set of additional information records)';tr = '(Ek bilgi kaydı kümesi)'")
 	ElsIf UseLabels And Not UseAddlInfo And Not UseAddlAttributes Then
-		Title = Object.Description + " " + NStr("en = '(Label set)';")
+		Title = Object.Description + " " + NStr("en = '(Label set)';tr = '(Etiket kümesi)'")
 	ElsIf UseAddlAttributes And Not UseAddlInfo And Not UseLabels Then
-		Title = Object.Description + " " + NStr("en = '(Set of additional attributes)';")
+		Title = Object.Description + " " + NStr("en = '(Set of additional attributes)';tr = '(Ek öznitelikler kümesi)'")
 	Else
-		Title = Object.Description + " " + NStr("en = '(Set of additional properties)';")
+		Title = Object.Description + " " + NStr("en = '(Set of additional properties)';tr = '(Ek özellik kümesi)'")
 	EndIf;
 	
 	If Not UseAddlAttributes And Object.AdditionalAttributes.Count() = 0 Then

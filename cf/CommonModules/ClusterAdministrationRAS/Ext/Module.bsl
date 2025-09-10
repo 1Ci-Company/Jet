@@ -93,7 +93,14 @@ Procedure CheckAdministrationParameters(Val ClusterAdministrationParameters, Val
 					|Example:
 					|""%3"" cluster --port=%4 %5:%6
 					|
-					|It is also recommended that you check the connection parameters and firewall settings.';"),
+					|It is also recommended that you check the connection parameters and firewall settings.';tr = '%1 bilgisayarından sunucu kümesine şu sebeple bağlantı kurulamadı:
+					|%2
+					|
+					|Eğer %1 bilgisayarda yönetim sunucusu (ras) başlatılmadı ise, başlatılmalıdır.
+					|Örneğin:
+					|""%3"" cluster --port=%4 %5:%6
+					|
+					|Ayrıca bağlantı ve güvenlik duvarı ayarlarını kontrol etmeniz önerilir.'"),
 				ComputerName(), ErrorProcessing.BriefErrorDescription(ErrorInfo()),
 				BinDir() + ?(Common.IsWindowsServer(), "ras.exe", "ras"),
 				XMLString(ClusterAdministrationParameters.AdministrationServerPort),
@@ -299,7 +306,7 @@ Procedure DeleteInfobaseSessions(Val ClusterAdministrationParameters, Val IBAdmi
 	
 	If Not AllSessionsTerminated Then
 	
-		Raise NStr("en = 'Cannot delete sessions.';");
+		Raise NStr("en = 'Cannot delete sessions.';tr = 'Oturumlar silinemiyor.'");
 		
 	EndIf;
 	
@@ -398,7 +405,7 @@ Procedure TerminateInfobaseConnections(Val ClusterAdministrationParameters, Val 
 	
 	If Not AllConnectionsTerminated Then
 	
-		Raise NStr("en = 'Cannot close connections.';");
+		Raise NStr("en = 'Cannot close connections.';tr = 'Bağlantılar kapatılamıyor.'");
 		
 	EndIf;
 	
@@ -547,7 +554,7 @@ Function SecurityProfile(Val ClusterAdministrationParameters, Val ProfileName, V
 	SecurityProfiles = GetSecurityProfiles(ClusterID, ClusterAdministrationParameters, Filter);
 	
 	If SecurityProfiles.Count() <> 1 Then
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile %2 is not registered in server cluster %1.';"), ClusterID, ProfileName);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile %2 is not registered in server cluster %1.';tr = '%1 sunucu kümesinde %2 güvenlik profili kaydedilmedi'"), ClusterID, ProfileName);
 	EndIf;
 	
 	Result = SecurityProfiles[0];
@@ -598,7 +605,7 @@ Procedure CreateSecurityProfile(Val ClusterAdministrationParameters, Val Securit
 	SecurityProfiles = GetSecurityProfiles(ClusterID, ClusterAdministrationParameters, Filter);
 	
 	If SecurityProfiles.Count() = 1 Then
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile %2 is already registered in server cluster %1.';"), ClusterID, ProfileName);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile %2 is already registered in server cluster %1.';tr = '%1 sunucu kümesinde %2 güvenlik profili zaten kaydedildi'"), ClusterID, ProfileName);
 	EndIf;
 	
 	UpdateSecurityProfileProperties(ClusterAdministrationParameters, SecurityProfileProperties);
@@ -622,7 +629,7 @@ Procedure SetSecurityProfileProperties(Val ClusterAdministrationParameters, Val 
 	SecurityProfiles = GetSecurityProfiles(ClusterID, ClusterAdministrationParameters, Filter);
 	
 	If SecurityProfiles.Count() <> 1 Then
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile %2 is not registered in server cluster %1.';"), ClusterID, ProfileName);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Security profile %2 is not registered in server cluster %1.';tr = '%1 sunucu kümesinde %2 güvenlik profili kaydedilmedi'"), ClusterID, ProfileName);
 	EndIf;
 	
 	PreviousProperties = SecurityProfile(ClusterAdministrationParameters, ProfileName, ClusterID);
@@ -668,7 +675,7 @@ Function InfoBaseID(Val ClusterID, Val ClusterAdministrationParameters, Val Info
 	If Infobases.Count() = 1 Then
 		Return Infobases[0].Get("infobase");
 	Else
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Infobase %2 is not registered in server cluster %1.';"), ClusterID, InfobaseAdministrationParameters.NameInCluster);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Infobase %2 is not registered in server cluster %1.';tr = '%1 sunucu kümesinde %2 infobase kaydedilmedi'"), ClusterID, InfobaseAdministrationParameters.NameInCluster);
 	EndIf;
 	
 EndFunction
@@ -713,7 +720,7 @@ Function ClusterID(Val ClusterAdministrationParameters) Export
 	If Clusters.Count() = 1 Then
 		Return Clusters[0].Get("cluster");
 	Else
-		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot find a server cluster with port %1.';"), ClusterAdministrationParameters.ClusterPort);
+		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot find a server cluster with port %1.';tr = '%1 bağlantı noktası olan sunucu kümesi bulunamadı.'"), ClusterAdministrationParameters.ClusterPort);
 	EndIf;
 	
 EndFunction
@@ -1339,7 +1346,7 @@ Function CastOutputItem(OutputItem, ElementType)
 		Try
 			Return Number(OutputItem);
 		Except
-			Raise NStr("en = 'Invalid format.';");
+			Raise NStr("en = 'Invalid format.';tr = 'Geçersiz format.'");
 		EndTry;
 		
 	ElsIf ElementType = Type("Date") Then
@@ -1351,7 +1358,7 @@ Function CastOutputItem(OutputItem, ElementType)
 		Try
 			Return XMLValue(Type("Date"), OutputItem);
 		Except
-			Raise NStr("en = 'Invalid format.';");
+			Raise NStr("en = 'Invalid format.';tr = 'Geçersiz format.'");
 		EndTry;
 		
 	ElsIf ElementType = Type("Boolean") Then
@@ -1361,7 +1368,7 @@ Function CastOutputItem(OutputItem, ElementType)
 		ElsIf OutputItem = "off" Or OutputItem = "no" Then
 			Return False;
 		Else
-			Raise NStr("en = 'Invalid format.';");
+			Raise NStr("en = 'Invalid format.';tr = 'Geçersiz format.'");
 		EndIf;
 		
 	ElsIf ElementType = Undefined Then
@@ -1378,7 +1385,7 @@ Function CastOutputItem(OutputItem, ElementType)
 		
 	Else
 		
-		Raise NStr("en = 'Invalid item type.';");
+		Raise NStr("en = 'Invalid item type.';tr = 'Geçersiz bileşen türü.'");
 		
 	EndIf;
 	
@@ -1441,7 +1448,7 @@ Function ReadUpToSeparator(Stream, Position, Separator)
 		While Position <= StrLen(Stream) Do
 			FoundQuotationMark = StrFind(Stream, QuotationMark, SearchDirection.FromBegin, Position); 
 			If FoundQuotationMark = 0 Then
-				Raise NStr("en = 'Invalid format.';");
+				Raise NStr("en = 'Invalid format.';tr = 'Geçersiz format.'");
 			ElsIf Mid(Stream, FoundQuotationMark + 1, 1) = QuotationMark Then
 				Position = FoundQuotationMark + 2;
 			Else
@@ -1454,7 +1461,7 @@ Function ReadUpToSeparator(Stream, Position, Separator)
 			EndIf;
 		EndDo;
 		If Position > StrLen(Stream) Then
-			Raise NStr("en = 'Invalid format.';");
+			Raise NStr("en = 'Invalid format.';tr = 'Geçersiz format.'");
 		EndIf;
 		Value = TrimAll(Mid(Stream, StartPosition, FoundQuotationMark - StartPosition));
 		Value = StrReplace(Value, QuotationMark + QuotationMark, QuotationMark);
@@ -2265,11 +2272,11 @@ EndFunction
 Function RunCommand(Command, ClusterAdministrationParameters, Dictionary = Undefined, Filter = Undefined, PropertyTypes = Undefined)
 	
 	If SafeMode() <> False Then
-		Raise NStr("en = 'Safe mode does not support cluster administration.';");
+		Raise NStr("en = 'Safe mode does not support cluster administration.';tr = 'Kümenin yönetilmesi güvenli modda kullanılamaz'");
 	EndIf;
 	
 	If Common.DataSeparationEnabled() Then
-		Raise NStr("en = 'SaaS mode does not support cluster administration.';");
+		Raise NStr("en = 'SaaS mode does not support cluster administration.';tr = 'Hizmet modelinde, uygulama infobase''nin küme yönetimi işlevlerini gerçekleştirmesine izin verilmez.'");
 	EndIf;
 	
 	// Substituting path to the rac utility and the ras server address to the command line.
@@ -2284,7 +2291,13 @@ Function RunCommand(Command, ClusterAdministrationParameters, Dictionary = Undef
 			           |computer.
 			           |To install it:
 			           |- For Windows, reinstall 1C:Enterprise platform with ""1C:Enterprise server"" component selected.
-			           |- For Linux, install the 1c-enterprise83-server* package.';"),
+			           |- For Linux, install the 1c-enterprise83-server* package.';tr = 'Sunucu küme yönetiminin operasyonunu çalıştırılamıyor: %1 dosya bulunamadı.
+			           |
+			           |Kümeyi yönetici sunucusu (ras) aracılığıyla yönetmek için, bu bilgisayara
+			           | bir yönetim sunucusu (ras) istemcisi yükleyin.
+			           |Yüklemek için:
+			           |- Windows işletim sistemine sahip bilgisayarlar için, 1C:Enterprise sunucu yönetimi bileşenini kurarak platformu yeniden yükleyin"";
+			           |- Linux OS''li bilgisayarlar için 1c-enterprise83-server * paketini yükleyin.'"),
 			ClientFile.FullName);
 		
 	EndIf;
@@ -2388,7 +2401,7 @@ EndFunction
 Function ProfileSupportedProperties(ClusterAdministrationParameters)
 	
 	ProfileName = "ServiceProfile-81e39185-997c-4ae3-81f7-e7582cfdfa03";
-	ProfileDetails = NStr("en = 'Service profile for testing supported properties.';");
+	ProfileDetails = NStr("en = 'Service profile for testing supported properties.';tr = 'Desteklenen özelliklerin kontrolü için hizmet profili.'");
 	
 	ClusterParameters = ClusterParameters(ClusterAdministrationParameters);
 	

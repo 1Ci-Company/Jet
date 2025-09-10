@@ -67,7 +67,7 @@ Procedure SendReceiveEmails() Export
 	
 	WriteLogEvent(EventLogEvent(), 
 		EventLogLevel.Information, , ,
-		NStr("en = 'Mail synchronization started';", Common.DefaultLanguageCode()));
+		NStr("en = 'Mail synchronization started';tr = 'E-posta senkronizasyonu başladı'", Common.DefaultLanguageCode()));
 		
 	EmailsReceived = EmailsReceived();
 	LoadEmails(EmailsReceived);
@@ -82,7 +82,7 @@ Procedure SendReceiveEmails() Export
 	
 	WriteLogEvent(EventLogEvent(), 
 		EventLogLevel.Information, , ,
-		NStr("en = 'Mail synchronization completed';", Common.DefaultLanguageCode()));
+		NStr("en = 'Mail synchronization completed';tr = 'E-posta senkronizasyonu tamamlandı'", Common.DefaultLanguageCode()));
 	
 EndProcedure
 
@@ -242,7 +242,8 @@ Procedure SendEmailsInternal(Query, AllRecievedEmails, EmailsToDefineFolders, Se
 			Except
 				
 				ErrorMessageTemplate = NStr("en = 'The %1 email is not prepared for sending due to:
-					|%2';", Common.DefaultLanguageCode());
+					|%2';tr = '%1 e-postası şu nedenle gönderime hazırlanamadı:
+					|%2'", Common.DefaultLanguageCode());
 				
 				ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 					ErrorMessageTemplate, 
@@ -279,7 +280,8 @@ Procedure SendEmailsInternal(Query, AllRecievedEmails, EmailsToDefineFolders, Se
 			UnlockAccountForReceiving(Account);
 			
 			ErrorMessageTemplate = NStr("en = 'Cannot connect to the %1 account due to:
-				|%2';", Common.DefaultLanguageCode());
+				|%2';tr = '%1 hesabına şu nedenle bağlanılamıyor:
+				|%2'", Common.DefaultLanguageCode());
 			
 			ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(ErrorMessageTemplate, 
 				Account, EmailOperations.ExtendedErrorPresentation(ErrorInfo(), Common.DefaultLanguageCode()));
@@ -374,7 +376,7 @@ Procedure SendEmailsInternal(Query, AllRecievedEmails, EmailsToDefineFolders, Se
 						ErrorProcessingParameters.AttemptsNumber                 = DataFromFirstUnsentEmail.Value.AttemptsNumber;
 						ErrorProcessingParameters.IncrementAttemptsCount = True;
 						ErrorProcessingParameters.InformUser              = Interactively;
-						ErrorProcessingParameters.ErrorText                       = NStr("en = 'Unknown error when sending the email message';");
+						ErrorProcessingParameters.ErrorText                       = NStr("en = 'Unknown error when sending the email message';tr = 'E-posta gönderilirken bilinmeyen bir hata oluştu'");
 						ErrorProcessingParameters.ShouldLogEvents = False;
 						
 						ErrorProcessingResult = ProcessEmailSendingError(ErrorProcessingParameters, New Array);
@@ -510,11 +512,14 @@ Function ProcessEmailSendingError(ErrorProcessingParameters, Val WrongRecipients
 		
 		If Not AllEmailAddresseesRejectedByServer Then
 			ErrorMessageTemplate = NStr("en = 'Some recipients of the message ""%1"" were rejected by the server:
-				|%2. The message was sent to other recipients.';", Common.DefaultLanguageCode());
+				|%2. The message was sent to other recipients.';tr = '""%1"" e-postasının şu alıcıları sunucu tarafından reddedildi:
+				|%2. E-posta diğer adreslere gönderildi.'", Common.DefaultLanguageCode());
 		Else
 			ErrorMessageTemplate = NStr("en = 'Cannot send message ""%1"".
 				|The following recipients were rejected by the server:
-				|%2.';", Common.DefaultLanguageCode());
+				|%2.';tr = '""%1"" e-postası gönderilemedi.
+				|Şu alıcılar sunucu tarafından reddedildi:
+				|%2.'", Common.DefaultLanguageCode());
 		EndIf;
 		
 		ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(ErrorMessageTemplate,
@@ -524,7 +529,8 @@ Function ProcessEmailSendingError(ErrorProcessingParameters, Val WrongRecipients
 	Else
 		
 		ErrorMessageTemplate = NStr("en = 'Cannot send the email message ""%1"".
-			|Reason: %2.';", Common.DefaultLanguageCode());
+			|Reason: %2.';tr = '""%1"" e-posta iletisi gönderilemiyor.
+			|Nedeni: %2.'", Common.DefaultLanguageCode());
 		
 		ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(ErrorMessageTemplate,
 		                                                                                 ErrorProcessingParameters.EmailPresentation,
@@ -622,7 +628,7 @@ Procedure SendNotoficationsOnReading(ForCurrentUser)
 			
 			Interactions.AddToAddresseesParameter(EmailSelection, EmailParameters, "Whom", "ReadReceiptAddresses");
 			
-			EmailParameters.Insert("Subject",NStr("en = 'Read receipt';") + " / " +"Reading Confirmation");
+			EmailParameters.Insert("Subject",NStr("en = 'Read receipt';tr = 'Okundu bilgisi'") + " / " +"Reading Confirmation");
 			EmailParameters.Insert("Body",GenerateReadReceiptText(EmailSelection));
 			EmailParameters.Insert("Encoding","UTF-8");
 			EmailParameters.Insert("Importance", InternetMailMessageImportance.Normal);
@@ -659,7 +665,7 @@ EndProcedure
 //
 Procedure LoadUserEmail(Result)
 	
-	TimeConsumingOperations.ReportProgress(, NStr("en = 'Receive mail';"));
+	TimeConsumingOperations.ReportProgress(, NStr("en = 'Receive mail';tr = 'E-posta al'"));
 	
 	Query = New Query;
 	Query.Text =
@@ -699,7 +705,7 @@ Procedure LoadUserEmail(Result)
 	Result.EmailsReceived1 = 0;
 	Result.UserAccountsAvailable = Selection.Count();
 	If Result.UserAccountsAvailable = 0 Then
-		Common.MessageToUser(NStr("en = 'No available email accounts to receive mail.';"));
+		Common.MessageToUser(NStr("en = 'No available email accounts to receive mail.';tr = 'E-postaları alacak hesap yok.'"));
 		Result.HasErrors = True;
 		Return;
 	EndIf;
@@ -734,7 +740,7 @@ EndProcedure
 
 Procedure SendUserEmail(Result)
 	
-	TimeConsumingOperations.ReportProgress(, NStr("en = 'Send mail';"));
+	TimeConsumingOperations.ReportProgress(, NStr("en = 'Send mail';tr = 'E-posta gönder'"));
 	
 	Query = New Query;
 	Query.Text = "
@@ -897,7 +903,8 @@ Procedure GetEmails(Val AccountData, HasErrors, ReceivedEmails, EmailsReceived)
 			ErrorInfo(), Common.DefaultLanguageCode());
 		ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot connect to the %1 account due to:
-				|%2';", Common.DefaultLanguageCode()),
+				|%2';tr = '%1 hesabına şu nedenle bağlanılamıyor:
+				|%2'", Common.DefaultLanguageCode()),
 				AccountData.Ref,
 				ErrorMessageText);
 		WriteLogEvent(EventLogEvent(),
@@ -965,7 +972,8 @@ Function GetEmailMessagesByIDs(Mail, AccountData, MessagesToImportIDs,
 									
 				ErrorTextForLog_ = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot connect to the ""%1"" account due to:
-						|%2';", Common.DefaultLanguageCode()),
+						|%2';tr = '""%1"" hesabına şu nedenle bağlanılamıyor:
+						|%2'", Common.DefaultLanguageCode()),
 						AccountData.Ref,
 						ErrorTextForLog_);
 					
@@ -977,7 +985,8 @@ Function GetEmailMessagesByIDs(Mail, AccountData, MessagesToImportIDs,
 					
 				ErrorTextForUser = StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'Cannot connect to the ""%1"" account due to:
-						 |%2';"),
+						 |%2';tr = '""%1"" hesabına şu nedenle bağlanılamıyor:
+						 |%2'"),
 						AccountData.Ref,
 						ErrorTextForUser);	
 				
@@ -1022,7 +1031,8 @@ Function GetEmailMessagesByIDs(Mail, AccountData, MessagesToImportIDs,
 					RollbackTransaction();
 					ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(
 						NStr("en = 'Cannot receive the %1 email dated %2 from %3. Reason:
-						|%4';", Common.DefaultLanguageCode()),
+						|%4';tr = '%2 tarihli %1 e-postası %3 kaynağından alınamıyor. Nedeni:
+						|%4'", Common.DefaultLanguageCode()),
 							Message.Subject, Message.PostingDate, Message.From.Address,
 							ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 					WriteLogEvent(EventLogEvent(), EventLogLevel.Error, , ,
@@ -1132,7 +1142,7 @@ Procedure GetEmailByIMAPProtocol(AccountData, Mail, EmailsReceived1, EmailsRecei
 			EmailsHeadersForImport = Mail.GetHeaders(FilterParameters);
 		Except
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Couldn''t get the email headers. Folder: %1. Account: %2. Reason: %3';"),
+				NStr("en = 'Couldn''t get the email headers. Folder: %1. Account: %2. Reason: %3';tr = 'E-posta başlıkları alınamadı. Klasör: %1. Hesap: %2. Neden: %3'"),
 				ActiveFolderName, AccountData.Email, 
 				EmailOperations.ExtendedErrorPresentation(ErrorInfo(), Common.DefaultLanguageCode(), False)); 
 			WriteLogEvent(EventLogEvent(), EventLogLevel.Error,
@@ -1145,7 +1155,7 @@ Procedure GetEmailByIMAPProtocol(AccountData, Mail, EmailsReceived1, EmailsRecei
 			Continue;
 		EndIf;
 		
-		MessageText = StrTemplate(NStr("en = 'Receiving emails from folder ""%1"" for %2. Pending messages: %3';"),
+		MessageText = StrTemplate(NStr("en = 'Receiving emails from folder ""%1"" for %2. Pending messages: %3';tr = '%2 için ""%1"" klasöründen e-postalar alınıyor. Bekleyen iletiler: %3'"),
 		                ActiveFolderName, AccountData.Email, ReceivableEmailsCount); 
 		WriteLogEvent(EventLogEvent(), EventLogLevel.Information,
 			Metadata.Catalogs.EmailMessageFolders,, MessageText);
@@ -1242,7 +1252,7 @@ Procedure GetEmailByIMAPProtocol(AccountData, Mail, EmailsReceived1, EmailsRecei
 			
 			EmailsReceived1 = EmailsReceived1 + EmailsImportedByIDCount;
 			
-			MessageText = StrTemplate(NStr("en = 'Messages received from folder ""%1"" for %2: %3';"),
+			MessageText = StrTemplate(NStr("en = 'Messages received from folder ""%1"" for %2: %3';tr = '%2 için ""%1"" klasöründen iletiler alındı: %3'"),
 			                ActiveFolderName, AccountData.Email, EmailsImportedByIDCount); 
 		
 			WriteLogEvent(EventLogEvent(),
@@ -1487,7 +1497,7 @@ Procedure SynchronizeReviewedFlagWithServer(Mail, AccountData, ImportedEmailsArr
 	Except
 		
 		RollbackTransaction();
-		MessageText = NStr("en = 'Couldn''t change the message status due to: %Cause%.';");
+		MessageText = NStr("en = 'Couldn''t change the message status due to: %Cause%.';tr = 'İleti durumu şu nedenle değiştirilemedi: %Cause%.'");
 		MessageText = StrReplace(MessageText, "%Cause%", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		WriteLogEvent(EventLogEvent(),
 			EventLogLevel.Error,
@@ -1595,7 +1605,7 @@ Procedure DeleteIDsOfPreviouslyReceivedEmails(Account, IDsAtServer, IDsDelete)
 	Except
 		
 		RollbackTransaction();
-		MessageText = NStr("en = 'Could not clean up ID data due to: %Cause%.';");
+		MessageText = NStr("en = 'Could not clean up ID data due to: %Cause%.';tr = 'Kimlik verileri şu nedenle temizlenemedi: %Cause%.'");
 		MessageText = StrReplace(MessageText, "%Cause%", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		WriteLogEvent(EventLogEvent(),
 			EventLogLevel.Error,
@@ -2006,7 +2016,7 @@ Function ImportedEmailSubjectAndFolder(MailMessage, Account, IsOutgoingEmail1, P
 	If QueryExecutionTime > 1 Then
 		
 		LogRecordText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'The request to retrieve parent email data for the loaded email took more than %1 seconds, which is longer than expected.';"),
+			NStr("en = 'The request to retrieve parent email data for the loaded email took more than %1 seconds, which is longer than expected.';tr = 'Yüklene e-posta için ana e-posta verilerini alma talebi beklenenden uzun sürdü (%1 saniye).'"),
 			QueryExecutionTime);
 		WriteLogEvent(EventLogEvent(), EventLogLevel.Information,
 			MailMessage, LogRecordText);
@@ -2571,7 +2581,7 @@ Procedure DeterminePreviouslyImportedSubordinateEmails(Account, EmailsReceived);
 		Except
 			RollbackTransaction();
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Could not identify the original message for %1 due to: %2';"), 
+				NStr("en = 'Could not identify the original message for %1 due to: %2';tr = '%1 için orijinal ileti şu nedenle tanımlanamadı: %2'"), 
 				Selection.MailMessage, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 			WriteLogEvent(EventLogEvent(), EventLogLevel.Warning,
 				MetadataOfDocument, Selection.MailMessage, MessageText);
@@ -2680,7 +2690,7 @@ Procedure WriteEmailAttachment(Object, Attachment, AttachmentSignatures, CountOf
 			Try
 				AttachmentSignatureData = ModuleDigitalSignature.DERSignature(AttachmentsSignature.Data);
 			Except
-				EventText = NStr("en = 'Cannot read the %1 attachment signature data: %2';");
+				EventText = NStr("en = 'Cannot read the %1 attachment signature data: %2';tr = '%1 ekli dosya imza verileri okunamıyor: %2'");
 				ErrorSignatureDataCouldNotBeRead = StringFunctionsClientServer.SubstituteParametersToString(
 					EventText, EmailAttachmentRef, ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 				WriteLogEvent(EventLogEvent(), EventLogLevel.Information, , , ErrorSignatureDataCouldNotBeRead);
@@ -2696,14 +2706,14 @@ Procedure WriteEmailAttachment(Object, Attachment, AttachmentSignatures, CountOf
 				SignatureData.Insert("DateSignedFromLabels", ResultOfReadSignatureProperties.DateSignedFromLabels);
 				SignatureData.Insert("UnverifiedSignatureDate", ResultOfReadSignatureProperties.UnverifiedSignatureDate);
 			Else
-				EventText = NStr("en = 'Cannot read the %1 attachment signature data: %2';");
+				EventText = NStr("en = 'Cannot read the %1 attachment signature data: %2';tr = '%1 ekli dosya imza verileri okunamıyor: %2'");
 				ErrorSignatureDataCouldNotBeRead = StringFunctionsClientServer.SubstituteParametersToString(
 					EventText, EmailAttachmentRef, ResultOfReadSignatureProperties.ErrorText);
 				WriteLogEvent(EventLogEvent(), EventLogLevel.Information, , , ErrorSignatureDataCouldNotBeRead);
 				Continue;
 			EndIf;
 			
-			SignatureData.Comment = NStr("en = 'Email attachment';");
+			SignatureData.Comment = NStr("en = 'Email attachment';tr = 'E-posta eki'");
 			
 			FilesOperations.AddSignatureToFile(EmailAttachmentRef, SignatureData);
 			
@@ -2828,7 +2838,7 @@ Function WriteEmailAttachmentFromTempStorage(MailMessage, AddressInTempStorage,
 	
 	If IsBlankString(BaseName) Then
 		
-		BaseName = NStr("en = 'Untitled attachment';") 
+		BaseName = NStr("en = 'Untitled attachment';tr = 'Başlıksız ek'") 
 			+ ?(CountOfBlankNamesInAttachments = 0, ""," " + String(CountOfBlankNamesInAttachments + 1));
 		CountOfBlankNamesInAttachments = CountOfBlankNamesInAttachments + 1;
 		
@@ -3095,7 +3105,11 @@ Function GenerateReadReceiptText(Selection)
 		|Subject: %3
 		|Sent on %4
 		|Has been opened on %5
-		|By %6 <%7>';");
+		|By %6 <%7>';tr = 'İletiyi gönderen %1 <%2>
+		|Konu: %3
+		|Gönderim tarihi %4
+		|Açılma tarihi %5
+		|Alıcı %6 <%7>'");
 	
 	LocalizedReceipt = StringFunctionsClientServer.SubstituteParametersToString(LocalizedReceipt,
 		Selection.SenderPresentation,
@@ -3143,17 +3157,17 @@ Function TheNameOfThePredefinedFolderByType(PredefinedFolderType)
 	PredefinedFolderName = "";
 	
 	If PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.IncomingMessages Then
-		PredefinedFolderName = NStr("en = 'Inbox';");
+		PredefinedFolderName = NStr("en = 'Inbox';tr = 'Gelen kutusu'");
 	ElsIf PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.Outbox Then
-		PredefinedFolderName = NStr("en = 'Outbox';");
+		PredefinedFolderName = NStr("en = 'Outbox';tr = 'Giden kutusu'");
 	ElsIf PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.Trash Then
-		PredefinedFolderName = NStr("en = 'Deleted';");
+		PredefinedFolderName = NStr("en = 'Deleted';tr = 'Silinenler'");
 	ElsIf PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.Drafts Then
-		PredefinedFolderName = NStr("en = 'Drafts';");
+		PredefinedFolderName = NStr("en = 'Drafts';tr = 'Taslaklar'");
 	ElsIf PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.SentMessages Then
-		PredefinedFolderName = NStr("en = 'Sent';");
+		PredefinedFolderName = NStr("en = 'Sent';tr = 'Gönderilenler'");
 	ElsIf PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.JunkMail Then
-		PredefinedFolderName = NStr("en = 'Junk mail';");
+		PredefinedFolderName = NStr("en = 'Junk mail';tr = 'Gereksiz e-posta'");
 	EndIf;
 	
 	Return PredefinedFolderName;
@@ -3172,17 +3186,17 @@ Function TheTypeOfThePredefinedFolderByName(PredefinedFolderName) Export
 		
 	PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.EmptyRef();
 	
-	If PredefinedFolderName = NStr("en = 'Inbox';") Then
+	If PredefinedFolderName = NStr("en = 'Inbox';tr = 'Gelen kutusu'") Then
 		PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.IncomingMessages;
-	ElsIf PredefinedFolderName = NStr("en = 'Outbox';")  Then
+	ElsIf PredefinedFolderName = NStr("en = 'Outbox';tr = 'Giden kutusu'")  Then
 		PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.Outbox;
-	ElsIf PredefinedFolderName = NStr("en = 'Deleted';") Then
+	ElsIf PredefinedFolderName = NStr("en = 'Deleted';tr = 'Silinenler'") Then
 		PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.Trash;
-	ElsIf PredefinedFolderName = NStr("en = 'Drafts';") Then
+	ElsIf PredefinedFolderName = NStr("en = 'Drafts';tr = 'Taslaklar'") Then
 		PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.Drafts;
-	ElsIf PredefinedFolderName = NStr("en = 'Sent';")  Then
+	ElsIf PredefinedFolderName = NStr("en = 'Sent';tr = 'Gönderilenler'")  Then
 		PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.SentMessages;
-	ElsIf PredefinedFolderName = NStr("en = 'Junk mail';") Then
+	ElsIf PredefinedFolderName = NStr("en = 'Junk mail';tr = 'Gereksiz e-posta'") Then
 		PredefinedFolderType = Enums.PredefinedEmailsFoldersTypes.JunkMail;
 	EndIf;
 	
@@ -3211,7 +3225,7 @@ EndFunction
 
 Function EventLogEvent() Export
 	
-	Return NStr("en = 'Business interactions';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Business interactions';tr = 'İş etkileşimleri'", Common.DefaultLanguageCode());
 	
 EndFunction
 

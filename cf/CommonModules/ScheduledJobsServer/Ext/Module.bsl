@@ -585,7 +585,8 @@ Function GetScheduledJob(Val Id) Export
 	
 	If ScheduledJob = Undefined Then
 		Raise( NStr("en = 'The scheduled job does not exist.
-		                              |It might have been deleted by another user.';") );
+		                              |It might have been deleted by another user.';tr = 'Zamanlanmış görev mevcut değil. 
+		                              |Başka bir kullanıcı tarafından silinmiş olabilir.'") );
 	EndIf;
 	
 	Return ScheduledJob;
@@ -799,7 +800,7 @@ Procedure CancelJobExecution(Val ScheduledJob, TextForLog) Export
 		Return;
 	EndIf;
 	
-	EventName = NStr("en = 'Cancel background job';", Common.DefaultLanguageCode());
+	EventName = NStr("en = 'Cancel background job';tr = 'Arka plan işini iptal et'", Common.DefaultLanguageCode());
 	
 	WriteLogEvent(EventName,
 		EventLogLevel.Warning,
@@ -1007,7 +1008,10 @@ Procedure ChangeScheduledJob(Val Id, Val Parameters) Export
 			NStr("en = 'Scheduled job by the passed ID is not found.
 				|
 				|If the scheduled job is not predefined, first of all add
-				|it to the list of jobs using method %1.';"),
+				|it to the list of jobs using method %1.';tr = 'İletilen kimlik ile ilgili bir zamanlanmış görev bulunamadı.
+				|
+				|Eğer zamanlanmış görev önceden tanımlanmamış ise, önce 
+				|görev listesine %1 yöntemini kullanarak eklenmelidir.'"),
 			"ScheduledJobsServer.AddJob");
 		
 		Raise ExceptionText;
@@ -1208,7 +1212,7 @@ Procedure RaiseIfNoAdministrationRights()
 	EndIf;
 	
 	If Not Users.IsFullUser(, CheckSystemAdministrationRights) Then
-		Raise NStr("en = 'Access violation.';");
+		Raise NStr("en = 'Access violation.';tr = 'Erişim hakkı ihlali.'");
 	EndIf;
 	
 EndProcedure

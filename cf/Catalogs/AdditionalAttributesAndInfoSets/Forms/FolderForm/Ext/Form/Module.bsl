@@ -20,13 +20,13 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	UseAddlInfo  = SetPropertiesTypes.AdditionalInfo;
 	
 	If UseAddlAttributes And UseAddlInfo Then
-		Title = Object.Description + " " + NStr("en = '(Group of additional attribute and information record sets)';")
+		Title = Object.Description + " " + NStr("en = '(Group of additional attribute and information record sets)';tr = '(Ek öznitelik ve bilgi kaydı kümeleri grubu)'")
 		
 	ElsIf UseAddlAttributes Then
-		Title = Object.Description + " " + NStr("en = '(Group of additional attribute sets)';")
+		Title = Object.Description + " " + NStr("en = '(Group of additional attribute sets)';tr = '(Ek öznitelik kümeleri grubu)'")
 		
 	ElsIf UseAddlInfo Then
-		Title = Object.Description + " " + NStr("en = '(Group of additional information records sets)';")
+		Title = Object.Description + " " + NStr("en = '(Group of additional information records sets)';tr = '(Ek bilgi kaydı kümeleri grubu)'")
 	EndIf;
 	
 EndProcedure

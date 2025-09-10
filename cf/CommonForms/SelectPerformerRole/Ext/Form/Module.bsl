@@ -38,14 +38,14 @@ Procedure FillCheckProcessingAtServer(Cancel, CheckedAttributes)
 	If MainAddressingObjectTypesAreSet And MainAddressingObject = Undefined Then
 		
 		Common.MessageToUser( 
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" field is required.';"), 
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" field is required.';tr = '""%1"" alanı doldurulmadı.'"), 
 				Common.ObjectAttributeValue(Role, "MainAddressingObjectTypes")),,,
 				"MainAddressingObject", Cancel);
 				
 	ElsIf TypesOfAditionalAddressingObjectAreSet And AdditionalAddressingObject = Undefined Then
 		
 		Common.MessageToUser(
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" field is required.';"), 
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The ""%1"" field is required.';tr = '""%1"" alanı doldurulmadı.'"), 
 				Common.ObjectAttributeValue(Role, "AdditionalAddressingObjectTypes")),,, 
 				"AdditionalAddressingObject", Cancel);
 			

@@ -1575,7 +1575,7 @@ Procedure AddFilterCondition(Filter, Val Property, Val ValueComparisonType, Val 
 		
 	Else
 		
-		Raise NStr("en = 'Unexpected type of the Filter parameter. Expected type is <Structure> or <Array>.';");
+		Raise NStr("en = 'Unexpected type of the Filter parameter. Expected type is <Structure> or <Array>.';tr = 'Filtre parametresinin yanlış türü, beklenen <Yapı> ya da <Dizin>'");
 		
 	EndIf;
 	
@@ -1606,7 +1606,7 @@ Function CheckFilterConditions(Val ObjectToCheck, Val Filter = Undefined) Export
 		Else
 			
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Invalid value type of parameter %1, expected %2 or %3.';"),
+				NStr("en = 'Invalid value type of parameter %1, expected %2 or %3.';tr = '%1 parametresinin yanlış değer türü, beklenen %2 veya %3.'"),
 					"Filter", "Structure", "KeyAndValue");
 		EndIf;
 		
@@ -1708,7 +1708,7 @@ Function AdministrationManager(Val AdministrationParameters)
 	Else
 		
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Unknown type of parameter %1: %2. Expected values: ""%3"" or ""%4"".';"),
+			NStr("en = 'Unknown type of parameter %1: %2. Expected values: ""%3"" or ""%4"".';tr = '%1 (%2) parametrenin bilinmeyen türü, beklenen ""%3"" ya da ""%4"".'"),
 			"AdministrationParameters", AdministrationParameters.AttachmentType, "COM", "RAS");
 		
 	EndIf;

@@ -15,7 +15,7 @@ Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
 	
 	OpenForm(
 		"Task.PerformerTask.ListForm",
-		New Structure("FormCaption", NStr("en = 'All tasks';")),
+		New Structure("FormCaption", NStr("en = 'All tasks';tr = 'Tüm görevler'")),
 		CommandExecuteParameters.Source, 
 		CommandExecuteParameters.Uniqueness, 
 		CommandExecuteParameters.Window);

@@ -179,7 +179,7 @@ Function MoveItem(ItemList, CurrentItemRef, Direction) Export
 	
 	AccessParameters = AccessParameters("Update", CurrentItemRef.Metadata(), "Ref");
 	If Not AccessParameters.Accessibility Then
-		Return NStr("en = 'You are not authorized to change the item sequence.';");
+		Return NStr("en = 'You are not authorized to change the item sequence.';tr = 'Öğe sırasını değiştirmek için yetersiz haklar.'");
 	EndIf;
 	
 	Information = ItemOrderSetup.GetInformationForMoving(CurrentItemRef.Metadata());
@@ -189,19 +189,19 @@ Function MoveItem(ItemList, CurrentItemRef, Direction) Export
 	// Otherwise, the display mode should be hierarchy or tree.
 	RepresentedAsList = ItemList.Representation = TableRepresentation.List;
 	If Information.HasParent And RepresentedAsList And Not ListContainsFilterByParent(DataCompositionSettings) Then
-		Return NStr("en = 'To change the item sequence, set the view mode to Tree or Hierarchical list.';");
+		Return NStr("en = 'To change the item sequence, set the view mode to Tree or Hierarchical list.';tr = 'Öğe sırasını değiştirmek için görüntüleme modunu ""Ağaç"" ya da ""Hiyerarşi listesi"" olarak ayarlayın.'");
 	EndIf;
 	
 	// For subordinate catalogs, filter by owner is to be set.
 	If Information.HasOwner And Not ListContainsFilterByOwner(DataCompositionSettings) Then
-		Return NStr("en = 'To change the item sequence, filter the list by the Owner field.';");
+		Return NStr("en = 'To change the item sequence, filter the list by the Owner field.';tr = 'Öğe sırasını değiştirmek için filtreyi ""Sahip"" alanına göre ayarlayın.'");
 	EndIf;
 	
 	// Checking the Use flag of the AddlOrderingAttribute attribute for the item to be moved.
 	If Information.HasGroups Then
 		IsFolder = Common.ObjectAttributeValue(CurrentItemRef, "IsFolder");
 		If IsFolder And Not Information.ForGroups Or Not IsFolder And Not Information.ForItems Then
-			Return NStr("en = 'Cannot move the selected item.';");
+			Return NStr("en = 'Cannot move the selected item.';tr = 'Seçilen öğe aktarılamaz.'");
 		EndIf;
 	EndIf;
 	
@@ -236,7 +236,8 @@ Function MoveItem(ItemList, CurrentItemRef, Direction) Export
 	ValueTree = ExecuteQuery(DataCompositionSchema, DataCompositionSettings);
 	If ValueTree = Undefined Then
 		Return NStr("en = 'To change the item sequence, reset the list settings
-			| (Menu More - Use standard settings).';");
+			| (Menu More - Use standard settings).';tr = 'Öğe düzenini değiştirmek için liste ayarları sıfırlanmalıdır
+			|(Menü Daha fazla - Standart ayarları yap).'");
 	EndIf;
 	
 	ValueTreeRow = ValueTree.Rows.Find(CurrentItemRef, "Ref", True);
@@ -373,7 +374,8 @@ Function CheckSortingInList(DataCompositionSettings)
 	AddlOrderingAttribute = DataCompositionSettings.Order.OrderAvailableFields.FindField(New DataCompositionField("AddlOrderingAttribute"));
 	If Not SortingCorrect Then
 		Return StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'To transfer items, sort the
-			|list by the ""%1"" field (ascending)';"), AddlOrderingAttribute.Title);
+			|list by the ""%1"" field (ascending)';tr = 'Öğeleri taşımak için listeyi 
+			|""%1"" alanına göre sıralayın (artan)'"), AddlOrderingAttribute.Title);
 	EndIf;
 	
 	Return "";

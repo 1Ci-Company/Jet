@@ -53,7 +53,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		// Adding the filter by users added by the person responsible for the list.
 		CommonClientServer.SetDynamicListFilterItem(
 			ExternalUsersList, "Prepared", True, ,
-			NStr("en = 'Users are submitted for authorization';"), False,
+			NStr("en = 'Users are submitted for authorization';tr = 'Kullanıcılar doğrulamaya gönderildi'"), False,
 			DataCompositionSettingsItemViewMode.Normal);
 	EndIf;
 	
@@ -181,7 +181,7 @@ Procedure OnOpen(Cancel)
 #If MobileClient Then
 	If StoredParameters.UseGroups Then
 		Items.GroupsGroup.Title = ?(Items.ExternalUsersGroups.CurrentData = Undefined,
-			NStr("en = 'External user groups';"),
+			NStr("en = 'External user groups';tr = 'Harici kullanıcı grupları'"),
 			String(Items.ExternalUsersGroups.CurrentData.Ref));
 	EndIf;
 #EndIf
@@ -243,7 +243,7 @@ EndProcedure
 Procedure UsersKindStartChoice(Item, ChoiceData, StandardProcessing)
 	
 	NotifyDescription = New NotifyDescription("AfterAssignmentChoice", ThisObject);
-	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select users type';"), False, True, NotifyDescription);
+	UsersInternalClient.SelectPurpose(ThisObject, NStr("en = 'Select users type';tr = 'Kullanıcı türünün seçimi'"), False, True, NotifyDescription);
 	
 EndProcedure
 
@@ -282,7 +282,7 @@ Procedure ExternalUsersGroupsOnActivateRow(Item)
 #If MobileClient Then
 	If Not StoredParameters.AdvancedPick Then
 		Items.GroupsGroup.Title = ?(Items.ExternalUsersGroups.CurrentData = Undefined,
-			NStr("en = 'External user groups';"),
+			NStr("en = 'External user groups';tr = 'Harici kullanıcı grupları'"),
 			String(Items.ExternalUsersGroups.CurrentData.Ref));
 		CurrentItem = Items.ExternalUsersList;
 	EndIf;
@@ -340,7 +340,8 @@ Procedure ExternalUsersGroupsDrag(Item, DragParameters, StandardProcessing, Stri
 	If SelectHierarchy Then
 		ShowMessageBox(,
 			NStr("en = 'To allow dragging users to groups, clear the
-			           |""Show users that belong to subgroups"" check box.';"));
+			           |""Show users that belong to subgroups"" check box.';tr = 'Bir kullanıcıyı gruplara sürüklemek için devre dışı bırakın
+			           |""Alt grupların kullanıcılarını göster"" onay kutusu.'"));
 		Return;
 	EndIf;
 	
@@ -362,7 +363,7 @@ Procedure ExternalUsersGroupsDrag(Item, DragParameters, StandardProcessing, Stri
 	If String = StoredParameters.AllUsersGroup
 		And GroupWithAllAuthorizationObjectsType Then
 		UserMessage = New Structure("Message, HasErrors, Users",
-			NStr("en = 'Users cannot be removed from groups with an ""All users of the specified types"" flag.';"),
+			NStr("en = 'Users cannot be removed from groups with an ""All users of the specified types"" flag.';tr = 'Üye türü ""Belirlenen türe ait tüm kullanıcılar"" olan gruplardan üye çıkarılamaz.'"),
 			True,
 			Undefined);
 	Else
@@ -374,17 +375,17 @@ Procedure ExternalUsersGroupsDrag(Item, DragParameters, StandardProcessing, Stri
 		If UsersCount = 1 Then
 			If ActionExcludeUser Then
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Do you want to remove user ""%1"" from group ""%2""?';"),
+					NStr("en = 'Do you want to remove user ""%1"" from group ""%2""?';tr = '""%1"" kullanıcısı ""%2"" grubundan çıkarılsın mı?'"),
 					String(DragParameters.Value[0]),
 					String(Items.ExternalUsersGroups.CurrentRow));
 				
 			ElsIf Not GroupMarkedForDeletion Then
 				If AddToGroup Then
-					Template = NStr("en = 'Do you want to add user ""%1"" to group ""%2""?';");
+					Template = NStr("en = 'Do you want to add user ""%1"" to group ""%2""?';tr = '""Alt kullanıcılarını göster"" onay kutusu ""%1"" gruba ""%2""?'");
 				ElsIf Move Then
-					Template = NStr("en = 'Do you want to move user ""%1"" to group ""%2""?';");
+					Template = NStr("en = 'Do you want to move user ""%1"" to group ""%2""?';tr = 'Kullanıcıyı taşı ""%1"" gruba ""%2""?'");
 				Else
-					Template = NStr("en = 'Do you want to copy user ""%1"" to group ""%2""?';");
+					Template = NStr("en = 'Do you want to copy user ""%1"" to group ""%2""?';tr = 'Kullanıcıyı Kopyala ""%1"" gruba ""%2""?'");
 				EndIf;
 				
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -393,11 +394,11 @@ Procedure ExternalUsersGroupsDrag(Item, DragParameters, StandardProcessing, Stri
 					String(String));
 			Else
 				If AddToGroup Then
-					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add user ""%2"" to the group?';");
+					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add user ""%2"" to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. ""%2"" kullanıcısı bu gruba dahil edilsin mi?'");
 				ElsIf Move Then
-					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move user ""%2"" to the group?';");
+					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move user ""%2"" to the group?';tr = 'Grup ""%1"" silinmek üzere işaretlenmiştir. ""%2"" kullanıcısı bu gruba taşınsın mı?'");
 				Else
-					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy user ""%2"" to the group?';");
+					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy user ""%2"" to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. ""%2"" kullanıcısı bu gruba kopyalansın mı?'");
 				EndIf;
 				
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -408,17 +409,17 @@ Procedure ExternalUsersGroupsDrag(Item, DragParameters, StandardProcessing, Stri
 		Else
 			If ActionExcludeUser Then
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Do you want to remove %1 users from group ""%2""?';"),
+					NStr("en = 'Do you want to remove %1 users from group ""%2""?';tr = '%1 kullanıcıları ""%2"" grubundan çıkarılsın mı?'"),
 					UsersCount,
 					String(Items.ExternalUsersGroups.CurrentRow));
 				
 			ElsIf Not GroupMarkedForDeletion Then
 				If AddToGroup Then
-					Template = NStr("en = 'Do you want to add %1 users to group ""%2""?';");
+					Template = NStr("en = 'Do you want to add %1 users to group ""%2""?';tr = 'Kullanıcılar (%1) ""%2"" grubuna dahil edilsin mi?'");
 				ElsIf Move Then
-					Template = NStr("en = 'Do you want to move %1 users to group ""%2""?';");
+					Template = NStr("en = 'Do you want to move %1 users to group ""%2""?';tr = 'Kullanıcılar(%1) ""%2"" grubuna taşınsın mı?'");
 				Else
-					Template = NStr("en = 'Do you want to copy %1 users to group ""%2""?';");
+					Template = NStr("en = 'Do you want to copy %1 users to group ""%2""?';tr = 'Kullanıcılar (%1) ""%2"" grubuna kopyalansın mı?'");
 				EndIf;
 				
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -427,11 +428,11 @@ Procedure ExternalUsersGroupsDrag(Item, DragParameters, StandardProcessing, Stri
 					String(String));
 			Else
 				If AddToGroup Then
-					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add %2 users to the group?';");
+					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to add %2 users to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. Kullanıcılar (%2) bu gruba dahil edilsin mi?'");
 				ElsIf Move Then
-					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move %2 users to the group?';");
+					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to move %2 users to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. Kullanıcılar(%2) bu gruba taşınsın mı?'");
 				Else
-					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy %2 users to the group?';");
+					Template = NStr("en = 'Group ""%1"" is marked for deletion. Do you want to copy %2 users to the group?';tr = '""%1"" grubu silinmek üzere işaretlendi. Kullanıcılar (%2) bu gruba kopyalansın mı?'");
 				EndIf;
 				
 				QueryText = StringFunctionsClientServer.SubstituteParametersToString(
@@ -586,7 +587,8 @@ Procedure CreateExternalUsersGroup(Command)
 	If CurrentData.AllAuthorizationObjects Then
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
 			NStr("en = 'Cannot add a subgroup to group ""%1"" as 
-			           | it includes all users of the specified types.';"),
+			           | it includes all users of the specified types.';tr = '""%1"" grubuna alt grup eklenemiyor çünkü 
+			           |belirtilen türlerdeki tüm kullanıcıları içeriyor.'"),
 			CurrentData.Description));
 		Return;
 	EndIf;
@@ -920,7 +922,7 @@ Procedure ChangeExtendedPickFormParameters()
 		// Making the titles of UsersList and UserGroups lists visible.
 		Items.ExternalUsersGroups.TitleLocation   = FormItemTitleLocation.Top;
 		Items.ExternalUsersList.TitleLocation    = FormItemTitleLocation.Top;
-		Items.ExternalUsersList.Title             = NStr("en = 'Users in group';");
+		Items.ExternalUsersList.Title             = NStr("en = 'Users in group';tr = 'Gruptaki kullanıcılar'");
 		Items.SelectGroup.Visible                         = StoredParameters.SelectExternalUsersGroups;
 	Else
 		Items.CancelUserSelection.Visible             = True;
@@ -936,9 +938,9 @@ EndProcedure
 Procedure UpdateSelectedUsersAndGroupsListTitle()
 	
 	If StoredParameters.UseGroups Then
-		SelectedUsersAndGroupsTitle = NStr("en = 'Selected users and groups (%1)';");
+		SelectedUsersAndGroupsTitle = NStr("en = 'Selected users and groups (%1)';tr = 'Seçilmiş kullanıcılar ve gruplar (%1)'");
 	Else
-		SelectedUsersAndGroupsTitle = NStr("en = 'Selected users (%1)';");
+		SelectedUsersAndGroupsTitle = NStr("en = 'Selected users (%1)';tr = 'Seçilmiş kullanıcılar (%1)'");
 	EndIf;
 	
 	UsersCount = SelectedUsersAndGroups.Count();
@@ -948,9 +950,9 @@ Procedure UpdateSelectedUsersAndGroupsListTitle()
 	Else
 		
 		If StoredParameters.UseGroups Then
-			Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users and groups';");
+			Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users and groups';tr = 'Seçilmiş kullanıcılar ve gruplar'");
 		Else
-			Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users';");
+			Items.SelectedUsersAndGroupsList.Title = NStr("en = 'Selected users';tr = 'Seçilmiş kullanıcılar'");
 		EndIf;
 		
 	EndIf;
@@ -1048,24 +1050,24 @@ Procedure ConfigureUserGroupsUsageForm(GroupUsageChanged = False,
 			// Pick mode.
 			If SelectExternalUsersGroups Then
 				Title = ?(StoredParameters.AdvancedPick, StoredParameters.PickFormHeader,
-					NStr("en = 'Pick external users and groups';"));
+					NStr("en = 'Pick external users and groups';tr = 'Harici kullanıcıları ve grupları seç'"));
 				CommonClientServer.SetFormItemProperty(Items,
-					"SelectExternalUser", "Title", NStr("en = 'Select external users';"));
+					"SelectExternalUser", "Title", NStr("en = 'Select external users';tr = 'Harici kullanıcıları seçin'"));
 				CommonClientServer.SetFormItemProperty(Items,
-					"SelectExternalUsersGroup", "Title", NStr("en = 'Select groups';"));
+					"SelectExternalUsersGroup", "Title", NStr("en = 'Select groups';tr = 'Grupları seçin'"));
 			Else
 				Title = ?(StoredParameters.AdvancedPick, StoredParameters.PickFormHeader,
-					NStr("en = 'Pick external users';"));
+					NStr("en = 'Pick external users';tr = 'Harici kullanıcıları seç'"));
 			EndIf;
 		Else
 			// Selection mode.
 			If SelectExternalUsersGroups Then
-				Title = NStr("en = 'Select external user or a group';");
+				Title = NStr("en = 'Select external user or a group';tr = 'Harici kullanıcı veya grup seçin'");
 				
 				CommonClientServer.SetFormItemProperty(Items,
-					"SelectExternalUser", "Title", NStr("en = 'Select external user';"));
+					"SelectExternalUser", "Title", NStr("en = 'Select external user';tr = 'Harici kullanıcıyı seçin'"));
 			Else
-				Title = NStr("en = 'Select external user';");
+				Title = NStr("en = 'Select external user';tr = 'Harici kullanıcıyı seçin'");
 			EndIf;
 		EndIf;
 	EndIf;
@@ -1224,12 +1226,14 @@ Procedure ExternalUsersGroupsDragCompletion(UserMessage)
 	
 	If UserMessage.HasErrors = False Then
 		ShowUserNotification(
-			NStr("en = 'Move users';"), , UserMessage.Message, PictureLib.DialogInformation);
+			NStr("en = 'Move users';tr = 'Kullanıcıları taşıyın'"), , UserMessage.Message, PictureLib.DialogInformation);
 	Else
 		StandardSubsystemsClient.ShowQuestionToUser(Undefined, 
 			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1
 				|The following users were not included into the selected group:
-				|%2';"), UserMessage.Message, UserMessage.Users), QuestionDialogMode.OK);
+				|%2';tr = '%1
+				|Aşağıdaki kullanıcılar seçilen gruba dahil edilmedi:
+				|%2'"), UserMessage.Message, UserMessage.Users), QuestionDialogMode.OK);
 	EndIf;
 	
 EndProcedure

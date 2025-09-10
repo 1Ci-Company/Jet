@@ -661,7 +661,7 @@ Procedure CheckPhoneFilling(Addressee, Cancel)
 	
 	If IsBlankString(Addressee.HowToContact) Then
 		Common.MessageToUser(
-			NStr("en = 'Phone number is required.';"),
+			NStr("en = 'Phone number is required.';tr = '""Telefon numarası"" alanı doldurulmadı.'"),
 			,
 			CommonClientServer.PathToTabularSection("Object.SMSMessageRecipients", Addressee.LineNumber, "HowToContact"),
 			,
@@ -671,7 +671,7 @@ Procedure CheckPhoneFilling(Addressee, Cancel)
 		
 	If StrSplit(Addressee.HowToContact, ";", False).Count() > 1 Then
 		Common.MessageToUser(
-			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Line %1 contains more than one phone number.';"), Addressee.LineNumber),
+			StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Line %1 contains more than one phone number.';tr = '%1 satırında birden fazla telefon numarası belirtildi.'"), Addressee.LineNumber),
 			,
 			CommonClientServer.PathToTabularSection("Object.SMSMessageRecipients", Addressee.LineNumber, "HowToContact"),
 			,
@@ -683,7 +683,9 @@ Procedure CheckPhoneFilling(Addressee, Cancel)
 		Common.MessageToUser(
 			NStr("en = 'Enter a phone number in the international format.
 			|You can use spaces, brackets, and hyphens.
-			|For example: +1 (123) 456-78-90.';"),
+			|For example: +1 (123) 456-78-90.';tr = 'Telefon numarasını uluslararası formatta girin.
+			|Boşluk, parantez ve kısa çizgi kullanılabilir.
+			|Örneğin, +90 (123) 456-78-90.'"),
 			,
 			CommonClientServer.PathToTabularSection("Object.SMSMessageRecipients", Addressee.LineNumber, "HowToContact"),
 			,
@@ -797,7 +799,7 @@ Procedure CheckDeliveryStatusesServer()
 
 	SetPrivilegedMode(True);
 	If Not SendSMSMessage.SMSMessageSendingSetupCompleted() Then
-		Common.MessageToUser(NStr("en = 'SMS settings not configured.';"),,"Object");
+		Common.MessageToUser(NStr("en = 'SMS settings not configured.';tr = 'SMS ayarları yapılandırılmadı.'"),,"Object");
 		Return;
 	EndIf;
 	

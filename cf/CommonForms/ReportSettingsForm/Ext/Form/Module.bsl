@@ -65,7 +65,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		EndIf;
 		
 		Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = '%1 report settings';"), DescriptionOption);
+			NStr("en = '%1 report settings';tr = '""%1"" rapor ayarları'"), DescriptionOption);
 	EndIf;
 	
 	GlobalSettings = ReportsOptions.GlobalSettings();
@@ -86,7 +86,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		
 		// Calculate the number of form creations, the standard separator is a period.
 		CurMode = Items.ExtendedMode.ChoiceList.FindByValue(ExtendedMode);
-		Comment = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 mode';"), CurMode.Presentation);
+		Comment = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = '%1 mode';tr = '%1 modu'"), CurMode.Presentation);
 		
 		ModuleMonitoringCenter = Common.CommonModule("MonitoringCenter");
 		ModuleMonitoringCenter.WriteBusinessStatisticsOperation("CommonForm.ReportSettingsForm", 1, Comment);
@@ -180,7 +180,7 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 		Notification = New NotifyDescription("ConfirmAndClose", ThisObject);
 		Modified = Modified Or VariantModified Or UserSettingsModified;
 		CommonClient.ShowFormClosingConfirmation(Notification, Cancel, Exit,
-			NStr("en = 'The settings were changed. Save the changes?';"));
+			NStr("en = 'The settings were changed. Save the changes?';tr = 'Ayarlar değiştirildi. Değişiklikler kaydedilsin mi?'"));
 	EndIf;
 	
 	UserSettingsModified = False;
@@ -403,9 +403,9 @@ Procedure Attachable_List_ChoiceProcessing(Item, SelectionResult, StandardProces
 	
 	If AddOn.Total > 0 Then
 		If AddOn.Total = 1 Then
-			NotificationTitle = NStr("en = 'The item added to the list.';");
+			NotificationTitle = NStr("en = 'The item added to the list.';tr = 'Öğe listeye eklendi'");
 		Else
-			NotificationTitle = NStr("en = 'The items added to the list.';");
+			NotificationTitle = NStr("en = 'The items added to the list.';tr = 'Öğeler listeye eklendi'");
 		EndIf;
 		
 		ShowUserNotification(
@@ -706,13 +706,13 @@ EndProcedure
 Procedure SelectedFields_Ungroup(Command)
 	RowsIDs = Items.SelectedFields.SelectedRows;
 	If RowsIDs.Count() <> 1 Then 
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 	
 	SourceRowParent = SelectedFields.FindByID(RowsIDs[0]);
 	If TypeOf(SourceRowParent.Id) <> Type("DataCompositionID") Then 
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 	
@@ -721,7 +721,7 @@ Procedure SelectedFields_Ungroup(Command)
 	
 	SourceSettingItemParent = StructureItemProperty.GetObjectByID(SourceRowParent.Id);
 	If TypeOf(SourceSettingItemParent) <> Type("DataCompositionSelectedFieldGroup") Then 
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 	
@@ -904,13 +904,13 @@ EndProcedure
 Procedure Filters_Ungroup(Command)
 	RowsIDs = Items.Filters.SelectedRows;
 	If RowsIDs.Count() <> 1 Then 
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 	
 	SourceRowParent = Filters.FindByID(RowsIDs[0]);
 	If TypeOf(SourceRowParent.Id) <> Type("DataCompositionID") Then 
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 	
@@ -919,7 +919,7 @@ Procedure Filters_Ungroup(Command)
 	
 	SourceSettingItemParent = StructureItemProperty.GetObjectByID(SourceRowParent.Id);
 	If TypeOf(SourceSettingItemParent) <> Type("DataCompositionFilterItemGroup") Then 
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 	
@@ -1822,11 +1822,11 @@ EndProcedure
 &AtClient
 Procedure OptionStructure_SaveToFile(Command)
 	Address = SettingsAddressInXMLString();
-	FileName = NStr("en = 'Settings.xml';");
+	FileName = NStr("en = 'Settings.xml';tr = 'Settings.xml'");
 	
 	SavingParameters = FileSystemClient.FileSavingParameters();
-	SavingParameters.Dialog.Title = NStr("en = 'Select a file to save report settings';");
-	SavingParameters.Dialog.Filter    = NStr("en = 'Report settings (*.xml)|*.xml';");
+	SavingParameters.Dialog.Title = NStr("en = 'Select a file to save report settings';tr = 'Rapor ayarlarının kaydedilmesi için dosya seçin'");
+	SavingParameters.Dialog.Filter    = NStr("en = 'Report settings (*.xml)|*.xml';tr = 'Rapor ayarları (*.xml)|*.xml'");
 	
 	FileSystemClient.SaveFile(Undefined, Address, FileName, SavingParameters);
 EndProcedure
@@ -1956,7 +1956,7 @@ Procedure AppearanceSelection(Item, RowID, Field, StandardProcessing)
 			And Field = Items.AppearanceTitle Then 
 			
 			Handler = New NotifyDescription("AppearanceTitleInputCompletion", ThisObject, RowID);
-			ShowInputString(Handler, String.Value, NStr("en = 'Printing header';"),, True);
+			ShowInputString(Handler, String.Value, NStr("en = 'Printing header';tr = 'Çıktı için başlık'"),, True);
 		EndIf;
 	ElsIf Field = Items.AppearanceTitle Then // Change the order.
 		AppearanceChangeItem(RowID, String);
@@ -2162,7 +2162,7 @@ Procedure UpdateGroupFields()
 		String.Id = StructureItemProperty.GetIDByObject(SettingItem);
 		
 		If TypeOf(SettingItem) = Type("DataCompositionAutoGroupField") Then 
-			String.Title  = NStr("en = 'Auto (all fields)';");
+			String.Title  = NStr("en = 'Auto (all fields)';tr = 'Oto (tüm alanlarda)'");
 			String.Picture = ReportsClientServer.PictureIndex("Item", "Predefined");
 			Continue;
 		EndIf;
@@ -2309,7 +2309,7 @@ Procedure UpdateDataParameters()
 	
 	Section = Filters.GetItems().Add();
 	Section.IsSection = True;
-	Section.Title = NStr("en = 'Parameters';");
+	Section.Title = NStr("en = 'Parameters';tr = 'Parametreler'");
 	Section.Picture = ReportsClientServer.PictureIndex("DataParameters");
 	Section.Id = "DataParameters";
 	SectionItems = Section.GetItems();
@@ -2371,7 +2371,7 @@ Procedure UpdateFilters(Rows = Undefined, SettingsItems = Undefined)
 	If Rows = Undefined Then 
 		Section = Filters.GetItems().Add();
 		Section.IsSection = True;
-		Section.Title = NStr("en = 'Filters';");
+		Section.Title = NStr("en = 'Filters';tr = 'Filtreler'");
 		Section.Picture = ReportsClientServer.PictureIndex("Filters");
 		Section.Id = "Filters";
 		Rows = Section.GetItems();
@@ -2482,7 +2482,7 @@ Procedure FiltersAfterGroupChoice(GroupType, RowID) Export
 		Return;
 	EndIf;
 	If Not String.IsFolder Then
-		ShowMessageBox(, NStr("en = 'Select a group.';"));
+		ShowMessageBox(, NStr("en = 'Select a group.';tr = 'Bir grubu seçin.'"));
 		Return;
 	EndIf;
 
@@ -2760,13 +2760,13 @@ Function FiltersGroupingParameters()
 	EndDo;
 	
 	If Rows.Count() = 0 Then 
-		ShowMessageBox(, NStr("en = 'Select items.';"));
+		ShowMessageBox(, NStr("en = 'Select items.';tr = 'Öğeleri seçin.'"));
 		Return Undefined;
 	EndIf;
 	
 	Parents = CommonClientServer.CollapseArray(Parents);
 	If Parents.Count() > 1 Then 
-		ShowMessageBox(, NStr("en = 'Cannot group selected items as they have different parents.';"));
+		ShowMessageBox(, NStr("en = 'Cannot group selected items as they have different parents.';tr = 'Seçilen öğeler farklı üst öğeleri olduğu için aktarılamaz.'"));
 		Return Undefined;
 	EndIf;
 	
@@ -3017,13 +3017,13 @@ Function FiltersShiftParameters()
 	EndDo;
 	
 	If Rows.Count() = 0 Then 
-		ShowMessageBox(, NStr("en = 'Select items.';"));
+		ShowMessageBox(, NStr("en = 'Select items.';tr = 'Öğeleri seçin.'"));
 		Return Undefined;
 	EndIf;
 	
 	Parents = CommonClientServer.CollapseArray(Parents);
 	If Parents.Count() > 1 Then 
-		ShowMessageBox(, NStr("en = 'Cannot move selected items as they have different parents.';"));
+		ShowMessageBox(, NStr("en = 'Cannot move selected items as they have different parents.';tr = 'Seçilen öğeler farklı üst öğeleri olduğu için aktarılamaz.'"));
 		Return Undefined;
 	EndIf;
 	
@@ -3048,7 +3048,7 @@ Procedure UpdateSelectedFields(Rows = Undefined, SettingsItems = Undefined)
 	If Rows = Undefined Then 
 		Section = SelectedFields.GetItems().Add();
 		Section.IsSection = True;
-		Section.Title = NStr("en = 'Fields';");
+		Section.Title = NStr("en = 'Fields';tr = 'Alanlar'");
 		Section.Picture = ReportsOptionsInternalClientServer.IndexOfTheFieldImage(Undefined);
 		Section.Id = "SelectedFields";
 		Rows = Section.GetItems();
@@ -3064,7 +3064,7 @@ Procedure UpdateSelectedFields(Rows = Undefined, SettingsItems = Undefined)
 		String.Id = StructureItemProperty.GetIDByObject(SettingItem);
 		
 		If TypeOf(SettingItem) = Type("DataCompositionAutoSelectedField") Then 
-			String.Title = NStr("en = 'Auto (parent fields)';");
+			String.Title = NStr("en = 'Auto (parent fields)';tr = 'Oto (üst öğe alanı)'");
 			String.Picture = 18;
 			Continue;
 		EndIf;
@@ -3258,13 +3258,13 @@ Function GroupingParametersOfSelectedFields()
 	EndDo;
 	
 	If Rows.Count() = 0 Then 
-		ShowMessageBox(, NStr("en = 'Select items.';"));
+		ShowMessageBox(, NStr("en = 'Select items.';tr = 'Öğeleri seçin.'"));
 		Return Undefined;
 	EndIf;
 	
 	Parents = CommonClientServer.CollapseArray(Parents);
 	If Parents.Count() > 1 Then 
-		ShowMessageBox(, NStr("en = 'Cannot group selected items as they have different parents.';"));
+		ShowMessageBox(, NStr("en = 'Cannot group selected items as they have different parents.';tr = 'Seçilen öğeler farklı üst öğeleri olduğu için aktarılamaz.'"));
 		Return Undefined;
 	EndIf;
 	
@@ -3595,13 +3595,13 @@ Function ShiftParametersOfSelectedFields()
 	EndDo;
 	
 	If Rows.Count() = 0 Then 
-		ShowMessageBox(, NStr("en = 'Select items.';"));
+		ShowMessageBox(, NStr("en = 'Select items.';tr = 'Öğeleri seçin.'"));
 		Return Undefined;
 	EndIf;
 	
 	Parents = CommonClientServer.CollapseArray(Parents);
 	If Parents.Count() > 1 Then 
-		ShowMessageBox(, NStr("en = 'Cannot move selected items as they have different parents.';"));
+		ShowMessageBox(, NStr("en = 'Cannot move selected items as they have different parents.';tr = 'Seçilen öğeler farklı üst öğeleri olduğu için aktarılamaz.'"));
 		Return Undefined;
 	EndIf;
 	
@@ -3879,7 +3879,7 @@ Procedure UpdateSorting()
 	
 	Section = Sort.GetItems().Add();
 	Section.IsSection = True;
-	Section.Title = NStr("en = 'Sorts';");
+	Section.Title = NStr("en = 'Sorts';tr = 'Filtreler'");
 	Section.Picture = ReportsOptionsInternalClientServer.IndexOfTheFieldImage(Undefined);
 	Rows = Section.GetItems();
 	
@@ -3891,7 +3891,7 @@ Procedure UpdateSorting()
 		String.Id = StructureItemProperty.GetIDByObject(SettingItem);
 		
 		If TypeOf(SettingItem) = Type("DataCompositionAutoOrderItem") Then 
-			String.Title = NStr("en = 'Auto (parent orders)';");
+			String.Title = NStr("en = 'Auto (parent orders)';tr = 'Oto (üst öğe filtresi)'");
 			String.IsAutoField = True;
 			String.Picture = 18;
 			Continue;
@@ -4037,7 +4037,7 @@ Procedure DragSelectedFieldsToSorting(Rows)
 				FillPropertyValues(DestinationRow, SettingItemDestination);
 				DestinationRow.Id = StructureItemSorting.GetIDByObject(SettingItemDestination);
 				DestinationRow.Picture = 18;
-				DestinationRow.Title = NStr("en = 'Auto (parent orders)';");
+				DestinationRow.Title = NStr("en = 'Auto (parent orders)';tr = 'Oto (üst öğe filtresi)'");
 				DestinationRow.IsAutoField = True;
 			EndIf;
 		Else
@@ -4115,7 +4115,7 @@ Procedure DragSortingFieldsToSelectedFields(Rows)
 				FillPropertyValues(DestinationRow, SettingItemDestination);
 				DestinationRow.Id = SelectedStructureItemFields.GetIDByObject(SettingItemDestination);
 				DestinationRow.Picture = 18;
-				DestinationRow.Title = NStr("en = 'Auto (parent fields)';");
+				DestinationRow.Title = NStr("en = 'Auto (parent fields)';tr = 'Oto (üst öğe alanı)'");
 			EndIf;
 			
 		ElsIf FindSelectedField(SelectedStructureItemFields, SettingItemSource.Field) = Undefined Then 
@@ -4281,9 +4281,9 @@ Procedure ReadPredefinedAppearanceParameters()
 	String = Appearance.GetItems().Add();
 	FillPropertyValues(String, Object, "Use, Value");
 	String.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Show printing header: %1';"),
-		?(ValueIsFilled(Object.Value), Object.Value, NStr("en = '<None>';")));
-	String.Presentation = NStr("en = 'Show printing header';");
+		NStr("en = 'Show printing header: %1';tr = 'Çıktı için başlık görüntülemesi: %1'"),
+		?(ValueIsFilled(Object.Value), Object.Value, NStr("en = '<None>';tr = '<Yok>'")));
+	String.Presentation = NStr("en = 'Show printing header';tr = 'Çıktı için başlık görüntülemesi'");
 	String.Id = PredefinedParameters.TITLE.Id;
 	String.Picture = -1;
 	String.DisplayModePicture = 4;
@@ -4296,8 +4296,8 @@ Procedure ReadPredefinedAppearanceParameters()
 	String = Appearance.GetItems().Add();
 	String.Use = (Object.Value <> DataCompositionTextOutputType.DontOutput
 		Or LinkedObject.Value <> DataCompositionTextOutputType.DontOutput);
-	String.Title = NStr("en = 'Display filters';");
-	String.Presentation = NStr("en = 'Display filters';");
+	String.Title = NStr("en = 'Display filters';tr = 'Filtrelerin görüntülenmesi'");
+	String.Presentation = NStr("en = 'Display filters';tr = 'Filtrelerin görüntülenmesi'");
 	String.Id = PredefinedParameters.DATAPARAMETERSOUTPUT.Id;
 	String.Picture = -1;
 	String.DisplayModePicture = 4;
@@ -4322,7 +4322,7 @@ Procedure AppearanceChangeItem(RowID = Undefined, String = Undefined)
 		FormParameters.Insert("Description", String.Title);
 	EndIf;
 	FormParameters.Insert("Title", StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Conditional appearance item of report ""%1""';"), DescriptionOption));
+		NStr("en = 'Conditional appearance item of report ""%1""';tr = '""%1"" raporunun koşullu görünüm öğesi'"), DescriptionOption));
 	
 	OpenForm("SettingsStorage.ReportsVariantsStorage.Form.ConditionalReportAppearanceItem",
 		FormParameters, ThisObject, UUID,,, Handler);
@@ -4422,7 +4422,7 @@ Procedure AppearanceTitleInputCompletion(Value, Id) Export
 	String.Use = True;
 	String.Value = Value;
 	String.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Show printing header: %1';"),
+		NStr("en = 'Show printing header: %1';tr = 'Çıktı için başlık görüntülemesi: %1'"),
 		?(ValueIsFilled(Value), Value, "<Missing>"));
 	
 	Settings = Report.SettingsComposer.Settings;
@@ -4550,7 +4550,7 @@ Procedure UpdateStructure()
 	EndIf;
 	
 	Section = OptionStructure.GetItems().Add();
-	Section.Presentation = NStr("en = 'Report';");
+	Section.Presentation = NStr("en = 'Report';tr = 'Rapor'");
 	Section.IsSection = True;
 	Section.Picture = -1;
 	Section.Type = StructureItemProperty;
@@ -4675,19 +4675,19 @@ Function StructureCollectionItemProperties(Item)
 		EndIf;
 		
 		If Not ValueIsFilled(ItemProperties.Presentation) Then
-			ItemProperties.Presentation = NStr("en = 'Nested grouping';");
+			ItemProperties.Presentation = NStr("en = 'Nested grouping';tr = 'Gruplandırmayı ekle'");
 		EndIf;
 		
 	ElsIf ElementType = Type("DataCompositionTable") Then 
 		
-		ItemProperties.Presentation = NStr("en = 'Table';");
+		ItemProperties.Presentation = NStr("en = 'Table';tr = 'Tablo'");
 		If ValueIsFilled(Item.UserSettingPresentation) Then 
 			ItemProperties.Presentation = Item.UserSettingPresentation;
 		EndIf;
 		
 	ElsIf ElementType = Type("DataCompositionChart") Then 
 		
-		ItemProperties.Presentation = NStr("en = 'Chart';");
+		ItemProperties.Presentation = NStr("en = 'Chart';tr = 'Diyagram'");
 		If ValueIsFilled(Item.UserSettingPresentation) Then 
 			ItemProperties.Presentation = Item.UserSettingPresentation;
 		EndIf;
@@ -4859,7 +4859,7 @@ Procedure AddSettingsStructureItem(ElementType)
 		SetOutputParameter(SettingItem, "ChartType.SplineMode", ChartSplineMode.SmoothCurve);
 		SetOutputParameter(SettingItem, "ChartType.SemitransparencyMode", ChartSemitransparencyMode.Use);
 		
-		String.Presentation = NStr("en = 'Chart';");
+		String.Presentation = NStr("en = 'Chart';tr = 'Diyagram'");
 		
 		SubordinateSettingItem = SettingItem.Points;
 		SubordinateRow = SubordinateRows.Add(); // See SettingsFormCollectionItem
@@ -4867,7 +4867,7 @@ Procedure AddSettingsStructureItem(ElementType)
 		SubordinateRow.Subtype = "ChartPoints";
 		SubordinateRow.Id = StructureItemProperty.GetIDByObject(SubordinateSettingItem);
 		SubordinateRow.Picture = -1;
-		SubordinateRow.Presentation = NStr("en = 'Dots';");
+		SubordinateRow.Presentation = NStr("en = 'Dots';tr = 'Noktalar'");
 		
 		SubordinateSettingItem = SettingItem.Series;
 		SubordinateRow = SubordinateRows.Add(); // See SettingsFormCollectionItem
@@ -4875,9 +4875,9 @@ Procedure AddSettingsStructureItem(ElementType)
 		SubordinateRow.Subtype = "ChartSeries";
 		SubordinateRow.Id = StructureItemProperty.GetIDByObject(SubordinateSettingItem);
 		SubordinateRow.Picture = -1;
-		SubordinateRow.Presentation = NStr("en = 'Series';");
+		SubordinateRow.Presentation = NStr("en = 'Series';tr = 'Seriler'");
 	ElsIf String.Type = "DataCompositionTable" Then
-		String.Presentation = NStr("en = 'Table';");
+		String.Presentation = NStr("en = 'Table';tr = 'Tablo'");
 		
 		SubordinateSettingItem = SettingItem.Rows;
 		SubordinateRow = SubordinateRows.Add(); // See SettingsFormCollectionItem
@@ -4885,7 +4885,7 @@ Procedure AddSettingsStructureItem(ElementType)
 		SubordinateRow.Subtype = "TableRows1";
 		SubordinateRow.Id = StructureItemProperty.GetIDByObject(SubordinateSettingItem);
 		SubordinateRow.Picture = -1;
-		SubordinateRow.Presentation = NStr("en = 'Rows';");
+		SubordinateRow.Presentation = NStr("en = 'Rows';tr = 'Satırlar'");
 		
 		SubordinateSettingItem = SettingItem.Columns;
 		SubordinateRow = SubordinateRows.Add(); // See SettingsFormCollectionItem
@@ -4893,7 +4893,7 @@ Procedure AddSettingsStructureItem(ElementType)
 		SubordinateRow.Subtype = "ColumnsTable";
 		SubordinateRow.Id = StructureItemProperty.GetIDByObject(SubordinateSettingItem);
 		SubordinateRow.Picture = -1;
-		SubordinateRow.Presentation = NStr("en = 'Columns';");
+		SubordinateRow.Presentation = NStr("en = 'Columns';tr = 'Sütunlar'");
 	EndIf;
 	
 	Items.OptionStructure.Expand(String.GetID(), True);
@@ -4933,7 +4933,7 @@ Procedure OptionStructureAfterSelectField(SettingDetails, ExecutionParameters) E
 	
 	If SettingDetails = "<>" Then
 		// Detailed records: no need to add a field.
-		Presentation = NStr("en = '<Detailed records>';");
+		Presentation = NStr("en = '<Detailed records>';tr = '<Detaylı kayıtlar>'");
 	Else
 		GroupingField = SettingItem.GroupFields.Items.Add(Type("DataCompositionGroupField"));
 		GroupingField.Use = True;
@@ -5204,11 +5204,11 @@ Procedure ChangeStructureItem(String, PageName = Undefined, UseOptionForm = Unde
 	
 	Handler = New NotifyDescription("ChangeStructureItemCompletion", ThisObject);
 	
-	TitleTemplate1 = NStr("en = '%1 settings of report %2';");
+	TitleTemplate1 = NStr("en = '%1 settings of report %2';tr = '""%2"" raporunun %1 ayarı'");
 	If String.Type = "DataCompositionChart" Then
-		ItemPresentation = NStr("en = 'Chart';");
+		ItemPresentation = NStr("en = 'Chart';tr = 'diyagramlar'");
 	Else
-		ItemPresentation = NStr("en = 'Grouping';");
+		ItemPresentation = NStr("en = 'Grouping';tr = 'gruplamalar'");
 	EndIf;
 	
 	If ValueIsFilled(String.Title) Then
@@ -5965,12 +5965,12 @@ Procedure DefineSelectedRows(Context)
 		EndIf;
 	EndDo;
 	If Context.TreeRows.Count() = 0 Then
-		Context.CancelReason = NStr("en = 'Select items.';");
+		Context.CancelReason = NStr("en = 'Select items.';tr = 'Öğeleri seçin.'");
 		Return;
 	EndIf;
 	If Context.CurrentRow = Undefined Then
 		If Context.Action = "ChangeGroup" Then
-			Context.CancelReason = NStr("en = 'Select group.';");
+			Context.CancelReason = NStr("en = 'Select group.';tr = 'Grubu seçin.'");
 			Return;
 		EndIf;
 	EndIf;
@@ -6003,11 +6003,11 @@ Function RowAdded(Rows, TreeRow, Specifics)
 	If (Specifics.CanBeParameters And TreeRow.IsParameter)
 		Or (Specifics.CanBeOutputParameters And TreeRow.IsOutputParameter) Then
 		If Rows.Action = "MoveTo" Then
-			Rows.CancelReason = NStr("en = 'Parameters cannot be moved.';");
+			Rows.CancelReason = NStr("en = 'Parameters cannot be moved.';tr = 'Parametreler aktarılamadı.'");
 		ElsIf Rows.Action = "Group" Then
-			Rows.CancelReason = NStr("en = 'Parameters cannot be group participants.';");
+			Rows.CancelReason = NStr("en = 'Parameters cannot be group participants.';tr = 'Parametreler grup katılımcısı olamaz.'");
 		ElsIf Rows.Action = "Delete" Then
-			Rows.CancelReason = NStr("en = 'Parameters cannot be deleted.';");
+			Rows.CancelReason = NStr("en = 'Parameters cannot be deleted.';tr = 'Parametreler silinemedi.'");
 		EndIf;
 		Return False;
 	EndIf;
@@ -6017,9 +6017,9 @@ Function RowAdded(Rows, TreeRow, Specifics)
 			Rows.CurrentParent = Parent;
 		ElsIf Rows.CurrentParent <> Parent Then
 			If Rows.Action = "MoveTo" Then
-				Rows.CancelReason = NStr("en = 'Cannot move selected items as they have different parents.';");
+				Rows.CancelReason = NStr("en = 'Cannot move selected items as they have different parents.';tr = 'Seçilen öğeler farklı üst öğeleri olduğu için aktarılamaz.'");
 			ElsIf Rows.Action = "Group" Then
-				Rows.CancelReason = NStr("en = 'Cannot group selected items as they have different parents.';");
+				Rows.CancelReason = NStr("en = 'Cannot group selected items as they have different parents.';tr = 'Seçilen öğeler farklı üst öğeleri olduğu için aktarılamaz.'");
 			EndIf;
 			Return False; 
 		EndIf;
@@ -6219,19 +6219,19 @@ EndProcedure
 Function AvailableDisplayModes(ShowCheckBoxesModes)
 	
 	AvailableDisplayModes = New ValueList;
-	AvailableDisplayModes.Add("ShowInReportHeader", NStr("en = 'In report header';"), , PictureLib.QuickAccess);
+	AvailableDisplayModes.Add("ShowInReportHeader", NStr("en = 'In report header';tr = 'Rapor başlığında'"), , PictureLib.QuickAccess);
 	
 	If ShowCheckBoxesModes Then
-		AvailableDisplayModes.Add("ShowOnlyCheckBoxInReportHeader", NStr("en = 'Only check box in report header';"), , PictureLib.QuickAccessWithFlag);
+		AvailableDisplayModes.Add("ShowOnlyCheckBoxInReportHeader", NStr("en = 'Only check box in report header';tr = 'Rapor başlığında sadece onay kutusu'"), , PictureLib.QuickAccessWithFlag);
 	EndIf;
 	
-	AvailableDisplayModes.Add("ShowInReportSettings", NStr("en = 'In report settings';"), , PictureLib.Attribute);
+	AvailableDisplayModes.Add("ShowInReportSettings", NStr("en = 'In report settings';tr = 'Rapor ayarlarında'"), , PictureLib.Attribute);
 	
 	If ShowCheckBoxesModes Then
-		AvailableDisplayModes.Add("ShowOnlyCheckBoxInReportSettings", NStr("en = 'Only check box in report settings';"), , PictureLib.NormalAccessWithCheckBox);
+		AvailableDisplayModes.Add("ShowOnlyCheckBoxInReportSettings", NStr("en = 'Only check box in report settings';tr = 'Sadece rapor başlığında onay kutusu'"), , PictureLib.NormalAccessWithCheckBox);
 	EndIf;
 	
-	AvailableDisplayModes.Add("NotShow", NStr("en = 'Hide';"), , PictureLib.GrayCross);
+	AvailableDisplayModes.Add("NotShow", NStr("en = 'Hide';tr = 'Gizle'"), , PictureLib.GrayCross);
 	
 	Return AvailableDisplayModes;
 	
@@ -6708,9 +6708,9 @@ Procedure UpdateFormItemsProperties()
 		And SettingsStructureItemType <> "DataCompositionChart");
 	
 	If IsExtendedMode Then
-		Items.FiltersPage.Title = NStr("en = 'Filters';");
+		Items.FiltersPage.Title = NStr("en = 'Filters';tr = 'Filtreler'");
 	Else
-		Items.FiltersPage.Title = NStr("en = 'Main';");
+		Items.FiltersPage.Title = NStr("en = 'Main';tr = 'Genel'");
 		If IsMobileClient Then
 			GroupUserSettingsBasic = Items.IsMain.ChildItems.Find("SettingsComposerUserSettingsBasic");
 			If GroupUserSettingsBasic <> Undefined Then
@@ -6779,11 +6779,11 @@ Procedure UpdateFormItemsProperties()
 		And (ValueIsFilled(StructureItemProperty.UserSettingID) Or IsExtendedMode);
 	
 	If DisplaySelectedFields And DisplaySorting Then
-		Items.SelectedFieldsAndSortingsPage.Title = NStr("en = 'Fields and sorts';");
+		Items.SelectedFieldsAndSortingsPage.Title = NStr("en = 'Fields and sorts';tr = 'Alanlar ve sıralama'");
 	ElsIf DisplaySelectedFields Then
-		Items.SelectedFieldsAndSortingsPage.Title = NStr("en = 'Fields';");
+		Items.SelectedFieldsAndSortingsPage.Title = NStr("en = 'Fields';tr = 'Alanlar'");
 	ElsIf DisplaySorting Then
-		Items.SelectedFieldsAndSortingsPage.Title = NStr("en = 'Sorts';");
+		Items.SelectedFieldsAndSortingsPage.Title = NStr("en = 'Sorts';tr = 'Sıralamalar'");
 	EndIf;
 	
 	Items.SelectedFields.Visible = DisplaySelectedFields;
@@ -6885,11 +6885,11 @@ Procedure UpdateFormItemsProperties()
 	Items.EditFiltersConditions.Visible = AllowEditingFiltersConditions();
 	
 	If SettingsStructureItemChangeMode Then
-		Items.GenerateAndClose.Title = NStr("en = 'Finish editing';");
-		Items.Close.Title = NStr("en = 'Cancel';");
+		Items.GenerateAndClose.Title = NStr("en = 'Finish editing';tr = 'Düzenlemeyi bitir'");
+		Items.Close.Title = NStr("en = 'Cancel';tr = 'İptal'");
 	Else
-		Items.GenerateAndClose.Title = NStr("en = 'Close and generate';");
-		Items.Close.Title = NStr("en = 'Close';");
+		Items.GenerateAndClose.Title = NStr("en = 'Close and generate';tr = 'Kapat ve oluştur'");
+		Items.Close.Title = NStr("en = 'Close';tr = 'Kapat'");
 	EndIf;
 	
 	CountOfAvailableSettings = ReportsServer.CountOfAvailableSettings(Report.SettingsComposer);
@@ -6899,7 +6899,7 @@ Procedure UpdateFormItemsProperties()
 		Items.SetupGroup.Visible = False;
 		Items.HasNestedReportsGroup.Visible = True;
 		Items.HasNestedReportsTooltip.Title = NStr(
-			"en = 'Advanced setup mode is unavailable in a mobile client';");
+			"en = 'Advanced setup mode is unavailable in a mobile client';tr = 'Gelişmiş ayar modu mobil istemcide kullanılamıyor'");
 		Items.GenerateAndClose.Representation = ButtonRepresentation.PictureAndText;
 		Items.Close.Visible = False;
 		Items.Help.Visible = False;
@@ -7613,8 +7613,8 @@ Procedure InitializePredefinedOutputParametersAttributes()
 	
 	If HeaderOutputField <> Undefined Then 
 		HeaderOutputField.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Show printing header: %1';"),
-			?(ValueIsFilled(Object.Value), Object.Value, NStr("en = '<None>';")));
+			NStr("en = 'Show printing header: %1';tr = 'Yazdırma başlığını göster: %1'"),
+			?(ValueIsFilled(Object.Value), Object.Value, NStr("en = '<None>';tr = '<Yok>'")));
 	EndIf;
 	
 	Object = PredefinedParameters.Find("DATAPARAMETERSOUTPUT");
@@ -7944,11 +7944,11 @@ EndFunction
 Function RepresentationOfACollectionOfAStructureElement(CollectionName)
 	
 	PresentationOfCollections = New Map;
-	PresentationOfCollections.Insert("Structure", NStr("en = 'Structure';"));
-	PresentationOfCollections.Insert("Rows", NStr("en = 'Rows';"));
-	PresentationOfCollections.Insert("Columns", NStr("en = 'Columns';"));
-	PresentationOfCollections.Insert("Points", NStr("en = 'Dots';"));
-	PresentationOfCollections.Insert("Series", NStr("en = 'Series';"));
+	PresentationOfCollections.Insert("Structure", NStr("en = 'Structure';tr = 'Yapı'"));
+	PresentationOfCollections.Insert("Rows", NStr("en = 'Rows';tr = 'Satırlar'"));
+	PresentationOfCollections.Insert("Columns", NStr("en = 'Columns';tr = 'Sütunlar'"));
+	PresentationOfCollections.Insert("Points", NStr("en = 'Dots';tr = 'Noktalar'"));
+	PresentationOfCollections.Insert("Series", NStr("en = 'Series';tr = 'Seriler'"));
 	
 	Return PresentationOfCollections[CollectionName];
 	

@@ -37,7 +37,7 @@ Function GeneratePrintForms(TableOfPrintedForms, GenerationParameters, OfficeDoc
 					EndDo;
 				Else
 					Raise StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Error: Cannot generate %1';"), PrintFormString.Presentation);
+					NStr("en = 'Error: Cannot generate %1';tr = 'Hata: %1 oluşturulamıyor'"), PrintFormString.Presentation);
 				EndIf;
 			EndIf;
 			
@@ -172,7 +172,7 @@ Function TemplateFromBinaryData(BinaryTemplateData) Export
 	
 	Extension = DefineDataFileExtensionBySignature(BinaryTemplateData);
 	If Extension <> "docx" Then
-		ErrorText = NStr("en = 'Incorrect layout format for MS Word template.';");
+		ErrorText = NStr("en = 'Incorrect layout format for MS Word template.';tr = 'MS Word şablonu için yanlış yerleşim formatı.'");
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorText);
 		Raise ErrorText;
 	EndIf;
@@ -217,7 +217,7 @@ Function TemplateFromDCSBinaryData(BinaryTemplateData) Export
 	
 	Extension = DefineDataFileExtensionBySignature(BinaryTemplateData);
 	If Extension <> "docx" Then
-		ErrorText = NStr("en = 'Incorrect layout format for MS Word template.';");
+		ErrorText = NStr("en = 'Incorrect layout format for MS Word template.';tr = 'MS Word şablonu için yanlış yerleşim formatı.'");
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorText);
 		Raise ErrorText;
 	EndIf;
@@ -375,7 +375,7 @@ Procedure CloseConnection(PrintForm) Export
 		FileSystem.DeleteTemporaryDirectory(PrintForm.DirectoryName);
 	Except
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-		Raise(NStr("en = 'Failed to delete temporary directory where print form template is stored. Reason:';") + Chars.LF 
+		Raise(NStr("en = 'Failed to delete temporary directory where print form template is stored. Reason:';tr = 'Yazdırma formun şablonun geçici dizini aşağıdaki nedenle silinemedi:'") + Chars.LF 
 			+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -1084,14 +1084,14 @@ EndFunction
 Function GetNameWithoutDigits(Val Name)
 	ArrayOfKey = StrSplit(Name, "0123456789", False);
 	If ArrayOfKey.Count() > 1 Then
-		Raise NStr("en = 'Unexpected key';");
+		Raise NStr("en = 'Unexpected key';tr = 'Beklenmeyen anahtar'");
 	EndIf;
 	Result = New Structure ("NameTemplate, Number");
 	Result.NameTemplate 	= ArrayOfKey[0]+"%1";
 	UnwantedChars = StrConcat(ArrayOfKey,"");
 	NumbersArray = StrSplit(Name, UnwantedChars, False);
 	If NumbersArray.Count() > 1 Then
-		Raise NStr("en = 'Unexpected key, several numbers';");
+		Raise NStr("en = 'Unexpected key, several numbers';tr = 'Beklenmeyen anahtar, birden fazla numara'");
 	EndIf;
 	Result.Number	= Number(NumbersArray[0]);
 	Return Result;
@@ -1227,7 +1227,7 @@ Function ReadRecord(XMLReader, TreeRow, Hyperlinks)
 			TreeRow.WholeText = TreeRow.Text;
 			WholeText = WholeText + TreeRow.WholeText;
 		Else
-			Raise (NStr("en = 'Unknown:';") + " " + XMLReader.NodeType);
+			Raise (NStr("en = 'Unknown:';tr = 'Bilinmiyor:'") + " " + XMLReader.NodeType);
 		EndIf;
 	EndDo;
 	Return WholeText;
@@ -1412,7 +1412,7 @@ Procedure FindAreas(DocumentStructure, ObjectTablePartNames) Export
 		AreaCondition = AreaCondition(ConditionalAreaStart);
 		If ConditionalAreaEnd = Undefined Then
 			Raise StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'In the document template, the end of the %1 conditional area is not specified.';"), AreaCondition);
+				NStr("en = 'In the document template, the end of the %1 conditional area is not specified.';tr = 'Belge şablonunda %1 koşul alanının bitişi belirtilmedi.'"), AreaCondition);
 		EndIf;
 		ShouldAddConditionalAreas = True;
 		CollectionArea = Undefined;
@@ -2669,7 +2669,7 @@ Procedure ParseDOCXDocumentContainer(Val FullFileName, Val FileStructurePath)
 	Except
 		DeleteFiles(FullFileName);
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-		Raise(NStr("en = 'Cannot open template file. Reason:';") + Chars.LF 
+		Raise(NStr("en = 'Cannot open template file. Reason:';tr = 'Şablon dosyası aşağıdaki nedenle açılamaz:'") + Chars.LF 
 			+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -2679,7 +2679,7 @@ Procedure ParseDOCXDocumentContainer(Val FullFileName, Val FileStructurePath)
 		Archiver.Close();
 		DeleteFiles(FullFileName);
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-		Raise(NStr("en = 'Cannot parse template file. Reason:';") + Chars.LF 
+		Raise(NStr("en = 'Cannot parse template file. Reason:';tr = 'Şablon dosyası aşağıdaki nedenle detaylandırılamadı:'") + Chars.LF 
 			+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -2693,7 +2693,7 @@ Procedure AssembleDOCXDocumentContainer(Val FullFileName, Val FileStructurePath)
 		Archiver = New ZipFileWriter(FullFileName);
 	Except
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-		Raise(NStr("en = 'Cannot create MS Word document. Reason:';") + Chars.LF 
+		Raise(NStr("en = 'Cannot create MS Word document. Reason:';tr = 'Belge dosyası aşağıdaki nedenle oluşturulamadı:'") + Chars.LF 
 			+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -2704,7 +2704,7 @@ Procedure AssembleDOCXDocumentContainer(Val FullFileName, Val FileStructurePath)
 		Archiver.Write();
 	Except
 		WriteEventsToEventLog(EventLogEvent(), "Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-		Raise(NStr("en = 'Cannot generate MS Word document. Reason:';") + Chars.LF 
+		Raise(NStr("en = 'Cannot generate MS Word document. Reason:';tr = 'Belgenin dosyası aşağıdaki nedenle oluşturulamadı:'") + Chars.LF 
 			+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -5338,7 +5338,7 @@ EndFunction
 
 Function EventLogEvent()
 	
-	Return NStr("en = 'Print';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Print';tr = 'Yazdır'", Common.DefaultLanguageCode());
 	
 EndFunction
 
@@ -5444,7 +5444,7 @@ Function DefineDataFileExtensionBySignature(DataOrStructure) Export
 		Except
 			DeleteFiles(TempFileName);
 			WriteEventsToEventLog(EventLogEvent(), "Error", ErrorProcessing.DetailErrorDescription(ErrorInfo()));
-			Raise(NStr("en = 'Cannot open template file. Reason:';") + Chars.LF 
+			Raise(NStr("en = 'Cannot open template file. Reason:';tr = 'Şablon dosyası aşağıdaki nedenle açılamaz:'") + Chars.LF 
 				+ ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 		EndTry;
 		

@@ -36,7 +36,7 @@ Procedure BeforeAddReportCommands(ReportsCommands, Parameters, StandardProcessin
 	CommandParameterType = New TypeDescription(CommandParameterType,, UsersTypes);
 	
 	Command                       = ReportsCommands.Add();
-	Command.Presentation         = NStr("en = 'Event log';");
+	Command.Presentation         = NStr("en = 'Event log';tr = 'Olay günlüğü'");
 	Command.MultipleChoice    = True;
 	Command.FormParameterName     = "Data";
 	Command.FormParameters        = New Structure("StartDate", BegOfDay(CurrentSessionDate()) - 30 * 60 * 60 * 24);
@@ -46,7 +46,7 @@ Procedure BeforeAddReportCommands(ReportsCommands, Parameters, StandardProcessin
 	Command.OnlyInAllActions = True;
 	
 	Command                       = ReportsCommands.Add();
-	Command.Presentation         = NStr("en = 'Event log';");
+	Command.Presentation         = NStr("en = 'Event log';tr = 'Olay günlüğü'");
 	Command.MultipleChoice    = True;
 	Command.FormParameterName     = "User";
 	Command.FormParameters        = New Structure("StartDate", BegOfDay(CurrentSessionDate()) - 30 * 60 * 60 * 24);

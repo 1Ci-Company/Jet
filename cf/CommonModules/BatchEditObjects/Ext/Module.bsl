@@ -20,7 +20,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 		Kind = AttachableCommandsKinds.Add();
 		Kind.Name         = "Administration";
 		Kind.SubmenuName  = "Service";
-		Kind.Title   = NStr("en = 'Service';");
+		Kind.Title   = NStr("en = 'Service';tr = 'Hizmet'");
 		Kind.Order     = 80;
 		Kind.Picture    = PictureLib.ServiceSubmenu;
 		Kind.Representation = ButtonRepresentation.PictureAndText;	
@@ -42,7 +42,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 			Command = Commands.Add();
 			Command.Kind = "Administration";
 			Command.Importance = "SeeAlso";
-			Command.Presentation = NStr("en = 'Edit selected…';");
+			Command.Presentation = NStr("en = 'Edit selected…';tr = 'Seçilenleri düzenle...'");
 			Command.WriteMode = "NotWrite";
 			Command.Purpose = "ForList";
 			Command.MultipleChoice = True;

@@ -81,7 +81,7 @@ EndProcedure
 //
 Procedure SaveProcessing(ReportKey, VariantKey, Settings, SettingsDescription, User)
 	If Not ReportsOptionsCached.InsertRight1() Then
-		Raise(NStr("en = 'Insufficient rights to save report options.';"),
+		Raise(NStr("en = 'Insufficient rights to save report options.';tr = 'Insufficient rights to save report options.'"),
 			ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -219,7 +219,7 @@ EndProcedure
 //
 Procedure SetDescriptionProcessing(ReportKey, VariantKey, SettingsDescription, User)
 	If Not ReportsOptionsCached.InsertRight1() Then
-		Raise(NStr("en = 'Insufficient rights to save report options.';"),
+		Raise(NStr("en = 'Insufficient rights to save report options.';tr = 'Insufficient rights to save report options.'"),
 			ErrorCategory.AccessViolation);
 	EndIf;
 	
@@ -471,7 +471,7 @@ Function AddExternalReportOptions(ReportOptions, FullReportName, ReportName) Exp
 	Try
 		ReportObject = ReportsServer.ReportObject(FullReportName);
 	Except
-		MessageTemplate = NStr("en = 'Failed to get the list of predefined options of external report %1: %2%3';");
+		MessageTemplate = NStr("en = 'Failed to get the list of predefined options of external report %1: %2%3';tr = 'Failed to get the list of predefined options of external report %1: %2%3'");
 		Message = StringFunctionsClientServer.SubstituteParametersToString(
 			MessageTemplate, ReportName, Chars.LF, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		ReportsOptions.WriteToLog(EventLogLevel.Error, Message, FullReportName);

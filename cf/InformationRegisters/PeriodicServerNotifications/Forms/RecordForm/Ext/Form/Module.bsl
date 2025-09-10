@@ -20,7 +20,7 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	Store = FormAttributeToValue("Record").Notifications;
 	
 	Items.PageNotifications.Title = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Notifications (size, bytes: %1)';"),
+		NStr("en = 'Notifications (size, bytes: %1)';tr = 'Bildirimler (boyut, bayt: %1)'"),
 		String(Base64Value(XMLString(Store)).Size()));
 	
 	StorageContents = Store.Get();

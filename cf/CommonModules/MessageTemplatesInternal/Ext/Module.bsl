@@ -178,7 +178,7 @@ Function GenerateMessageAndSend(SendOptions) Export
 	
 	If SendOptions.Template.ForSMSMessages Then
 		If Message.Recipient.Count() = 0 Then
-			Result.ErrorDescription  = NStr("en = 'To send the message, enter recipient phone numbers.';");
+			Result.ErrorDescription  = NStr("en = 'To send the message, enter recipient phone numbers.';tr = 'İletiyi göndermek için alıcı telefon numaralarını girin.'");
 			Return Result;
 		EndIf;
 		
@@ -213,7 +213,7 @@ Function GenerateMessageAndSend(SendOptions) Export
 				
 			Else
 				
-				Result.ErrorDescription = NStr("en = 'Cannot send the text message right away.';");
+				Result.ErrorDescription = NStr("en = 'Cannot send the text message right away.';tr = 'SMS hemen gönderilemiyor.'");
 				
 			EndIf;
 			
@@ -223,7 +223,7 @@ Function GenerateMessageAndSend(SendOptions) Export
 		
 	ElsIf SendOptions.Template.ForEmails Then
 		If Message.Recipient.Count() = 0 Then
-			Result.ErrorDescription  = NStr("en = 'Enter an email address to send the message right away.';");
+			Result.ErrorDescription  = NStr("en = 'Enter an email address to send the message right away.';tr = 'İletiyi hemen göndermek için e-posta adresi girin.'");
 			Return Result;
 		EndIf;
 		
@@ -305,7 +305,7 @@ Function GenerateMessageAndSend(SendOptions) Export
 				
 			Else
 				
-				Result.ErrorDescription  = NStr("en = 'Cannot send the message right away.';");
+				Result.ErrorDescription  = NStr("en = 'Cannot send the message right away.';tr = 'İleti gönderilemiyor.'");
 				Return Result;
 				
 			EndIf;
@@ -383,7 +383,8 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.ObjectsToLock = "Catalog.MessageTemplates";
 	Handler.CheckProcedure  = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.Comment = NStr("en = 'Updating message templates…
-		|Until it is completed, you cannot compose email and text messages from templates.';");
+		|Until it is completed, you cannot compose email and text messages from templates.';tr = 'İleti şablonları güncelleniyor...
+		|Güncelleme tamamlanana kadar şablonlardan e-posta ve SMS oluşturulamaz.'");
 	
 	If Common.SubsystemExists("StandardSubsystems.ContactInformation") Then
 		Handler.ExecutionPriorities = InfobaseUpdate.HandlerExecutionPriorities();
@@ -459,7 +460,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 	If AvailableOptions.Mail Then
 		Command = Commands.Add();
 		Command.Kind = "Send";
-		Command.Presentation = NStr("en = 'Email';");
+		Command.Presentation = NStr("en = 'Email';tr = 'E-posta'");
 		Command.Picture = PictureLib.SendEmail;
 		Command.WriteMode = "NotWrite";
 		Command.Order = 40;
@@ -471,7 +472,7 @@ Procedure OnDefineCommandsAttachedToObject(FormSettings, Sources, AttachedReport
 	If AvailableOptions.SMS Then
 		Command = Commands.Add();
 		Command.Kind = "Send";
-		Command.Presentation = NStr("en = 'SMS';");
+		Command.Presentation = NStr("en = 'SMS';tr = 'SMS'");
 		Command.WriteMode = "NotWrite";
 		Command.Order = 50;
 		Command.ParameterType = Metadata.DefinedTypes.MessageTemplateSubject.Type;
@@ -724,10 +725,10 @@ Procedure DefineAttributesAndAttachmentsList(TemplateInfo, TemplateParameters)
 			DefinePrintFormsList(MetadataObject3, TemplateInfo);
 			Presentation = MetadataObject3.Presentation();
 			ObjectReference = RelatedObjectAttributes.Add();
-			ObjectReference.Presentation = NStr("en = 'Ref to';") + " """ + Presentation + """";
+			ObjectReference.Presentation = NStr("en = 'Ref to';tr = 'Referans'") + " """ + Presentation + """";
 			ObjectReference.Name           = Prefix + "ExternalObjectRef";
 			ObjectReference.Type  = New TypeDescription("String");
-			ObjectReference.FullPresentation = Presentation + "." + NStr("en = 'Ref to';") + " """ + Presentation + """";
+			ObjectReference.FullPresentation = Presentation + "." + NStr("en = 'Ref to';tr = 'Referans'") + " """ + Presentation + """";
 			
 		Else
 			Prefix = TemplateParameters.FullAssignmentTypeName + ".";
@@ -773,7 +774,7 @@ Procedure DefineAttributesAndAttachmentsList(TemplateInfo, TemplateParameters)
 				EndIf;
 				DefinePrintFormsList(MetadataObject3, TemplateInfo, ArbitraryParameter.Key);
 			Else
-				Arbitrary_ParametersPresentation = NStr("en = 'Custom';");
+				Arbitrary_ParametersPresentation = NStr("en = 'Custom';tr = 'Özel'");
 				Prefix = "Arbitrary_Parameters";
 				RelatedObjectAttributes = RelatedObjectAttributes(TemplateInfo.Attributes, Prefix, Arbitrary_ParametersPresentation);
 				NewString1 = RelatedObjectAttributes.Add();
@@ -783,7 +784,7 @@ Procedure DefineAttributesAndAttachmentsList(TemplateInfo, TemplateParameters)
 				NewString1.ArbitraryParameter = True;
 			EndIf;
 		Else
-			Arbitrary_ParametersPresentation = NStr("en = 'Custom';");
+			Arbitrary_ParametersPresentation = NStr("en = 'Custom';tr = 'Özel'");
 			Prefix = "Arbitrary_Parameters";
 			RelatedObjectAttributes = RelatedObjectAttributes(TemplateInfo.Attributes, Prefix, Arbitrary_ParametersPresentation);
 			NewString1 = RelatedObjectAttributes.Add();
@@ -1012,7 +1013,7 @@ EndFunction
 
 Function CommentByTemplateDescription(TemplateDescription)
 
-	Return NStr("en = 'Created from template and sent';") + " - " + TemplateDescription;
+	Return NStr("en = 'Created from template and sent';tr = 'Şablondan oluşturuldu ve gönderildi'") + " - " + TemplateDescription;
 
 EndFunction
 
@@ -1073,10 +1074,10 @@ Function TemplatesKinds() Export
 	TemplatesTypes = New ValueList;
 	AvailableOptions = MessageTemplatesAvailableSendOutOptions();
 	If AvailableOptions.Mail Then
-		TemplatesTypes.Add(MessageTemplatesClientServer.EmailTemplateName(), NStr("en = 'Mail template';"));
+		TemplatesTypes.Add(MessageTemplatesClientServer.EmailTemplateName(), NStr("en = 'Mail template';tr = 'E-posta şablonu'"));
 	EndIf;
 	If AvailableOptions.SMS Then
-		TemplatesTypes.Add(MessageTemplatesClientServer.SMSTemplateName(), NStr("en = 'Text template';"));
+		TemplatesTypes.Add(MessageTemplatesClientServer.SMSTemplateName(), NStr("en = 'Text template';tr = 'Metin şablonu'"));
 	EndIf;
 	
 	Return TemplatesTypes;
@@ -1265,7 +1266,7 @@ Function WriteEmailAttachmentFromTempStorage(Owner, InformationRecords, FileName
 		BaseName = CommonClientServer.ReplaceProhibitedCharsInFileName(FileNameToParse);
 		If IsBlankString(BaseName) Then
 			
-			BaseName = NStr("en = 'Untitled attachment';") + ?(CountOfBlankNamesInAttachments = 0, ""," " + String(CountOfBlankNamesInAttachments + 1));
+			BaseName = NStr("en = 'Untitled attachment';tr = 'Başlıksız eklenti'") + ?(CountOfBlankNamesInAttachments = 0, ""," " + String(CountOfBlankNamesInAttachments + 1));
 			CountOfBlankNamesInAttachments = CountOfBlankNamesInAttachments + 1;
 			
 		Else
@@ -1350,7 +1351,7 @@ Procedure AddSelectedPrintFormsToAttachments(SendOptions, TemplateInfo, Attachme
 					
 					WriteLogEvent(
 						EventLogEventName(),
-						EventLogLevel.Error,,, NStr("en = 'Error creating external print form due to:';") + Chars.LF
+						EventLogLevel.Error,,, NStr("en = 'Error creating external print form due to:';tr = 'Harici yazdırma formu şu nedenle oluşturulamadı:'") + Chars.LF
 							+ ErrorProcessing.DetailErrorDescription(ErrorInfo));
 						
 					Common.MessageToUser(ErrorInfo.Description); // messages are processed in GenerateMessage
@@ -2058,7 +2059,7 @@ Procedure FillAttributesByDCS(Attributes, SubjectOf, TemplateParameters) Export
 	
 	If BlankParameters.Count() > 0 Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot generate the message as the following parameter filling data is missing: %1 for %2';"), 
+			NStr("en = 'Cannot generate the message as the following parameter filling data is missing: %1 for %2';tr = 'Şu parametre doldurma verisi eksik olduğundan ileti oluşturulamıyor: %2 için %1'"), 
 			StrConcat(BlankParameters, ","), String(SubjectOf));
 	EndIf;
 	
@@ -2626,7 +2627,7 @@ Function ContactInformationAttributesValues(SubjectOf)
 EndFunction
 
 Function CommonAttributesTitle() Export
-	Return NStr("en = 'Common attributes';");
+	Return NStr("en = 'Common attributes';tr = 'Ortak öznitelikler'");
 EndFunction
 
 // Operations with auxiliary methods attributes 
@@ -2676,11 +2677,11 @@ Function DetermineCommonAttributes() Export
 	CommonAttributes = AttributeTree();
 	CommonRowAttributes = CommonAttributes(CommonAttributes);
 	
-	AddCommonAttribute(CommonRowAttributes, "CurrentDate", NStr("en = 'Current date';"), New TypeDescription("Date"));
-	AddCommonAttribute(CommonRowAttributes, "SystemTitle", NStr("en = 'Application title';"));
-	AddCommonAttribute(CommonRowAttributes, "InfobaseInternetAddress", NStr("en = 'Infobase web address';"), New TypeDescription("String"));
-	AddCommonAttribute(CommonRowAttributes, "InfobaseLocalAddress", NStr("en = 'Infobase LAN address';"), New TypeDescription("String"));
-	AddCommonAttribute(CommonRowAttributes, "CurrentUser", NStr("en = 'Current user';"), New TypeDescription("CatalogRef.Users"));
+	AddCommonAttribute(CommonRowAttributes, "CurrentDate", NStr("en = 'Current date';tr = 'Geçerli tarih'"), New TypeDescription("Date"));
+	AddCommonAttribute(CommonRowAttributes, "SystemTitle", NStr("en = 'Application title';tr = 'Uygulama başlığı'"));
+	AddCommonAttribute(CommonRowAttributes, "InfobaseInternetAddress", NStr("en = 'Infobase web address';tr = 'Infobase web adresi'"), New TypeDescription("String"));
+	AddCommonAttribute(CommonRowAttributes, "InfobaseLocalAddress", NStr("en = 'Infobase LAN address';tr = 'Infobase LAN adresi'"), New TypeDescription("String"));
+	AddCommonAttribute(CommonRowAttributes, "CurrentUser", NStr("en = 'Current user';tr = 'Mevcut kullanıcı'"), New TypeDescription("CatalogRef.Users"));
 	
 	ListOfAttributesToExclude = "Invalid,IBUserID,ServiceUserID,Prepared,IsInternal";
 	
@@ -2980,7 +2981,7 @@ EndFunction
 
 Function EventLogEventName()
 	
-	Return NStr("en = 'Create message template';", Common.DefaultLanguageCode());
+	Return NStr("en = 'Create message template';tr = 'İleti şablonu oluştur'", Common.DefaultLanguageCode());
 	
 EndFunction
 

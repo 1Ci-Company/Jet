@@ -45,10 +45,11 @@ Procedure OnComposeResult(ResultDocument, DetailsData, StandardProcessing, Stora
 	
 	UpdateInfo = InfobaseUpdateInternal.InfobaseUpdateInfo();
 	If UpdateInfo.DeferredUpdateCompletedSuccessfully <> Undefined Then
-		LastCheckInformation = NStr("en = 'The report is generated on %1';");
+		LastCheckInformation = NStr("en = 'The report is generated on %1';tr = 'Rapor oluşturma zamanı %1'");
 	Else
 		LastCheckInformation = NStr("en = 'The report is generated on %1
-			|Update is in progress. The information might be incomplete';");
+			|Update is in progress. The information might be incomplete';tr = 'Rapor oluşturma zamanı %1
+			|Güncelleme devam ediyor. Bilgiler eksik olabilir.'");
 	EndIf;
 	LastCheckInformation = StringFunctionsClientServer.SubstituteParametersToString(LastCheckInformation, CurrentSessionDate());
 	
@@ -252,8 +253,8 @@ Procedure GanttChart(StatisticsTable1, ResultDocument)
 	
 	Generator = New RandomNumberGenerator(12);
 	Colors = New Map;
-	Series = GanttChart.SetSeries(NStr("en = 'Duration';"));
-	TooltipTemplate = NStr("en = '%1 sec, from %2 to %3%4';");
+	Series = GanttChart.SetSeries(NStr("en = 'Duration';tr = 'Süre'"));
+	TooltipTemplate = NStr("en = '%1 sec, from %2 to %3%4';tr = '%1 sn, %2 - %3%4'");
 	
 	InformationRecords = InfobaseUpdateInternal.InfobaseUpdateInfo();
 	UpdateCompleted = (InformationRecords.DeferredUpdateCompletedSuccessfully <> Undefined);
@@ -286,7 +287,7 @@ Procedure GanttChart(StatisticsTable1, ResultDocument)
 		StepDurationAsString = InfobaseUpdateInternal.StepDurationAsString(StageDuration);
 		If UpdateCompleted Then
 			PercentageFromTotalDuration = Int((StageDuration / TotalDuration) * 100);
-			Var_54_Template = NStr("en = '%1, %2% of the total duration';");
+			Var_54_Template = NStr("en = '%1, %2% of the total duration';tr = '%1, toplam süreden %%2'");
 			StepDurationAsString = StringFunctionsClientServer.SubstituteParametersToString(Var_54_Template,
 				StepDurationAsString, PercentageFromTotalDuration);
 		EndIf;
@@ -296,7 +297,9 @@ Procedure GanttChart(StatisticsTable1, ResultDocument)
 		DurationInterval = Value.Add();
 		DurationInterval.Text = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Start: %1
 			|End: %2
-			|Duration: %3';"), Begin, End, StepDurationAsString);
+			|Duration: %3';tr = 'Başlangıç: %1
+			|Bitiş: %2
+			|Süre: %3'"), Begin, End, StepDurationAsString);
 		DurationInterval.Begin = Begin - OffsetFromUniDate;
 		DurationInterval.End = End - OffsetFromUniDate;
 		DurationInterval.Color = NextColor(Colors, UpdateStep.Key, Generator, True);
@@ -420,5 +423,5 @@ EndFunction
 #EndRegion
 
 #Else
-Raise NStr("en = 'Invalid object call on the client.';");
+Raise NStr("en = 'Invalid object call on the client.';tr = 'İstemcide geçersiz nesne çağrısı.'");
 #EndIf

@@ -91,13 +91,13 @@ Procedure Apply(Command)
 	
 	If Not AtLeastOneRuleSelected Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Select at least one rule to apply';"),,"List");
+			NStr("en = 'Select at least one rule to apply';tr = 'Uygulanacak en az bir kural seçin'"),,"List");
 		Cancel = True;
 	EndIf;
 	
 	If ForEmailsInFolder.IsEmpty() Then
 		CommonClient.MessageToUser(
-			NStr("en = 'Please select a folder.';"),,"ForEmailsInFolder");
+			NStr("en = 'Please select a folder.';tr = 'Lütfen, klasör seçin.'"),,"ForEmailsInFolder");
 		Cancel = True;
 	EndIf;
 	
@@ -146,7 +146,7 @@ Function ApplyRulesAtServer()
 	ProcedureParameters.Insert("Account", Account);
 	
 	ExecutionParameters = TimeConsumingOperations.BackgroundExecutionParameters(UUID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Running mailbox rules';") + " ";
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Running mailbox rules';tr = 'Posta kutusu kuralı çalıştırma'") + " ";
 	
 	Return TimeConsumingOperations.ExecuteInBackground("Catalogs.EmailProcessingRules.ApplyRules",
 		ProcedureParameters, 	ExecutionParameters);
@@ -169,7 +169,7 @@ Procedure ApplyRulesCompletion(Result, AdditionalParameters) Export
 		ImportResult(Result.ResultAddress);
 		Notify("MessageProcessingRulesApplied");
 		If Not IsBlankString(MessageToUserText) Then
-			ShowUserNotification(NStr("en = 'Running mailbox rules';"),,
+			ShowUserNotification(NStr("en = 'Running mailbox rules';tr = 'Posta kutusu kuralı çalıştırma'"),,
 				MessageToUserText, PictureLib.DialogInformation);
 		EndIf;
 	EndIf;

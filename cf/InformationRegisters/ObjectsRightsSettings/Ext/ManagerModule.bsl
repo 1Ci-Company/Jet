@@ -132,7 +132,10 @@ Function Read(Val ObjectReference) Export
 			NStr("en = 'Error in procedure %1.
 			           |
 			           |Parameter ""%2"" has invalid value ""%3"".
-			           |Table ""%4"" doesn''t support access rights.';"),
+			           |Table ""%4"" doesn''t support access rights.';tr = '""%1"" prosedüründe hata oluştu.
+			           |
+			           |""%2"" parametresinin ""%3"" değeri geçersiz.
+			           |""%4"" tablosu erişim yetkilerini desteklemiyor.'"),
 			"InformationRegisters.ObjectsRightsSettings.Read",
 			"ObjectReference",
 			String(ObjectReference),
@@ -235,7 +238,16 @@ Function Read(Val ObjectReference) Export
 				           |for object ""%5"".
 				           |
 				           |The infobase is probably not updated or updated with errors.
-				           |Fix the register data.';"),
+				           |Fix the register data.';tr = '%1 prosedüründe hata oluştu. 
+				           |
+				           |""%2"" tablosunun nesneleri için
+				           |""%3"" yetkisi yapılandırılamıyor, 
+				           |ancak o mevcuttur, 
+				           |""%5""nesnesi için 
+				           |%4 bilgi kayıt tablosunda yazılıdır. 
+				           |
+				           |Muhtemelen infobase güncellemesi yapılmadı veya hatalı yapıldı.
+				           |Kayıt verileri düzeltilmelidir.'"),
 				"InformationRegisters.ObjectsRightsSettings.Read",
 				ObjectReference.Metadata().FullName(),
 				String.Right,
@@ -288,7 +300,10 @@ Procedure Write(Val ObjectReference, Val Settings, Val Inherit) Export
 			NStr("en = 'Error in procedure %1.
 			           |
 			           |Parameter ""%2"" has invalid value ""%3"".
-			           |Table ""%4"" doesn''t support access rights.';"),
+			           |Table ""%4"" doesn''t support access rights.';tr = '""%1"" prosedüründe hata oluştu.
+			           |
+			           |""%2"" parametresinin ""%3"" değeri geçersiz.
+			           |""%4"" tablosu erişim yetkilerini desteklemiyor.'"),
 			"InformationRegisters.ObjectsRightsSettings.Read",
 			"ObjectReference",
 			String(ObjectReference),
@@ -467,7 +482,10 @@ Procedure UpdateAuxiliaryRegisterData(HasChanges = Undefined) Export
 				NStr("en = 'Error in procedure %1
 				           |of the %2 information register manager module.
 				           |
-				           |Dimension ""%4"" is missing right owner type ""%3"".';"),
+				           |Dimension ""%4"" is missing right owner type ""%3"".';tr = '%2 bilgi kaydı yönetici modülünün 
+				           |%1 prosedüründe hata oluştu.
+				           |
+				           |""%4"" boyutunda yetki sahibi türü ""%3"" eksik.'"),
 				"UpdateAuxiliaryRegisterData",
 				"ObjectsRightsSettings",
 				RightsOwnerType,
@@ -804,7 +822,8 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 	
 	ErrorTitle = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Error in procedure %1
-		           |of common module %2.';"),
+		           |of common module %2.';tr = '%2 genel modülünün 
+		           |%1 prosedüründe hata oluştu.'"),
 		"OnFillAvailableRightsForObjectsRightsSettings",
 		"AccessManagementOverridable")
 		+ Chars.LF
@@ -843,7 +862,7 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 		
 		If OwnerMetadataObject = Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Owner of rights ""%1"" is not found.';"),
+				NStr("en = 'Owner of rights ""%1"" is not found.';tr = 'Yetki sahibi ""%1"" bulunamadı.'"),
 				AvailableRight.RightsOwner);
 			Raise ErrorText;
 		EndIf;
@@ -869,7 +888,8 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 			If TypeOfRightsOwnersToDefine.Get(RefType) = Undefined Then
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The rights owner type ""%1""
-					           |is missing from type collection ""%2"".';"),
+					           |is missing from type collection ""%2"".';tr = '""%2"" tür koleksiyonunda 
+					           |yetki sahibi türü ""%1"" eksik.'"),
 					String(RefType),
 					"RightsSettingsOwner");
 				Raise ErrorText;
@@ -893,7 +913,14 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 						           |- %3
 						           |- %4
 						           |To avoid mistakes in the %6 register,
-						           |add this type to type collection ""%5"".';"),
+						           |add this type to type collection ""%5"".';tr = '""%1"" yetki sahibi türü 
+						           |""%2"" tür koleksiyonunda eksik.
+						           |Ancak, şu olaylardan birinin aboneliğinde mevcut olduğu için 
+						           |erişim değeri kümelerini etkiliyor:
+						           |- %3
+						           |- %4
+						           |%6 kaydındaki hataları önlemek için
+						           |bu türü ""%5"" tür koleksiyonuna ekleyin.'"),
 						String(RefType),
 						"AccessValue",
 						"WriteDependentAccessValuesSets" + "*",
@@ -909,7 +936,9 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = '""%1"" rights owner type
 					           |cannot be used as an access value type
-					           |but it is detected in description of access kind ""%2"".';"),
+					           |but it is detected in description of access kind ""%2"".';tr = '""%1"" yetki sahibi türü,
+					           |erişim değeri türü olarak kullanılamaz, 
+					           |ancak ""%2"" erişim türünün açıklamasında tespit edildi.'"),
 					String(RefType),
 					AccessKindProperties.Name);
 				Raise ErrorText;
@@ -919,7 +948,9 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = '""%1"" rights owner type
 					           |cannot be used as a type of access value groups but 
-					           |it is detected in description of access kind ""%2"".';"),
+					           |it is detected in description of access kind ""%2"".';tr = '""%1"" yetki sahibi türü,
+					           |erişim değeri gruplarının türü olarak kullanılamaz, 
+					           |ancak ""%2"" erişim türünün açıklamasında tespit edildi.'"),
 					String(RefType),
 					AccessKindProperties.Name);
 				Raise ErrorText;
@@ -928,7 +959,8 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 			If SubscriptionTypesUpdateRightsSettingsOwnersGroups.Get(ObjectType) = Undefined Then
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 					NStr("en = 'The rights owner type ""%1""
-					           |is missing from type collection ""%2"".';"),
+					           |is missing from type collection ""%2"".';tr = '""%2"" tür koleksiyonunda 
+					           |yetki sahibi türü ""%1"" eksik.'"),
 					String(ObjectType), "RightsSettingsOwnerObject");
 				Raise ErrorText;
 			EndIf;
@@ -954,7 +986,8 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 		If OwnerRights.Get(AvailableRight.Name) <> Undefined Then
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'The ""%2"" right 
-				           |is defined again for the ""%1"" right owner.';"),
+				           |is defined again for the ""%1"" right owner.';tr = '""%1"" yetki sahibi için
+				           |""%2"" yetkisi yeniden tanımlandı.'"),
 				AvailableRight.RightsOwner,
 				AvailableRight.Name);
 			Raise ErrorText;
@@ -966,7 +999,8 @@ Function CheckedPossibleSessionPermissions(AccessKindsProperties = Undefined, Ha
 			EndIf;
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 				NStr("en = 'For the ""%1"" access right of the ""%2"" access right owner,
-				           |an incorrect name of the required ""%3"" access right is specified.';"),
+				           |an incorrect name of the required ""%3"" access right is specified.';tr = '""%1"" yetki için ""%2""
+				           | yetki sahibinin gereken ""%3"" yetki adı yanlış belirtilmiştir.'"),
 				AvailableRight.Name,
 				AvailableRight.RightsOwner,
 				RequiredRight);
@@ -1220,12 +1254,16 @@ Procedure FillIDs(Property, AvailableRight, ErrorTitle, SeparateTables, Addition
 					ErrorTemplate =
 						NStr("en = 'An asterisk (*) is specified for the ""%1""
 						           |right owner for the ""%2"" right in tables for reading.
-						           |In this case, do not specify separate tables.';")
+						           |In this case, do not specify separate tables.';tr = 'Okuma tablolarında
+						           |""%2"" yetkisine ilişkin ""%1"" yetki sahibi için yıldız işareti belirtilmiştir.
+						           |Bu durumda, ayrı tablolar belirtilmemelidir.'")
 				Else
 					ErrorTemplate =
 						NStr("en = 'An asterisk (*) is specified
 						           |for the ""%1"" right owner for the ""%2"" right in tables for change.
-						           |In this case, do not specify separate tables.';")
+						           |In this case, do not specify separate tables.';tr = 'Değişecek tablolarda
+						           |""%2"" yetkisine ilişkin ""%1"" yetki sahibi için yıldız işareti (*) belirtilmiştir.
+						           |Bu durumda, ayrı tablolar belirtilmemelidir.'")
 				EndIf;
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(
 					ErrorTemplate, AdditionalParameters.RightsOwner, AvailableRight.Name);
@@ -1237,12 +1275,16 @@ Procedure FillIDs(Property, AvailableRight, ErrorTitle, SeparateTables, Addition
 					ErrorTemplate =
 						NStr("en = 'An asterisk (*) is specified 
 						           |for the ""%1"" right owner for the ""%2"" right in tables for reading.
-						           |The asterisk is already specified in tables for reading for the ""%3"" right.';")
+						           |The asterisk is already specified in tables for reading for the ""%3"" right.';tr = 'Okuma tablolarında
+						           |""%2"" yetkisine ilişkin ""%1"" yetki sahibi ""*"" karakteri belirtilmiştir.
+						           |Yıldız işareti, ""%3"" sağındaki değişiklikler için tablolarda zaten belirtilmiştir.'")
 				Else
 					ErrorTemplate =
 						NStr("en = 'An asterisk (*) is specified 
 						           |for the ""%1"" right owner for the ""%2"" right in tables for change.
-						           |The asterisk is already specified in tables for changes for the ""%3"" right.';")
+						           |The asterisk is already specified in tables for changes for the ""%3"" right.';tr = 'Değişecek tablolarda
+						           |""%2"" yetkisine ilişkin ""%1"" yetki sahibi için ""*"" karakteri belirtilmiştir.
+						           |Yıldız işareti, ""%3"" sağındaki değişiklikler için tablolarda zaten belirtilmiştir.'")
 				EndIf;
 				ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 					AdditionalParameters.RightsOwner, AvailableRight.Name, CommonRights[Property]);
@@ -1259,7 +1301,10 @@ Procedure FillIDs(Property, AvailableRight, ErrorTitle, SeparateTables, Addition
 				NStr("en = 'Specific table ""%3""
 				           |for reading is specified for the ""%1"" right owner for the ""%2"" right.
 				           |It does not make sense, as the %4 right depends only on the %4 right.
-				           |Only using an asterisk (*) makes sense.';"),
+				           |Only using an asterisk (*) makes sense.';tr = '""%2"" yetkisinin ""%1"" yetki sahibi için
+				           |özel ""%3"" okuma tablosu belirtilir.
+				           |Bununla birlikte, %4 yetkisi sadece %4 yetkisine bağlı olabileceğinden hiçbir anlam ifade etmez.
+				           |Sadece ""*"" karakterini kullanmak mantıklıdır.'"),
 				AdditionalParameters.RightsOwner,
 				AvailableRight.Name,
 				Value,
@@ -1269,10 +1314,12 @@ Procedure FillIDs(Property, AvailableRight, ErrorTitle, SeparateTables, Addition
 		ElsIf Common.MetadataObjectByFullName(Value) = Undefined Then
 			If Property = "ReadInTables" Then
 				ErrorTemplate = NStr("en = 'Table for reading ""%3""
-				                          |is not found for the ""%1"" right owner for the ""%2"" right.';")
+				                          |is not found for the ""%1"" right owner for the ""%2"" right.';tr = '""%2"" yetkisine ilişkin
+				                          |""%1"" yetki sahibi için ""%3"" okuma tablosu bulunamadı.'")
 			Else
 				ErrorTemplate = NStr("en = 'For the right owner ""%1""
-				                          |and the ""%2"" right, the table ""%3"" specified in the ""update in tables"" parameter is not found.';")
+				                          |and the ""%2"" right, the table ""%3"" specified in the ""update in tables"" parameter is not found.';tr = '""%1"" yetki sahibi
+				                          |ve ""%2"" yetkisi için ""tablolarda güncelle"" parametresinde belirtilen ""%3"" tablosu bulunamadı.'")
 			EndIf;
 			ErrorText = ErrorTitle + StringFunctionsClientServer.SubstituteParametersToString(ErrorTemplate,
 				AdditionalParameters.RightsOwner, AvailableRight.Name, Value);

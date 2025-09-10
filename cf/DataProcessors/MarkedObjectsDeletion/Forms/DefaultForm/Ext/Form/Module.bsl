@@ -39,12 +39,12 @@ Var NotDeletedItemRelationsAction;
 Procedure OnCreateAtServer(Cancel, StandardProcessing)
 	
 	If Not Users.IsFullUser() Then
-		ErrorText = NStr("en = 'Insufficient rights to perform the operation.';");
+		ErrorText = NStr("en = 'Insufficient rights to perform the operation.';tr = 'İşlem için gerekli yetkiler yok.'");
 		Return; // Cancel is set in OnOpen.
 	EndIf;
 	
 	If Common.DataSeparationEnabled() And Not Common.SeparatedDataUsageAvailable() Then
-		ErrorText = NStr("en = 'To delete marked objects, log in to the data area.';");
+		ErrorText = NStr("en = 'To delete marked objects, log in to the data area.';tr = 'İşaretli nesneleri silmek için veri alanına giriş yapın.'");
 		Return; // Cancel is set in OnOpen.
 	EndIf;
 	
@@ -123,10 +123,11 @@ Procedure BeforeClose(Cancel, Exit, WarningText, StandardProcessing)
 		Cancel = True;
 		Handler = New NotifyDescription("AfterConfirmCancelJob", ThisObject);
 		QueryText = NStr("en = 'In progress %1.
-							|Do you want to stop it?';");
+							|Do you want to stop it?';tr = '%1 gerçekleştiriliyor. 
+							| iptal etmek?'");
 		Buttons = New ValueList;
 		Buttons.Add(DialogReturnCode.Abort);
-		Buttons.Add(DialogReturnCode.Ignore, NStr("en = 'Do not stop';"));
+		Buttons.Add(DialogReturnCode.Ignore, NStr("en = 'Do not stop';tr = 'Kesme'"));
 		
 		ShowQueryBox(Handler, 
 			StringFunctionsClientServer.SubstituteParametersToString(QueryText, Lower(PresentationOperation)),
@@ -194,7 +195,8 @@ Procedure TotalObjectsToSelect(Command)
 	If ActionsTable.Count() > 0 Then
 		ShowQueryBox(Notification, 
 			NStr("en = 'Object deletion is not completed.
-			|Go back to the list of objects marked for deletion?';"),
+			|Go back to the list of objects marked for deletion?';tr = 'Nesne silme işlemi tamamlanmadı.
+			|Silinmek üzere işaretlenmiş listeye geri dönülsün mü?'"),
 			QuestionDialogMode.YesNo);
 	Else
 		UpdateTheTreeMarkedForDeletion();
@@ -327,7 +329,7 @@ Procedure NotDeletedItemRelationsActionChoiceProcessing(Item, ValueSelected, Sta
 		SetReplaceWith(Undefined);
 	ElsIf ValueSelected = "Delete" And Not SelectedRow.ReferenceType Then
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot delete selected value: %1';"),
+			NStr("en = 'Cannot delete selected value: %1';tr = 'Seçilen değer silinemiyor: %1'"),
 			SelectedRow.Presentation));
 	Else	
 		AttachIdleHandler("NotDeletedItemRelationsActionChoiceProcessingCompletion", 0.1, True);
@@ -369,7 +371,7 @@ Procedure ExecuteActionsAndDelete(Command)
 	InformationAboutTheSelectedObjects = SelectedObjectsCount();
 	SelectedCountTotal = InformationAboutTheSelectedObjects.SelectedCount;
 	If SelectedCountTotal = 0 Then
-		WarningText = NStr("en = 'Select at least one item to be deleted.';");
+		WarningText = NStr("en = 'Select at least one item to be deleted.';tr = 'Silmek için en az bir öğe seçmelisiniz.'");
 		ShowMessageBox(, WarningText);
 		Return;
 	EndIf;
@@ -433,15 +435,15 @@ Procedure InstallDelete(Command)
 	EndIf;
 	If NonReferenceValues.Count() = 1 Then
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot delete selected value: %1.';"),
+			NStr("en = 'Cannot delete selected value: %1.';tr = 'Seçilen değer silinemiyor: %1.'"),
 			NonReferenceValues[0]));
 	ElsIf NonReferenceValues.Count() > 1 And SelectedTableRows.Count() > 0 Then
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot delete some of the selected values (%1 out of %2).';"),
+			NStr("en = 'Cannot delete some of the selected values (%1 out of %2).';tr = 'Seçilen değerlerden bazıları silinemiyor (%1 / %2).'"),
 			NonReferenceValues.Count(), TableRowsCount));
  	ElsIf NonReferenceValues.Count() > 1 Then
 		ShowMessageBox(, StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Cannot delete the selected values (%1).';"),
+			NStr("en = 'Cannot delete the selected values (%1).';tr = 'Seçilen değerler (%1) silinemiyor.'"),
 			NonReferenceValues.Count()));
 	EndIf;
 		
@@ -455,7 +457,7 @@ Procedure SetReplaceWith(Command)
 
 	CurrentData = Items.NotDeletedItemsUsageInstances.CurrentData;
 	If CurrentData = Undefined Then
-		Status(NStr("en = 'Cannot specify an action for the selected row.';"),,, PictureLib.DialogExclamation);
+		Status(NStr("en = 'Cannot specify an action for the selected row.';tr = 'Seçili satır için eylem belirtememek gerekiyor.'"),,, PictureLib.DialogExclamation);
 		Return;
 	EndIf;
 	
@@ -465,7 +467,7 @@ Procedure SetReplaceWith(Command)
 		FormParameters.Insert("ChoiceMode", True);
 		OpenForm(FormPath, FormParameters, Items.NotDeletedItemsUsageInstances,,,,, FormWindowOpeningMode.LockOwnerWindow);
 	Else
-		Status(NStr("en = 'Cannot specify an action for the selected row.';"),,, PictureLib.DialogExclamation);
+		Status(NStr("en = 'Cannot specify an action for the selected row.';tr = 'Seçili satır için eylem belirtememek gerekiyor.'"),,, PictureLib.DialogExclamation);
 	EndIf;
 	
 EndProcedure
@@ -541,16 +543,16 @@ Procedure DeleteSelectedItems(Command)
 	InformationAboutTheSelectedObjects = SelectedObjectsCount();
 	SelectedCountTotal = InformationAboutTheSelectedObjects.SelectedCount;
 	If SelectedCountTotal = 0 Then
-		QueryText = NStr("en = 'Select at least one item to be deleted.';");
+		QueryText = NStr("en = 'Select at least one item to be deleted.';tr = 'Silmek için en az bir öğe seçmelisiniz.'");
 		ShowMessageBox(, QueryText);
 		Return;
 	ElsIf SelectedCountTotal = 1 Then
-		QueryText = NStr("en = 'Delete the item marked for deletion?';");
+		QueryText = NStr("en = 'Delete the item marked for deletion?';tr = 'Silinmek üzere işaretlenen öğe silinsin mi?'");
 	ElsIf SelectedCountTotal = InformationAboutTheSelectedObjects.TotalCount1 Then
-		QueryText = NStr("en = 'Delete all items marked for deletion?';");
+		QueryText = NStr("en = 'Delete all items marked for deletion?';tr = 'Silinmek üzere işaretlenen tüm öğeler silinsin mi?'");
 	Else
 		QueryText = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Delete the items marked for deletion (%1)?';"),
+			NStr("en = 'Delete the items marked for deletion (%1)?';tr = 'Silinmek üzere işaretlenen öğeler silinsin mi (%1)?'"),
 			SelectedCountTotal);
 	EndIf;
 	
@@ -620,16 +622,16 @@ Procedure SetClearDeletionMark(Command)
 	Handler = New NotifyDescription("SetClearDeletionMarkFollowUp", ThisObject, ReferencesToProcess);
 	If ReferencesToProcess.Count() = 1 Then
 		If SetATag Then
-			QueryText = NStr("en = 'Mark ""%1"" for deletion?';");
+			QueryText = NStr("en = 'Mark ""%1"" for deletion?';tr = '""%1"" silinmek üzere işaretlensin mi?'");
 		Else
-			QueryText = NStr("en = 'Clear the deletion mark from ""%1""?';");
+			QueryText = NStr("en = 'Clear the deletion mark from ""%1""?';tr = '""%1"" için silme işareti kaldırılsın mı?'");
 		EndIf;
 		QueryText = StringFunctionsClientServer.SubstituteParametersToString(QueryText, ViewOfTheLastSelectedOne);
 	Else
 		If SetATag Then
-			QueryText = NStr("en = 'Mark the selected objects (%1) for deletion?';");
+			QueryText = NStr("en = 'Mark the selected objects (%1) for deletion?';tr = 'Seçilen nesneler (%1) silinmek üzere işaretlensin mi?'");
 		Else
-			QueryText = NStr("en = 'Clear the deletion mark from the selected objects (%1)?';");
+			QueryText = NStr("en = 'Clear the deletion mark from the selected objects (%1)?';tr = 'Seçilmiş nesneler (%1) için silme işareti kaldırılsın mı?'");
 		EndIf;
 		QueryText = StringFunctionsClientServer.SubstituteParametersToString(QueryText, Format(ReferencesToProcess.Count(), "NZ=0; NG="));
 	EndIf;
@@ -650,7 +652,7 @@ Procedure SetClearDeletionMarkFollowUp(Result, ReferencesToProcess) Export
 		Changes = SetUncheckDeleteOnTheServer(ReferencesToProcess);
 	Except
 		ErrorText = ErrorProcessing.BriefErrorDescription(ErrorInfo());
-		ErrorText = NStr("en = 'Cannot change the deletion mark due to:';")
+		ErrorText = NStr("en = 'Cannot change the deletion mark due to:';tr = 'Silme işareti şu nedenle değiştirilemiyor:'")
 			+ Chars.LF + ErrorText;
 		ShowMessageBox(, ErrorText);
 	EndTry;
@@ -669,7 +671,7 @@ Function SetUncheckDeleteOnTheServer(References)
 		Changes = MarkedObjectsDeletionInternal.RemovePutATickRemoval(References);
 	Except
 		WriteLogEvent(
-			NStr("en = 'Delete marked objects.Toggle deletion mark';", Common.DefaultLanguageCode()),
+			NStr("en = 'Delete marked objects.Toggle deletion mark';tr = 'İşaretlilerin silinmesi. Silmeyi ayarlama/işareti kaldırma'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error,,, ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		Raise;
 	EndTry;
@@ -1052,7 +1054,7 @@ Function SetActionForUsageInstances(Val TableRowsIDs, Val Action, Val Parameter 
 			
 		Else
 			If IsBlankString(MessageText) Then
-				MessageText = NStr("en = 'Object %1 does not support action ""%2"".';");
+				MessageText = NStr("en = 'Object %1 does not support action ""%2"".';tr = '%1 nesnesi ""%2"" eylemini desteklemiyor.'");
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageText, 
 					UsageInstance1.FoundItemReference,
 					UsageInstance1.ActionPresentation);
@@ -1129,11 +1131,11 @@ Procedure ToOpenTheFormCompleteTheUserExperience()
 		Notification = New NotifyDescription("AfterSettingTheExclusiveMode", ThisObject);
 		ModuleIBConnectionsClient = CommonClient.CommonModule("IBConnectionsClient");
 		FormParameters = ModuleIBConnectionsClient.ExclusiveModeSetErrorFormOpenParameters();
-		FormParameters.Title = NStr("en = 'Cannot delete marked objects';");
-		FormParameters.ErrorMessageText = NStr("en = 'Cannot delete the marked objects because other users are logged in:';");
-		FormParameters.ErrorTextExitFailed = NStr("en = 'Cannot delete the marked objects because the following users are still logged in:';");
+		FormParameters.Title = NStr("en = 'Cannot delete marked objects';tr = 'İşaretli nesneler silinemedi'");
+		FormParameters.ErrorMessageText = NStr("en = 'Cannot delete the marked objects because other users are logged in:';tr = 'Başka kullanıcılar giriş yaptığı için, işaretli nesneler silinemiyor:'");
+		FormParameters.ErrorTextExitFailed = NStr("en = 'Cannot delete the marked objects because the following users are still logged in:';tr = 'Şu kullanıcılar çıkış yapmadığı için işaretli nesneler silinemiyor:'");
 		FormParameters.ShouldCloseAllSessionsButCurrent = True;
-		FormParameters.LoginMessage = NStr("en = 'The app is temporarily unavailable while deleting objects marked for deletion.';");
+		FormParameters.LoginMessage = NStr("en = 'The app is temporarily unavailable while deleting objects marked for deletion.';tr = 'Silinmek üzere işaretlenen nesneler silinirken uygulama geçici olarak kullanılamıyor.'");
 		FormParameters.BlockingPeriod = 60;
 		
 		ModuleIBConnectionsClient.OnOpenExclusiveModeSetErrorForm(Notification, FormParameters);
@@ -1217,7 +1219,7 @@ Procedure SetConditionalAppearance()
 	AppearanceFilter.ComparisonType = DataCompositionComparisonType.Equal;
 	AppearanceFilter.RightValue = True;
 	
-	AppearanceItem.Appearance.SetParameterValue("Text", NStr("en = 'Select an action';"));
+	AppearanceItem.Appearance.SetParameterValue("Text", NStr("en = 'Select an action';tr = 'Eylem seçin'"));
 	AppearanceItem.Appearance.SetParameterValue("Font", Metadata.StyleItems.ActionInListColumnFont.Value);
 
 	AppearanceField = AppearanceItem.Fields.Items.Add();
@@ -1274,8 +1276,8 @@ EndProcedure
 &AtClientAtServerNoContext
 Procedure SetUsageInstancesActionsList(Form)
 	Form.NotDeletedItemsUsageInstancesActions.Clear();
-	Form.NotDeletedItemsUsageInstancesActions.Add("Delete", NStr("en = 'Delete';"));
-	Form.NotDeletedItemsUsageInstancesActions.Add("ReplaceRef", NStr("en = 'Replace %PresentationRef% with';"));
+	Form.NotDeletedItemsUsageInstancesActions.Add("Delete", NStr("en = 'Delete';tr = 'Sil'"));
+	Form.NotDeletedItemsUsageInstancesActions.Add("ReplaceRef", NStr("en = 'Replace %PresentationRef% with';tr = '%PresentationRef% değiştir'"));
 	
 	Form.Items.NotDeletedItemRelationsAction.ChoiceList.Clear();
 	For Each ListItem In Form.NotDeletedItemsUsageInstancesActions Do
@@ -1328,7 +1330,8 @@ Procedure FillNotDeletedObjectsUsageInstances(Val ActionsTable = Undefined)
 	If TreeRow = Undefined Or TreeRow.PictureNumber < 1 Then
 		// Nothing or a group is selected.
 		ErrorText = NStr("en = 'Select an object to view the reason
-			|why it cannot be deleted.';");
+			|why it cannot be deleted.';tr = 'Nesnenin silinememesinin nedenini
+			|öğrenmek için nesneyi seçin.'");
 		Return;
 	EndIf;
 
@@ -1462,17 +1465,17 @@ Function ReplaceWithCommandPresentation(CurrentData, Parameter = Undefined)
 		UpperLevelRow.Presentation, CurrentData.PresentationItemToDelete);
 
 	If Parameter <> Undefined Then
-		Result = StrReplace(NStr("en = 'Replace %1 with %2';"), "%1", UpperLevelRowPresentation);
+		Result = StrReplace(NStr("en = 'Replace %1 with %2';tr = '%1 öğesini %2 ile değiştir'"), "%1", UpperLevelRowPresentation);
 		Return StrReplace(Result, "%2", Parameter);
 	Else
-		Return StrReplace(NStr("en = 'Replace %1 with…';"), "%1", UpperLevelRowPresentation);
+		Return StrReplace(NStr("en = 'Replace %1 with…';tr = '%1 öğesini şununla değiştir...'"), "%1", UpperLevelRowPresentation);
 	EndIf;
 		
 EndFunction
 
 &AtClientAtServerNoContext
 Function ViewOfTheDeleteCommand(CurrentData)
-	Presentation = NStr("en = 'Delete';") + Chars.NBSp + CurrentData.Presentation;
+	Presentation = NStr("en = 'Delete';tr = 'Sil'") + Chars.NBSp + CurrentData.Presentation;
 	Return Presentation;
 EndFunction
 
@@ -1567,7 +1570,7 @@ Function MetadataFilterPresentation(FilterValue)
 		Presentation.Add(Filter.Presentation);
 	EndDo;
 	FilterPresentation = StrConcat(Presentation, ", ");
-	Return ?(IsBlankString(FilterPresentation), NStr("en = 'All objects marked for deletion';"), FilterPresentation);
+	Return ?(IsBlankString(FilterPresentation), NStr("en = 'All objects marked for deletion';tr = 'Hepsi silinmek üzere işaretlendi'"), FilterPresentation);
 EndFunction
 
 &AtClient
@@ -1595,7 +1598,7 @@ EndFunction
 Procedure StartMarkedObjectsSearch(SearchForTechnologicalObjects)
 	SetObjectsMarkedForDeletionSelectionStateWithStatePanel();
 	
-	PresentationOperation = NStr("en = 'Search for objects marked for deletion';");
+	PresentationOperation = NStr("en = 'Search for objects marked for deletion';tr = 'Silinmek için işaretlilerin aranması'");
 	ToStartSearchingForTheMarkedSettingOfTheForm(ThisObject);
 
 	
@@ -1609,7 +1612,7 @@ EndProcedure
 Procedure ToStartSearchingForTheMarkedSettingOfTheForm(Form)
 	
 	Form.Items.StatePresentationPages.CurrentPage = Form.Items.RunningState;
-	Form.Items.LongRunningOperationPresentationDecoration.Title = NStr("en = 'Searching for objects marked for deletion…';");
+	Form.Items.LongRunningOperationPresentationDecoration.Title = NStr("en = 'Searching for objects marked for deletion…';tr = 'Silinmek üzere işaretli aranıyor...'");
 	Form.Items.InformationPages.ReadOnly = True;
 	Form.Items.ActiveAfterSearchMarkedObjectsGroup.Enabled = False;
 
@@ -1653,7 +1656,7 @@ Function StartMarkedObjectsSearchServer(MetadataFilter, FormUniqueID, SearchForT
 	MethodName = "MarkedObjectsDeletionInternal.MarkedForDeletion";
 	
 	MethodParameters = TimeConsumingOperations.FunctionExecutionParameters(FormUniqueID);
-	MethodParameters.BackgroundJobDescription = NStr("en = 'Search for objects marked for deletion';");
+	MethodParameters.BackgroundJobDescription = NStr("en = 'Search for objects marked for deletion';tr = 'Silinmek için işaretlilerin aranması'");
 	Job = TimeConsumingOperations.ExecuteFunction(MethodParameters, MethodName,
 		MetadataFilter, 
 		AdditionalAttributesOfItemsMarkedForDeletion.Unload(), 
@@ -1697,7 +1700,7 @@ Procedure FillBackgroundJobErrorInfo(Form, Result)
 	Form.BackgroundJobErrorInfo = Result.ErrorInfo;
 	Form.Items.CompletionPresentationFailedDecoration.Title = 
 		?(IsExclusiveModeSettingError(Result.ErrorInfo),
-			NStr("en = 'Couldn''t set exclusive mode';"),
+			NStr("en = 'Couldn''t set exclusive mode';tr = 'Özel mod ayarlanamadı'"),
 			ErrorProcessing.ErrorMessageForUser(Result.ErrorInfo));
 	Form.Items.StatePresentationPages.CurrentPage = Form.Items.CompletedWithErrorsState;
 EndProcedure
@@ -1716,9 +1719,9 @@ EndProcedure
 
 &AtClient
 Procedure StartMarkedObjectsDeletion(Parameter = Undefined)
-	PresentationOperation = NStr("en = 'Delete marked objects';");
+	PresentationOperation = NStr("en = 'Delete marked objects';tr = 'İşaretlilerin silinmesi'");
 	Items.StatePresentationPages.CurrentPage = Items.RunningState;
-	Items.LongRunningOperationPresentationDecoration.Title = NStr("en = 'Deleting objects marked for deletion…';");
+	Items.LongRunningOperationPresentationDecoration.Title = NStr("en = 'Deleting objects marked for deletion…';tr = 'İşaretliler siliniyor...'");
 	SetObjectsMarkedForDeletionSelectionStateWithStatePanel();
 	
 	Items.CommandBarForm.Enabled = False;
@@ -1742,7 +1745,7 @@ Function SetExclusiveModeAtServer(ExclusiveMode)
 		Except
 			Result.Status = "Error";
 			Result.ErrorInfo = ErrorInfo();
-			WriteLogEvent(NStr("en = 'Delete marked objects';", Common.DefaultLanguageCode()),
+			WriteLogEvent(NStr("en = 'Delete marked objects';tr = 'İşaretlilerin silinmesi'", Common.DefaultLanguageCode()),
 				EventLogLevel.Error,,,
 				ErrorProcessing.DetailErrorDescription(Result.ErrorInfo));
 		EndTry;
@@ -1772,7 +1775,7 @@ Function StartMarkedObjectsDeletionServer(FormUniqueID, PreviousStepResult, Repe
 	MethodName = "MarkedObjectsDeletionInternal.ToDeleteMarkedObjects";
 	
 	ExecutionParameters = TimeConsumingOperations.FunctionExecutionParameters(FormUniqueID);
-	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Marked object deletion';");
+	ExecutionParameters.BackgroundJobDescription = NStr("en = 'Marked object deletion';tr = 'İşaretli nesnelerin silinmesi'");
 	
 	PreviousStepResultValue = ?(PreviousStepResult <> Undefined 
 			And IsTempStorageURL(PreviousStepResult.ResultAddress),
@@ -1900,7 +1903,7 @@ Procedure ProcessDeletionExecutionResult(DeletionResultsInfo)
 	If NotTrash.GetItems().Count() > 0 Then
 		Items.StatePresentationPages.CurrentPage = Items.PartialDeletionState;
 		Items.PartialDeletionStateLabel.Title = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Deleted %1 of %2.';"),
+			NStr("en = 'Deleted %1 of %2.';tr = '%2''den %1 silindi.'"),
 			DeletionResultsInfo.DeletedItemsCount1,
 	 		DeletionResultsInfo.NotDeletedItemsCount1 + DeletionResultsInfo.DeletedItemsCount1);
 		SetStateUnsuccessfulDeletionWithStatePanel();
@@ -1908,7 +1911,7 @@ Procedure ProcessDeletionExecutionResult(DeletionResultsInfo)
 		SetObjectsMarkedForDeletionSelectionStateWithStatePanel();
 		
 		Items.StatePresentationPages.CurrentPage = Items.CompletedState;
-		Items.CompletionPresentationSuccessDecoration.Title = NStr("en = 'Deleted successfully.';");
+		Items.CompletionPresentationSuccessDecoration.Title = NStr("en = 'Deleted successfully.';tr = 'Kaldırma işlemi başarıyla tamamlandı.'");
 	Else
 		SetObjectsMarkedForDeletionSelectionState();
 	EndIf;
@@ -2087,11 +2090,11 @@ EndFunction
 &AtClient
 Procedure StartAdditionalDataProcessorExecution(Parameter)
 	
-	PresentationOperation = NStr("en = 'Additional processing of objects preventing deletion';");
+	PresentationOperation = NStr("en = 'Additional processing of objects preventing deletion';tr = 'Silme işlemine müdahale eden nesnelerin ek işlenmesi'");
 	SetStateUnsuccessfulDeletionWithStatePanel();
 	
 	Items.StatePresentationPages.CurrentPage = Items.RunningState;
-	Items.LongRunningOperationPresentationDecoration.Title = NStr("en = 'Additional processing of reasons preventing deleting…';");
+	Items.LongRunningOperationPresentationDecoration.Title = NStr("en = 'Additional processing of reasons preventing deleting…';tr = 'Silinmeme nedenleriyle ilgili ek işlemler devam ediyor...'");
 	Items.CommandBarForm.Enabled = False;
 	Items.InformationPages.ReadOnly = True;
 	
@@ -2106,7 +2109,7 @@ Function StartAdditionalDataProcessorExecutionServer()
 	
 	MethodName = "MarkedObjectsDeletionInternal.RunDataProcessorOfReasonsForNotDeletion";
 	MethodParameters = TimeConsumingOperations.FunctionExecutionParameters(UUID);
-	MethodParameters.BackgroundJobDescription = NStr("en = 'Additional processing of objects preventing deletion';");
+	MethodParameters.BackgroundJobDescription = NStr("en = 'Additional processing of objects preventing deletion';tr = 'Silme işlemine müdahale eden nesnelerin ek işlenmesi'");
 	Job = TimeConsumingOperations.ExecuteFunction(MethodParameters, MethodName, ActionsTable.Unload());
 	Return Job;
 	
@@ -2187,7 +2190,7 @@ Function ProgressText(ProgressParameters)
 		+ (ProgressParameters.ProcessedItemsCount - PreviousProcessedCount);
 	
 	ProgressText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Processed %1 of %2';"),
+		NStr("en = 'Processed %1 of %2';tr = '%2 dan %1 işlendi'"),
 		ProcessedTotalCount,
 		SelectedCountTotal);
 	Return ProgressText;
@@ -2240,7 +2243,7 @@ Function IsExclusiveModeSettingError(ErrorInfo)
 	If ErrorInfo = Undefined Then
 		Return False;
 	EndIf;
-	ErrorTextExclusive = NStr("en = 'Error of separated infobase access';");
+	ErrorTextExclusive = NStr("en = 'Error of separated infobase access';tr = 'Veritabanı paylaşım hatası'");
 	Return StrFind(ErrorProcessing.BriefErrorDescription(ErrorInfo), ErrorTextExclusive) <> 0;
 EndFunction
 

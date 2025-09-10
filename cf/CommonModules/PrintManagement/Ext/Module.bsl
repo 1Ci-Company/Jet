@@ -63,7 +63,7 @@ Function SchemaCompositionDataPrint(FieldList) Export
 	EndIf;
 
 	Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
-		"en = 'Invalid type ""%1"" is passed in parameter ""%2""';"),
+		"en = 'Invalid type ""%1"" is passed in parameter ""%2""';tr = '""%2"" parametresinde ""%1"" yanlış tür aktarıldı'"),
 		TypeOf(FieldList), "FieldList");
 	
 EndFunction
@@ -162,11 +162,12 @@ Procedure SetDocumentPrintArea(SpreadsheetDocument, RowNumberStart, PrintObjects
 	If Not Common.IsReference(TypeOf(Ref)) Then
 		MessageText = StringFunctionsClientServer.SubstituteParametersToString(
 		NStr("en = 'Invalid value of the ""Ref"" parameter.
-			|Reference type value was expected, actual value: ""%1"" (type: %2)';"), Ref, TypeOf(Ref));
+			|Reference type value was expected, actual value: ""%1"" (type: %2)';tr = '""Referans"" parametresi için geçersiz değer,
+			|beklenen referans tipi değeri, aktarılan değer: ""%1"" (tip %2)'"), Ref, TypeOf(Ref));
 		Try // This architecture ensures transfer of stack to the registration log.
 			Raise MessageText;
 		Except
-			WriteLogEvent(NStr("en = 'Print';", Common.DefaultLanguageCode()), EventLogLevel.Error, , ,
+			WriteLogEvent(NStr("en = 'Print';tr = 'Yazdır'", Common.DefaultLanguageCode()), EventLogLevel.Error, , ,
 				ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 		EndTry;
 		Return;
@@ -650,10 +651,11 @@ Procedure FillProfileEditPrintForms(ProfilesDetails) Export
 	ProfileDetails = ModuleAccessManagement.NewAccessGroupProfileDescription();
 	ProfileDetails.Parent      = "AdditionalProfiles";
 	ProfileDetails.Id = "70179f20-2315-11e6-9bff-d850e648b60c";
-	ProfileDetails.Description = NStr("en = 'Edit, send by email, and save print forms to file (additionally)';",
+	ProfileDetails.Description = NStr("en = 'Edit, send by email, and save print forms to file (additionally)';tr = 'Düzenleme, posta ile gönderme, basılı form dosyasına kaydetme (ek olarak)'",
 		Common.DefaultLanguageCode());
 	ProfileDetails.LongDesc = NStr("en = 'Assign to users whose duties include editing,
-		|sending by email, and saving print forms to file.';");
+		|sending by email, and saving print forms to file.';tr = 'Ayrıca, 
+		|yazdırmadan önce düzenleme, posta ile gönderme ve oluşturulan yazdırılan formların bir dosyasına kaydetme seçeneği olan kullanıcılara atanır.'");
 	ProfileDetails.Roles.Add("PrintFormsEdit");
 	ProfilesDetails.Add(ProfileDetails);
 	
@@ -779,7 +781,7 @@ Function UserTemplateUsed(TemplatePath) Export
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';"), TemplatePath);
+		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';tr = '""%1"" şablonu mevcut değil. İşlem iptal edildi.'"), TemplatePath);
 	PathParts = StrSplit(TemplatePath, ".", True);
 	If PathParts.Count() <> 2 And PathParts.Count() <> 3 Then
 		Raise ErrorText;
@@ -827,7 +829,7 @@ EndFunction
 Function SuppliedTemplateChanged(TemplatePath) Export
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';"), TemplatePath);
+		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';tr = '""%1"" şablonu mevcut değil. İşlem iptal edildi.'"), TemplatePath);
 	PathParts = StrSplit(TemplatePath, ".", True);
 	If PathParts.Count() <> 2 And PathParts.Count() <> 3 Then
 		Raise ErrorText;
@@ -1110,7 +1112,7 @@ EndFunction
 Function InitializePrintForm(Val DeleteDocumentType, Val DeleteTemplatePageSettings = Undefined, Template = Undefined) Export
 	
 	If Template = Undefined Then
-		Raise NStr("en = 'Specify the ""Template"" parameter value';");
+		Raise NStr("en = 'Specify the ""Template"" parameter value';tr = '""Şablon"" parametre değerini belirtin'");
 	EndIf;
 	
 	PrintForm = PrintManagementInternal.InitializePrintForm(Template);
@@ -1218,7 +1220,7 @@ Function TemplateArea(RefToTemplate, AreaDetails) Export
 		Area = PrintManagementInternal.GetTemplateArea(RefToTemplate, AreaDetails.AreaName);
 	Else
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Area type is not specified or invalid: %1.';"), AreaDetails.AreaType);
+			NStr("en = 'Area type is not specified or invalid: %1.';tr = 'Alan tipi yanlış belirtilmemiş veya belirtilmemiş: %1.'"), AreaDetails.AreaType);
 	EndIf;
 	
 	If Area <> Undefined Then
@@ -1271,7 +1273,7 @@ Procedure AttachArea(PrintForm, TemplateArea, Val GoToNextRow1 = False) Export
 		ErrorMessage = TrimAll(ErrorProcessing.BriefErrorDescription(ErrorInfo()));
 		ErrorMessage = ?(Right(ErrorMessage, 1) = ".", ErrorMessage, ErrorMessage + ".");
 		ErrorMessage = ErrorMessage + " " + StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Error occurred during output of %1 template area.';"),
+			NStr("en = 'Error occurred during output of %1 template area.';tr = 'Şablondan alan ""%1"" elde etmeye çalışırken bir hata oluştu.'"),
 			TemplateArea.AreaDetails.AreaName);
 		Raise ErrorMessage;
 	EndTry;
@@ -1414,7 +1416,7 @@ Function QRCodeData(QRString, CorrectionLevel, Size) Export
 	Try
 		BinaryPictureData = QRCodeGenerator.GenerateQRCode(QRString, CorrectionLevel, Size);
 	Except
-		WriteLogEvent(NStr("en = 'QR code generation';", Common.DefaultLanguageCode()),
+		WriteLogEvent(NStr("en = 'QR code generation';tr = 'QR kodu oluşturulması'", Common.DefaultLanguageCode()),
 			EventLogLevel.Error, , , ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 	EndTry;
 	
@@ -1495,7 +1497,7 @@ Procedure AddStampsToOfficeDoc(DocumentAddress, DigitalSignatures) Export
 	
 	
 	ValuesForPopulation = New Map;
-	ValuesForPopulation.Insert("[Title]", NStr("en = 'DOCUMENT IS DIGITALLY SIGNED';"));
+	ValuesForPopulation.Insert("[Title]", NStr("en = 'DOCUMENT IS DIGITALLY SIGNED';tr = 'BELGE DİJİTAL İMZALIDIR'"));
 	ValuesForPopulation.Insert("[HeaderCertificate]", "Certificate");
 	ValuesForPopulation.Insert("[HeaderOwner]", "Owner");
 	ValuesForPopulation.Insert("[TitleValidityPeriod]", "Valid1");
@@ -1508,7 +1510,7 @@ Procedure AddStampsToOfficeDoc(DocumentAddress, DigitalSignatures) Export
 		ValuesForPopulation.Insert("[Certificate]", CryptoCertificate.SerialNumber);
 		
 		ActionPeriod = StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'from %1 to %2';"),
+			NStr("en = 'from %1 to %2';tr = '%1 itibaren %2 kadar'"),
 			Format(CryptoCertificate.ValidFrom, "DLF=D"), 
 			Format(CryptoCertificate.ValidTo, "DLF=D"));
 			
@@ -1938,7 +1940,7 @@ Procedure PrintByExternalSource(AdditionalDataProcessorRef, SourceParameters, Pr
 	ExternalProcessingObject = ModuleAdditionalReportsAndDataProcessors.ExternalDataProcessorObject(AdditionalDataProcessorRef);
 	If ExternalProcessingObject = Undefined Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'External data processor %1, type %2, is not supported.';"),
+			NStr("en = 'External data processor %1, type %2, is not supported.';tr = '""%1"" harici veri işlemcisi (""%2"" türü) desteklenmiyor.'"),
 			String(AdditionalDataProcessorRef),
 			String(TypeOf(AdditionalDataProcessorRef)));
 	EndIf;
@@ -1963,7 +1965,7 @@ Procedure PrintByExternalSource(AdditionalDataProcessorRef, SourceParameters, Pr
 			
 		If PrintForm.SpreadsheetDocument = Undefined Then
 			ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(
-				NStr("en = 'Print handler did not generate the spreadsheet document for: %1';"),
+				NStr("en = 'Print handler did not generate the spreadsheet document for: %1';tr = '%1 için elektronik tablo belgesi yazdırma işlemcisinde oluşturulmadı'"),
 				PrintForm.TemplateName);
 			Raise(ErrorMessageText);
 		EndIf;
@@ -1991,7 +1993,7 @@ Procedure OnDefineAttachableCommandsKinds(AttachableCommandsKinds) Export
 	Kind = AttachableCommandsKinds.Add();
 	Kind.Name         = "Print";
 	Kind.SubmenuName  = "PrintSubmenu";
-	Kind.Title   = NStr("en = 'Print';");
+	Kind.Title   = NStr("en = 'Print';tr = 'Yazdır'");
 	Kind.Order     = 40;
 	Kind.Picture    = PictureLib.Print;
 	Kind.Representation = ButtonRepresentation.PictureAndText;
@@ -2064,7 +2066,8 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Procedure = "InformationRegisters.UserPrintTemplates.ProcessUserTemplates";
 	Handler.ExecutionMode = "Deferred";
 	Handler.Comment = NStr("en = 'Removes custom templates that are indistinguishable from build-in templates.
-		|Disables custom templates that incompatible with the configuration version.';");
+		|Disables custom templates that incompatible with the configuration version.';tr = 'Verilen düzenlere göre değişiklik yapılmayan kullanıcı şablonları temizler. 
+		|Geçerli yapılandırma sürümü ile uyumlu olmayan kullanıcı şablonları devre dışı bırakır.'");
 	Handler.Id = New UUID("e5b0d876-c766-40a0-a0cf-ffccc83a193f");
 	Handler.CheckProcedure = "InfobaseUpdate.DataUpdatedForNewApplicationVersion";
 	Handler.ObjectsToLock = "InformationRegister.UserPrintTemplates";
@@ -2076,7 +2079,7 @@ Procedure OnAddUpdateHandlers(Handlers) Export
 	Handler.Version = "*";
 	Handler.Procedure = "InformationRegisters.SuppliedPrintTemplates.UpdateTemplatesCheckSum";
 	Handler.ExecutionMode = "Deferred";
-	Handler.Comment = NStr("en = 'Determines which built-in extension print form templates were modified compared to the previous version.';");
+	Handler.Comment = NStr("en = 'Determines which built-in extension print form templates were modified compared to the previous version.';tr = 'Önceki sürüm ile kıyasla değişen sağlanan yazdırılabilir uzantı form şablonlarını belirtir.'");
 	Handler.Id = New UUID("51f71246-67e3-40e0-80e5-ebb3192fa6c0");
 	
 	If Common.SubsystemExists("StandardSubsystems.NationalLanguageSupport.Print") Then
@@ -2095,7 +2098,7 @@ Procedure OnFillPermissionsToAccessExternalResources(PermissionsRequests) Export
 	
 	Permissions = New Array;
 	Permissions.Add(ModuleSafeModeManager.PermissionToUseAddIn(
-		"CommonTemplate.QRCodePrintingComponent", NStr("en = 'Print QR codes.';")));
+		"CommonTemplate.QRCodePrintingComponent", NStr("en = 'Print QR codes.';tr = 'QR kodlarını yazdır.'")));
 	PermissionsRequests.Add(
 		ModuleSafeModeManager.RequestToUseExternalResources(Permissions));
 	
@@ -2142,7 +2145,7 @@ Procedure OnFillToDoList(ToDoList) Export
 		ToDoItem = ToDoList.Add();
 		ToDoItem.Id = "PrintFormTemplates";
 		ToDoItem.HasToDoItems      = OutputToDoItem And UserTemplatesCount > 0;
-		ToDoItem.Presentation = NStr("en = 'Print form templates';");
+		ToDoItem.Presentation = NStr("en = 'Print form templates';tr = 'Yazdırma formu şablonları'");
 		ToDoItem.Count    = UserTemplatesCount;
 		ToDoItem.Form         = "InformationRegister.UserPrintTemplates.Form.CheckPrintForms";
 		ToDoItem.Owner      = SectionID;
@@ -2153,7 +2156,7 @@ Procedure OnFillToDoList(ToDoList) Export
 			ToDoGroup = ToDoList.Add();
 			ToDoGroup.Id = SectionID;
 			ToDoGroup.HasToDoItems      = ToDoItem.HasToDoItems;
-			ToDoGroup.Presentation = NStr("en = 'Check compatibility';");
+			ToDoGroup.Presentation = NStr("en = 'Check compatibility';tr = 'Uygunluğu kontrol et'");
 			If ToDoItem.HasToDoItems Then
 				ToDoGroup.Count = ToDoItem.Count;
 			EndIf;
@@ -2310,18 +2313,18 @@ Function ListOfOperators(AdditionalFields = Undefined) Export
 	If Group = Undefined Then
 		Group = ListOfOperators.Rows.Add();
 		Group.Id = "StringFunctions";
-		Group.Presentation = NStr("en = 'String functions';");
+		Group.Presentation = NStr("en = 'String functions';tr = 'Satır işlevleri'");
 		Group.Order = 5;
 		Group.Picture = PictureLib.TypeFunction;
 	EndIf;
 	
-	AddAnOperatorToAGroup(Group, PrintModuleName() + CommandSeparator() + "LatinString", NStr("en = 'Latin string';"), New TypeDescription("String"), True);
+	AddAnOperatorToAGroup(Group, PrintModuleName() + CommandSeparator() + "LatinString", NStr("en = 'Latin string';tr = 'Latince karakter dizesi'"), New TypeDescription("String"), True);
 	
 	Group = ListOfOperators.Rows.Find("OtherFunctions");
 	If Group = Undefined Then
 		Group = ListOfOperators.Rows.Add();
 		Group.Id = "OtherFunctions";
-		Group.Presentation = NStr("en = 'Other functions';");
+		Group.Presentation = NStr("en = 'Other functions';tr = 'Diğer işlevler'");
 		Group.Order = 7;
 		Group.Picture = PictureLib.TypeFunction;
 	EndIf;
@@ -2758,7 +2761,7 @@ Procedure DeleteTemplate(TemplatePath, LanguageCode = Undefined) Export
 	EndIf;
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';"), TemplatePath);
+		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';tr = '""%1"" şablonu mevcut değil. İşlem iptal edildi.'"), TemplatePath);
 	PathParts = StrSplit(TemplatePath, ".", True);
 	If PathParts.Count() <> 2 And PathParts.Count() <> 3 Then
 		Raise ErrorText;
@@ -3281,12 +3284,13 @@ Function GeneratePrintForms(Val PrintManagerName, Val TemplatesNames, Val Object
 								Raise;
 							EndIf;
 							
-							WriteLogEvent(NStr("en = 'Print';", Common.DefaultLanguageCode()), EventLogLevel.Error, , ,
+							WriteLogEvent(NStr("en = 'Print';tr = 'Yazdır'", Common.DefaultLanguageCode()), EventLogLevel.Error, , ,
 								ErrorProcessing.DetailErrorDescription(ErrorInfo()));
 							
 							If Not AccessRight("Update", Metadata.InformationRegisters.UserPrintTemplates) Then
 								Raise NStr("en = 'Cannot generate the print form.
-									|Contact the administrator.';");
+									|Contact the administrator.';tr = 'Yazdırma formu oluşturulamıyor.
+									|Yöneticiye başvurun.'");
 							EndIf;
 							
 							If Not ValueIsFilled(TempCollectionForSinglePrintForm[0].FullTemplatePath) Then
@@ -3314,7 +3318,7 @@ Function GeneratePrintForms(Val PrintManagerName, Val TemplatesNames, Val Object
 		For Each PrintFormDetails In TempCollectionForSinglePrintForm Do
 			CommonClientServer.Validate(
 				TypeOf(PrintFormDetails.Copies2) = Type("Number") And PrintFormDetails.Copies2 > 0,
-				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The number of copies is not specified for %1 print form.';"),
+				StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'The number of copies is not specified for %1 print form.';tr = '%1 yazdırma formu için kopya sayısı belirtilmedi.'"),
 				?(IsBlankString(PrintFormDetails.TemplateSynonym), PrintFormDetails.TemplateName, PrintFormDetails.TemplateSynonym)));
 		EndDo;
 				
@@ -3349,7 +3353,7 @@ Function GeneratePrintForms(Val PrintManagerName, Val TemplatesNames, Val Object
 		// Raise an exception based on the error.
 		If Cancel Then
 			ErrorMessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr(
-				"en = 'Cannot generate the ""%1"" print form. Contact the administrator.';"), TemplateName);
+				"en = 'Cannot generate the ""%1"" print form. Contact the administrator.';tr = '""%1"" yazdırma formu oluşturulamıyor. Yöneticiye başvurun.'"), TemplateName);
 			Raise ErrorMessageText;
 		EndIf;
 		
@@ -3461,7 +3465,7 @@ EndProcedure
 
 Function QRCodeGenerationComponent()
 	
-	ErrorText = NStr("en = 'Failed to attach QR code add-in. See the Event log for details.';");
+	ErrorText = NStr("en = 'Failed to attach QR code add-in. See the Event log for details.';tr = 'QR kodu oluşturmak için harici bir bileşen bağlanamadı. Kayıt defterindeki ayrıntılar.'");
 	
 	Result = Common.AttachAddInFromTemplate("QRCodeExtension", "CommonTemplate.QRCodePrintingComponent");
 	If Result = Undefined Then 
@@ -3473,7 +3477,7 @@ Function QRCodeGenerationComponent()
 EndFunction
 
 Procedure MessagePrintFormUnavailable(Object)
-	MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot print %1: the print form is unavailable.';"), Object);
+	MessageText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Cannot print %1: the print form is unavailable.';tr = '%1 yazdırılamadı: Seçilen yazdırma formu mevcut değil.'"), Object);
 	Common.MessageToUser(MessageText, Object);
 EndProcedure
 
@@ -3773,7 +3777,9 @@ Procedure CheckSpreadsheetDocumentLayoutByPrintObjects(SpreadsheetDocument, Prin
 	LayoutErrorText = StringFunctionsClientServer.SubstituteParametersToString(NStr(
 		"en = 'Spreadsheet document %1 has no layout for print objects.
 		|When you generate a spreadsheet document, use the
-		|%2() procedure';"), 
+		|%2() procedure';tr = '""%1"" yazdırma nesnelerinde tablo belgesinin biçimlendirmesi yok.
+		|Tablo belgesi oluşturulduğunda %2
+		| prosedürü kullanın'"), 
 		Id, "PrintManagement.SetDocumentPrintArea");
 	
 	CommonClientServer.Validate(HasLayoutByPrintObjects, LayoutErrorText, PrintManager + "." + "Print()");
@@ -3811,7 +3817,7 @@ Function NormalizeTemplate(Val Template)
 EndFunction
 
 Function AreaTypeSpecifiedIncorrectlyText()
-	Return NStr("en = 'Area type is not specified or invalid.';");
+	Return NStr("en = 'Area type is not specified or invalid.';tr = 'Alan tipi yanlış belirtilmemiş veya belirtilmemiş.'");
 EndFunction
 
 // Parameters:
@@ -4122,7 +4128,7 @@ Function ObjectPrintFormFileName(PrintObject, PrintFormFileName, PrintFormName) 
 		If ValueIsFilled(PrintFormName) Then
 			Return PrintFormName;
 		EndIf;
-		Return NStr("en = 'Document';");
+		Return NStr("en = 'Document';tr = 'Belge'");
 	EndIf;
 	
 	If TypeOf(PrintFormFileName) = Type("Map") Then
@@ -4145,10 +4151,10 @@ Function DefaultPrintFormFileName(PrintObject, PrintFormName)
 		
 		If DocumentContainsNumber Then
 			AttributesList = "Date,Number";
-			Template = NStr("en = '[PrintFormName] #[Number] dated [Date]';");
+			Template = NStr("en = '[PrintFormName] #[Number] dated [Date]';tr = '[PrintFormName] #[Number], tarih [Date]'");
 		Else
 			AttributesList = "Date";
-			Template = NStr("en = '[PrintFormName] dated [Date]';");
+			Template = NStr("en = '[PrintFormName] dated [Date]';tr = '[PrintFormName], tarih [Date]'");
 		EndIf;
 		
 		ParametersToInsert = Common.ObjectAttributesValues(PrintObject, AttributesList);
@@ -4165,7 +4171,7 @@ Function DefaultPrintFormFileName(PrintObject, PrintFormName)
 		ParametersToInsert.Insert("PrintFormName",PrintFormName);
 		ParametersToInsert.Insert("ObjectPresentation", Common.SubjectString(PrintObject));
 		ParametersToInsert.Insert("CurrentDate",Format(CurrentSessionDate(), "DLF=D"));
-		Template = NStr("en = '[PrintFormName] - [ObjectPresentation] - [CurrentDate]';");
+		Template = NStr("en = '[PrintFormName] - [ObjectPresentation] - [CurrentDate]';tr = '[PrintFormName] - [ObjectPresentation] - [CurrentDate]'");
 		
 	EndIf;
 	
@@ -4465,7 +4471,7 @@ EndFunction
 Function FindTemplate(TemplatePath, LanguageCode, SuppliedOnly = False)
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';"), TemplatePath);
+		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';tr = '""%1"" şablonu mevcut değil. İşlem iptal edildi.'"), TemplatePath);
 	PathParts = StrSplit(TemplatePath, ".", True);
 	
 	FoundTemplate = Catalogs.PrintFormTemplates.FindTemplate(TemplatePath, LanguageCode);
@@ -5296,7 +5302,8 @@ Function ComposeData(Parameters)
 	If KeyField = Undefined Then
 		Raise StringFunctionsClientServer.SubstituteParametersToString(NStr(
 			"en = 'The ""%1"" key field is not found in the list of fields of the data composition schema for printing ""%2"".
-			|See the ""%3"" parameter details in the ""%4"" procedure.';"),
+			|See the ""%3"" parameter details in the ""%4"" procedure.';tr = '""%2"" yazdırmak için veri kompozisyon şemasının alan listesinde ""%1"" anahtar alanı bulunamadı.
+			|""%4"" prosedüründe ""%3"" parametresinin ayrıntılarına bakın.'"),
 			"Ref",
 			DataCompositionSchemaId,
 			"PrintDataSources",
@@ -5573,7 +5580,8 @@ Function EvalExpression(Val OriginalExpression, PrintData, FieldFormatSettings, 
 	Except
 		ErrorText = ErrorProcessing.BriefErrorDescription(ErrorInfo());
 		Common.MessageToUser(StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Expression ""%1"" contains errors:
-			|%2';"), OriginalExpression, ErrorText));
+			|%2';tr = '""%1"" ifadesi hatalar içeriyor:
+			|%2'"), OriginalExpression, ErrorText));
 		Result = "";
 	EndTry;
 	
@@ -5894,7 +5902,7 @@ Function RowsCount(Table, ColumnName = Undefined) Export
 		Return Table.Count();
 	EndIf;
 	
-	Raise NStr("en = 'Incorrect table';");
+	Raise NStr("en = 'Incorrect table';tr = 'Tablo yanlış'");
 	
 EndFunction
 
@@ -5911,7 +5919,7 @@ Function SumByColumn(Table, ColumnName = Undefined) Export // ACC:299 - Formula 
 		Return Value;
 	EndIf;
 	
-	Raise NStr("en = 'The table column is incorrect';");
+	Raise NStr("en = 'The table column is incorrect';tr = 'Tablo sütunu yanlış'");
 	
 EndFunction
 
@@ -5930,7 +5938,7 @@ Function ColumnMax(Table, ColumnName = Undefined) Export // ACC:299 - Formula co
 		Return Value;
 	EndIf;
 	
-	Raise NStr("en = 'The table column is incorrect';");
+	Raise NStr("en = 'The table column is incorrect';tr = 'Tablo sütunu yanlış'");
 	
 EndFunction
 
@@ -5949,7 +5957,7 @@ Function ColumnMin(Table, ColumnName = Undefined) Export // ACC:299 - Formula co
 		Return Value;
 	EndIf;
 	
-	Raise NStr("en = 'The table column is incorrect';");
+	Raise NStr("en = 'The table column is incorrect';tr = 'Tablo sütunu yanlış'");
 	
 EndFunction
 
@@ -5966,7 +5974,7 @@ Function ColumnAverage(Table, ColumnName = Undefined) Export // ACC:299 - Formul
 		Return ?(Table.Count(), Value/Table.Count(), 0);
 	EndIf;
 	
-	Raise NStr("en = 'The table column is incorrect';");
+	Raise NStr("en = 'The table column is incorrect';tr = 'Tablo sütunu yanlış'");
 
 EndFunction
 
@@ -6425,7 +6433,7 @@ Function DefaultFormat(TypeDescription)
 			Format = "DLF=DT";
 		EndIf;
 	ElsIf Type = Type("Boolean") Then
-		Format = NStr("en = 'BF=No; BT=Yes';");
+		Format = NStr("en = 'BF=No; BT=Yes';tr = 'BF=Hayır; BT=Evet'");
 	EndIf;
 	
 	Return Format;
@@ -6471,7 +6479,7 @@ EndFunction
 Function TemplatePresentation(TemplatePath, LanguageCode)
 	
 	ErrorText = StringFunctionsClientServer.SubstituteParametersToString(
-		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';"), TemplatePath);
+		NStr("en = 'Template ""%1"" does not exist. The operation is canceled.';tr = '""%1"" şablonu mevcut değil. İşlem iptal edildi.'"), TemplatePath);
 	PathParts = StrSplit(TemplatePath, ".", True);
 	
 	FoundTemplate = Catalogs.PrintFormTemplates.RefTemplate(TemplatePath);
@@ -6552,7 +6560,7 @@ Function DataLayoutSchemaContactInformation(MetadataObjectName)
 	
 	Field = FieldList.Add();
 	Field.Id = "Ref";
-	Field.Presentation = NStr("en = 'Ref';");
+	Field.Presentation = NStr("en = 'Ref';tr = 'Ref'");
 	Field.ValueType = New TypeDescription();	
 
 	For Each ContactInformationKind In ContactInformationKinds Do
@@ -6613,7 +6621,7 @@ Function LayoutSchemeDataAdditionalDetailsAndDetails(MetadataObjectName)
 	
 	Field = FieldList.Add();
 	Field.Id = "Ref";
-	Field.Presentation = NStr("en = 'Ref';");
+	Field.Presentation = NStr("en = 'Ref';tr = 'Ref'");
 	Field.ValueType = New TypeDescription();	
 
 	Return SchemaCompositionDataPrint(FieldList);
@@ -7204,7 +7212,7 @@ EndFunction
 Procedure AddGroupOfFunctionOperatorsForTables(ListOfOperators)
 	Group = ListOfOperators.Rows.Add();
 	Group.Id = "TableFunctions";
-	Group.Presentation = NStr("en = 'Functions for tables';");
+	Group.Presentation = NStr("en = 'Functions for tables';tr = 'Tablo fonksiyonları'");
 	Group.Order = 5;
 	Group.Picture = PictureLib.TypeFunction;
 	
@@ -7212,11 +7220,11 @@ Procedure AddGroupOfFunctionOperatorsForTables(ListOfOperators)
 	
 	Prefix = PrintModuleName() + CommandSeparator();
 	
-	AddAnOperatorToAGroup(Group, Prefix + "SumByColumn", NStr("en = 'Column sum';"), Type, True);
-	AddAnOperatorToAGroup(Group, Prefix + "RowsCount", NStr("en = 'Number of rows';"), Type, True);
-	AddAnOperatorToAGroup(Group, Prefix + "ColumnMax", NStr("en = 'Column max';"), Type, True);
-	AddAnOperatorToAGroup(Group, Prefix + "ColumnMin", NStr("en = 'Column min';"), Type, True);
-	AddAnOperatorToAGroup(Group, Prefix + "ColumnAverage", NStr("en = 'Column average';"), Type, True);
+	AddAnOperatorToAGroup(Group, Prefix + "SumByColumn", NStr("en = 'Column sum';tr = 'Sütun toplamı'"), Type, True);
+	AddAnOperatorToAGroup(Group, Prefix + "RowsCount", NStr("en = 'Number of rows';tr = 'Satır sayısı'"), Type, True);
+	AddAnOperatorToAGroup(Group, Prefix + "ColumnMax", NStr("en = 'Column max';tr = 'Sütun maks.'"), Type, True);
+	AddAnOperatorToAGroup(Group, Prefix + "ColumnMin", NStr("en = 'Column min';tr = 'Sütun min.'"), Type, True);
+	AddAnOperatorToAGroup(Group, Prefix + "ColumnAverage", NStr("en = 'Column average';tr = 'Sütun ortalaması'"), Type, True);
 	
 EndProcedure
 

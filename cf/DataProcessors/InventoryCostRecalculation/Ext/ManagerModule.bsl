@@ -85,13 +85,13 @@ Procedure OnFillToDoList(ToDoList) Export
 	ToDoRow					= ToDoList.Add();
 	ToDoRow.ID				= RowID;
 	ToDoRow.HasToDoItems	= IsNeedToRecalculate;
-	ToDoRow.Presentation	= NStr("en = 'Inventory cost recalculation'");
+	ToDoRow.Presentation	= NStr("en = 'Inventory cost recalculation'; tr = 'Stok maliyeti yeniden hesaplaması'");
 	ToDoRow.Owner			= Metadata.Subsystems.Warehouses;
 	
 	ToDoRow					= ToDoList.Add();
 	ToDoRow.ID				= "MonthClosureNotCalculatedTotals";
 	ToDoRow.HasToDoItems	= IsNeedToRecalculate;
-	ToDoRow.Presentation	= NStr("en = 'It may be necessary to recalculate inventory costs'");
+	ToDoRow.Presentation	= NStr("en = 'It may be necessary to recalculate inventory costs'; tr = 'Stok maliyetlerini yeniden hesaplamak gerekebilir'");
 	ToDoRow.Form			= "DataProcessor.InventoryCostRecalculation.Form";
 	ToDoRow.Owner			= RowID;
 	ToDoRow.Important		= True;
@@ -126,9 +126,9 @@ Function CreatePointInTime(Period, Recorder)
 				EndIf;
 			Except
 				MessageText = StringFunctionsClientServer.SubstituteParametersToString(
-					NStr("en = 'Error deleting an invalid ref: %1'"),
+					NStr("en = 'Error deleting an invalid ref: %1'; tr = 'Geçersiz referans silinemedi: %1'"),
 					BriefErrorDescription(ErrorInfo()));
-				WriteLogEvent(NStr("en = 'Work with sequences'", Common.DefaultLanguageCode()),
+				WriteLogEvent(NStr("en = 'Work with sequences'; tr = 'Sıraları kullan'", Common.DefaultLanguageCode()),
 					EventLogLevel.Error,,
 					Recorder,
 					MessageText);

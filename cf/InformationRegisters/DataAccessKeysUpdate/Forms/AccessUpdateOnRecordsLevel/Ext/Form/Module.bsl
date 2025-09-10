@@ -63,7 +63,11 @@ Procedure OnCreateAtServer(Cancel, StandardProcessing)
 		           |from 40–150 MB/s to 2–10 MB/s
 		           |during access updates and the HDD load is 100%
 		           |for 5–10 minutes or more, the hard drive is slow.
-		           |Note: SSD is considered to be fast.';");
+		           |Note: SSD is considered to be fast.';tr = 'Güncelleme sırasında verilerin HDD''den aktarım hızı gereken 
+		           |40-150 MB/saniye yerine 
+		           |2-10 MB/saniye kadar düşüyorsa ve disk 5-10 saniye veya daha uzun süre boyunca 100% yüklenirse
+		           |, disk yavaştır.
+		           |Örn: SSD disk hızlı kabul edilir.'");
 	Items.DiskLoadBalancingGroupTooltip2.ToolTip =
 		Items.DiskLoadBalancingGroupTooltip1.ToolTip;
 	
@@ -169,7 +173,7 @@ Procedure LastAccessUpdateCompletionURLProcessing(Item, FormattedStringURL, Stan
 	If FormattedStringURL = "ShowErrorText" Then
 		TextDocument = New TextDocument;
 		TextDocument.SetText(AccessUpdateErrorText);
-		TextDocument.Show(NStr("en = 'Access update error';"));
+		TextDocument.Show(NStr("en = 'Access update error';tr = 'Erişim güncellemesi hatası'"));
 	EndIf;
 	
 EndProcedure
@@ -288,11 +292,11 @@ Procedure CancelRefreshingProgressBar(Command)
 		CancelProgressUpdateAtServer(ProgressUpdateJobID);
 		If ProgressAutoUpdate Then
 			ProgressAutoUpdate = False;
-			Explanation = NStr("en = 'Automatic update of the progress bar is disabled.';");
+			Explanation = NStr("en = 'Automatic update of the progress bar is disabled.';tr = 'Otomatik ilerleme güncellemesi devre dışı bırakıldı'");
 		Else
 			Explanation = "";
 		EndIf;
-		ShowUserNotification(NStr("en = 'Progress bar update canceled';"),,
+		ShowUserNotification(NStr("en = 'Progress bar update canceled';tr = 'İlerlemenin güncellenmesi iptal edildi'"),,
 			Explanation);
 	EndIf;
 	
@@ -381,7 +385,7 @@ Procedure UpdateAccessUpdateThreadsCountGroupTitle()
 	Items.NumberOfAccessUpdateThreads1Group.Title =
 		Format(AccessUpdateThreadsCount, "NG=") + " "
 			+ UsersInternalClientServer.IntegerSubject(AccessUpdateThreadsCount,
-				"", NStr("en = 'thread,threads,,0';"));
+				"", NStr("en = 'thread,threads,,0';tr = 'akış,akışın,akışların,,,,,,0'"));
 	
 	Items.NumberOfAccessUpdateStreams2Group.Title =
 		Items.NumberOfAccessUpdateThreads1Group.Title;
@@ -431,23 +435,23 @@ Procedure UpdateAccessUpdateJobState(State = Undefined, OnOpen = False)
 		
 		If State.UpdateCanceledAbnormally Then
 			If State.LastCompletionToday Then
-				Template = NStr("en = '<1>terminated</1> after a start at %1';");
+				Template = NStr("en = '<1>terminated</1> after a start at %1';tr = '%1 üzerinde başlatıldıktan sonra <1>beklenmeyen şekilde iptal edildi</1>'");
 			Else
-				Template = NStr("en = '<1>terminated</1> after a start on %1';");
+				Template = NStr("en = '<1>terminated</1> after a start on %1';tr = '%1 üzerinde başlatıldıktan sonra <1>beklenmeyen şekilde iptal edildi</1>'");
 			EndIf;
 			PartsFormat.Insert(1, New Structure("Font, TextColor", BoldFont, RedColor));
 		ElsIf ValueIsFilled(AccessUpdateErrorText) Then
 			If State.RefreshEnabledCanceled Then
 				If State.LastCompletionToday Then
-					Template = NStr("en = '<1>canceled</1> <2>with an error</2> at %1, duration: %2';");
+					Template = NStr("en = '<1>canceled</1> <2>with an error</2> at %1, duration: %2';tr = '%1''de <2>hatasıyla</2> <1>iptal edildi</1>, devam süresi: %2'");
 				Else
-					Template = NStr("en = '<1>canceled</1> <2>with an error</2> %1, duration: %2';");
+					Template = NStr("en = '<1>canceled</1> <2>with an error</2> %1, duration: %2';tr = '%2 aracılığıyla %1 <2>hatasıyla</2> <1>iptal edildi</1>'");
 				EndIf;
 			Else
 				If State.LastCompletionToday Then
-					Template = NStr("en = '<1>completed</1> <2>with an error</2> at %1, duration: %2';");
+					Template = NStr("en = '<1>completed</1> <2>with an error</2> at %1, duration: %2';tr = '%1''de <2>hatasıyla</2> <1>tamamlandı</1>, devam süresi: %2'");
 				Else
-					Template = NStr("en = '<1>completed</1> <2>with an error</2>on %1, duration: %2';");
+					Template = NStr("en = '<1>completed</1> <2>with an error</2>on %1, duration: %2';tr = '%2 aracılığıyla %1 <2>hatasıyla</2> <1>tamamlandı</1>'");
 				EndIf;
 			EndIf;
 			PartsFormat.Insert(1, New Structure("Font, TextColor", BoldFont, RedColor));
@@ -455,15 +459,15 @@ Procedure UpdateAccessUpdateJobState(State = Undefined, OnOpen = False)
 		Else
 			If State.RefreshEnabledCanceled Then
 				If State.LastCompletionToday Then
-					Template = NStr("en = 'canceled at %1, duration: %2';");
+					Template = NStr("en = 'canceled at %1, duration: %2';tr = ' %1''de iptal edildi, devam süresi: %2'");
 				Else
-					Template = NStr("en = 'canceled on %1, duration: %2';");
+					Template = NStr("en = 'canceled on %1, duration: %2';tr = '%2 aracılığıyla %1 iptal edildi '");
 				EndIf;
 			Else
 				If State.LastCompletionToday Then
-					Template = NStr("en = 'completed at %1, duration: %2';");
+					Template = NStr("en = 'completed at %1, duration: %2';tr = '%1''de tamamlandı, devam süresi: %2'");
 				Else
-					Template = NStr("en = 'completed on %1, duration: %2';");
+					Template = NStr("en = 'completed on %1, duration: %2';tr = '%2 süresinde %1 tamamlandı'");
 				EndIf;
 			EndIf;
 		EndIf;
@@ -482,7 +486,7 @@ Procedure UpdateAccessUpdateJobState(State = Undefined, OnOpen = False)
 		LastCompletion = StringWithFormattedParts("(" + LastCompletion + ")", PartsFormat, 3);
 	Else
 		LastCompletion = "(" + ?(State.AccessUpdateInProgress,
-			NStr("en = 'never completed';"), NStr("en = 'never started';")) + ")";
+			NStr("en = 'never completed';tr = 'tamamlanmadı'"), NStr("en = 'never started';tr = 'başlatılmadı'")) + ")";
 	EndIf;
 	Items.LastAccessUpdateCompletion.Title = LastCompletion;
 	
@@ -513,7 +517,7 @@ Procedure UpdateAccessUpdateJobState(State = Undefined, OnOpen = False)
 		Return;
 	EndIf;
 	
-	TitleText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Running for %1';"),
+	TitleText = StringFunctionsClientServer.SubstituteParametersToString(NStr("en = 'Running for %1';tr = 'Yürütülüyor %1'"),
 		ExecutionTimeAsString(State.RunningInSeconds));
 	
 	Items.BackgroundJobRunTime1.Title = TitleText;
@@ -536,12 +540,12 @@ Function ExecutionTimeAsString(TimeInSeconds)
 	Minutes = MinutesTotal - HoursTotal * 60;
 	
 	If HoursTotal > 0 Then
-		Template = NStr("en = '%3 h %2 min %1 sec';");
+		Template = NStr("en = '%3 h %2 min %1 sec';tr = '%3 sa. %2 dk. %1 sn.'");
 		
 	ElsIf Minutes > 0 Then
-		Template = NStr("en = '%2 min %1 sec';");
+		Template = NStr("en = '%2 min %1 sec';tr = '%2 dak %1 san'");
 	Else
-		Template = NStr("en = '%1 sec';");
+		Template = NStr("en = '%1 sec';tr = '%1 sn'");
 	EndIf;
 	
 	Return StringFunctionsClientServer.SubstituteParametersToString(Template,
@@ -927,9 +931,9 @@ Function StartProgressUpdateAtServer(Context, ResultAddress, StoredDataAddress,
 	EndIf;
 	ExecutionParameters.ResultAddress = ResultAddress;
 	ExecutionParameters.BackgroundJobDescription =
-		NStr("en = 'Access management: Get access update progress';");
+		NStr("en = 'Access management: Get access update progress';tr = 'Erişim yönetimi: Erişim güncelleme ilerlemesini elde etmek'");
 	ExecutionParameters.RefinementErrors =
-		NStr("en = 'Couldn''t refresh the progress bar due to:';");
+		NStr("en = 'Couldn''t refresh the progress bar due to:';tr = 'İlerleme çubuğu şu nedenle yenilenemedi:'");
 
 	RunResult = TimeConsumingOperations.ExecuteInBackground("AccessManagementInternal.UpdateProgressInBackground",
 		ProcedureParameters, ExecutionParameters);
@@ -1028,7 +1032,7 @@ Procedure SortList(Descending = False)
 	 Or Not StrStartsWith(CurrentColumn.Name, "Lists") Then
 		
 		ShowMessageBox(,
-			NStr("en = 'Please select a column to sort.';"));
+			NStr("en = 'Please select a column to sort.';tr = 'Sıralamak için bir sütun seçin'"));
 		Return;
 	EndIf;
 	
@@ -1047,10 +1051,10 @@ Procedure SortList(Descending = False)
 	SortListByFields();
 	
 	ShowUserNotification(
-		?(Descending, NStr("en = 'Sort descending';"),
-			NStr("en = 'Sort ascending';")),,
+		?(Descending, NStr("en = 'Sort descending';tr = 'Azalan şekilde sıralama'"),
+			NStr("en = 'Sort ascending';tr = 'Artan şekilde sıralama'")),,
 		StringFunctionsClientServer.SubstituteParametersToString(
-			NStr("en = 'Column:""%1""';"),
+			NStr("en = 'Column:""%1""';tr = '""%1"" sütunu'"),
 			StrReplace(CurrentColumn.Title, Chars.LF, " ")));
 	
 EndProcedure

@@ -48,7 +48,7 @@ Procedure ApplyRules(Command)
 		And ValueIsFilled(FilterItemsArray[0].RightValue) Then
 		FormParameters.Insert("Account", FilterItemsArray[0].RightValue);
 	Else
-		CommonClient.MessageToUser(NStr("en = 'Select an email account to read the list of rules.';"));
+		CommonClient.MessageToUser(NStr("en = 'Select an email account to read the list of rules.';tr = 'Kural listesini okumak için e-posta hesabı seçin.'"));
 		Return;
 	EndIf;
 	
