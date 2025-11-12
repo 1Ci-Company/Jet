@@ -7,62 +7,55 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/1Ci-Company/test12135436574/blob/main/LICENSE)
 [![Last release](https://img.shields.io/github/v/release/1Ci-Company/jet?include_prereleases)](https://github.com/1Ci-Company/Jet/releases)
 
-# 1C:Jet — simple 1C application
-
-
-**1C:Jet** is an application built on the 1C platform designed for beginners learning 1C development. Its mission is to introduce users to the flexibility and broad capabilities of the 1C platform through a practical, functional, open sourse project.
-
----
+# 1C Jet Map Extension
 
 ## Description
+When planning shipments, deliveries, or customer visits, companies often need to calculate distances and estimated travel times between two addresses. Doing this manually for each order or invoice is time-consuming and prone to errors.
 
-1C:Jet covers the base processes for managing a small company’s accounting needs. It automates purchasing, sales, warehouse and cash operations, advance payments, and profit calculations. The application emphasizes clean, readable code and simplicity while delivering full functionality for end users.
-
-We aim to create a regional version for Turkey featuring electronic invoicing and Turkish language support.
-
----
+This is where the Map extension comes in: it automatically retrieves coordinates from OpenStreetMap (Nominatim) and calculates distance and driving duration using OSRM API. The results can be shown directly inside 1C Jet forms, helping businesses optimize their logistics and save time.
 
 ## Features
-
-- **Purchasing**: Counterparties, products, tax rates, supplier invoices, purchase reports  
-- **Sales**: Price types, price lists, sales invoices, sales reports  
-- **Warehouse Management**: Warehouse references, stock control, goods movements, warehouse balance reports  
-- **Cash & Bank Operations**: Bank/cash accounts, cash receipts and payments, initial balances, cash reports  
-- **Accounts Payable & Receivable**: Advance payments, mutual settlements reports  
-- **Costing & Profit**: Average goods costing, costing reports, sales revenue reports  
-- **User Management & Extras**: Users and rights, external reports, currency conversion, notes, reminders, print forms, and more  
-
----
-
-## Installation
-
-To work with the application, you need the 1C platform. We recommend using version **8.3.24**.
-
-You can download a free version of the platform via [1Ci Account](https://my.1ci.com/).
-
-[See the installation guide](https://jet.1ci.com/#download)
-
----
+1. Search any address using Yandex or Google map.
+2. See driving distance and estimated duration in Sales and Supplier Invoices.
+3. Show the exact location of customer/supplier directly on Google Maps or Yandex Maps inside 1C Jet.
+4. Reduce manual effort in logistics planning and minimize risk of wrong delivery addresses.
+5. Useful for sales invoices, supplier invoices, and shipment planning.
 
 ## Usage
 
-Use the app to manage core accounting processes of a small company:
+### Story 1
+1. Go To Sales Subsystem → Sales Invoices → Choose any Sales Invoice
+2. Make sure both Customer Address and Warehouse Address are filled
+3. Activate "Show Distance" checkbox
+4. Use "Refresh Information" button to get latest data
 
-- Enter purchases and sales documents  
-- Manage warehouse inventories and track stock  
-- Record cash and bank operations  
-- Generate accounting and financial reports  
-- Explore source code to learn 1C development best practices
+### Story 2
+1. Go To Purchases Subsystem → Purchase Invoices → Choose any Purchase Invoice
+2. Make sure both Supplier Address and Warehouse Address are filled
+3. Activate "Show Distance" checkbox
+4. Use "Refresh Information" button to get latest data
 
----
+### Story 3
+1. Go To "Map" Subsystem
+2. Click "Preferred Map Provider" and set your preferred provider (optional)
+3. Go To Sales Subsystem → Counterparties catalog → Choose any Counterparty
+4. Make sure Counterparty Address is filled
+5. Use "Show in Map" button to see the exact location of Counterparty
 
-## License
+### Story 4
+1. Go To "Map" Subsystem
+2. Click "Preferred Map Provider" and set your preferred provider (optional)
+3. Go To Map Subsystem → Map
+4. Fill the Address field
+5. Use "Refresh Map" button to see the exact location
 
-This project is licensed under the MIT License — see the [LICENSE](https://github.com/1Ci-Company/Jet/blob/develop/LICENSE) file for details.
+### Story 5
+1. Go To "Map" Subsystem
+2. Click "Preferred Map Provider" and set your preferred provider (optional)
+3. Go To Warehouse Subsystem → Warehouses catalog → Choose any Warehouse
+4. Make sure Warehouse Address is filled
+5. Use "Show in Map" button to see the exact location of Warehouse
 
----
-
-## Join the Community
-
-Stay updated, ask questions, and share feedback in our Telegram group:  
-👉 [t.me/jet1ci](https://t.me/jet1ci)
+## Requirements
+1. 1C Jet Turkish 1.0.3.1
+2. Internet connection
