@@ -1,0 +1,1077 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.17">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="FormCommandBar" id="-1">
+		<ChildItems>
+			<Popup name="PrintSubmenu" id="123">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Print</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>Yazdır</v8:content>
+					</v8:item>
+				</Title>
+				<Picture>
+					<xr:Ref>StdPicture.Print</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<Representation>Picture</Representation>
+				<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="124"/>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
+	<ChildItems>
+		<UsualGroup name="GroupHeader" id="100">
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="GroupHeaderExtendedTooltip" id="101"/>
+			<ChildItems>
+				<UsualGroup name="GroupLeft" id="102">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupLeftExtendedTooltip" id="103"/>
+					<ChildItems>
+						<InputField name="Supplier" id="7">
+							<DataPath>Object.Supplier</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="SupplierContextMenu" id="8"/>
+							<ExtendedTooltip name="SupplierExtendedTooltip" id="9"/>
+						</InputField>
+						<InputField name="Currency" id="13">
+							<DataPath>Object.Currency</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="CurrencyContextMenu" id="14"/>
+							<ExtendedTooltip name="CurrencyExtendedTooltip" id="15"/>
+						</InputField>
+						<UsualGroup name="GroupExchRate" id="108">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupExchRateExtendedTooltip" id="109"/>
+							<ChildItems>
+								<InputField name="ExchangeRate" id="16">
+									<DataPath>Object.ExchangeRate</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ExchangeRateContextMenu" id="17"/>
+									<ExtendedTooltip name="ExchangeRateExtendedTooltip" id="18"/>
+								</InputField>
+								<InputField name="Multiplier" id="19">
+									<DataPath>Object.Multiplier</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="MultiplierContextMenu" id="20"/>
+									<ExtendedTooltip name="MultiplierExtendedTooltip" id="21"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<CheckBoxField name="ShowDistance" id="164">
+							<DataPath>ShowDistance</DataPath>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ShowDistanceContextMenu" id="165"/>
+							<ExtendedTooltip name="ShowDistanceExtendedTooltip" id="166"/>
+							<Events>
+								<Event name="OnChange" callType="After">Map_ShowDistanceOnChangeAfter</Event>
+							</Events>
+						</CheckBoxField>
+						<UsualGroup name="MapGroup" id="167">
+							<Visible>false</Visible>
+							<Title>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Map group</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Map group</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Vertical</Group>
+							<Representation>StrongSeparation</Representation>
+							<ExtendedTooltip name="MapGroupExtendedTooltip" id="168"/>
+							<ChildItems>
+								<InputField name="Distance" id="169">
+									<DataPath>Distance</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Distance (Kilometers)</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="DistanceContextMenu" id="170"/>
+									<ExtendedTooltip name="DistanceExtendedTooltip" id="171"/>
+								</InputField>
+								<InputField name="Time" id="172">
+									<DataPath>Time</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Time By Car (Hours)</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="TimeContextMenu" id="173"/>
+									<ExtendedTooltip name="TimeExtendedTooltip" id="174"/>
+								</InputField>
+								<Button name="RefreshInformation" id="175">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.RefreshInformation</CommandName>
+									<ExtendedTooltip name="RefreshInformationExtendedTooltip" id="176"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupTax" id="159">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupTaxExtendedTooltip" id="160"/>
+							<ChildItems>
+								<CheckBoxField name="ExemptFromVAT" id="161">
+									<DataPath>Object.ExemptFromVAT</DataPath>
+									<CheckBoxType>Switcher</CheckBoxType>
+									<ContextMenu name="ExemptFromVATContextMenu" id="162"/>
+									<ExtendedTooltip name="ExemptFromVATExtendedTooltip" id="163"/>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="GroupRight" id="104">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="GroupRightExtendedTooltip" id="105"/>
+					<ChildItems>
+						<UsualGroup name="GroupNumberDate" id="106">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupNumberDateExtendedTooltip" id="107"/>
+							<ChildItems>
+								<InputField name="Number" id="1">
+									<DataPath>Object.Number</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="NumberContextMenu" id="2"/>
+									<ExtendedTooltip name="NumberExtendedTooltip" id="3"/>
+								</InputField>
+								<InputField name="Date" id="4">
+									<DataPath>Object.Date</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="DateContextMenu" id="5"/>
+									<ExtendedTooltip name="DateExtendedTooltip" id="6"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<InputField name="Warehouse" id="125">
+							<DataPath>Object.Warehouse</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="WarehouseContextMenu" id="126"/>
+							<ExtendedTooltip name="WarehouseExtendedTooltip" id="127"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Pages" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>tr</v8:lang>
+					<v8:content>Sayfalar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="PagesExtendedTooltip" id="29"/>
+			<ChildItems>
+				<Page name="GroupInventory" id="30">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Inventory</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Stok</v8:content>
+						</v8:item>
+					</Title>
+					<ScrollOnCompress>true</ScrollOnCompress>
+					<ExtendedTooltip name="GroupInventoryExtendedTooltip" id="31"/>
+					<ChildItems>
+						<Table name="Inventory" id="32">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.Inventory</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="InventoryContextMenu" id="33"/>
+							<AutoCommandBar name="InventoryCommandBar" id="34">
+								<ChildItems>
+									<Button name="InventoryImportInventoryFromFile" id="157">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="InventoryImportInventoryFromFileExtendedTooltip" id="158"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="InventoryExtendedTooltip" id="35"/>
+							<SearchStringAddition name="InventorySearchString" id="36">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InventorySearchStringContextMenu" id="37"/>
+								<ExtendedTooltip name="InventorySearchStringExtendedTooltip" id="38"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="InventoryViewStatus" id="39">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="InventoryViewStatusContextMenu" id="40"/>
+								<ExtendedTooltip name="InventoryViewStatusExtendedTooltip" id="41"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="InventorySearchControl" id="42">
+								<AdditionSource>
+									<Item>Inventory</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="InventorySearchControlContextMenu" id="43"/>
+								<ExtendedTooltip name="InventorySearchControlExtendedTooltip" id="44"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="InventoryLineNumber" id="45">
+									<DataPath>Object.Inventory.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="InventoryLineNumberContextMenu" id="46"/>
+									<ExtendedTooltip name="InventoryLineNumberExtendedTooltip" id="47"/>
+								</LabelField>
+								<InputField name="InventoryProduct" id="48">
+									<DataPath>Object.Inventory.Product</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryProductContextMenu" id="49"/>
+									<ExtendedTooltip name="InventoryProductExtendedTooltip" id="50"/>
+								</InputField>
+								<InputField name="InventoryQuantity" id="51">
+									<DataPath>Object.Inventory.Quantity</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryQuantityContextMenu" id="52"/>
+									<ExtendedTooltip name="InventoryQuantityExtendedTooltip" id="53"/>
+								</InputField>
+								<LabelField name="InventoryUnit" id="54">
+									<DataPath>Object.Inventory.Product.Unit</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="InventoryUnitContextMenu" id="55"/>
+									<ExtendedTooltip name="InventoryUnitExtendedTooltip" id="56"/>
+								</LabelField>
+								<InputField name="InventoryPrice" id="57">
+									<DataPath>Object.Inventory.Price</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryPriceContextMenu" id="58"/>
+									<ExtendedTooltip name="InventoryPriceExtendedTooltip" id="59"/>
+								</InputField>
+								<InputField name="InventoryAmount" id="60">
+									<DataPath>Object.Inventory.Amount</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryAmountContextMenu" id="61"/>
+									<ExtendedTooltip name="InventoryAmountExtendedTooltip" id="62"/>
+								</InputField>
+								<InputField name="InventoryVATRate" id="63">
+									<DataPath>Object.Inventory.VATRate</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryVATRateContextMenu" id="64"/>
+									<ExtendedTooltip name="InventoryVATRateExtendedTooltip" id="65"/>
+								</InputField>
+								<InputField name="InventoryVATAmount" id="66">
+									<DataPath>Object.Inventory.VATAmount</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryVATAmountContextMenu" id="67"/>
+									<ExtendedTooltip name="InventoryVATAmountExtendedTooltip" id="68"/>
+								</InputField>
+								<InputField name="InventoryTotal" id="69">
+									<DataPath>Object.Inventory.Total</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="InventoryTotalContextMenu" id="70"/>
+									<ExtendedTooltip name="InventoryTotalExtendedTooltip" id="71"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<UsualGroup name="GroupTotal" id="110">
+							<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<BackColor>style:TotalsGroupBackground</BackColor>
+							<ExtendedTooltip name="GroupTotalExtendedTooltip" id="111"/>
+							<ChildItems>
+								<LabelField name="TotalAmount" id="112">
+									<DataPath>Object.Inventory.TotalAmount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Amount</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Tutar</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalAmountContextMenu" id="113"/>
+									<ExtendedTooltip name="TotalAmountExtendedTooltip" id="114"/>
+								</LabelField>
+								<LabelField name="TotalVATAmount" id="115">
+									<DataPath>Object.Inventory.TotalVATAmount</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>VAT amount</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>KDV tutarı</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalVATAmountContextMenu" id="116"/>
+									<ExtendedTooltip name="TotalVATAmountExtendedTooltip" id="117"/>
+								</LabelField>
+								<LabelField name="TotalTotal" id="118">
+									<DataPath>Object.Inventory.TotalTotal</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Total</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>tr</v8:lang>
+											<v8:content>Toplam</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="TotalTotalContextMenu" id="119"/>
+									<ExtendedTooltip name="TotalTotalExtendedTooltip" id="120"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="GroupAdvanceClearing" id="128">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Advance clearing</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Avans mahsubu</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="GroupAdvanceClearingExtendedTooltip" id="129"/>
+					<ChildItems>
+						<Table name="AdvanceClearing" id="130">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Object.AdvanceClearing</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="AdvanceClearingContextMenu" id="131"/>
+							<AutoCommandBar name="AdvanceClearingCommandBar" id="132">
+								<ChildItems>
+									<Button name="SelectAdvances" id="155">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="SelectAdvancesExtendedTooltip" id="156"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="AdvanceClearingExtendedTooltip" id="133"/>
+							<SearchStringAddition name="AdvanceClearingSearchString" id="134">
+								<AdditionSource>
+									<Item>AdvanceClearing</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AdvanceClearingSearchStringContextMenu" id="135"/>
+								<ExtendedTooltip name="AdvanceClearingSearchStringExtendedTooltip" id="136"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="AdvanceClearingViewStatus" id="137">
+								<AdditionSource>
+									<Item>AdvanceClearing</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="AdvanceClearingViewStatusContextMenu" id="138"/>
+								<ExtendedTooltip name="AdvanceClearingViewStatusExtendedTooltip" id="139"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="AdvanceClearingSearchControl" id="140">
+								<AdditionSource>
+									<Item>AdvanceClearing</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="AdvanceClearingSearchControlContextMenu" id="141"/>
+								<ExtendedTooltip name="AdvanceClearingSearchControlExtendedTooltip" id="142"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="AdvanceClearingLineNumber" id="143">
+									<DataPath>Object.AdvanceClearing.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AdvanceClearingLineNumberContextMenu" id="144"/>
+									<ExtendedTooltip name="AdvanceClearingLineNumberExtendedTooltip" id="145"/>
+								</LabelField>
+								<InputField name="AdvanceClearingDocument" id="146">
+									<DataPath>Object.AdvanceClearing.Document</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="AdvanceClearingDocumentContextMenu" id="147"/>
+									<ExtendedTooltip name="AdvanceClearingDocumentExtendedTooltip" id="148"/>
+								</InputField>
+								<InputField name="AdvanceClearingAmount" id="149">
+									<DataPath>Object.AdvanceClearing.Amount</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="AdvanceClearingAmountContextMenu" id="150"/>
+									<ExtendedTooltip name="AdvanceClearingAmountExtendedTooltip" id="151"/>
+								</InputField>
+								<InputField name="AdvanceClearingAmountCur" id="152">
+									<DataPath>Object.AdvanceClearing.AmountCur</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="AdvanceClearingAmountCurContextMenu" id="153"/>
+									<ExtendedTooltip name="AdvanceClearingAmountCurExtendedTooltip" id="154"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="GroupAdditionalInfo" id="96">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Additional information</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Ek bilgi</v8:content>
+						</v8:item>
+					</Title>
+					<Group>HorizontalIfPossible</Group>
+					<ExtendedTooltip name="GroupAdditionalInfoExtendedTooltip" id="97"/>
+					<ChildItems>
+						<UsualGroup name="GroupInfo" id="121">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupInfoExtendedTooltip" id="122"/>
+							<ChildItems>
+								<InputField name="Comment" id="22">
+									<DataPath>Object.Comment</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="CommentContextMenu" id="23"/>
+									<ExtendedTooltip name="CommentExtendedTooltip" id="24"/>
+								</InputField>
+								<LabelField name="Author" id="25">
+									<DataPath>Object.Author</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="AuthorContextMenu" id="26"/>
+									<ExtendedTooltip name="AuthorExtendedTooltip" id="27"/>
+								</LabelField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="GroupAdditionalAttributes" id="98">
+							<Group>Vertical</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ThroughAlign>Use</ThroughAlign>
+							<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="99"/>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="SupplierAdress" id="1000001">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Supplier adress</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Distance" id="1000002">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Distance</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ShowDistance" id="1000003">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Show distance</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Time" id="1000004">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Time</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="WarehouseAdress" id="1000005">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Warehouse adress</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Object" id="1000006">
+			<Type>
+				<v8:Type>cfg:DocumentObject.SupplierInvoice</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Object.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="RefreshInformation" id="1000000">
+			<Title>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh information</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Refresh information</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action callType="After">RefreshInformation</Action>
+		</Command>
+	</Commands>
+	<BaseForm version="2.17">
+		<AutoTime>CurrentOrLast</AutoTime>
+		<UsePostingMode>Auto</UsePostingMode>
+		<RepostOnWrite>true</RepostOnWrite>
+		<AutoCommandBar name="FormCommandBar" id="-1">
+			<ChildItems>
+				<Popup name="PrintSubmenu" id="123">
+					<Title>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Print</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>tr</v8:lang>
+							<v8:content>Yazdır</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Print</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<Representation>Picture</Representation>
+					<ExtendedTooltip name="PrintSubmenuExtendedTooltip" id="124"/>
+				</Popup>
+			</ChildItems>
+		</AutoCommandBar>
+		<ChildItems>
+			<UsualGroup name="GroupHeader" id="100">
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="GroupHeaderExtendedTooltip" id="101"/>
+				<ChildItems>
+					<UsualGroup name="GroupLeft" id="102">
+						<Group>Vertical</Group>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="GroupLeftExtendedTooltip" id="103"/>
+						<ChildItems>
+							<InputField name="Supplier" id="7">
+								<DataPath>Object.Supplier</DataPath>
+								<EditMode>EnterOnInput</EditMode>
+								<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+								<ContextMenu name="SupplierContextMenu" id="8"/>
+								<ExtendedTooltip name="SupplierExtendedTooltip" id="9"/>
+							</InputField>
+							<InputField name="Currency" id="13">
+								<DataPath>Object.Currency</DataPath>
+								<EditMode>EnterOnInput</EditMode>
+								<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+								<ContextMenu name="CurrencyContextMenu" id="14"/>
+								<ExtendedTooltip name="CurrencyExtendedTooltip" id="15"/>
+							</InputField>
+							<UsualGroup name="GroupExchRate" id="108">
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<ExtendedTooltip name="GroupExchRateExtendedTooltip" id="109"/>
+								<ChildItems>
+									<InputField name="ExchangeRate" id="16">
+										<DataPath>Object.ExchangeRate</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ExchangeRateContextMenu" id="17"/>
+										<ExtendedTooltip name="ExchangeRateExtendedTooltip" id="18"/>
+									</InputField>
+									<InputField name="Multiplier" id="19">
+										<DataPath>Object.Multiplier</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="MultiplierContextMenu" id="20"/>
+										<ExtendedTooltip name="MultiplierExtendedTooltip" id="21"/>
+									</InputField>
+								</ChildItems>
+							</UsualGroup>
+							<UsualGroup name="GroupTax" id="159">
+								<Group>Vertical</Group>
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<ExtendedTooltip name="GroupTaxExtendedTooltip" id="160"/>
+								<ChildItems>
+									<CheckBoxField name="ExemptFromVAT" id="161">
+										<DataPath>Object.ExemptFromVAT</DataPath>
+										<CheckBoxType>Switcher</CheckBoxType>
+										<ContextMenu name="ExemptFromVATContextMenu" id="162"/>
+										<ExtendedTooltip name="ExemptFromVATExtendedTooltip" id="163"/>
+									</CheckBoxField>
+								</ChildItems>
+							</UsualGroup>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="GroupRight" id="104">
+						<Group>Vertical</Group>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="GroupRightExtendedTooltip" id="105"/>
+						<ChildItems>
+							<UsualGroup name="GroupNumberDate" id="106">
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<ExtendedTooltip name="GroupNumberDateExtendedTooltip" id="107"/>
+								<ChildItems>
+									<InputField name="Number" id="1">
+										<DataPath>Object.Number</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="NumberContextMenu" id="2"/>
+										<ExtendedTooltip name="NumberExtendedTooltip" id="3"/>
+									</InputField>
+									<InputField name="Date" id="4">
+										<DataPath>Object.Date</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="DateContextMenu" id="5"/>
+										<ExtendedTooltip name="DateExtendedTooltip" id="6"/>
+									</InputField>
+								</ChildItems>
+							</UsualGroup>
+							<InputField name="Warehouse" id="125">
+								<DataPath>Object.Warehouse</DataPath>
+								<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+								<ContextMenu name="WarehouseContextMenu" id="126"/>
+								<ExtendedTooltip name="WarehouseExtendedTooltip" id="127"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+			<Pages name="Pages" id="28">
+				<Title>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Pages</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>tr</v8:lang>
+						<v8:content>Sayfalar</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="PagesExtendedTooltip" id="29"/>
+				<ChildItems>
+					<Page name="GroupInventory" id="30">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Inventory</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Stok</v8:content>
+							</v8:item>
+						</Title>
+						<ScrollOnCompress>true</ScrollOnCompress>
+						<ExtendedTooltip name="GroupInventoryExtendedTooltip" id="31"/>
+						<ChildItems>
+							<Table name="Inventory" id="32">
+								<Representation>List</Representation>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<DataPath>Object.Inventory</DataPath>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="InventoryContextMenu" id="33"/>
+								<AutoCommandBar name="InventoryCommandBar" id="34">
+									<ChildItems>
+										<Button name="InventoryImportInventoryFromFile" id="157">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="InventoryImportInventoryFromFileExtendedTooltip" id="158"/>
+										</Button>
+									</ChildItems>
+								</AutoCommandBar>
+								<ExtendedTooltip name="InventoryExtendedTooltip" id="35"/>
+								<SearchStringAddition name="InventorySearchString" id="36">
+									<AdditionSource>
+										<Item>Inventory</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="InventorySearchStringContextMenu" id="37"/>
+									<ExtendedTooltip name="InventorySearchStringExtendedTooltip" id="38"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="InventoryViewStatus" id="39">
+									<AdditionSource>
+										<Item>Inventory</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="InventoryViewStatusContextMenu" id="40"/>
+									<ExtendedTooltip name="InventoryViewStatusExtendedTooltip" id="41"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="InventorySearchControl" id="42">
+									<AdditionSource>
+										<Item>Inventory</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="InventorySearchControlContextMenu" id="43"/>
+									<ExtendedTooltip name="InventorySearchControlExtendedTooltip" id="44"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="InventoryLineNumber" id="45">
+										<DataPath>Object.Inventory.LineNumber</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="InventoryLineNumberContextMenu" id="46"/>
+										<ExtendedTooltip name="InventoryLineNumberExtendedTooltip" id="47"/>
+									</LabelField>
+									<InputField name="InventoryProduct" id="48">
+										<DataPath>Object.Inventory.Product</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryProductContextMenu" id="49"/>
+										<ExtendedTooltip name="InventoryProductExtendedTooltip" id="50"/>
+									</InputField>
+									<InputField name="InventoryQuantity" id="51">
+										<DataPath>Object.Inventory.Quantity</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryQuantityContextMenu" id="52"/>
+										<ExtendedTooltip name="InventoryQuantityExtendedTooltip" id="53"/>
+									</InputField>
+									<LabelField name="InventoryUnit" id="54">
+										<DataPath>Object.Inventory.Product.Unit</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="InventoryUnitContextMenu" id="55"/>
+										<ExtendedTooltip name="InventoryUnitExtendedTooltip" id="56"/>
+									</LabelField>
+									<InputField name="InventoryPrice" id="57">
+										<DataPath>Object.Inventory.Price</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryPriceContextMenu" id="58"/>
+										<ExtendedTooltip name="InventoryPriceExtendedTooltip" id="59"/>
+									</InputField>
+									<InputField name="InventoryAmount" id="60">
+										<DataPath>Object.Inventory.Amount</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryAmountContextMenu" id="61"/>
+										<ExtendedTooltip name="InventoryAmountExtendedTooltip" id="62"/>
+									</InputField>
+									<InputField name="InventoryVATRate" id="63">
+										<DataPath>Object.Inventory.VATRate</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryVATRateContextMenu" id="64"/>
+										<ExtendedTooltip name="InventoryVATRateExtendedTooltip" id="65"/>
+									</InputField>
+									<InputField name="InventoryVATAmount" id="66">
+										<DataPath>Object.Inventory.VATAmount</DataPath>
+										<ReadOnly>true</ReadOnly>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryVATAmountContextMenu" id="67"/>
+										<ExtendedTooltip name="InventoryVATAmountExtendedTooltip" id="68"/>
+									</InputField>
+									<InputField name="InventoryTotal" id="69">
+										<DataPath>Object.Inventory.Total</DataPath>
+										<ReadOnly>true</ReadOnly>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="InventoryTotalContextMenu" id="70"/>
+										<ExtendedTooltip name="InventoryTotalExtendedTooltip" id="71"/>
+									</InputField>
+								</ChildItems>
+							</Table>
+							<UsualGroup name="GroupTotal" id="110">
+								<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<BackColor>style:TotalsGroupBackground</BackColor>
+								<ExtendedTooltip name="GroupTotalExtendedTooltip" id="111"/>
+								<ChildItems>
+									<LabelField name="TotalAmount" id="112">
+										<DataPath>Object.Inventory.TotalAmount</DataPath>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Amount</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>tr</v8:lang>
+												<v8:content>Tutar</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="TotalAmountContextMenu" id="113"/>
+										<ExtendedTooltip name="TotalAmountExtendedTooltip" id="114"/>
+									</LabelField>
+									<LabelField name="TotalVATAmount" id="115">
+										<DataPath>Object.Inventory.TotalVATAmount</DataPath>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>VAT amount</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>tr</v8:lang>
+												<v8:content>KDV tutarı</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="TotalVATAmountContextMenu" id="116"/>
+										<ExtendedTooltip name="TotalVATAmountExtendedTooltip" id="117"/>
+									</LabelField>
+									<LabelField name="TotalTotal" id="118">
+										<DataPath>Object.Inventory.TotalTotal</DataPath>
+										<Title>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Total</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>tr</v8:lang>
+												<v8:content>Toplam</v8:content>
+											</v8:item>
+										</Title>
+										<ContextMenu name="TotalTotalContextMenu" id="119"/>
+										<ExtendedTooltip name="TotalTotalExtendedTooltip" id="120"/>
+									</LabelField>
+								</ChildItems>
+							</UsualGroup>
+						</ChildItems>
+					</Page>
+					<Page name="GroupAdvanceClearing" id="128">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Advance clearing</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Avans mahsubu</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="GroupAdvanceClearingExtendedTooltip" id="129"/>
+						<ChildItems>
+							<Table name="AdvanceClearing" id="130">
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<DataPath>Object.AdvanceClearing</DataPath>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="AdvanceClearingContextMenu" id="131"/>
+								<AutoCommandBar name="AdvanceClearingCommandBar" id="132">
+									<ChildItems>
+										<Button name="SelectAdvances" id="155">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="SelectAdvancesExtendedTooltip" id="156"/>
+										</Button>
+									</ChildItems>
+								</AutoCommandBar>
+								<ExtendedTooltip name="AdvanceClearingExtendedTooltip" id="133"/>
+								<SearchStringAddition name="AdvanceClearingSearchString" id="134">
+									<AdditionSource>
+										<Item>AdvanceClearing</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="AdvanceClearingSearchStringContextMenu" id="135"/>
+									<ExtendedTooltip name="AdvanceClearingSearchStringExtendedTooltip" id="136"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="AdvanceClearingViewStatus" id="137">
+									<AdditionSource>
+										<Item>AdvanceClearing</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="AdvanceClearingViewStatusContextMenu" id="138"/>
+									<ExtendedTooltip name="AdvanceClearingViewStatusExtendedTooltip" id="139"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="AdvanceClearingSearchControl" id="140">
+									<AdditionSource>
+										<Item>AdvanceClearing</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="AdvanceClearingSearchControlContextMenu" id="141"/>
+									<ExtendedTooltip name="AdvanceClearingSearchControlExtendedTooltip" id="142"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="AdvanceClearingLineNumber" id="143">
+										<DataPath>Object.AdvanceClearing.LineNumber</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="AdvanceClearingLineNumberContextMenu" id="144"/>
+										<ExtendedTooltip name="AdvanceClearingLineNumberExtendedTooltip" id="145"/>
+									</LabelField>
+									<InputField name="AdvanceClearingDocument" id="146">
+										<DataPath>Object.AdvanceClearing.Document</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="AdvanceClearingDocumentContextMenu" id="147"/>
+										<ExtendedTooltip name="AdvanceClearingDocumentExtendedTooltip" id="148"/>
+									</InputField>
+									<InputField name="AdvanceClearingAmount" id="149">
+										<DataPath>Object.AdvanceClearing.Amount</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="AdvanceClearingAmountContextMenu" id="150"/>
+										<ExtendedTooltip name="AdvanceClearingAmountExtendedTooltip" id="151"/>
+									</InputField>
+									<InputField name="AdvanceClearingAmountCur" id="152">
+										<DataPath>Object.AdvanceClearing.AmountCur</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="AdvanceClearingAmountCurContextMenu" id="153"/>
+										<ExtendedTooltip name="AdvanceClearingAmountCurExtendedTooltip" id="154"/>
+									</InputField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</Page>
+					<Page name="GroupAdditionalInfo" id="96">
+						<Title>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Additional information</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>tr</v8:lang>
+								<v8:content>Ek bilgi</v8:content>
+							</v8:item>
+						</Title>
+						<Group>HorizontalIfPossible</Group>
+						<ExtendedTooltip name="GroupAdditionalInfoExtendedTooltip" id="97"/>
+						<ChildItems>
+							<UsualGroup name="GroupInfo" id="121">
+								<Group>Vertical</Group>
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<ExtendedTooltip name="GroupInfoExtendedTooltip" id="122"/>
+								<ChildItems>
+									<InputField name="Comment" id="22">
+										<DataPath>Object.Comment</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="CommentContextMenu" id="23"/>
+										<ExtendedTooltip name="CommentExtendedTooltip" id="24"/>
+									</InputField>
+									<LabelField name="Author" id="25">
+										<DataPath>Object.Author</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="AuthorContextMenu" id="26"/>
+										<ExtendedTooltip name="AuthorExtendedTooltip" id="27"/>
+									</LabelField>
+								</ChildItems>
+							</UsualGroup>
+							<UsualGroup name="GroupAdditionalAttributes" id="98">
+								<Group>Vertical</Group>
+								<Behavior>Usual</Behavior>
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<ThroughAlign>Use</ThroughAlign>
+								<ExtendedTooltip name="GroupAdditionalAttributesExtendedTooltip" id="99"/>
+							</UsualGroup>
+						</ChildItems>
+					</Page>
+				</ChildItems>
+			</Pages>
+		</ChildItems>
+		<Attributes>
+			<Attribute name="Object" id="1000006">
+				<Type>
+					<v8:Type>cfg:DocumentObject.SupplierInvoice</v8:Type>
+				</Type>
+				<MainAttribute>true</MainAttribute>
+				<SavedData>true</SavedData>
+				<UseAlways>
+					<Field>Object.RegisterRecords</Field>
+				</UseAlways>
+			</Attribute>
+		</Attributes>
+	</BaseForm>
+</Form>
