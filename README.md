@@ -7,55 +7,37 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/1Ci-Company/test12135436574/blob/main/LICENSE)
 [![Last release](https://img.shields.io/github/v/release/1Ci-Company/jet?include_prereleases)](https://github.com/1Ci-Company/Jet/releases)
 
-# 1C Jet Map Extension
+# 1C Jet Translator Extension
 
 ## Description
-When planning shipments, deliveries, or customer visits, companies often need to calculate distances and estimated travel times between two addresses. Doing this manually for each order or invoice is time-consuming and prone to errors.
-
-This is where the Map extension comes in: it automatically retrieves coordinates from OpenStreetMap (Nominatim) and calculates distance and driving duration using OSRM API. The results can be shown directly inside 1C Jet forms, helping businesses optimize their logistics and save time.
+When sending e-invoices, especially export invoices, some legal obligations have to be added to the comment section. These obligations have to be written in different languages, sometimes in English, sometimes in Russian. The user does not want to deal with translation every time. This is where the translator extension comes in: it automatically provides the translation, which can then be added to the comment field.
 
 ## Features
-1. Search any address using Yandex or Google map.
-2. See driving distance and estimated duration in Sales and Supplier Invoices.
-3. Show the exact location of customer/supplier directly on Google Maps or Yandex Maps inside 1C Jet.
-4. Reduce manual effort in logistics planning and minimize risk of wrong delivery addresses.
-5. Useful for sales invoices, supplier invoices, and shipment planning.
+1. Translate text from any language to Turkish, English, Russian, or other languages.
+2. Supports DeepL Free and Pro APIs.
+3. Reduces manual translation effort and risk of errors.
+4. Useful for international invoices, export documents, and compliance.
 
 ## Usage
 
 ### Story 1
-1. Go To Sales Subsystem → Sales Invoices → Choose any Sales Invoice
-2. Make sure both Customer Address and Warehouse Address are filled
-3. Activate "Show Distance" checkbox
-4. Use "Refresh Information" button to get latest data
+1. Take your API from DeepL
+2. Go To Translate Subsystem in 1C Jet and enter "Translate Token"
+3. Go To Translate Subsystem in 1C Jet and set your "Translate Settings"
+4. Go to SalesInvoice → Choose any document → go to Additional Information
+5. Check Activate Translator
+6. Choose Target Language
+7. Enter the text to be translated then click at "Translate"
 
 ### Story 2
-1. Go To Purchases Subsystem → Purchase Invoices → Choose any Purchase Invoice
-2. Make sure both Supplier Address and Warehouse Address are filled
-3. Activate "Show Distance" checkbox
-4. Use "Refresh Information" button to get latest data
-
-### Story 3
-1. Go To "Map" Subsystem
-2. Click "Preferred Map Provider" and set your preferred provider (optional)
-3. Go To Sales Subsystem → Counterparties catalog → Choose any Counterparty
-4. Make sure Counterparty Address is filled
-5. Use "Show in Map" button to see the exact location of Counterparty
-
-### Story 4
-1. Go To "Map" Subsystem
-2. Click "Preferred Map Provider" and set your preferred provider (optional)
-3. Go To Map Subsystem → Map
-4. Fill the Address field
-5. Use "Refresh Map" button to see the exact location
-
-### Story 5
-1. Go To "Map" Subsystem
-2. Click "Preferred Map Provider" and set your preferred provider (optional)
-3. Go To Warehouse Subsystem → Warehouses catalog → Choose any Warehouse
-4. Make sure Warehouse Address is filled
-5. Use "Show in Map" button to see the exact location of Warehouse
+1. Take your API from DeepL
+2. Go To Translate Subsystem in 1C Jet and enter "Translate Token"
+3. Go To Translate Subsystem in 1C Jet and set your "Translate Settings"
+4. Go To Translate Subsystem in 1C Jet and open Translate
+5. Choose Target Language
+6. Enter the text to be translated then click at "Translate"
 
 ## Requirements
 1. 1C Jet Turkish 1.0.3.1
-2. Internet connection
+2. DeepL API key (Free or Pro)
+3. Internet connection
