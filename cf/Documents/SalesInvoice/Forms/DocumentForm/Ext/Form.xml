@@ -83,6 +83,23 @@
 								</InputField>
 							</ChildItems>
 						</UsualGroup>
+						<UsualGroup name="GroupTax" id="165">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupTaxExtendedTooltip" id="166"/>
+							<ChildItems>
+								<CheckBoxField name="ExemptFromVAT" id="167">
+									<DataPath>Object.ExemptFromVAT</DataPath>
+									<CheckBoxType>Switcher</CheckBoxType>
+									<ContextMenu name="ExemptFromVATContextMenu" id="168"/>
+									<ExtendedTooltip name="ExemptFromVATExtendedTooltip" id="169"/>
+									<Events>
+										<Event name="OnChange">ExemptFromVATOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
 					</ChildItems>
 				</UsualGroup>
 				<UsualGroup name="GroupRight" id="104">
@@ -126,6 +143,12 @@
 							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 							<ContextMenu name="WarehouseContextMenu" id="129"/>
 							<ExtendedTooltip name="WarehouseExtendedTooltip" id="130"/>
+						</InputField>
+						<InputField name="BankAccount" id="162">
+							<DataPath>Object.BankAccount</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="BankAccountContextMenu" id="163"/>
+							<ExtendedTooltip name="BankAccountExtendedTooltip" id="164"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>

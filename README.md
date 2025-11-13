@@ -18,7 +18,37 @@
 
 1C:Jet covers the base processes for managing a small company’s accounting needs. It automates purchasing, sales, warehouse and cash operations, advance payments, and profit calculations. The application emphasizes clean, readable code and simplicity while delivering full functionality for end users.
 
-We aim to create a regional version for Turkey featuring electronic invoicing and Turkish language support.
+---
+
+## 🌍 Regional Versions of 1C:Jet
+
+**1C:Jet** has several localized versions to help developers learn and contribute in their native languages.
+Each regional project contains translated interfaces, adapted documentation, and local features (like e-invoicing).
+
+| Region / Language   | Repository                                                         | Community Branch |
+| ------------------- | ------------------------------------------------------------------ | ---------------- |
+| 🇹🇷 **Turkish**    | [1C:Jet (Türkçe)](https://github.com/1Ci-Company/Jet-TR)           | `community-tr`   |
+| 🇪🇸 **Spanish**    | [1C:Jet (Español)](https://github.com/1Ci-Company/Jet-ES)          | `community-es`   |
+| 🇮🇩 **Indonesian** | [1C:Jet (Bahasa Indonesia)](https://github.com/1Ci-Company/Jet-ID) | `community-id`   |
+
+> **Important:**
+> If you are contributing to a *localized version*, please make your changes and pull requests **in that version’s repository and branch**, not in the main (English) project.
+>
+> Example:
+>
+> * Turkish contributors → PR to `community-tr`
+> * Spanish contributors → PR to `community-es`
+> * Indonesian contributors → PR to `community-id`
+
+---
+
+## How to Contribute
+
+Developers are welcome to contribute to **any version** of Jet — whether by improving localization, fixing issues, or adding new features.
+Each repository has its own [Wiki](../../wiki) with detailed setup and contribution guides.
+
+You can also join the discussion and ask questions in our community chat:
+👉 [t.me/jet1ci](https://t.me/jet1ci)
 
 ---
 
@@ -31,6 +61,23 @@ We aim to create a regional version for Turkey featuring electronic invoicing an
 - **Accounts Payable & Receivable**: Advance payments, mutual settlements reports  
 - **Costing & Profit**: Average goods costing, costing reports, sales revenue reports  
 - **User Management & Extras**: Users and rights, external reports, currency conversion, notes, reminders, print forms, and more  
+
+---
+## Documentation & Wiki
+
+For detailed setup and usage guides, visit the **[Wiki](https://github.com/1Ci-Company/Jet/wiki)**.
+
+Available articles:
+- Getting Started  
+- Features  
+- How to Install Platform  
+- How to Install Jet (Installer / Repository)  
+- 1C:Jet Initial Setup Guide  
+- How to Start Using 1C:Jet  
+- How to Send E-Invoices via EDM  
+- Contributing  
+
+Start here → [Getting Started](https://github.com/1Ci-Company/Jet/wiki/Getting-started)
 
 ---
 

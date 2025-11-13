@@ -211,7 +211,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 			InfobaseUpdate.MarkProcessingCompletion(DataTable,AddlParameters,Parameters.Queue);
 		EndIf;
 		
-		MessageTemplate = NStr("en = 'Регистр сведений ""Наличие файлов"". Обработана порция объектов: %1';");
+		MessageTemplate = NStr("en = 'The ""FilesExist"" register. The object batch has been processed: %1'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, DataToProcess.Count());
 			WriteLogEvent(
 				InfobaseUpdate.EventLogEvent(), EventLogLevel.Information, , ,
@@ -230,7 +230,7 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 		ObjectsWithIssuesCount = 0;
 
 		ListOfDescriptions = New Array;
-		ListOfDescriptions.Add(NStr("en = 'Не удалось обработать объекты по обработчику регистра сведений ""Наличие файлов"":';"));
+		ListOfDescriptions.Add(NStr("en = 'Failed to process objects from the ""FilesExist"" information register:'"));
 
 		For Each CurrentItem In DataToProcess Do
 			
@@ -336,14 +336,14 @@ Procedure ProcessDataForMigrationToNewVersion(Parameters) Export
 
 		If ObjectsProcessed = 0 And ObjectsWithIssuesCount <> 0 Then
 
-			ListOfDescriptions.Add(NStr("en = 'Всего пропущено: %1';"));
+			ListOfDescriptions.Add(NStr("en = 'Skipped: %1'"));
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(StrConcat(ListOfDescriptions, Chars.LF), 
 				ObjectsWithIssuesCount);
 			Raise MessageText;
 
 		Else
 
-			MessageTemplate = NStr("en = 'Регистр сведений ""Наличие файлов"". Обработана порция объектов: %1';");
+			MessageTemplate = NStr("en = 'The ""FilesExist"" register. The object batch has been processed: %1'");
 			MessageText = StringFunctionsClientServer.SubstituteParametersToString(MessageTemplate, ObjectsProcessed);
 			WriteLogEvent(
 				InfobaseUpdate.EventLogEvent(), EventLogLevel.Information, , ,

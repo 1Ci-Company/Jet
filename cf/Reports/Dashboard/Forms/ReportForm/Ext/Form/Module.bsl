@@ -1,13 +1,6 @@
 ﻿
 #Region FormEventHandlers
 
-&AtServer
-Procedure OnCreateAtServer(Cancel, StandardProcessing)
-	
-	GenerateAtServer();
-	
-EndProcedure
-
 &AtClient
 Procedure OnOpen(Cancel)
 	
@@ -15,6 +8,19 @@ Procedure OnOpen(Cancel)
 		Items.Sales.VerticalStretch = False;
 		Items.SalesByProduct.VerticalStretch = False;
 	#EndIf
+	
+	OpenFormProcessing();
+	
+EndProcedure
+
+#EndRegion
+
+#Region FormHeaderItemsEventHandlers
+
+&AtClient
+Procedure PeriodOnChange(Item)
+	
+	PeriodChangeProcessing();
 	
 EndProcedure
 
@@ -61,9 +67,9 @@ Procedure GenerateAtServer()
 	ReportObject = FormAttributeToValue("Report");
 	CompositionSchema = ReportObject.GetTemplate("MainDataCompositionSchema");
 	
+	ReportSettings = Report.SettingsComposer.GetSettings();
 	DataCompositionTemplateComposer = New DataCompositionTemplateComposer;
-	DataCompositionTemplate = DataCompositionTemplateComposer.Execute(CompositionSchema,
-		Report.SettingsComposer.GetSettings());
+	DataCompositionTemplate = DataCompositionTemplateComposer.Execute(CompositionSchema, ReportSettings);
 	
 	DataCompositionProcessor = New DataCompositionProcessor;
 	DataCompositionProcessor.Initialize(DataCompositionTemplate,,, True);
@@ -84,6 +90,41 @@ Procedure FillInCharts(ReportResult)
 	
 	SalesByProductChart = ReportResult.Drawings[1].Object;
 	SalesByProductChart.PointCount = Min(SalesByProductChart.PointCount, 6);
+	
+EndProcedure
+
+&AtServer
+Procedure OpenFormProcessing()
+	
+	UserSettings = Report.SettingsComposer.UserSettings;
+	ParameterPeriod = New DataCompositionParameter("ItmPeriod");
+	
+	For Each Item In UserSettings.Items Do
+		If Item.Parameter = ParameterPeriod Then
+			Period = Item.Value;
+			Break;
+		EndIf;
+	EndDo;
+	
+	GenerateAtServer();
+	
+EndProcedure
+
+&AtServer
+Procedure PeriodChangeProcessing()
+	
+	UserSettings = Report.SettingsComposer.UserSettings;
+	ParameterPeriod = New DataCompositionParameter("ItmPeriod");
+	
+	For Each Item In UserSettings.Items Do
+		If Item.Parameter = ParameterPeriod Then
+			Item.Value = Period;
+			UserSettingsModified = True;
+			Break;
+		EndIf;
+	EndDo;
+	
+	GenerateAtServer();
 	
 EndProcedure
 

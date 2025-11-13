@@ -281,69 +281,12 @@ Function HintForFillingInTheRegistrationParameters(Val LanguageCode)
 
 	LanguageCode = StrSplit(LanguageCode, "_", True)[0];
 
-	If LanguageCode = "ru" Or LanguageCode = "be" Then
+	If LanguageCode = "en" Then
 
 		//@skip-check module-nstr-camelcase
 		Result.Instruction = StringFunctions.FormattedString(NStr(
 		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Russian and Belarusian (ru_RU, be_BY):
-		|
-		|рубль, рубля, рублей, м, копейка, копейки, копеек, ж, 2
-		|
-		|""рубль, рубля, рублей, м"" – the calculation object:
-		|рубль – nominative singular
-		|рубля – genitive singular
-		|рублей – genitive plural
-		|м – masculine (ж – feminine, с – neuter)
-		|""копейка, копейки, копеек, ж"" – the fractional part similar to the calculation object (may be missing)
-		|""2"" – the number of decimal places (may be missing; the default value is 2).';"));
-
-		Result.InputHint = NStr("en = 'рубль, рубля, рублей, м, копейка, копейки, копеек, ж, 2';");
-
-	ElsIf LanguageCode = "uk" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Ukrainian (uk_UA):
-		|
-		|гривна, гривны, гривен, м, копейка, копейки, копеек, ж, 2
-		|
-		|""гривна, гривны, гривен, м"" – the calculation object:
-		|""гривна – nominative singular
-		|гривны – genitive singular
-		|гривен – genitive plural
-		|м – masculine (ж – feminine, с – neuter)
-		|""копейка, копейки, копеек, ж"" – the fractional part similar to the calculation object (may be missing)
-		|""2"" – the number of decimal places (may be missing; the default value is 2).';"));
-
-		Result.InputHint = NStr("en = 'гривна, гривны, гривен, м, копейка, копейки, копеек, ж, 2';");
-
-	ElsIf LanguageCode = "pl" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Polish (pl_PL):
-		|
-		|złoty, złote, złotych, m, grosz, grosze, groszy, m, 2
-		|
-		|""złoty, złote, złotych, m "" - the calculation subject (m - masculine, ż - feminine, ń - neuter, mo – masculine personal).
-		|złoty - nominative singular
-		|złote - accusative singular
-		|złotych - accusative plural
-		|m - masculine (ż - feminine, ń - neuter, mo – masculine personal)
-		|""grosz, grosze, groszy, m "" - the fractional part (may be missing) (similar to the integral part)
-		|2 - the number of decimal places (may be missing; the default value is 2).';"));
-
-		Result.InputHint = NStr("en = 'złoty, złote, złotych, m, grosz, grosze, groszy, m, 2';");
-
-	ElsIf LanguageCode = "en" Or LanguageCode = "fr" Or LanguageCode = "fi" Or LanguageCode = "kk" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for English, French, Finnish and Kazakh (en_US, fr_CA,fi_FI, kk_KZ):
+		|Example of filling for English (en_US):
 		|
 		|dollar, dollars, cent, cents, 2
 		|
@@ -352,166 +295,6 @@ Function HintForFillingInTheRegistrationParameters(Val LanguageCode)
 		|""2"" - the number of decimal places (may be missing; the default value is 2).';"));
 
 		Result.InputHint = NStr("en = 'dollar, dollars, cent, cents, 2';");
-
-	ElsIf LanguageCode = "de" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for German (de_DE):
-		|
-		|EURO, EURO, M, Cent, Cent, M, 2
-		|
-		|""EURO, EURO, M"" – the calculation object:
-		|EURO, EURO - calculation object singular and plural
-		|M – masculine (F – feminine, N - neuter)
-		|""Cent, Cent, M"" – the fractional part similar to the calculation object (may be missing)
-		|""2"" – the number of decimal places (may be missing; the default value is 2).';"));
-
-		Result.InputHint = NStr("en = 'EURO, EURO, M, Cent, Cent, M, 2';");
-
-	ElsIf LanguageCode = "lv" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Latvian (lv_LV):
-		|
-		|lats, lati, latu, V, santīms, santīmi, santīmu, V, 2, J, J
-		|
-		|""lats, lati, latu, v"" – the calculation object:
-		|lats – for numbers ending with 1, except for 11
-		|lati – for numbers ending with 2-9 and 11
-		|latu – plural (genitive) used for numerals 0, 10, 20,…, 90, 100, 200, …, 1000, …, 100000
-		|v – masculine (s – feminine)
-		|""santīms, santīmi, santīmu, V"" – the fractional part similar to the calculation object (may be missing)
-		|""2"" – the number of decimal places (may be missing; the default value is 2)
-		|""J"" - the number 100 is displayed as ""One hundred"" for the calculation object (N - the number 100 is displayed as ""Hundred"");
-		|may be missing; the default value is ""J""
-		|""J"" - the number 100 is displayed as ""One hundred"" for the fractional part (N - the number 100 is displayed as ""Hundred"")
-		|may be missing; the default value is ""J"".';"));
-
-		Result.InputHint = NStr("en = 'lats, lati, latu, V, santīms, santīmi, santīmu, V, 2, J, J';");
-
-	ElsIf LanguageCode = "lt" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Lithuanian (lt_LT):
-		|
-		|litas, litai, litų, M, centas, centai, centų, M, 2
-		|
-		|""litas, litai, litų, M"" – the calculation object:
-		|litas - integral part singular
-		|litai - integral part plural (from 2 to 9)
-		|litų - integral part plural (other)
-		|m - the integral part gender (f - feminine),
-		|""centas, centai, centų, M"" – the fractional part similar to the calculation object (may be missing)
-		|""2"" - the number of decimal places (may be missing; the default value is 2).';"));
-
-		Result.InputHint = NStr("en = 'litas, litai, litų, M, centas, centai, centų, M, 2';");
-
-	ElsIf LanguageCode = "et" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Estonian (et_EE):
-		|
-		|kroon, krooni, sent, senti, 2
-		|
-		|""kroon, krooni"" – calculation object singular and plural
-		|""sent, senti"" - fractional part singular and plural (may be missing)
-		|2 - the number of decimal places (may be missing; the default value is 2).';"));
-
-		Result.InputHint = NStr("en = 'kroon, krooni, sent, senti, 2';");
-
-	ElsIf LanguageCode = "bg" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Bulgarian (bg_BG):
-		|
-		|лев, лева, м, стотинка, стотинки, ж, 2
-		|
-		|""лев, лева, м"" – the calculation object:
-		|лев - integral part singular
-		|лева - integral part plural
-		|м - the integral part gender
-		|""стотинка, стотинки, ж"" - the fractional part:
-		|стотинка - fractional part singular
-		|стотинки - fractional part plural
-		|ж - the fractional part gender
-		|""2"" - the number of decimal places.';"));
-
-		Result.InputHint = NStr("en = 'лев, лева, м, стотинка, стотинки, ж, 2';");
-
-	ElsIf LanguageCode = "ro" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Romanian (ro_RO):
-		|
-		|leu, lei, M, ban, bani, W, 2
-		|
-		|""leu, lei, M"" – the calculation object:
-		|leu - integral part singular
-		|lei - integral part plural
-		|M - the integral part gender
-		|""ban, bani, W"" - the fractional part:
-		|ban - fractional part singular
-		|bani - fractional part plural
-		|W - the fractional part gender
-		|""2"" - the number of decimal places.';"));
-
-		Result.InputHint = NStr("en = 'leu, lei, M, ban, bani, W, 2';");
-
-	ElsIf LanguageCode = "ka" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Georgian (ka_GE):
-		|
-		|ლარი, თეთრი, 2
-		|
-		|ლარი - the integral part
-		|თეთრი - the fractional part
-		|2 - the number of decimal places.';"));
-
-		Result.InputHint = NStr("en = 'ლარი, თეთრი, 2';");
-
-	ElsIf LanguageCode = "az" Or LanguageCode = "tk" Then
-
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Azerbaijani (az) and Turkmen (tk):
-		|
-		|TL,Kr,2
-		|
-		|""TL"" - the calculation object
-		|""Kr"" - the fractional part (may be missing)
-		|2 - the number of decimal places (may be missing; the default value is 2)';"));
-
-		Result.InputHint = NStr("en = 'TL,Kr,2';");
-
-	ElsIf LanguageCode = "vi" Then
-
-		//@skip-check module-nstr-camelcase
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Vietnamese (vi_VN):
-		|
-		|dong, xu, 2
-		|
-		|dong, - the integral part
-		|xu, - the fractional part
-		|2 - the number of decimal places.';"));
-
-		Result.InputHint = NStr("en = 'dong, xu, 2';");
 
 	ElsIf LanguageCode = "tr" Then
 
@@ -528,20 +311,6 @@ Function HintForFillingInTheRegistrationParameters(Val LanguageCode)
 		|""Separate"" - indicates whether to write words separately, ""Solid"" - indicates whether to write words solid (may be missing; the default value is ""Solid"").';"));
 
 		Result.InputHint = NStr("en = 'TL,Kr,2,Separate';");
-
-	ElsIf LanguageCode = "hu" Then
-
-		Result.Instruction = StringFunctions.FormattedString(NStr(
-		"en = 'List comma-separated parameters for writing amounts in words.
-		|Example of filling for Hungarian (hu):
-		|
-		|Forint, fillér, 2
-		|
-		|Forint - the integral part
-		|fillér - the fractional part
-		|""2"" - the number of decimal places.';"));
-
-		Result.InputHint = NStr("en = 'Forint, fillér, 2';");
 
 	EndIf;
 

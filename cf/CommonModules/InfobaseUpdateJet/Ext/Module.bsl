@@ -47,7 +47,7 @@
 Procedure OnAddSubsystem(LongDesc) Export
 	
 	LongDesc.Name    = "Jet";
-	LongDesc.Version = "1.0.1.1";
+	LongDesc.Version = "1.0.2.1";
 	LongDesc.DeferredHandlersExecutionMode = "Sequentially";
 	
 	LongDesc.RequiredSubsystems1.Add("StandardSubsystems");
@@ -72,6 +72,12 @@ EndProcedure
 //  Handler.ExecutionMode     = "Seamless";
 //
 Procedure OnAddUpdateHandlers(Handlers) Export
+	
+	Handler = Handlers.Add();
+	Handler.Version			= "1.0.2.1";
+	Handler.InitialFilling	= False;
+	Handler.ExecutionMode	= "Exclusively";
+	Handler.Procedure		= "InfobaseUpdateJet.UpdatePredefinedContactInformationKinds";
 	
 EndProcedure
 
@@ -255,5 +261,11 @@ EndProcedure
 // End StandardSubsystems.IBVersionUpdate
 
 #EndRegion
+
+Procedure UpdatePredefinedContactInformationKinds() Export
+	
+	InfobaseUpdate.DoUpdatePredefinedItems(Metadata.Catalogs.ContactInformationKinds);
+	
+EndProcedure
 
 #EndRegion

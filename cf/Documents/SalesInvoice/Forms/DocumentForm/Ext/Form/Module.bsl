@@ -129,6 +129,14 @@ Procedure PriceTypeOnChange(Item)
 	
 EndProcedure
 
+&AtClient
+Procedure ExemptFromVATOnChange(Item)
+	
+	FillVATRateByVATExemption();
+	FormManagement();
+	
+EndProcedure
+
 #EndRegion
 
 #Region FormTableItemsEventHandlersInventory
@@ -144,6 +152,7 @@ Procedure InventoryProductOnChange(Item)
 	DataStructure.Insert("Date", Object.Date);
 	DataStructure.Insert("ExchangeRate", Object.ExchangeRate);
 	DataStructure.Insert("Multiplier", Object.Multiplier);
+	DataStructure.Insert("ExemptFromVAT", Object.ExemptFromVAT);
 	
 	GetProductData(DataStructure);
 	
@@ -300,13 +309,19 @@ EndProcedure
 &AtServerNoContext
 Procedure GetProductData(DataStructure)
 	
+	ProductAttributes = New Structure;
+	ProductAttributes.Insert("VATRate", Catalogs.VATRates.EmptyRef());
+	
 	If ValueIsFilled(DataStructure.Product) Then
-		VATRate = Common.ObjectAttributeValue(DataStructure.Product, "VATRate");
-	Else
-		VATRate = Catalogs.VATRates.EmptyRef();
+		ProductAttributes = Common.ObjectAttributesValues(DataStructure.Product, "VATRate");
 	EndIf;
 	
-	DataStructure.Insert("VATRate", VATRate);
+	If DataStructure.Property("ExemptFromVAT") And DataStructure.ExemptFromVAT Then
+		DataStructure.Insert("VATRate", Catalogs.VATRates.GetExemptFromVATRate());
+	Else
+		DataStructure.Insert("VATRate", ProductAttributes.VATRate);
+	EndIf;
+	
 	DataStructure.Insert("Quantity", 1);
 	
 	Price = PriceManagementServerCall.GetProductPriceByPriceType(DataStructure);
@@ -357,6 +372,14 @@ Procedure FormManagement()
 				Object.Currency);
 	EndIf;
 	
+	SubjectToVAT = Not Object.ExemptFromVAT;
+	
+	Items.InventoryVATRate.Visible		= SubjectToVAT;
+	Items.InventoryVATAmount.Visible	= SubjectToVAT;
+	Items.InventoryTotal.Visible		= SubjectToVAT;
+	Items.TotalVATAmount.Visible		= SubjectToVAT;
+	Items.TotalTotal.Visible			= SubjectToVAT;
+	
 #If MobileClient Then
 	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Title", NStr("en = 'Totals'"));
 	CommonClientServer.SetFormItemProperty(Items, "GroupTotal", "Behavior", UsualGroupBehavior.Collapsible);
@@ -392,6 +415,27 @@ Procedure GetAdvanceClearingFromStorage(AddressInStorage)
 	
 	AdvanceTable = GetFromTempStorage(AddressInStorage);
 	Object.AdvanceClearing.Load(AdvanceTable);
+	
+EndProcedure
+
+&AtServer
+Procedure FillVATRateByVATExemption()
+	
+	If Object.ExemptFromVAT Then
+		
+		ExemptFromVATRate = Catalogs.VATRates.GetExemptFromVATRate();
+		
+		For Each InventoryRow In Object.Inventory Do
+			InventoryRow.VATRate = ExemptFromVATRate;
+			InventoryRow.VATAmount = 0;
+			InventoryRow.Total = InventoryRow.Amount;
+		EndDo;
+	Else
+		For Each InventoryRow In Object.Inventory Do
+			InventoryRow.VATRate = InventoryRow.Product.VATRate;
+			InventoryTabularSectionClientServer.CalculateVATAmountAndTotal(InventoryRow);
+		EndDo;
+	EndIf;
 	
 EndProcedure
 

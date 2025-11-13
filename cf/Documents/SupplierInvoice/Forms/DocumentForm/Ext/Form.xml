@@ -80,6 +80,23 @@
 								</InputField>
 							</ChildItems>
 						</UsualGroup>
+						<UsualGroup name="GroupTax" id="159">
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="GroupTaxExtendedTooltip" id="160"/>
+							<ChildItems>
+								<CheckBoxField name="ExemptFromVAT" id="161">
+									<DataPath>Object.ExemptFromVAT</DataPath>
+									<CheckBoxType>Switcher</CheckBoxType>
+									<ContextMenu name="ExemptFromVATContextMenu" id="162"/>
+									<ExtendedTooltip name="ExemptFromVATExtendedTooltip" id="163"/>
+									<Events>
+										<Event name="OnChange">ExemptFromVATOnChange</Event>
+									</Events>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
 					</ChildItems>
 				</UsualGroup>
 				<UsualGroup name="GroupRight" id="104">
